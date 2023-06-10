@@ -36,7 +36,7 @@ class CollectionCard extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1 / 1,
         child: Image.network(
-          collection.image ?? kCollectionDefaultImage,
+          collection.image ?? Assets.collectionDefaultImage,
           fit: BoxFit.cover,
         ),
       ),

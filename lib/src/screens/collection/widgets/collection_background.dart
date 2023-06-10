@@ -30,7 +30,7 @@ class _CollectionBackgroundImage extends StatelessWidget {
             sigmaY: 50,
           ),
           child: Image.network(
-            image ?? kCollectionDefaultImage,
+            image ?? Assets.collectionDefaultImage,
             fit: BoxFit.cover,
           ),
         ),

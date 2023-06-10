@@ -39,7 +39,7 @@ class CollectionItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(kBorderRadius),
       clipBehavior: Clip.hardEdge,
       child: CachedNetworkImage(
-        imageUrl: collection.image ?? kCollectionDefaultImage,
+        imageUrl: collection.image ?? Assets.collectionDefaultImage,
         fit: BoxFit.cover,
         width: _imageSize,
         height: _imageSize,
