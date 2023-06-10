@@ -24,6 +24,7 @@ dependencies:
   equatable: ^2.0.5
   ulid: ^2.0.0
   cached_network_image: ^3.2.3
+  flutter_svg: ^2.0.6
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +39,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/emotions/
   fonts:
     - family: Pretendard
       fonts:
