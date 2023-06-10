@@ -20,6 +20,8 @@ dependencies:
   # Others
   auto_route: ^7.4.0
   dynamic_color: ^1.6.5
+  equatable: ^2.0.5
+  ulid: ^2.0.0
 
 dev_dependencies:
   flutter_test:
