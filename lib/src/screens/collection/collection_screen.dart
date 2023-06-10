@@ -37,7 +37,7 @@ class CollectionScreen extends StatelessWidget {
       detail: _CollectionDetail(
         collection: collection,
       ),
-      mediasList: _CollectionMediasGrid(
+      mediasGrid: _CollectionMediasGrid(
         medias: collection.items.map((e) => e!.media).toList(),
       ),
     );
@@ -49,13 +49,13 @@ class _CollectionTemplate extends StatelessWidget {
     required this.backgroundImage,
     required this.titles,
     required this.detail,
-    required this.mediasList,
+    required this.mediasGrid,
   });
 
   final _CollectionBackgroundImage backgroundImage;
   final _CollectionTitles titles;
   final _CollectionDetail detail;
-  final _CollectionMediasGrid mediasList;
+  final _CollectionMediasGrid mediasGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class _CollectionTemplate extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,
             ),
-            sliver: mediasList,
+            sliver: mediasGrid,
           ),
         ]),
       ]),

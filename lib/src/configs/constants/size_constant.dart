@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const kContentPadding = Sizes.p16;
+const kContentPadding = Sizes.p12;
 const kBorderRadius = Sizes.p8;
 
 abstract final class Sizes {

@@ -21,6 +21,8 @@ class App extends StatelessWidget {
         );
 
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+
           title: "Serendy",
           routerConfig: appRouter.config(),
 

@@ -35,8 +35,8 @@ class MediaScreen extends StatelessWidget {
         status: [mediaStartDate, media.status.name],
       ),
       actionBar: _MediaActionBar(media: media),
-      contents: [
-        for (var i = 0; i <= 5; i++) const _MediaInfoTile(),
+      contents: const [
+        _MediaInfoTile(),
       ],
     );
   }
@@ -78,11 +78,15 @@ class _MediaTemplate extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kContentPadding,
+                ),
                 child: keyword,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Sizes.p8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kContentPadding / 2,
+                ),
                 child: actionBar,
               ),
               ...contents,
