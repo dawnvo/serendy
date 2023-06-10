@@ -138,6 +138,14 @@ final class AppThemeData {
         }),
       ),
 
+      tabBarTheme: themeData.tabBarTheme.copyWith(
+        indicatorColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+          return null;
+        }),
+      ),
+
       // Button theme
       iconButtonTheme: const IconButtonThemeData(style: _buttonStyles),
       textButtonTheme: const TextButtonThemeData(style: _buttonStyles),
