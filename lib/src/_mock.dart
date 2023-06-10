@@ -44,3 +44,17 @@ final collectionsMock = [
         "https://velog.velcdn.com/images/ingkoon/post/96140f7b-094b-49ac-8043-9cbc3d1613ee/image.png",
   ),
 ];
+
+final evaluationsMock = List.filled(
+  2,
+  Evaluation(
+    userId: 'uid',
+    emotion: Emotion.happyness,
+    media: const MediaInfo(
+      id: 'mid',
+      image:
+          "https://i.pinimg.com/236x/2b/63/b4/2b63b4c741ffc742f42f321b5f4bd1ec.jpg",
+      title: '최애의 아이',
+    ),
+  ),
+);

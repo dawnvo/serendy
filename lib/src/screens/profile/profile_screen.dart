@@ -27,8 +27,7 @@ class ProfileScreen extends StatelessWidget {
       watchedMediaIndicator: _WatchedMediaIndicator(
         total: 10,
         count: 9,
-        onTap: () {},
-        // onTap: () => context.pushRoute(const HistoryRoute()),
+        onTap: () => context.pushRoute(const HistoryRoute()),
       ),
       collectionsList: _MyCollectionsList(collectionsMock),
     );

@@ -20,5 +20,6 @@ final class AppRouter extends _$AppRouter {
         ),
         AutoRoute(path: '/collection/:id', page: CollectionRoute.page),
         AutoRoute(path: '/media/:id', page: MediaRoute.page),
+        AutoRoute(path: '/history', page: HistoryRoute.page),
       ];
 }

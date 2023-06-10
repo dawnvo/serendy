@@ -39,6 +39,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DiscoverScreen(),
       );
     },
+    HistoryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HistoryScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -129,6 +135,20 @@ class DiscoverRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DiscoverRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HistoryScreen]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute({List<PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
