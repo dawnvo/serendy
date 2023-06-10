@@ -67,9 +67,7 @@ class _CollectionTemplate extends StatelessWidget {
           child: backgroundImage,
         ),
         CustomScrollView(slivers: [
-          const SliverAppBar(
-            backgroundColor: Colors.transparent,
-          ),
+          const SliverAppBar(backgroundColor: Colors.transparent),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,

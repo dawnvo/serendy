@@ -21,8 +21,7 @@ class _CollectionMediasGrid extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => MediaCard(
           media: medias[index],
-          onTap: () {},
-          // onTap: () => context.pushRoute(const MediaRoute()),
+          onTap: () => context.pushRoute(MediaRoute(id: 'mediaId')),
         ),
         childCount: medias.length,
       ),

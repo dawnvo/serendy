@@ -51,6 +51,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    MediaRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<MediaRouteArgs>(
+          orElse: () => MediaRouteArgs(id: pathParams.getString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MediaScreen(
+          id: args.id,
+          key: args.key,
+        ),
+      );
+    },
   };
 }
 
@@ -147,4 +159,42 @@ class ProfileRoute extends PageRouteInfo<void> {
   static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MediaScreen]
+class MediaRoute extends PageRouteInfo<MediaRouteArgs> {
+  MediaRoute({
+    required String id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MediaRoute.name,
+          args: MediaRouteArgs(
+            id: id,
+            key: key,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'MediaRoute';
+
+  static const PageInfo<MediaRouteArgs> page = PageInfo<MediaRouteArgs>(name);
+}
+
+class MediaRouteArgs {
+  const MediaRouteArgs({
+    required this.id,
+    this.key,
+  });
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MediaRouteArgs{id: $id, key: $key}';
+  }
 }
