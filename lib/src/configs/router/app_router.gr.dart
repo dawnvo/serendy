@@ -21,6 +21,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AppScreen(),
       );
     },
+    CollectionRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CollectionRouteArgs>(
+          orElse: () => CollectionRouteArgs(id: pathParams.getString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CollectionScreen(
+          id: args.id,
+          key: args.key,
+        ),
+      );
+    },
     DiscoverRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -54,6 +66,45 @@ class AppRoute extends PageRouteInfo<void> {
   static const String name = 'AppRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CollectionScreen]
+class CollectionRoute extends PageRouteInfo<CollectionRouteArgs> {
+  CollectionRoute({
+    required String id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CollectionRoute.name,
+          args: CollectionRouteArgs(
+            id: id,
+            key: key,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'CollectionRoute';
+
+  static const PageInfo<CollectionRouteArgs> page =
+      PageInfo<CollectionRouteArgs>(name);
+}
+
+class CollectionRouteArgs {
+  const CollectionRouteArgs({
+    required this.id,
+    this.key,
+  });
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CollectionRouteArgs{id: $id, key: $key}';
+  }
 }
 
 /// generated route for

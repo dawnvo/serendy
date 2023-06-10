@@ -15,18 +15,18 @@ class _DiscoverCollectionsGrid extends StatelessWidget {
     final cardWidth = (screenWidth / columns) - (kContentPadding * 2) - spacing;
 
     return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => CollectionCard(
-          collection: items[index],
-          // onTap: () => context.pushRoute(CollectionRoute()),
-        ),
-        childCount: items.length,
-      ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisExtent: cardWidth + contentHeight,
         crossAxisCount: columns,
         mainAxisSpacing: spacing,
         crossAxisSpacing: spacing,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => CollectionCard(
+          collection: items[index],
+          onTap: () => context.pushRoute(CollectionRoute(id: "collectionId")),
+        ),
+        childCount: items.length,
       ),
     );
   }
