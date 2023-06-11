@@ -14,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
     return _SettingsTemplate(
       options: [
         _SettingsListTile(
-          onTap: () {},
+          onTap: () => context.pushRoute(const AccountRoute()),
           icon: RemixIcon.user_line,
           title: "내 계정",
         ),

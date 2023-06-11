@@ -5,14 +5,16 @@ import 'package:serendy/src/configs/configs.dart';
 class TitleTextField extends HookWidget {
   const TitleTextField({
     super.key,
+    this.focusNode,
     this.value,
     this.placeholder,
     this.onChanged,
     this.autofocus = false,
   });
 
-  final String? value;
+  final FocusNode? focusNode;
   final bool autofocus;
+  final String? value;
   final String? placeholder;
   final void Function(String value)? onChanged;
 
@@ -24,6 +26,7 @@ class TitleTextField extends HookWidget {
     );
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       autofocus: autofocus,
       onChanged: onChanged,
       maxLength: 30,

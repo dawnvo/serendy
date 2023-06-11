@@ -23,6 +23,7 @@ final class AppRouter extends _$AppRouter {
         AutoRoute(path: '/media/:id', page: MediaRoute.page),
         AutoRoute(path: '/history', page: HistoryRoute.page),
         AutoRoute(path: '/settings', page: SettingsRoute.page),
+        AutoRoute(path: '/settings/account', page: AccountRoute.page),
 
         /// Modals
         AutoRoute(

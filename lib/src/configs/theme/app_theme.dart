@@ -3,7 +3,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/constants/size_constant.dart';
 
 sealed class AppColors {
-  static const Color brand = Color(0xFF8F85FF);
+  static const brand = Color(0xFF8F85FF);
 
   // light
   static const _lightSurface = Color(0xFFFFFBFF);
