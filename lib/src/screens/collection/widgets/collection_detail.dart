@@ -20,9 +20,12 @@ class _CollectionDetail extends StatelessWidget {
         ),
       ]),
       const Spacer(),
-      IconButton(icon: const Icon(RemixIcon.pencil_fill), onPressed: () {}
-          // context.pushRoute(EditCollectionRoute(collection: collection)),
-          ),
+      IconButton(
+        icon: const Icon(RemixIcon.pencil_fill),
+        onPressed: () => context.pushRoute(EditCollectionRoute(
+          collection: collection,
+        )),
+      ),
       IconButton(
         icon: const Icon(RemixIcon.share_forward_fill),
         onPressed: () {},

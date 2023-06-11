@@ -33,10 +33,26 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CreateCollectionRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateCollectionScreen(),
+      );
+    },
     DiscoverRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DiscoverScreen(),
+      );
+    },
+    EditCollectionRoute.name: (routeData) {
+      final args = routeData.argsAs<EditCollectionRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditCollectionScreen(
+          collection: args.collection,
+          key: args.key,
+        ),
       );
     },
     HistoryRoute.name: (routeData) {
@@ -67,12 +83,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ProfileScreen(),
-      );
-    },
-    CreateCollectionRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CreateCollectionScreen(),
       );
     },
   };
@@ -132,6 +142,20 @@ class CollectionRouteArgs {
 }
 
 /// generated route for
+/// [CreateCollectionScreen]
+class CreateCollectionRoute extends PageRouteInfo<void> {
+  const CreateCollectionRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateCollectionRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateCollectionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [DiscoverScreen]
 class DiscoverRoute extends PageRouteInfo<void> {
   const DiscoverRoute({List<PageRouteInfo>? children})
@@ -143,6 +167,44 @@ class DiscoverRoute extends PageRouteInfo<void> {
   static const String name = 'DiscoverRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditCollectionScreen]
+class EditCollectionRoute extends PageRouteInfo<EditCollectionRouteArgs> {
+  EditCollectionRoute({
+    required Collection collection,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditCollectionRoute.name,
+          args: EditCollectionRouteArgs(
+            collection: collection,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditCollectionRoute';
+
+  static const PageInfo<EditCollectionRouteArgs> page =
+      PageInfo<EditCollectionRouteArgs>(name);
+}
+
+class EditCollectionRouteArgs {
+  const EditCollectionRouteArgs({
+    required this.collection,
+    this.key,
+  });
+
+  final Collection collection;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'EditCollectionRouteArgs{collection: $collection, key: $key}';
+  }
 }
 
 /// generated route for
@@ -221,20 +283,6 @@ class ProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CreateCollectionScreen]
-class CreateCollectionRoute extends PageRouteInfo<void> {
-  const CreateCollectionRoute({List<PageRouteInfo>? children})
-      : super(
-          CreateCollectionRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CreateCollectionRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/src/app.dart';
 import 'package:serendy/src/screens/screens.dart';
+import 'package:serendy/src/models/models.dart';
 
 part 'app_router.gr.dart';
 
@@ -27,6 +28,11 @@ final class AppRouter extends _$AppRouter {
           fullscreenDialog: true,
           path: '/create-collection',
           page: CreateCollectionRoute.page,
+        ),
+        AutoRoute(
+          fullscreenDialog: true,
+          path: '/edit-collection',
+          page: EditCollectionRoute.page,
         ),
       ];
 }
