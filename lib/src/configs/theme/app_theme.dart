@@ -138,12 +138,11 @@ final class AppThemeData {
         }),
       ),
 
+      // TabBar theme
       tabBarTheme: themeData.tabBarTheme.copyWith(
         indicatorColor: Colors.transparent,
         splashFactory: NoSplash.splashFactory,
-        overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          return null;
-        }),
+        overlayColor: const MaterialStatePropertyAll<Color?>(null),
       ),
 
       // Button theme
@@ -156,10 +155,8 @@ final class AppThemeData {
   }
 
   static const _buttonStyles = ButtonStyle(
-    textStyle: MaterialStatePropertyAll<TextStyle?>(TextStyle(
-      fontWeight: FontWeight.bold,
-    )),
-    shape: MaterialStatePropertyAll<OutlinedBorder>(RoundedRectangleBorder(
+    textStyle: MaterialStatePropertyAll(TextStyle(fontWeight: FontWeight.bold)),
+    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(12)),
     )),
   );

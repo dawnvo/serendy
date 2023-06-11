@@ -5,10 +5,12 @@ class _HistoryCardsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final evaluations = List.filled(5, evaluationMock);
+
     return SliverList.builder(
-      itemCount: evaluationsMock.length,
+      itemCount: evaluations.length,
       itemBuilder: (BuildContext context, int index) {
-        final evaluation = evaluationsMock[index];
+        final evaluation = evaluations[index];
 
         return Padding(
           padding: const EdgeInsets.only(bottom: Sizes.p16),

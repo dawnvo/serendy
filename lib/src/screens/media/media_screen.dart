@@ -24,7 +24,7 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = collectionItem.media;
+    final media = mediaMock;
     final mediaStartDate = (media.startDate?.year).toString();
 
     return _MediaTemplate(
