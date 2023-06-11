@@ -21,6 +21,24 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AppScreen(),
       );
     },
+    MediaRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<MediaRouteArgs>(
+          orElse: () => MediaRouteArgs(id: pathParams.getString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MediaScreen(
+          id: args.id,
+          key: args.key,
+        ),
+      );
+    },
+    AccountRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AccountScreen(),
+      );
+    },
     CollectionRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CollectionRouteArgs>(
@@ -67,18 +85,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeScreen(),
       );
     },
-    MediaRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<MediaRouteArgs>(
-          orElse: () => MediaRouteArgs(id: pathParams.getString('id')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MediaScreen(
-          id: args.id,
-          key: args.key,
-        ),
-      );
-    },
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -91,10 +97,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
-    AccountRoute.name: (routeData) {
+    SearchRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AccountScreen(),
+        child: const SearchScreen(),
       );
     },
   };
@@ -110,6 +116,58 @@ class AppRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AppRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MediaScreen]
+class MediaRoute extends PageRouteInfo<MediaRouteArgs> {
+  MediaRoute({
+    required String id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MediaRoute.name,
+          args: MediaRouteArgs(
+            id: id,
+            key: key,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'MediaRoute';
+
+  static const PageInfo<MediaRouteArgs> page = PageInfo<MediaRouteArgs>(name);
+}
+
+class MediaRouteArgs {
+  const MediaRouteArgs({
+    required this.id,
+    this.key,
+  });
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MediaRouteArgs{id: $id, key: $key}';
+  }
+}
+
+/// generated route for
+/// [AccountScreen]
+class AccountRoute extends PageRouteInfo<void> {
+  const AccountRoute({List<PageRouteInfo>? children})
+      : super(
+          AccountRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccountRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -248,44 +306,6 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MediaScreen]
-class MediaRoute extends PageRouteInfo<MediaRouteArgs> {
-  MediaRoute({
-    required String id,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          MediaRoute.name,
-          args: MediaRouteArgs(
-            id: id,
-            key: key,
-          ),
-          rawPathParams: {'id': id},
-          initialChildren: children,
-        );
-
-  static const String name = 'MediaRoute';
-
-  static const PageInfo<MediaRouteArgs> page = PageInfo<MediaRouteArgs>(name);
-}
-
-class MediaRouteArgs {
-  const MediaRouteArgs({
-    required this.id,
-    this.key,
-  });
-
-  final String id;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'MediaRouteArgs{id: $id, key: $key}';
-  }
-}
-
-/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
@@ -314,15 +334,15 @@ class SettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AccountScreen]
-class AccountRoute extends PageRouteInfo<void> {
-  const AccountRoute({List<PageRouteInfo>? children})
+/// [SearchScreen]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute({List<PageRouteInfo>? children})
       : super(
-          AccountRoute.name,
+          SearchRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'AccountRoute';
+  static const String name = 'SearchRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
