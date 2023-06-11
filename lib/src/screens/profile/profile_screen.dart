@@ -20,8 +20,7 @@ class ProfileScreen extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(RemixIcon.settings_3_fill),
-          onPressed: () {},
-          // onPressed: () => context.pushRoute(const SettingsRoute()),
+          onPressed: () => context.pushRoute(const SettingsRoute()),
         ),
       ],
       watchedMediaIndicator: _WatchedMediaIndicator(
