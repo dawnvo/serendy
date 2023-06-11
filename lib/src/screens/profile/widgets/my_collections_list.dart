@@ -34,8 +34,7 @@ class _CreateCollectionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       titleTextStyle: context.textTheme.bodyMedium,
-      // onTap: () => context.pushRoute(const CreateCollectionRoute()),
-      onTap: () {},
+      onTap: () => context.pushRoute(const CreateCollectionRoute()),
       leading: _buildImage(context),
       title: const Text('테마 만들기'),
     );

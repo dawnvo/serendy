@@ -1,4 +1,5 @@
 export 'collection/collection_screen.dart';
+export 'create_collection/create_collection_screen.dart';
 export 'discover/discover_screen.dart';
 export 'history/history_screen.dart';
 export 'home/home_screen.dart';
