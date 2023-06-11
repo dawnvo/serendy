@@ -17,7 +17,7 @@ class _HistoryCardsList extends StatelessWidget {
           child: HistoryCard(
             evaluation: evaluation,
             onTap: () => context.pushRoute(MediaRoute(id: 'mediaId')),
-            onMore: () {},
+            onMoreTap: () {},
           ),
         );
       },

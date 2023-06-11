@@ -10,12 +10,12 @@ class HistoryCard extends StatelessWidget {
     required this.evaluation,
     super.key,
     this.onTap,
-    this.onMore,
+    this.onMoreTap,
   });
 
   final Evaluation evaluation;
   final VoidCallback? onTap;
-  final VoidCallback? onMore;
+  final VoidCallback? onMoreTap;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class HistoryCard extends StatelessWidget {
   Widget _buildMoreButton(BuildContext context) {
     return IconButton(
       icon: const Icon(RemixIcon.more_2_line),
-      onPressed: onMore,
+      onPressed: onMoreTap,
       alignment: Alignment.centerRight,
       padding: EdgeInsets.zero,
       color: context.colorScheme.outline,
