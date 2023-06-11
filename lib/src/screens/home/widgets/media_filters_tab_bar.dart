@@ -1,7 +1,7 @@
 part of '../home_screen.dart';
 
-class _HomeMediaFiltersBar extends HookWidget {
-  const _HomeMediaFiltersBar({
+class _HomeMediaFiltersTabBar extends HookWidget {
+  const _HomeMediaFiltersTabBar({
     required this.filters,
     required this.onSelect,
   });

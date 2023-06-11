@@ -7,11 +7,17 @@ import 'package:serendy/src/models/models.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/media_card.dart';
 
-part 'widgets/media_filters_bar.dart';
+part 'widgets/media_filters_tab_bar.dart';
 part 'widgets/medias_grid.dart';
 
-final tabsProvider =
-    Provider((ref) => ["실시간 인기", "애니", "만화", "소설", "판타지", "드라마"]);
+final tabsProvider = Provider((ref) => [
+      "실시간 인기",
+      "애니",
+      "만화",
+      "소설",
+      "판타지",
+      "드라마",
+    ]);
 
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
@@ -22,7 +28,7 @@ class HomeScreen extends ConsumerWidget {
     final filters = ref.watch(tabsProvider);
 
     return _HomeTemplate(
-      mediaFiltersTabBar: _HomeMediaFiltersBar(
+      mediaFiltersTabBar: _HomeMediaFiltersTabBar(
         filters: filters,
         onSelect: (item) => print(item),
       ),
@@ -39,7 +45,7 @@ class _HomeTemplate extends StatelessWidget {
     required this.mediasGrid,
   });
 
-  final _HomeMediaFiltersBar mediaFiltersTabBar;
+  final _HomeMediaFiltersTabBar mediaFiltersTabBar;
   final _HomeMediasGrid mediasGrid;
 
   @override
