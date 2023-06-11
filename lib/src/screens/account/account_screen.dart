@@ -50,7 +50,7 @@ class AccountScreen extends StatelessWidget {
           child: const Text('로그아웃'),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => context.pushRoute(const SignInRoute()),
           child: const Text('회원탈퇴'),
         ),
       ],

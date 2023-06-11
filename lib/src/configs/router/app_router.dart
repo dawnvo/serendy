@@ -25,6 +25,7 @@ final class AppRouter extends _$AppRouter {
         AutoRoute(path: '/search/:query', page: SearchRoute.page),
         AutoRoute(path: '/settings', page: SettingsRoute.page),
         AutoRoute(path: '/settings/account', page: AccountRoute.page),
+        AutoRoute(path: '/signIn', page: SignInRoute.page),
 
         /// Modals
         AutoRoute(

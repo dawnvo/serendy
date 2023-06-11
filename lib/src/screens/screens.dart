@@ -9,3 +9,4 @@ export 'profile/profile_screen.dart';
 export 'settings/settings_screen.dart';
 export 'account/account_screen.dart';
 export 'search/search_screen.dart';
+export 'sign_in/sign_in_screen.dart';

@@ -1,6 +1,8 @@
 abstract final class Assets {
   static const collectionDefaultImage = '';
 
+  static const googleIcon = 'assets/icons/google.svg';
+
   static const createCollectionPlaceholders = [
     '잔잔한 애니 모음',
     '2022 명작 애니 모음🎖️',
