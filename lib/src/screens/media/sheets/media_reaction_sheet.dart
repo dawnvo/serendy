@@ -1,16 +1,28 @@
 part of '../media_screen.dart';
 
-class MediaReactionSheet extends StatelessWidget {
+final _reactionProvider = StateProvider<Emotion?>((ref) => null);
+
+class MediaReactionSheet extends ConsumerWidget {
   const MediaReactionSheet({super.key});
 
+  void handleChange(
+    WidgetRef ref, {
+    required Emotion? previous,
+    required Emotion? current,
+  }) {
+    Emotion? changed;
+
+    // 감정이 이전과 다르면 감정을 변경하고, 동일하면 선택을 취소해요.
+    if (previous != current) {
+      changed = current;
+    }
+
+    ref.read(_reactionProvider.notifier).state = changed;
+  }
+
   @override
-  Widget build(BuildContext context) {
-    final emotionItems = Emotion.values
-        .map((emotion) => _EmotionItem(
-              emotion: emotion,
-              onTap: () {},
-            ))
-        .toList();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reaction = ref.watch(_reactionProvider);
 
     return SingleChildScrollView(
       child: Column(children: [
@@ -26,7 +38,21 @@ class MediaReactionSheet extends StatelessWidget {
           ),
           shrinkWrap: true,
           crossAxisCount: 3,
-          children: emotionItems,
+          children: [
+            for (final emotion in Emotion.values)
+              _EmotionItem(
+                emotion: emotion,
+                selected: emotion == reaction,
+                onSelect: (selected) {
+                  handleChange(
+                    ref,
+                    previous: reaction,
+                    current: selected,
+                  );
+                  context.popRoute();
+                },
+              )
+          ],
         ),
       ]),
     );
@@ -35,30 +61,40 @@ class MediaReactionSheet extends StatelessWidget {
 
 class _EmotionItem extends StatelessWidget {
   const _EmotionItem({
+    required this.selected,
     required this.emotion,
-    required this.onTap,
+    required this.onSelect,
   });
 
   final Emotion emotion;
-  final VoidCallback onTap;
+  final bool selected;
+  final void Function(Emotion?) onSelect;
 
   @override
   Widget build(BuildContext context) {
+    final emotionIcon = SvgPicture.asset(
+      emotion.filePath,
+      height: Sizes.p48,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(kBorderRadius),
-      onTap: onTap,
+      onTap: () => onSelect(emotion),
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(
-              emotion.filePath,
-              width: Sizes.p48,
-              height: Sizes.p48,
-            ),
+            selected
+                ? Opacity(
+                    opacity: 0.5,
+                    child: emotionIcon,
+                  )
+                : emotionIcon,
             Gap.h12,
             Text(
               emotion.label,
+              style: context.textTheme.labelMedium?.copyWith(
+                color: context.colorScheme.onSurfaceVariant,
+              ),
             ),
           ],
         ),

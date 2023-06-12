@@ -1,6 +1,6 @@
 part of '../media_screen.dart';
 
-class _MediaReactionIconButton extends StatelessWidget {
+class _MediaReactionIconButton extends ConsumerWidget {
   const _MediaReactionIconButton({
     required this.onPressed,
     required this.icon,
@@ -10,15 +10,15 @@ class _MediaReactionIconButton extends StatelessWidget {
   final Widget icon;
 
   @override
-  Widget build(BuildContext context) {
-    final Emotion? emotion = Emotion.joy;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reaction = ref.watch(_reactionProvider);
 
     return Row(children: [
-      if (emotion != null) _EmotionLabel(emotion),
+      if (reaction != null) _EmotionLabel(reaction),
       IconButton(
         onPressed: onPressed,
-        icon: emotion != null
-            ? SvgPicture.asset(emotion.filePath, height: Sizes.p28)
+        icon: reaction != null
+            ? SvgPicture.asset(reaction.filePath, height: Sizes.p28)
             : icon,
       ),
     ]);
