@@ -83,6 +83,9 @@ final class AppThemeData {
       highlightColor: highlightColor,
       scaffoldBackgroundColor: colorScheme.background,
 
+      // Divider theme
+      dividerTheme: themeData.dividerTheme.copyWith(space: 1),
+
       // NavigationBar theme
       navigationBarTheme: themeData.navigationBarTheme.copyWith(
         height: 56,

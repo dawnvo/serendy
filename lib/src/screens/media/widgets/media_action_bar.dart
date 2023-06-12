@@ -20,7 +20,14 @@ class _MediaActionBar extends StatelessWidget {
         ),
         IconButton(
           icon: const Icon(RemixIcon.more_2_fill),
-          onPressed: () {},
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            showDragHandle: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Sizes.p16),
+            ),
+            builder: (context) => const _MediaMenuSheet(),
+          ),
         ),
         const Spacer(),
         IconButton(
