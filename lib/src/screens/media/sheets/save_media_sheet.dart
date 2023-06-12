@@ -9,7 +9,7 @@ class SaveMediaSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
       child: CustomScrollView(slivers: [
         MyCollectionsList(
-          onTap: () => context.popRoute(),
+          onSelect: (collection) => context.popRoute(),
         ),
       ]),
     );

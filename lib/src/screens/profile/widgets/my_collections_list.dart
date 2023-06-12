@@ -3,10 +3,10 @@ part of '../profile_screen.dart';
 class MyCollectionsList extends StatelessWidget {
   const MyCollectionsList({
     super.key,
-    this.onTap,
+    this.onSelect,
   });
 
-  final VoidCallback? onTap;
+  final void Function(Collection collection)? onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MyCollectionsList extends StatelessWidget {
         final item = collections[index];
         return CollectionItem(
           collection: item,
-          onTap: onTap,
+          onTap: () => onSelect?.call(item),
         );
       },
     );

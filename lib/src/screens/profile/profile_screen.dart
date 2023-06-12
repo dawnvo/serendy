@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/models/models.dart' show Collection;
 import 'package:serendy/src/widgets/collection_item.dart';
 import 'package:serendy/src/widgets/multi_line_progress_indicator.dart';
 
@@ -28,7 +29,8 @@ class ProfileScreen extends StatelessWidget {
         onTap: () => context.pushRoute(const HistoryRoute()),
       ),
       collectionsList: MyCollectionsList(
-        onTap: () => context.pushRoute(CollectionRoute(id: "collectionId")),
+        onSelect: (collection) =>
+            context.pushRoute(CollectionRoute(id: collection.id)),
       ),
     );
   }
