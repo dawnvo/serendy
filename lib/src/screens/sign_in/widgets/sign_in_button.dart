@@ -1,11 +1,7 @@
 part of '../sign_in_screen.dart';
 
 class _SignInButton extends StatelessWidget {
-  const _SignInButton({
-    required this.onPressed,
-  });
-
-  final VoidCallback onPressed;
+  const _SignInButton();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +16,7 @@ class _SignInButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () {},
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

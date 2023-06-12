@@ -46,11 +46,14 @@ class AccountScreen extends StatelessWidget {
       ],
       controls: [
         TextButton(
-          onPressed: () => context.replaceRoute(const HomeRoute()),
+          onPressed: () => context.router.replaceAll([const HomeRoute()]),
           child: const Text('로그아웃'),
         ),
         TextButton(
-          onPressed: () => context.pushRoute(const SignInRoute()),
+          onPressed: () => context.router.replaceAll([
+            const HomeRoute(),
+            const SignInRoute(),
+          ]),
           child: const Text('회원탈퇴'),
         ),
       ],

@@ -11,8 +11,6 @@ part 'widgets/search_bar.dart';
 part 'widgets/search_filter_chip_bar.dart';
 part 'widgets/search_results.dart';
 
-const _kSearchBarHeight = 72.0;
-
 @RoutePage()
 class SearchScreen extends HookWidget {
   const SearchScreen({super.key});
@@ -52,20 +50,23 @@ class _SearchTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(_kSearchBarHeight),
-        child: searchBar,
-      ),
-      body: Column(children: [
-        const Divider(height: 1),
-        SizedBox(
-          width: double.infinity,
-          height: kToolbarHeight,
-          child: searchFilterChipBar,
+    return SafeArea(
+      child: Material(
+        child: GestureDetector(
+          /// TODO 뒤로가기(사이드를 당기는) 동작이랑 이벤트가 겹쳐 키보드가 닫히는 동시에 뒤로가지는 문제.
+          onPanDown: (details) => FocusScope.of(context).unfocus(),
+          child: Column(children: [
+            searchBar,
+            const Divider(),
+            SizedBox(
+              width: double.infinity,
+              height: kToolbarHeight,
+              child: searchFilterChipBar,
+            ),
+            Expanded(child: searchResults),
+          ]),
         ),
-        Expanded(child: searchResults),
-      ]),
+      ),
     );
   }
 }

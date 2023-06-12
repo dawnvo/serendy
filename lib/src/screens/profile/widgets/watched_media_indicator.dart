@@ -35,13 +35,13 @@ class _WatchedMediaIndicator extends StatelessWidget {
         Text(
           "$count",
           style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colorScheme.onSurfaceVariant,
+            color: context.colorScheme.onSurface,
           ),
         ),
         Text(
           "/$total개",
           style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colorScheme.outline,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
       ]),
@@ -52,13 +52,13 @@ class _WatchedMediaIndicator extends StatelessWidget {
         Text(
           "자세히",
           style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colorScheme.outline,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
         Icon(
           RemixIcon.arrow_right_s_line,
           size: Sizes.p20,
-          color: context.colorScheme.outline,
+          color: context.colorScheme.onSurfaceVariant,
         ),
       ]),
     ]);

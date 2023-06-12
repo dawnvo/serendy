@@ -9,6 +9,8 @@ class _SearchBar extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
 
+  static const searchBarHeight = 72.0;
+
   @override
   Widget build(BuildContext context) {
     final leading = IconButton(
@@ -18,10 +20,8 @@ class _SearchBar extends StatelessWidget {
 
     final trailing = [
       IconButton(
-        iconSize: Sizes.p20,
-        color: context.colorScheme.outline,
-        icon: const Icon(RemixIcon.close_circle_fill),
         onPressed: () => controller.clear(),
+        icon: const Icon(RemixIcon.close_fill),
       ),
     ];
 
@@ -31,7 +31,7 @@ class _SearchBar extends StatelessWidget {
       leading: leading,
       trailing: trailing,
       hintText: "무슨 애니를 찾으시나요?",
-      constraints: const BoxConstraints(minHeight: _kSearchBarHeight),
+      constraints: const BoxConstraints(minHeight: searchBarHeight),
       overlayColor: const MaterialStatePropertyAll<Color>(Colors.transparent),
       elevation: const MaterialStatePropertyAll<double>(0.0),
     );
