@@ -13,6 +13,7 @@ import 'package:serendy/src/widgets/tag.dart';
 part 'sheets/save_media_sheet.dart';
 part 'sheets/media_menu_sheet.dart';
 part 'sheets/media_reaction_sheet.dart';
+part 'widgets/media_reaction_icon_button.dart';
 part 'widgets/media_action_bar.dart';
 part 'widgets/media_image.dart';
 part 'widgets/media_info_tile.dart';
