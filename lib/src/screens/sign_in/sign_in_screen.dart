@@ -12,11 +12,9 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _SignInTemplate(
-      signInTitle: const _SignInTitle(),
-      signInButton: _SignInButton(
-        onPressed: () {},
-      ),
+    return const _SignInTemplate(
+      signInTitle: _SignInTitle(),
+      signInButton: _SignInButton(),
     );
   }
 }
@@ -33,6 +31,7 @@ class _SignInTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: signInTitle,
       ),
