@@ -59,8 +59,8 @@ class HistoryCard extends StatelessWidget {
 
   Widget _buildMoreButton(BuildContext context) {
     return IconButton(
-      icon: const Icon(RemixIcon.more_2_line),
       onPressed: onMoreTap,
+      icon: const Icon(RemixIcon.more_2_line),
       alignment: Alignment.centerRight,
       padding: EdgeInsets.zero,
       color: context.colorScheme.outline,

@@ -6,6 +6,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/screens/screens.dart';
 import 'package:serendy/src/widgets/media_card.dart';
 
 part 'widgets/collection_background.dart';

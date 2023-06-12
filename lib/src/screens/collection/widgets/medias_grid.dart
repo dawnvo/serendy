@@ -22,6 +22,9 @@ class _CollectionMediasGrid extends StatelessWidget {
         (context, index) => MediaCard(
           media: medias[index],
           onTap: () => context.pushRoute(MediaRoute(id: 'mediaId')),
+          onLongPress: () => context.showCustomModalBottomSheet(
+            const MediaMenuSheet(),
+          ),
         ),
         childCount: medias.length,
       ),

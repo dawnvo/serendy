@@ -5,6 +5,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/screens/screens.dart';
 import 'package:serendy/src/widgets/media_item.dart';
 
 part 'widgets/search_bar.dart';

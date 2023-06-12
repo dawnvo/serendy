@@ -17,7 +17,7 @@ extension ContextX on BuildContext {
   Future<T?> showCustomModalBottomSheet<T>(Widget sheet) {
     return showModalBottomSheet<T>(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Sizes.p16)),
+          borderRadius: BorderRadius.circular(kBorderRadius)),
       context: this,
       builder: (context) => BottomSheetTemplate(child: sheet),
     );

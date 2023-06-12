@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/screens/screens.dart';
 import 'package:serendy/src/widgets/history_card.dart';
 
 part 'widgets/history_titles.dart';
