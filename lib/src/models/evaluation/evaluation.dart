@@ -7,15 +7,15 @@ part 'media_info.dart';
 typedef EvaluationID = String;
 
 enum Emotion {
-  /* 분노 */ anger,
+  /* 멋짐 */ nice,
+  /* 재미 */ joy,
+  /* 행복 */ happyness,
   /* 놀람 */ surprise,
   /* 슬픔 */ sadness,
-  /* 별로 */ disgust,
-  /* 보통 */ normal,
-  /* 재미 */ joy,
   /* 공포 */ fear,
-  /* 행복 */ happyness,
-  /* 멋짐 */ nice,
+  /* 보통 */ normal,
+  /* 별로 */ disgust,
+  /* 분노 */ anger,
 }
 
 /// [AggregateRoot]

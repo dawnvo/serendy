@@ -11,23 +11,25 @@ class _MediaActionBar extends StatelessWidget {
       height: 64,
       child: Row(children: [
         IconButton(
+          onPressed: () {},
           icon: const Icon(RemixIcon.add_box_fill),
-          onPressed: () {},
         ),
         IconButton(
+          onPressed: () {},
           icon: const Icon(RemixIcon.share_fill),
-          onPressed: () {},
         ),
         IconButton(
-          icon: const Icon(RemixIcon.more_2_fill),
           onPressed: () => context.showCustomModalBottomSheet(
             const MediaMenuSheet(),
           ),
+          icon: const Icon(RemixIcon.more_2_fill),
         ),
         const Spacer(),
         IconButton(
+          onPressed: () => context.showCustomModalBottomSheet(
+            const MediaReactionSheet(),
+          ),
           icon: const Icon(RemixIcon.emotion_fill),
-          onPressed: () {},
         ),
       ]),
     );
