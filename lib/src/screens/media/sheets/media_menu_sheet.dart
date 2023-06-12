@@ -1,7 +1,7 @@
 part of '../media_screen.dart';
 
-class _MediaMenuSheet extends StatelessWidget {
-  const _MediaMenuSheet();
+class MediaMenuSheet extends StatelessWidget {
+  const MediaMenuSheet({super.key});
 
   /// 작품 숨기기 이벤트
   void handleHideMedia(BuildContext context) {
@@ -22,10 +22,9 @@ class _MediaMenuSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Padding(
-        padding: const EdgeInsets.only(bottom: Sizes.p4),
-        child: MediaItem(media: mediaMock),
-      ),
+      Gap.h4,
+      MediaItem(media: mediaMock),
+      Gap.h4,
       const Divider(),
       Column(children: [
         _MediaMenuTile(
