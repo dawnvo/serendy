@@ -1,24 +1,29 @@
 part of '../profile_screen.dart';
 
-class _MyCollectionsList extends StatelessWidget {
-  const _MyCollectionsList(this.items);
+class MyCollectionsList extends StatelessWidget {
+  const MyCollectionsList({
+    super.key,
+    this.onTap,
+  });
 
-  final List<Collection> items;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final collections = collectionsMock;
+
     return SliverList.builder(
-      itemCount: items.length + 1,
+      itemCount: collections.length + 1,
       itemBuilder: (context, index) {
         // 직접 테마를 만들 수 있도록 도와요.
-        if (items.length <= index) {
+        if (collections.length <= index) {
           return const _CreateCollectionTile();
         }
 
-        final item = items[index];
+        final item = collections[index];
         return CollectionItem(
           collection: item,
-          onTap: () => context.pushRoute(CollectionRoute(id: "collectionId")),
+          onTap: onTap,
         );
       },
     );

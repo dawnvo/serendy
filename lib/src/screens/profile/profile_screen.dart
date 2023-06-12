@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/models/models.dart' show Collection;
 import 'package:serendy/src/widgets/collection_item.dart';
 import 'package:serendy/src/widgets/multi_line_progress_indicator.dart';
 
@@ -28,7 +27,9 @@ class ProfileScreen extends StatelessWidget {
         count: 9,
         onTap: () => context.pushRoute(const HistoryRoute()),
       ),
-      collectionsList: _MyCollectionsList(collectionsMock),
+      collectionsList: MyCollectionsList(
+        onTap: () => context.pushRoute(CollectionRoute(id: "collectionId")),
+      ),
     );
   }
 }
@@ -41,7 +42,7 @@ class _ProfileTemplate extends StatelessWidget {
   });
 
   final _WatchedMediaIndicator watchedMediaIndicator;
-  final _MyCollectionsList collectionsList;
+  final MyCollectionsList collectionsList;
   final List<Widget> actions;
 
   @override

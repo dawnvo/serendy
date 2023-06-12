@@ -11,7 +11,9 @@ class _MediaActionBar extends StatelessWidget {
       height: 64,
       child: Row(children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => context.showCustomModalBottomSheet(
+            const SaveMediaSheet(),
+          ),
           icon: const Icon(RemixIcon.add_box_fill),
         ),
         IconButton(
