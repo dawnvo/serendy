@@ -21,34 +21,36 @@ class MediaMenuSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Gap.h4,
-      MediaItem(media: mediaMock),
-      Gap.h4,
-      const Divider(),
-      Column(children: [
-        _MediaMenuTile(
-          onTap: () {},
-          icon: const Icon(RemixIcon.emotion_fill),
-          title: "감상했어요",
-        ),
-        _MediaMenuTile(
-          onTap: () {},
-          icon: const Icon(RemixIcon.add_box_fill),
-          title: "테마에 추가하기",
-        ),
-        _MediaMenuTile(
-          onTap: () => handleHideMedia(context),
-          icon: const Icon(RemixIcon.indeterminate_circle_fill),
-          title: "작품 숨기기",
-        ),
-        _MediaMenuTile(
-          onTap: () {},
-          icon: const Icon(RemixIcon.share_fill),
-          title: "공유하기",
-        ),
+    return SingleChildScrollView(
+      child: Column(children: [
+        Gap.h4,
+        MediaItem(media: mediaMock),
+        Gap.h4,
+        const Divider(),
+        Column(children: [
+          _MediaMenuTile(
+            onTap: () {},
+            icon: const Icon(RemixIcon.emotion_fill),
+            title: "감상했어요",
+          ),
+          _MediaMenuTile(
+            onTap: () {},
+            icon: const Icon(RemixIcon.add_box_fill),
+            title: "테마에 추가하기",
+          ),
+          _MediaMenuTile(
+            onTap: () => handleHideMedia(context),
+            icon: const Icon(RemixIcon.indeterminate_circle_fill),
+            title: "작품 숨기기",
+          ),
+          _MediaMenuTile(
+            onTap: () {},
+            icon: const Icon(RemixIcon.share_fill),
+            title: "공유하기",
+          ),
+        ]),
       ]),
-    ]);
+    );
   }
 }
 

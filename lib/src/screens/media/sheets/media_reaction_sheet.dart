@@ -12,21 +12,21 @@ class MediaReactionSheet extends StatelessWidget {
             ))
         .toList();
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.p32),
+    return SingleChildScrollView(
       child: Column(children: [
         Gap.h12,
         Text(
           "감상 후 어떤 느낌이 들었나요?",
           style: context.textTheme.titleMedium,
         ),
-        Gap.h24,
-        Expanded(
-          child: GridView.count(
-            // physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 3,
-            children: emotionItems,
+        GridView.count(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.p32,
+            vertical: Sizes.p24,
           ),
+          shrinkWrap: true,
+          crossAxisCount: 3,
+          children: emotionItems,
         ),
       ]),
     );
@@ -56,10 +56,9 @@ class _EmotionItem extends StatelessWidget {
               width: Sizes.p48,
               height: Sizes.p48,
             ),
-            Gap.h8,
+            Gap.h12,
             Text(
               emotion.label,
-              style: context.textTheme.labelMedium,
             ),
           ],
         ),
