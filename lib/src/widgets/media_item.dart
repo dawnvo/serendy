@@ -19,11 +19,25 @@ class MediaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return InkWell(
       onTap: onTap,
-      leading: _buildImage(context),
-      title: Text(media.title),
-      trailing: _buildMoreButton(context),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kContentPadding,
+          vertical: Sizes.p8,
+        ),
+        child: Row(children: [
+          _buildImage(context),
+          Gap.w16,
+          Expanded(
+            child: Text(
+              media.title,
+              style: context.textTheme.bodyLarge,
+            ),
+          ),
+          if (onMoreTap != null) _buildMoreButton(context),
+        ]),
+      ),
     );
   }
 
