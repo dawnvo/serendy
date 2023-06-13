@@ -1,11 +1,13 @@
 part of '../edit_collection_screen.dart';
 
-class _EditCollectionRemoveTile extends StatelessWidget {
-  const _EditCollectionRemoveTile();
+class _EditCollectionRemoveTile extends ConsumerWidget {
+  const _EditCollectionRemoveTile(this.provider);
+  final EditCollectionProvider provider;
 
   @override
-  Widget build(BuildContext context) {
-    const collectionId = "collectionId";
+  Widget build(BuildContext context, WidgetRef ref) {
+    final collectionId =
+        ref.watch(provider.select((state) => state.initialCollection.id));
 
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)
@@ -15,7 +17,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => const _RemoveCollectionDialog(
+        builder: (_) => _RemoveCollectionDialog(
           collectionId: collectionId,
         ),
       ),

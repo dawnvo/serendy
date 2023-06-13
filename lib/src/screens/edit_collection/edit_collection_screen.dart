@@ -4,6 +4,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/providers/providers.dart';
 import 'package:serendy/src/widgets/alert_dialog.dart';
 import 'package:serendy/src/widgets/image_picker.dart';
 import 'package:serendy/src/widgets/title_text_field.dart';
@@ -25,13 +26,15 @@ class EditCollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _EditCollectionTemplate(
-      saveButton: _EditCollectionSaveButton(),
-      imagePicker: _EditCollectionImagePicker(),
-      textField: _EditCollectionTitleTextField(),
+    final provider = editCollectionProvider(collection);
+
+    return _EditCollectionTemplate(
+      saveButton: _EditCollectionSaveButton(provider),
+      imagePicker: _EditCollectionImagePicker(provider),
+      textField: _EditCollectionTitleTextField(provider),
       options: [
-        _EditCollectionPrivacyStatusTile(),
-        _EditCollectionRemoveTile(),
+        _EditCollectionPrivacyStatusTile(provider),
+        _EditCollectionRemoveTile(provider),
       ],
     );
   }

@@ -1,17 +1,16 @@
 part of '../edit_collection_screen.dart';
 
-final imageProvider = StateProvider<String?>((ref) => null);
-
 class _EditCollectionImagePicker extends ConsumerWidget {
-  const _EditCollectionImagePicker();
+  const _EditCollectionImagePicker(this.provider);
+  final EditCollectionProvider provider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final image = ref.watch(imageProvider);
+    final imagePath = ref.watch(provider.select((_) => _.image));
 
     return ImagePicker(
-      onChange: (path) => ref.read(imageProvider.notifier).state = path,
-      image: image,
+      onChange: (image) => ref.read(provider.notifier).changeImage(image),
+      image: imagePath,
     );
   }
 }
