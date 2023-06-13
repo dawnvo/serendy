@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:serendy/src/models/models.dart';
 import 'package:serendy/src/repositories/repositories.dart';
 import 'media_detail_state.dart';
 
