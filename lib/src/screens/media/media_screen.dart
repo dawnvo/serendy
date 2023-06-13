@@ -43,24 +43,37 @@ class MediaScreen extends ConsumerWidget {
       error: (err, stack) => Center(child: Text(err.toString())),
       data: (state) {
         final media = state.media;
-        if (media == null) return const EmptyScreen();
 
-        final mediaStartDate = (media.startDate?.year).toString();
-
-        return _MediaTemplate(
-          image: _MediaImage(image: media.image),
-          title: _MediaTitle(title: media.title),
-          keyword: _MediaKeyword(
-            genres: media.keywords,
-            status: [mediaStartDate, media.status.name],
-          ),
-          actionBar: _MediaActionBar(media: media),
-          contents: const [
-            _MediaReactionTile(),
-            _MediaInfoTile(),
-          ],
-        );
+        if (media != null) {
+          return _MediaView(media);
+        } else {
+          return const EmptyScreen();
+        }
       },
+    );
+  }
+}
+
+class _MediaView extends StatelessWidget {
+  const _MediaView(this.media);
+  final Media media;
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaStartDate = (media.startDate?.year).toString();
+
+    return _MediaTemplate(
+      image: _MediaImage(image: media.image),
+      title: _MediaTitle(title: media.title),
+      keyword: _MediaKeyword(
+        genres: media.keywords,
+        status: [mediaStartDate, media.status.name],
+      ),
+      actionBar: _MediaActionBar(media: media),
+      contents: const [
+        _MediaReactionTile(),
+        _MediaInfoTile(),
+      ],
     );
   }
 }

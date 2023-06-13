@@ -11,9 +11,8 @@ class _MediaReactionTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final reactionsValue = ref.watch(_reactionsProvider);
 
-    return reactionsValue.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Text(err.toString())),
+    return reactionsValue.maybeWhen(
+      orElse: () => const SizedBox(),
       data: (reactions) {
         if (reactions.isEmpty) {
           return _buildTile(

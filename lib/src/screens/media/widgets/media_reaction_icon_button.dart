@@ -11,17 +11,24 @@ class _MediaReactionIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reaction = ref.watch(_reactionProvider);
+    final myReactionValue = ref.watch(mediaReactionProvider);
 
-    return Row(children: [
-      if (reaction != null) _EmotionLabel(reaction),
-      IconButton(
-        onPressed: onPressed,
-        icon: reaction != null
-            ? SvgPicture.asset(reaction.filePath, height: Sizes.p28)
-            : icon,
-      ),
-    ]);
+    return myReactionValue.maybeWhen(
+      orElse: () => const SizedBox(),
+      data: (state) {
+        final reaction = state.reaction;
+
+        return Row(children: [
+          if (reaction != null) _EmotionLabel(reaction.emotion),
+          IconButton(
+            onPressed: onPressed,
+            icon: reaction != null
+                ? SvgPicture.asset(reaction.emotion.filePath, height: Sizes.p28)
+                : icon,
+          ),
+        ]);
+      },
+    );
   }
 }
 

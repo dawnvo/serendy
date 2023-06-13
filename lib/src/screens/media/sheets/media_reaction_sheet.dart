@@ -1,7 +1,5 @@
 part of '../media_screen.dart';
 
-final _reactionProvider = StateProvider<Emotion?>((ref) => null);
-
 class MediaReactionSheet extends ConsumerWidget {
   const MediaReactionSheet({super.key});
 
@@ -17,45 +15,52 @@ class MediaReactionSheet extends ConsumerWidget {
       changed = current;
     }
 
-    ref.read(_reactionProvider.notifier).state = changed;
+    ref.read(mediaReactionProvider.notifier).changeEmotion(changed);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reaction = ref.watch(_reactionProvider);
+    final myReactionValue = ref.watch(mediaReactionProvider);
 
-    return SingleChildScrollView(
-      child: Column(children: [
-        Gap.h12,
-        Text(
-          "감상 후 어떤 느낌이 들었나요?",
-          style: context.textTheme.titleMedium,
-        ),
-        GridView.count(
-          padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.p32,
-            vertical: Sizes.p24,
-          ),
-          shrinkWrap: true,
-          crossAxisCount: 3,
-          children: [
-            for (final emotion in Emotion.values)
-              _EmotionItem(
-                emotion: emotion,
-                selected: emotion == reaction,
-                onSelect: (selected) {
-                  handleChange(
-                    ref,
-                    previous: reaction,
-                    current: selected,
-                  );
-                  context.popRoute();
-                },
-              )
-          ],
-        ),
-      ]),
-    );
+    return myReactionValue.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text(err.toString())),
+        data: (state) {
+          final reaction = state.reaction;
+
+          return SingleChildScrollView(
+            child: Column(children: [
+              Gap.h12,
+              Text(
+                "감상 후 어떤 느낌이 들었나요?",
+                style: context.textTheme.titleMedium,
+              ),
+              GridView.count(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.p32,
+                  vertical: Sizes.p24,
+                ),
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                children: [
+                  for (final emotion in Emotion.values)
+                    _EmotionItem(
+                      emotion: emotion,
+                      selected: emotion == reaction?.emotion,
+                      onSelect: (selected) {
+                        handleChange(
+                          ref,
+                          previous: reaction?.emotion,
+                          current: selected,
+                        );
+                        context.popRoute();
+                      },
+                    )
+                ],
+              ),
+            ]),
+          );
+        });
   }
 }
 
