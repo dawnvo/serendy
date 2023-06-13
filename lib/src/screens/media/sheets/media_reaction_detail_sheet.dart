@@ -49,7 +49,7 @@ class MediaReactionDetailSheet extends StatelessWidget {
   /// 중복된 감정을 병합하고
   /// 정제된 감정을 데이터로 변환해요.
   List<_ReactionData> _transform(List<Evaluation?> reactions) {
-    final uniqueKeys = reactions.map((e) => e!.emotion).toSet();
+    final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
 
     final results = uniqueKeys.map((emotion) {
       final count = reactions.where((_) => _?.emotion == emotion).length;

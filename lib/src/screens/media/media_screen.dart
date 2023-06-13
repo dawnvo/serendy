@@ -21,6 +21,7 @@ part 'widgets/media_image.dart';
 part 'widgets/media_info_tile.dart';
 part 'widgets/media_keyword.dart';
 part 'widgets/media_reaction_icon_button.dart';
+part 'widgets/media_reaction_tile.dart';
 part 'widgets/media_title.dart';
 
 @RoutePage()
@@ -46,6 +47,7 @@ class MediaScreen extends StatelessWidget {
       ),
       actionBar: _MediaActionBar(media: media),
       contents: const [
+        _MediaReactionTile(),
         _MediaInfoTile(),
       ],
     );
