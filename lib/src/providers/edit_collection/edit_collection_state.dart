@@ -1,4 +1,7 @@
-part of 'edit_collection_provider.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serendy/src/models/models.dart';
+
+part 'edit_collection_state.freezed.dart';
 
 @freezed
 class EditCollectionState with _$EditCollectionState {

@@ -1,10 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/models/models.dart';
+import 'edit_collection_state.dart';
 
-part 'edit_collection_provider.freezed.dart';
 part 'edit_collection_provider.g.dart';
-part 'edit_collection_state.dart';
 
 @riverpod
 class EditCollection extends _$EditCollection {

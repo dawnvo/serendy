@@ -1,4 +1,7 @@
-part of 'media_detail_provider.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serendy/src/models/models.dart';
+
+part 'media_detail_state.freezed.dart';
 
 @freezed
 class MediaDetailState with _$MediaDetailState {

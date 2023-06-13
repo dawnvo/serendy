@@ -1,11 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/models/models.dart';
 import 'package:serendy/src/repositories/repositories.dart';
+import 'media_detail_state.dart';
 
-part 'media_detail_provider.freezed.dart';
 part 'media_detail_provider.g.dart';
-part 'media_detail_state.dart';
 
 @riverpod
 class MediaDetail extends _$MediaDetail {

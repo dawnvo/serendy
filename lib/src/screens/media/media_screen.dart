@@ -7,7 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/models/models.dart';
-import 'package:serendy/src/providers/media_detail/media_detail_provider.dart';
+import 'package:serendy/src/providers/providers.dart';
 import 'package:serendy/src/screens/screens.dart';
 import 'package:serendy/src/widgets/media_item.dart';
 import 'package:serendy/src/widgets/multi_line_progress_indicator.dart';
