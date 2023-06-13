@@ -13,7 +13,7 @@ extension EmotionX on Emotion {
         Emotion.fear => '무서워요',
         Emotion.normal => '괜찮아요',
         Emotion.disgust => '별로예요',
-        Emotion.anger => '화나요',
+        Emotion.anger => '싫어요',
       };
 
   Color get color => switch (this) {

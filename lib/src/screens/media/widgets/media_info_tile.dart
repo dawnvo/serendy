@@ -6,7 +6,9 @@ class _MediaInfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: () => context.showCustomModalBottomSheet(
+        const MediaReactionDetailSheet(),
+      ),
       leading: const CircleAvatar(radius: Sizes.p32 / 2),
       title: const Text("자세한 정보"),
       trailing: const Icon(RemixIcon.arrow_right_s_line),
