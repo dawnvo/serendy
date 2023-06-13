@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/providers/media_detail/media_detail_provider.dart';
 import 'package:serendy/src/screens/screens.dart';
 import 'package:serendy/src/widgets/media_item.dart';
 import 'package:serendy/src/widgets/multi_line_progress_indicator.dart';
@@ -25,7 +26,7 @@ part 'widgets/media_reaction_tile.dart';
 part 'widgets/media_title.dart';
 
 @RoutePage()
-class MediaScreen extends StatelessWidget {
+class MediaScreen extends ConsumerWidget {
   const MediaScreen({
     @pathParam required this.id,
     super.key,
@@ -34,23 +35,33 @@ class MediaScreen extends StatelessWidget {
   final String id;
 
   @override
-  Widget build(BuildContext context) {
-    final media = mediaMock;
-    final mediaStartDate = (media.startDate?.year).toString();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mediaValue = ref.watch(mediaDetailProvider);
 
-    return _MediaTemplate(
-      image: _MediaImage(image: media.image),
-      title: _MediaTitle(title: media.title),
-      keyword: _MediaKeyword(
-        genres: media.keywords,
-        status: [mediaStartDate, media.status.name],
-      ),
-      actionBar: _MediaActionBar(media: media),
-      contents: const [
-        _MediaReactionTile(),
-        _MediaInfoTile(),
-      ],
-    );
+    return mediaValue.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text(err.toString())),
+        data: (media) {
+          if (media == null) {
+            return const EmptyScreen();
+          }
+
+          final mediaStartDate = (media.startDate?.year).toString();
+
+          return _MediaTemplate(
+            image: _MediaImage(image: media.image),
+            title: _MediaTitle(title: media.title),
+            keyword: _MediaKeyword(
+              genres: media.keywords,
+              status: [mediaStartDate, media.status.name],
+            ),
+            actionBar: _MediaActionBar(media: media),
+            contents: const [
+              _MediaReactionTile(),
+              _MediaInfoTile(),
+            ],
+          );
+        });
   }
 }
 
