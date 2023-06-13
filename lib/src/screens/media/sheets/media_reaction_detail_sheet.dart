@@ -1,48 +1,45 @@
 part of '../media_screen.dart';
 
-class MediaReactionDetailSheet extends StatelessWidget {
+class MediaReactionDetailSheet extends ConsumerWidget {
   const MediaReactionDetailSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    gen(Emotion e) => Evaluation(
-          emotion: e,
-          userId: evaluationMock.userId,
-          media: evaluationMock.media,
-        );
-    final List<Evaluation?> reactions = [
-      ...List.filled(5, gen(Emotion.joy)),
-      ...List.filled(2, gen(Emotion.fear)),
-      ...List.filled(4, gen(Emotion.normal)),
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reactionsValue = ref.watch(_reactionsProvider);
 
-    final reactionDatas = _transform(reactions);
-    final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
+    return reactionsValue.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Text(err.toString())),
+      data: (reactions) {
+        final reactionDatas = _transform(reactions);
+        final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-      child: Column(children: [
-        Gap.h12,
-        MultiLineProgressIndicator([
-          for (final data in reactionDatas)
-            ProgressBar(
-              color: data.emotion.color,
-              value: data.count / totalCount,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+          child: Column(children: [
+            Gap.h12,
+            MultiLineProgressIndicator([
+              for (final data in reactionDatas)
+                ProgressBar(
+                  color: data.emotion.color,
+                  value: data.count / totalCount,
+                ),
+            ]),
+            Gap.h8,
+            Expanded(
+              child: ListView(children: [
+                for (final data in reactionDatas)
+                  _ReactionTile(
+                    color: data.emotion.color,
+                    name: data.emotion.label,
+                    count: data.count,
+                  ),
+              ]),
             ),
-        ]),
-        Gap.h8,
-        Expanded(
-          child: ListView(children: [
-            for (final data in reactionDatas)
-              _ReactionTile(
-                color: data.emotion.color,
-                name: data.emotion.label,
-                count: data.count,
-              ),
+            Gap.h24,
           ]),
-        ),
-        Gap.h24,
-      ]),
+        );
+      },
     );
   }
 

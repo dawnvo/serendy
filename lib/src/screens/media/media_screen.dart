@@ -39,29 +39,29 @@ class MediaScreen extends ConsumerWidget {
     final mediaValue = ref.watch(mediaDetailProvider);
 
     return mediaValue.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text(err.toString())),
-        data: (media) {
-          if (media == null) {
-            return const EmptyScreen();
-          }
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Text(err.toString())),
+      data: (state) {
+        final media = state.media;
+        if (media == null) return const EmptyScreen();
 
-          final mediaStartDate = (media.startDate?.year).toString();
+        final mediaStartDate = (media.startDate?.year).toString();
 
-          return _MediaTemplate(
-            image: _MediaImage(image: media.image),
-            title: _MediaTitle(title: media.title),
-            keyword: _MediaKeyword(
-              genres: media.keywords,
-              status: [mediaStartDate, media.status.name],
-            ),
-            actionBar: _MediaActionBar(media: media),
-            contents: const [
-              _MediaReactionTile(),
-              _MediaInfoTile(),
-            ],
-          );
-        });
+        return _MediaTemplate(
+          image: _MediaImage(image: media.image),
+          title: _MediaTitle(title: media.title),
+          keyword: _MediaKeyword(
+            genres: media.keywords,
+            status: [mediaStartDate, media.status.name],
+          ),
+          actionBar: _MediaActionBar(media: media),
+          contents: const [
+            _MediaReactionTile(),
+            _MediaInfoTile(),
+          ],
+        );
+      },
+    );
   }
 }
 

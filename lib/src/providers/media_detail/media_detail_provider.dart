@@ -8,22 +8,26 @@ part 'media_detail_provider.g.dart';
 @riverpod
 class MediaDetail extends _$MediaDetail {
   @override
-  FutureOr<Media?> build() {
-    return fetchMedia('test');
+  FutureOr<MediaDetailState> build() async {
+    return fetchMediaDetail('test');
   }
 
-  Future<Media?> fetchMedia(String id) async {
-    final mediasRepository = ref.read(mediasRepositoryProvider);
+  Future<MediaDetailState> fetchMediaDetail(String id) async {
+    final mediaRepository = ref.read(mediaRepositoryProvider);
+    final evaluationRepository = ref.read(evaluationRepositoryProvider);
     state = const AsyncValue.loading();
 
     try {
-      final media = await mediasRepository.fetchMedia(id);
+      final mediaDetailState = MediaDetailState(
+        media: await mediaRepository.fetchMedia(id),
+        reactions: await evaluationRepository.fetchEvaluationList(),
+      );
 
-      state = AsyncValue.data(media);
-      return media;
+      state = AsyncValue.data(mediaDetailState);
+      return mediaDetailState;
     } catch (err, stack) {
       state = AsyncValue.error(err, stack);
-      return null;
+      throw Exception(err.toString());
     }
   }
 

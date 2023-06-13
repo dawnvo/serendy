@@ -1,42 +1,43 @@
 part of '../media_screen.dart';
 
-class _MediaReactionTile extends StatelessWidget {
+final _reactionsProvider = FutureProvider.autoDispose((ref) async {
+  return ref.watch(mediaDetailProvider.selectAsync((_) => _.reactions));
+});
+
+class _MediaReactionTile extends ConsumerWidget {
   const _MediaReactionTile();
 
   @override
-  Widget build(BuildContext context) {
-    gen(Emotion e) => Evaluation(
-          emotion: e,
-          userId: evaluationMock.userId,
-          media: evaluationMock.media,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reactionsValue = ref.watch(_reactionsProvider);
+
+    return reactionsValue.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Text(err.toString())),
+      data: (reactions) {
+        if (reactions.isEmpty) {
+          return _buildTile(
+            context,
+            icon: const Icon(RemixIcon.emotion_sad_line),
+            title: Text(
+              '아직 감상한 사람이 없어요',
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: context.colorScheme.outline,
+              ),
+            ),
+          );
+        }
+
+        /// 중복된 감정을 병합해요.
+        final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
+        final totalCount = reactions.length.withComma;
+
+        return _buildTile(
+          context,
+          icon: _ReactionIcons(emotions: uniqueKeys.toList()),
+          title: Text('$totalCount명이 감상했어요'),
         );
-    final List<Evaluation?> reactions = [
-      ...List.filled(5, gen(Emotion.joy)),
-      ...List.filled(2, gen(Emotion.fear)),
-      ...List.filled(4, gen(Emotion.normal)),
-    ];
-
-    if (reactions.isEmpty) {
-      return _buildTile(
-        context,
-        icon: const Icon(RemixIcon.emotion_sad_line),
-        title: Text(
-          '아직 감상한 사람이 없어요',
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colorScheme.outline,
-          ),
-        ),
-      );
-    }
-
-    /// 중복된 감정을 병합해요.
-    final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
-    final totalCount = reactions.length.withComma;
-
-    return _buildTile(
-      context,
-      icon: _ReactionIcons(emotions: uniqueKeys.toList()),
-      title: Text('$totalCount명이 감상했어요'),
+      },
     );
   }
 

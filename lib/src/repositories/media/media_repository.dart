@@ -2,25 +2,25 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/models/models.dart';
 
-part 'medias_repository.g.dart';
+part 'media_repository.g.dart';
 
-final class MediasRepository {
-  final List<Media?> _medias = [mediaMock];
+final class MediaRepository {
+  final List<Media?> _media = [mediaMock];
 
-  Future<List<Media?>> fetchMediasList() async {
-    return Future.value(_medias);
+  Future<List<Media?>> fetchMediaList() async {
+    return Future.value(_media);
   }
 
-  Stream<List<Media?>> watchMediasList() async* {
-    yield _medias;
+  Stream<List<Media?>> watchMediaList() async* {
+    yield _media;
   }
 
   Future<Media?> fetchMedia(String id) async {
-    return Future.value(_medias[0]);
+    return Future.value(_media[0]);
   }
 
   Stream<Media?> watchMedia(String id) {
-    return watchMediasList().map((medias) => medias[0]);
+    return watchMediaList().map((media) => media[0]);
   }
 
   Future<void> createMedia(String id, String imageUrl) {
@@ -37,6 +37,6 @@ final class MediasRepository {
 }
 
 @riverpod
-MediasRepository mediasRepository(MediasRepositoryRef ref) {
-  return MediasRepository();
+MediaRepository mediaRepository(MediaRepositoryRef ref) {
+  return MediaRepository();
 }

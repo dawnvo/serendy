@@ -1,1 +1,2 @@
-export 'media/medias_repository.dart';
+export 'media/media_repository.dart';
+export 'evaluation/evaluation_repository.dart';
