@@ -6,7 +6,9 @@ sealed class MediaEvent extends Equatable {
 
 /// GET MEDIA
 final class MediaFetched extends MediaEvent {
-  const MediaFetched();
+  const MediaFetched({required this.id});
+
+  final String id;
 
   @override
   List<Object> get props => [];

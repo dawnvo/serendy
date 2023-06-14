@@ -14,17 +14,22 @@ final class MediaLoading extends MediaState {
 
 /// LOADED MEDIA
 final class MediaLoaded extends MediaState {
-  const MediaLoaded({required this.media});
+  const MediaLoaded({
+    required this.media,
+    required this.reactions,
+  });
+
   final Media media;
+  final List<Evaluation?> reactions;
 
   @override
-  List<Object?> get props => [media];
+  List<Object?> get props => [media, reactions];
 }
 
 /// LOADED MEDIAS
 final class MediasListLoaded extends MediaState {
   const MediasListLoaded({required this.medias});
-  final List<Media> medias;
+  final List<Media?> medias;
 
   @override
   List<Object?> get props => [medias];
@@ -32,7 +37,7 @@ final class MediasListLoaded extends MediaState {
 
 /// ERROR
 final class MediaError extends MediaState {
-  const MediaError({required this.message});
+  const MediaError(this.message);
   final String message;
 
   @override

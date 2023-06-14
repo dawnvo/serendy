@@ -5,40 +5,42 @@ class _MediaReactionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reactions = [evaluationMock];
+    final state = context.watch<MediaBloc>().state;
 
-    if (reactions.isEmpty) {
-      return _buildTile(
-        context,
-        icon: const Icon(RemixIcon.emotion_sad_line),
-        title: Text(
-          '아직 감상한 사람이 없어요',
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colorScheme.outline,
-          ),
+    if (state is MediaLoaded) {
+      final reactions = state.reactions;
+
+      if (reactions.isEmpty) return _buildEmptyReactionTile(context);
+
+      /// 중복된 감정을 병합해요.
+      final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
+      final totalCount = reactions.length.withComma;
+
+      return ListTile(
+        onTap: () => context.showCustomModalBottomSheet(
+          const _MediaReactionDetailSheet(),
         ),
+        leading: _ReactionIcons(emotions: uniqueKeys.toList()),
+        title: Text('$totalCount명이 감상했어요'),
+        trailing: const Icon(RemixIcon.arrow_right_s_line),
       );
+    } else {
+      return _buildEmptyReactionTile(context);
     }
-
-    /// 중복된 감정을 병합해요.
-    final uniqueKeys = reactions.map((_) => _.emotion).toSet();
-    final totalCount = reactions.length.withComma;
-
-    return _buildTile(
-      context,
-      icon: _ReactionIcons(emotions: uniqueKeys.toList()),
-      title: Text('$totalCount명이 감상했어요'),
-    );
   }
 
-  Widget _buildTile(BuildContext context,
-      {required Widget icon, required Widget title}) {
+  Widget _buildEmptyReactionTile(BuildContext context) {
     return ListTile(
       onTap: () => context.showCustomModalBottomSheet(
         const _MediaReactionDetailSheet(),
       ),
-      leading: icon,
-      title: title,
+      leading: const Icon(RemixIcon.emotion_sad_line),
+      title: Text(
+        '아직 감상한 사람이 없어요',
+        style: context.textTheme.bodyMedium?.copyWith(
+          color: context.colorScheme.outline,
+        ),
+      ),
       trailing: const Icon(RemixIcon.arrow_right_s_line),
     );
   }
