@@ -6,6 +6,7 @@ import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/evaluation/application/evaluation_bloc.dart';
 import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/application/media_bloc.dart';
@@ -37,11 +38,20 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MediaBloc(
-        mediaRepository: MediaRepository(),
-        evaluationRepository: EvaluationRepository(),
-      )..add(MediaFetched(id: id)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MediaBloc(
+            mediaRepository: MediaRepository(),
+            evaluationRepository: EvaluationRepository(),
+          )..add(MediaFetched(id: id)),
+        ),
+        BlocProvider(
+          create: (context) => EvaluationBloc(
+            evaluationRepository: EvaluationRepository(),
+          )..add(const EvaluationFetched(userId: 'userId')),
+        ),
+      ],
       child: const _MediaView(),
     );
   }

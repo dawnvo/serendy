@@ -24,15 +24,23 @@ final class EvaluationLoaded extends EvaluationState {
 /// LOADED EVALUATIONS
 final class EvaluationsListLoaded extends EvaluationState {
   const EvaluationsListLoaded({required this.evaluations});
-  final List<Evaluation> evaluations;
+  final List<Evaluation?> evaluations;
 
   @override
   List<Object?> get props => [evaluations];
 }
 
+/// EMPTY EVALUATION
+final class EvaluationEmpty extends EvaluationState {
+  const EvaluationEmpty();
+
+  @override
+  List<Object?> get props => [];
+}
+
 /// ERROR
 final class EvaluationError extends EvaluationState {
-  const EvaluationError({required this.message});
+  const EvaluationError(this.message);
   final String message;
 
   @override

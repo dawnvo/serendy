@@ -21,12 +21,34 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
   Future<void> _onFetched(
     EvaluationFetched event,
     Emitter<EvaluationState> emit,
-  ) async {}
+  ) async {
+    try {
+      final evaluation =
+          await evaluationRepository.fetchEvaluation(event.userId);
+
+      if (evaluation == null) {
+        emit(const EvaluationEmpty());
+        return;
+      }
+
+      emit(EvaluationLoaded(evaluation: evaluation));
+    } catch (err) {
+      emit(EvaluationError(err.toString()));
+    }
+  }
 
   Future<void> _onListFetched(
     EvaluationsListFetched event,
     Emitter<EvaluationState> emit,
-  ) async {}
+  ) async {
+    try {
+      final evaluations = await evaluationRepository.fetchEvaluationList();
+
+      emit(EvaluationsListLoaded(evaluations: evaluations));
+    } catch (err) {
+      emit(EvaluationError(err.toString()));
+    }
+  }
 
   Future<void> _onCreated(
     EvaluationCreated event,

@@ -6,7 +6,9 @@ sealed class EvaluationEvent extends Equatable {
 
 /// GET EVALUATION
 final class EvaluationFetched extends EvaluationEvent {
-  const EvaluationFetched();
+  const EvaluationFetched({required this.userId});
+
+  final String userId;
 
   @override
   List<Object> get props => [];
@@ -14,7 +16,9 @@ final class EvaluationFetched extends EvaluationEvent {
 
 /// GET EVALUATIONS
 final class EvaluationsListFetched extends EvaluationEvent {
-  const EvaluationsListFetched();
+  const EvaluationsListFetched({required this.userId});
+
+  final String userId;
 
   @override
   List<Object> get props => [];

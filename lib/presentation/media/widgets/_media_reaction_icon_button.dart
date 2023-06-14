@@ -11,20 +11,27 @@ class _MediaReactionIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reaction = evaluationMock;
+    final state = context.watch<EvaluationBloc>().state;
 
-    return Row(children: [
-      _EmotionLabel(reaction.emotion),
-      IconButton(
-        onPressed: onPressed,
-        icon: reaction != null
-            ? SvgPicture.asset(
-                reaction.emotion.filePath,
-                height: Sizes.p28,
-              )
-            : icon,
-      ),
-    ]);
+    return switch (state) {
+      EvaluationLoaded() => Row(children: [
+          _EmotionLabel(state.evaluation.emotion),
+          IconButton(
+            onPressed: onPressed,
+            icon: SvgPicture.asset(
+              state.evaluation.emotion.filePath,
+              height: Sizes.p28,
+            ),
+          ),
+        ]),
+      EvaluationEmpty() => IconButton(
+          onPressed: onPressed,
+          icon: icon,
+        ),
+      EvaluationLoading() => const SizedBox(),
+      EvaluationError() => const SizedBox(),
+      EvaluationsListLoaded() => const SizedBox(),
+    };
   }
 }
 
