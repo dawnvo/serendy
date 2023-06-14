@@ -1,6 +1,6 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
-class _MediaReactionIconButton extends ConsumerWidget {
+class _MediaReactionIconButton extends StatelessWidget {
   const _MediaReactionIconButton({
     required this.icon,
     required this.onPressed,
@@ -10,7 +10,7 @@ class _MediaReactionIconButton extends ConsumerWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final reaction = evaluationMock;
 
     return Row(children: [

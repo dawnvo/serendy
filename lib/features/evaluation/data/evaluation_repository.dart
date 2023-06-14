@@ -1,8 +1,5 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
-
-part 'evaluation_repository.g.dart';
 
 final class EvaluationRepository {
   final List<Evaluation?> _evaluations = [evaluationMock];
@@ -34,9 +31,4 @@ final class EvaluationRepository {
   Future<void> deleteEvaluation(String id) {
     throw UnimplementedError();
   }
-}
-
-@riverpod
-EvaluationRepository evaluationRepository(EvaluationRepositoryRef ref) {
-  return EvaluationRepository();
 }

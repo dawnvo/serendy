@@ -11,4 +11,3 @@ export 'extensions/number_extension.dart';
 // Others
 export 'router/app_router.dart';
 export 'theme/app_theme.dart';
-export 'types/types.dart';

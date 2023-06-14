@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
@@ -24,7 +23,7 @@ part 'widgets/_media_reaction_tile.dart';
 part 'widgets/_media_info_tile.dart';
 
 @RoutePage()
-class MediaScreen extends ConsumerWidget {
+class MediaScreen extends StatelessWidget {
   const MediaScreen({
     @pathParam required this.id,
     super.key,
@@ -33,7 +32,7 @@ class MediaScreen extends ConsumerWidget {
   final String id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final media = mediaMock;
 
     return _MediaView(media);

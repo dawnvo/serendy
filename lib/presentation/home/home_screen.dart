@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/domain/media.dart';
@@ -10,22 +9,20 @@ import 'package:serendy/presentation/@widgets/widgets.dart';
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
 
-final tabsProvider = Provider((ref) => [
+@RoutePage()
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final filters = [
       "실시간 인기",
       "애니",
       "만화",
       "소설",
       "판타지",
       "드라마",
-    ]);
-
-@RoutePage()
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final filters = ref.watch(tabsProvider);
+    ];
 
     return _HomeTemplate(
       mediaFiltersTabBar: _HomeMediaFiltersTabBar(

@@ -1,14 +1,12 @@
 part of 'package:serendy/presentation/search/search_screen.dart';
 
-final filtersProvider = StateProvider.autoDispose<List<String?>>((ref) => []);
-
-class _SearchFilterChipBar extends ConsumerWidget {
+class _SearchFilterChipBar extends StatelessWidget {
   const _SearchFilterChipBar();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final keywords = mediaMock.keywords;
-    final filters = ref.watch(filtersProvider);
+    final filters = [];
 
     return ListView(
       scrollDirection: Axis.horizontal,
@@ -22,15 +20,11 @@ class _SearchFilterChipBar extends ConsumerWidget {
               selected: filters.contains(k),
               onSelected: (_) {
                 if (filters.contains(k)) {
-                  ref
-                      .read(filtersProvider.notifier)
-                      .update((state) => state.where((f) => f != k).toList());
+                  // 필터 제거
                   return;
                 }
 
-                ref
-                    .read(filtersProvider.notifier)
-                    .update((state) => [...state, k]);
+                // 필터 추가
               },
               label: Text(k),
               visualDensity: VisualDensity.compact,

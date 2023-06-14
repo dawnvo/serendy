@@ -1,13 +1,11 @@
 part of 'package:serendy/presentation/edit_collection/edit_collection_screen.dart';
 
-class _EditCollectionRemoveTile extends ConsumerWidget {
-  const _EditCollectionRemoveTile(this.provider);
-  final EditCollectionProvider provider;
+class _EditCollectionRemoveTile extends StatelessWidget {
+  const _EditCollectionRemoveTile();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final collectionId =
-        ref.watch(provider.select((state) => state.initialCollection.id));
+  Widget build(BuildContext context) {
+    const collectionId = 'collectionId';
 
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)

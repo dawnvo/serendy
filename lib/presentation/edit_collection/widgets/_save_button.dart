@@ -1,20 +1,18 @@
 part of 'package:serendy/presentation/edit_collection/edit_collection_screen.dart';
 
-class _EditCollectionSaveButton extends ConsumerWidget {
-  const _EditCollectionSaveButton(this.provider);
-  final EditCollectionProvider provider;
+class _EditCollectionSaveButton extends StatelessWidget {
+  const _EditCollectionSaveButton();
 
-  void handleSubmit(ConsumerHandler handler) {
-    FocusScope.of(handler.$1).unfocus();
-    handler.$2.read(provider.notifier).submit();
+  void handleSubmit(BuildContext context) {
+    FocusScope.of(context).unfocus();
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isEdited = ref.watch(provider.select((_) => _.isEdited));
+  Widget build(BuildContext context) {
+    const isEdited = true;
 
     return TextButton(
-      onPressed: isEdited ? () => handleSubmit((context, ref)) : null,
+      onPressed: isEdited ? () => handleSubmit(context) : null,
       child: const Text("저장하기"),
     );
   }

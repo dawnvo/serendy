@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 

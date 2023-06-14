@@ -1,16 +1,14 @@
 part of 'package:serendy/presentation/account/account_screen.dart';
 
-final _imageProvider = StateProvider.autoDispose<String?>((ref) => null);
-
-class _AccountImagePicker extends ConsumerWidget {
+class _AccountImagePicker extends StatelessWidget {
   const _AccountImagePicker();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final image = ref.watch(_imageProvider);
+  Widget build(BuildContext context) {
+    final image = null;
 
     return ImagePicker(
-      onChange: (path) => ref.read(_imageProvider.notifier).state = path,
+      onChange: (path) {},
       image: image,
       circle: true,
     );

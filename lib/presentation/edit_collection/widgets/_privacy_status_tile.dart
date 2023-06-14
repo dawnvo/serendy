@@ -1,16 +1,14 @@
 part of 'package:serendy/presentation/edit_collection/edit_collection_screen.dart';
 
-class _EditCollectionPrivacyStatusTile extends ConsumerWidget {
-  const _EditCollectionPrivacyStatusTile(this.provider);
-  final EditCollectionProvider provider;
+class _EditCollectionPrivacyStatusTile extends StatelessWidget {
+  const _EditCollectionPrivacyStatusTile();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final privacyStatus = ref.watch(provider.select((_) => _.privacyStatus));
+  Widget build(BuildContext context) {
+    const privacyStatus = true;
 
     return SwitchListTile(
-      onChanged: (status) =>
-          ref.read(provider.notifier).changePrivacyStatus(status),
+      onChanged: (status) {},
       value: privacyStatus,
       title: const Text("나만 보기"),
     );

@@ -1,8 +1,5 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/features/media/domain/media.dart';
-
-part 'media_repository.g.dart';
 
 final class MediaRepository {
   final List<Media?> _media = [mediaMock];
@@ -34,9 +31,4 @@ final class MediaRepository {
   Future<void> deleteMedia(String id) {
     throw UnimplementedError();
   }
-}
-
-@riverpod
-MediaRepository mediaRepository(MediaRepositoryRef ref) {
-  return MediaRepository();
 }

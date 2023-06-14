@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/application/edit_collection/edit_collection_provider.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
@@ -24,15 +22,13 @@ class EditCollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = editCollectionProvider(collection);
-
-    return _EditCollectionTemplate(
-      saveButton: _EditCollectionSaveButton(provider),
-      imagePicker: _EditCollectionImagePicker(provider),
-      textField: _EditCollectionTitleTextField(provider),
+    return const _EditCollectionTemplate(
+      saveButton: _EditCollectionSaveButton(),
+      imagePicker: _EditCollectionImagePicker(),
+      textField: _EditCollectionTitleTextField(),
       options: [
-        _EditCollectionPrivacyStatusTile(provider),
-        _EditCollectionRemoveTile(provider),
+        _EditCollectionPrivacyStatusTile(),
+        _EditCollectionRemoveTile(),
       ],
     );
   }
