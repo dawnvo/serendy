@@ -12,6 +12,7 @@ import 'package:serendy/src/features/media/application/media_detail/media_detail
 import 'package:serendy/src/features/media/application/media_reaction/media_reaction_provider.dart';
 import 'package:serendy/src/features/media/domain/media.dart';
 import 'package:serendy/src/presentation/screens/screens.dart';
+import 'package:serendy/src/presentation/widgets/user/my_collections_list.dart';
 import 'package:serendy/src/presentation/widgets/widgets.dart';
 
 part 'sheets/media_menu_sheet.dart';

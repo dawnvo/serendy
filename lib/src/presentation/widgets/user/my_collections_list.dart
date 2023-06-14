@@ -1,4 +1,11 @@
-part of '../profile_screen.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:serendy/src/_mock.dart';
+import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/collection/domain/collection.dart'
+    show Collection;
+import 'package:serendy/src/presentation/widgets/widgets.dart';
 
 class MyCollectionsList extends StatelessWidget {
   const MyCollectionsList({

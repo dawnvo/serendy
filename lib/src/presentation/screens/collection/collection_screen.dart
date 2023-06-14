@@ -7,7 +7,6 @@ import 'package:serendy/src/_mock.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/collection/domain/collection.dart';
 import 'package:serendy/src/features/media/domain/media.dart';
-import 'package:serendy/src/presentation/screens/screens.dart';
 import 'package:serendy/src/presentation/widgets/widgets.dart';
 
 part 'widgets/collection_background.dart';
