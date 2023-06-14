@@ -1,5 +1,6 @@
 export 'collection/collection_card.dart';
 export 'collection/collection_item.dart';
+export 'collection/collections_grid.dart';
 export 'common/alert_dialog.dart';
 export 'common/bottom_sheet_template.dart';
 export 'common/image_picker.dart';
