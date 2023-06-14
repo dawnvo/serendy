@@ -5,10 +5,13 @@ class _EditCollectionPrivacyStatusTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const privacyStatus = true;
+    final privacyStatus = context
+        .select((EditCollectionCubit cubit) => cubit.state.privacyStatus);
 
     return SwitchListTile(
-      onChanged: (status) {},
+      onChanged: (status) {
+        context.read<EditCollectionCubit>().privacyStatusChanged(status);
+      },
       value: privacyStatus,
       title: const Text("나만 보기"),
     );

@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/edit_collection/cubit/edit_collection_cubit.dart';
 
 part 'widgets/_save_button.dart';
 part 'widgets/_image_picker.dart';
@@ -19,6 +21,18 @@ class EditCollectionScreen extends StatelessWidget {
   });
 
   final Collection collection;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => EditCollectionCubit(collection: collection),
+      child: const _EditCollectionView(),
+    );
+  }
+}
+
+class _EditCollectionView extends StatelessWidget {
+  const _EditCollectionView();
 
   @override
   Widget build(BuildContext context) {

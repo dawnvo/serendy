@@ -5,10 +5,13 @@ class _EditCollectionImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imagePath = null;
+    final imagePath =
+        context.select((EditCollectionCubit cubit) => cubit.state.image);
 
     return ImagePicker(
-      onChange: (image) {},
+      onChange: (image) {
+        context.read<EditCollectionCubit>().imageChanged(image);
+      },
       image: imagePath,
     );
   }
