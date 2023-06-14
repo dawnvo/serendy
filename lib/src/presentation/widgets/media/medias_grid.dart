@@ -5,8 +5,8 @@ import 'package:serendy/src/features/media/domain/media.dart';
 import 'package:serendy/src/presentation/screens/screens.dart';
 import 'package:serendy/src/presentation/widgets/widgets.dart';
 
-class MediasGrid extends StatelessWidget {
-  const MediasGrid({
+class SliverMediasGrid extends StatelessWidget {
+  const SliverMediasGrid({
     required this.medias,
     super.key,
   });

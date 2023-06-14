@@ -7,6 +7,6 @@ class _CollectionMediasGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MediasGrid(medias: medias);
+    return SliverMediasGrid(medias: medias);
   }
 }
