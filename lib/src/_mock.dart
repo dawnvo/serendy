@@ -1,6 +1,10 @@
-import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/features/collection/domain/collection.dart';
+import 'package:serendy/src/features/evaluation/domain/evaluation.dart';
+import 'package:serendy/src/features/media/domain/media.dart';
+import 'package:serendy/src/features/user/domain/user.dart';
 
 // User
+
 final userMock = User(name: "Serendy");
 
 // Media
@@ -17,7 +21,7 @@ final mediaMock = Media(
 final evaluationMock = Evaluation(
   userId: userMock.id,
   emotion: Emotion.happyness,
-  media: MediaInfo(
+  media: MediaItem(
     id: mediaMock.id,
     image: mediaMock.image,
     title: mediaMock.title,

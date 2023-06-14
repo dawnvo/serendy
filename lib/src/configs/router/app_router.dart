@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/src/app.dart';
-import 'package:serendy/src/screens/screens.dart';
-import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/features/collection/domain/collection.dart';
+import 'package:serendy/src/presentation/screens/screens.dart';
 
 part 'app_router.gr.dart';
 

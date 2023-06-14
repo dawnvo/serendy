@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:serendy/src/models/models.dart';
+import 'package:serendy/src/features/evaluation/domain/evaluation.dart';
 
 extension EmotionX on Emotion {
   String get filePath => 'assets/emotions/$name.svg';
