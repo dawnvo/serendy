@@ -21,18 +21,26 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
   final MediaRepository mediaRepository;
   final EvaluationRepository evaluationRepository;
 
+  /// Get media
+  ///
+  /// 1. 미디어가 존재하는지 확인해요.
+  /// 2. 미디어의 반응을 조회해요.
+  /// 3. 상태를 갱신해요.🔥
   Future<void> _onFetched(
     MediaFetched event,
     Emitter<MediaState> emit,
   ) async {
     try {
+      // [1]
       final media = CoreAssert.notEmpty<Media>(
         await mediaRepository.fetchMedia(event.id),
         Exception("미디어를 찾을 수 없어요."),
       );
 
+      // [2]
       final reactions = await evaluationRepository.fetchEvaluationList();
 
+      // [3]
       emit(MediaLoaded(
         media: media,
         reactions: reactions,
@@ -42,13 +50,19 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     }
   }
 
+  /// Get media list
+  ///
+  /// 1. 미디어를 조회해요.
+  /// 2. 상태를 갱신해요.🔥
   Future<void> _onListFetched(
     MediasListFetched event,
     Emitter<MediaState> emit,
   ) async {
     try {
+      // [1]
       final medias = await mediaRepository.fetchMediaList();
 
+      // [2]
       emit(MediasListLoaded(medias: medias));
     } catch (err) {
       emit(MediaError(err.toString()));
