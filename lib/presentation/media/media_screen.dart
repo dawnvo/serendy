@@ -7,10 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/evaluation/application/evaluation_bloc.dart';
-import 'package:serendy/features/evaluation/data/evaluation_repository_fake.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/application/media_bloc.dart';
-import 'package:serendy/features/media/data/media_repository_fake.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -38,22 +36,7 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => MediaBloc(
-            mediaRepository: MediaRepositoryFake(),
-            evaluationRepository: EvaluationRepositoryFake(),
-          )..add(MediaFetched(id: id)),
-        ),
-        BlocProvider(
-          create: (context) => EvaluationBloc(
-            evaluationRepository: EvaluationRepositoryFake(),
-          )..add(const EvaluationFetched(userId: 'userId')),
-        ),
-      ],
-      child: const _MediaView(),
-    );
+    return const _MediaView();
   }
 }
 

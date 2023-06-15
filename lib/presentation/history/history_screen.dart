@@ -14,11 +14,17 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _HistoryView();
+  }
+}
+
+class _HistoryView extends StatelessWidget {
+  const _HistoryView();
+
+  @override
+  Widget build(BuildContext context) {
     return const _HistoryTemplate(
-      titles: _HistoryTitles(
-        title: "감상한",
-        subtitle: "작품 12",
-      ),
+      titles: _HistoryTitles(),
       historiesList: _HistoryCardsList(),
     );
   }

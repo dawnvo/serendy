@@ -5,8 +5,8 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final collectionId = context.select(
-        (EditCollectionCubit cubit) => cubit.state.initialCollection.id);
+    const collectionId = '';
+    // context.select((EditCollectionCubit cubit) => cubit.state.initialCollection.id);
 
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)

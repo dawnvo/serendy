@@ -1,17 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/edit_collection/cubit/edit_collection_cubit.dart';
 
-part 'widgets/_save_button.dart';
 part 'widgets/_image_picker.dart';
-part 'widgets/_title_text_field.dart';
 part 'widgets/_privacy_status_tile.dart';
 part 'widgets/_remove_tile.dart';
+part 'widgets/_save_button.dart';
+part 'widgets/_title_text_field.dart';
 
 @RoutePage()
 class EditCollectionScreen extends StatelessWidget {
@@ -24,10 +22,7 @@ class EditCollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => EditCollectionCubit(collection: collection),
-      child: const _EditCollectionView(),
-    );
+    return const _EditCollectionView();
   }
 }
 

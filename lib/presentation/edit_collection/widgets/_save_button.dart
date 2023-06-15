@@ -5,14 +5,14 @@ class _EditCollectionSaveButton extends StatelessWidget {
 
   void handleSubmit(BuildContext context) {
     FocusScope.of(context).unfocus();
-    context.read<EditCollectionCubit>().submitted();
+    // context.read<EditCollectionCubit>().submitted();
     context.popRoute();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isEdited =
-        context.select((EditCollectionCubit cubit) => cubit.state.isEdited);
+    const isEdited = true;
+    // context.select((EditCollectionCubit cubit) => cubit.state.isEdited);
 
     return TextButton(
       onPressed: isEdited ? () => handleSubmit(context) : null,

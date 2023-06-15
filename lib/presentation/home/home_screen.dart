@@ -15,6 +15,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _HomeView();
+  }
+}
+
+class _HomeView extends StatelessWidget {
+  const _HomeView();
+
+  @override
+  Widget build(BuildContext context) {
     final filters = [
       "실시간 인기",
       "애니",

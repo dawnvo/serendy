@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/application/collection_bloc.dart';
-import 'package:serendy/features/collection/data/collection_repository_fake.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
@@ -17,12 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CollectionBloc(
-        collectionRepository: CollectionRepositoryFake(),
-      )..add(const CollectionsListFetched()),
-      child: const _ProfileView(),
-    );
+    return const _ProfileView();
   }
 }
 
@@ -31,25 +24,15 @@ class _ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CollectionBloc, CollectionState>(
-      listener: (context, state) {
-        /// 편집에 실패하면 메시지로 안내해요.
-        if (state is CollectionError) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(state.message)));
-        }
-      },
-      child: _ProfileTemplate(
-        actions: [
-          IconButton(
-            icon: const Icon(RemixIcon.settings_3_fill),
-            onPressed: () => context.pushRoute(const SettingsRoute()),
-          ),
-        ],
-        watchedMediaIndicator: const _WatchedMediaIndicator(),
-        collectionsList: const _ProfileMyCollectionsList(),
-      ),
+    return _ProfileTemplate(
+      actions: [
+        IconButton(
+          icon: const Icon(RemixIcon.settings_3_fill),
+          onPressed: () => context.pushRoute(const SettingsRoute()),
+        ),
+      ],
+      watchedMediaIndicator: const _WatchedMediaIndicator(),
+      collectionsList: const _ProfileMyCollectionsList(),
     );
   }
 }

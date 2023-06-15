@@ -14,6 +14,15 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _AccountView();
+  }
+}
+
+class _AccountView extends StatelessWidget {
+  const _AccountView();
+
+  @override
+  Widget build(BuildContext context) {
     final focusNode = FocusNode();
 
     return _AccountTemplate(

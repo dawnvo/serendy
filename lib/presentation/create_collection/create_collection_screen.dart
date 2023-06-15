@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/application/collection_bloc.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'widgets/_submit_button.dart';
