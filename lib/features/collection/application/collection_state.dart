@@ -15,7 +15,7 @@ final class CollectionLoading extends CollectionState {
 /// LOADED COLLECTION
 final class CollectionLoaded extends CollectionState {
   const CollectionLoaded({required this.collection});
-  final Collection collection;
+  final Collection? collection;
 
   @override
   List<Object?> get props => [collection];
@@ -24,7 +24,7 @@ final class CollectionLoaded extends CollectionState {
 /// LOADED COLLECTIONS
 final class CollectionsListLoaded extends CollectionState {
   const CollectionsListLoaded({required this.collections});
-  final List<Collection> collections;
+  final List<Collection?> collections;
 
   @override
   List<Object?> get props => [collections];
@@ -32,7 +32,7 @@ final class CollectionsListLoaded extends CollectionState {
 
 /// ERROR
 final class CollectionError extends CollectionState {
-  const CollectionError({required this.message});
+  const CollectionError(this.message);
   final String message;
 
   @override
