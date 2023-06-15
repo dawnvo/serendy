@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
-class _MediaReactionSheet extends StatelessWidget {
-  const _MediaReactionSheet();
+class _EvaluateMediaSheet extends StatelessWidget {
+  const _EvaluateMediaSheet();
 
   void handleChange({
     required Emotion? previous,

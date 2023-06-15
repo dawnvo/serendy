@@ -27,9 +27,9 @@ class _MediaActionBar extends StatelessWidget {
           icon: const Icon(RemixIcon.more_2_fill),
         ),
         const Spacer(),
-        _MediaReactionIconButton(
+        _EvaluateIconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            const _MediaReactionSheet(),
+            const _EvaluateMediaSheet(),
           ),
           icon: const Icon(RemixIcon.emotion_fill),
         ),

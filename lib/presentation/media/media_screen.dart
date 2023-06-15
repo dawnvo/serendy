@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/evaluation/application/evaluation_bloc.dart';
-import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
+import 'package:serendy/features/evaluation/data/evaluation_repository_fake.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/application/media_bloc.dart';
 import 'package:serendy/features/media/data/media_repository.dart';
@@ -16,14 +16,14 @@ import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'sheets/_save_media_sheet.dart';
+part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_media_reaction_detail_sheet.dart';
-part 'sheets/_media_reaction_sheet.dart';
 
+part 'widgets/_evaluate_icon_button.dart';
 part 'widgets/_media_image.dart';
 part 'widgets/_media_title.dart';
 part 'widgets/_media_keywords.dart';
 part 'widgets/_media_action_bar.dart';
-part 'widgets/_media_reaction_icon_button.dart';
 part 'widgets/_media_reaction_tile.dart';
 part 'widgets/_media_info_tile.dart';
 
@@ -43,12 +43,12 @@ class MediaScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => MediaBloc(
             mediaRepository: MediaRepository(),
-            evaluationRepository: EvaluationRepository(),
+            evaluationRepository: EvaluationRepositoryFake(),
           )..add(MediaFetched(id: id)),
         ),
         BlocProvider(
           create: (context) => EvaluationBloc(
-            evaluationRepository: EvaluationRepository(),
+            evaluationRepository: EvaluationRepositoryFake(),
           )..add(const EvaluationFetched(userId: 'userId')),
         ),
       ],

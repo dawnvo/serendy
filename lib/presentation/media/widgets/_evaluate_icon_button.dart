@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
-class _MediaReactionIconButton extends StatelessWidget {
-  const _MediaReactionIconButton({
+class _EvaluateIconButton extends StatelessWidget {
+  const _EvaluateIconButton({
     required this.icon,
     required this.onPressed,
   });
