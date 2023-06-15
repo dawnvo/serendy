@@ -10,7 +10,7 @@ class SliverCollectionsGrid extends StatelessWidget {
     super.key,
   });
 
-  final List<Collection> collections;
+  final List<Collection?> collections;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,15 @@ class SliverCollectionsGrid extends StatelessWidget {
         crossAxisSpacing: spacing,
       ),
       delegate: SliverChildBuilderDelegate(
-        (context, index) => CollectionCard(
-          collection: collections[index],
-          onTap: () => context.pushRoute(CollectionRoute(
-            id: collections[index].id,
-          )),
-        ),
+        (context, index) {
+          final collection = collections[index]!;
+          return CollectionCard(
+            collection: collection,
+            onTap: () => context.pushRoute(CollectionRoute(
+              id: collection.id,
+            )),
+          );
+        },
         childCount: collections.length,
       ),
     );
