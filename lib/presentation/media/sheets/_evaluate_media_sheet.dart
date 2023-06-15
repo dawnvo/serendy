@@ -3,25 +3,34 @@ part of 'package:serendy/presentation/media/media_screen.dart';
 class _EvaluateMediaSheet extends StatelessWidget {
   const _EvaluateMediaSheet();
 
-  void handleChange({
+  void handleChange(
+    BuildContext context, {
     required Emotion? previous,
-    required Emotion? current,
+    required Emotion current,
   }) {
-    Emotion? changed;
+    final evaluationBloc = context.read<EvaluationBloc>();
+    const mediaId = 'mid';
 
-    // 감정이 이전과 다르면 감정을 변경하고, 동일하면 선택을 취소해요.
+    // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
-      changed = current;
+      evaluationBloc.add(EvaluationUpdated(mediaId: mediaId, emotion: current));
     }
-
-    print(changed);
-
-    // ref.read(mediaReactionProvider.notifier).changeEmotion(changed);
+    // 동일하면 선택을 취소해요.
+    else {
+      evaluationBloc.add(const EvaluationRemoved(mediaId: mediaId));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final reaction = evaluationMock;
+    final state = context.watch<EvaluationBloc>().state;
+    final Evaluation? evaluation;
+
+    if (state is EvaluationLoaded) {
+      evaluation = state.evaluation;
+    } else {
+      evaluation = null;
+    }
 
     return SingleChildScrollView(
       child: Column(children: [
@@ -41,10 +50,11 @@ class _EvaluateMediaSheet extends StatelessWidget {
             for (final emotion in Emotion.values)
               _EmotionGridTile(
                 emotion: emotion,
-                selected: emotion == reaction.emotion,
+                selected: emotion == evaluation?.emotion,
                 onSelect: (selected) {
                   handleChange(
-                    previous: reaction.emotion,
+                    context,
+                    previous: evaluation?.emotion,
                     current: selected,
                   );
                   context.popRoute();
@@ -66,7 +76,7 @@ class _EmotionGridTile extends StatelessWidget {
 
   final Emotion emotion;
   final bool selected;
-  final void Function(Emotion?) onSelect;
+  final void Function(Emotion) onSelect;
 
   @override
   Widget build(BuildContext context) {
