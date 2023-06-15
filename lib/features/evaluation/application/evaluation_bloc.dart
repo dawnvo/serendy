@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/_mock.dart';
+import 'package:serendy/core/assert.dart';
 import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 
@@ -82,9 +83,10 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     final user = userMock;
 
     try {
-      final evaluation = await evaluationRepository.fetchEvaluation(user.id);
-
-      if (evaluation == null) throw Exception("평가를 찾을 수 없어요.");
+      final evaluation = CoreAssert.notEmpty(
+        await evaluationRepository.fetchEvaluation(user.id),
+        Exception("평가를 찾을 수 없어요."),
+      );
 
       final changed = evaluation.changeEmotion(event.emotion);
 
@@ -102,9 +104,10 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     final user = userMock;
 
     try {
-      final evaluation = await evaluationRepository.fetchEvaluation(user.id);
-
-      if (evaluation == null) throw Exception("평가를 찾을 수 없어요.");
+      final evaluation = CoreAssert.notEmpty(
+        await evaluationRepository.fetchEvaluation(user.id),
+        Exception("평가를 찾을 수 없어요."),
+      );
 
       final removed = evaluation.remove();
 

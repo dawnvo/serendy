@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:serendy/core/assert.dart';
 import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/data/media_repository.dart';
@@ -25,12 +26,10 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     Emitter<MediaState> emit,
   ) async {
     try {
-      final media = await mediaRepository.fetchMedia(event.id);
-
-      if (media == null) {
-        emit(const MediaError('미디어를 찾을 수 없어요.'));
-        return;
-      }
+      final media = CoreAssert.notEmpty<Media>(
+        await mediaRepository.fetchMedia(event.id),
+        Exception("미디어를 찾을 수 없어요."),
+      );
 
       final reactions = await evaluationRepository.fetchEvaluationList();
 
