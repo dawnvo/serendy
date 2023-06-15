@@ -7,7 +7,7 @@ final class MediaRepositoryFake extends MediaRepository {
 
   @override
   Future<List<Media?>> fetchMediaList() async {
-    return Future.value(_media);
+    return _media;
   }
 
   @override
@@ -17,11 +17,11 @@ final class MediaRepositoryFake extends MediaRepository {
 
   @override
   Future<Media?> fetchMedia(String id) async {
-    return Future.value(_media[0]);
+    return _media[0];
   }
 
   @override
   Stream<Media?> watchMedia(String id) {
-    return watchMediaList().map((media) => media[0]);
+    return watchMediaList().map((medias) => medias[0]);
   }
 }

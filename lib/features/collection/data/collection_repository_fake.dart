@@ -17,7 +17,7 @@ final class CollectionRepositoryFake extends CollectionRepository {
 
   @override
   Future<Collection?> fetchCollection(String id) async {
-    return _collections[0];
+    return _collections.firstWhere((collection) => collection?.id == id);
   }
 
   @override

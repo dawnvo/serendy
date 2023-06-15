@@ -7,7 +7,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
 
   @override
   Future<List<Evaluation?>> fetchEvaluationList() async {
-    return Future.value(_evaluations);
+    return _evaluations;
   }
 
   @override
@@ -17,12 +17,12 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
 
   @override
   Future<Evaluation?> fetchEvaluation(String id) async {
-    return Future.value(_evaluations[0]);
+    return _evaluations[0];
   }
 
   @override
   Stream<Evaluation?> watchEvaluation(String id) {
-    return watchEvaluationList().map((evaluation) => evaluation[0]);
+    return watchEvaluationList().map((evaluations) => evaluations[0]);
   }
 
   @override

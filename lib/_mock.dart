@@ -5,7 +5,7 @@ import 'package:serendy/features/user/domain/user.dart';
 
 // User
 
-final userMock = User(name: "Serendy");
+final userMock = User(id: 'uid', name: "Serendy");
 
 // Media
 final mediaMock = Media(
@@ -38,6 +38,7 @@ final collectionItemMock = CollectionItem(
 );
 final collectionsMock = [
   Collection(
+      id: 'cid1',
       private: false,
       owner: collectionOwnerMock,
       title: "M3",
@@ -45,18 +46,21 @@ final collectionsMock = [
       image: "https://vo.la/13rVl",
       items: List.filled(8, collectionItemMock)),
   Collection(
+      id: 'cid2',
       private: false,
       owner: collectionOwnerMock,
       title: "자바스크립트",
       image: "https://vo.la/hOQob",
       items: List.filled(8, collectionItemMock)),
   Collection(
+    id: 'cid3',
     private: false,
     owner: collectionOwnerMock,
     title: "ES2023에서 도입된 자바스크립트의 새로운 배열 복사 메서드",
     image: "https://vo.la/M5xSg",
   ),
   Collection(
+    id: 'cid4',
     owner: collectionOwnerMock,
     title: "소 잃고 뇌약간 고친 MSA 구현기",
     image: "https://vo.la/Zzy1u",
