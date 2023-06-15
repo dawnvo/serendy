@@ -18,7 +18,7 @@ class _MediaReactionTile extends StatelessWidget {
 
       return ListTile(
         onTap: () => context.showCustomModalBottomSheet(
-          const _MediaReactionDetailSheet(),
+          (context) => const _MediaReactionDetailSheet(),
         ),
         leading: _ReactionIcons(emotions: uniqueKeys.toList()),
         title: Text('$totalCount명이 감상했어요'),
@@ -32,7 +32,7 @@ class _MediaReactionTile extends StatelessWidget {
   Widget _buildEmptyReactionTile(BuildContext context) {
     return ListTile(
       onTap: () => context.showCustomModalBottomSheet(
-        const _MediaReactionDetailSheet(),
+        (context) => const _MediaReactionDetailSheet(),
       ),
       leading: const Icon(RemixIcon.emotion_sad_line),
       title: Text(

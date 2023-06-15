@@ -12,7 +12,7 @@ class _MediaActionBar extends StatelessWidget {
       child: Row(children: [
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            const _SaveMediaSheet(),
+            (context) => const _SaveMediaSheet(),
           ),
           icon: const Icon(RemixIcon.add_box_fill),
         ),
@@ -22,14 +22,17 @@ class _MediaActionBar extends StatelessWidget {
         ),
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            const MediaMenuSheet(),
+            (context) => const MediaMenuSheet(),
           ),
           icon: const Icon(RemixIcon.more_2_fill),
         ),
         const Spacer(),
         _EvaluateIconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            const _EvaluateMediaSheet(),
+            (context) => BlocProvider.value(
+              value: context.read<EvaluationBloc>(),
+              child: const _EvaluateMediaSheet(),
+            ),
           ),
           icon: const Icon(RemixIcon.emotion_fill),
         ),

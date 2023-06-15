@@ -31,7 +31,7 @@ class SliverMediasGrid extends StatelessWidget {
           media: medias[index],
           onTap: () => context.pushRoute(MediaRoute(id: 'mediaId')),
           onLongPress: () => context.showCustomModalBottomSheet(
-            const MediaMenuSheet(),
+            (context) => const MediaMenuSheet(),
           ),
         ),
         childCount: medias.length,

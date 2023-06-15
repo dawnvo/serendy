@@ -14,12 +14,14 @@ extension ContextX on BuildContext {
   double get screenHeight => mediaQuery.size.height;
 
   /// [BottomSheet] 기본 스타일을 수정해요.
-  Future<T?> showCustomModalBottomSheet<T>(Widget sheet) {
+  Future<T?> showCustomModalBottomSheet<T>(
+    Widget Function(BuildContext) builder,
+  ) {
     return showModalBottomSheet<T>(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kBorderRadius)),
       context: this,
-      builder: (context) => BottomSheetTemplate(child: sheet),
+      builder: (context) => BottomSheetTemplate(child: builder(this)),
     );
   }
 }
