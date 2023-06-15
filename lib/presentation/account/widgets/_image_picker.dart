@@ -5,7 +5,7 @@ class _AccountImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = null;
+    const image = null;
 
     return ImagePicker(
       onChange: (path) {},

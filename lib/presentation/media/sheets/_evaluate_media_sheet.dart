@@ -8,27 +8,19 @@ class _EvaluateMediaSheet extends StatelessWidget {
     required Emotion? previous,
     required Emotion current,
   }) {
-    final evaluationBloc = context.read<EvaluationBloc>();
-    const mediaId = 'mid';
-
     // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
-      evaluationBloc.add(EvaluationUpdated(mediaId: mediaId, emotion: current));
+      // evaluationBloc.add(EvaluationUpdated(mediaId: mediaId, emotion: current));
     }
     // 동일하면 선택을 취소해요.
     else {
-      evaluationBloc.add(const EvaluationRemoved(mediaId: mediaId));
+      // evaluationBloc.add(const EvaluationRemoved(mediaId: mediaId));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<EvaluationBloc>().state;
-    Evaluation? evaluation;
-
-    if (state is EvaluationLoaded) {
-      evaluation = state.evaluation;
-    }
+    final evaluation = evaluationMock;
 
     return SingleChildScrollView(
       child: Column(children: [
@@ -48,11 +40,11 @@ class _EvaluateMediaSheet extends StatelessWidget {
             for (final emotion in Emotion.values)
               _EmotionGridTile(
                 emotion: emotion,
-                selected: emotion == evaluation?.emotion,
+                selected: emotion == evaluation.emotion,
                 onSelect: (selected) {
                   handleChange(
                     context,
-                    previous: evaluation?.emotion,
+                    previous: evaluation.emotion,
                     current: selected,
                   );
                   context.popRoute();

@@ -1,29 +1,25 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/evaluation/application/evaluation_bloc.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
-import 'package:serendy/features/media/application/media_bloc.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
-part 'sheets/_save_media_sheet.dart';
 part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_media_reaction_detail_sheet.dart';
-
+part 'sheets/_save_media_sheet.dart';
 part 'widgets/_evaluate_icon_button.dart';
-part 'widgets/_media_image.dart';
-part 'widgets/_media_title.dart';
-part 'widgets/_media_keywords.dart';
 part 'widgets/_media_action_bar.dart';
-part 'widgets/_media_reaction_tile.dart';
+part 'widgets/_media_image.dart';
 part 'widgets/_media_info_tile.dart';
+part 'widgets/_media_keywords.dart';
+part 'widgets/_media_reaction_tile.dart';
+part 'widgets/_media_title.dart';
 
 @RoutePage()
 class MediaScreen extends StatelessWidget {
@@ -46,29 +42,24 @@ class _MediaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<MediaBloc>().state;
+    final media = mediaMock;
 
-    return switch (state) {
-      MediaLoaded() => _MediaTemplate(
-          image: _MediaImage(image: state.media.image),
-          title: _MediaTitle(title: state.media.title),
-          keyword: _MediaKeywords(
-            genres: state.media.keywords,
-            status: [
-              (state.media.startDate?.year).toString(),
-              state.media.status.name,
-            ],
-          ),
-          actionBar: _MediaActionBar(media: state.media),
-          contents: const [
-            _MediaReactionTile(),
-            _MediaInfoTile(),
-          ],
-        ),
-      MediaLoading() => const CircularProgressIndicator(),
-      MediaError() => Text(state.message),
-      MediasListLoaded() => const SizedBox(),
-    };
+    return _MediaTemplate(
+      image: _MediaImage(image: media.image),
+      title: _MediaTitle(title: media.title),
+      keyword: _MediaKeywords(
+        genres: media.keywords,
+        status: [
+          (media.startDate?.year).toString(),
+          media.status.name,
+        ],
+      ),
+      actionBar: _MediaActionBar(media: media),
+      contents: const [
+        _MediaReactionTile(),
+        _MediaInfoTile(),
+      ],
+    );
   }
 }
 
