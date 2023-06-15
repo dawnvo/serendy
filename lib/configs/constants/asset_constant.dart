@@ -1,5 +1,5 @@
 abstract final class Assets {
-  static const collectionDefaultImage = '';
+  static const collectionDefaultImage = 'https://vo.la/oRm94';
 
   static const googleIcon = 'assets/icons/google.svg';
 

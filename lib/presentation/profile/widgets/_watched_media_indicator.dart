@@ -1,34 +1,35 @@
 part of 'package:serendy/presentation/profile/profile_screen.dart';
 
 class _WatchedMediaIndicator extends StatelessWidget {
-  const _WatchedMediaIndicator({
-    required this.total,
-    required this.count,
-    required this.onTap,
-  }) : assert(count < total);
-
-  final int total;
-  final int count;
-  final VoidCallback onTap;
+  const _WatchedMediaIndicator();
 
   @override
   Widget build(BuildContext context) {
-    const indicatorColor = AppColors.brand;
+    const total = 10;
+    const count = 9;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => context.pushRoute(const HistoryRoute()),
       behavior: HitTestBehavior.opaque, // 빈 영역 터치
       child: Column(children: [
-        MultiLineProgressIndicator([
-          ProgressBar(value: count / total, color: indicatorColor),
+        const MultiLineProgressIndicator([
+          ProgressBar(value: count / total, color: AppColors.brand),
         ]),
         Gap.h12,
-        _buildBottom(context),
+        _buildBottom(
+          context,
+          total: total,
+          count: count,
+        ),
       ]),
     );
   }
 
-  Widget _buildBottom(BuildContext context) {
+  Widget _buildBottom(
+    BuildContext context, {
+    required int total,
+    required int count,
+  }) {
     return Row(children: [
       // Count text
       Row(children: [

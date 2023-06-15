@@ -6,6 +6,7 @@ class _EditCollectionSaveButton extends StatelessWidget {
   void handleSubmit(BuildContext context) {
     FocusScope.of(context).unfocus();
     context.read<EditCollectionCubit>().submitted();
+    context.popRoute();
   }
 
   @override

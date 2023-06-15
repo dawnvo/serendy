@@ -24,12 +24,10 @@ class _EvaluateMediaSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<EvaluationBloc>().state;
-    final Evaluation? evaluation;
+    Evaluation? evaluation;
 
     if (state is EvaluationLoaded) {
       evaluation = state.evaluation;
-    } else {
-      evaluation = null;
     }
 
     return SingleChildScrollView(

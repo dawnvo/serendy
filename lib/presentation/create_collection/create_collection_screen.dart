@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/collection/application/collection_bloc.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'widgets/_submit_button.dart';
@@ -12,13 +14,18 @@ class CreateCollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _CreateCollectionTemplate(
-      textField: const _CreateCollectionTitleTextField(),
-      submitButton: _CreateCollectionSubmitButton(
-        enabled: true,
-        onPressed: () {},
-        title: "만들기",
-      ),
+    return const _CreateCollectionView();
+  }
+}
+
+class _CreateCollectionView extends StatelessWidget {
+  const _CreateCollectionView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const _CreateCollectionTemplate(
+      textField: _CreateCollectionTitleTextField(),
+      submitButton: _CreateCollectionSubmitButton(),
     );
   }
 }

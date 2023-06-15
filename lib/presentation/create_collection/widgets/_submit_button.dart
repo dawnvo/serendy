@@ -1,15 +1,7 @@
 part of 'package:serendy/presentation/create_collection/create_collection_screen.dart';
 
 class _CreateCollectionSubmitButton extends StatelessWidget {
-  const _CreateCollectionSubmitButton({
-    required this.title,
-    required this.onPressed,
-    required this.enabled,
-  });
-
-  final String title;
-  final bool enabled;
-  final VoidCallback onPressed;
+  const _CreateCollectionSubmitButton();
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +12,10 @@ class _CreateCollectionSubmitButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: enabled ? onPressed : null,
-      child: Text(title),
+      onPressed: () {
+        context.popRoute();
+      },
+      child: const Text("만들기"),
     );
   }
 }

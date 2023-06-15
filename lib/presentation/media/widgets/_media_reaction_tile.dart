@@ -6,27 +6,26 @@ class _MediaReactionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<MediaBloc>().state;
+    List<Evaluation?> reactions = [];
 
     if (state is MediaLoaded) {
-      final reactions = state.reactions;
-
-      if (reactions.isEmpty) return _buildEmptyReactionTile(context);
-
-      /// 중복된 감정을 병합해요.
-      final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
-      final totalCount = reactions.length.withComma;
-
-      return ListTile(
-        onTap: () => context.showCustomModalBottomSheet(
-          (context) => const _MediaReactionDetailSheet(),
-        ),
-        leading: _ReactionIcons(emotions: uniqueKeys.toList()),
-        title: Text('$totalCount명이 감상했어요'),
-        trailing: const Icon(RemixIcon.arrow_right_s_line),
-      );
-    } else {
-      return _buildEmptyReactionTile(context);
+      reactions = state.reactions;
     }
+
+    if (reactions.isEmpty) return _buildEmptyReactionTile(context);
+
+    /// 중복된 감정을 병합해요.
+    final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
+    final totalCount = reactions.length.withComma;
+
+    return ListTile(
+      onTap: () => context.showCustomModalBottomSheet(
+        (context) => const _MediaReactionDetailSheet(),
+      ),
+      leading: _ReactionIcons(emotions: uniqueKeys.toList()),
+      title: Text('$totalCount명이 감상했어요'),
+      trailing: const Icon(RemixIcon.arrow_right_s_line),
+    );
   }
 
   Widget _buildEmptyReactionTile(BuildContext context) {

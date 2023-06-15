@@ -1,10 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/collection/application/collection_bloc.dart';
+import 'package:serendy/features/collection/data/collection_repository_fake.dart';
+import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'widgets/_watched_media_indicator.dart';
+part 'widgets/_my_collections_list.dart';
 
 @RoutePage()
 class ProfileScreen extends StatelessWidget {
@@ -12,21 +17,38 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _ProfileTemplate(
-      actions: [
-        IconButton(
-          icon: const Icon(RemixIcon.settings_3_fill),
-          onPressed: () => context.pushRoute(const SettingsRoute()),
-        ),
-      ],
-      watchedMediaIndicator: _WatchedMediaIndicator(
-        total: 10,
-        count: 9,
-        onTap: () => context.pushRoute(const HistoryRoute()),
-      ),
-      collectionsList: MyCollectionsList(
-        onSelect: (collection) =>
-            context.pushRoute(CollectionRoute(id: collection.id)),
+    return BlocProvider(
+      create: (context) => CollectionBloc(
+        collectionRepository: CollectionRepositoryFake(),
+      )..add(const CollectionsListFetched()),
+      child: const _ProfileView(),
+    );
+  }
+}
+
+class _ProfileView extends StatelessWidget {
+  const _ProfileView();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<CollectionBloc, CollectionState>(
+      listener: (context, state) {
+        /// 편집에 실패하면 메시지로 안내해요.
+        if (state is CollectionError) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      child: _ProfileTemplate(
+        actions: [
+          IconButton(
+            icon: const Icon(RemixIcon.settings_3_fill),
+            onPressed: () => context.pushRoute(const SettingsRoute()),
+          ),
+        ],
+        watchedMediaIndicator: const _WatchedMediaIndicator(),
+        collectionsList: const _ProfileMyCollectionsList(),
       ),
     );
   }
@@ -40,7 +62,7 @@ class _ProfileTemplate extends StatelessWidget {
   });
 
   final _WatchedMediaIndicator watchedMediaIndicator;
-  final MyCollectionsList collectionsList;
+  final _ProfileMyCollectionsList collectionsList;
   final List<Widget> actions;
 
   @override
