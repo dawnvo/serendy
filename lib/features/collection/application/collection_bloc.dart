@@ -39,7 +39,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       // [1]
       final collection = CoreAssert.notEmpty<Collection>(
         await collectionRepository.fetchCollection(event.id),
-        Exception("컬렉션를 찾을 수 없어요."),
+        Exception("컬렉션을 찾을 수 없어요."),
       );
 
       // [2]
@@ -78,7 +78,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
   /// Create collection
   ///
   /// 1. 사용자가 존재하는지 확인해요.
-  /// 2. 컬렉션를 생성해요.
+  /// 2. 컬렉션을 생성해요.
   /// 3. 상태를 갱신해요.🔥
   Future<void> _onCreated(
     CollectionCreated event,
@@ -113,7 +113,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
   ///
   /// 1. 컬렉션이 존재하는지 확인해요.
   /// 2. 올바른 실행자인지 확인해요.
-  /// 3. 컬렉션를 수정해요.
+  /// 3. 컬렉션을 수정해요.
   /// 4. 상태를 갱신해요.🔥
   Future<void> _onEdited(
     CollectionEdited event,
@@ -123,7 +123,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       // [1]
       final collection = CoreAssert.notEmpty<Collection>(
         await collectionRepository.fetchCollection(event.id),
-        Exception("컬렉션를 찾을 수 없어요."),
+        Exception("컬렉션을 찾을 수 없어요."),
       );
 
       // [2]
@@ -151,7 +151,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
   ///
   /// 1. 컬렉션이 존재하는지 확인해요.
   /// 2. 올바른 실행자인지 확인해요.
-  /// 3. 컬렉션를 제거해요.
+  /// 3. 컬렉션을 제거해요.
   /// 4. 상태를 갱신해요.🔥
   Future<void> _onRemoved(
     CollectionRemoved event,
@@ -161,7 +161,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       // [1]
       final collection = CoreAssert.notEmpty<Collection>(
         await collectionRepository.fetchCollection(event.id),
-        Exception("컬렉션를 찾을 수 없어요."),
+        Exception("컬렉션을 찾을 수 없어요."),
       );
 
       // [2]
@@ -173,7 +173,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       await collectionRepository.removeCollection(removed);
 
       // [4]
-      emit(const CollectionLoaded(collection: null));
+      emit(CollectionLoaded(collection: removed));
     } catch (err) {
       emit(CollectionError(err.toString()));
     }
@@ -194,7 +194,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       // [1]
       final collection = CoreAssert.notEmpty<Collection>(
         await collectionRepository.fetchCollection(event.id),
-        Exception("컬렉션를 찾을 수 없어요."),
+        Exception("컬렉션을 찾을 수 없어요."),
       );
 
       // [2]
@@ -247,7 +247,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       // [1]
       final collection = CoreAssert.notEmpty<Collection>(
         await collectionRepository.fetchCollection(event.id),
-        Exception("컬렉션를 찾을 수 없어요."),
+        Exception("컬렉션을 찾을 수 없어요."),
       );
 
       // [2]

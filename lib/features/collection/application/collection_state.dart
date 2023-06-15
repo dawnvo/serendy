@@ -15,7 +15,7 @@ final class CollectionLoading extends CollectionState {
 /// LOADED COLLECTION
 final class CollectionLoaded extends CollectionState {
   const CollectionLoaded({required this.collection});
-  final Collection? collection;
+  final Collection collection;
 
   @override
   List<Object?> get props => [collection];
