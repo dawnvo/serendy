@@ -31,7 +31,9 @@ class SliverCollectionsGrid extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => CollectionCard(
           collection: collections[index],
-          onTap: () => context.pushRoute(CollectionRoute(id: "collectionId")),
+          onTap: () => context.pushRoute(CollectionRoute(
+            id: collections[index].id,
+          )),
         ),
         childCount: collections.length,
       ),
