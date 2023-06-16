@@ -5,9 +5,15 @@ class _CreateCollectionTitleTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<CreateCollectionBloc>().state;
+
     return TitleTextField(
+      onChanged: (value) => context
+          .read<CreateCollectionBloc>()
+          .add(CreateCollectionTitleChanged(title: value)),
+      value: state.title,
+      hintText: state.hintText,
       autofocus: true,
-      hintText: Assets.createCollectionHints.pickRandomly(),
     );
   }
 }

@@ -12,9 +12,9 @@ class _CreateCollectionSubmitButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {
-        context.popRoute();
-      },
+      onPressed: () => context
+          .read<CreateCollectionBloc>()
+          .add(const CreateCollectionSubmitted()),
       child: const Text("만들기"),
     );
   }
