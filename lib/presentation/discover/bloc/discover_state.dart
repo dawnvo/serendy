@@ -12,7 +12,7 @@ final class DiscoverLoading extends DiscoverState {
   List<Object?> get props => [];
 }
 
-/// LOADED DISCOVER
+/// LOADED
 final class DiscoverLoaded extends DiscoverState {
   const DiscoverLoaded({required this.collections});
   final List<Collection?> collections;

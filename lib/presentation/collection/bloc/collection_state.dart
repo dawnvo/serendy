@@ -12,7 +12,7 @@ final class CollectionLoading extends CollectionState {
   List<Object?> get props => [];
 }
 
-/// LOADED COLLECTION
+/// LOADED
 final class CollectionLoaded extends CollectionState {
   const CollectionLoaded({required this.collection});
   final Collection collection;
