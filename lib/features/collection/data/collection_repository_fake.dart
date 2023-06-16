@@ -16,8 +16,16 @@ final class CollectionRepositoryFake extends CollectionRepository {
   }
 
   @override
-  Future<Collection?> fetchCollection(String id) async {
-    return _collections.firstWhere((collection) => collection?.id == id);
+  Future<Collection> fetchCollection(String id) async {
+    final collection = _collections.firstWhere(
+      (collection) => collection?.id == id,
+    );
+
+    if (collection == null) {
+      throw Exception("컬렉션을 찾을 수 없어요.");
+    }
+
+    return collection;
   }
 
   @override

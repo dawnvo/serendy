@@ -1,10 +1,19 @@
 import 'dart:async';
 
-import 'package:logger/logger.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:graphql/client.dart';
+import 'package:logger/logger.dart';
 
+// Logger
 final logger = Logger();
+
+// GraphQL
+final httpLink = HttpLink('http://localhost:3000/graphql');
+final client = GraphQLClient(
+  cache: GraphQLCache(),
+  link: httpLink,
+);
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
