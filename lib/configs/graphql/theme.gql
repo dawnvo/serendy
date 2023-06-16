@@ -27,3 +27,9 @@ query GetThemeList($ownerId: ID) {
     ...ThemeFields
   }
 }
+
+mutation CreateTheme($title: String!) {
+  CreateTheme(title: $title) {
+    ...ThemeFields
+  }
+}

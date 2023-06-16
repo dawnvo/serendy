@@ -34,8 +34,8 @@ final class CollectionRepositoryFake extends CollectionRepository {
   }
 
   @override
-  Future<void> createCollection(Collection collection) async {
-    _collections.add(collection);
+  Future<Collection> createCollection(String title) async {
+    throw UnimplementedError();
   }
 
   @override

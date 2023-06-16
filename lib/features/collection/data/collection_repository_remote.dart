@@ -5,12 +5,12 @@ import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 
 final class CollectionRepositoryRemote extends CollectionRepository {
-  CollectionRepositoryRemote(this.client);
-  final GraphQLClient client;
+  CollectionRepositoryRemote(this._client);
+  final GraphQLClient _client;
 
   @override
   Future<List<Collection?>> fetchCollectionsList([String? ownerId]) async {
-    final results = await client.query$GetThemeList(Options$Query$GetThemeList(
+    final results = await _client.query$GetThemeList(Options$Query$GetThemeList(
       variables: Variables$Query$GetThemeList(ownerId: ownerId),
     ));
 
@@ -28,7 +28,7 @@ final class CollectionRepositoryRemote extends CollectionRepository {
 
   @override
   Future<Collection> fetchCollection(String collectionId) async {
-    final result = await client.query$GetTheme(Options$Query$GetTheme(
+    final result = await _client.query$GetTheme(Options$Query$GetTheme(
       variables: Variables$Query$GetTheme(themeId: collectionId),
     ));
 
@@ -47,7 +47,20 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Future<void> createCollection(Collection collection) async {}
+  Future<Collection> createCollection(String title) async {
+    final result =
+        await _client.mutate$CreateTheme(Options$Mutation$CreateTheme(
+      variables: Variables$Mutation$CreateTheme(title: title),
+    ));
+
+    if (result.hasException) {
+      final message = result.exception!.graphqlErrors.first.message;
+      throw GraphQLError(message: message);
+    }
+
+    final data = result.parsedData!.CreateTheme;
+    return CollectionMapper.toDomain(data);
+  }
 
   @override
   Future<void> updateCollection(Collection collection) async {}
