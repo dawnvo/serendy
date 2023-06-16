@@ -5,7 +5,12 @@ class _DiscoverCollectionsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final collections = collectionsMock;
+    final state = context.watch<DiscoverBloc>().state;
+    List<Collection?> collections = [];
+
+    if (state is DiscoverLoaded) {
+      collections = state.collections;
+    }
 
     return SliverCollectionsGrid(
       collections: collections,

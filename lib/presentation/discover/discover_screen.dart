@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/collection/application/get_collections_list_service.dart';
+import 'package:serendy/features/collection/data/collection_repository_remote.dart';
+import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/discover/bloc/discover_bloc.dart';
 
 part 'widgets/_collections_grid.dart';
 part 'widgets/_search_bar.dart';
@@ -14,7 +18,13 @@ class DiscoverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _DiscoverView();
+    return BlocProvider(
+      create: (context) => DiscoverBloc(
+        getCollectionsListUseCase:
+            GetCollectionsListService(CollectionRepositoryRemote()),
+      )..add(const DiscoverCollectionsListFetched()),
+      child: const _DiscoverView(),
+    );
   }
 }
 

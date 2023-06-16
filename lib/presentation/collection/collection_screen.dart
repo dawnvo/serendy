@@ -32,7 +32,7 @@ class CollectionScreen extends StatelessWidget {
       create: (context) => CollectionBloc(
         getCollectionUseCase:
             GetCollectionService(CollectionRepositoryRemote()),
-      )..add(const CollectionFetched(id: "01GYYXS8Z0VSRKYSC6EXYT1A64")),
+      )..add(CollectionFetched(id: id)),
       child: const _CollectionView(),
     );
   }
