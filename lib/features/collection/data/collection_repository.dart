@@ -1,9 +1,9 @@
 import 'package:serendy/features/collection/domain/collection.dart';
 
 abstract class CollectionRepository {
-  Future<List<Collection?>> fetchCollectionList();
+  Future<List<Collection?>> fetchCollectionsList([String? ownerId]);
 
-  Stream<List<Collection?>> watchCollectionList();
+  Stream<List<Collection?>> watchCollectionsList();
 
   Future<Collection> fetchCollection(String collectionId);
 

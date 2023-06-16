@@ -1181,27 +1181,31 @@ extension ClientExtension$Query$GetTheme on graphql.GraphQLClient {
 }
 
 class Variables$Query$GetThemeList {
-  factory Variables$Query$GetThemeList({required String ownerId}) =>
+  factory Variables$Query$GetThemeList({String? ownerId}) =>
       Variables$Query$GetThemeList._({
-        r'ownerId': ownerId,
+        if (ownerId != null) r'ownerId': ownerId,
       });
 
   Variables$Query$GetThemeList._(this._$data);
 
   factory Variables$Query$GetThemeList.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$ownerId = data['ownerId'];
-    result$data['ownerId'] = (l$ownerId as String);
+    if (data.containsKey('ownerId')) {
+      final l$ownerId = data['ownerId'];
+      result$data['ownerId'] = (l$ownerId as String?);
+    }
     return Variables$Query$GetThemeList._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get ownerId => (_$data['ownerId'] as String);
+  String? get ownerId => (_$data['ownerId'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$ownerId = ownerId;
-    result$data['ownerId'] = l$ownerId;
+    if (_$data.containsKey('ownerId')) {
+      final l$ownerId = ownerId;
+      result$data['ownerId'] = l$ownerId;
+    }
     return result$data;
   }
 
@@ -1221,6 +1225,9 @@ class Variables$Query$GetThemeList {
     }
     final l$ownerId = ownerId;
     final lOther$ownerId = other.ownerId;
+    if (_$data.containsKey('ownerId') != other._$data.containsKey('ownerId')) {
+      return false;
+    }
     if (l$ownerId != lOther$ownerId) {
       return false;
     }
@@ -1230,7 +1237,8 @@ class Variables$Query$GetThemeList {
   @override
   int get hashCode {
     final l$ownerId = ownerId;
-    return Object.hashAll([l$ownerId]);
+    return Object.hashAll(
+        [_$data.containsKey('ownerId') ? l$ownerId : const {}]);
   }
 }
 
@@ -1262,8 +1270,7 @@ class _CopyWithImpl$Variables$Query$GetThemeList<TRes>
   TRes call({Object? ownerId = _undefined}) =>
       _then(Variables$Query$GetThemeList._({
         ..._instance._$data,
-        if (ownerId != _undefined && ownerId != null)
-          'ownerId': (ownerId as String),
+        if (ownerId != _undefined) 'ownerId': (ownerId as String?),
       }));
 }
 
@@ -1434,7 +1441,7 @@ const documentNodeQueryGetThemeList = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'ownerId')),
         type: NamedTypeNode(
           name: NameNode(value: 'ID'),
-          isNonNull: true,
+          isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -1488,7 +1495,7 @@ class Options$Query$GetThemeList
     extends graphql.QueryOptions<Query$GetThemeList> {
   Options$Query$GetThemeList({
     String? operationName,
-    required Variables$Query$GetThemeList variables,
+    Variables$Query$GetThemeList? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1500,7 +1507,7 @@ class Options$Query$GetThemeList
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1534,7 +1541,7 @@ class WatchOptions$Query$GetThemeList
     extends graphql.WatchQueryOptions<Query$GetThemeList> {
   WatchOptions$Query$GetThemeList({
     String? operationName,
-    required Variables$Query$GetThemeList variables,
+    Variables$Query$GetThemeList? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1546,7 +1553,7 @@ class WatchOptions$Query$GetThemeList
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1565,42 +1572,42 @@ class WatchOptions$Query$GetThemeList
 class FetchMoreOptions$Query$GetThemeList extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetThemeList({
     required graphql.UpdateQuery updateQuery,
-    required Variables$Query$GetThemeList variables,
+    Variables$Query$GetThemeList? variables,
   }) : super(
           updateQuery: updateQuery,
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           document: documentNodeQueryGetThemeList,
         );
 }
 
 extension ClientExtension$Query$GetThemeList on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetThemeList>> query$GetThemeList(
-          Options$Query$GetThemeList options) async =>
-      await this.query(options);
+          [Options$Query$GetThemeList? options]) async =>
+      await this.query(options ?? Options$Query$GetThemeList());
   graphql.ObservableQuery<Query$GetThemeList> watchQuery$GetThemeList(
-          WatchOptions$Query$GetThemeList options) =>
-      this.watchQuery(options);
+          [WatchOptions$Query$GetThemeList? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetThemeList());
   void writeQuery$GetThemeList({
     required Query$GetThemeList data,
-    required Variables$Query$GetThemeList variables,
+    Variables$Query$GetThemeList? variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetThemeList),
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? const {},
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
   Query$GetThemeList? readQuery$GetThemeList({
-    required Variables$Query$GetThemeList variables,
+    Variables$Query$GetThemeList? variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetThemeList),
-        variables: variables.toJson(),
+        variables: variables?.toJson() ?? const {},
       ),
       optimistic: optimistic,
     );

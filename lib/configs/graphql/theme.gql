@@ -22,7 +22,7 @@ query GetTheme($themeId: ID!) {
   }
 }
 
-query GetThemeList($ownerId: ID!) {
+query GetThemeList($ownerId: ID) {
   GetThemeList(ownerId: $ownerId) {
     ...ThemeFields
   }

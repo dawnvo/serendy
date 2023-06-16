@@ -6,12 +6,12 @@ final class CollectionRepositoryFake extends CollectionRepository {
   final List<Collection?> _collections = collectionsMock;
 
   @override
-  Future<List<Collection?>> fetchCollectionList() async {
+  Future<List<Collection?>> fetchCollectionsList([String? ownerId]) async {
     return _collections;
   }
 
   @override
-  Stream<List<Collection?>> watchCollectionList() async* {
+  Stream<List<Collection?>> watchCollectionsList() async* {
     yield _collections;
   }
 
@@ -30,7 +30,7 @@ final class CollectionRepositoryFake extends CollectionRepository {
 
   @override
   Stream<Collection?> watchCollection(String collectionId) {
-    return watchCollectionList().map((collections) => collections[0]);
+    return watchCollectionsList().map((collections) => collections[0]);
   }
 
   @override

@@ -10,12 +10,23 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   final List<Collection?> _collections = collectionsMock;
 
   @override
-  Future<List<Collection?>> fetchCollectionList() async {
-    return _collections;
+  Future<List<Collection?>> fetchCollectionsList([String? ownerId]) async {
+    final results = await client.query$GetThemeList(Options$Query$GetThemeList(
+      variables: Variables$Query$GetThemeList(ownerId: ownerId),
+    ));
+
+    if (results.hasException) {
+      logger.w(results.exception);
+      final message = results.exception!.graphqlErrors.first.message;
+      throw GraphQLError(message: message);
+    }
+
+    final datas = results.parsedData!.GetThemeList;
+    return CollectionMapper.toDomains(datas);
   }
 
   @override
-  Stream<List<Collection?>> watchCollectionList() async* {
+  Stream<List<Collection?>> watchCollectionsList() async* {
     yield _collections;
   }
 
@@ -37,7 +48,7 @@ final class CollectionRepositoryRemote extends CollectionRepository {
 
   @override
   Stream<Collection?> watchCollection(String collectionId) {
-    return watchCollectionList().map((collections) => collections[0]);
+    return watchCollectionsList().map((collections) => collections[0]);
   }
 
   @override

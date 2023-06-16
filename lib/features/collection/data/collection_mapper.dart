@@ -34,6 +34,10 @@ abstract final class CollectionMapper {
     );
   }
 
+  static List<Collection> toDomains(List<Fragment$ThemeFields> domains) {
+    return domains.map((domain) => toDomain(domain)).toList();
+  }
+
   static Fragment$ThemeFields toData(Collection domain) {
     final Fragment$ThemeFields$owner owner = Fragment$ThemeFields$owner(
       id: domain.owner.id,
@@ -56,5 +60,9 @@ abstract final class CollectionMapper {
       items: items.toList(),
       total: domain.itemCount.toDouble(),
     );
+  }
+
+  static List<Fragment$ThemeFields> toDatas(List<Collection> datas) {
+    return datas.map((data) => toData(data)).toList();
   }
 }
