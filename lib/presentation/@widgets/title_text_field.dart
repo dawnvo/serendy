@@ -7,7 +7,7 @@ class TitleTextField extends HookWidget {
     super.key,
     this.focusNode,
     this.value,
-    this.placeholder,
+    this.hintText,
     this.onChanged,
     this.autofocus = false,
   });
@@ -15,7 +15,7 @@ class TitleTextField extends HookWidget {
   final FocusNode? focusNode;
   final bool autofocus;
   final String? value;
-  final String? placeholder;
+  final String? hintText;
   final void Function(String value)? onChanged;
 
   @override
@@ -37,7 +37,7 @@ class TitleTextField extends HookWidget {
         hintStyle: baseStyle?.copyWith(
           color: context.colorScheme.outline,
         ),
-        hintText: placeholder,
+        hintText: hintText,
         counterText: "",
       ),
     );

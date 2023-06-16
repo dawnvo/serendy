@@ -13,7 +13,7 @@ class _EditCollectionTitleTextField extends StatelessWidget {
         // context.read<EditCollectionCubit>().titleChanged(value);
       },
       value: title,
-      placeholder: "컬렉션 이름",
+      hintText: "컬렉션 이름",
     );
   }
 }

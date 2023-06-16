@@ -9,7 +9,7 @@ class _AccountNameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TitleTextField(
       onChanged: (value) {},
-      placeholder: "닉네임",
+      hintText: "닉네임",
       focusNode: focusNode,
     );
   }

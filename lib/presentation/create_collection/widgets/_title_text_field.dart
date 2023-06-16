@@ -7,7 +7,7 @@ class _CreateCollectionTitleTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TitleTextField(
       autofocus: true,
-      placeholder: Assets.createCollectionPlaceholders.pickRandomly(),
+      hintText: Assets.createCollectionHints.pickRandomly(),
     );
   }
 }
