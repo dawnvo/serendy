@@ -3,7 +3,6 @@ import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 
 typedef GetCollectionPayload = ({
-  String executorId,
   String collectionId,
 });
 

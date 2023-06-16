@@ -1,9 +1,11 @@
 import 'package:graphql/client.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/bootstrap.dart';
+import 'package:serendy/features/collection/data/collection_mapper.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
-import 'package:serendy/features/media/domain/media.dart';
+
+import '__generated__/theme.gql.dart';
 
 final class CollectionRepositoryRemote extends CollectionRepository {
   final List<Collection?> _collections = collectionsMock;
@@ -19,63 +21,19 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Future<Collection> fetchCollection(String id) async {
-    const getThemeQuery = r'''
-    query {
-      GetTheme(themeId: "01GYYXS8Z0VSRKYSC6EXYT1A64") {
-        owner {
-          id
-          name
-        }
-        items {
-          id
-          title
-          image
-          addedAt
-        }
-        id
-        title
-        image
-        private
-        total
-      }
-    }
-    ''';
-
-    final options = QueryOptions(document: gql(getThemeQuery));
-    final result = await client.query(options);
+  Future<Collection> fetchCollection(String collectionId) async {
+    final result = await client.query$GetTheme(Options$Query$GetTheme(
+      variables: Variables$Query$GetTheme(themeId: collectionId),
+    ));
 
     if (result.hasException) {
-      throw Exception(
-          result.exception?.graphqlErrors[0].message ?? "서버에 문제가 발생했어요.");
+      logger.w(result.exception);
+      final message = result.exception!.graphqlErrors.first.message;
+      throw GraphQLError(message: message);
     }
 
-    final data = result.data?['GetTheme'];
-
-    return Collection(
-      owner: CollectionOwner(
-        id: data['owner']['id'],
-        name: data['owner']['name'],
-      ),
-      id: data['id'],
-      title: data['title'],
-      image: data['image'],
-      private: data['private'],
-      itemCount: data['total'],
-      items: (data['items'] as List)
-          .map((item) => CollectionItem(
-                media: Media(
-                  id: item['id'],
-                  title: item['title'],
-                  image: item['image'],
-                  keywords: const ['코미디'],
-                  type: MediaType.anime,
-                  status: MediaStatus.finished,
-                ),
-                addedAt: DateTime.parse(item['addedAt']),
-              ))
-          .toList(),
-    );
+    final data = result.parsedData!.GetTheme;
+    return CollectionMapper.toDomain(data);
   }
 
   @override

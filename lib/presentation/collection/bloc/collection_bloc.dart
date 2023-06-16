@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:graphql/client.dart';
 import 'package:serendy/features/collection/application/get_collection_service.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 
@@ -19,12 +20,12 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
     Emitter<CollectionState> emit,
   ) async {
     try {
-      final collection = await getCollectionUseCase.execute((
-        collectionId: event.id,
-        executorId: 'userId',
-      ));
+      final collection =
+          await getCollectionUseCase.execute((collectionId: event.id));
 
       emit(CollectionLoaded(collection: collection));
+    } on GraphQLError catch (err) {
+      emit(CollectionError(err.message));
     } catch (err) {
       emit(CollectionError(err.toString()));
     }

@@ -5,9 +5,9 @@ abstract class CollectionRepository {
 
   Stream<List<Collection?>> watchCollectionList();
 
-  Future<Collection> fetchCollection(String id);
+  Future<Collection> fetchCollection(String collectionId);
 
-  Stream<Collection?> watchCollection(String id);
+  Stream<Collection?> watchCollection(String collectionId);
 
   Future<void> createCollection(Collection collection);
 
