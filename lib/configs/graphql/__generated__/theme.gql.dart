@@ -1720,13 +1720,13 @@ class Mutation$CreateTheme {
     final l$CreateTheme = json['CreateTheme'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateTheme(
-      CreateTheme: Fragment$ThemeFields.fromJson(
+      CreateTheme: Mutation$CreateTheme$CreateTheme.fromJson(
           (l$CreateTheme as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$ThemeFields CreateTheme;
+  final Mutation$CreateTheme$CreateTheme CreateTheme;
 
   final String $__typename;
 
@@ -1789,10 +1789,10 @@ abstract class CopyWith$Mutation$CreateTheme<TRes> {
       _CopyWithStubImpl$Mutation$CreateTheme;
 
   TRes call({
-    Fragment$ThemeFields? CreateTheme,
+    Mutation$CreateTheme$CreateTheme? CreateTheme,
     String? $__typename,
   });
-  CopyWith$Fragment$ThemeFields<TRes> get CreateTheme;
+  CopyWith$Mutation$CreateTheme$CreateTheme<TRes> get CreateTheme;
 }
 
 class _CopyWithImpl$Mutation$CreateTheme<TRes>
@@ -1815,14 +1815,14 @@ class _CopyWithImpl$Mutation$CreateTheme<TRes>
       _then(Mutation$CreateTheme(
         CreateTheme: CreateTheme == _undefined || CreateTheme == null
             ? _instance.CreateTheme
-            : (CreateTheme as Fragment$ThemeFields),
+            : (CreateTheme as Mutation$CreateTheme$CreateTheme),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Fragment$ThemeFields<TRes> get CreateTheme {
+  CopyWith$Mutation$CreateTheme$CreateTheme<TRes> get CreateTheme {
     final local$CreateTheme = _instance.CreateTheme;
-    return CopyWith$Fragment$ThemeFields(
+    return CopyWith$Mutation$CreateTheme$CreateTheme(
         local$CreateTheme, (e) => call(CreateTheme: e));
   }
 }
@@ -1834,12 +1834,12 @@ class _CopyWithStubImpl$Mutation$CreateTheme<TRes>
   TRes _res;
 
   call({
-    Fragment$ThemeFields? CreateTheme,
+    Mutation$CreateTheme$CreateTheme? CreateTheme,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Fragment$ThemeFields<TRes> get CreateTheme =>
-      CopyWith$Fragment$ThemeFields.stub(_res);
+  CopyWith$Mutation$CreateTheme$CreateTheme<TRes> get CreateTheme =>
+      CopyWith$Mutation$CreateTheme$CreateTheme.stub(_res);
 }
 
 const documentNodeMutationCreateTheme = DocumentNode(definitions: [
@@ -1869,19 +1869,7 @@ const documentNodeMutationCreateTheme = DocumentNode(definitions: [
           )
         ],
         directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FragmentSpreadNode(
-            name: NameNode(value: 'ThemeFields'),
-            directives: [],
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -1892,7 +1880,6 @@ const documentNodeMutationCreateTheme = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionThemeFields,
 ]);
 Mutation$CreateTheme _parserFn$Mutation$CreateTheme(
         Map<String, dynamic> data) =>
@@ -1987,4 +1974,80 @@ extension ClientExtension$Mutation$CreateTheme on graphql.GraphQLClient {
   graphql.ObservableQuery<Mutation$CreateTheme> watchMutation$CreateTheme(
           WatchOptions$Mutation$CreateTheme options) =>
       this.watchMutation(options);
+}
+
+class Mutation$CreateTheme$CreateTheme {
+  Mutation$CreateTheme$CreateTheme();
+
+  factory Mutation$CreateTheme$CreateTheme.fromJson(Map<String, dynamic> json) {
+    return Mutation$CreateTheme$CreateTheme();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$CreateTheme$CreateTheme) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateTheme$CreateTheme
+    on Mutation$CreateTheme$CreateTheme {
+  CopyWith$Mutation$CreateTheme$CreateTheme<Mutation$CreateTheme$CreateTheme>
+      get copyWith => CopyWith$Mutation$CreateTheme$CreateTheme(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateTheme$CreateTheme<TRes> {
+  factory CopyWith$Mutation$CreateTheme$CreateTheme(
+    Mutation$CreateTheme$CreateTheme instance,
+    TRes Function(Mutation$CreateTheme$CreateTheme) then,
+  ) = _CopyWithImpl$Mutation$CreateTheme$CreateTheme;
+
+  factory CopyWith$Mutation$CreateTheme$CreateTheme.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Mutation$CreateTheme$CreateTheme<TRes>
+    implements CopyWith$Mutation$CreateTheme$CreateTheme<TRes> {
+  _CopyWithImpl$Mutation$CreateTheme$CreateTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateTheme$CreateTheme _instance;
+
+  final TRes Function(Mutation$CreateTheme$CreateTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Mutation$CreateTheme$CreateTheme());
+}
+
+class _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme<TRes>
+    implements CopyWith$Mutation$CreateTheme$CreateTheme<TRes> {
+  _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }

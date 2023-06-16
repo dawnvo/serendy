@@ -47,7 +47,7 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Future<Collection> createCollection(String title) async {
+  Future<void> createCollection(String title) async {
     final result =
         await _client.mutate$CreateTheme(Options$Mutation$CreateTheme(
       variables: Variables$Mutation$CreateTheme(title: title),
@@ -57,9 +57,6 @@ final class CollectionRepositoryRemote extends CollectionRepository {
       final message = result.exception!.graphqlErrors.first.message;
       throw GraphQLError(message: message);
     }
-
-    final data = result.parsedData!.CreateTheme;
-    return CollectionMapper.toDomain(data);
   }
 
   @override

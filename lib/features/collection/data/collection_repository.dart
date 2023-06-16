@@ -10,7 +10,7 @@ abstract class CollectionRepository {
 
   Stream<Collection?> watchCollection(CollectionID collectionId);
 
-  Future<Collection> createCollection(String title);
+  Future<void> createCollection(String title);
 
   Future<void> updateCollection(Collection collection);
 

@@ -29,7 +29,5 @@ query GetThemeList($ownerId: ID) {
 }
 
 mutation CreateTheme($title: String!) {
-  CreateTheme(title: $title) {
-    ...ThemeFields
-  }
+  CreateTheme(title: $title)
 }
