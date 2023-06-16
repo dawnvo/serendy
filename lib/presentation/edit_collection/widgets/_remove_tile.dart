@@ -5,8 +5,9 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const collectionId = '';
-    // context.select((EditCollectionCubit cubit) => cubit.state.initialCollection.id);
+    final collectionId = context.select<EditCollectionBloc, String>(
+      (bloc) => bloc.state.initialCollection.id,
+    );
 
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)
@@ -16,7 +17,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => const _RemoveCollectionDialog(
+        builder: (_) => _RemoveCollectionDialog(
           collectionId: collectionId,
         ),
       ),

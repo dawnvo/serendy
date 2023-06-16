@@ -5,13 +5,14 @@ class _EditCollectionTitleTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = '';
-    // context.select((EditCollectionCubit cubit) => cubit.state.title);
+    final title = context.select<EditCollectionBloc, String>(
+      (bloc) => bloc.state.title,
+    );
 
     return TitleTextField(
-      onChanged: (value) {
-        // context.read<EditCollectionCubit>().titleChanged(value);
-      },
+      onChanged: (value) => context
+          .read<EditCollectionBloc>()
+          .add(EditCollectionTitleChanged(value)),
       value: title,
       hintText: "컬렉션 이름",
     );
