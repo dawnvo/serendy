@@ -11,11 +11,12 @@ class _EditCollectionSaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const isEdited = true;
+    // const isEdited = true;
     // context.select((EditCollectionCubit cubit) => cubit.state.isEdited);
 
     return TextButton(
-      onPressed: isEdited ? () => handleSubmit(context) : null,
+      // onPressed: isEdited ? () => handleSubmit(context) : null,
+      onPressed: () => handleSubmit(context),
       child: const Text("저장하기"),
     );
   }

@@ -16,7 +16,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => _RemoveCollectionDialog(
+        builder: (_) => const _RemoveCollectionDialog(
           collectionId: collectionId,
         ),
       ),

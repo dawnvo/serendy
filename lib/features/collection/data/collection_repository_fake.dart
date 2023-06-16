@@ -16,9 +16,9 @@ final class CollectionRepositoryFake extends CollectionRepository {
   }
 
   @override
-  Future<Collection> fetchCollection(String id) async {
+  Future<Collection> fetchCollection(String collectionId) async {
     final collection = _collections.firstWhere(
-      (collection) => collection?.id == id,
+      (collection) => collection?.id == collectionId,
     );
 
     if (collection == null) {
@@ -29,7 +29,7 @@ final class CollectionRepositoryFake extends CollectionRepository {
   }
 
   @override
-  Stream<Collection?> watchCollection(String id) {
+  Stream<Collection?> watchCollection(String collectionId) {
     return watchCollectionList().map((collections) => collections[0]);
   }
 

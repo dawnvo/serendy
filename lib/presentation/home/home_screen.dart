@@ -36,7 +36,7 @@ class _HomeView extends StatelessWidget {
     return _HomeTemplate(
       mediaFiltersTabBar: _HomeMediaFiltersTabBar(
         filters: filters,
-        onSelect: (item) => print(item),
+        onSelect: (item) {},
       ),
       mediasGrid: _HomeMediasGrid(
         medias: collectionsMock[0].items.map((e) => e!.media).toList(),

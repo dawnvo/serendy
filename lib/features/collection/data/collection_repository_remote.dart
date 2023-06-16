@@ -37,7 +37,7 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Stream<Collection?> watchCollection(String id) {
+  Stream<Collection?> watchCollection(String collectionId) {
     return watchCollectionList().map((collections) => collections[0]);
   }
 
