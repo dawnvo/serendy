@@ -92,10 +92,10 @@ type Query {
   getMe: User!
   GetMedia(id: ID!): Media!
   GetMediaList(title: String): [Media!]!
-  GetTheme(themeId: String!): Theme!
-  GetThemeList(ownerId: String): [Theme!]!
-  GetEvaluation(mediaId: String!): Evaluation
-  GetEvaluationList(userId: String!): [Evaluation!]!
+  GetTheme(themeId: ID!): Theme!
+  GetThemeList(ownerId: ID): [Theme!]!
+  GetEvaluation(mediaId: ID!): Evaluation
+  GetEvaluationList(userId: ID!): [Evaluation!]!
 }
 
 type Mutation {
@@ -104,10 +104,10 @@ type Mutation {
   RemoveUser(reason: String): Boolean!
   AddMedia(type: MediaType!, status: MediaStatus!, title: String!, image: String!, genres: [String!]!, isAdult: Boolean, startDate: DateTime, endDate: DateTime): Media!
   CreateTheme(title: String!): Theme!
-  EditTheme(themeId: String!, title: String, image: String, private: Boolean): Theme!
-  RemoveTheme(themeId: String!): Boolean!
-  AddThemeItem(themeId: String!, mediaId: String!): Theme!
-  DeleteThemeItem(themeId: String!, mediaId: String!): Theme!
-  Evaluate(mediaId: String!, emotion: Emotion!): Evaluation!
-  RemoveEvaluation(mediaId: String!): Boolean!
+  EditTheme(themeId: ID!, title: String, image: String, private: Boolean): Theme!
+  RemoveTheme(themeId: ID!): Boolean!
+  AddThemeItem(themeId: ID!, mediaId: ID!): Theme!
+  DeleteThemeItem(themeId: ID!, mediaId: ID!): Theme!
+  Evaluate(mediaId: ID!, emotion: Emotion!): Evaluation!
+  RemoveEvaluation(mediaId: ID!): Boolean!
 }
