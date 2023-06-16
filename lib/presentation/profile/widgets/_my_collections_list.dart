@@ -5,7 +5,12 @@ class _ProfileMyCollectionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Collection?> collections = collectionsMock;
+    final state = context.watch<ProfileBloc>().state;
+    List<Collection?> collections = [];
+
+    if (state is ProfileLoaded) {
+      collections = state.collections;
+    }
 
     return MyCollectionsList(
       collections: collections,
