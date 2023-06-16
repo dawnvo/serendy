@@ -2,18 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:graphql/client.dart';
-import 'package:logger/logger.dart';
-
-// Logger
-final logger = Logger();
-
-// GraphQL
-final httpLink = HttpLink('http://localhost:3000/graphql');
-final client = GraphQLClient(
-  cache: GraphQLCache(),
-  link: httpLink,
-);
+import 'package:serendy/core/core.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -38,7 +27,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  // Add cross-flavor configuration here
-
+  await setupServiceLocator();
   runApp(await builder());
 }

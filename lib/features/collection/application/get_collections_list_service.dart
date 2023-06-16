@@ -1,4 +1,4 @@
-import 'package:serendy/core/usecase.dart';
+import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 
