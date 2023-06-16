@@ -1,5 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/data/collection_mapper.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
@@ -24,9 +25,6 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Stream<List<Collection?>> watchCollectionsList() async* {}
-
-  @override
   Future<Collection> fetchCollection(String collectionId) async {
     final result = await _client.query$GetTheme(Options$Query$GetTheme(
       variables: Variables$Query$GetTheme(themeId: collectionId),
@@ -39,11 +37,6 @@ final class CollectionRepositoryRemote extends CollectionRepository {
 
     final data = result.parsedData!.GetTheme;
     return CollectionMapper.toDomain(data);
-  }
-
-  @override
-  Stream<Collection?> watchCollection(String collectionId) {
-    return watchCollectionsList().map((collections) => collections[0]);
   }
 
   @override
@@ -60,7 +53,28 @@ final class CollectionRepositoryRemote extends CollectionRepository {
   }
 
   @override
-  Future<void> updateCollection(Collection collection) async {}
+  Future<void> editCollection({
+    required String collectionId,
+    String? title,
+    String? image,
+    bool? private,
+    String? description,
+  }) async {
+    final result = await _client.mutate$EditTheme(Options$Mutation$EditTheme(
+      variables: Variables$Mutation$EditTheme(
+        themeId: collectionId,
+        title: title,
+        image: image,
+        private: private,
+      ),
+    ));
+
+    if (result.hasException) {
+      logger.w(result.exception);
+      final message = result.exception!.graphqlErrors.first.message;
+      throw GraphQLError(message: message);
+    }
+  }
 
   @override
   Future<void> removeCollection(Collection collection) async {}

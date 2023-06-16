@@ -1,9 +1,7 @@
 import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
 
 typedef EditCollectionPayload = ({
-  String executorId,
   String collectionId,
   String? title,
   String? description,
@@ -11,40 +9,20 @@ typedef EditCollectionPayload = ({
   bool? private,
 });
 
-/// Edit collection
-///
-/// 1. 컬렉션이 존재하는지 확인해요.
-/// 2. 올바른 실행자인지 확인해요.
-/// 3. 컬렉션을 수정해요.
-typedef EditCollectionUseCase = UseCase<EditCollectionPayload, Collection>;
+typedef EditCollectionUseCase = UseCase<EditCollectionPayload, void>;
 
 final class EditCollectionService implements EditCollectionUseCase {
-  const EditCollectionService(this._collectionRepository);
-
-  final CollectionRepository _collectionRepository;
+  const EditCollectionService(this._repository);
+  final CollectionRepository _repository;
 
   @override
-  Future<Collection> execute(EditCollectionPayload payload) async {
-    // [1]
-    final collection = CoreAssert.notEmpty<Collection>(
-      await _collectionRepository.fetchCollection(payload.collectionId),
-      Exception("컬렉션을 찾을 수 없어요."),
-    );
-
-    // [2]
-    final hasAccess = payload.executorId == collection.owner.id;
-    CoreAssert.isTrue(hasAccess, Exception('접근 권한이 없어요.'));
-
-    // [3]
-    final edited = collection.edit(
-      image: payload.image,
+  Future<void> execute(EditCollectionPayload payload) async {
+    await _repository.editCollection(
+      collectionId: payload.collectionId,
       title: payload.title,
-      description: payload.description,
+      image: payload.image,
       private: payload.private,
+      description: payload.description,
     );
-
-    await _collectionRepository.updateCollection(edited);
-
-    return edited;
   }
 }

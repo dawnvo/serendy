@@ -29,5 +29,23 @@ query GetThemeList($ownerId: ID) {
 }
 
 mutation CreateTheme($title: String!) {
-  CreateTheme(title: $title)
+  CreateTheme(title: $title) {
+    id
+  }
+}
+
+mutation EditTheme(
+  $themeId: ID!
+  $title: String
+  $image: String
+  $private: Boolean
+) {
+  EditTheme(
+    themeId: $themeId
+    title: $title
+    image: $image
+    private: $private
+  ) {
+    id
+  }
 }

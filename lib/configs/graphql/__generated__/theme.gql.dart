@@ -1869,7 +1869,22 @@ const documentNodeMutationCreateTheme = DocumentNode(definitions: [
           )
         ],
         directives: [],
-        selectionSet: null,
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -1977,20 +1992,41 @@ extension ClientExtension$Mutation$CreateTheme on graphql.GraphQLClient {
 }
 
 class Mutation$CreateTheme$CreateTheme {
-  Mutation$CreateTheme$CreateTheme();
+  Mutation$CreateTheme$CreateTheme({
+    required this.id,
+    this.$__typename = 'Theme',
+  });
 
   factory Mutation$CreateTheme$CreateTheme.fromJson(Map<String, dynamic> json) {
-    return Mutation$CreateTheme$CreateTheme();
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateTheme$CreateTheme(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final String id;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -2000,6 +2036,16 @@ class Mutation$CreateTheme$CreateTheme {
     }
     if (!(other is Mutation$CreateTheme$CreateTheme) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -2024,7 +2070,10 @@ abstract class CopyWith$Mutation$CreateTheme$CreateTheme<TRes> {
   factory CopyWith$Mutation$CreateTheme$CreateTheme.stub(TRes res) =
       _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme;
 
-  TRes call();
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Mutation$CreateTheme$CreateTheme<TRes>
@@ -2040,7 +2089,16 @@ class _CopyWithImpl$Mutation$CreateTheme$CreateTheme<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call() => _then(Mutation$CreateTheme$CreateTheme());
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateTheme$CreateTheme(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme<TRes>
@@ -2049,5 +2107,633 @@ class _CopyWithStubImpl$Mutation$CreateTheme$CreateTheme<TRes>
 
   TRes _res;
 
-  call() => _res;
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$EditTheme {
+  factory Variables$Mutation$EditTheme({
+    required String themeId,
+    String? title,
+    String? image,
+    bool? private,
+  }) =>
+      Variables$Mutation$EditTheme._({
+        r'themeId': themeId,
+        if (title != null) r'title': title,
+        if (image != null) r'image': image,
+        if (private != null) r'private': private,
+      });
+
+  Variables$Mutation$EditTheme._(this._$data);
+
+  factory Variables$Mutation$EditTheme.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$themeId = data['themeId'];
+    result$data['themeId'] = (l$themeId as String);
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('image')) {
+      final l$image = data['image'];
+      result$data['image'] = (l$image as String?);
+    }
+    if (data.containsKey('private')) {
+      final l$private = data['private'];
+      result$data['private'] = (l$private as bool?);
+    }
+    return Variables$Mutation$EditTheme._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get themeId => (_$data['themeId'] as String);
+  String? get title => (_$data['title'] as String?);
+  String? get image => (_$data['image'] as String?);
+  bool? get private => (_$data['private'] as bool?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$themeId = themeId;
+    result$data['themeId'] = l$themeId;
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('image')) {
+      final l$image = image;
+      result$data['image'] = l$image;
+    }
+    if (_$data.containsKey('private')) {
+      final l$private = private;
+      result$data['private'] = l$private;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$EditTheme<Variables$Mutation$EditTheme>
+      get copyWith => CopyWith$Variables$Mutation$EditTheme(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$EditTheme) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$themeId = themeId;
+    final lOther$themeId = other.themeId;
+    if (l$themeId != lOther$themeId) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (_$data.containsKey('image') != other._$data.containsKey('image')) {
+      return false;
+    }
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$private = private;
+    final lOther$private = other.private;
+    if (_$data.containsKey('private') != other._$data.containsKey('private')) {
+      return false;
+    }
+    if (l$private != lOther$private) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$themeId = themeId;
+    final l$title = title;
+    final l$image = image;
+    final l$private = private;
+    return Object.hashAll([
+      l$themeId,
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('image') ? l$image : const {},
+      _$data.containsKey('private') ? l$private : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$EditTheme<TRes> {
+  factory CopyWith$Variables$Mutation$EditTheme(
+    Variables$Mutation$EditTheme instance,
+    TRes Function(Variables$Mutation$EditTheme) then,
+  ) = _CopyWithImpl$Variables$Mutation$EditTheme;
+
+  factory CopyWith$Variables$Mutation$EditTheme.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$EditTheme;
+
+  TRes call({
+    String? themeId,
+    String? title,
+    String? image,
+    bool? private,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$EditTheme<TRes>
+    implements CopyWith$Variables$Mutation$EditTheme<TRes> {
+  _CopyWithImpl$Variables$Mutation$EditTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$EditTheme _instance;
+
+  final TRes Function(Variables$Mutation$EditTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? themeId = _undefined,
+    Object? title = _undefined,
+    Object? image = _undefined,
+    Object? private = _undefined,
+  }) =>
+      _then(Variables$Mutation$EditTheme._({
+        ..._instance._$data,
+        if (themeId != _undefined && themeId != null)
+          'themeId': (themeId as String),
+        if (title != _undefined) 'title': (title as String?),
+        if (image != _undefined) 'image': (image as String?),
+        if (private != _undefined) 'private': (private as bool?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$EditTheme<TRes>
+    implements CopyWith$Variables$Mutation$EditTheme<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$EditTheme(this._res);
+
+  TRes _res;
+
+  call({
+    String? themeId,
+    String? title,
+    String? image,
+    bool? private,
+  }) =>
+      _res;
+}
+
+class Mutation$EditTheme {
+  Mutation$EditTheme({
+    required this.EditTheme,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$EditTheme.fromJson(Map<String, dynamic> json) {
+    final l$EditTheme = json['EditTheme'];
+    final l$$__typename = json['__typename'];
+    return Mutation$EditTheme(
+      EditTheme: Mutation$EditTheme$EditTheme.fromJson(
+          (l$EditTheme as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$EditTheme$EditTheme EditTheme;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$EditTheme = EditTheme;
+    _resultData['EditTheme'] = l$EditTheme.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$EditTheme = EditTheme;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$EditTheme,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$EditTheme) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$EditTheme = EditTheme;
+    final lOther$EditTheme = other.EditTheme;
+    if (l$EditTheme != lOther$EditTheme) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$EditTheme on Mutation$EditTheme {
+  CopyWith$Mutation$EditTheme<Mutation$EditTheme> get copyWith =>
+      CopyWith$Mutation$EditTheme(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$EditTheme<TRes> {
+  factory CopyWith$Mutation$EditTheme(
+    Mutation$EditTheme instance,
+    TRes Function(Mutation$EditTheme) then,
+  ) = _CopyWithImpl$Mutation$EditTheme;
+
+  factory CopyWith$Mutation$EditTheme.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$EditTheme;
+
+  TRes call({
+    Mutation$EditTheme$EditTheme? EditTheme,
+    String? $__typename,
+  });
+  CopyWith$Mutation$EditTheme$EditTheme<TRes> get EditTheme;
+}
+
+class _CopyWithImpl$Mutation$EditTheme<TRes>
+    implements CopyWith$Mutation$EditTheme<TRes> {
+  _CopyWithImpl$Mutation$EditTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$EditTheme _instance;
+
+  final TRes Function(Mutation$EditTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? EditTheme = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$EditTheme(
+        EditTheme: EditTheme == _undefined || EditTheme == null
+            ? _instance.EditTheme
+            : (EditTheme as Mutation$EditTheme$EditTheme),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$EditTheme$EditTheme<TRes> get EditTheme {
+    final local$EditTheme = _instance.EditTheme;
+    return CopyWith$Mutation$EditTheme$EditTheme(
+        local$EditTheme, (e) => call(EditTheme: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$EditTheme<TRes>
+    implements CopyWith$Mutation$EditTheme<TRes> {
+  _CopyWithStubImpl$Mutation$EditTheme(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$EditTheme$EditTheme? EditTheme,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$EditTheme$EditTheme<TRes> get EditTheme =>
+      CopyWith$Mutation$EditTheme$EditTheme.stub(_res);
+}
+
+const documentNodeMutationEditTheme = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'EditTheme'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'themeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'title')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'image')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'private')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'EditTheme'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'themeId'),
+            value: VariableNode(name: NameNode(value: 'themeId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'title'),
+            value: VariableNode(name: NameNode(value: 'title')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'image'),
+            value: VariableNode(name: NameNode(value: 'image')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'private'),
+            value: VariableNode(name: NameNode(value: 'private')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$EditTheme _parserFn$Mutation$EditTheme(Map<String, dynamic> data) =>
+    Mutation$EditTheme.fromJson(data);
+typedef OnMutationCompleted$Mutation$EditTheme = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$EditTheme?,
+);
+
+class Options$Mutation$EditTheme
+    extends graphql.MutationOptions<Mutation$EditTheme> {
+  Options$Mutation$EditTheme({
+    String? operationName,
+    required Variables$Mutation$EditTheme variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$EditTheme? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$EditTheme? onCompleted,
+    graphql.OnMutationUpdate<Mutation$EditTheme>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$EditTheme(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationEditTheme,
+          parserFn: _parserFn$Mutation$EditTheme,
+        );
+
+  final OnMutationCompleted$Mutation$EditTheme? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$EditTheme
+    extends graphql.WatchQueryOptions<Mutation$EditTheme> {
+  WatchOptions$Mutation$EditTheme({
+    String? operationName,
+    required Variables$Mutation$EditTheme variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$EditTheme? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationEditTheme,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$EditTheme,
+        );
+}
+
+extension ClientExtension$Mutation$EditTheme on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$EditTheme>> mutate$EditTheme(
+          Options$Mutation$EditTheme options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$EditTheme> watchMutation$EditTheme(
+          WatchOptions$Mutation$EditTheme options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$EditTheme$EditTheme {
+  Mutation$EditTheme$EditTheme({
+    required this.id,
+    this.$__typename = 'Theme',
+  });
+
+  factory Mutation$EditTheme$EditTheme.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$EditTheme$EditTheme(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$EditTheme$EditTheme) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$EditTheme$EditTheme
+    on Mutation$EditTheme$EditTheme {
+  CopyWith$Mutation$EditTheme$EditTheme<Mutation$EditTheme$EditTheme>
+      get copyWith => CopyWith$Mutation$EditTheme$EditTheme(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$EditTheme$EditTheme<TRes> {
+  factory CopyWith$Mutation$EditTheme$EditTheme(
+    Mutation$EditTheme$EditTheme instance,
+    TRes Function(Mutation$EditTheme$EditTheme) then,
+  ) = _CopyWithImpl$Mutation$EditTheme$EditTheme;
+
+  factory CopyWith$Mutation$EditTheme$EditTheme.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$EditTheme$EditTheme;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$EditTheme$EditTheme<TRes>
+    implements CopyWith$Mutation$EditTheme$EditTheme<TRes> {
+  _CopyWithImpl$Mutation$EditTheme$EditTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$EditTheme$EditTheme _instance;
+
+  final TRes Function(Mutation$EditTheme$EditTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$EditTheme$EditTheme(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$EditTheme$EditTheme<TRes>
+    implements CopyWith$Mutation$EditTheme$EditTheme<TRes> {
+  _CopyWithStubImpl$Mutation$EditTheme$EditTheme(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
 }

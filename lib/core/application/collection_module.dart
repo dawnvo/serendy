@@ -1,5 +1,6 @@
 import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/application/create_collection_service.dart';
+import 'package:serendy/features/collection/application/edit_collection_service.dart';
 import 'package:serendy/features/collection/application/get_collection_service.dart';
 import 'package:serendy/features/collection/application/get_collections_list_service.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
@@ -15,6 +16,8 @@ abstract final class CollectionModule {
         () => GetCollectionsListService(sl()));
     sl.registerLazySingleton<CreateCollectionUseCase>(
         () => CreateCollectionService(sl()));
+    sl.registerLazySingleton<EditCollectionUseCase>(
+        () => EditCollectionService(sl()));
 
     // Rrepositories
     sl.registerLazySingleton<CollectionRepository>(
