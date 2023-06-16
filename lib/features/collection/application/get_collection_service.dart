@@ -9,15 +9,12 @@ typedef GetCollectionPayload = ({
 typedef GetCollectionUseCase = UseCase<GetCollectionPayload, Collection>;
 
 final class GetCollectionService implements GetCollectionUseCase {
-  const GetCollectionService(this._collectionRepository);
-  final CollectionRepository _collectionRepository;
+  const GetCollectionService(this._repository);
+  final CollectionRepository _repository;
 
   @override
   Future<Collection> execute(GetCollectionPayload payload) async {
-    final collection = await _collectionRepository.fetchCollection(
-      payload.collectionId,
-    );
-
+    final collection = await _repository.fetchCollection(payload.collectionId);
     return collection;
   }
 }

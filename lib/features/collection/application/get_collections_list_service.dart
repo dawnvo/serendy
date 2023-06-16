@@ -10,12 +10,12 @@ typedef GetCollectionsListUseCase
     = UseCase<GetCollectionsListPayload, List<Collection?>>;
 
 final class GetCollectionsListService implements GetCollectionsListUseCase {
-  const GetCollectionsListService(this._collectionRepository);
-  final CollectionRepository _collectionRepository;
+  const GetCollectionsListService(this._repository);
+  final CollectionRepository _repository;
 
   @override
   Future<List<Collection?>> execute(GetCollectionsListPayload payload) async {
-    final collections = await _collectionRepository.fetchCollectionsList();
+    final collections = await _repository.fetchCollectionsList();
     return collections;
   }
 }
