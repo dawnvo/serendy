@@ -1,11 +1,10 @@
 import 'package:graphql/client.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/bootstrap.dart';
+import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/data/collection_mapper.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
-
-import '__generated__/theme.gql.dart';
 
 final class CollectionRepositoryRemote extends CollectionRepository {
   final List<Collection?> _collections = collectionsMock;

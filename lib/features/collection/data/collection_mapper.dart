@@ -1,7 +1,6 @@
+import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/features/media/domain/media.dart';
-
-import '__generated__/theme.gql.dart';
 
 abstract final class CollectionMapper {
   static Collection toDomain(Fragment$ThemeFields data) {
