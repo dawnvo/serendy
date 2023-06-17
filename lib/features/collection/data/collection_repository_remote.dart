@@ -1,6 +1,5 @@
 import 'package:graphql/client.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/data/collection_mapper.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
@@ -70,12 +69,21 @@ final class CollectionRepositoryRemote extends CollectionRepository {
     ));
 
     if (result.hasException) {
-      logger.w(result.exception);
       final message = result.exception!.graphqlErrors.first.message;
       throw GraphQLError(message: message);
     }
   }
 
   @override
-  Future<void> removeCollection(Collection collection) async {}
+  Future<void> removeCollection(String collectionId) async {
+    final result =
+        await _client.mutate$RemoveTheme(Options$Mutation$RemoveTheme(
+      variables: Variables$Mutation$RemoveTheme(themeId: collectionId),
+    ));
+
+    if (result.hasException) {
+      final message = result.exception!.graphqlErrors.first.message;
+      throw GraphQLError(message: message);
+    }
+  }
 }

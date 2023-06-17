@@ -49,3 +49,7 @@ mutation EditTheme(
     id
   }
 }
+
+mutation RemoveTheme($themeId: ID!) {
+  RemoveTheme(themeId: $themeId)
+}

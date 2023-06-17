@@ -15,5 +15,5 @@ abstract class CollectionRepository {
     bool? private,
   });
 
-  Future<void> removeCollection(Collection collection);
+  Future<void> removeCollection(String collectionId);
 }

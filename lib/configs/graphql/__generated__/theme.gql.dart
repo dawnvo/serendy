@@ -2737,3 +2737,356 @@ class _CopyWithStubImpl$Mutation$EditTheme$EditTheme<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$RemoveTheme {
+  factory Variables$Mutation$RemoveTheme({required String themeId}) =>
+      Variables$Mutation$RemoveTheme._({
+        r'themeId': themeId,
+      });
+
+  Variables$Mutation$RemoveTheme._(this._$data);
+
+  factory Variables$Mutation$RemoveTheme.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$themeId = data['themeId'];
+    result$data['themeId'] = (l$themeId as String);
+    return Variables$Mutation$RemoveTheme._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get themeId => (_$data['themeId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$themeId = themeId;
+    result$data['themeId'] = l$themeId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$RemoveTheme<Variables$Mutation$RemoveTheme>
+      get copyWith => CopyWith$Variables$Mutation$RemoveTheme(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$RemoveTheme) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$themeId = themeId;
+    final lOther$themeId = other.themeId;
+    if (l$themeId != lOther$themeId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$themeId = themeId;
+    return Object.hashAll([l$themeId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$RemoveTheme<TRes> {
+  factory CopyWith$Variables$Mutation$RemoveTheme(
+    Variables$Mutation$RemoveTheme instance,
+    TRes Function(Variables$Mutation$RemoveTheme) then,
+  ) = _CopyWithImpl$Variables$Mutation$RemoveTheme;
+
+  factory CopyWith$Variables$Mutation$RemoveTheme.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RemoveTheme;
+
+  TRes call({String? themeId});
+}
+
+class _CopyWithImpl$Variables$Mutation$RemoveTheme<TRes>
+    implements CopyWith$Variables$Mutation$RemoveTheme<TRes> {
+  _CopyWithImpl$Variables$Mutation$RemoveTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$RemoveTheme _instance;
+
+  final TRes Function(Variables$Mutation$RemoveTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? themeId = _undefined}) =>
+      _then(Variables$Mutation$RemoveTheme._({
+        ..._instance._$data,
+        if (themeId != _undefined && themeId != null)
+          'themeId': (themeId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$RemoveTheme<TRes>
+    implements CopyWith$Variables$Mutation$RemoveTheme<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RemoveTheme(this._res);
+
+  TRes _res;
+
+  call({String? themeId}) => _res;
+}
+
+class Mutation$RemoveTheme {
+  Mutation$RemoveTheme({
+    required this.RemoveTheme,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$RemoveTheme.fromJson(Map<String, dynamic> json) {
+    final l$RemoveTheme = json['RemoveTheme'];
+    final l$$__typename = json['__typename'];
+    return Mutation$RemoveTheme(
+      RemoveTheme: (l$RemoveTheme as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool RemoveTheme;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$RemoveTheme = RemoveTheme;
+    _resultData['RemoveTheme'] = l$RemoveTheme;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$RemoveTheme = RemoveTheme;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$RemoveTheme,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$RemoveTheme) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$RemoveTheme = RemoveTheme;
+    final lOther$RemoveTheme = other.RemoveTheme;
+    if (l$RemoveTheme != lOther$RemoveTheme) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveTheme on Mutation$RemoveTheme {
+  CopyWith$Mutation$RemoveTheme<Mutation$RemoveTheme> get copyWith =>
+      CopyWith$Mutation$RemoveTheme(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$RemoveTheme<TRes> {
+  factory CopyWith$Mutation$RemoveTheme(
+    Mutation$RemoveTheme instance,
+    TRes Function(Mutation$RemoveTheme) then,
+  ) = _CopyWithImpl$Mutation$RemoveTheme;
+
+  factory CopyWith$Mutation$RemoveTheme.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveTheme;
+
+  TRes call({
+    bool? RemoveTheme,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$RemoveTheme<TRes>
+    implements CopyWith$Mutation$RemoveTheme<TRes> {
+  _CopyWithImpl$Mutation$RemoveTheme(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$RemoveTheme _instance;
+
+  final TRes Function(Mutation$RemoveTheme) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? RemoveTheme = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$RemoveTheme(
+        RemoveTheme: RemoveTheme == _undefined || RemoveTheme == null
+            ? _instance.RemoveTheme
+            : (RemoveTheme as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveTheme<TRes>
+    implements CopyWith$Mutation$RemoveTheme<TRes> {
+  _CopyWithStubImpl$Mutation$RemoveTheme(this._res);
+
+  TRes _res;
+
+  call({
+    bool? RemoveTheme,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeMutationRemoveTheme = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'RemoveTheme'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'themeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'RemoveTheme'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'themeId'),
+            value: VariableNode(name: NameNode(value: 'themeId')),
+          )
+        ],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$RemoveTheme _parserFn$Mutation$RemoveTheme(
+        Map<String, dynamic> data) =>
+    Mutation$RemoveTheme.fromJson(data);
+typedef OnMutationCompleted$Mutation$RemoveTheme = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$RemoveTheme?,
+);
+
+class Options$Mutation$RemoveTheme
+    extends graphql.MutationOptions<Mutation$RemoveTheme> {
+  Options$Mutation$RemoveTheme({
+    String? operationName,
+    required Variables$Mutation$RemoveTheme variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RemoveTheme? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$RemoveTheme? onCompleted,
+    graphql.OnMutationUpdate<Mutation$RemoveTheme>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$RemoveTheme(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationRemoveTheme,
+          parserFn: _parserFn$Mutation$RemoveTheme,
+        );
+
+  final OnMutationCompleted$Mutation$RemoveTheme? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$RemoveTheme
+    extends graphql.WatchQueryOptions<Mutation$RemoveTheme> {
+  WatchOptions$Mutation$RemoveTheme({
+    String? operationName,
+    required Variables$Mutation$RemoveTheme variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RemoveTheme? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationRemoveTheme,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$RemoveTheme,
+        );
+}
+
+extension ClientExtension$Mutation$RemoveTheme on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RemoveTheme>> mutate$RemoveTheme(
+          Options$Mutation$RemoveTheme options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$RemoveTheme> watchMutation$RemoveTheme(
+          WatchOptions$Mutation$RemoveTheme options) =>
+      this.watchMutation(options);
+}

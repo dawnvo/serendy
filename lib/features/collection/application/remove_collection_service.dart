@@ -1,6 +1,5 @@
 import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/data/collection_repository.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
 
 typedef RemoveCollectionPayload = ({
   String collectionId,
@@ -13,7 +12,7 @@ final class RemoveCollectionService implements RemoveCollectionUseCase {
   final CollectionRepository _repository;
 
   @override
-  Future<Collection> execute(RemoveCollectionPayload payload) async {
-    throw UnimplementedError();
+  Future<void> execute(RemoveCollectionPayload payload) async {
+    await _repository.removeCollection(payload.collectionId);
   }
 }
