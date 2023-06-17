@@ -43,7 +43,7 @@ final collectionsMock = [
       owner: collectionOwnerMock,
       title: "M3",
       description: "특히 과학연구의 분야에서 실험 도중에 실패해서 얻은 결과에서 중대한 발견 또는 발명을 하는 것을 말한다",
-      image: "https://vo.la/13rVl",
+      image: "https://vo.la/EKT5x",
       items: List.filled(8, collectionItemMock)),
   Collection(
       id: 'cid2',

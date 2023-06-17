@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AccountScreen(),
       );
     },
+    AppRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AppScreen(),
+      );
+    },
     CollectionRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CollectionRouteArgs>(
@@ -103,12 +109,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignInScreen(),
       );
     },
-    AppRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AppScreen(),
-      );
-    },
   };
 }
 
@@ -122,6 +122,20 @@ class AccountRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AppScreen]
+class AppRoute extends PageRouteInfo<void> {
+  const AppRoute({List<PageRouteInfo>? children})
+      : super(
+          AppRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AppRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -349,20 +363,6 @@ class SignInRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignInRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [AppScreen]
-class AppRoute extends PageRouteInfo<void> {
-  const AppRoute({List<PageRouteInfo>? children})
-      : super(
-          AppRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AppRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

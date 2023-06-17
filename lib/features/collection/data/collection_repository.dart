@@ -1,11 +1,11 @@
 import 'package:serendy/features/collection/domain/collection.dart';
 
 abstract class CollectionRepository {
-  Future<List<Collection?>> fetchCollectionsList([String? ownerId]);
+  Future<List<Collection?>> fetchCollectionsList({String? ownerId});
 
-  Future<Collection> fetchCollection(String collectionId);
+  Future<Collection> fetchCollection({required String collectionId});
 
-  Future<void> createCollection(String title);
+  Future<void> createCollection({required String title});
 
   Future<void> editCollection({
     required String collectionId,
@@ -15,5 +15,5 @@ abstract class CollectionRepository {
     bool? private,
   });
 
-  Future<void> removeCollection(String collectionId);
+  Future<void> removeCollection({required String collectionId});
 }

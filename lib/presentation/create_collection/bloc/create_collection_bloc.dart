@@ -1,15 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:graphql/client.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/application/create_collection_service.dart';
+import 'package:serendy/features/collection/data/collection_repository.dart';
 
 part 'create_collection_event.dart';
 part 'create_collection_state.dart';
 
 class CreateCollectionBloc
     extends Bloc<CreateCollectionEvent, CreateCollectionState> {
-  CreateCollectionBloc({required this.createCollectionUseCase})
+  CreateCollectionBloc({required this.collectionRepository})
       : super(CreateCollectionState(
           hintText: Assets.createCollectionHints.pickRandomly()!,
         )) {
@@ -17,7 +16,7 @@ class CreateCollectionBloc
     on<CreateCollection$Submitted>(_onSubmitted);
   }
 
-  final CreateCollectionUseCase createCollectionUseCase;
+  final CollectionRepository collectionRepository;
 
   void _onTitleChanged(
     CreateCollection$TitleChanged event,
@@ -37,14 +36,9 @@ class CreateCollectionBloc
       var title = state.title;
       if (state.title.isEmpty) title = state.hintText;
 
-      await createCollectionUseCase.execute((title: title));
+      await collectionRepository.createCollection(title: title);
 
       emit(state.copyWith(status: CreateCollectionStatus.success));
-    } on GraphQLError catch (err) {
-      emit(state.copyWith(
-        status: CreateCollectionStatus.failure,
-        errorMessage: err.message,
-      ));
     } catch (err) {
       emit(state.copyWith(
         status: CreateCollectionStatus.failure,
@@ -53,3 +47,16 @@ class CreateCollectionBloc
     }
   }
 }
+
+/**
+ * ProfileError(
+ *  OperationException(
+ *    linkException: null,
+ *    graphqlErrors: [
+ *      GraphQLError(
+ *        message: Port validation error.,
+ *        locations: [ErrorLocation(line: 2, column: 3)], path: [GetThemeList],
+ *        extensions: {
+ *          code: INTERNAL_SERVER_ERROR,
+ *          stacktrace: [Exception: Port validation error.,
+ */

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/discover/bloc/discover_bloc.dart';
@@ -18,9 +17,8 @@ class DiscoverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DiscoverBloc(
-        getCollectionsListUseCase: sl(),
-      )..add(const Discover$CollectionsListFetched()),
+      create: (context) => DiscoverBloc(collectionRepository: sl())
+        ..add(const Discover$CollectionsListFetched()),
       child: const _DiscoverView(),
     );
   }

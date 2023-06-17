@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/core.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -28,9 +27,8 @@ class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CollectionBloc(
-        getCollectionUseCase: sl(),
-      )..add(Collection$Fetched(id: id)),
+      create: (context) => CollectionBloc(collectionRepository: sl())
+        ..add(Collection$Fetched(id: id)),
       child: const _CollectionView(),
     );
   }

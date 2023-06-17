@@ -1,11 +1,10 @@
 import 'package:graphql/client.dart';
 import 'package:logger/logger.dart';
-import 'package:serendy/core/core.dart';
+import 'package:serendy/configs/configs.dart';
 
 abstract final class CommonModule {
-  const CommonModule._();
   static void dependencies() {
-    sl.registerSingleton<Logger>(logger);
+    sl.registerSingleton<Logger>(Logger());
     sl.registerSingleton<GraphQLClient>(graphQLClient);
   }
 }

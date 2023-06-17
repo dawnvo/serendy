@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:graphql/client.dart';
-import 'package:serendy/features/collection/application/edit_collection_service.dart';
-import 'package:serendy/features/collection/application/remove_collection_service.dart';
+import 'package:serendy/features/collection/data/collection_repository.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 
 part 'edit_collection_event.dart';
@@ -11,8 +9,7 @@ part 'edit_collection_state.dart';
 class EditCollectionBloc
     extends Bloc<EditCollectionEvent, EditCollectionState> {
   EditCollectionBloc({
-    required this.editCollectionUseCase,
-    required this.removeCollectionUseCase,
+    required this.collectionRepository,
     required Collection initialCollection,
   }) : super(EditCollectionState(
           initialCollection: initialCollection,
@@ -29,8 +26,7 @@ class EditCollectionBloc
     on<EditCollection$CollectionDeleted>(_onCollectionDeleted);
   }
 
-  final EditCollectionUseCase editCollectionUseCase;
-  final RemoveCollectionUseCase removeCollectionUseCase;
+  final CollectionRepository collectionRepository;
 
   void _onTitleChanged(
     EditCollection$TitleChanged event,
@@ -67,20 +63,15 @@ class EditCollectionBloc
     emit(state.copyWith(status: EditCollectionStatus.loading));
 
     try {
-      await editCollectionUseCase.execute((
+      await collectionRepository.editCollection(
         collectionId: state.initialCollection.id,
         title: state.title,
         description: state.description,
         image: state.image,
         private: state.privacyStatus,
-      ));
+      );
 
       emit(state.copyWith(status: EditCollectionStatus.success));
-    } on GraphQLError catch (err) {
-      emit(state.copyWith(
-        status: EditCollectionStatus.failure,
-        errorMessage: err.message,
-      ));
     } catch (err) {
       emit(state.copyWith(
         status: EditCollectionStatus.failure,
@@ -96,17 +87,13 @@ class EditCollectionBloc
     emit(state.copyWith(status: EditCollectionStatus.loading));
 
     try {
-      await removeCollectionUseCase
-          .execute((collectionId: state.initialCollection.id,));
+      await collectionRepository.removeCollection(
+        collectionId: state.initialCollection.id,
+      );
 
       emit(state.copyWith(
         status: EditCollectionStatus.success,
         isDeleted: true,
-      ));
-    } on GraphQLError catch (err) {
-      emit(state.copyWith(
-        status: EditCollectionStatus.failure,
-        errorMessage: err.message,
       ));
     } catch (err) {
       emit(state.copyWith(
