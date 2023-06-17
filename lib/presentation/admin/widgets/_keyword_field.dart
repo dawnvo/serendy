@@ -6,10 +6,9 @@ class _AdminKeywordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _AddMediaFormField(
-      onChanged: (value) {},
-      value: '',
+      onChanged: (value) => context.read<AddMediaCubit>().keywordChanged(value),
       labelText: '키워드',
-      hintText: "코미디, 액션",
+      hintText: "코미디/액션",
     );
   }
 }

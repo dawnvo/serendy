@@ -1,18 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/domain/media.dart';
-import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/admin/cubit/add_media_cubit.dart';
 
-part 'widgets/_submit_button.dart';
-part 'widgets/_image_picker.dart';
-part 'widgets/_title_field.dart';
-part 'widgets/_keyword_field.dart';
-part 'widgets/_type_dropdown_field.dart';
-part 'widgets/_status_dropdown_field.dart';
 part 'widgets/_adult_switch_tile.dart';
-part 'widgets/_start_date_picker_field.dart';
 part 'widgets/_end_date_picker_field.dart';
+part 'widgets/_image_url_field.dart';
+part 'widgets/_keyword_field.dart';
+part 'widgets/_start_date_picker_field.dart';
+part 'widgets/_status_dropdown_field.dart';
+part 'widgets/_submit_button.dart';
+part 'widgets/_title_field.dart';
+part 'widgets/_type_dropdown_field.dart';
 
 @RoutePage()
 class AdminScreen extends StatelessWidget {
@@ -20,7 +21,10 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _AddMediaForm();
+    return BlocProvider(
+      create: (context) => AddMediaCubit(),
+      child: const _AddMediaForm(),
+    );
   }
 }
 
@@ -29,25 +33,39 @@ class _AddMediaForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("미디어 추가")),
-      body: const SingleChildScrollView(
-        child: Column(children: [
-          _AdminImagePicker(),
-          _AdminTitleField(),
-          _AdminKeywordField(),
-          _AdminStartDataPickerField(),
-          _AdminEndDataPickerField(),
-          _AdminAdultSwitchTile(),
-          Gap.h24,
-          Row(children: [
-            _AdminTypeDropdownField(),
-            Gap.w16,
-            _AdminStatusDropdownField(),
+    return BlocListener<AddMediaCubit, AddMediaState>(
+      listener: (context, state) {
+        if (state.status.isSuccess) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(content: Text("미디어를 추가했어요.")));
+        } else if (state.status.isFailure) {
+          final errorMessage = state.errorMessage ?? '서버에 문제가 생겼어요.';
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text(errorMessage)));
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text("미디어 추가")),
+        body: const SingleChildScrollView(
+          child: Column(children: [
+            _AdminImageUrlField(),
+            _AdminTitleField(),
+            _AdminKeywordField(),
+            _AdminStartDataPickerField(),
+            _AdminEndDataPickerField(),
+            _AdminAdultSwitchTile(),
+            Gap.h24,
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              _AdminTypeDropdownField(),
+              Gap.w16,
+              _AdminStatusDropdownField(),
+            ]),
+            Gap.h40,
+            _AdminSubmitButton(),
           ]),
-          Gap.h40,
-          _AdminSubmitButton(),
-        ]),
+        ),
       ),
     );
   }
@@ -55,13 +73,11 @@ class _AddMediaForm extends StatelessWidget {
 
 class _AddMediaFormField extends StatelessWidget {
   const _AddMediaFormField({
-    required this.value,
     required this.labelText,
     required this.hintText,
     required this.onChanged,
   });
 
-  final String value;
   final String labelText;
   final String hintText;
   final void Function(String) onChanged;
@@ -69,7 +85,6 @@ class _AddMediaFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: value,
       onChanged: onChanged,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: kContentPadding),

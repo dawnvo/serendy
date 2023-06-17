@@ -7,7 +7,7 @@ class _AdminSubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FilledButton.tonal(
       style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-      onPressed: () {},
+      onPressed: () => context.read<AddMediaCubit>().submitted(),
       child: const Text('추가하기'),
     );
   }

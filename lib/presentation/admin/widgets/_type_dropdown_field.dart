@@ -5,9 +5,15 @@ class _AdminTypeDropdownField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaType = context.select<AddMediaCubit, MediaType>(
+      (bloc) => bloc.state.mediaType,
+    );
+
     return DropdownButton(
-      onChanged: (value) {},
-      value: MediaType.anime.name,
+      onChanged: (value) => context
+          .read<AddMediaCubit>()
+          .typeChanged(MediaType.values.byName(value ?? mediaType.name)),
+      value: mediaType.name,
       items: MediaType.values
           .map((item) => DropdownMenuItem(
                 value: item.name,

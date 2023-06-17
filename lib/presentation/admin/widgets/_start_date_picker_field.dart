@@ -6,7 +6,8 @@ class _AdminStartDataPickerField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputDatePickerFormField(
-      onDateSubmitted: (date) {},
+      onDateSubmitted: (date) =>
+          context.read<AddMediaCubit>().startDateChanged(date),
       firstDate: DateTime(1900),
       lastDate: DateTime(2100),
       fieldLabelText: "시작일",

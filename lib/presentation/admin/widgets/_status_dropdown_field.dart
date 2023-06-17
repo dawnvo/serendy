@@ -5,9 +5,15 @@ class _AdminStatusDropdownField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaStatus = context.select<AddMediaCubit, MediaStatus>(
+      (bloc) => bloc.state.mediaStatus,
+    );
+
     return DropdownButton(
-      onChanged: (value) {},
-      value: MediaStatus.finished.name,
+      onChanged: (value) => context
+          .read<AddMediaCubit>()
+          .statusChanged(MediaStatus.values.byName(value ?? mediaStatus.name)),
+      value: mediaStatus.name,
       items: MediaStatus.values
           .map((item) => DropdownMenuItem(
                 value: item.name,

@@ -5,9 +5,14 @@ class _AdminAdultSwitchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isAdult = context.select<AddMediaCubit, bool>(
+      (cubit) => cubit.state.isAdult,
+    );
+
     return SwitchListTile(
-      onChanged: (status) {},
-      value: false,
+      onChanged: (status) =>
+          context.read<AddMediaCubit>().isAdultChanged(status),
+      value: isAdult,
       title: const Text("19"),
     );
   }
