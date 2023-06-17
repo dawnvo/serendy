@@ -10,7 +10,7 @@ abstract final class CollectionMapper {
     );
     final Iterable<CollectionItem> items = data.items.map(
       (item) => CollectionItem(
-        addedAt: DateTime.parse(item.addedAt),
+        addedAt: item.addedAt,
         media: Media(
           id: item.id,
           title: item.title,

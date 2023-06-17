@@ -606,7 +606,7 @@ class Fragment$ThemeFields$items {
       id: (l$id as String),
       title: (l$title as String),
       image: (l$image as String),
-      addedAt: (l$addedAt as String),
+      addedAt: DateTime.parse((l$addedAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -617,7 +617,7 @@ class Fragment$ThemeFields$items {
 
   final String image;
 
-  final String addedAt;
+  final DateTime addedAt;
 
   final String $__typename;
 
@@ -630,7 +630,7 @@ class Fragment$ThemeFields$items {
     final l$image = image;
     _resultData['image'] = l$image;
     final l$addedAt = addedAt;
-    _resultData['addedAt'] = l$addedAt;
+    _resultData['addedAt'] = l$addedAt.toIso8601String();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -712,7 +712,7 @@ abstract class CopyWith$Fragment$ThemeFields$items<TRes> {
     String? id,
     String? title,
     String? image,
-    String? addedAt,
+    DateTime? addedAt,
     String? $__typename,
   });
 }
@@ -747,7 +747,7 @@ class _CopyWithImpl$Fragment$ThemeFields$items<TRes>
             : (image as String),
         addedAt: addedAt == _undefined || addedAt == null
             ? _instance.addedAt
-            : (addedAt as String),
+            : (addedAt as DateTime),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -764,7 +764,7 @@ class _CopyWithStubImpl$Fragment$ThemeFields$items<TRes>
     String? id,
     String? title,
     String? image,
-    String? addedAt,
+    DateTime? addedAt,
     String? $__typename,
   }) =>
       _res;

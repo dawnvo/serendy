@@ -5,4 +5,7 @@ targets:
         options:
           clients:
             - graphql
+          scalars:
+            DateTime:
+              type: DateTime
           outputDirectory: __generated__
