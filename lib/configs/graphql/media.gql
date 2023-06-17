@@ -1,0 +1,17 @@
+fragment MediaFields on Media {
+  id
+  type
+  status
+  title
+  image
+  genres
+  isAdult
+  startDate
+  endDate
+}
+
+query GetMedia($mediaId: ID!) {
+  GetMedia(mediaId: $mediaId) {
+    ...MediaFields
+  }
+}

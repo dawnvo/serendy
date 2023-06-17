@@ -43,7 +43,7 @@ type Media {
   title: String!
   image: String!
   genres: [String!]!
-  isAdult: String!
+  isAdult: Boolean!
   startDate: DateTime
   endDate: DateTime
 }
@@ -90,7 +90,7 @@ enum Emotion {
 
 type Query {
   getMe: User!
-  GetMedia(id: ID!): Media!
+  GetMedia(mediaId: ID!): Media!
   GetMediaList(title: String): [Media!]!
   GetTheme(themeId: ID!): Theme!
   GetThemeList(ownerId: ID): [Theme!]!

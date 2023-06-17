@@ -12,6 +12,7 @@ export 'extensions/number_extension.dart';
 export 'graphql/client.dart';
 export 'graphql/__generated__/schema.gql.dart';
 export 'graphql/__generated__/theme.gql.dart';
+export 'graphql/__generated__/media.gql.dart';
 
 // Others
 export 'router/app_router.dart';
