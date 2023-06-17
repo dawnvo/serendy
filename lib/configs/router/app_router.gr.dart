@@ -109,6 +109,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignInScreen(),
       );
     },
+    AdminRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminScreen(),
+      );
+    },
   };
 }
 
@@ -363,6 +369,20 @@ class SignInRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignInRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AdminScreen]
+class AdminRoute extends PageRouteInfo<void> {
+  const AdminRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/app.dart';
+import 'package:serendy/presentation/admin/admin_screen.dart';
 import 'package:serendy/presentation/account/account_screen.dart';
 import 'package:serendy/presentation/collection/collection_screen.dart';
 import 'package:serendy/presentation/create_collection/create_collection_screen.dart';
@@ -22,7 +23,6 @@ final class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          initial: true,
           page: AppRoute.page,
           children: [
             AutoRoute(page: HomeRoute.page),
@@ -52,6 +52,13 @@ final class AppRouter extends _$AppRouter {
           fullscreenDialog: true,
           path: '/edit-collection',
           page: EditCollectionRoute.page,
+        ),
+
+        /// Admin
+        AutoRoute(
+          initial: true,
+          fullscreenDialog: true,
+          page: AdminRoute.page,
         ),
       ];
 }

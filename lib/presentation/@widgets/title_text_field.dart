@@ -32,7 +32,6 @@ class TitleTextField extends HookWidget {
       maxLength: 30,
       style: baseStyle,
       textAlign: TextAlign.center,
-      autofillHints: const ['test', 'chohoho'],
       decoration: InputDecoration(
         hintStyle: baseStyle?.copyWith(
           color: context.colorScheme.outline,

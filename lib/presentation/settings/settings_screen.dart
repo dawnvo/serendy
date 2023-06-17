@@ -43,7 +43,7 @@ class _SettingsView extends StatelessWidget {
           title: "문의하기",
         ),
         _SettingsListTile(
-          onTap: () {},
+          onTap: () => context.pushRoute(const AdminRoute()),
           icon: RemixIcon.file_list_2_line,
           title: "서비스 약관",
         ),
