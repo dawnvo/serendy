@@ -26,4 +26,22 @@ final class MediaRepositoryRemote extends MediaRepository
     final data = result.parsedData!.GetMedia;
     return MediaMapper.toDomain(data);
   }
+
+  @override
+  Future<void> addMedia({required Media media}) async {
+    await guard(
+      () => _client.mutate$AddMedia(Options$Mutation$AddMedia(
+        variables: Variables$Mutation$AddMedia(
+          type: Enum$MediaType.values.byName(media.type.name),
+          status: Enum$MediaStatus.values.byName(media.status.name),
+          title: media.title,
+          image: media.image,
+          genres: media.keywords,
+          isAdult: media.isAdult,
+          startDate: media.startDate,
+          endDate: media.endDate,
+        ),
+      )),
+    );
+  }
 }

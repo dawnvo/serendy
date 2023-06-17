@@ -15,3 +15,27 @@ query GetMedia($mediaId: ID!) {
     ...MediaFields
   }
 }
+
+mutation AddMedia(
+  $type: MediaType!
+  $status: MediaStatus!
+  $title: String!
+  $image: String!
+  $genres: [String!]!
+  $isAdult: Boolean
+  $startDate: DateTime
+  $endDate: DateTime
+) {
+  AddMedia(
+    type: $type
+    status: $status
+    title: $title
+    image: $image
+    genres: $genres
+    isAdult: $isAdult
+    startDate: $startDate
+    endDate: $endDate
+  ) {
+    ...MediaFields
+  }
+}
