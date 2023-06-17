@@ -18,6 +18,7 @@ final class EditCollectionState extends Equatable {
     this.image,
     this.description,
     this.errorMessage,
+    this.isDeleted = false,
   });
 
   final EditCollectionStatus status;
@@ -26,6 +27,7 @@ final class EditCollectionState extends Equatable {
   final String title;
   final String? image;
   final String? description;
+  final bool isDeleted;
   final String? errorMessage;
 
   bool get isEdited =>
@@ -41,6 +43,7 @@ final class EditCollectionState extends Equatable {
     final String? image,
     final String? description,
     final bool? privacyStatus,
+    final bool? isDeleted,
     final String? errorMessage,
   }) {
     return EditCollectionState(
@@ -50,6 +53,7 @@ final class EditCollectionState extends Equatable {
       image: image ?? this.image,
       description: description ?? this.description,
       privacyStatus: privacyStatus ?? this.privacyStatus,
+      isDeleted: isDeleted ?? this.isDeleted,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
@@ -61,6 +65,7 @@ final class EditCollectionState extends Equatable {
         title,
         description,
         privacyStatus,
+        isDeleted,
         errorMessage,
       ];
 }

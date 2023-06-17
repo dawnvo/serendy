@@ -2,9 +2,6 @@ part of 'edit_collection_bloc.dart';
 
 sealed class EditCollectionEvent extends Equatable {
   const EditCollectionEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 /// 컬렉션 제목을 수정해요.
@@ -20,6 +17,9 @@ final class EditCollectionTitleChanged extends EditCollectionEvent {
 final class EditCollectionImageChanged extends EditCollectionEvent {
   const EditCollectionImageChanged(this.imagePath);
   final String? imagePath;
+
+  @override
+  List<Object> get props => [];
 }
 
 /// 컬렉션 설명을 수정해요.
@@ -43,4 +43,15 @@ final class EditCollectionPrivacyStatusChanged extends EditCollectionEvent {
 /// 수정한 컬렉션을 서버에 제출해요.
 final class EditCollectionSubmitted extends EditCollectionEvent {
   const EditCollectionSubmitted();
+
+  @override
+  List<Object> get props => [];
+}
+
+/// 컬렉션을 제거해요.
+final class EditCollection$CollectionDeleted extends EditCollectionEvent {
+  const EditCollection$CollectionDeleted();
+
+  @override
+  List<Object> get props => [];
 }

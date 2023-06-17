@@ -29,6 +29,7 @@ class EditCollectionScreen extends StatelessWidget {
       create: (context) => EditCollectionBloc(
         initialCollection: collection,
         editCollectionUseCase: sl(),
+        removeCollectionUseCase: sl(),
       ),
       child: const _EditCollectionView(),
     );
@@ -40,22 +41,35 @@ class _EditCollectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<EditCollectionBloc, EditCollectionState>(
-      listenWhen: (previous, current) => previous.status != current.status,
-      listener: (context, state) {
-        /// 요청에 성공하면 뒤로 이동해요.
-        if (state.status.isSuccess) {
-          context.popRoute();
-        }
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<EditCollectionBloc, EditCollectionState>(
+          listenWhen: (previous, current) => previous.status != current.status,
+          listener: (context, state) {
+            /// 요청에 성공하면 뒤로 이동해요.
+            if (state.status.isSuccess) {
+              context.popRoute();
+            }
 
-        /// 요청에 실패하면 메시지로 안내해요.
-        else if (state.status.isFailure) {
-          final errorMessage = state.errorMessage ?? '서버에 문제가 생겼어요.';
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(errorMessage)));
-        }
-      },
+            /// 요청에 실패하면 메시지로 안내해요.
+            else if (state.status.isFailure) {
+              final errorMessage = state.errorMessage ?? '서버에 문제가 생겼어요.';
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(content: Text(errorMessage)));
+            }
+          },
+        ),
+        BlocListener<EditCollectionBloc, EditCollectionState>(
+          listenWhen: (previous, current) =>
+              previous.isDeleted != current.isDeleted &&
+              current.isDeleted == true,
+          listener: (context, state) {
+            /// 컬렉션을 삭제하면 프로필 화면으로 이동해요.
+            context.replaceRoute(const ProfileRoute());
+          },
+        ),
+      ],
       child: const _EditCollectionTemplate(
         saveButton: _EditCollectionSaveButton(),
         imagePicker: _EditCollectionImagePicker(),

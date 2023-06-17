@@ -5,10 +5,6 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final collectionId = context.select<EditCollectionBloc, String>(
-      (bloc) => bloc.state.initialCollection.id,
-    );
-
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -17,8 +13,9 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => _RemoveCollectionDialog(
-          collectionId: collectionId,
+        builder: (_) => BlocProvider.value(
+          value: context.read<EditCollectionBloc>(),
+          child: const _RemoveCollectionDialog(),
         ),
       ),
       title: const Text("테마 삭제"),
@@ -32,9 +29,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 
 /// Dialog
 class _RemoveCollectionDialog extends StatelessWidget {
-  const _RemoveCollectionDialog({required this.collectionId});
-
-  final String collectionId;
+  const _RemoveCollectionDialog();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +42,9 @@ class _RemoveCollectionDialog extends StatelessWidget {
         ),
         CustomDialogAction(
           isDestructiveAction: true,
-          onPressed: () => context.replaceRoute(const ProfileRoute()),
+          onPressed: () => context
+              .read<EditCollectionBloc>()
+              .add(const EditCollection$CollectionDeleted()),
           child: const Text("삭제"),
         ),
       ],
