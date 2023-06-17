@@ -27,13 +27,16 @@ class SliverMediasGrid extends StatelessWidget {
         crossAxisSpacing: spacing,
       ),
       delegate: SliverChildBuilderDelegate(
-        (context, index) => MediaCard(
-          media: medias[index],
-          onTap: () => context.pushRoute(MediaRoute(id: 'mediaId')),
-          onLongPress: () => context.showCustomModalBottomSheet(
-            (context) => const MediaMenuSheet(),
-          ),
-        ),
+        (context, index) {
+          final media = medias[index];
+          return MediaCard(
+            media: media,
+            onTap: () => context.pushRoute(MediaRoute(id: media.id)),
+            onLongPress: () => context.showCustomModalBottomSheet(
+              (context) => const MediaMenuSheet(),
+            ),
+          );
+        },
         childCount: medias.length,
       ),
     );
