@@ -14,7 +14,7 @@ final class AddMediaState extends Equatable {
     this.status = AddMediaStatus.initial,
     this.image = '',
     this.title = '',
-    this.keyword = const [],
+    this.keywords = const [],
     this.startDate,
     this.endDate,
     this.isAdult = false,
@@ -26,7 +26,7 @@ final class AddMediaState extends Equatable {
   final AddMediaStatus status;
   final String image;
   final String title;
-  final List<String> keyword;
+  final List<String> keywords;
   final DateTime? startDate;
   final DateTime? endDate;
   final bool isAdult;
@@ -38,7 +38,7 @@ final class AddMediaState extends Equatable {
     final AddMediaStatus? status,
     final String? image,
     final String? title,
-    final List<String>? keyword,
+    final List<String>? keywords,
     final DateTime? startDate,
     final DateTime? endDate,
     final bool? isAdult,
@@ -50,7 +50,7 @@ final class AddMediaState extends Equatable {
       status: status ?? this.status,
       image: image ?? this.image,
       title: title ?? this.title,
-      keyword: keyword ?? this.keyword,
+      keywords: keywords ?? this.keywords,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
       isAdult: isAdult ?? this.isAdult,
@@ -65,7 +65,7 @@ final class AddMediaState extends Equatable {
         status,
         image,
         title,
-        keyword,
+        keywords,
         startDate,
         endDate,
         isAdult,

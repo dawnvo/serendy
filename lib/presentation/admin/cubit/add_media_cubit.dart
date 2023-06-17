@@ -1,11 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:serendy/features/media/data/media_repository.dart';
 import 'package:serendy/features/media/domain/media.dart';
 
 part 'add_media_state.dart';
 
 class AddMediaCubit extends Cubit<AddMediaState> {
-  AddMediaCubit() : super(const AddMediaState());
+  AddMediaCubit({required this.mediaRepository}) : super(const AddMediaState());
+
+  final MediaRepository mediaRepository;
 
   void imageChanged(String image) {
     emit(state.copyWith(image: image));
@@ -15,8 +18,8 @@ class AddMediaCubit extends Cubit<AddMediaState> {
     emit(state.copyWith(title: title));
   }
 
-  void keywordChanged(String keyword) {
-    emit(state.copyWith(keyword: keyword.split('/')));
+  void keywordChanged(String keywords) {
+    emit(state.copyWith(keywords: keywords.split('/')));
   }
 
   void startDateChanged(DateTime startDate) {
@@ -39,8 +42,23 @@ class AddMediaCubit extends Cubit<AddMediaState> {
     emit(state.copyWith(mediaStatus: status));
   }
 
-  void submitted() {
+  Future<void> submitted() async {
+    emit(state.copyWith(status: AddMediaStatus.success));
+
+    final media = Media(
+      type: state.mediaType,
+      status: state.mediaStatus,
+      image: state.image,
+      title: state.title,
+      keywords: state.keywords,
+      isAdult: state.isAdult,
+      startDate: state.startDate,
+      endDate: state.endDate,
+    );
+
     try {
+      await mediaRepository.addMedia(media: media);
+
       emit(state.copyWith(status: AddMediaStatus.success));
     } catch (err) {
       emit(state.copyWith(

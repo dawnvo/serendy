@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/admin/cubit/add_media_cubit.dart';
@@ -22,17 +23,19 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddMediaCubit(),
+      create: (context) => AddMediaCubit(mediaRepository: sl()),
       child: const _AddMediaForm(),
     );
   }
 }
 
-class _AddMediaForm extends StatelessWidget {
+class _AddMediaForm extends HookWidget {
   const _AddMediaForm();
 
   @override
   Widget build(BuildContext context) {
+    final formKey = useMemoized(GlobalKey<FormState>.new, const []);
+
     return BlocListener<AddMediaCubit, AddMediaState>(
       listener: (context, state) {
         if (state.status.isSuccess) {
@@ -48,23 +51,30 @@ class _AddMediaForm extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("미디어 추가")),
-        body: const SingleChildScrollView(
-          child: Column(children: [
-            _AdminImageUrlField(),
-            _AdminTitleField(),
-            _AdminKeywordField(),
-            _AdminStartDataPickerField(),
-            _AdminEndDataPickerField(),
-            _AdminAdultSwitchTile(),
-            Gap.h24,
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _AdminTypeDropdownField(),
-              Gap.w16,
-              _AdminStatusDropdownField(),
+        body: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(children: [
+              const _AdminImageUrlField(),
+              const _AdminTitleField(),
+              const _AdminKeywordField(),
+              const _AdminStartDataPickerField(),
+              const _AdminEndDataPickerField(),
+              const _AdminAdultSwitchTile(),
+              Gap.h24,
+              const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                _AdminTypeDropdownField(),
+                Gap.w16,
+                _AdminStatusDropdownField(),
+              ]),
+              Gap.h40,
+              _AdminSubmitButton(onSubmit: () {
+                if (formKey.currentState!.validate()) {
+                  context.read<AddMediaCubit>().submitted();
+                }
+              }),
             ]),
-            Gap.h40,
-            _AdminSubmitButton(),
-          ]),
+          ),
         ),
       ),
     );
@@ -91,6 +101,13 @@ class _AddMediaFormField extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return '입력하세요.';
+        }
+
+        return null;
+      },
     );
   }
 }
