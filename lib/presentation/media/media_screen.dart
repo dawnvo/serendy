@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
@@ -9,6 +10,7 @@ import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/media/bloc/media_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_media_reaction_detail_sheet.dart';
@@ -32,7 +34,11 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _MediaView();
+    return BlocProvider(
+      create: (context) =>
+          MediaBloc(mediaRepository: sl())..add(Media$Fetched(id: id)),
+      child: const _MediaView(),
+    );
   }
 }
 
@@ -42,24 +48,28 @@ class _MediaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = mediaMock;
+    final state = context.watch<MediaBloc>().state;
 
-    return _MediaTemplate(
-      image: _MediaImage(image: media.image),
-      title: _MediaTitle(title: media.title),
-      keyword: _MediaKeywords(
-        genres: media.keywords,
-        status: [
-          (media.startDate?.year).toString(),
-          media.status.name,
-        ],
-      ),
-      actionBar: _MediaActionBar(media: media),
-      contents: const [
-        _MediaReactionTile(),
-        _MediaInfoTile(),
-      ],
-    );
+    return switch (state) {
+      MediaLoaded() => _MediaTemplate(
+          image: _MediaImage(image: state.media.image),
+          title: _MediaTitle(title: state.media.title),
+          keyword: _MediaKeywords(
+            genres: state.media.keywords,
+            status: [
+              (state.media.startDate?.year).toString(),
+              state.media.status.name,
+            ],
+          ),
+          actionBar: _MediaActionBar(media: state.media),
+          contents: const [
+            _MediaReactionTile(),
+            _MediaInfoTile(),
+          ],
+        ),
+      MediaLoading() => const Center(child: CircularProgressIndicator()),
+      MediaError() => Text(state.message),
+    };
   }
 }
 
