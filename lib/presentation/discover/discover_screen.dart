@@ -20,7 +20,7 @@ class DiscoverScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => DiscoverBloc(
         getCollectionsListUseCase: sl(),
-      )..add(const DiscoverCollectionsListFetched()),
+      )..add(const Discover$CollectionsListFetched()),
       child: const _DiscoverView(),
     );
   }

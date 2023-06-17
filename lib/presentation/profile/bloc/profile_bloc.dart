@@ -10,13 +10,13 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({required this.getCollectionsListUseCase})
       : super(const ProfileInitial()) {
-    on<ProfileMyCollectionsListFetched>(_onMyCollectionsListFetched);
+    on<Profile$MyCollectionsListFetched>(_onMyCollectionsListFetched);
   }
 
   final GetCollectionsListUseCase getCollectionsListUseCase;
 
   Future<void> _onMyCollectionsListFetched(
-    ProfileMyCollectionsListFetched event,
+    Profile$MyCollectionsListFetched event,
     Emitter<ProfileState> emit,
   ) async {
     try {

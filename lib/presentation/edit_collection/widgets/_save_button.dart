@@ -5,7 +5,7 @@ class _EditCollectionSaveButton extends StatelessWidget {
 
   void handleSubmit(BuildContext context) {
     FocusScope.of(context).unfocus();
-    context.read<EditCollectionBloc>().add(const EditCollectionSubmitted());
+    context.read<EditCollectionBloc>().add(const EditCollection$Submitted());
   }
 
   @override

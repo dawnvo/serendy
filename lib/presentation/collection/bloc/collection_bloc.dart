@@ -10,13 +10,13 @@ part 'collection_state.dart';
 class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
   CollectionBloc({required this.getCollectionUseCase})
       : super(const CollectionLoading()) {
-    on<CollectionFetched>(_onFetched);
+    on<Collection$Fetched>(_onFetched);
   }
 
   final GetCollectionUseCase getCollectionUseCase;
 
   Future<void> _onFetched(
-    CollectionFetched event,
+    Collection$Fetched event,
     Emitter<CollectionState> emit,
   ) async {
     try {

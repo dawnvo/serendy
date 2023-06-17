@@ -10,7 +10,7 @@ class _CreateCollectionTitleTextField extends StatelessWidget {
     return TitleTextField(
       onChanged: (value) => context
           .read<CreateCollectionBloc>()
-          .add(CreateCollectionTitleChanged(title: value)),
+          .add(CreateCollection$TitleChanged(title: value)),
       value: state.title,
       hintText: state.hintText,
       autofocus: true,

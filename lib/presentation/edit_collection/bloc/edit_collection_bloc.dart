@@ -21,11 +21,11 @@ class EditCollectionBloc
           description: initialCollection.description,
           privacyStatus: initialCollection.private,
         )) {
-    on<EditCollectionImageChanged>(_onImageChanged);
-    on<EditCollectionTitleChanged>(_onTitleChanged);
-    on<EditCollectionDescriptionChanged>(_onDescriptionChanged);
-    on<EditCollectionPrivacyStatusChanged>(_onPrivacyStatusChanged);
-    on<EditCollectionSubmitted>(_onSubmitted);
+    on<EditCollection$ImageChanged>(_onImageChanged);
+    on<EditCollection$TitleChanged>(_onTitleChanged);
+    on<EditCollection$DescriptionChanged>(_onDescriptionChanged);
+    on<EditCollection$PrivacyStatusChanged>(_onPrivacyStatusChanged);
+    on<EditCollection$Submitted>(_onSubmitted);
     on<EditCollection$CollectionDeleted>(_onCollectionDeleted);
   }
 
@@ -33,35 +33,35 @@ class EditCollectionBloc
   final RemoveCollectionUseCase removeCollectionUseCase;
 
   void _onTitleChanged(
-    EditCollectionTitleChanged event,
+    EditCollection$TitleChanged event,
     Emitter<EditCollectionState> emit,
   ) {
     emit(state.copyWith(title: event.title));
   }
 
   void _onImageChanged(
-    EditCollectionImageChanged event,
+    EditCollection$ImageChanged event,
     Emitter<EditCollectionState> emit,
   ) {
     emit(state.copyWith(image: event.imagePath));
   }
 
   void _onDescriptionChanged(
-    EditCollectionDescriptionChanged event,
+    EditCollection$DescriptionChanged event,
     Emitter<EditCollectionState> emit,
   ) {
     emit(state.copyWith(description: event.description));
   }
 
   void _onPrivacyStatusChanged(
-    EditCollectionPrivacyStatusChanged event,
+    EditCollection$PrivacyStatusChanged event,
     Emitter<EditCollectionState> emit,
   ) {
     emit(state.copyWith(privacyStatus: event.privacyStatus));
   }
 
   Future<void> _onSubmitted(
-    EditCollectionSubmitted event,
+    EditCollection$Submitted event,
     Emitter<EditCollectionState> emit,
   ) async {
     emit(state.copyWith(status: EditCollectionStatus.loading));

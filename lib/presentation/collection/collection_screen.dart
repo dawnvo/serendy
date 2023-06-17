@@ -30,7 +30,7 @@ class CollectionScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => CollectionBloc(
         getCollectionUseCase: sl(),
-      )..add(CollectionFetched(id: id)),
+      )..add(Collection$Fetched(id: id)),
       child: const _CollectionView(),
     );
   }

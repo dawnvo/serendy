@@ -12,7 +12,7 @@ class _EditCollectionTitleTextField extends StatelessWidget {
     return TitleTextField(
       onChanged: (value) => context
           .read<EditCollectionBloc>()
-          .add(EditCollectionTitleChanged(value)),
+          .add(EditCollection$TitleChanged(value)),
       value: title,
       hintText: "컬렉션 이름",
     );

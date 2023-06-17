@@ -12,7 +12,7 @@ class _EditCollectionImagePicker extends StatelessWidget {
     return ImagePicker(
       onChange: (image) => context
           .read<EditCollectionBloc>()
-          .add(EditCollectionImageChanged(image)),
+          .add(EditCollection$ImageChanged(image)),
       image: imagePath,
     );
   }

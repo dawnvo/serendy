@@ -4,8 +4,9 @@ sealed class ProfileEvent extends Equatable {
   const ProfileEvent();
 }
 
-final class ProfileMyCollectionsListFetched extends ProfileEvent {
-  const ProfileMyCollectionsListFetched();
+/// 나의 컬렉션 목록을 불러와요.
+final class Profile$MyCollectionsListFetched extends ProfileEvent {
+  const Profile$MyCollectionsListFetched();
 
   @override
   List<Object> get props => [];

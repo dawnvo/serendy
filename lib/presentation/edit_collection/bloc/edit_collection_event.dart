@@ -5,8 +5,8 @@ sealed class EditCollectionEvent extends Equatable {
 }
 
 /// 컬렉션 제목을 수정해요.
-final class EditCollectionTitleChanged extends EditCollectionEvent {
-  const EditCollectionTitleChanged(this.title);
+final class EditCollection$TitleChanged extends EditCollectionEvent {
+  const EditCollection$TitleChanged(this.title);
   final String title;
 
   @override
@@ -14,8 +14,8 @@ final class EditCollectionTitleChanged extends EditCollectionEvent {
 }
 
 /// 컬렉션 이미지를 변경해요.
-final class EditCollectionImageChanged extends EditCollectionEvent {
-  const EditCollectionImageChanged(this.imagePath);
+final class EditCollection$ImageChanged extends EditCollectionEvent {
+  const EditCollection$ImageChanged(this.imagePath);
   final String? imagePath;
 
   @override
@@ -23,8 +23,8 @@ final class EditCollectionImageChanged extends EditCollectionEvent {
 }
 
 /// 컬렉션 설명을 수정해요.
-final class EditCollectionDescriptionChanged extends EditCollectionEvent {
-  const EditCollectionDescriptionChanged(this.description);
+final class EditCollection$DescriptionChanged extends EditCollectionEvent {
+  const EditCollection$DescriptionChanged(this.description);
   final String description;
 
   @override
@@ -32,8 +32,8 @@ final class EditCollectionDescriptionChanged extends EditCollectionEvent {
 }
 
 /// 컬렉션 상태를 변경해요.
-final class EditCollectionPrivacyStatusChanged extends EditCollectionEvent {
-  const EditCollectionPrivacyStatusChanged(this.privacyStatus);
+final class EditCollection$PrivacyStatusChanged extends EditCollectionEvent {
+  const EditCollection$PrivacyStatusChanged(this.privacyStatus);
   final bool privacyStatus;
 
   @override
@@ -41,8 +41,8 @@ final class EditCollectionPrivacyStatusChanged extends EditCollectionEvent {
 }
 
 /// 수정한 컬렉션을 서버에 제출해요.
-final class EditCollectionSubmitted extends EditCollectionEvent {
-  const EditCollectionSubmitted();
+final class EditCollection$Submitted extends EditCollectionEvent {
+  const EditCollection$Submitted();
 
   @override
   List<Object> get props => [];

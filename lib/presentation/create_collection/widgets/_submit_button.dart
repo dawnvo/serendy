@@ -14,7 +14,7 @@ class _CreateCollectionSubmitButton extends StatelessWidget {
       ),
       onPressed: () => context
           .read<CreateCollectionBloc>()
-          .add(const CreateCollectionSubmitted()),
+          .add(const CreateCollection$Submitted()),
       child: const Text("만들기"),
     );
   }

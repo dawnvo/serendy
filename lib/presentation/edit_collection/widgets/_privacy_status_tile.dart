@@ -12,7 +12,7 @@ class _EditCollectionPrivacyStatusTile extends StatelessWidget {
     return SwitchListTile(
       onChanged: (status) => context
           .read<EditCollectionBloc>()
-          .add(EditCollectionPrivacyStatusChanged(status)),
+          .add(EditCollection$PrivacyStatusChanged(status)),
       value: privacyStatus,
       title: const Text("나만 보기"),
     );

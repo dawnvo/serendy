@@ -7,12 +7,14 @@ sealed class CreateCollectionEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class CreateCollectionTitleChanged extends CreateCollectionEvent {
-  const CreateCollectionTitleChanged({required this.title});
+/// 제목을 입력해요.
+final class CreateCollection$TitleChanged extends CreateCollectionEvent {
+  const CreateCollection$TitleChanged({required this.title});
 
   final String? title;
 }
 
-final class CreateCollectionSubmitted extends CreateCollectionEvent {
-  const CreateCollectionSubmitted();
+/// 양식을 서버에 제출해요.
+final class CreateCollection$Submitted extends CreateCollectionEvent {
+  const CreateCollection$Submitted();
 }

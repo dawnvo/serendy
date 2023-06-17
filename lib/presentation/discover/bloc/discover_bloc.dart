@@ -10,13 +10,13 @@ part 'discover_state.dart';
 class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   DiscoverBloc({required this.getCollectionsListUseCase})
       : super(const DiscoverLoading()) {
-    on<DiscoverCollectionsListFetched>(_onCollectionsListFetched);
+    on<Discover$CollectionsListFetched>(_onCollectionsListFetched);
   }
 
   final GetCollectionsListUseCase getCollectionsListUseCase;
 
   Future<void> _onCollectionsListFetched(
-    DiscoverCollectionsListFetched event,
+    Discover$CollectionsListFetched event,
     Emitter<DiscoverState> emit,
   ) async {
     try {

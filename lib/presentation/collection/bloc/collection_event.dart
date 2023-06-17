@@ -4,8 +4,9 @@ sealed class CollectionEvent extends Equatable {
   const CollectionEvent();
 }
 
-final class CollectionFetched extends CollectionEvent {
-  const CollectionFetched({required this.id});
+/// 컬렉션을 불러와요.
+final class Collection$Fetched extends CollectionEvent {
+  const Collection$Fetched({required this.id});
 
   final String id;
 

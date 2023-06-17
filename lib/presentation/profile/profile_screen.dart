@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProfileBloc(
         getCollectionsListUseCase: sl(),
-      )..add(const ProfileMyCollectionsListFetched()),
+      )..add(const Profile$MyCollectionsListFetched()),
       child: const _ProfileView(),
     );
   }

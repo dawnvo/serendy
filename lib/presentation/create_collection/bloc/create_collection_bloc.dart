@@ -13,21 +13,21 @@ class CreateCollectionBloc
       : super(CreateCollectionState(
           hintText: Assets.createCollectionHints.pickRandomly()!,
         )) {
-    on<CreateCollectionTitleChanged>(_onTitleChanged);
-    on<CreateCollectionSubmitted>(_onSubmitted);
+    on<CreateCollection$TitleChanged>(_onTitleChanged);
+    on<CreateCollection$Submitted>(_onSubmitted);
   }
 
   final CreateCollectionUseCase createCollectionUseCase;
 
   void _onTitleChanged(
-    CreateCollectionTitleChanged event,
+    CreateCollection$TitleChanged event,
     Emitter<CreateCollectionState> emit,
   ) {
     emit(state.copyWith(title: event.title));
   }
 
   Future<void> _onSubmitted(
-    CreateCollectionSubmitted event,
+    CreateCollection$Submitted event,
     Emitter<CreateCollectionState> emit,
   ) async {
     emit(state.copyWith(status: CreateCollectionStatus.loading));
