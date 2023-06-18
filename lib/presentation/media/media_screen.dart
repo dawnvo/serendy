@@ -6,11 +6,13 @@ import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/media/bloc/media_bloc.dart';
+import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_media_reaction_detail_sheet.dart';
@@ -34,9 +36,17 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          MediaBloc(mediaRepository: sl())..add(Media$Fetched(id: id)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              MediaBloc(mediaRepository: sl())..add(Media$Fetched(id: id)),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(collectionRepository: sl())
+            ..add(const Profile$MyCollectionsListFetched()),
+        ),
+      ],
       child: const _MediaView(),
     );
   }
