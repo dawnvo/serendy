@@ -7,10 +7,8 @@ import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/admin/cubit/add_media_cubit.dart';
 
 part 'widgets/_adult_switch_tile.dart';
-part 'widgets/_end_date_picker_field.dart';
 part 'widgets/_image_url_field.dart';
 part 'widgets/_keyword_field.dart';
-part 'widgets/_start_date_picker_field.dart';
 part 'widgets/_status_dropdown_field.dart';
 part 'widgets/_submit_button.dart';
 part 'widgets/_title_field.dart';
@@ -37,6 +35,7 @@ class _AddMediaForm extends HookWidget {
     final formKey = useMemoized(GlobalKey<FormState>.new, const []);
 
     return BlocListener<AddMediaCubit, AddMediaState>(
+      listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
         if (state.status.isSuccess) {
           ScaffoldMessenger.of(context)
@@ -55,11 +54,9 @@ class _AddMediaForm extends HookWidget {
           child: Form(
             key: formKey,
             child: Column(children: [
-              const _AdminImageUrlField(),
               const _AdminTitleField(),
               const _AdminKeywordField(),
-              const _AdminStartDataPickerField(),
-              const _AdminEndDataPickerField(),
+              const _AdminImageUrlField(),
               const _AdminAdultSwitchTile(),
               Gap.h24,
               const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -71,6 +68,7 @@ class _AddMediaForm extends HookWidget {
               _AdminSubmitButton(onSubmit: () {
                 if (formKey.currentState!.validate()) {
                   context.read<AddMediaCubit>().submitted();
+                  formKey.currentState?.reset();
                 }
               }),
             ]),

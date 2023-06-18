@@ -22,14 +22,6 @@ class AddMediaCubit extends Cubit<AddMediaState> {
     emit(state.copyWith(keywords: keywords.split('/')));
   }
 
-  void startDateChanged(DateTime startDate) {
-    emit(state.copyWith(startDate: startDate));
-  }
-
-  void endDateChanged(DateTime endDate) {
-    emit(state.copyWith(endDate: endDate));
-  }
-
   void isAdultChanged(bool isAdult) {
     emit(state.copyWith(isAdult: isAdult));
   }
@@ -43,7 +35,7 @@ class AddMediaCubit extends Cubit<AddMediaState> {
   }
 
   Future<void> submitted() async {
-    emit(state.copyWith(status: AddMediaStatus.success));
+    emit(state.copyWith(status: AddMediaStatus.loading));
 
     final media = Media(
       type: state.mediaType,
@@ -56,10 +48,12 @@ class AddMediaCubit extends Cubit<AddMediaState> {
       endDate: state.endDate,
     );
 
+    print(media);
+
     try {
       await mediaRepository.addMedia(media: media);
 
-      emit(state.copyWith(status: AddMediaStatus.success));
+      emit(const AddMediaState(status: AddMediaStatus.success));
     } catch (err) {
       emit(state.copyWith(
         status: AddMediaStatus.failure,
