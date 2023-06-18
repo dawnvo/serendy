@@ -11,7 +11,7 @@ class _SearchResults extends StatelessWidget {
         return MediaItem(
           onTap: () {},
           onMoreTap: () => context.showCustomModalBottomSheet(
-            (context) => const MediaMenuSheet(),
+            (context) => MediaMenuSheet(media: mediaMock),
           ),
           media: mediaMock,
         );

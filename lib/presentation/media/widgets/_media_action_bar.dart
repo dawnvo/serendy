@@ -22,7 +22,7 @@ class _MediaActionBar extends StatelessWidget {
         ),
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            (context) => const MediaMenuSheet(),
+            (context) => MediaMenuSheet(media: media),
           ),
           icon: const Icon(RemixIcon.more_2_fill),
         ),

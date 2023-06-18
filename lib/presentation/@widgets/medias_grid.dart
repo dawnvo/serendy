@@ -33,7 +33,7 @@ class SliverMediasGrid extends StatelessWidget {
             media: media,
             onTap: () => context.pushRoute(MediaRoute(id: media.id)),
             onLongPress: () => context.showCustomModalBottomSheet(
-              (context) => const MediaMenuSheet(),
+              (context) => MediaMenuSheet(media: media),
             ),
           );
         },

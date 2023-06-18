@@ -1,12 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 class MediaMenuSheet extends StatelessWidget {
-  const MediaMenuSheet({super.key});
+  const MediaMenuSheet({
+    required this.media,
+    super.key,
+  });
+
+  final Media media;
 
   /// 작품 숨기기 이벤트
   void handleHideMedia(BuildContext context) {
@@ -29,7 +34,7 @@ class MediaMenuSheet extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(children: [
         Gap.h4,
-        MediaItem(media: mediaMock),
+        MediaItem(media: media),
         Gap.h4,
         const Divider(),
         Column(children: [
