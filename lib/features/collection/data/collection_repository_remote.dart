@@ -71,4 +71,34 @@ final class CollectionRepositoryRemote extends CollectionRepository
       )),
     );
   }
+
+  @override
+  Future<void> addCollectionItem({
+    required String collectionId,
+    required String mediaId,
+  }) async {
+    await guard(
+      () => _client.mutate$AddThemeItem(Options$Mutation$AddThemeItem(
+        variables: Variables$Mutation$AddThemeItem(
+          themeId: collectionId,
+          mediaId: mediaId,
+        ),
+      )),
+    );
+  }
+
+  @override
+  Future<void> deleteCollectionItem({
+    required String collectionId,
+    required String mediaId,
+  }) async {
+    await guard(
+      () => _client.mutate$DeleteThemeItem(Options$Mutation$DeleteThemeItem(
+        variables: Variables$Mutation$DeleteThemeItem(
+          themeId: collectionId,
+          mediaId: mediaId,
+        ),
+      )),
+    );
+  }
 }

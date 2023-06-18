@@ -3090,3 +3090,1101 @@ extension ClientExtension$Mutation$RemoveTheme on graphql.GraphQLClient {
           WatchOptions$Mutation$RemoveTheme options) =>
       this.watchMutation(options);
 }
+
+class Variables$Mutation$AddThemeItem {
+  factory Variables$Mutation$AddThemeItem({
+    required String themeId,
+    required String mediaId,
+  }) =>
+      Variables$Mutation$AddThemeItem._({
+        r'themeId': themeId,
+        r'mediaId': mediaId,
+      });
+
+  Variables$Mutation$AddThemeItem._(this._$data);
+
+  factory Variables$Mutation$AddThemeItem.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$themeId = data['themeId'];
+    result$data['themeId'] = (l$themeId as String);
+    final l$mediaId = data['mediaId'];
+    result$data['mediaId'] = (l$mediaId as String);
+    return Variables$Mutation$AddThemeItem._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get themeId => (_$data['themeId'] as String);
+  String get mediaId => (_$data['mediaId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$themeId = themeId;
+    result$data['themeId'] = l$themeId;
+    final l$mediaId = mediaId;
+    result$data['mediaId'] = l$mediaId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$AddThemeItem<Variables$Mutation$AddThemeItem>
+      get copyWith => CopyWith$Variables$Mutation$AddThemeItem(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$AddThemeItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$themeId = themeId;
+    final lOther$themeId = other.themeId;
+    if (l$themeId != lOther$themeId) {
+      return false;
+    }
+    final l$mediaId = mediaId;
+    final lOther$mediaId = other.mediaId;
+    if (l$mediaId != lOther$mediaId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$themeId = themeId;
+    final l$mediaId = mediaId;
+    return Object.hashAll([
+      l$themeId,
+      l$mediaId,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$AddThemeItem<TRes> {
+  factory CopyWith$Variables$Mutation$AddThemeItem(
+    Variables$Mutation$AddThemeItem instance,
+    TRes Function(Variables$Mutation$AddThemeItem) then,
+  ) = _CopyWithImpl$Variables$Mutation$AddThemeItem;
+
+  factory CopyWith$Variables$Mutation$AddThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$AddThemeItem;
+
+  TRes call({
+    String? themeId,
+    String? mediaId,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$AddThemeItem<TRes>
+    implements CopyWith$Variables$Mutation$AddThemeItem<TRes> {
+  _CopyWithImpl$Variables$Mutation$AddThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$AddThemeItem _instance;
+
+  final TRes Function(Variables$Mutation$AddThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? themeId = _undefined,
+    Object? mediaId = _undefined,
+  }) =>
+      _then(Variables$Mutation$AddThemeItem._({
+        ..._instance._$data,
+        if (themeId != _undefined && themeId != null)
+          'themeId': (themeId as String),
+        if (mediaId != _undefined && mediaId != null)
+          'mediaId': (mediaId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$AddThemeItem<TRes>
+    implements CopyWith$Variables$Mutation$AddThemeItem<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$AddThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    String? themeId,
+    String? mediaId,
+  }) =>
+      _res;
+}
+
+class Mutation$AddThemeItem {
+  Mutation$AddThemeItem({
+    required this.AddThemeItem,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$AddThemeItem.fromJson(Map<String, dynamic> json) {
+    final l$AddThemeItem = json['AddThemeItem'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddThemeItem(
+      AddThemeItem: Mutation$AddThemeItem$AddThemeItem.fromJson(
+          (l$AddThemeItem as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$AddThemeItem$AddThemeItem AddThemeItem;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$AddThemeItem = AddThemeItem;
+    _resultData['AddThemeItem'] = l$AddThemeItem.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$AddThemeItem = AddThemeItem;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$AddThemeItem,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$AddThemeItem) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$AddThemeItem = AddThemeItem;
+    final lOther$AddThemeItem = other.AddThemeItem;
+    if (l$AddThemeItem != lOther$AddThemeItem) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddThemeItem on Mutation$AddThemeItem {
+  CopyWith$Mutation$AddThemeItem<Mutation$AddThemeItem> get copyWith =>
+      CopyWith$Mutation$AddThemeItem(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$AddThemeItem<TRes> {
+  factory CopyWith$Mutation$AddThemeItem(
+    Mutation$AddThemeItem instance,
+    TRes Function(Mutation$AddThemeItem) then,
+  ) = _CopyWithImpl$Mutation$AddThemeItem;
+
+  factory CopyWith$Mutation$AddThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$AddThemeItem;
+
+  TRes call({
+    Mutation$AddThemeItem$AddThemeItem? AddThemeItem,
+    String? $__typename,
+  });
+  CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> get AddThemeItem;
+}
+
+class _CopyWithImpl$Mutation$AddThemeItem<TRes>
+    implements CopyWith$Mutation$AddThemeItem<TRes> {
+  _CopyWithImpl$Mutation$AddThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddThemeItem _instance;
+
+  final TRes Function(Mutation$AddThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? AddThemeItem = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddThemeItem(
+        AddThemeItem: AddThemeItem == _undefined || AddThemeItem == null
+            ? _instance.AddThemeItem
+            : (AddThemeItem as Mutation$AddThemeItem$AddThemeItem),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> get AddThemeItem {
+    final local$AddThemeItem = _instance.AddThemeItem;
+    return CopyWith$Mutation$AddThemeItem$AddThemeItem(
+        local$AddThemeItem, (e) => call(AddThemeItem: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$AddThemeItem<TRes>
+    implements CopyWith$Mutation$AddThemeItem<TRes> {
+  _CopyWithStubImpl$Mutation$AddThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$AddThemeItem$AddThemeItem? AddThemeItem,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> get AddThemeItem =>
+      CopyWith$Mutation$AddThemeItem$AddThemeItem.stub(_res);
+}
+
+const documentNodeMutationAddThemeItem = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'AddThemeItem'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'themeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'mediaId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'AddThemeItem'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'themeId'),
+            value: VariableNode(name: NameNode(value: 'themeId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'mediaId'),
+            value: VariableNode(name: NameNode(value: 'mediaId')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$AddThemeItem _parserFn$Mutation$AddThemeItem(
+        Map<String, dynamic> data) =>
+    Mutation$AddThemeItem.fromJson(data);
+typedef OnMutationCompleted$Mutation$AddThemeItem = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$AddThemeItem?,
+);
+
+class Options$Mutation$AddThemeItem
+    extends graphql.MutationOptions<Mutation$AddThemeItem> {
+  Options$Mutation$AddThemeItem({
+    String? operationName,
+    required Variables$Mutation$AddThemeItem variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$AddThemeItem? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$AddThemeItem? onCompleted,
+    graphql.OnMutationUpdate<Mutation$AddThemeItem>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$AddThemeItem(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationAddThemeItem,
+          parserFn: _parserFn$Mutation$AddThemeItem,
+        );
+
+  final OnMutationCompleted$Mutation$AddThemeItem? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$AddThemeItem
+    extends graphql.WatchQueryOptions<Mutation$AddThemeItem> {
+  WatchOptions$Mutation$AddThemeItem({
+    String? operationName,
+    required Variables$Mutation$AddThemeItem variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$AddThemeItem? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationAddThemeItem,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$AddThemeItem,
+        );
+}
+
+extension ClientExtension$Mutation$AddThemeItem on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$AddThemeItem>> mutate$AddThemeItem(
+          Options$Mutation$AddThemeItem options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$AddThemeItem> watchMutation$AddThemeItem(
+          WatchOptions$Mutation$AddThemeItem options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$AddThemeItem$AddThemeItem {
+  Mutation$AddThemeItem$AddThemeItem({
+    required this.id,
+    this.$__typename = 'Theme',
+  });
+
+  factory Mutation$AddThemeItem$AddThemeItem.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddThemeItem$AddThemeItem(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$AddThemeItem$AddThemeItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddThemeItem$AddThemeItem
+    on Mutation$AddThemeItem$AddThemeItem {
+  CopyWith$Mutation$AddThemeItem$AddThemeItem<
+          Mutation$AddThemeItem$AddThemeItem>
+      get copyWith => CopyWith$Mutation$AddThemeItem$AddThemeItem(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> {
+  factory CopyWith$Mutation$AddThemeItem$AddThemeItem(
+    Mutation$AddThemeItem$AddThemeItem instance,
+    TRes Function(Mutation$AddThemeItem$AddThemeItem) then,
+  ) = _CopyWithImpl$Mutation$AddThemeItem$AddThemeItem;
+
+  factory CopyWith$Mutation$AddThemeItem$AddThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$AddThemeItem$AddThemeItem;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$AddThemeItem$AddThemeItem<TRes>
+    implements CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> {
+  _CopyWithImpl$Mutation$AddThemeItem$AddThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddThemeItem$AddThemeItem _instance;
+
+  final TRes Function(Mutation$AddThemeItem$AddThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddThemeItem$AddThemeItem(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$AddThemeItem$AddThemeItem<TRes>
+    implements CopyWith$Mutation$AddThemeItem$AddThemeItem<TRes> {
+  _CopyWithStubImpl$Mutation$AddThemeItem$AddThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeleteThemeItem {
+  factory Variables$Mutation$DeleteThemeItem({
+    required String themeId,
+    required String mediaId,
+  }) =>
+      Variables$Mutation$DeleteThemeItem._({
+        r'themeId': themeId,
+        r'mediaId': mediaId,
+      });
+
+  Variables$Mutation$DeleteThemeItem._(this._$data);
+
+  factory Variables$Mutation$DeleteThemeItem.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$themeId = data['themeId'];
+    result$data['themeId'] = (l$themeId as String);
+    final l$mediaId = data['mediaId'];
+    result$data['mediaId'] = (l$mediaId as String);
+    return Variables$Mutation$DeleteThemeItem._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get themeId => (_$data['themeId'] as String);
+  String get mediaId => (_$data['mediaId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$themeId = themeId;
+    result$data['themeId'] = l$themeId;
+    final l$mediaId = mediaId;
+    result$data['mediaId'] = l$mediaId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteThemeItem<
+          Variables$Mutation$DeleteThemeItem>
+      get copyWith => CopyWith$Variables$Mutation$DeleteThemeItem(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$DeleteThemeItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$themeId = themeId;
+    final lOther$themeId = other.themeId;
+    if (l$themeId != lOther$themeId) {
+      return false;
+    }
+    final l$mediaId = mediaId;
+    final lOther$mediaId = other.mediaId;
+    if (l$mediaId != lOther$mediaId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$themeId = themeId;
+    final l$mediaId = mediaId;
+    return Object.hashAll([
+      l$themeId,
+      l$mediaId,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteThemeItem<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteThemeItem(
+    Variables$Mutation$DeleteThemeItem instance,
+    TRes Function(Variables$Mutation$DeleteThemeItem) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteThemeItem;
+
+  factory CopyWith$Variables$Mutation$DeleteThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteThemeItem;
+
+  TRes call({
+    String? themeId,
+    String? mediaId,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteThemeItem<TRes>
+    implements CopyWith$Variables$Mutation$DeleteThemeItem<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteThemeItem _instance;
+
+  final TRes Function(Variables$Mutation$DeleteThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? themeId = _undefined,
+    Object? mediaId = _undefined,
+  }) =>
+      _then(Variables$Mutation$DeleteThemeItem._({
+        ..._instance._$data,
+        if (themeId != _undefined && themeId != null)
+          'themeId': (themeId as String),
+        if (mediaId != _undefined && mediaId != null)
+          'mediaId': (mediaId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteThemeItem<TRes>
+    implements CopyWith$Variables$Mutation$DeleteThemeItem<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    String? themeId,
+    String? mediaId,
+  }) =>
+      _res;
+}
+
+class Mutation$DeleteThemeItem {
+  Mutation$DeleteThemeItem({
+    required this.DeleteThemeItem,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteThemeItem.fromJson(Map<String, dynamic> json) {
+    final l$DeleteThemeItem = json['DeleteThemeItem'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteThemeItem(
+      DeleteThemeItem: Mutation$DeleteThemeItem$DeleteThemeItem.fromJson(
+          (l$DeleteThemeItem as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteThemeItem$DeleteThemeItem DeleteThemeItem;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$DeleteThemeItem = DeleteThemeItem;
+    _resultData['DeleteThemeItem'] = l$DeleteThemeItem.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$DeleteThemeItem = DeleteThemeItem;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$DeleteThemeItem,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$DeleteThemeItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$DeleteThemeItem = DeleteThemeItem;
+    final lOther$DeleteThemeItem = other.DeleteThemeItem;
+    if (l$DeleteThemeItem != lOther$DeleteThemeItem) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteThemeItem
+    on Mutation$DeleteThemeItem {
+  CopyWith$Mutation$DeleteThemeItem<Mutation$DeleteThemeItem> get copyWith =>
+      CopyWith$Mutation$DeleteThemeItem(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$DeleteThemeItem<TRes> {
+  factory CopyWith$Mutation$DeleteThemeItem(
+    Mutation$DeleteThemeItem instance,
+    TRes Function(Mutation$DeleteThemeItem) then,
+  ) = _CopyWithImpl$Mutation$DeleteThemeItem;
+
+  factory CopyWith$Mutation$DeleteThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteThemeItem;
+
+  TRes call({
+    Mutation$DeleteThemeItem$DeleteThemeItem? DeleteThemeItem,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> get DeleteThemeItem;
+}
+
+class _CopyWithImpl$Mutation$DeleteThemeItem<TRes>
+    implements CopyWith$Mutation$DeleteThemeItem<TRes> {
+  _CopyWithImpl$Mutation$DeleteThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteThemeItem _instance;
+
+  final TRes Function(Mutation$DeleteThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? DeleteThemeItem = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteThemeItem(
+        DeleteThemeItem:
+            DeleteThemeItem == _undefined || DeleteThemeItem == null
+                ? _instance.DeleteThemeItem
+                : (DeleteThemeItem as Mutation$DeleteThemeItem$DeleteThemeItem),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> get DeleteThemeItem {
+    final local$DeleteThemeItem = _instance.DeleteThemeItem;
+    return CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem(
+        local$DeleteThemeItem, (e) => call(DeleteThemeItem: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteThemeItem<TRes>
+    implements CopyWith$Mutation$DeleteThemeItem<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteThemeItem$DeleteThemeItem? DeleteThemeItem,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> get DeleteThemeItem =>
+      CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem.stub(_res);
+}
+
+const documentNodeMutationDeleteThemeItem = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteThemeItem'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'themeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'mediaId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'DeleteThemeItem'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'themeId'),
+            value: VariableNode(name: NameNode(value: 'themeId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'mediaId'),
+            value: VariableNode(name: NameNode(value: 'mediaId')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteThemeItem _parserFn$Mutation$DeleteThemeItem(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteThemeItem.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteThemeItem = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteThemeItem?,
+);
+
+class Options$Mutation$DeleteThemeItem
+    extends graphql.MutationOptions<Mutation$DeleteThemeItem> {
+  Options$Mutation$DeleteThemeItem({
+    String? operationName,
+    required Variables$Mutation$DeleteThemeItem variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteThemeItem? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteThemeItem? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteThemeItem>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteThemeItem(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteThemeItem,
+          parserFn: _parserFn$Mutation$DeleteThemeItem,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteThemeItem? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteThemeItem
+    extends graphql.WatchQueryOptions<Mutation$DeleteThemeItem> {
+  WatchOptions$Mutation$DeleteThemeItem({
+    String? operationName,
+    required Variables$Mutation$DeleteThemeItem variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteThemeItem? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteThemeItem,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteThemeItem,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteThemeItem on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteThemeItem>> mutate$DeleteThemeItem(
+          Options$Mutation$DeleteThemeItem options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteThemeItem>
+      watchMutation$DeleteThemeItem(
+              WatchOptions$Mutation$DeleteThemeItem options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$DeleteThemeItem$DeleteThemeItem {
+  Mutation$DeleteThemeItem$DeleteThemeItem({
+    required this.id,
+    this.$__typename = 'Theme',
+  });
+
+  factory Mutation$DeleteThemeItem$DeleteThemeItem.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteThemeItem$DeleteThemeItem(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$DeleteThemeItem$DeleteThemeItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteThemeItem$DeleteThemeItem
+    on Mutation$DeleteThemeItem$DeleteThemeItem {
+  CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<
+          Mutation$DeleteThemeItem$DeleteThemeItem>
+      get copyWith => CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> {
+  factory CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem(
+    Mutation$DeleteThemeItem$DeleteThemeItem instance,
+    TRes Function(Mutation$DeleteThemeItem$DeleteThemeItem) then,
+  ) = _CopyWithImpl$Mutation$DeleteThemeItem$DeleteThemeItem;
+
+  factory CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteThemeItem$DeleteThemeItem;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteThemeItem$DeleteThemeItem<TRes>
+    implements CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> {
+  _CopyWithImpl$Mutation$DeleteThemeItem$DeleteThemeItem(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteThemeItem$DeleteThemeItem _instance;
+
+  final TRes Function(Mutation$DeleteThemeItem$DeleteThemeItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteThemeItem$DeleteThemeItem(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteThemeItem$DeleteThemeItem<TRes>
+    implements CopyWith$Mutation$DeleteThemeItem$DeleteThemeItem<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteThemeItem$DeleteThemeItem(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}

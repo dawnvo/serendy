@@ -53,3 +53,15 @@ mutation EditTheme(
 mutation RemoveTheme($themeId: ID!) {
   RemoveTheme(themeId: $themeId)
 }
+
+mutation AddThemeItem($themeId: ID!, $mediaId: ID!) {
+  AddThemeItem(themeId: $themeId, mediaId: $mediaId) {
+    id
+  }
+}
+
+mutation DeleteThemeItem($themeId: ID!, $mediaId: ID!) {
+  DeleteThemeItem(themeId: $themeId, mediaId: $mediaId) {
+    id
+  }
+}

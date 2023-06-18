@@ -5,7 +5,9 @@ abstract class CollectionRepository {
 
   Future<Collection> fetchCollection({required String collectionId});
 
-  Future<void> createCollection({required String title});
+  Future<void> createCollection({
+    required String title,
+  });
 
   Future<void> editCollection({
     required String collectionId,
@@ -16,4 +18,14 @@ abstract class CollectionRepository {
   });
 
   Future<void> removeCollection({required String collectionId});
+
+  Future<void> addCollectionItem({
+    required String collectionId,
+    required String mediaId,
+  });
+
+  Future<void> deleteCollectionItem({
+    required String collectionId,
+    required String mediaId,
+  });
 }
