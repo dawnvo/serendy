@@ -10,7 +10,8 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
   EvaluationBloc({required this.evaluationRepository})
       : super(const EvaluationState()) {
     on<Evaluation$Fetched>(_onFetched);
-    on<Evaluation$EvaluateRequested>(_onEvaluateRequested);
+    on<Evaluation$Evaluated>(_onEvaluated);
+    on<Evaluation$Removed>(_onRemoved);
   }
 
   final EvaluationRepository evaluationRepository;
@@ -37,8 +38,8 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     }
   }
 
-  Future<void> _onEvaluateRequested(
-    Evaluation$EvaluateRequested event,
+  Future<void> _onEvaluated(
+    Evaluation$Evaluated event,
     Emitter<EvaluationState> emit,
   ) async {
     try {
@@ -50,6 +51,25 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
       emit(state.copyWith(
         status: EvaluationStatus.success,
         evaluation: evaluation,
+      ));
+    } catch (err) {
+      emit(state.copyWith(
+        status: EvaluationStatus.failure,
+        errorMessage: err.toString(),
+      ));
+    }
+  }
+
+  Future<void> _onRemoved(
+    Evaluation$Removed event,
+    Emitter<EvaluationState> emit,
+  ) async {
+    try {
+      await evaluationRepository.removeEvaluation(event.mediaId);
+
+      emit(const EvaluationState(
+        status: EvaluationStatus.success,
+        evaluation: null,
       ));
     } catch (err) {
       emit(state.copyWith(

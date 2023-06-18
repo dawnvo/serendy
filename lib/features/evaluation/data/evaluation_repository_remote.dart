@@ -53,6 +53,10 @@ final class EvaluationRepositoryRemote extends EvaluationRepository
 
   @override
   Future<void> removeEvaluation(String mediaId) async {
-    throw UnimplementedError();
+    await guard(
+      () => _client.mutate$RemoveEvaluation(Options$Mutation$RemoveEvaluation(
+        variables: Variables$Mutation$RemoveEvaluation(mediaId: mediaId),
+      )),
+    );
   }
 }

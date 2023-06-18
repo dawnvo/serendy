@@ -12,8 +12,8 @@ final class Evaluation$Fetched extends EvaluationEvent {
   List<Object> get props => [mediaId];
 }
 
-final class Evaluation$EvaluateRequested extends EvaluationEvent {
-  const Evaluation$EvaluateRequested({
+final class Evaluation$Evaluated extends EvaluationEvent {
+  const Evaluation$Evaluated({
     required this.mediaId,
     required this.emotion,
   });
@@ -26,4 +26,12 @@ final class Evaluation$EvaluateRequested extends EvaluationEvent {
         mediaId,
         emotion,
       ];
+}
+
+final class Evaluation$Removed extends EvaluationEvent {
+  const Evaluation$Removed({required this.mediaId});
+  final String mediaId;
+
+  @override
+  List<Object> get props => [mediaId];
 }

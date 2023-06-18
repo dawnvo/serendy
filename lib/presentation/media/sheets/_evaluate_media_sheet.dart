@@ -12,12 +12,15 @@ class _EvaluateMediaSheet extends StatelessWidget {
   }) {
     // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
-      context.read<EvaluationBloc>().add(
-          Evaluation$EvaluateRequested(mediaId: media.id, emotion: current));
+      context
+          .read<EvaluationBloc>() //
+          .add(Evaluation$Evaluated(mediaId: media.id, emotion: current));
     }
     // 동일하면 선택을 취소해요.
     else {
-      // evaluationBloc.add(const EvaluationRemoved(mediaId: mediaId));
+      context
+          .read<EvaluationBloc>() //
+          .add(Evaluation$Removed(mediaId: media.id));
     }
   }
 
