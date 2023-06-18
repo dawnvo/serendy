@@ -1,7 +1,9 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
 class _SaveMediaSheet extends StatelessWidget {
-  const _SaveMediaSheet();
+  const _SaveMediaSheet({required this.media});
+
+  final Media media;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,14 @@ class _SaveMediaSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
       child: CustomScrollView(shrinkWrap: true, slivers: [
         MyCollectionsList(
-          collections: collections,
-          onSelect: (collection) => context.popRoute(),
-        ),
+            collections: collections,
+            onSelect: (collection) {
+              context.read<ProfileBloc>().add(Profile$CollectionItemAdded(
+                    collectionId: collection.id,
+                    mediaId: media.id,
+                  ));
+              context.popRoute();
+            }),
       ]),
     );
   }

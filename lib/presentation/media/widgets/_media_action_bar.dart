@@ -14,7 +14,7 @@ class _MediaActionBar extends StatelessWidget {
           onPressed: () => context.showCustomModalBottomSheet(
             (context) => BlocProvider.value(
               value: context.read<ProfileBloc>(),
-              child: const _SaveMediaSheet(),
+              child: _SaveMediaSheet(media: media),
             ),
           ),
           icon: const Icon(RemixIcon.add_box_fill),
