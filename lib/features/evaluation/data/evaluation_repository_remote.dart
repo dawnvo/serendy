@@ -24,7 +24,16 @@ final class EvaluationRepositoryRemote extends EvaluationRepository
 
   @override
   Future<Evaluation?> fetchEvaluation(String mediaId) async {
-    throw UnimplementedError();
+    final queryResult = await guard(
+      () => _client.query$GetEvaluation(Options$Query$GetEvaluation(
+        variables: Variables$Query$GetEvaluation(mediaId: mediaId),
+      )),
+    );
+
+    final data = queryResult.parsedData!.GetEvaluation;
+    if (data == null) return null;
+
+    return EvaluationMapper.toDomain(data);
   }
 
   @override
