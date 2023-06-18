@@ -5,7 +5,7 @@ abstract class EvaluationRepository {
 
   Future<Evaluation?> fetchEvaluation(String mediaId);
 
-  Future<void> evaluate(String mediaId, Emotion emotion);
+  Future<Evaluation> evaluate(String mediaId, Emotion emotion);
 
   Future<void> removeEvaluation(String mediaId);
 }

@@ -37,8 +37,18 @@ final class EvaluationRepositoryRemote extends EvaluationRepository
   }
 
   @override
-  Future<void> evaluate(String mediaId, Emotion emotion) async {
-    throw UnimplementedError();
+  Future<Evaluation> evaluate(String mediaId, Emotion emotion) async {
+    final queryResult = await guard(
+      () => _client.mutate$Evaluate(Options$Mutation$Evaluate(
+        variables: Variables$Mutation$Evaluate(
+          emotion: Enum$Emotion.values.byName(emotion.name),
+          mediaId: mediaId,
+        ),
+      )),
+    );
+
+    final data = queryResult.parsedData!.Evaluate;
+    return EvaluationMapper.toDomain(data);
   }
 
   @override

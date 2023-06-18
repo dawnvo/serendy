@@ -1,7 +1,9 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
 class _EvaluateMediaSheet extends StatelessWidget {
-  const _EvaluateMediaSheet();
+  const _EvaluateMediaSheet({required this.media});
+
+  final Media media;
 
   void handleChange(
     BuildContext context, {
@@ -10,7 +12,8 @@ class _EvaluateMediaSheet extends StatelessWidget {
   }) {
     // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
-      // evaluationBloc.add(EvaluationUpdated(mediaId: mediaId, emotion: current));
+      context.read<EvaluationBloc>().add(
+          Evaluation$EvaluateRequested(mediaId: media.id, emotion: current));
     }
     // 동일하면 선택을 취소해요.
     else {
