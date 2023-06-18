@@ -3,8 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:serendy/features/user/domain/user.dart';
 import 'package:serendy/features/media/domain/media.dart';
 
-part 'media.dart';
-
 enum Emotion {
   /* 멋짐 */ nice,
   /* 재미 */ joy,
@@ -28,7 +26,7 @@ final class Evaluation extends Equatable {
   final UserID userId;
 
   /// 감상한 미디어
-  final MediaItem media;
+  final Media media;
 
   /// 감상 후 느낀 감정
   final Emotion emotion;
@@ -63,7 +61,7 @@ final class Evaluation extends Equatable {
   Evaluation copyWith({
     final EvaluationID? id,
     final UserID? userId,
-    final MediaItem? media,
+    final Media? media,
     final Emotion? emotion,
     final bool? private,
     final DateTime? createdAt,

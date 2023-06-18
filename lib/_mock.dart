@@ -20,11 +20,7 @@ final mediaMock = Media(
 final evaluationMock = Evaluation(
   userId: userMock.id,
   emotion: Emotion.happyness,
-  media: MediaItem(
-    id: mediaMock.id,
-    image: mediaMock.image,
-    title: mediaMock.title,
-  ),
+  media: mediaMock,
 );
 
 // Collection
