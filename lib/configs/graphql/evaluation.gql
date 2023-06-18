@@ -1,0 +1,33 @@
+fragment EvaluationFields on Evaluation {
+  media {
+    id
+    title
+    image
+  }
+  id
+  userId
+  emotion
+  private
+}
+
+query GetEvaluation($mediaId: ID!) {
+  GetEvaluation(mediaId: $mediaId) {
+    ...EvaluationFields
+  }
+}
+
+query GetEvaluationList($userId: ID!) {
+  GetEvaluationList(userId: $userId) {
+    ...EvaluationFields
+  }
+}
+
+mutation Evaluate($mediaId: ID!, $emotion: Emotion!) {
+  Evaluate(mediaId: $mediaId, emotion: $emotion) {
+    ...EvaluationFields
+  }
+}
+
+mutation RemoveEvaluation($mediaId: ID!) {
+  RemoveEvaluation(mediaId: $mediaId)
+}
