@@ -20,7 +20,9 @@ class _EvaluateMediaSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = evaluationMock;
+    final evaluation = context.select<EvaluationBloc, Evaluation?>(
+      (bloc) => bloc.state.evaluation,
+    );
 
     return SingleChildScrollView(
       child: Column(children: [
@@ -40,11 +42,11 @@ class _EvaluateMediaSheet extends StatelessWidget {
             for (final emotion in Emotion.values)
               _EmotionGridTile(
                 emotion: emotion,
-                selected: emotion == evaluation.emotion,
+                selected: emotion == evaluation?.emotion,
                 onSelect: (selected) {
                   handleChange(
                     context,
-                    previous: evaluation.emotion,
+                    previous: evaluation?.emotion,
                     current: selected,
                   );
                   context.popRoute();

@@ -11,17 +11,25 @@ class _EvaluateIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = evaluationMock;
+    final evaluation = context.select<EvaluationBloc, Evaluation?>(
+      (bloc) => bloc.state.evaluation,
+    );
 
     return Row(children: [
-      _EmotionLabel(evaluation.emotion),
-      IconButton(
-        onPressed: onPressed,
-        icon: SvgPicture.asset(
-          evaluation.emotion.filePath,
-          height: Sizes.p28,
-        ),
-      )
+      if (evaluation != null) _EmotionLabel(evaluation.emotion),
+      if (evaluation != null)
+        IconButton(
+          onPressed: onPressed,
+          icon: SvgPicture.asset(
+            evaluation.emotion.filePath,
+            height: Sizes.p28,
+          ),
+        )
+      else
+        IconButton(
+          onPressed: onPressed,
+          icon: icon,
+        )
     ]);
   }
 }

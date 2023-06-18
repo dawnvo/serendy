@@ -12,6 +12,7 @@ import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/media/bloc/media_bloc.dart';
+import 'package:serendy/presentation/media/bloc/evaluation/evaluation_bloc.dart';
 import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
@@ -41,6 +42,10 @@ class MediaScreen extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               MediaBloc(mediaRepository: sl())..add(Media$Fetched(id: id)),
+        ),
+        BlocProvider(
+          create: (context) => EvaluationBloc(evaluationRepository: sl())
+            ..add(Evaluation$Fetched(mediaId: id)),
         ),
         BlocProvider(
           create: (context) => ProfileBloc(collectionRepository: sl())
