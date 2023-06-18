@@ -23,6 +23,7 @@ final class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+          initial: true,
           page: AppRoute.page,
           children: [
             AutoRoute(page: HomeRoute.page),
@@ -56,7 +57,6 @@ final class AppRouter extends _$AppRouter {
 
         /// Admin
         AutoRoute(
-          initial: true,
           fullscreenDialog: true,
           page: AdminRoute.page,
         ),

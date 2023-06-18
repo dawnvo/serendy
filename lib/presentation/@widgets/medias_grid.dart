@@ -11,7 +11,7 @@ class SliverMediasGrid extends StatelessWidget {
     super.key,
   });
 
-  final List<Media> medias;
+  final List<Media?> medias;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class SliverMediasGrid extends StatelessWidget {
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          final media = medias[index];
+          final media = medias[index]!;
           return MediaCard(
             media: media,
             onTap: () => context.pushRoute(MediaRoute(id: media.id)),

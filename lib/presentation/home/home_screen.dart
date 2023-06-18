@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/home/bloc/home_bloc.dart';
 
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
@@ -15,7 +16,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HomeView();
+    return BlocProvider(
+      create: (context) =>
+          HomeBloc(mediaRepository: sl())..add(const Home$MediasListFetched()),
+      child: const _HomeView(),
+    );
   }
 }
 
@@ -24,6 +29,8 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<HomeBloc>().state;
+
     final filters = [
       "실시간 인기",
       "애니",
@@ -33,15 +40,18 @@ class _HomeView extends StatelessWidget {
       "드라마",
     ];
 
-    return _HomeTemplate(
-      mediaFiltersTabBar: _HomeMediaFiltersTabBar(
-        filters: filters,
-        onSelect: (item) {},
-      ),
-      mediasGrid: _HomeMediasGrid(
-        medias: collectionsMock[0].items.map((e) => e!.media).toList(),
-      ),
-    );
+    return switch (state) {
+      HomeLoaded() => _HomeTemplate(
+          mediaFiltersTabBar: _HomeMediaFiltersTabBar(
+            filters: filters,
+            onSelect: (item) {},
+          ),
+          mediasGrid: _HomeMediasGrid(medias: state.medias),
+        ),
+      HomeInitial() => const SizedBox(),
+      HomeLoading() => const SizedBox(),
+      HomeError() => const SizedBox(),
+    };
   }
 }
 

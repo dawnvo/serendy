@@ -21,7 +21,7 @@ class _HomeMediaFiltersTabBar extends HookWidget {
       onTap: (index) => onSelect(filters[index]),
       tabs: [
         for (var i = 0; i < filters.length; i++)
-          _MediaFilterTab(
+          __MediaFilterTab(
             labelColor: selectedIndex == i
                 ? context.colorScheme.onSurface
                 : context.colorScheme.outline,
@@ -32,8 +32,8 @@ class _HomeMediaFiltersTabBar extends HookWidget {
   }
 }
 
-class _MediaFilterTab extends StatelessWidget {
-  const _MediaFilterTab({
+class __MediaFilterTab extends StatelessWidget {
+  const __MediaFilterTab({
     required this.label,
     required this.labelColor,
   });
