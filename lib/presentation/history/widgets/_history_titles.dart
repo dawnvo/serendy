@@ -5,6 +5,10 @@ class _HistoryTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final evaluationsCount = context.select<HistoryBloc, int>(
+      (bloc) => bloc.state.evaluations.length,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -16,7 +20,7 @@ class _HistoryTitles extends StatelessWidget {
         ),
         Gap.h4,
         Text(
-          "작품 12",
+          "작품 $evaluationsCount",
           style: context.textTheme.bodyLarge?.copyWith(
             color: context.colorScheme.onSurfaceVariant,
           ),

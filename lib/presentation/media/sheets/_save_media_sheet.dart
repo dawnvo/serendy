@@ -18,14 +18,15 @@ class _SaveMediaSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
       child: CustomScrollView(shrinkWrap: true, slivers: [
         MyCollectionsList(
-            collections: collections,
-            onSelect: (collection) {
-              context.read<ProfileBloc>().add(Profile$CollectionItemAdded(
-                    collectionId: collection.id,
-                    mediaId: media.id,
-                  ));
-              context.popRoute();
-            }),
+          collections: collections,
+          onSelect: (collection) {
+            context.read<ProfileBloc>().add(Profile$CollectionItemAdded(
+                  collectionId: collection.id,
+                  mediaId: media.id,
+                ));
+            context.popRoute();
+          },
+        ),
       ]),
     );
   }
