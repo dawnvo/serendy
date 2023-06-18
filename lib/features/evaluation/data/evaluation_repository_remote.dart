@@ -1,0 +1,39 @@
+import 'package:graphql/client.dart';
+import 'package:serendy/configs/configs.dart';
+import 'package:serendy/configs/mixin/graphql_error_handler_mixin.dart';
+import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
+import 'package:serendy/features/evaluation/data/mapper/evaluation_mapper.dart';
+import 'package:serendy/features/evaluation/domain/evaluation.dart';
+
+final class EvaluationRepositoryRemote extends EvaluationRepository
+    with GraphqlErrorHandlerMixin {
+  EvaluationRepositoryRemote(this._client);
+  final GraphQLClient _client;
+
+  @override
+  Future<List<Evaluation?>> fetchEvaluationList(String userId) async {
+    final queryResult = await guard(
+      () => _client.query$GetEvaluationList(Options$Query$GetEvaluationList(
+        variables: Variables$Query$GetEvaluationList(userId: userId),
+      )),
+    );
+
+    final datas = queryResult.parsedData!.GetEvaluationList;
+    return EvaluationMapper.toDomains(datas);
+  }
+
+  @override
+  Future<Evaluation?> fetchEvaluation(String mediaId) async {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> evaluate(String mediaId, Emotion emotion) async {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> removeEvaluation(String mediaId) async {
+    throw UnimplementedError();
+  }
+}

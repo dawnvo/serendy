@@ -1,17 +1,11 @@
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 
 abstract class EvaluationRepository {
-  Future<List<Evaluation?>> fetchEvaluationList();
+  Future<List<Evaluation?>> fetchEvaluationList(String userId);
 
-  Stream<List<Evaluation?>> watchEvaluationList();
+  Future<Evaluation?> fetchEvaluation(String mediaId);
 
-  Future<Evaluation?> fetchEvaluation(String id);
+  Future<void> evaluate(String mediaId, Emotion emotion);
 
-  Stream<Evaluation?> watchEvaluation(String id);
-
-  Future<void> createEvaluation(Evaluation evaluation);
-
-  Future<void> updateEvaluation(Evaluation evaluation);
-
-  Future<void> removeEvaluation(Evaluation evaluation);
+  Future<void> removeEvaluation(String mediaId);
 }
