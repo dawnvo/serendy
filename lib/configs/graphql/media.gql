@@ -16,6 +16,12 @@ query GetMedia($mediaId: ID!) {
   }
 }
 
+query GetMediaList($title: String) {
+  GetMediaList(title: $title) {
+    ...MediaFields
+  }
+}
+
 mutation AddMedia(
   $type: MediaType!
   $status: MediaStatus!

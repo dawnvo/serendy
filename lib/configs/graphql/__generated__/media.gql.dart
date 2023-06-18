@@ -821,6 +821,440 @@ extension ClientExtension$Query$GetMedia on graphql.GraphQLClient {
   }
 }
 
+class Variables$Query$GetMediaList {
+  factory Variables$Query$GetMediaList({String? title}) =>
+      Variables$Query$GetMediaList._({
+        if (title != null) r'title': title,
+      });
+
+  Variables$Query$GetMediaList._(this._$data);
+
+  factory Variables$Query$GetMediaList.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    return Variables$Query$GetMediaList._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get title => (_$data['title'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$GetMediaList<Variables$Query$GetMediaList>
+      get copyWith => CopyWith$Variables$Query$GetMediaList(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$GetMediaList) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    return Object.hashAll([_$data.containsKey('title') ? l$title : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$GetMediaList<TRes> {
+  factory CopyWith$Variables$Query$GetMediaList(
+    Variables$Query$GetMediaList instance,
+    TRes Function(Variables$Query$GetMediaList) then,
+  ) = _CopyWithImpl$Variables$Query$GetMediaList;
+
+  factory CopyWith$Variables$Query$GetMediaList.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$GetMediaList;
+
+  TRes call({String? title});
+}
+
+class _CopyWithImpl$Variables$Query$GetMediaList<TRes>
+    implements CopyWith$Variables$Query$GetMediaList<TRes> {
+  _CopyWithImpl$Variables$Query$GetMediaList(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$GetMediaList _instance;
+
+  final TRes Function(Variables$Query$GetMediaList) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? title = _undefined}) =>
+      _then(Variables$Query$GetMediaList._({
+        ..._instance._$data,
+        if (title != _undefined) 'title': (title as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$GetMediaList<TRes>
+    implements CopyWith$Variables$Query$GetMediaList<TRes> {
+  _CopyWithStubImpl$Variables$Query$GetMediaList(this._res);
+
+  TRes _res;
+
+  call({String? title}) => _res;
+}
+
+class Query$GetMediaList {
+  Query$GetMediaList({
+    required this.GetMediaList,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$GetMediaList.fromJson(Map<String, dynamic> json) {
+    final l$GetMediaList = json['GetMediaList'];
+    final l$$__typename = json['__typename'];
+    return Query$GetMediaList(
+      GetMediaList: (l$GetMediaList as List<dynamic>)
+          .map(
+              (e) => Fragment$MediaFields.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$MediaFields> GetMediaList;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$GetMediaList = GetMediaList;
+    _resultData['GetMediaList'] =
+        l$GetMediaList.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$GetMediaList = GetMediaList;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$GetMediaList.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetMediaList) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$GetMediaList = GetMediaList;
+    final lOther$GetMediaList = other.GetMediaList;
+    if (l$GetMediaList.length != lOther$GetMediaList.length) {
+      return false;
+    }
+    for (int i = 0; i < l$GetMediaList.length; i++) {
+      final l$GetMediaList$entry = l$GetMediaList[i];
+      final lOther$GetMediaList$entry = lOther$GetMediaList[i];
+      if (l$GetMediaList$entry != lOther$GetMediaList$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetMediaList on Query$GetMediaList {
+  CopyWith$Query$GetMediaList<Query$GetMediaList> get copyWith =>
+      CopyWith$Query$GetMediaList(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$GetMediaList<TRes> {
+  factory CopyWith$Query$GetMediaList(
+    Query$GetMediaList instance,
+    TRes Function(Query$GetMediaList) then,
+  ) = _CopyWithImpl$Query$GetMediaList;
+
+  factory CopyWith$Query$GetMediaList.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetMediaList;
+
+  TRes call({
+    List<Fragment$MediaFields>? GetMediaList,
+    String? $__typename,
+  });
+  TRes GetMediaList(
+      Iterable<Fragment$MediaFields> Function(
+              Iterable<CopyWith$Fragment$MediaFields<Fragment$MediaFields>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetMediaList<TRes>
+    implements CopyWith$Query$GetMediaList<TRes> {
+  _CopyWithImpl$Query$GetMediaList(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetMediaList _instance;
+
+  final TRes Function(Query$GetMediaList) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? GetMediaList = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetMediaList(
+        GetMediaList: GetMediaList == _undefined || GetMediaList == null
+            ? _instance.GetMediaList
+            : (GetMediaList as List<Fragment$MediaFields>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes GetMediaList(
+          Iterable<Fragment$MediaFields> Function(
+                  Iterable<CopyWith$Fragment$MediaFields<Fragment$MediaFields>>)
+              _fn) =>
+      call(
+          GetMediaList: _fn(
+              _instance.GetMediaList.map((e) => CopyWith$Fragment$MediaFields(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetMediaList<TRes>
+    implements CopyWith$Query$GetMediaList<TRes> {
+  _CopyWithStubImpl$Query$GetMediaList(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$MediaFields>? GetMediaList,
+    String? $__typename,
+  }) =>
+      _res;
+  GetMediaList(_fn) => _res;
+}
+
+const documentNodeQueryGetMediaList = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetMediaList'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'title')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'GetMediaList'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'title'),
+            value: VariableNode(name: NameNode(value: 'title')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'MediaFields'),
+            directives: [],
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+  fragmentDefinitionMediaFields,
+]);
+Query$GetMediaList _parserFn$Query$GetMediaList(Map<String, dynamic> data) =>
+    Query$GetMediaList.fromJson(data);
+typedef OnQueryComplete$Query$GetMediaList = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetMediaList?,
+);
+
+class Options$Query$GetMediaList
+    extends graphql.QueryOptions<Query$GetMediaList> {
+  Options$Query$GetMediaList({
+    String? operationName,
+    Variables$Query$GetMediaList? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetMediaList? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$GetMediaList? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$GetMediaList(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryGetMediaList,
+          parserFn: _parserFn$Query$GetMediaList,
+        );
+
+  final OnQueryComplete$Query$GetMediaList? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$GetMediaList
+    extends graphql.WatchQueryOptions<Query$GetMediaList> {
+  WatchOptions$Query$GetMediaList({
+    String? operationName,
+    Variables$Query$GetMediaList? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetMediaList? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryGetMediaList,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$GetMediaList,
+        );
+}
+
+class FetchMoreOptions$Query$GetMediaList extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetMediaList({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$GetMediaList? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryGetMediaList,
+        );
+}
+
+extension ClientExtension$Query$GetMediaList on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetMediaList>> query$GetMediaList(
+          [Options$Query$GetMediaList? options]) async =>
+      await this.query(options ?? Options$Query$GetMediaList());
+  graphql.ObservableQuery<Query$GetMediaList> watchQuery$GetMediaList(
+          [WatchOptions$Query$GetMediaList? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetMediaList());
+  void writeQuery$GetMediaList({
+    required Query$GetMediaList data,
+    Variables$Query$GetMediaList? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryGetMediaList),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$GetMediaList? readQuery$GetMediaList({
+    Variables$Query$GetMediaList? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryGetMediaList),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$GetMediaList.fromJson(result);
+  }
+}
+
 class Variables$Mutation$AddMedia {
   factory Variables$Mutation$AddMedia({
     required Enum$MediaType type,

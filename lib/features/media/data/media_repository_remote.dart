@@ -11,8 +11,15 @@ final class MediaRepositoryRemote extends MediaRepository
   final GraphQLClient _client;
 
   @override
-  Future<List<Media?>> fetchMediasList() async {
-    throw UnimplementedError();
+  Future<List<Media?>> fetchMediasList({String? title}) async {
+    final result = await guard(
+      () => _client.query$GetMediaList(Options$Query$GetMediaList(
+        variables: Variables$Query$GetMediaList(title: title),
+      )),
+    );
+
+    final datas = result.parsedData!.GetMediaList;
+    return MediaMapper.toDomains(datas);
   }
 
   @override
