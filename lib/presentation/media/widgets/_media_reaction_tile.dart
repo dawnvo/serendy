@@ -1,20 +1,22 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
 class _MediaReactionTile extends StatelessWidget {
-  const _MediaReactionTile();
+  const _MediaReactionTile({required this.reactions});
+  final List<Evaluation?> reactions;
 
   @override
   Widget build(BuildContext context) {
-    final reactions = [evaluationMock];
-
     if (reactions.isNotEmpty) {
       /// 중복된 감정을 병합해요.
-      final uniqueKeys = reactions.map((_) => _.emotion).toSet();
+      final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
       final totalCount = reactions.length.withComma;
 
       return ListTile(
         onTap: () => context.showCustomModalBottomSheet(
-          (context) => const _MediaReactionDetailSheet(),
+          (context) => BlocProvider.value(
+            value: context.read<MediaBloc>(),
+            child: const _MediaReactionDetailSheet(),
+          ),
         ),
         leading: _ReactionIcons(emotions: uniqueKeys.toList()),
         title: Text('$totalCount명이 감상했어요'),

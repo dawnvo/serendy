@@ -5,7 +5,12 @@ class _MediaReactionDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reactions = [evaluationMock];
+    final state = context.watch<MediaBloc>().state;
+    List<Evaluation?> reactions = [];
+
+    if (state is MediaLoaded) {
+      reactions = state.reactions;
+    }
 
     final reactionDatas = _transform(reactions);
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);

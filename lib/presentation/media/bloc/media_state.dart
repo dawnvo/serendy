@@ -14,8 +14,13 @@ final class MediaLoading extends MediaState {
 
 /// LOADED
 final class MediaLoaded extends MediaState {
-  const MediaLoaded({required this.media});
+  const MediaLoaded({
+    required this.media,
+    required this.reactions,
+  });
+
   final Media media;
+  final List<Evaluation?> reactions;
 
   @override
   List<Object?> get props => [media];

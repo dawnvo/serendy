@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:serendy/_mock.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/domain/media.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/media/bloc/media_bloc.dart';
 import 'package:serendy/presentation/media/bloc/evaluation/evaluation_bloc.dart';
+import 'package:serendy/presentation/media/bloc/media_bloc.dart';
 import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
@@ -40,16 +39,20 @@ class MediaScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              MediaBloc(mediaRepository: sl())..add(Media$Fetched(id: id)),
+          create: (context) => MediaBloc(
+            mediaRepository: sl(),
+            evaluationRepository: sl(),
+          )..add(Media$Fetched(id: id)),
         ),
         BlocProvider(
-          create: (context) => EvaluationBloc(evaluationRepository: sl())
-            ..add(Evaluation$Fetched(mediaId: id)),
+          create: (context) => EvaluationBloc(
+            evaluationRepository: sl(),
+          )..add(Evaluation$Fetched(mediaId: id)),
         ),
         BlocProvider(
-          create: (context) => ProfileBloc(collectionRepository: sl())
-            ..add(const Profile$MyCollectionsListFetched()),
+          create: (context) => ProfileBloc(
+            collectionRepository: sl(),
+          )..add(const Profile$MyCollectionsListFetched()),
         ),
       ],
       child: const _MediaView(),
@@ -77,9 +80,9 @@ class _MediaView extends StatelessWidget {
             ],
           ),
           actionBar: _MediaActionBar(media: state.media),
-          contents: const [
-            _MediaReactionTile(),
-            _MediaInfoTile(),
+          contents: [
+            _MediaReactionTile(reactions: state.reactions),
+            const _MediaInfoTile(),
           ],
         ),
       MediaLoading() => const Center(child: CircularProgressIndicator()),
