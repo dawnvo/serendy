@@ -13,7 +13,7 @@ class _MediaActionBar extends StatelessWidget {
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
             (context) => BlocProvider.value(
-              value: context.read<ProfileBloc>(),
+              value: context.read<MyCollectionsBloc>(),
               child: _SaveMediaSheet(media: media),
             ),
           ),
@@ -33,7 +33,7 @@ class _MediaActionBar extends StatelessWidget {
         _EvaluateIconButton(
           onPressed: () => context.showCustomModalBottomSheet(
             (context) => BlocProvider.value(
-              value: context.read<EvaluationBloc>(),
+              value: context.read<MyEvaluationBloc>(),
               child: _EvaluateMediaSheet(media: media),
             ),
           ),

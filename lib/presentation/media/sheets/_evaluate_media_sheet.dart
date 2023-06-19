@@ -13,20 +13,20 @@ class _EvaluateMediaSheet extends StatelessWidget {
     // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
       context
-          .read<EvaluationBloc>() //
-          .add(Evaluation$Evaluated(mediaId: media.id, emotion: current));
+          .read<MyEvaluationBloc>() //
+          .add(MyEvaluation$Evaluated(mediaId: media.id, emotion: current));
     }
     // 동일하면 선택을 취소해요.
     else {
       context
-          .read<EvaluationBloc>() //
-          .add(Evaluation$Removed(mediaId: media.id));
+          .read<MyEvaluationBloc>() //
+          .add(MyEvaluation$Removed(mediaId: media.id));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = context.select<EvaluationBloc, Evaluation?>(
+    final evaluation = context.select<MyEvaluationBloc, Evaluation?>(
       (bloc) => bloc.state.evaluation,
     );
 

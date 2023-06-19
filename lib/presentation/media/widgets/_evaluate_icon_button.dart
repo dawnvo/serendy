@@ -11,7 +11,7 @@ class _EvaluateIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = context.select<EvaluationBloc, Evaluation?>(
+    final evaluation = context.select<MyEvaluationBloc, Evaluation?>(
       (bloc) => bloc.state.evaluation,
     );
 

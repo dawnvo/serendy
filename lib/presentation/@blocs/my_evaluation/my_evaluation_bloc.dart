@@ -3,44 +3,44 @@ import 'package:equatable/equatable.dart';
 import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 
-part 'evaluation_event.dart';
-part 'evaluation_state.dart';
+part 'my_evaluation_event.dart';
+part 'my_evaluation_state.dart';
 
-class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
-  EvaluationBloc({required this.evaluationRepository})
-      : super(const EvaluationState()) {
-    on<Evaluation$Fetched>(_onFetched);
-    on<Evaluation$Evaluated>(_onEvaluated);
-    on<Evaluation$Removed>(_onRemoved);
+class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
+  MyEvaluationBloc({required this.evaluationRepository})
+      : super(const MyEvaluationState()) {
+    on<MyEvaluation$Fetched>(_onFetched);
+    on<MyEvaluation$Evaluated>(_onEvaluated);
+    on<MyEvaluation$Removed>(_onRemoved);
   }
 
   final EvaluationRepository evaluationRepository;
 
   Future<void> _onFetched(
-    Evaluation$Fetched event,
-    Emitter<EvaluationState> emit,
+    MyEvaluation$Fetched event,
+    Emitter<MyEvaluationState> emit,
   ) async {
-    emit(state.copyWith(status: EvaluationStatus.loading));
+    emit(state.copyWith(status: MyEvaluationStatus.loading));
 
     try {
       final evaluation =
           await evaluationRepository.fetchEvaluation(event.mediaId);
 
       emit(state.copyWith(
-        status: EvaluationStatus.success,
+        status: MyEvaluationStatus.success,
         evaluation: evaluation,
       ));
     } catch (err) {
       emit(state.copyWith(
-        status: EvaluationStatus.failure,
+        status: MyEvaluationStatus.failure,
         errorMessage: err.toString(),
       ));
     }
   }
 
   Future<void> _onEvaluated(
-    Evaluation$Evaluated event,
-    Emitter<EvaluationState> emit,
+    MyEvaluation$Evaluated event,
+    Emitter<MyEvaluationState> emit,
   ) async {
     try {
       final evaluation = await evaluationRepository.evaluate(
@@ -49,31 +49,31 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
       );
 
       emit(state.copyWith(
-        status: EvaluationStatus.success,
+        status: MyEvaluationStatus.success,
         evaluation: evaluation,
       ));
     } catch (err) {
       emit(state.copyWith(
-        status: EvaluationStatus.failure,
+        status: MyEvaluationStatus.failure,
         errorMessage: err.toString(),
       ));
     }
   }
 
   Future<void> _onRemoved(
-    Evaluation$Removed event,
-    Emitter<EvaluationState> emit,
+    MyEvaluation$Removed event,
+    Emitter<MyEvaluationState> emit,
   ) async {
     try {
       await evaluationRepository.removeEvaluation(event.mediaId);
 
-      emit(const EvaluationState(
-        status: EvaluationStatus.success,
+      emit(const MyEvaluationState(
+        status: MyEvaluationStatus.success,
         evaluation: null,
       ));
     } catch (err) {
       emit(state.copyWith(
-        status: EvaluationStatus.failure,
+        status: MyEvaluationStatus.failure,
         errorMessage: err.toString(),
       ));
     }

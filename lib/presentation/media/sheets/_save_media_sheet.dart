@@ -7,12 +7,9 @@ class _SaveMediaSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<ProfileBloc>().state;
-    List<Collection?> collections = [];
-
-    if (state is ProfileLoaded) {
-      collections = state.collections;
-    }
+    final collections = context.select<MyCollectionsBloc, List<Collection?>>(
+      (bloc) => bloc.state.collections,
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
@@ -20,7 +17,7 @@ class _SaveMediaSheet extends StatelessWidget {
         MyCollectionsList(
           collections: collections,
           onSelect: (collection) {
-            context.read<ProfileBloc>().add(Profile$CollectionItemAdded(
+            context.read<MyCollectionsBloc>().add(MyCollections$ItemAdded(
                   collectionId: collection.id,
                   mediaId: media.id,
                 ));

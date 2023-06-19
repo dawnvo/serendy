@@ -1,24 +1,24 @@
-part of 'evaluation_bloc.dart';
+part of 'my_evaluation_bloc.dart';
 
-enum EvaluationStatus { initial, loading, success, failure }
+enum MyEvaluationStatus { initial, loading, success, failure }
 
-final class EvaluationState extends Equatable {
-  const EvaluationState({
-    this.status = EvaluationStatus.initial,
+final class MyEvaluationState extends Equatable {
+  const MyEvaluationState({
+    this.status = MyEvaluationStatus.initial,
     this.evaluation,
     this.errorMessage,
   });
 
-  final EvaluationStatus status;
+  final MyEvaluationStatus status;
   final Evaluation? evaluation;
   final String? errorMessage;
 
-  EvaluationState copyWith({
-    final EvaluationStatus? status,
+  MyEvaluationState copyWith({
+    final MyEvaluationStatus? status,
     final Evaluation? evaluation,
     final String? errorMessage,
   }) {
-    return EvaluationState(
+    return MyEvaluationState(
       status: status ?? this.status,
       evaluation: evaluation ?? this.evaluation,
       errorMessage: errorMessage ?? this.errorMessage,

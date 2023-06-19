@@ -8,11 +8,11 @@ import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/features/evaluation/domain/evaluation.dart';
 import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/presentation/@blocs/my_collections/my_collections_bloc.dart';
+import 'package:serendy/presentation/@blocs/my_evaluation/my_evaluation_bloc.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/media/bloc/evaluation/evaluation_bloc.dart';
 import 'package:serendy/presentation/media/bloc/media_bloc.dart';
-import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_media_reaction_detail_sheet.dart';
@@ -45,14 +45,14 @@ class MediaScreen extends StatelessWidget {
           )..add(Media$Fetched(id: id)),
         ),
         BlocProvider(
-          create: (context) => EvaluationBloc(
+          create: (context) => MyEvaluationBloc(
             evaluationRepository: sl(),
-          )..add(Evaluation$Fetched(mediaId: id)),
+          )..add(MyEvaluation$Fetched(mediaId: id)),
         ),
         BlocProvider(
-          create: (context) => ProfileBloc(
+          create: (context) => MyCollectionsBloc(
             collectionRepository: sl(),
-          )..add(const Profile$MyCollectionsListFetched()),
+          )..add(const MyCollections$Fetched()),
         ),
       ],
       child: const _MediaView(),

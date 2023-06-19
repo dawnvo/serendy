@@ -5,12 +5,9 @@ class _ProfileMyCollectionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<ProfileBloc>().state;
-    List<Collection?> collections = [];
-
-    if (state is ProfileLoaded) {
-      collections = state.collections;
-    }
+    final collections = context.select<MyCollectionsBloc, List<Collection?>>(
+      (bloc) => bloc.state.collections,
+    );
 
     return MyCollectionsList(
       collections: collections,
