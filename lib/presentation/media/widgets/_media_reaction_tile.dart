@@ -4,6 +4,15 @@ class _MediaReactionTile extends StatelessWidget {
   const _MediaReactionTile({required this.reactions});
   final List<Evaluation?> reactions;
 
+  void _handleShowReactionDetailSheet(BuildContext context) {
+    context.showCustomModalBottomSheet(
+      (context) => BlocProvider.value(
+        value: context.read<MediaBloc>(),
+        child: const _MediaReactionDetailSheet(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (reactions.isNotEmpty) {
@@ -12,12 +21,7 @@ class _MediaReactionTile extends StatelessWidget {
       final totalCount = reactions.length.withComma;
 
       return ListTile(
-        onTap: () => context.showCustomModalBottomSheet(
-          (context) => BlocProvider.value(
-            value: context.read<MediaBloc>(),
-            child: const _MediaReactionDetailSheet(),
-          ),
-        ),
+        onTap: () => _handleShowReactionDetailSheet(context),
         leading: _ReactionIcons(emotions: uniqueKeys.toList()),
         title: Text('$totalCount명이 감상했어요'),
         trailing: const Icon(RemixIcon.arrow_right_s_line),
@@ -29,17 +33,18 @@ class _MediaReactionTile extends StatelessWidget {
 
   Widget _buildEmptyReactionTile(BuildContext context) {
     return ListTile(
-      onTap: () => context.showCustomModalBottomSheet(
-        (context) => const _MediaReactionDetailSheet(),
-      ),
-      leading: const Icon(RemixIcon.emotion_sad_line),
+      onTap: () => _handleShowReactionDetailSheet(context),
+      leading: const Icon(RemixIcon.emotion_sad_line, size: Sizes.p28),
       title: Text(
         '아직 감상한 사람이 없어요',
-        style: context.textTheme.bodyMedium?.copyWith(
-          color: context.colorScheme.outline,
+        style: context.textTheme.bodyLarge?.copyWith(
+          color: context.colorScheme.onSurfaceVariant,
         ),
       ),
-      trailing: const Icon(RemixIcon.arrow_right_s_line),
+      trailing: Icon(
+        RemixIcon.arrow_right_s_line,
+        color: context.colorScheme.outlineVariant,
+      ),
     );
   }
 }
@@ -79,7 +84,7 @@ class _ReactionIcons extends StatelessWidget {
       ),
       child: SvgPicture.asset(
         emotion.filePath,
-        height: Sizes.p32 - borderWidth,
+        height: Sizes.p28 - borderWidth,
       ),
     );
   }
