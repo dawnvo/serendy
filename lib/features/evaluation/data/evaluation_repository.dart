@@ -8,6 +8,8 @@ abstract class EvaluationRepository {
 
   Future<Evaluation?> fetchEvaluation(String mediaId);
 
+  Future<int> countEvaluation();
+
   Future<Evaluation> evaluate(String mediaId, Emotion emotion);
 
   Future<void> removeEvaluation(String mediaId);

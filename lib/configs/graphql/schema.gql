@@ -96,6 +96,7 @@ type Query {
   GetThemeList(ownerId: ID): [Theme!]!
   GetEvaluation(mediaId: ID!): Evaluation
   GetEvaluationList(userId: ID, mediaId: ID): [Evaluation!]!
+  CountEvaluation: Int!
 }
 
 type Mutation {

@@ -1411,6 +1411,274 @@ extension ClientExtension$Query$GetEvaluationList on graphql.GraphQLClient {
   }
 }
 
+class Query$CountEvaluation {
+  Query$CountEvaluation({
+    required this.CountEvaluation,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$CountEvaluation.fromJson(Map<String, dynamic> json) {
+    final l$CountEvaluation = json['CountEvaluation'];
+    final l$$__typename = json['__typename'];
+    return Query$CountEvaluation(
+      CountEvaluation: (l$CountEvaluation as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int CountEvaluation;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$CountEvaluation = CountEvaluation;
+    _resultData['CountEvaluation'] = l$CountEvaluation;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$CountEvaluation = CountEvaluation;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$CountEvaluation,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$CountEvaluation) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$CountEvaluation = CountEvaluation;
+    final lOther$CountEvaluation = other.CountEvaluation;
+    if (l$CountEvaluation != lOther$CountEvaluation) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$CountEvaluation on Query$CountEvaluation {
+  CopyWith$Query$CountEvaluation<Query$CountEvaluation> get copyWith =>
+      CopyWith$Query$CountEvaluation(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$CountEvaluation<TRes> {
+  factory CopyWith$Query$CountEvaluation(
+    Query$CountEvaluation instance,
+    TRes Function(Query$CountEvaluation) then,
+  ) = _CopyWithImpl$Query$CountEvaluation;
+
+  factory CopyWith$Query$CountEvaluation.stub(TRes res) =
+      _CopyWithStubImpl$Query$CountEvaluation;
+
+  TRes call({
+    int? CountEvaluation,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$CountEvaluation<TRes>
+    implements CopyWith$Query$CountEvaluation<TRes> {
+  _CopyWithImpl$Query$CountEvaluation(
+    this._instance,
+    this._then,
+  );
+
+  final Query$CountEvaluation _instance;
+
+  final TRes Function(Query$CountEvaluation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? CountEvaluation = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$CountEvaluation(
+        CountEvaluation:
+            CountEvaluation == _undefined || CountEvaluation == null
+                ? _instance.CountEvaluation
+                : (CountEvaluation as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$CountEvaluation<TRes>
+    implements CopyWith$Query$CountEvaluation<TRes> {
+  _CopyWithStubImpl$Query$CountEvaluation(this._res);
+
+  TRes _res;
+
+  call({
+    int? CountEvaluation,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeQueryCountEvaluation = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'CountEvaluation'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'CountEvaluation'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$CountEvaluation _parserFn$Query$CountEvaluation(
+        Map<String, dynamic> data) =>
+    Query$CountEvaluation.fromJson(data);
+typedef OnQueryComplete$Query$CountEvaluation = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$CountEvaluation?,
+);
+
+class Options$Query$CountEvaluation
+    extends graphql.QueryOptions<Query$CountEvaluation> {
+  Options$Query$CountEvaluation({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$CountEvaluation? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$CountEvaluation? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$CountEvaluation(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryCountEvaluation,
+          parserFn: _parserFn$Query$CountEvaluation,
+        );
+
+  final OnQueryComplete$Query$CountEvaluation? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$CountEvaluation
+    extends graphql.WatchQueryOptions<Query$CountEvaluation> {
+  WatchOptions$Query$CountEvaluation({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$CountEvaluation? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryCountEvaluation,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$CountEvaluation,
+        );
+}
+
+class FetchMoreOptions$Query$CountEvaluation extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$CountEvaluation(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryCountEvaluation,
+        );
+}
+
+extension ClientExtension$Query$CountEvaluation on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$CountEvaluation>> query$CountEvaluation(
+          [Options$Query$CountEvaluation? options]) async =>
+      await this.query(options ?? Options$Query$CountEvaluation());
+  graphql.ObservableQuery<Query$CountEvaluation> watchQuery$CountEvaluation(
+          [WatchOptions$Query$CountEvaluation? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$CountEvaluation());
+  void writeQuery$CountEvaluation({
+    required Query$CountEvaluation data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryCountEvaluation)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$CountEvaluation? readQuery$CountEvaluation({bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryCountEvaluation)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$CountEvaluation.fromJson(result);
+  }
+}
+
 class Variables$Mutation$Evaluate {
   factory Variables$Mutation$Evaluate({
     required String mediaId,

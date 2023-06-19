@@ -43,6 +43,16 @@ final class EvaluationRepositoryRemote extends EvaluationRepository
   }
 
   @override
+  Future<int> countEvaluation() async {
+    final queryResult = await guard(
+      () => _client.query$CountEvaluation(Options$Query$CountEvaluation()),
+    );
+
+    final count = queryResult.parsedData!.CountEvaluation;
+    return count;
+  }
+
+  @override
   Future<Evaluation> evaluate(String mediaId, Emotion emotion) async {
     final queryResult = await guard(
       () => _client.mutate$Evaluate(Options$Mutation$Evaluate(

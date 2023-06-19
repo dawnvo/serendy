@@ -22,6 +22,10 @@ query GetEvaluationList($userId: ID, $mediaId: ID) {
   }
 }
 
+query CountEvaluation {
+  CountEvaluation
+}
+
 mutation Evaluate($mediaId: ID!, $emotion: Emotion!) {
   Evaluate(mediaId: $mediaId, emotion: $emotion) {
     ...EvaluationFields
