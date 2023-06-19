@@ -98,7 +98,7 @@ class _CollectionTemplate extends StatelessWidget {
                   titles,
                   Gap.h8,
                   detail,
-                  Gap.h32,
+                  Gap.h24,
                 ],
               ),
             ),
