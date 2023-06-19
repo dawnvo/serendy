@@ -11,10 +11,16 @@ final class EvaluationRepositoryRemote extends EvaluationRepository
   final GraphQLClient _client;
 
   @override
-  Future<List<Evaluation?>> fetchEvaluationList(String userId) async {
+  Future<List<Evaluation?>> fetchEvaluationList({
+    String? userId,
+    String? mediaId,
+  }) async {
     final queryResult = await guard(
       () => _client.query$GetEvaluationList(Options$Query$GetEvaluationList(
-        variables: Variables$Query$GetEvaluationList(userId: userId),
+        variables: Variables$Query$GetEvaluationList(
+          userId: userId,
+          mediaId: mediaId,
+        ),
       )),
     );
 

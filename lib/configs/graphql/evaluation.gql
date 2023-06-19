@@ -16,8 +16,8 @@ query GetEvaluation($mediaId: ID!) {
   }
 }
 
-query GetEvaluationList($userId: ID!) {
-  GetEvaluationList(userId: $userId) {
+query GetEvaluationList($userId: ID, $mediaId: ID) {
+  GetEvaluationList(userId: $userId, mediaId: $mediaId) {
     ...EvaluationFields
   }
 }

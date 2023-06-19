@@ -21,8 +21,9 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     emit(state.copyWith(status: HistoryStatus.loading));
 
     try {
-      final evaluations = await evaluationRepository
-          .fetchEvaluationList('01H32VTAB65FMME5N8HMDT70GY');
+      final evaluations = await evaluationRepository.fetchEvaluationList(
+        userId: '01H32VTAB65FMME5N8HMDT70GY',
+      );
 
       emit(state.copyWith(
         status: HistoryStatus.success,

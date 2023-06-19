@@ -916,9 +916,13 @@ extension ClientExtension$Query$GetEvaluation on graphql.GraphQLClient {
 }
 
 class Variables$Query$GetEvaluationList {
-  factory Variables$Query$GetEvaluationList({required String userId}) =>
+  factory Variables$Query$GetEvaluationList({
+    String? userId,
+    String? mediaId,
+  }) =>
       Variables$Query$GetEvaluationList._({
-        r'userId': userId,
+        if (userId != null) r'userId': userId,
+        if (mediaId != null) r'mediaId': mediaId,
       });
 
   Variables$Query$GetEvaluationList._(this._$data);
@@ -926,18 +930,31 @@ class Variables$Query$GetEvaluationList {
   factory Variables$Query$GetEvaluationList.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$userId = data['userId'];
-    result$data['userId'] = (l$userId as String);
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as String?);
+    }
+    if (data.containsKey('mediaId')) {
+      final l$mediaId = data['mediaId'];
+      result$data['mediaId'] = (l$mediaId as String?);
+    }
     return Variables$Query$GetEvaluationList._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get userId => (_$data['userId'] as String);
+  String? get userId => (_$data['userId'] as String?);
+  String? get mediaId => (_$data['mediaId'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$userId = userId;
-    result$data['userId'] = l$userId;
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    if (_$data.containsKey('mediaId')) {
+      final l$mediaId = mediaId;
+      result$data['mediaId'] = l$mediaId;
+    }
     return result$data;
   }
 
@@ -957,7 +974,18 @@ class Variables$Query$GetEvaluationList {
     }
     final l$userId = userId;
     final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
     if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$mediaId = mediaId;
+    final lOther$mediaId = other.mediaId;
+    if (_$data.containsKey('mediaId') != other._$data.containsKey('mediaId')) {
+      return false;
+    }
+    if (l$mediaId != lOther$mediaId) {
       return false;
     }
     return true;
@@ -966,7 +994,11 @@ class Variables$Query$GetEvaluationList {
   @override
   int get hashCode {
     final l$userId = userId;
-    return Object.hashAll([l$userId]);
+    final l$mediaId = mediaId;
+    return Object.hashAll([
+      _$data.containsKey('userId') ? l$userId : const {},
+      _$data.containsKey('mediaId') ? l$mediaId : const {},
+    ]);
   }
 }
 
@@ -979,7 +1011,10 @@ abstract class CopyWith$Variables$Query$GetEvaluationList<TRes> {
   factory CopyWith$Variables$Query$GetEvaluationList.stub(TRes res) =
       _CopyWithStubImpl$Variables$Query$GetEvaluationList;
 
-  TRes call({String? userId});
+  TRes call({
+    String? userId,
+    String? mediaId,
+  });
 }
 
 class _CopyWithImpl$Variables$Query$GetEvaluationList<TRes>
@@ -995,11 +1030,14 @@ class _CopyWithImpl$Variables$Query$GetEvaluationList<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? userId = _undefined}) =>
+  TRes call({
+    Object? userId = _undefined,
+    Object? mediaId = _undefined,
+  }) =>
       _then(Variables$Query$GetEvaluationList._({
         ..._instance._$data,
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
+        if (userId != _undefined) 'userId': (userId as String?),
+        if (mediaId != _undefined) 'mediaId': (mediaId as String?),
       }));
 }
 
@@ -1009,7 +1047,11 @@ class _CopyWithStubImpl$Variables$Query$GetEvaluationList<TRes>
 
   TRes _res;
 
-  call({String? userId}) => _res;
+  call({
+    String? userId,
+    String? mediaId,
+  }) =>
+      _res;
 }
 
 class Query$GetEvaluationList {
@@ -1176,11 +1218,20 @@ const documentNodeQueryGetEvaluationList = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'userId')),
         type: NamedTypeNode(
           name: NameNode(value: 'ID'),
-          isNonNull: true,
+          isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'mediaId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -1191,7 +1242,11 @@ const documentNodeQueryGetEvaluationList = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'userId'),
             value: VariableNode(name: NameNode(value: 'userId')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'mediaId'),
+            value: VariableNode(name: NameNode(value: 'mediaId')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -1231,7 +1286,7 @@ class Options$Query$GetEvaluationList
     extends graphql.QueryOptions<Query$GetEvaluationList> {
   Options$Query$GetEvaluationList({
     String? operationName,
-    required Variables$Query$GetEvaluationList variables,
+    Variables$Query$GetEvaluationList? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1243,7 +1298,7 @@ class Options$Query$GetEvaluationList
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1279,7 +1334,7 @@ class WatchOptions$Query$GetEvaluationList
     extends graphql.WatchQueryOptions<Query$GetEvaluationList> {
   WatchOptions$Query$GetEvaluationList({
     String? operationName,
-    required Variables$Query$GetEvaluationList variables,
+    Variables$Query$GetEvaluationList? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1291,7 +1346,7 @@ class WatchOptions$Query$GetEvaluationList
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1311,44 +1366,44 @@ class FetchMoreOptions$Query$GetEvaluationList
     extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetEvaluationList({
     required graphql.UpdateQuery updateQuery,
-    required Variables$Query$GetEvaluationList variables,
+    Variables$Query$GetEvaluationList? variables,
   }) : super(
           updateQuery: updateQuery,
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? {},
           document: documentNodeQueryGetEvaluationList,
         );
 }
 
 extension ClientExtension$Query$GetEvaluationList on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetEvaluationList>> query$GetEvaluationList(
-          Options$Query$GetEvaluationList options) async =>
-      await this.query(options);
+          [Options$Query$GetEvaluationList? options]) async =>
+      await this.query(options ?? Options$Query$GetEvaluationList());
   graphql.ObservableQuery<Query$GetEvaluationList> watchQuery$GetEvaluationList(
-          WatchOptions$Query$GetEvaluationList options) =>
-      this.watchQuery(options);
+          [WatchOptions$Query$GetEvaluationList? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetEvaluationList());
   void writeQuery$GetEvaluationList({
     required Query$GetEvaluationList data,
-    required Variables$Query$GetEvaluationList variables,
+    Variables$Query$GetEvaluationList? variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
           operation:
               graphql.Operation(document: documentNodeQueryGetEvaluationList),
-          variables: variables.toJson(),
+          variables: variables?.toJson() ?? const {},
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
   Query$GetEvaluationList? readQuery$GetEvaluationList({
-    required Variables$Query$GetEvaluationList variables,
+    Variables$Query$GetEvaluationList? variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
         operation:
             graphql.Operation(document: documentNodeQueryGetEvaluationList),
-        variables: variables.toJson(),
+        variables: variables?.toJson() ?? const {},
       ),
       optimistic: optimistic,
     );
