@@ -64,8 +64,8 @@ class _ProfileTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CustomScrollView(slivers: [
+    return Scaffold(
+      body: CustomScrollView(slivers: [
         SliverAppBar(
           pinned: true,
           title: const Text("내 라이브러리"),

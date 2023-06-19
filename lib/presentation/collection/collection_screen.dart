@@ -78,8 +78,8 @@ class _CollectionTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(children: [
+    return Scaffold(
+      body: Stack(children: [
         SizedBox(
           height: 320,
           width: double.infinity,

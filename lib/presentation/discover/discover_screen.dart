@@ -47,8 +47,8 @@ class _DiscoverTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
+    return Scaffold(
+      body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: kContentPadding,
           vertical: Sizes.p24,

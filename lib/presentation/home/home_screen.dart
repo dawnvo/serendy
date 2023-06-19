@@ -66,25 +66,27 @@ class _HomeTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          title: const Text("Serendy"),
-          pinned: true,
-          floating: true,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(kTextTabBarHeight),
-            child: mediaFiltersTabBar,
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: const Text("Serendy"),
+            pinned: true,
+            floating: true,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(kTextTabBarHeight),
+              child: mediaFiltersTabBar,
+            ),
+            surfaceTintColor: context.colorScheme.surface,
           ),
-          surfaceTintColor: context.colorScheme.surface,
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kContentPadding,
+            ),
+            sliver: mediasGrid,
           ),
-          sliver: mediasGrid,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
