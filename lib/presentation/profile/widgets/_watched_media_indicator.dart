@@ -5,14 +5,19 @@ class _WatchedMediaIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<ProfileBloc>().state;
     const total = 10;
-    const count = 9;
+    int count = 0;
+
+    if (state is ProfileLoaded) {
+      count = state.evaluationsCount;
+    }
 
     return GestureDetector(
       onTap: () => context.pushRoute(const HistoryRoute()),
       behavior: HitTestBehavior.opaque, // 빈 영역 터치
       child: Column(children: [
-        const MultiLineProgressIndicator([
+        MultiLineProgressIndicator([
           ProgressBar(value: count / total, color: AppColors.brand),
         ]),
         Gap.h12,

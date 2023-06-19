@@ -6,6 +6,7 @@ import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/domain/collection.dart';
 import 'package:serendy/presentation/@blocs/my_collections/my_collections_bloc.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_watched_media_indicator.dart';
@@ -16,9 +17,17 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MyCollectionsBloc(collectionRepository: sl())
-        ..add(const MyCollections$Fetched()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileBloc(evaluationRepository: sl())
+            ..add(const Profile$MyEvaluationsCounted()),
+        ),
+        BlocProvider(
+          create: (context) => MyCollectionsBloc(collectionRepository: sl())
+            ..add(const MyCollections$Fetched()),
+        ),
+      ],
       child: const _ProfileView(),
     );
   }

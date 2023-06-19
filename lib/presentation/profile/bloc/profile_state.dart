@@ -22,11 +22,11 @@ final class ProfileLoading extends ProfileState {
 
 /// LOADED
 final class ProfileLoaded extends ProfileState {
-  const ProfileLoaded({required this.collections});
-  final List<Collection?> collections;
+  const ProfileLoaded({required this.evaluationsCount});
+  final int evaluationsCount;
 
   @override
-  List<Object?> get props => [collections];
+  List<Object?> get props => [evaluationsCount];
 }
 
 /// ERROR
