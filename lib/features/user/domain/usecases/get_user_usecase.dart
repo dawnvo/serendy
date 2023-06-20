@@ -2,7 +2,7 @@ import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/usecases/get_user_port.dart';
+import 'package:serendy/features/user/domain/ports/get_user_port.dart';
 import 'package:serendy/features/user/user.dart';
 
 final class GetUserUsecase implements UseCase<GetUserPort, User> {

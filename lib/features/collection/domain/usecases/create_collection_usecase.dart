@@ -3,7 +3,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/usecases/create_collection_port.dart';
+import 'package:serendy/features/collection/domain/ports/create_collection_port.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
 import 'package:serendy/features/user/user.dart';
 

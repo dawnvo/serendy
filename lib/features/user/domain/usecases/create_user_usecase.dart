@@ -2,7 +2,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/usecases/create_user_port.dart';
+import 'package:serendy/features/user/domain/ports/create_user_port.dart';
 import 'package:serendy/features/user/user.dart';
 
 final class CreateUserUsecase implements UseCase<CreateUserPort, User> {

@@ -3,7 +3,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/domain/models/collection.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/usecases/get_collection_port.dart';
+import 'package:serendy/features/collection/domain/ports/get_collection_port.dart';
 
 final class GetCollectionUsecase
     implements UseCase<GetCollectionPort, Collection> {

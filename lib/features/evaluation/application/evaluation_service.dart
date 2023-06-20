@@ -1,6 +1,6 @@
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/features/auth/application/services/auth_service.dart';
+import 'package:serendy/features/auth/application/auth_service.dart';
 import 'package:serendy/features/evaluation/domain/usecases/count_evaluations_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/get_evaluation_list_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/get_evaluation_usecase.dart';

@@ -2,7 +2,7 @@ import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/usecases/remove_evaluation_port.dart';
+import 'package:serendy/features/evaluation/domain/ports/remove_evaluation_port.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 
 final class RemoveEvaluationUsecase

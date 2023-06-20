@@ -4,7 +4,7 @@ import 'package:serendy/core/locator.dart';
 import 'package:serendy/core/network/firestore_path.dart';
 import 'package:serendy/core/network/media_file_storage.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/user/application/services/user_service.dart';
+import 'package:serendy/features/user/application/user_service.dart';
 import 'package:serendy/features/user/data/repositories/user_repository.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
 import 'package:serendy/features/user/domain/usecases/create_user_usecase.dart';

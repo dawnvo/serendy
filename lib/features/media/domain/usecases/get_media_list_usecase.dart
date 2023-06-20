@@ -1,6 +1,6 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
-import 'package:serendy/features/media/domain/ports/usecases/get_media_list_port.dart';
+import 'package:serendy/features/media/domain/ports/get_media_list_port.dart';
 import 'package:serendy/features/media/media.dart';
 
 final class GetMediaListUsecase

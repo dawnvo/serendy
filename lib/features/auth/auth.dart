@@ -1,2 +1,2 @@
 // application
-export 'application/services/auth_service.dart';
+export 'application/auth_service.dart';

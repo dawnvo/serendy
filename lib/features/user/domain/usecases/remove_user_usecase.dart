@@ -3,7 +3,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/user/user.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/usecases/remove_user_port.dart';
+import 'package:serendy/features/user/domain/ports/remove_user_port.dart';
 
 final class RemoveUserUsecase implements UseCase<RemoveUserPort, void> {
   const RemoveUserUsecase(this._userRepository);

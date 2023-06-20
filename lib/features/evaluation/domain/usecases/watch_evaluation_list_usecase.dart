@@ -1,6 +1,6 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/usecases/watch_evaluation_list_port.dart';
+import 'package:serendy/features/evaluation/domain/ports/watch_evaluation_list_port.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 
 final class WatchEvaluationListUsecase

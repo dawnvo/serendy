@@ -3,7 +3,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/core/network/media_file_storage.dart';
 import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/usecases/edit_profile_port.dart';
+import 'package:serendy/features/user/domain/ports/edit_profile_port.dart';
 import 'package:serendy/features/user/user.dart';
 
 final class EditProfileUsecase implements UseCase<EditProfilePort, User> {

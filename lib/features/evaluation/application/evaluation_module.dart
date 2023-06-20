@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/features/evaluation/application/services/evaluation_service.dart';
+import 'package:serendy/features/evaluation/application/evaluation_service.dart';
 import 'package:serendy/features/evaluation/data/repositories/evaluation_repository.dart';
 import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
 import 'package:serendy/features/evaluation/domain/usecases/count_evaluations_usecase.dart';

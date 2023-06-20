@@ -1,6 +1,6 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/usecases/count_evaluations_port.dart';
+import 'package:serendy/features/evaluation/domain/ports/count_evaluations_port.dart';
 
 final class CountEvaluationsUsecase
     implements UseCase<CountEvaluationsPort, int> {

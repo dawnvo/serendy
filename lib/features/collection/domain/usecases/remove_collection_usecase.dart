@@ -4,7 +4,7 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/core/network/media_file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/usecases/remove_collection_port.dart';
+import 'package:serendy/features/collection/domain/ports/remove_collection_port.dart';
 
 final class RemoveCollectionUsecase
     implements UseCase<RemoveCollectionPort, void> {

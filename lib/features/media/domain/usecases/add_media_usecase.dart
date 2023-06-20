@@ -1,6 +1,6 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
-import 'package:serendy/features/media/domain/ports/usecases/add_media_port.dart';
+import 'package:serendy/features/media/domain/ports/add_media_port.dart';
 import 'package:serendy/features/media/media.dart';
 
 final class AddMediaUsecase implements UseCase<AddMediaPort, void> {

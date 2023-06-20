@@ -1,5 +1,5 @@
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/features/auth/application/services/auth_service.dart';
+import 'package:serendy/features/auth/application/auth_service.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/usecases/add_collection_item_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/create_collection_usecase.dart';

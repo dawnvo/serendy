@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/core/network/firestore_path.dart';
 import 'package:serendy/core/network/media_file_storage.dart';
-import 'package:serendy/features/collection/application/services/collection_service.dart';
+import 'package:serendy/features/collection/application/collection_service.dart';
 import 'package:serendy/features/collection/data/repositories/collection_repository.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
 import 'package:serendy/features/collection/domain/usecases/add_collection_item_usecase.dart';

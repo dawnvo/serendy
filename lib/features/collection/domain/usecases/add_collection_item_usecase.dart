@@ -2,8 +2,8 @@ import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
+import 'package:serendy/features/collection/domain/ports/add_collection_item_port.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/usecases/add_collection_item_port.dart';
 import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
 import 'package:serendy/features/media/media.dart';
 

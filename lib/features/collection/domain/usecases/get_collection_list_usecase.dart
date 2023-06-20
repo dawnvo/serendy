@@ -1,7 +1,7 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/usecases/get_collection_list_port.dart';
+import 'package:serendy/features/collection/domain/ports/get_collection_list_port.dart';
 
 final class GetCollectionListUsecase
     implements UseCase<GetCollectionListPort, List<Collection?>> {

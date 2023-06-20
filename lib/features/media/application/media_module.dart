@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/features/media/application/services/media_service.dart';
+import 'package:serendy/features/media/application/media_service.dart';
 import 'package:serendy/features/media/data/repositories/media_repository.dart';
 import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
 import 'package:serendy/features/media/domain/usecases/add_media_usecase.dart';
