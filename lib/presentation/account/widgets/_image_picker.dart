@@ -5,11 +5,13 @@ class _AccountImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const image = null;
+    final imagePath = context.select<AccountBloc, String?>(
+      (bloc) => bloc.state.avatar,
+    );
 
     return ImagePicker(
       onChange: (path) {},
-      image: image,
+      image: imagePath,
       circle: true,
     );
   }

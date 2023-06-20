@@ -8,7 +8,7 @@ class _AccountListTile extends StatelessWidget {
   });
 
   final String label;
-  final String value;
+  final String? value;
   final VoidCallback onTap;
 
   @override
@@ -28,7 +28,7 @@ class _AccountListTile extends StatelessWidget {
           // Value
           Expanded(
             child: Text(
-              value,
+              value ?? '',
               textAlign: TextAlign.right,
               style: context.textTheme.bodyLarge?.copyWith(
                 color: context.colorScheme.outline,

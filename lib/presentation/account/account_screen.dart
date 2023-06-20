@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
+import 'package:serendy/presentation/account/bloc/account_bloc.dart';
 
 part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
@@ -14,7 +16,11 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _AccountView();
+    return BlocProvider(
+      create: (context) =>
+          AccountBloc(userRepository: sl())..add(const Account$Fetched()),
+      child: const _AccountView(),
+    );
   }
 }
 
@@ -23,6 +29,7 @@ class _AccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<AccountBloc>().state;
     final focusNode = FocusNode();
 
     return _AccountTemplate(
@@ -31,14 +38,12 @@ class _AccountView extends StatelessWidget {
         child: const Text("저장하기"),
       ),
       imagePicker: const _AccountImagePicker(),
-      textField: _AccountNameTextField(
-        focusNode: focusNode,
-      ),
+      textField: _AccountNameTextField(focusNode: focusNode),
       options: [
         _AccountListTile(
           onTap: () {},
           label: "이메일",
-          value: "serendy@email.com",
+          value: state.email,
         ),
         _AccountListTile(
           onTap: () {},
