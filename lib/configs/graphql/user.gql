@@ -13,13 +13,13 @@ query GetMe {
 
 mutation SignUp($name: String!, $email: String!, $image: String) {
   SignUp(name: $name, email: $email, image: $image) {
-    ...UserFields
+    id
   }
 }
 
 mutation EditUser($name: String, $email: String, $image: String) {
   EditUser(name: $name, email: $email, image: $image) {
-    ...UserFields
+    id
   }
 }
 

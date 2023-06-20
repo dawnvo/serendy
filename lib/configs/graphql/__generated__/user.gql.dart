@@ -703,12 +703,13 @@ class Mutation$SignUp {
     final l$SignUp = json['SignUp'];
     final l$$__typename = json['__typename'];
     return Mutation$SignUp(
-      SignUp: Fragment$UserFields.fromJson((l$SignUp as Map<String, dynamic>)),
+      SignUp:
+          Mutation$SignUp$SignUp.fromJson((l$SignUp as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$UserFields SignUp;
+  final Mutation$SignUp$SignUp SignUp;
 
   final String $__typename;
 
@@ -771,10 +772,10 @@ abstract class CopyWith$Mutation$SignUp<TRes> {
       _CopyWithStubImpl$Mutation$SignUp;
 
   TRes call({
-    Fragment$UserFields? SignUp,
+    Mutation$SignUp$SignUp? SignUp,
     String? $__typename,
   });
-  CopyWith$Fragment$UserFields<TRes> get SignUp;
+  CopyWith$Mutation$SignUp$SignUp<TRes> get SignUp;
 }
 
 class _CopyWithImpl$Mutation$SignUp<TRes>
@@ -797,14 +798,15 @@ class _CopyWithImpl$Mutation$SignUp<TRes>
       _then(Mutation$SignUp(
         SignUp: SignUp == _undefined || SignUp == null
             ? _instance.SignUp
-            : (SignUp as Fragment$UserFields),
+            : (SignUp as Mutation$SignUp$SignUp),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Fragment$UserFields<TRes> get SignUp {
+  CopyWith$Mutation$SignUp$SignUp<TRes> get SignUp {
     final local$SignUp = _instance.SignUp;
-    return CopyWith$Fragment$UserFields(local$SignUp, (e) => call(SignUp: e));
+    return CopyWith$Mutation$SignUp$SignUp(
+        local$SignUp, (e) => call(SignUp: e));
   }
 }
 
@@ -815,12 +817,12 @@ class _CopyWithStubImpl$Mutation$SignUp<TRes>
   TRes _res;
 
   call({
-    Fragment$UserFields? SignUp,
+    Mutation$SignUp$SignUp? SignUp,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Fragment$UserFields<TRes> get SignUp =>
-      CopyWith$Fragment$UserFields.stub(_res);
+  CopyWith$Mutation$SignUp$SignUp<TRes> get SignUp =>
+      CopyWith$Mutation$SignUp$SignUp.stub(_res);
 }
 
 const documentNodeMutationSignUp = DocumentNode(definitions: [
@@ -877,9 +879,12 @@ const documentNodeMutationSignUp = DocumentNode(definitions: [
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
-          FragmentSpreadNode(
-            name: NameNode(value: 'UserFields'),
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
             directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -899,7 +904,6 @@ const documentNodeMutationSignUp = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionUserFields,
 ]);
 Mutation$SignUp _parserFn$Mutation$SignUp(Map<String, dynamic> data) =>
     Mutation$SignUp.fromJson(data);
@@ -992,6 +996,128 @@ extension ClientExtension$Mutation$SignUp on graphql.GraphQLClient {
   graphql.ObservableQuery<Mutation$SignUp> watchMutation$SignUp(
           WatchOptions$Mutation$SignUp options) =>
       this.watchMutation(options);
+}
+
+class Mutation$SignUp$SignUp {
+  Mutation$SignUp$SignUp({
+    required this.id,
+    this.$__typename = 'User',
+  });
+
+  factory Mutation$SignUp$SignUp.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$SignUp$SignUp(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$SignUp$SignUp) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SignUp$SignUp on Mutation$SignUp$SignUp {
+  CopyWith$Mutation$SignUp$SignUp<Mutation$SignUp$SignUp> get copyWith =>
+      CopyWith$Mutation$SignUp$SignUp(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$SignUp$SignUp<TRes> {
+  factory CopyWith$Mutation$SignUp$SignUp(
+    Mutation$SignUp$SignUp instance,
+    TRes Function(Mutation$SignUp$SignUp) then,
+  ) = _CopyWithImpl$Mutation$SignUp$SignUp;
+
+  factory CopyWith$Mutation$SignUp$SignUp.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$SignUp$SignUp;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$SignUp$SignUp<TRes>
+    implements CopyWith$Mutation$SignUp$SignUp<TRes> {
+  _CopyWithImpl$Mutation$SignUp$SignUp(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$SignUp$SignUp _instance;
+
+  final TRes Function(Mutation$SignUp$SignUp) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$SignUp$SignUp(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$SignUp$SignUp<TRes>
+    implements CopyWith$Mutation$SignUp$SignUp<TRes> {
+  _CopyWithStubImpl$Mutation$SignUp$SignUp(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Variables$Mutation$EditUser {
@@ -1167,13 +1293,13 @@ class Mutation$EditUser {
     final l$EditUser = json['EditUser'];
     final l$$__typename = json['__typename'];
     return Mutation$EditUser(
-      EditUser:
-          Fragment$UserFields.fromJson((l$EditUser as Map<String, dynamic>)),
+      EditUser: Mutation$EditUser$EditUser.fromJson(
+          (l$EditUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Fragment$UserFields EditUser;
+  final Mutation$EditUser$EditUser EditUser;
 
   final String $__typename;
 
@@ -1236,10 +1362,10 @@ abstract class CopyWith$Mutation$EditUser<TRes> {
       _CopyWithStubImpl$Mutation$EditUser;
 
   TRes call({
-    Fragment$UserFields? EditUser,
+    Mutation$EditUser$EditUser? EditUser,
     String? $__typename,
   });
-  CopyWith$Fragment$UserFields<TRes> get EditUser;
+  CopyWith$Mutation$EditUser$EditUser<TRes> get EditUser;
 }
 
 class _CopyWithImpl$Mutation$EditUser<TRes>
@@ -1262,14 +1388,14 @@ class _CopyWithImpl$Mutation$EditUser<TRes>
       _then(Mutation$EditUser(
         EditUser: EditUser == _undefined || EditUser == null
             ? _instance.EditUser
-            : (EditUser as Fragment$UserFields),
+            : (EditUser as Mutation$EditUser$EditUser),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Fragment$UserFields<TRes> get EditUser {
+  CopyWith$Mutation$EditUser$EditUser<TRes> get EditUser {
     final local$EditUser = _instance.EditUser;
-    return CopyWith$Fragment$UserFields(
+    return CopyWith$Mutation$EditUser$EditUser(
         local$EditUser, (e) => call(EditUser: e));
   }
 }
@@ -1281,12 +1407,12 @@ class _CopyWithStubImpl$Mutation$EditUser<TRes>
   TRes _res;
 
   call({
-    Fragment$UserFields? EditUser,
+    Mutation$EditUser$EditUser? EditUser,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Fragment$UserFields<TRes> get EditUser =>
-      CopyWith$Fragment$UserFields.stub(_res);
+  CopyWith$Mutation$EditUser$EditUser<TRes> get EditUser =>
+      CopyWith$Mutation$EditUser$EditUser.stub(_res);
 }
 
 const documentNodeMutationEditUser = DocumentNode(definitions: [
@@ -1343,9 +1469,12 @@ const documentNodeMutationEditUser = DocumentNode(definitions: [
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
-          FragmentSpreadNode(
-            name: NameNode(value: 'UserFields'),
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
             directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -1365,7 +1494,6 @@ const documentNodeMutationEditUser = DocumentNode(definitions: [
       ),
     ]),
   ),
-  fragmentDefinitionUserFields,
 ]);
 Mutation$EditUser _parserFn$Mutation$EditUser(Map<String, dynamic> data) =>
     Mutation$EditUser.fromJson(data);
@@ -1459,6 +1587,129 @@ extension ClientExtension$Mutation$EditUser on graphql.GraphQLClient {
   graphql.ObservableQuery<Mutation$EditUser> watchMutation$EditUser(
           [WatchOptions$Mutation$EditUser? options]) =>
       this.watchMutation(options ?? WatchOptions$Mutation$EditUser());
+}
+
+class Mutation$EditUser$EditUser {
+  Mutation$EditUser$EditUser({
+    required this.id,
+    this.$__typename = 'User',
+  });
+
+  factory Mutation$EditUser$EditUser.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$EditUser$EditUser(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$EditUser$EditUser) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$EditUser$EditUser
+    on Mutation$EditUser$EditUser {
+  CopyWith$Mutation$EditUser$EditUser<Mutation$EditUser$EditUser>
+      get copyWith => CopyWith$Mutation$EditUser$EditUser(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$EditUser$EditUser<TRes> {
+  factory CopyWith$Mutation$EditUser$EditUser(
+    Mutation$EditUser$EditUser instance,
+    TRes Function(Mutation$EditUser$EditUser) then,
+  ) = _CopyWithImpl$Mutation$EditUser$EditUser;
+
+  factory CopyWith$Mutation$EditUser$EditUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$EditUser$EditUser;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$EditUser$EditUser<TRes>
+    implements CopyWith$Mutation$EditUser$EditUser<TRes> {
+  _CopyWithImpl$Mutation$EditUser$EditUser(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$EditUser$EditUser _instance;
+
+  final TRes Function(Mutation$EditUser$EditUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$EditUser$EditUser(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$EditUser$EditUser<TRes>
+    implements CopyWith$Mutation$EditUser$EditUser<TRes> {
+  _CopyWithStubImpl$Mutation$EditUser$EditUser(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Variables$Mutation$RemoveUser {

@@ -1,11 +1,19 @@
 import 'package:serendy/features/user/domain/user.dart';
 
 abstract class UserRepository {
-  Future<User?> fetchUser(String id);
+  Future<User?> fetchMe();
 
-  Future<void> createUser(User user);
+  Future<void> signUp({
+    required String name,
+    required String email,
+    String? image,
+  });
 
-  Future<void> updateUser(User user);
+  Future<void> editUser({
+    String? name,
+    String? email,
+    String? image,
+  });
 
-  Future<void> deleteUser(User user);
+  Future<void> deleteUser(String? reason);
 }
