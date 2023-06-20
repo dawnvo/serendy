@@ -89,7 +89,7 @@ enum Emotion {
 }
 
 type Query {
-  getMe: User!
+  GetMe: User!
   GetMedia(mediaId: ID!): Media!
   GetMediaList(title: String): [Media!]!
   GetTheme(themeId: ID!): Theme!
@@ -100,7 +100,7 @@ type Query {
 }
 
 type Mutation {
-  Signup(name: String!, email: String!, image: String): User!
+  SignUp(name: String!, email: String!, image: String): User!
   EditUser(name: String, email: String, image: String): User!
   RemoveUser(reason: String): Boolean!
   AddMedia(type: MediaType!, status: MediaStatus!, title: String!, image: String!, genres: [String!]!, isAdult: Boolean, startDate: DateTime, endDate: DateTime): Media!

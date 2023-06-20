@@ -1,0 +1,28 @@
+fragment UserFields on User {
+  id
+  name
+  email
+  image
+}
+
+query GetMe {
+  GetMe {
+    ...UserFields
+  }
+}
+
+mutation SignUp($name: String!, $email: String!, $image: String) {
+  SignUp(name: $name, email: $email, image: $image) {
+    ...UserFields
+  }
+}
+
+mutation EditUser($name: String, $email: String, $image: String) {
+  EditUser(name: $name, email: $email, image: $image) {
+    ...UserFields
+  }
+}
+
+mutation RemoveUser($reason: String) {
+  RemoveUser(reason: $reason)
+}
