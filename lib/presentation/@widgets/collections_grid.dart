@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 class SliverCollectionsGrid extends StatelessWidget {

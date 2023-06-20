@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 
 class CollectionItem extends StatelessWidget {
   const CollectionItem({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 
 class CollectionCard extends StatelessWidget {
   const CollectionCard({

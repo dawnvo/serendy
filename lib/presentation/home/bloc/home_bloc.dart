@@ -1,17 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/media/data/media_repository.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/features/media/media.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required this.mediaRepository}) : super(const HomeInitial()) {
+  HomeBloc({required this.mediaService}) : super(const HomeInitial()) {
     on<Home$MediasListFetched>(_onMediasListFetched);
   }
 
-  final MediaRepository mediaRepository;
+  final MediaService mediaService;
 
   Future<void> _onMediasListFetched(
     Home$MediasListFetched event,
@@ -19,7 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(const HomeLoading());
     try {
-      final medias = await mediaRepository.fetchMediasList();
+      final medias = await mediaService.fetchMediasList();
       emit(HomeLoaded(medias: medias));
     } catch (err) {
       emit(HomeError(err.toString()));

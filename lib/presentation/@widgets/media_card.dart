@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/features/media/media.dart';
 
 class MediaCard extends StatelessWidget {
   const MediaCard({

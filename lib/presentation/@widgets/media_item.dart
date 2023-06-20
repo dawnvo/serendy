@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/features/media/media.dart';
 
 class MediaItem extends StatelessWidget {
   const MediaItem({

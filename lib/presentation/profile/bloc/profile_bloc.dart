@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc({required this.evaluationRepository})
+  ProfileBloc({required this.evaluationService})
       : super(const ProfileInitial()) {
     on<Profile$MyEvaluationsCounted>(_onMyCollectionsListFetched);
   }
 
-  final EvaluationRepository evaluationRepository;
+  final EvaluationService evaluationService;
 
   Future<void> _onMyCollectionsListFetched(
     Profile$MyEvaluationsCounted event,
@@ -20,7 +20,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(const ProfileLoading());
 
     try {
-      final count = await evaluationRepository.countEvaluation();
+      final count = await evaluationService.countMyEvaluations();
       emit(ProfileLoaded(evaluationsCount: count));
     } catch (err) {
       emit(ProfileError(err.toString()));

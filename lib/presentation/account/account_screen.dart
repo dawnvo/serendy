@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/account/bloc/account_bloc.dart';
 
@@ -17,8 +18,9 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AccountBloc(userRepository: sl())..add(const Account$Fetched()),
+      create: (context) => AccountBloc(
+        userService: sl(),
+      )..add(const Account$Fetched()),
       child: const _AccountView(),
     );
   }

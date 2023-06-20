@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/evaluation/domain/evaluation.dart';
+import 'package:serendy/core/locator.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/history/bloc/history_bloc.dart';
@@ -17,7 +18,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HistoryBloc(evaluationRepository: sl())
+      create: (context) => HistoryBloc(evaluationService: sl())
         ..add(const History$MyEvaluationsFetched()),
       child: const _HistoryView(),
     );

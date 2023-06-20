@@ -1,20 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/collection/data/collection_repository.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 
 part 'my_collections_event.dart';
 part 'my_collections_state.dart';
 
 class MyCollectionsBloc extends Bloc<MyCollectionsEvent, MyCollectionsState> {
-  MyCollectionsBloc({required this.collectionRepository})
+  MyCollectionsBloc({required this.collectionService})
       : super(const MyCollectionsState()) {
     on<MyCollections$Fetched>(_onFetched);
     on<MyCollections$ItemAdded>(_onItemAdded);
     on<MyCollections$ItemDeleted>(_onItemDeleted);
   }
 
-  final CollectionRepository collectionRepository;
+  final CollectionService collectionService;
 
   Future<void> _onFetched(
     MyCollections$Fetched event,
@@ -22,21 +21,17 @@ class MyCollectionsBloc extends Bloc<MyCollectionsEvent, MyCollectionsState> {
   ) async {
     emit(state.copyWith(status: MyCollectionsStatus.loading));
 
-    try {
-      final collections = await collectionRepository.fetchCollectionsList(
-        ownerId: '01H32VTAB65FMME5N8HMDT70GY',
-      );
-
-      emit(state.copyWith(
+    await emit.forEach(
+      collectionService.watchMyCollectionsList(),
+      onData: (collections) => state.copyWith(
         status: MyCollectionsStatus.success,
         collections: collections,
-      ));
-    } catch (err) {
-      emit(state.copyWith(
+      ),
+      onError: (err, stack) => state.copyWith(
         status: MyCollectionsStatus.failure,
         errorMessage: err.toString(),
-      ));
-    }
+      ),
+    );
   }
 
   Future<void> _onItemAdded(
@@ -45,12 +40,10 @@ class MyCollectionsBloc extends Bloc<MyCollectionsEvent, MyCollectionsState> {
   ) async {
     /// 컬렉션을 불러온 후 추가할 수 있어요.
     try {
-      await collectionRepository.addCollectionItem(
-        collectionId: event.collectionId,
+      await collectionService.addCollectionItem(
+        id: event.collectionId,
         mediaId: event.mediaId,
       );
-
-      // add(const MyCollections$Fetched());
     } catch (err) {
       emit(state.copyWith(
         status: MyCollectionsStatus.failure,
@@ -65,12 +58,10 @@ class MyCollectionsBloc extends Bloc<MyCollectionsEvent, MyCollectionsState> {
   ) async {
     /// 컬렉션을 불러온 후 삭제할 수 있어요.
     try {
-      await collectionRepository.deleteCollectionItem(
-        collectionId: event.collectionId,
+      await collectionService.deleteCollectionItem(
+        id: event.collectionId,
         mediaId: event.mediaId,
       );
-
-      // add(const MyCollections$Fetched());
     } catch (err) {
       emit(state.copyWith(
         status: MyCollectionsStatus.failure,

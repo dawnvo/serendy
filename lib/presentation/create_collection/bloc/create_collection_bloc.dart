@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/data/collection_repository.dart';
+import 'package:serendy/features/collection/collection.dart';
 
 part 'create_collection_event.dart';
 part 'create_collection_state.dart';
 
 class CreateCollectionBloc
     extends Bloc<CreateCollectionEvent, CreateCollectionState> {
-  CreateCollectionBloc({required this.collectionRepository})
+  CreateCollectionBloc({required this.collectionService})
       : super(CreateCollectionState(
           hintText: Assets.createCollectionHints.pickRandomly()!,
         )) {
@@ -16,7 +16,7 @@ class CreateCollectionBloc
     on<CreateCollection$Submitted>(_onSubmitted);
   }
 
-  final CollectionRepository collectionRepository;
+  final CollectionService collectionService;
 
   void _onTitleChanged(
     CreateCollection$TitleChanged event,
@@ -36,7 +36,7 @@ class CreateCollectionBloc
       var title = state.title;
       if (state.title.isEmpty) title = state.hintText;
 
-      await collectionRepository.createCollection(title: title);
+      await collectionService.createCollection(title: title);
 
       emit(state.copyWith(status: CreateCollectionStatus.success));
     } catch (err) {
@@ -47,16 +47,3 @@ class CreateCollectionBloc
     }
   }
 }
-
-/**
- * ProfileError(
- *  OperationException(
- *    linkException: null,
- *    graphqlErrors: [
- *      GraphQLError(
- *        message: Port validation error.,
- *        locations: [ErrorLocation(line: 2, column: 3)], path: [GetThemeList],
- *        extensions: {
- *          code: INTERNAL_SERVER_ERROR,
- *          stacktrace: [Exception: Port validation error.,
- */

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/evaluation/domain/evaluation.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({

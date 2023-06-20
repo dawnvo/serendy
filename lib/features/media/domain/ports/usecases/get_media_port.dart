@@ -1,0 +1,3 @@
+typedef GetMediaPort = ({
+  String mediaId,
+});

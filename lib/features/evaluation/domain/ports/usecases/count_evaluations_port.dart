@@ -1,0 +1,3 @@
+typedef CountEvaluationsPort = ({
+  String userId,
+});

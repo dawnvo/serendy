@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/core/locator.dart';
+import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/presentation/@blocs/blocs.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
@@ -20,12 +21,14 @@ class ProfileScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ProfileBloc(evaluationRepository: sl())
-            ..add(const Profile$MyEvaluationsCounted()),
+          create: (context) => ProfileBloc(
+            evaluationService: sl(),
+          )..add(const Profile$MyEvaluationsCounted()),
         ),
         BlocProvider(
-          create: (context) => MyCollectionsBloc(collectionRepository: sl())
-            ..add(const MyCollections$Fetched()),
+          create: (context) => MyCollectionsBloc(
+            collectionService: sl(),
+          )..add(const MyCollections$Fetched()),
         ),
       ],
       child: const _ProfileView(),

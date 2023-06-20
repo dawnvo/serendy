@@ -1,20 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
-import 'package:serendy/features/evaluation/domain/evaluation.dart';
+import 'package:serendy/core/enums.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
 
 part 'my_evaluation_event.dart';
 part 'my_evaluation_state.dart';
 
 class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
-  MyEvaluationBloc({required this.evaluationRepository})
+  MyEvaluationBloc({required this.evaluationService})
       : super(const MyEvaluationState()) {
     on<MyEvaluation$Fetched>(_onFetched);
     on<MyEvaluation$Evaluated>(_onEvaluated);
     on<MyEvaluation$Removed>(_onRemoved);
   }
 
-  final EvaluationRepository evaluationRepository;
+  final EvaluationService evaluationService;
 
   Future<void> _onFetched(
     MyEvaluation$Fetched event,
@@ -23,8 +23,9 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
     emit(state.copyWith(status: MyEvaluationStatus.loading));
 
     try {
-      final evaluation =
-          await evaluationRepository.fetchEvaluation(event.mediaId);
+      final evaluation = await evaluationService.fetchEvaluation(
+        mediaId: event.mediaId,
+      );
 
       emit(state.copyWith(
         status: MyEvaluationStatus.success,
@@ -43,9 +44,9 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
     Emitter<MyEvaluationState> emit,
   ) async {
     try {
-      final evaluation = await evaluationRepository.evaluate(
-        event.mediaId,
-        event.emotion,
+      final evaluation = await evaluationService.submitEvaluation(
+        mediaId: event.mediaId,
+        emotion: event.emotion,
       );
 
       emit(state.copyWith(
@@ -65,7 +66,9 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
     Emitter<MyEvaluationState> emit,
   ) async {
     try {
-      await evaluationRepository.removeEvaluation(event.mediaId);
+      await evaluationService.removeEvaluation(
+        mediaId: event.mediaId,
+      );
 
       emit(const MyEvaluationState(
         status: MyEvaluationStatus.success,

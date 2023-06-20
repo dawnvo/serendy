@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
-import 'package:serendy/features/evaluation/domain/evaluation.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/core/enums.dart';
+import 'package:serendy/core/locator.dart';
+import 'package:serendy/features/collection/collection.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
+import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@blocs/blocs.dart';
 import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -39,18 +41,18 @@ class MediaScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => MediaBloc(
-            mediaRepository: sl(),
-            evaluationRepository: sl(),
+            mediaService: sl(),
+            evaluationService: sl(),
           )..add(Media$Fetched(id: id)),
         ),
         BlocProvider(
           create: (context) => MyEvaluationBloc(
-            evaluationRepository: sl(),
+            evaluationService: sl(),
           )..add(MyEvaluation$Fetched(mediaId: id)),
         ),
         BlocProvider(
           create: (context) => MyCollectionsBloc(
-            collectionRepository: sl(),
+            collectionService: sl(),
           )..add(const MyCollections$Fetched()),
         ),
       ],

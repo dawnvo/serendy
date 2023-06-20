@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/presentation/app.dart';
 import 'package:serendy/presentation/admin/admin_screen.dart';
 import 'package:serendy/presentation/account/account_screen.dart';

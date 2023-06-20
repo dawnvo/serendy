@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:serendy/features/media/data/media_repository.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/core/enums.dart';
+import 'package:serendy/features/media/media.dart';
 
 part 'add_media_state.dart';
 
 class AddMediaCubit extends Cubit<AddMediaState> {
-  AddMediaCubit({required this.mediaRepository}) : super(const AddMediaState());
+  AddMediaCubit({required this.mediaService}) : super(const AddMediaState());
 
-  final MediaRepository mediaRepository;
+  final MediaService mediaService;
 
   void imageChanged(String image) {
     emit(state.copyWith(image: image));
@@ -37,21 +37,17 @@ class AddMediaCubit extends Cubit<AddMediaState> {
   Future<void> submitted() async {
     emit(state.copyWith(status: AddMediaStatus.loading));
 
-    final media = Media(
-      type: state.mediaType,
-      status: state.mediaStatus,
-      image: state.image,
-      title: state.title,
-      keywords: state.keywords,
-      isAdult: state.isAdult,
-      startDate: state.startDate,
-      endDate: state.endDate,
-    );
-
-    print(media);
-
     try {
-      await mediaRepository.addMedia(media: media);
+      await mediaService.addMedia(
+        type: state.mediaType,
+        status: state.mediaStatus,
+        image: state.image,
+        title: state.title,
+        keywords: state.keywords,
+        isAdult: state.isAdult,
+        startDate: state.startDate,
+        endDate: state.endDate,
+      );
 
       emit(const AddMediaState(status: AddMediaStatus.success));
     } catch (err) {

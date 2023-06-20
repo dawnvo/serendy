@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/collection/data/collection_repository.dart';
-import 'package:serendy/features/collection/domain/collection.dart';
+import 'package:serendy/features/collection/collection.dart';
 
 part 'edit_collection_event.dart';
 part 'edit_collection_state.dart';
@@ -9,7 +8,7 @@ part 'edit_collection_state.dart';
 class EditCollectionBloc
     extends Bloc<EditCollectionEvent, EditCollectionState> {
   EditCollectionBloc({
-    required this.collectionRepository,
+    required this.collectionService,
     required Collection initialCollection,
   }) : super(EditCollectionState(
           initialCollection: initialCollection,
@@ -26,7 +25,7 @@ class EditCollectionBloc
     on<EditCollection$CollectionDeleted>(_onCollectionDeleted);
   }
 
-  final CollectionRepository collectionRepository;
+  final CollectionService collectionService;
 
   void _onTitleChanged(
     EditCollection$TitleChanged event,
@@ -63,8 +62,8 @@ class EditCollectionBloc
     emit(state.copyWith(status: EditCollectionStatus.loading));
 
     try {
-      await collectionRepository.editCollection(
-        collectionId: state.initialCollection.id,
+      await collectionService.editCollection(
+        id: state.initialCollection.id,
         title: state.title,
         description: state.description,
         image: state.image,
@@ -87,8 +86,8 @@ class EditCollectionBloc
     emit(state.copyWith(status: EditCollectionStatus.loading));
 
     try {
-      await collectionRepository.removeCollection(
-        collectionId: state.initialCollection.id,
+      await collectionService.removeCollection(
+        id: state.initialCollection.id,
       );
 
       emit(state.copyWith(

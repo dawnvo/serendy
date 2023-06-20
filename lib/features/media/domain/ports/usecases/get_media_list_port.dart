@@ -1,0 +1,3 @@
+typedef GetMediaListPort = ({
+  String? title,
+});

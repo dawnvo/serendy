@@ -1,18 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/evaluation/data/evaluation_repository.dart';
-import 'package:serendy/features/evaluation/domain/evaluation.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
 
 part 'history_event.dart';
 part 'history_state.dart';
 
 class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
-  HistoryBloc({required this.evaluationRepository})
-      : super(const HistoryState()) {
+  HistoryBloc({required this.evaluationService}) : super(const HistoryState()) {
     on<History$MyEvaluationsFetched>(_onMyEvaluationsFetched);
   }
 
-  final EvaluationRepository evaluationRepository;
+  final EvaluationService evaluationService;
 
   Future<void> _onMyEvaluationsFetched(
     History$MyEvaluationsFetched event,
@@ -20,20 +18,16 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   ) async {
     emit(state.copyWith(status: HistoryStatus.loading));
 
-    try {
-      final evaluations = await evaluationRepository.fetchEvaluationList(
-        userId: '01H32VTAB65FMME5N8HMDT70GY',
-      );
-
-      emit(state.copyWith(
+    await emit.forEach(
+      evaluationService.watchMyEvaluationsList(),
+      onData: (evaluations) => state.copyWith(
         status: HistoryStatus.success,
         evaluations: evaluations,
-      ));
-    } catch (err) {
-      emit(state.copyWith(
+      ),
+      onError: (err, stack) => state.copyWith(
         status: HistoryStatus.failure,
         errorMessage: err.toString(),
-      ));
-    }
+      ),
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/create_collection/bloc/create_collection_bloc.dart';
 
@@ -15,7 +16,7 @@ class CreateCollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateCollectionBloc(collectionRepository: sl()),
+      create: (context) => CreateCollectionBloc(collectionService: sl()),
       child: const _CreateCollectionView(),
     );
   }

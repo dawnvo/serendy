@@ -1,16 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/features/user/data/user_repository.dart';
+import 'package:serendy/features/user/user.dart';
 
 part 'account_event.dart';
 part 'account_state.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  AccountBloc({required this.userRepository}) : super(const AccountState()) {
+  AccountBloc({required this.userService}) : super(const AccountState()) {
     on<Account$Fetched>(_onFetched);
   }
 
-  final UserRepository userRepository;
+  final UserService userService;
 
   Future<void> _onFetched(
     Account$Fetched event,
@@ -19,18 +19,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     emit(state.copyWith(status: AccountStatus.loading));
 
     try {
-      final me = await userRepository.fetchMe();
-
-      if (me == null) {
-        emit(state.copyWith(
-          status: AccountStatus.failure,
-          errorMessage: "사용자를 찾을 수 없어요.",
-        ));
-      }
+      final me = await userService.fetchMe();
 
       emit(state.copyWith(
         status: AccountStatus.success,
-        username: me!.name,
+        username: me.name,
         avatar: me.avatar,
         email: me.email,
       ));

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/features/media/domain/media.dart';
+import 'package:serendy/core/enums.dart';
+import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/admin/cubit/add_media_cubit.dart';
 
 part 'widgets/_adult_switch_tile.dart';
@@ -21,7 +22,7 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddMediaCubit(mediaRepository: sl()),
+      create: (context) => AddMediaCubit(mediaService: sl()),
       child: const _AddMediaForm(),
     );
   }
