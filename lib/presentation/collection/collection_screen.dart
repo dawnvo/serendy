@@ -12,7 +12,7 @@ import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/collection/bloc/collection_bloc.dart';
 
 part 'widgets/_collection_background.dart';
-part 'widgets/_collection_detail.dart';
+part 'widgets/_collection_detail_bar.dart';
 part 'widgets/_collection_titles.dart';
 part 'widgets/_medias_grid.dart';
 
@@ -51,7 +51,7 @@ class _CollectionView extends StatelessWidget {
             title: state.collection.title,
             subtitle: state.collection.description,
           ),
-          detail: _CollectionDetail(
+          detailBar: _CollectionDetailBar(
             collection: state.collection,
           ),
           mediasGrid: _CollectionMediasGrid(
@@ -68,13 +68,13 @@ class _CollectionTemplate extends StatelessWidget {
   const _CollectionTemplate({
     required this.backgroundImage,
     required this.titles,
-    required this.detail,
+    required this.detailBar,
     required this.mediasGrid,
   });
 
   final _CollectionBackgroundImage backgroundImage;
   final _CollectionTitles titles;
-  final _CollectionDetail detail;
+  final _CollectionDetailBar detailBar;
   final _CollectionMediasGrid mediasGrid;
 
   @override
@@ -98,7 +98,7 @@ class _CollectionTemplate extends StatelessWidget {
                 children: [
                   titles,
                   Gap.h8,
-                  detail,
+                  detailBar,
                   Gap.h24,
                 ],
               ),
