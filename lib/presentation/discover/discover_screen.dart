@@ -49,17 +49,19 @@ class _DiscoverTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kContentPadding,
-          vertical: Sizes.p24,
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+            vertical: Sizes.p24,
+          ),
+          child: CustomScrollView(slivers: [
+            SliverToBoxAdapter(child: searchBar),
+            const SliverToBoxAdapter(child: Gap.h24),
+            collectionsGrid,
+          ]),
         ),
-        child: CustomScrollView(slivers: [
-          SliverToBoxAdapter(child: searchBar),
-          const SliverToBoxAdapter(child: Gap.h24),
-          collectionsGrid,
-        ]),
       ),
     );
   }

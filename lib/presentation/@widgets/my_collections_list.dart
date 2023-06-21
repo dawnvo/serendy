@@ -25,10 +25,10 @@ class MyCollectionsList extends StatelessWidget {
           return const _CreateCollectionTile();
         }
 
-        final item = collections[index]!;
+        final collection = collections[index]!;
         return CollectionItem(
-          collection: item,
-          onTap: () => onSelect?.call(item),
+          collection: collection,
+          onTap: () => onSelect?.call(collection),
         );
       },
     );

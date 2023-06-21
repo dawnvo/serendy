@@ -70,6 +70,7 @@ final class Collection extends Equatable {
         image,
         private,
         items,
+        itemCount,
         createdAt,
         updatedAt,
       ];
