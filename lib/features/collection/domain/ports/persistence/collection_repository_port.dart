@@ -3,7 +3,7 @@ import 'package:serendy/features/media/media.dart';
 import 'package:serendy/features/user/user.dart';
 
 abstract class CollectionRepositoryPort {
-  Stream<List<Collection?>> watchMany(UserID? userId);
+  Stream<List<Collection?>> watchMany(UserID userId);
 
   Future<List<Collection?>> findMany(UserID? userId);
 

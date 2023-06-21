@@ -14,7 +14,7 @@ final class CollectionRepository implements CollectionRepositoryPort {
 
   /// Watch collection list
   @override
-  Stream<List<Collection?>> watchMany(UserID? userId) {
+  Stream<List<Collection?>> watchMany(UserID userId) {
     final streamSnapshots = _firestore
         .collection(FirestorePath.collection)
         .where('removed_at', isNull: true)

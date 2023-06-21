@@ -1,3 +1,3 @@
 typedef WatchCollectionListPort = ({
-  String? userId,
+  String userId,
 });
