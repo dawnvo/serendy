@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
+import 'package:serendy/presentation/@blocs/authentication/authentication_bloc.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/account/bloc/account_bloc.dart';
 
@@ -17,10 +18,19 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AccountBloc(
-        userService: sl(),
-      )..add(const Account$Fetched()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthenticationBloc(
+            authService: sl(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AccountBloc(
+            userService: sl(),
+          )..add(const Account$Fetched()),
+        ),
+      ],
       child: const _AccountView(),
     );
   }
@@ -60,7 +70,12 @@ class _AccountView extends StatelessWidget {
       ],
       controls: [
         TextButton(
-          onPressed: () => context.router.replaceAll([const HomeRoute()]),
+          onPressed: () {
+            context
+                .read<AuthenticationBloc>()
+                .add(const Authentication$SignOutRequested());
+            context.router.replaceNamed('signIn');
+          },
           child: const Text('로그아웃'),
         ),
         TextButton(

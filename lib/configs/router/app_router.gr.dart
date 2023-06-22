@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AccountScreen(),
       );
     },
+    AdminRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminScreen(),
+      );
+    },
     AppRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -104,15 +110,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SignInScreen(),
-      );
-    },
-    AdminRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AdminScreen(),
+        child: SignInScreen(
+          args.onResult,
+          key: args.key,
+        ),
       );
     },
   };
@@ -128,6 +132,20 @@ class AccountRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AdminScreen]
+class AdminRoute extends PageRouteInfo<void> {
+  const AdminRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -361,28 +379,37 @@ class SettingsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SignInScreen]
-class SignInRoute extends PageRouteInfo<void> {
-  const SignInRoute({List<PageRouteInfo>? children})
-      : super(
+class SignInRoute extends PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({
+    required void Function(bool) onResult,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           SignInRoute.name,
+          args: SignInRouteArgs(
+            onResult: onResult,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SignInRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SignInRouteArgs> page = PageInfo<SignInRouteArgs>(name);
 }
 
-/// generated route for
-/// [AdminScreen]
-class AdminRoute extends PageRouteInfo<void> {
-  const AdminRoute({List<PageRouteInfo>? children})
-      : super(
-          AdminRoute.name,
-          initialChildren: children,
-        );
+class SignInRouteArgs {
+  const SignInRouteArgs({
+    required this.onResult,
+    this.key,
+  });
 
-  static const String name = 'AdminRoute';
+  final void Function(bool) onResult;
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{onResult: $onResult, key: $key}';
+  }
 }

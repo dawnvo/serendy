@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:serendy/configs/router/app_guards.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/presentation/app.dart';
 import 'package:serendy/presentation/admin/admin_screen.dart';
@@ -25,33 +26,51 @@ final class AppRouter extends _$AppRouter {
         AutoRoute(
           initial: true,
           page: AppRoute.page,
+          guards: [AuthGuard()],
           children: [
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: DiscoverRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
         ),
-        AutoRoute(path: '/collection/:id', page: CollectionRoute.page),
-        AutoRoute(path: '/media/:id', page: MediaRoute.page),
-        AutoRoute(path: '/history', page: HistoryRoute.page),
-        AutoRoute(path: '/search/:query', page: SearchRoute.page),
-        AutoRoute(path: '/settings', page: SettingsRoute.page),
-        AutoRoute(path: '/settings/account', page: AccountRoute.page),
-
-        /// Modals
         AutoRoute(
-          fullscreenDialog: true,
+          path: '/media/:id',
+          page: MediaRoute.page,
+        ),
+        AutoRoute(
+          path: '/collection/:id',
+          page: CollectionRoute.page,
+        ),
+        AutoRoute(
+          path: '/search/:query',
+          page: SearchRoute.page,
+        ),
+        AutoRoute(
+          path: '/history',
+          page: HistoryRoute.page,
+        ),
+        AutoRoute(
+          path: '/settings',
+          page: SettingsRoute.page,
+        ),
+        AutoRoute(
+          path: '/settings/account',
+          page: AccountRoute.page,
+        ),
+        AutoRoute(
           path: '/signIn',
           page: SignInRoute.page,
         ),
+
+        /// Modals
         AutoRoute(
-          fullscreenDialog: true,
           path: '/create-collection',
+          fullscreenDialog: true,
           page: CreateCollectionRoute.page,
         ),
         AutoRoute(
-          fullscreenDialog: true,
           path: '/edit-collection',
+          fullscreenDialog: true,
           page: EditCollectionRoute.page,
         ),
 

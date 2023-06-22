@@ -40,7 +40,7 @@ class CollectionService {
   }
 
   /// 여러 컬렉션을 불러와요.
-  Future<List<Collection?>> fetchCollectionsList() async {
+  Future<List<Collection?>> fetchCollectionsList() {
     final userId = _authService.currentUserId;
     return _getCollectionListUsecase.execute((executorId: userId));
   }
@@ -48,7 +48,7 @@ class CollectionService {
   /// 컬렉션을 불러와요.
   Future<Collection> fetchCollection({
     required String id,
-  }) async {
+  }) {
     final userId = _authService.currentUserId;
     return _getCollectionUsecase.execute((
       executorId: userId,
@@ -59,7 +59,7 @@ class CollectionService {
   /// 컬렉션을 만들어요.
   Future<Collection> createCollection({
     required String title,
-  }) async {
+  }) {
     final userId = _checkUserId(_authService.currentUserId);
     return _createCollectionUsecase.execute((
       executorId: userId,
@@ -74,7 +74,7 @@ class CollectionService {
     final String? description,
     final String? image,
     final bool? private,
-  }) async {
+  }) {
     final userId = _checkUserId(_authService.currentUserId);
     return _editCollectionUsecase.execute((
       executorId: userId,
@@ -89,7 +89,7 @@ class CollectionService {
   /// 컬렉션을 제거해요.
   Future<void> removeCollection({
     required String id,
-  }) async {
+  }) {
     final userId = _checkUserId(_authService.currentUserId);
     return _removeCollectionUsecase.execute((
       executorId: userId,
@@ -101,7 +101,7 @@ class CollectionService {
   Future<Collection> addCollectionItem({
     required String id,
     required String mediaId,
-  }) async {
+  }) {
     final userId = _checkUserId(_authService.currentUserId);
     return _addCollectionItemUsecase.execute((
       executorId: userId,
@@ -114,7 +114,7 @@ class CollectionService {
   Future<Collection> deleteCollectionItem({
     required String id,
     required String mediaId,
-  }) async {
+  }) {
     final userId = _checkUserId(_authService.currentUserId);
     return _deleteCollectionItemUsecase.execute((
       executorId: userId,

@@ -16,18 +16,20 @@ final class AuthService {
 
   String? get currentUserId => _firebaseAuth.currentUser?.uid;
 
-  Future<void> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser?.authentication;
-      if (googleAuth == null) return;
+      if (googleAuth == null) return null;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      await _firebaseAuth.signInWithCredential(credential);
+      final userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
+      return userCredential;
     } on FirebaseAuthException catch (e) {
       throw SignInWithGoogleFailure.fromCode(e.code);
     }

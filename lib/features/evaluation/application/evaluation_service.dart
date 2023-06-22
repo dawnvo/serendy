@@ -39,22 +39,22 @@ class EvaluationService {
   }
 
   /// 나의 평가 목록을 구독해요.
-  Stream<List<Evaluation?>> watchMyEvaluationsList() async* {
-    yield* _watchEvaluationListUsecase.execute((
+  Stream<List<Evaluation?>> watchMyEvaluationsList() {
+    return _watchEvaluationListUsecase.execute((
       userId: _userId,
       mediaId: null,
     ));
   }
 
   /// 나의 평가 개수를 조회해요.
-  Future<int> countMyEvaluations() async {
+  Future<int> countMyEvaluations() {
     return _countEvaluationsUsecase.execute((userId: _userId));
   }
 
   /// 나의 평가를 불러와요.
   Future<Evaluation?> fetchEvaluation({
     required String mediaId,
-  }) async {
+  }) {
     return _getEvaluationUsecase.execute((
       userId: _userId,
       mediaId: mediaId,
@@ -65,7 +65,7 @@ class EvaluationService {
   Future<Evaluation> submitEvaluation({
     required String mediaId,
     required Emotion emotion,
-  }) async {
+  }) {
     return _submitEvaluationUsecase.execute((
       executorId: _userId,
       mediaId: mediaId,
@@ -76,7 +76,7 @@ class EvaluationService {
   /// 평가를 제거해요.
   Future<void> removeEvaluation({
     required String mediaId,
-  }) async {
+  }) {
     return _removeEvaluationUsecase.execute((
       executorId: _userId,
       mediaId: mediaId,

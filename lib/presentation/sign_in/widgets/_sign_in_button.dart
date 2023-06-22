@@ -16,7 +16,8 @@ class _SignInButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {},
+      onPressed: () =>
+          context.read<SignInBloc>().add(const SignIn$WithGoogleRequested()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

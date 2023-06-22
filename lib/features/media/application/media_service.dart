@@ -22,14 +22,14 @@ class MediaService {
   /// 내 정보를 불러와요.
   Future<Media> fetchMedia({
     required String mediaId,
-  }) async {
+  }) {
     return _getMediaUsecase.execute((mediaId: mediaId,));
   }
 
   /// 사용자를 제거해요.
   Future<List<Media?>> fetchMediasList({
     String? title,
-  }) async {
+  }) {
     return _getMediaListUsecase.execute((title: title,));
   }
 
@@ -44,7 +44,7 @@ class MediaService {
     DateTime? endDate,
     bool? isAdult,
     DateTime? startDate,
-  }) async {
+  }) {
     return _addMediaUsecase.execute((
       executorId: _userId,
       image: image,

@@ -22,8 +22,15 @@ class UserService {
   final RemoveUserUsecase _removeUserUsecase;
 
   /// 내 정보를 불러와요.
-  Future<User> fetchMe() async {
+  Future<User> fetchMe() {
     return _getUserUsecase.execute((userId: _userId));
+  }
+
+  /// 사용자 정보를 불러와요.
+  Future<User> fetchUser({
+    required String userId,
+  }) {
+    return _getUserUsecase.execute((userId: userId));
   }
 
   /// 사용자를 만들어요.
@@ -32,7 +39,7 @@ class UserService {
     required String name,
     String? email,
     String? avatar,
-  }) async {
+  }) {
     return _createUserUsecase.execute((
       id: authId,
       name: name,
@@ -45,7 +52,7 @@ class UserService {
   Future<User> editProfile({
     String? name,
     String? avatar,
-  }) async {
+  }) {
     return _editProfileUsecase.execute((
       executorId: _userId,
       name: name,
@@ -57,7 +64,7 @@ class UserService {
   Future<void> removeUser({
     required String id,
     String? reason,
-  }) async {
+  }) {
     return _removeUserUsecase.execute((
       executorId: _userId,
       reason: reason,
