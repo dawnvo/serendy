@@ -8,7 +8,7 @@ class _MediaReactionTile extends StatelessWidget {
     context.showCustomModalBottomSheet(
       (context) => BlocProvider.value(
         value: context.read<MediaBloc>(),
-        child: const _MediaReactionDetailSheet(),
+        child: const _ReactionDetailSheet(),
       ),
     );
   }

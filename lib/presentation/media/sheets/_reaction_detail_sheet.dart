@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
-class _MediaReactionDetailSheet extends StatelessWidget {
-  const _MediaReactionDetailSheet();
+class _ReactionDetailSheet extends StatelessWidget {
+  const _ReactionDetailSheet();
 
   @override
   Widget build(BuildContext context) {

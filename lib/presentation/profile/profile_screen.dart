@@ -48,7 +48,7 @@ class _ProfileView extends StatelessWidget {
           onPressed: () => context.pushRoute(const SettingsRoute()),
         ),
       ],
-      watchedMediaIndicator: const _WatchedMediaIndicator(),
+      watchedMediaIndicator: const _ProfileWatchedMediaIndicator(),
       collectionsList: const _ProfileMyCollectionsList(),
     );
   }
@@ -61,7 +61,7 @@ class _ProfileTemplate extends StatelessWidget {
     required this.actions,
   });
 
-  final _WatchedMediaIndicator watchedMediaIndicator;
+  final _ProfileWatchedMediaIndicator watchedMediaIndicator;
   final _ProfileMyCollectionsList collectionsList;
   final List<Widget> actions;
 

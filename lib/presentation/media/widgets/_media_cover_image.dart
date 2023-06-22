@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
-class _MediaImage extends StatelessWidget {
-  const _MediaImage({required this.image});
+class _MediaCoverImage extends StatelessWidget {
+  const _MediaCoverImage({required this.image});
 
   final String image;
 

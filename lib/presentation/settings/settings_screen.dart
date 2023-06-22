@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:serendy/configs/configs.dart';
 
-part 'widgets/_settings_list_tile.dart';
+part 'widgets/_list_tile.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {

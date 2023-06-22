@@ -9,7 +9,7 @@ import 'package:serendy/presentation/account/bloc/account_bloc.dart';
 
 part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
-part 'widgets/_account_list_tile.dart';
+part 'widgets/_list_tile.dart';
 
 @RoutePage()
 class AccountScreen extends StatelessWidget {
@@ -64,10 +64,7 @@ class _AccountView extends StatelessWidget {
           child: const Text('로그아웃'),
         ),
         TextButton(
-          onPressed: () => context.router.replaceAll([
-            const HomeRoute(),
-            const SignInRoute(),
-          ]),
+          onPressed: () => context.router.replaceAll([const HomeRoute()]),
           child: const Text('회원탈퇴'),
         ),
       ],

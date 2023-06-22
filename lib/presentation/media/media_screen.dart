@@ -16,14 +16,14 @@ import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/media/bloc/media_bloc.dart';
 
 part 'sheets/_evaluate_media_sheet.dart';
-part 'sheets/_media_reaction_detail_sheet.dart';
+part 'sheets/_reaction_detail_sheet.dart';
 part 'sheets/_save_media_sheet.dart';
 part 'widgets/_evaluate_icon_button.dart';
 part 'widgets/_media_action_bar.dart';
-part 'widgets/_media_image.dart';
-part 'widgets/_media_info_tile.dart';
+part 'widgets/_media_cover_image.dart';
+part 'widgets/_info_tile.dart';
 part 'widgets/_media_keywords.dart';
-part 'widgets/_media_reaction_tile.dart';
+part 'widgets/_reaction_tile.dart';
 part 'widgets/_media_title.dart';
 
 @RoutePage()
@@ -71,7 +71,7 @@ class _MediaView extends StatelessWidget {
 
     return switch (state) {
       MediaLoaded() => _MediaTemplate(
-          image: _MediaImage(image: state.media.image),
+          coverImage: _MediaCoverImage(image: state.media.image),
           title: _MediaTitle(title: state.media.title),
           keyword: _MediaKeywords(
             genres: state.media.keywords,
@@ -95,14 +95,14 @@ class _MediaView extends StatelessWidget {
 /// TEMPLATE
 class _MediaTemplate extends StatelessWidget {
   const _MediaTemplate({
-    required this.image,
+    required this.coverImage,
     required this.title,
     required this.keyword,
     required this.actionBar,
     required this.contents,
   });
 
-  final _MediaImage image;
+  final _MediaCoverImage coverImage;
   final _MediaTitle title;
   final _MediaKeywords keyword;
   final _MediaActionBar actionBar;
@@ -118,7 +118,7 @@ class _MediaTemplate extends StatelessWidget {
           SizedBox(
             height: context.screenWidth * (5 / 4),
             child: Stack(fit: StackFit.expand, children: [
-              image,
+              coverImage,
               Align(
                 alignment: Alignment.bottomLeft,
                 child: title,

@@ -12,7 +12,7 @@ import 'package:serendy/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/collection/bloc/collection_bloc.dart';
 
-part 'widgets/_collection_background.dart';
+part 'widgets/_collection_background_image.dart';
 part 'widgets/_collection_detail_bar.dart';
 part 'widgets/_collection_titles.dart';
 part 'widgets/_medias_grid.dart';

@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/profile/profile_screen.dart';
 
-class _WatchedMediaIndicator extends StatelessWidget {
-  const _WatchedMediaIndicator();
+class _ProfileWatchedMediaIndicator extends StatelessWidget {
+  const _ProfileWatchedMediaIndicator();
 
   @override
   Widget build(BuildContext context) {
