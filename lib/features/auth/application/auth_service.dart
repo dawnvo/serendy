@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:serendy/core/exceptions/auth_exception.dart';
 
@@ -30,8 +29,6 @@ final class AuthService {
 
       await _firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
-      throw SignInWithGoogleFailure.fromCode(e.code);
-    } on PlatformException catch (e) {
       throw SignInWithGoogleFailure.fromCode(e.code);
     }
   }
