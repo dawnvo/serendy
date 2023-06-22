@@ -14,7 +14,7 @@ final class GetMediaUsecase implements UseCase<GetMediaPort, Media> {
   @override
   Future<Media> execute(GetMediaPort payload) async {
     final media = CoreAssert.notEmpty<Media>(
-      await _mediaRepository.getMedia(payload.mediaId),
+      await _mediaRepository.findOne(payload.mediaId),
       const EntityNotFoundException(overrideMessage: "미디어를 찾을 수 없어요."),
     );
 

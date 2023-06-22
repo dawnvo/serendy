@@ -2,7 +2,7 @@ import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/auth/application/auth_service.dart';
 import 'package:serendy/features/media/domain/usecases/add_media_usecase.dart';
-import 'package:serendy/features/media/domain/usecases/get_media_list_usecase.dart';
+import 'package:serendy/features/media/domain/usecases/search_media_usecase.dart';
 import 'package:serendy/features/media/domain/usecases/get_media_usecase.dart';
 import 'package:serendy/features/media/media.dart';
 
@@ -15,7 +15,7 @@ class MediaService {
   );
 
   final AuthService _authService;
-  final GetMediaListUsecase _getMediaListUsecase;
+  final SearchMediaUsecase _getMediaListUsecase;
   final GetMediaUsecase _getMediaUsecase;
   final AddMediaUsecase _addMediaUsecase;
 

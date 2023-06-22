@@ -1,9 +1,9 @@
 import 'package:serendy/features/media/media.dart';
 
 abstract class MediaRepository {
-  Future<Media?> getMedia(MediaID mediaId);
+  Future<List<Media?>> findMany(String? title);
 
-  Future<List<Media?>> search(String? title);
+  Future<Media?> findOne(MediaID mediaId);
 
-  Future<void> addMedia(Media media);
+  Future<void> create(Media media);
 }

@@ -5,13 +5,16 @@ import 'package:serendy/features/user/infrastructure/user_mapper.dart';
 import 'package:serendy/features/user/user.dart';
 
 final class UserRepositoryImpl implements UserRepository {
-  const UserRepositoryImpl(this._firestore);
+  UserRepositoryImpl(this.firestore)
+      : _ref = firestore.collection(FirestorePath.user);
 
-  final FirebaseFirestore _firestore;
+  final FirebaseFirestore firestore;
+  final CollectionReference<Map<String, dynamic>> _ref;
 
+  /// Fetch user
   @override
   Future<User?> findOne(UserID userId) async {
-    final docRef = _firestore.collection(FirestorePath.user).doc(userId);
+    final docRef = _ref.doc(userId);
     final userData = await docRef.get().then((user) => user.data());
 
     if (userData == null) return null;
@@ -20,25 +23,23 @@ final class UserRepositoryImpl implements UserRepository {
     return UserMapper.toDomain(userEntity);
   }
 
+  /// Create user
   @override
   Future<void> create(User user) async {
     final userEntity = UserMapper.toEntity(user);
-
-    final ref = _firestore.collection(FirestorePath.user);
-    await ref.doc(user.id).set(userEntity.toJson());
+    await _ref.doc(user.id).set(userEntity.toJson());
   }
 
+  /// Update user
   @override
   Future<void> update(User user) async {
     final userEntity = UserMapper.toEntity(user);
-
-    final ref = _firestore.collection(FirestorePath.user);
-    await ref.doc(user.id).update(userEntity.toJson());
+    await _ref.doc(user.id).update(userEntity.toJson());
   }
 
+  /// Delete user
   @override
   Future<void> delete(User user) async {
-    final ref = _firestore.collection(FirestorePath.user);
-    await ref.doc(user.id).delete();
+    await _ref.doc(user.id).delete();
   }
 }

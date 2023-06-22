@@ -78,7 +78,7 @@ final class SubmitEvaluationUsecase
 
     // 미디어를 찾을 수 없으면 예외 처리
     final media = CoreAssert.notEmpty<Media>(
-      await _mediaRepository.getMedia(payload.mediaId),
+      await _mediaRepository.findOne(payload.mediaId),
       const EntityNotFoundException(overrideMessage: "미디어를 찾을 수 없어요."),
     );
 
