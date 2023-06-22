@@ -1,7 +1,7 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/persistence/media_file_storage.dart';
+import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
 
 typedef EditCollectionPayload = ({
@@ -17,11 +17,11 @@ final class EditCollectionUsecase
     implements UseCase<EditCollectionPayload, Collection> {
   const EditCollectionUsecase(
     this._collectionRepository,
-    this._mediaFileStorage,
+    this._fileStorage,
   );
 
   final CollectionRepository _collectionRepository;
-  final MediaFileStorage _mediaFileStorage;
+  final FileStorage _fileStorage;
 
   @override
   Future<Collection> execute(EditCollectionPayload payload) async {
@@ -40,8 +40,7 @@ final class EditCollectionUsecase
     if (payload.image != null &&
         payload.image != '' &&
         payload.image != collection.image) {
-      downloadUrl =
-          await _mediaFileStorage.upload(collection.id, payload.image!);
+      downloadUrl = await _fileStorage.upload(collection.id, payload.image!);
     }
 
     // 데이터베이스에 있는 테마를 수정합니다.

@@ -1,7 +1,7 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/persistence/media_file_storage.dart';
+import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
 
 typedef RemoveCollectionPayload = ({
@@ -13,11 +13,11 @@ final class RemoveCollectionUsecase
     implements UseCase<RemoveCollectionPayload, void> {
   const RemoveCollectionUsecase(
     this._collectionRepository,
-    this._collectionFileStorage,
+    this._fileStorage,
   );
 
   final CollectionRepository _collectionRepository;
-  final MediaFileStorage _collectionFileStorage;
+  final FileStorage _fileStorage;
 
   @override
   Future<void> execute(RemoveCollectionPayload payload) async {
@@ -33,7 +33,7 @@ final class RemoveCollectionUsecase
 
     // 테마에 이미지가 있으면 스토리지에서 이미지를 제거합니다.
     if (collection.image != null) {
-      await _collectionFileStorage.delete(collection.id);
+      await _fileStorage.delete(collection.id);
     }
 
     final removed = collection.remove();

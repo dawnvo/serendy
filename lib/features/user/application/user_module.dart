@@ -1,6 +1,6 @@
 import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/core/persistence/firestore_path.dart';
-import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/user/application/user_service.dart';
 import 'package:serendy/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/edit_profile_usecase.dart';
@@ -14,7 +14,7 @@ abstract final class UserModule {
     // [Persistence]
     sl.registerSingleton(UserRepositoryImpl(sl()));
     sl.registerLazySingleton(
-      () => MediaFileStorageImpl(FirestorePath.user, sl()),
+      () => FileStorageImpl(FirestorePath.user, sl()),
       instanceName: _instance,
     );
 

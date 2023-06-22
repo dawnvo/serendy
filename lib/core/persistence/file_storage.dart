@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
-abstract class MediaFileStorage {
+abstract class FileStorage {
   Future<String?> upload(String key, String filePath);
   Future<void> delete(String key);
 }
 
-final class MediaFileStorageImpl implements MediaFileStorage {
-  MediaFileStorageImpl(this.bucketName, this.storage);
+final class FileStorageImpl implements FileStorage {
+  FileStorageImpl(this.bucketName, this.storage);
 
   final String bucketName;
   final FirebaseStorage storage;

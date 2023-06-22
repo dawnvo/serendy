@@ -1,7 +1,7 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/persistence/media_file_storage.dart';
+import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/features/user/user.dart';
 
 typedef EditProfilePayload = ({
@@ -13,11 +13,11 @@ typedef EditProfilePayload = ({
 final class EditProfileUsecase implements UseCase<EditProfilePayload, User> {
   const EditProfileUsecase(
     this._userRepository,
-    this._mediaFileStorage,
+    this._fileStorage,
   );
 
   final UserRepository _userRepository;
-  final MediaFileStorage _mediaFileStorage;
+  final FileStorage _fileStorage;
 
   @override
   Future<User> execute(EditProfilePayload payload) async {
@@ -36,7 +36,7 @@ final class EditProfileUsecase implements UseCase<EditProfilePayload, User> {
     if (payload.avatar != null &&
         payload.avatar != '' &&
         payload.avatar != user.avatar) {
-      downloadUrl = await _mediaFileStorage.upload(user.id, payload.avatar!);
+      downloadUrl = await _fileStorage.upload(user.id, payload.avatar!);
     }
 
     final edited = user.edit(
