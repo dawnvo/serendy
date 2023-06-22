@@ -4,14 +4,14 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/media/media.dart';
 
-typedef AddCollectionItemPort = ({
+typedef AddCollectionItemPayload = ({
   String executorId,
   String collectionId,
   String mediaId,
 });
 
 final class AddCollectionItemUsecase
-    implements UseCase<AddCollectionItemPort, Collection> {
+    implements UseCase<AddCollectionItemPayload, Collection> {
   const AddCollectionItemUsecase(
     this._collectionRepository,
     this._mediaRepository,
@@ -21,7 +21,7 @@ final class AddCollectionItemUsecase
   final MediaRepository _mediaRepository;
 
   @override
-  Future<Collection> execute(AddCollectionItemPort payload) async {
+  Future<Collection> execute(AddCollectionItemPayload payload) async {
     // 테마를 찾을 수 없으면 예외 처리
     final collection = CoreAssert.notEmpty<Collection>(
       await _collectionRepository.findOne(payload.collectionId),

@@ -4,13 +4,13 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/user/user.dart';
 
-typedef CreateCollectionPort = ({
+typedef CreateCollectionPayload = ({
   String executorId,
   String title,
 });
 
 final class CreateCollectionUsecase
-    implements UseCase<CreateCollectionPort, Collection> {
+    implements UseCase<CreateCollectionPayload, Collection> {
   const CreateCollectionUsecase(
     this._collectionRepository,
     this._userRepository,
@@ -20,7 +20,7 @@ final class CreateCollectionUsecase
   final UserRepository _userRepository;
 
   @override
-  Future<Collection> execute(CreateCollectionPort payload) async {
+  Future<Collection> execute(CreateCollectionPayload payload) async {
     // 사용자를 찾을 수 없으면 예외 처리
     final user = CoreAssert.notEmpty<User>(
       await _userRepository.findOne(payload.executorId),

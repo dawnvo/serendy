@@ -1,17 +1,17 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/collection/collection.dart';
 
-typedef GetCollectionListPort = ({
+typedef GetCollectionListPayload = ({
   String? executorId,
 });
 
 final class GetCollectionListUsecase
-    implements UseCase<GetCollectionListPort, List<Collection?>> {
+    implements UseCase<GetCollectionListPayload, List<Collection?>> {
   const GetCollectionListUsecase(this._collectionRepository);
   final CollectionRepository _collectionRepository;
 
   @override
-  Future<List<Collection?>> execute(GetCollectionListPort payload) async {
+  Future<List<Collection?>> execute(GetCollectionListPayload payload) async {
     final collections =
         await _collectionRepository.findMany(payload.executorId);
 

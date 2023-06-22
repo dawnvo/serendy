@@ -4,7 +4,7 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
 
-typedef EditCollectionPort = ({
+typedef EditCollectionPayload = ({
   String executorId,
   String collectionId,
   String? title,
@@ -14,7 +14,7 @@ typedef EditCollectionPort = ({
 });
 
 final class EditCollectionUsecase
-    implements UseCase<EditCollectionPort, Collection> {
+    implements UseCase<EditCollectionPayload, Collection> {
   const EditCollectionUsecase(
     this._collectionRepository,
     this._mediaFileStorage,
@@ -24,7 +24,7 @@ final class EditCollectionUsecase
   final MediaFileStorage _mediaFileStorage;
 
   @override
-  Future<Collection> execute(EditCollectionPort payload) async {
+  Future<Collection> execute(EditCollectionPayload payload) async {
     // 테마를 찾을 수 없으면 예외 처리
     final collection = CoreAssert.notEmpty<Collection>(
       await _collectionRepository.findOne(payload.collectionId),
@@ -38,7 +38,7 @@ final class EditCollectionUsecase
     // 이미지가 있고, 이전과 다른 이미지라면 스토리지에 업로드를 진행합니다.
     String? downloadUrl;
     if (payload.image != null &&
-        payload.image!.isNotEmpty &&
+        payload.image != '' &&
         payload.image != collection.image) {
       downloadUrl =
           await _mediaFileStorage.upload(collection.id, payload.image!);

@@ -4,13 +4,13 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/user/user.dart';
 
-typedef EditProfilePort = ({
+typedef EditProfilePayload = ({
   String executorId,
   String? name,
   String? avatar,
 });
 
-final class EditProfileUsecase implements UseCase<EditProfilePort, User> {
+final class EditProfileUsecase implements UseCase<EditProfilePayload, User> {
   const EditProfileUsecase(
     this._userRepository,
     this._mediaFileStorage,
@@ -20,7 +20,7 @@ final class EditProfileUsecase implements UseCase<EditProfilePort, User> {
   final MediaFileStorage _mediaFileStorage;
 
   @override
-  Future<User> execute(EditProfilePort payload) async {
+  Future<User> execute(EditProfilePayload payload) async {
     // 사용자를 찾을 수 없으면 예외 처리
     final user = CoreAssert.notEmpty<User>(
       await _userRepository.findOne(payload.executorId),

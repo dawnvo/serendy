@@ -2,7 +2,7 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/features/media/media.dart';
 
-typedef AddMediaPort = ({
+typedef AddMediaPayload = ({
   String executorId,
   MediaType type,
   MediaStatus status,
@@ -15,12 +15,12 @@ typedef AddMediaPort = ({
   String? synopsis,
 });
 
-final class AddMediaUsecase implements UseCase<AddMediaPort, void> {
+final class AddMediaUsecase implements UseCase<AddMediaPayload, void> {
   const AddMediaUsecase(this._mediaRepository);
   final MediaRepository _mediaRepository;
 
   @override
-  Future<void> execute(AddMediaPort payload) async {
+  Future<void> execute(AddMediaPayload payload) async {
     final media = Media(
       type: payload.type,
       status: payload.status,

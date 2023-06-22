@@ -3,18 +3,18 @@ import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
 
-typedef GetCollectionPort = ({
+typedef GetCollectionPayload = ({
   String? executorId,
   String collectionId,
 });
 
 final class GetCollectionUsecase
-    implements UseCase<GetCollectionPort, Collection> {
+    implements UseCase<GetCollectionPayload, Collection> {
   const GetCollectionUsecase(this._collectionRepository);
   final CollectionRepository _collectionRepository;
 
   @override
-  Future<Collection> execute(GetCollectionPort payload) async {
+  Future<Collection> execute(GetCollectionPayload payload) async {
     // 테마를 찾을 수 없으면 예외 처리
     final collection = CoreAssert.notEmpty<Collection>(
       await _collectionRepository.findOne(payload.collectionId),

@@ -4,13 +4,13 @@ import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
 
-typedef RemoveCollectionPort = ({
+typedef RemoveCollectionPayload = ({
   String executorId,
   String collectionId,
 });
 
 final class RemoveCollectionUsecase
-    implements UseCase<RemoveCollectionPort, void> {
+    implements UseCase<RemoveCollectionPayload, void> {
   const RemoveCollectionUsecase(
     this._collectionRepository,
     this._collectionFileStorage,
@@ -20,7 +20,7 @@ final class RemoveCollectionUsecase
   final MediaFileStorage _collectionFileStorage;
 
   @override
-  Future<void> execute(RemoveCollectionPort payload) async {
+  Future<void> execute(RemoveCollectionPayload payload) async {
     // 테마를 찾을 수 없으면 예외 처리
     final collection = CoreAssert.notEmpty<Collection>(
       await _collectionRepository.findOne(payload.collectionId),

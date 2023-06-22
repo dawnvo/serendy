@@ -1,7 +1,7 @@
-abstract class UseCase<TUseCasePort, TUseCaseResult> {
-  Future<TUseCaseResult> execute(TUseCasePort payload);
+abstract class UseCase<TUseCasePayload, TUseCaseResult> {
+  Future<TUseCaseResult> execute(TUseCasePayload payload);
 }
 
-abstract class StreamUseCase<TUseCasePort, TUseCaseResult> {
-  Stream<TUseCaseResult> execute(TUseCasePort payload);
+abstract class StreamUseCase<TUseCasePayload, TUseCaseResult> {
+  Stream<TUseCaseResult> execute(TUseCasePayload payload);
 }
