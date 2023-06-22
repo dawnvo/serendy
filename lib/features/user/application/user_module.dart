@@ -1,58 +1,32 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/core/network/firestore_path.dart';
-import 'package:serendy/core/network/media_file_storage.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
+import 'package:serendy/core/persistence/firestore_path.dart';
+import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/user/application/user_service.dart';
-import 'package:serendy/features/user/data/repositories/user_repository.dart';
-import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
 import 'package:serendy/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/get_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/remove_user_usecase.dart';
+import 'package:serendy/features/user/infrastructure/user_repository_impl.dart';
 
 abstract final class UserModule {
-  static const _key = 'UserModule';
+  static const _instance = 'UserModule';
   static void dependencies() {
     // [Persistence]
-    sl.registerSingleton<UserRepositoryPort>(
-      UserRepository(sl<FirebaseFirestore>()),
-    );
-    sl.registerLazySingleton<MediaFileStoragePort>(
-      instanceName: _key,
-      () => MediaFileStorage(
-        FirestorePath.user,
-        sl<FirebaseStorage>(),
-      ),
+    sl.registerSingleton(UserRepositoryImpl(sl()));
+    sl.registerLazySingleton(
+      () => MediaFileStorageImpl(FirestorePath.user, sl()),
+      instanceName: _instance,
     );
 
     // [UseCase]
-    sl.registerLazySingleton<GetUserUsecase>(
-      () => GetUserUsecase(
-        sl<UserRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<CreateUserUsecase>(
-      () => CreateUserUsecase(
-        sl<UserRepositoryPort>(),
-        sl<CollectionRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<EditProfileUsecase>(
-      () => EditProfileUsecase(
-        sl<UserRepositoryPort>(),
-        sl<MediaFileStoragePort>(instanceName: _key),
-      ),
-    );
-    sl.registerLazySingleton<RemoveUserUsecase>(
-      () => RemoveUserUsecase(
-        sl<UserRepositoryPort>(),
-      ),
-    );
+    sl.registerLazySingleton(() => GetUserUsecase(sl()));
+    sl.registerLazySingleton(() => CreateUserUsecase(sl(), sl()));
+    sl.registerLazySingleton(
+        () => EditProfileUsecase(sl(), sl(instanceName: _instance)));
+    sl.registerLazySingleton(() => RemoveUserUsecase(sl()));
 
     // [Service]
-    sl.registerLazySingleton<UserService>(
+    sl.registerLazySingleton(
       () => UserService(
         sl(),
         sl(),

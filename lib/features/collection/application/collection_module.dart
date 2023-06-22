@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/core/network/firestore_path.dart';
-import 'package:serendy/core/network/media_file_storage.dart';
+import 'package:serendy/core/persistence/firestore_path.dart';
+import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/collection/application/collection_service.dart';
-import 'package:serendy/features/collection/data/repositories/collection_repository.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
 import 'package:serendy/features/collection/domain/usecases/add_collection_item_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/create_collection_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/delete_collection_item_usecase.dart';
@@ -14,72 +10,32 @@ import 'package:serendy/features/collection/domain/usecases/get_collection_list_
 import 'package:serendy/features/collection/domain/usecases/get_collection_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/remove_collection_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/watch_collection_list_usecase.dart';
-import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
+import 'package:serendy/features/collection/infrastructure/collection_repository_impl.dart';
 
 abstract final class CollectionModule {
-  static const _key = 'CollectionModule';
+  static const _instance = 'CollectionModule';
   static void dependencies() {
     // [Persistence]
-    sl.registerSingleton<CollectionRepositoryPort>(
-      CollectionRepository(sl<FirebaseFirestore>()),
-    );
-    sl.registerLazySingleton<MediaFileStoragePort>(
-      instanceName: _key,
-      () => MediaFileStorage(
-        FirestorePath.collection,
-        sl<FirebaseStorage>(),
-      ),
+    sl.registerSingleton(CollectionRepositoryImpl(sl()));
+    sl.registerLazySingleton(
+      () => MediaFileStorageImpl(FirestorePath.collection, sl()),
+      instanceName: _instance,
     );
 
     // [UseCase]
-    sl.registerLazySingleton<GetCollectionUsecase>(
-      () => GetCollectionUsecase(
-        sl<CollectionRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<GetCollectionListUsecase>(
-      () => GetCollectionListUsecase(
-        sl<CollectionRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<WatchCollectionListUsecase>(
-      () => WatchCollectionListUsecase(
-        sl<CollectionRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<CreateCollectionUsecase>(
-      () => CreateCollectionUsecase(
-        sl<CollectionRepositoryPort>(),
-        sl<UserRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<EditCollectionUsecase>(
-      () => EditCollectionUsecase(
-        sl<CollectionRepositoryPort>(),
-        sl<MediaFileStoragePort>(instanceName: _key),
-      ),
-    );
-    sl.registerLazySingleton<RemoveCollectionUsecase>(
-      () => RemoveCollectionUsecase(
-        sl<CollectionRepositoryPort>(),
-        sl<MediaFileStoragePort>(instanceName: _key),
-      ),
-    );
-    sl.registerLazySingleton<AddCollectionItemUsecase>(
-      () => AddCollectionItemUsecase(
-        sl<CollectionRepositoryPort>(),
-        sl<MediaRepositoryPort>(),
-      ),
-    );
-    sl.registerLazySingleton<DeleteCollectionItemUsecase>(
-      () => DeleteCollectionItemUsecase(
-        sl<CollectionRepositoryPort>(),
-      ),
-    );
+    sl.registerLazySingleton(() => GetCollectionUsecase(sl()));
+    sl.registerLazySingleton(() => GetCollectionListUsecase(sl()));
+    sl.registerLazySingleton(() => WatchCollectionListUsecase(sl()));
+    sl.registerLazySingleton(() => CreateCollectionUsecase(sl(), sl()));
+    sl.registerLazySingleton(
+        () => EditCollectionUsecase(sl(), sl(instanceName: _instance)));
+    sl.registerLazySingleton(
+        () => RemoveCollectionUsecase(sl(), sl(instanceName: _instance)));
+    sl.registerLazySingleton(() => AddCollectionItemUsecase(sl(), sl()));
+    sl.registerLazySingleton(() => DeleteCollectionItemUsecase(sl()));
 
     // [Service]
-    sl.registerLazySingleton<CollectionService>(
+    sl.registerLazySingleton(
       () => CollectionService(
         sl(),
         sl(),

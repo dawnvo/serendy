@@ -2,8 +2,7 @@ part of 'collection.dart';
 
 /// [Entity]
 final class CollectionOwner extends Equatable {
-  /// 사용자 식별
-  final String id;
+  final UserID id;
 
   /// 사용자 이름
   final String name;

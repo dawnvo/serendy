@@ -1,10 +1,17 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/network/media_file_storage.dart';
+import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/edit_collection_port.dart';
+
+typedef EditCollectionPort = ({
+  String executorId,
+  String collectionId,
+  String? title,
+  String? description,
+  String? image,
+  bool? private,
+});
 
 final class EditCollectionUsecase
     implements UseCase<EditCollectionPort, Collection> {
@@ -13,8 +20,8 @@ final class EditCollectionUsecase
     this._mediaFileStorage,
   );
 
-  final CollectionRepositoryPort _collectionRepository;
-  final MediaFileStoragePort _mediaFileStorage;
+  final CollectionRepository _collectionRepository;
+  final MediaFileStorage _mediaFileStorage;
 
   @override
   Future<Collection> execute(EditCollectionPort payload) async {

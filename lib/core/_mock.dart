@@ -5,7 +5,6 @@ import 'package:serendy/features/media/media.dart';
 import 'package:serendy/features/user/user.dart';
 
 // User
-
 final userMock = User(id: 'uid', name: "Serendy");
 
 // Media

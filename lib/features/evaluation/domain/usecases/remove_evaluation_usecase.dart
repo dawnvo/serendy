@@ -1,18 +1,20 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/remove_evaluation_port.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 
-final class RemoveEvaluationUsecase
-    implements UseCase<RemoveEvaluationPort, void> {
-  const RemoveEvaluationUsecase(this._evaluationRepository);
+typedef RemoveEvaluationPayload = ({
+  String executorId,
+  String mediaId,
+});
 
-  final EvaluationRepositoryPort _evaluationRepository;
+final class RemoveEvaluationUsecase
+    implements UseCase<RemoveEvaluationPayload, void> {
+  const RemoveEvaluationUsecase(this._evaluationRepository);
+  final EvaluationRepository _evaluationRepository;
 
   @override
-  Future<void> execute(RemoveEvaluationPort payload) async {
+  Future<void> execute(RemoveEvaluationPayload payload) async {
     // 평가를 찾을 수 없으면 예외 처리
     final evaluation = CoreAssert.notEmpty<Evaluation>(
       await _evaluationRepository.findOne(payload.executorId, payload.mediaId),

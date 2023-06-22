@@ -1,10 +1,10 @@
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/auth/application/auth_service.dart';
-import 'package:serendy/features/user/user.dart';
 import 'package:serendy/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/get_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/remove_user_usecase.dart';
+import 'package:serendy/features/user/user.dart';
 
 class UserService {
   const UserService(

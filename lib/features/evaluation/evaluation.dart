@@ -1,5 +1,4 @@
-// application
 export 'application/evaluation_service.dart';
 
-// domain
 export 'domain/models/evaluation.dart';
+export 'domain/repositories/evaluation_repository.dart';

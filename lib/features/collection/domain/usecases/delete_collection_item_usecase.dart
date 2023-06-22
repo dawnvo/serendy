@@ -2,14 +2,17 @@ import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/delete_collection_item_port.dart';
+
+typedef DeleteCollectionItemPort = ({
+  String executorId,
+  String collectionId,
+  String mediaId,
+});
 
 final class DeleteCollectionItemUsecase
     implements UseCase<DeleteCollectionItemPort, Collection> {
   const DeleteCollectionItemUsecase(this._collectionRepository);
-
-  final CollectionRepositoryPort _collectionRepository;
+  final CollectionRepository _collectionRepository;
 
   @override
   Future<Collection> execute(DeleteCollectionItemPort payload) async {

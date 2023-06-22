@@ -2,20 +2,20 @@ part of 'collection.dart';
 
 /// [Entity]
 final class CollectionItem extends Equatable {
-  /// 미디어
   final Media media;
 
   /// 추가한 날짜
   final DateTime addedAt;
 
   const CollectionItem({
-    required this.addedAt,
     required this.media,
+    required this.addedAt,
   });
 
   @override
   List<Object?> get props => [
         media,
+        addedAt,
       ];
 
   Media get convertMedia => Media(

@@ -1,3 +1,0 @@
-typedef GetUserPort = ({
-  String userId,
-});

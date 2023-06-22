@@ -1,13 +1,14 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/watch_collection_list_port.dart';
+
+typedef WatchCollectionListPort = ({
+  String userId,
+});
 
 final class WatchCollectionListUsecase
     implements StreamUseCase<WatchCollectionListPort, List<Collection?>> {
   const WatchCollectionListUsecase(this._collectionRepository);
-
-  final CollectionRepositoryPort _collectionRepository;
+  final CollectionRepository _collectionRepository;
 
   @override
   Stream<List<Collection?>> execute(WatchCollectionListPort payload) {

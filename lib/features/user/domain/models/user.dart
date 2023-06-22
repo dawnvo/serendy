@@ -5,7 +5,6 @@ typedef UserID = String;
 
 /// [AggregateRoot]
 final class User extends Equatable {
-  /// 식별자
   final UserID id;
 
   /// 이름

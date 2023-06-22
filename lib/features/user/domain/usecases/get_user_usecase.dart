@@ -1,14 +1,15 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/get_user_port.dart';
 import 'package:serendy/features/user/user.dart';
+
+typedef GetUserPort = ({
+  String userId,
+});
 
 final class GetUserUsecase implements UseCase<GetUserPort, User> {
   const GetUserUsecase(this._userRepository);
-
-  final UserRepositoryPort _userRepository;
+  final UserRepository _userRepository;
 
   @override
   Future<User> execute(GetUserPort payload) async {

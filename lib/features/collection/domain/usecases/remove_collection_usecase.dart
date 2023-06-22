@@ -1,10 +1,13 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/network/media_file_storage.dart';
+import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/remove_collection_port.dart';
+
+typedef RemoveCollectionPort = ({
+  String executorId,
+  String collectionId,
+});
 
 final class RemoveCollectionUsecase
     implements UseCase<RemoveCollectionPort, void> {
@@ -13,8 +16,8 @@ final class RemoveCollectionUsecase
     this._collectionFileStorage,
   );
 
-  final CollectionRepositoryPort _collectionRepository;
-  final MediaFileStoragePort _collectionFileStorage;
+  final CollectionRepository _collectionRepository;
+  final MediaFileStorage _collectionFileStorage;
 
   @override
   Future<void> execute(RemoveCollectionPort payload) async {

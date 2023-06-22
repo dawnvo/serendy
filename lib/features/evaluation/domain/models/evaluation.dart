@@ -4,25 +4,24 @@ import 'package:serendy/core/enums.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/features/user/user.dart';
 
-part 'media_info.dart';
+part 'media.dart';
 
 typedef EvaluationID = String;
 
 /// [AggregateRoot]
 final class Evaluation extends Equatable {
-  /// 식별자
   final EvaluationID id;
 
-  /// 사용자 식별
+  /// 평가한 사용자
   final UserID userId;
 
-  /// 감상한 미디어
+  /// 평가한 미디어
   final MediaInfo media;
 
-  /// 감상 후 느낀 감정
+  /// 감정 평가
   final Emotion emotion;
 
-  /// 공개 여부
+  /// 비공개 상태
   final bool private;
 
   /// 생성 날짜

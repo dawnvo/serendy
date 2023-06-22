@@ -1,15 +1,17 @@
 import 'package:serendy/core/domain/usecase.dart';
-import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/count_evaluations_port.dart';
+import 'package:serendy/features/evaluation/evaluation.dart';
+
+typedef CountEvaluationsPayload = ({
+  String userId,
+});
 
 final class CountEvaluationsUsecase
-    implements UseCase<CountEvaluationsPort, int> {
+    implements UseCase<CountEvaluationsPayload, int> {
   const CountEvaluationsUsecase(this._evaluationRepository);
-
-  final EvaluationRepositoryPort _evaluationRepository;
+  final EvaluationRepository _evaluationRepository;
 
   @override
-  Future<int> execute(CountEvaluationsPort payload) async {
+  Future<int> execute(CountEvaluationsPayload payload) async {
     final count = await _evaluationRepository.count(payload.userId);
     return count;
   }

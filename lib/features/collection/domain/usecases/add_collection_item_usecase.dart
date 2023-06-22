@@ -2,10 +2,13 @@ import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/add_collection_item_port.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
 import 'package:serendy/features/media/media.dart';
+
+typedef AddCollectionItemPort = ({
+  String executorId,
+  String collectionId,
+  String mediaId,
+});
 
 final class AddCollectionItemUsecase
     implements UseCase<AddCollectionItemPort, Collection> {
@@ -14,8 +17,8 @@ final class AddCollectionItemUsecase
     this._mediaRepository,
   );
 
-  final CollectionRepositoryPort _collectionRepository;
-  final MediaRepositoryPort _mediaRepository;
+  final CollectionRepository _collectionRepository;
+  final MediaRepository _mediaRepository;
 
   @override
   Future<Collection> execute(AddCollectionItemPort payload) async {

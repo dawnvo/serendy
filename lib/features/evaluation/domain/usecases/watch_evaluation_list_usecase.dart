@@ -1,16 +1,18 @@
 import 'package:serendy/core/domain/usecase.dart';
-import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/watch_evaluation_list_port.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 
-final class WatchEvaluationListUsecase
-    implements StreamUseCase<WatchEvaluationListPort, List<Evaluation?>> {
-  const WatchEvaluationListUsecase(this._evaluationRepository);
+typedef WatchEvaluationListPayload = ({
+  String? userId,
+  String? mediaId,
+});
 
-  final EvaluationRepositoryPort _evaluationRepository;
+final class WatchEvaluationListUsecase
+    implements StreamUseCase<WatchEvaluationListPayload, List<Evaluation?>> {
+  const WatchEvaluationListUsecase(this._evaluationRepository);
+  final EvaluationRepository _evaluationRepository;
 
   @override
-  Stream<List<Evaluation?>> execute(WatchEvaluationListPort payload) {
+  Stream<List<Evaluation?>> execute(WatchEvaluationListPayload payload) {
     final evaluations = _evaluationRepository.watchMany(
       userId: payload.userId,
       mediaId: payload.mediaId,

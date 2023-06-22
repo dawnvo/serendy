@@ -1,18 +1,18 @@
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/features/media/media.dart';
+import 'package:serendy/features/user/user.dart';
 
-part 'collection_owner.dart';
 part 'collection_item.dart';
+part 'collection_owner.dart';
 
 typedef CollectionID = String;
 
 /// [AggregateRoot]
 final class Collection extends Equatable {
-  /// 식별자
   final CollectionID id;
 
-  /// 제작자
+  /// 소유자
   final CollectionOwner owner;
 
   /// 제목
@@ -21,16 +21,16 @@ final class Collection extends Equatable {
   /// 설명
   final String? description;
 
-  /// 커버 사진
+  /// 사진
   final String? image;
 
-  /// 비공개 여부
+  /// 비공개 상태
   final bool private;
 
-  /// 작품들
+  /// 작품 목록
   final List<CollectionItem?> items;
 
-  /// 작품 수
+  /// 작품 개수
   final int itemCount;
 
   /// 생성 날짜
@@ -66,13 +66,14 @@ final class Collection extends Equatable {
         id,
         owner,
         title,
-        description,
         image,
         private,
+        description,
         items,
         itemCount,
         createdAt,
         updatedAt,
+        removedAt,
       ];
 }
 

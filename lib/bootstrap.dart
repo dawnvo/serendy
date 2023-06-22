@@ -4,9 +4,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
-import 'package:serendy/bloc_observer.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/firebase_options.dart';
+import 'package:serendy/core/persistence/firebase_options.dart';
+import 'package:serendy/core/utils/bloc_observer.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
@@ -15,7 +15,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  // BloC
+  // BlocObserver
   Bloc.observer = const AppBlocObserver();
 
   // Firebase

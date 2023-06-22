@@ -1,3 +1,0 @@
-typedef CountEvaluationsPort = ({
-  String userId,
-});

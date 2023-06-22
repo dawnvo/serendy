@@ -1,3 +1,0 @@
-typedef GetCollectionListPort = ({
-  String? executorId,
-});

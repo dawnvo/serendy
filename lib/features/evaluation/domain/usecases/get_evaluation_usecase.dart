@@ -1,16 +1,18 @@
 import 'package:serendy/core/domain/usecase.dart';
-import 'package:serendy/features/evaluation/domain/ports/persistence/evaluation_repository_port.dart';
-import 'package:serendy/features/evaluation/domain/ports/get_evaluation_port.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 
-final class GetEvaluationUsecase
-    implements UseCase<GetEvaluationPort, Evaluation?> {
-  const GetEvaluationUsecase(this._evaluationRepository);
+typedef GetEvaluationPayload = ({
+  String userId,
+  String mediaId,
+});
 
-  final EvaluationRepositoryPort _evaluationRepository;
+final class GetEvaluationUsecase
+    implements UseCase<GetEvaluationPayload, Evaluation?> {
+  const GetEvaluationUsecase(this._evaluationRepository);
+  final EvaluationRepository _evaluationRepository;
 
   @override
-  Future<Evaluation?> execute(GetEvaluationPort payload) async {
+  Future<Evaluation?> execute(GetEvaluationPayload payload) async {
     final evaluation = await _evaluationRepository.findOne(
       payload.userId,
       payload.mediaId,

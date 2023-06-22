@@ -1,9 +1,13 @@
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/create_user_port.dart';
 import 'package:serendy/features/user/user.dart';
+
+typedef CreateUserPort = ({
+  String id,
+  String name,
+  String? email,
+  String? avatar,
+});
 
 final class CreateUserUsecase implements UseCase<CreateUserPort, User> {
   const CreateUserUsecase(
@@ -11,8 +15,8 @@ final class CreateUserUsecase implements UseCase<CreateUserPort, User> {
     this._collectionRepository,
   );
 
-  final UserRepositoryPort _userRepository;
-  final CollectionRepositoryPort _collectionRepository;
+  final UserRepository _userRepository;
+  final CollectionRepository _collectionRepository;
 
   @override
   Future<User> execute(CreateUserPort payload) async {

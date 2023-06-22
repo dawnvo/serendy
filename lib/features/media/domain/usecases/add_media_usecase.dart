@@ -1,12 +1,23 @@
 import 'package:serendy/core/domain/usecase.dart';
-import 'package:serendy/features/media/domain/ports/persistence/media_repository_port.dart';
-import 'package:serendy/features/media/domain/ports/add_media_port.dart';
+import 'package:serendy/core/enums.dart';
 import 'package:serendy/features/media/media.dart';
+
+typedef AddMediaPort = ({
+  String executorId,
+  MediaType type,
+  MediaStatus status,
+  String title,
+  String image,
+  List<String> keywords,
+  bool? isAdult,
+  DateTime? startDate,
+  DateTime? endDate,
+  String? synopsis,
+});
 
 final class AddMediaUsecase implements UseCase<AddMediaPort, void> {
   const AddMediaUsecase(this._mediaRepository);
-
-  final MediaRepositoryPort _mediaRepository;
+  final MediaRepository _mediaRepository;
 
   @override
   Future<void> execute(AddMediaPort payload) async {

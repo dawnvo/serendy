@@ -6,7 +6,6 @@ typedef MediaID = String;
 
 /// [AggregateRoot]
 final class Media extends Equatable {
-  /// 식별자
   final MediaID id;
 
   /// 대분류
@@ -15,25 +14,25 @@ final class Media extends Equatable {
   /// 방영 상태
   final MediaStatus status;
 
-  /// 작품 제목
+  /// 제목
   final String title;
 
-  /// 작품 사진
+  /// 사진
   final String image;
 
-  /// 작품 줄거리
+  /// 줄거리
   final String? synopsis;
 
-  /// 작품 특징
+  /// 키워드
   final List<String> keywords;
 
   /// 민감한 콘텐츠
   final bool isAdult;
 
-  /// 시작 날짜
+  /// 방영 시작 날짜
   final DateTime? startDate;
 
-  /// 종료 날짜
+  /// 방영 종료 날짜
   final DateTime? endDate;
 
   Media({
@@ -56,6 +55,8 @@ final class Media extends Equatable {
         type,
         status,
         title,
+        image,
+        synopsis,
         keywords,
         startDate,
         endDate,

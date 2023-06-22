@@ -1,15 +1,17 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/features/collection/domain/models/collection.dart';
-import 'package:serendy/features/collection/domain/ports/persistence/collection_repository_port.dart';
-import 'package:serendy/features/collection/domain/ports/get_collection_port.dart';
+import 'package:serendy/features/collection/collection.dart';
+
+typedef GetCollectionPort = ({
+  String? executorId,
+  String collectionId,
+});
 
 final class GetCollectionUsecase
     implements UseCase<GetCollectionPort, Collection> {
   const GetCollectionUsecase(this._collectionRepository);
-
-  final CollectionRepositoryPort _collectionRepository;
+  final CollectionRepository _collectionRepository;
 
   @override
   Future<Collection> execute(GetCollectionPort payload) async {

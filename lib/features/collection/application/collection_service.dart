@@ -34,9 +34,9 @@ class CollectionService {
   final DeleteCollectionItemUsecase _deleteCollectionItemUsecase;
 
   /// 나의 컬렉션을 구독해요.
-  Stream<List<Collection?>> watchMyCollectionsList() async* {
-    final userId = _authService.currentUserId;
-    yield* _watchCollectionListUsecase.execute((userId: userId));
+  Stream<List<Collection?>> watchMyCollectionsList() {
+    final userId = _checkUserId(_authService.currentUserId);
+    return _watchCollectionListUsecase.execute((userId: userId));
   }
 
   /// 여러 컬렉션을 불러와요.

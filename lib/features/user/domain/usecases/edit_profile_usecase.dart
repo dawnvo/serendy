@@ -1,10 +1,14 @@
 import 'package:serendy/core/domain/assert.dart';
 import 'package:serendy/core/domain/usecase.dart';
 import 'package:serendy/core/exceptions/core_exception.dart';
-import 'package:serendy/core/network/media_file_storage.dart';
-import 'package:serendy/features/user/domain/ports/persistence/user_repository_port.dart';
-import 'package:serendy/features/user/domain/ports/edit_profile_port.dart';
+import 'package:serendy/core/persistence/media_file_storage.dart';
 import 'package:serendy/features/user/user.dart';
+
+typedef EditProfilePort = ({
+  String executorId,
+  String? name,
+  String? avatar,
+});
 
 final class EditProfileUsecase implements UseCase<EditProfilePort, User> {
   const EditProfileUsecase(
@@ -12,8 +16,8 @@ final class EditProfileUsecase implements UseCase<EditProfilePort, User> {
     this._mediaFileStorage,
   );
 
-  final UserRepositoryPort _userRepository;
-  final MediaFileStoragePort _mediaFileStorage;
+  final UserRepository _userRepository;
+  final MediaFileStorage _mediaFileStorage;
 
   @override
   Future<User> execute(EditProfilePort payload) async {
@@ -30,7 +34,7 @@ final class EditProfileUsecase implements UseCase<EditProfilePort, User> {
     // 이미지가 있고, 이전과 다른 이미지라면 스토리지에 업로드를 진행합니다.
     String? downloadUrl;
     if (payload.avatar != null &&
-        payload.avatar!.isNotEmpty &&
+        payload.avatar != '' &&
         payload.avatar != user.avatar) {
       downloadUrl = await _mediaFileStorage.upload(user.id, payload.avatar!);
     }
