@@ -99,7 +99,6 @@ class _CollectionTemplate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   titles,
-                  Gap.h8,
                   detailBar,
                   Gap.h24,
                 ],

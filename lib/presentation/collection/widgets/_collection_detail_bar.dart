@@ -2,7 +2,6 @@ part of 'package:serendy/presentation/collection/collection_screen.dart';
 
 class _CollectionDetailBar extends StatelessWidget {
   const _CollectionDetailBar({required this.collection});
-
   final Collection collection;
 
   @override

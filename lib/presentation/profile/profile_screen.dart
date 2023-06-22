@@ -63,7 +63,7 @@ class _ProfileTemplate extends StatelessWidget {
 
   final _ProfileWatchedMediaIndicator watchedMediaIndicator;
   final _ProfileMyCollectionsList collectionsList;
-  final List<Widget> actions;
+  final List<IconButton> actions;
 
   @override
   Widget build(BuildContext context) {
