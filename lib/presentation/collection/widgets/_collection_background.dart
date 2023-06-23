@@ -8,22 +8,11 @@ class _CollectionBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRect(
-      child: ShaderMask(
-        blendMode: BlendMode.dstOut,
-        shaderCallback: (bounds) {
-          return LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: const [
-              0.2,
-              1.0,
-            ],
-            colors: [
-              Colors.black.withOpacity(0.64),
-              Colors.black,
-            ],
-          ).createShader(bounds);
-        },
+      child: VerticalLinearGradient(
+        stops: const [
+          0.2,
+          1.0,
+        ],
         child: ImageFiltered(
           imageFilter: ImageFilter.blur(
             sigmaX: 50,

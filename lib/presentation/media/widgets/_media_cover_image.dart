@@ -7,22 +7,11 @@ class _MediaCoverImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      blendMode: BlendMode.dstOut,
-      shaderCallback: (bounds) {
-        return LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: const [
-            0.5,
-            1.0,
-          ],
-          colors: [
-            Colors.transparent,
-            context.colorScheme.surface,
-          ],
-        ).createShader(bounds);
-      },
+    return VerticalLinearGradient(
+      colors: [
+        Colors.transparent,
+        context.colorScheme.surface,
+      ],
       child: CachedNetworkImage(
         imageUrl: image,
         fit: BoxFit.cover,

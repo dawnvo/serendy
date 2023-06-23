@@ -10,7 +10,8 @@ import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
 import 'package:serendy/features/media/media.dart';
-import 'package:serendy/presentation/@blocs/my_evaluation/my_evaluation_bloc.dart';
+import 'package:serendy/presentation/@blocs/blocs.dart';
+import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'widgets/_emotion_grid.dart';
 part 'widgets/_media_evaluate_background.dart';
