@@ -8,8 +8,8 @@ part 'edit_collection_state.dart';
 class EditCollectionBloc
     extends Bloc<EditCollectionEvent, EditCollectionState> {
   EditCollectionBloc({
-    required this.collectionService,
     required Collection initialCollection,
+    required this.collectionService,
   }) : super(EditCollectionState(
           initialCollection: initialCollection,
           image: initialCollection.image,

@@ -119,6 +119,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MediaEvaluateRoute.name: (routeData) {
+      final args = routeData.argsAs<MediaEvaluateRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MediaEvaluateScreen(
+          evaluation: args.evaluation,
+          media: args.media,
+          key: args.key,
+        ),
+      );
+    },
   };
 }
 
@@ -411,5 +422,48 @@ class SignInRouteArgs {
   @override
   String toString() {
     return 'SignInRouteArgs{onResult: $onResult, key: $key}';
+  }
+}
+
+/// generated route for
+/// [MediaEvaluateScreen]
+class MediaEvaluateRoute extends PageRouteInfo<MediaEvaluateRouteArgs> {
+  MediaEvaluateRoute({
+    required Evaluation? evaluation,
+    required Media media,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MediaEvaluateRoute.name,
+          args: MediaEvaluateRouteArgs(
+            evaluation: evaluation,
+            media: media,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MediaEvaluateRoute';
+
+  static const PageInfo<MediaEvaluateRouteArgs> page =
+      PageInfo<MediaEvaluateRouteArgs>(name);
+}
+
+class MediaEvaluateRouteArgs {
+  const MediaEvaluateRouteArgs({
+    required this.evaluation,
+    required this.media,
+    this.key,
+  });
+
+  final Evaluation? evaluation;
+
+  final Media media;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MediaEvaluateRouteArgs{evaluation: $evaluation, media: $media, key: $key}';
   }
 }

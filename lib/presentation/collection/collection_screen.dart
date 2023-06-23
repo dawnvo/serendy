@@ -12,7 +12,7 @@ import 'package:serendy/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/collection/bloc/collection_bloc.dart';
 
-part 'widgets/_collection_background_image.dart';
+part 'widgets/_collection_background.dart';
 part 'widgets/_collection_titles.dart';
 part 'widgets/_detail_bar.dart';
 part 'widgets/_medias_grid.dart';
@@ -46,7 +46,7 @@ class _CollectionView extends StatelessWidget {
 
     return switch (state) {
       CollectionLoaded() => _CollectionTemplate(
-          backgroundImage: _CollectionBackgroundImage(
+          background: _CollectionBackground(
             image: state.collection.image,
           ),
           titles: _CollectionTitles(
@@ -68,13 +68,13 @@ class _CollectionView extends StatelessWidget {
 
 class _CollectionTemplate extends StatelessWidget {
   const _CollectionTemplate({
-    required this.backgroundImage,
+    required this.background,
     required this.titles,
     required this.detailBar,
     required this.mediasGrid,
   });
 
-  final _CollectionBackgroundImage backgroundImage;
+  final _CollectionBackground background;
   final _CollectionTitles titles;
   final _CollectionDetailBar detailBar;
   final _CollectionMediasGrid mediasGrid;
@@ -86,7 +86,7 @@ class _CollectionTemplate extends StatelessWidget {
         SizedBox(
           height: 320,
           width: double.infinity,
-          child: backgroundImage,
+          child: background,
         ),
         CustomScrollView(slivers: [
           const SliverAppBar(backgroundColor: Colors.transparent),

@@ -1,13 +1,16 @@
 part of 'package:serendy/presentation/media/media_screen.dart';
 
 class _MediaEvaluateIconButton extends StatelessWidget {
-  const _MediaEvaluateIconButton({
-    required this.icon,
-    required this.onPressed,
-  });
+  const _MediaEvaluateIconButton({required this.media});
 
-  final Widget icon;
-  final VoidCallback onPressed;
+  final Media media;
+
+  void handlePressed(BuildContext context, Evaluation? evaluation) {
+    context.pushRoute(MediaEvaluateRoute(
+      evaluation: evaluation,
+      media: media,
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +19,10 @@ class _MediaEvaluateIconButton extends StatelessWidget {
     );
 
     return Row(children: [
-      if (evaluation != null) _EmotionLabel(evaluation.emotion),
+      if (evaluation != null) __EmotionLabel(evaluation.emotion),
       if (evaluation != null)
         IconButton(
-          onPressed: onPressed,
+          onPressed: () => handlePressed(context, evaluation),
           icon: SvgPicture.asset(
             evaluation.emotion.filePath,
             height: Sizes.p28,
@@ -27,16 +30,16 @@ class _MediaEvaluateIconButton extends StatelessWidget {
         )
       else
         IconButton(
-          onPressed: onPressed,
-          icon: icon,
+          onPressed: () => handlePressed(context, evaluation),
+          icon: const Icon(RemixIcon.emotion_fill),
         )
     ]);
   }
 }
 
 /// Emotion label
-class _EmotionLabel extends StatelessWidget {
-  const _EmotionLabel(this.emotion);
+class __EmotionLabel extends StatelessWidget {
+  const __EmotionLabel(this.emotion);
 
   final Emotion emotion;
 

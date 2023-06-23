@@ -2,18 +2,22 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
+import 'package:serendy/features/media/domain/models/media.dart';
 
 part 'my_evaluation_event.dart';
 part 'my_evaluation_state.dart';
 
 class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
-  MyEvaluationBloc({required this.evaluationService})
-      : super(const MyEvaluationState()) {
+  MyEvaluationBloc({
+    required this.mediaId,
+    required this.evaluationService,
+  }) : super(const MyEvaluationState()) {
     on<MyEvaluation$Fetched>(_onFetched);
     on<MyEvaluation$Evaluated>(_onEvaluated);
     on<MyEvaluation$Removed>(_onRemoved);
   }
 
+  final MediaID mediaId;
   final EvaluationService evaluationService;
 
   Future<void> _onFetched(
@@ -24,7 +28,7 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
 
     try {
       final evaluation = await evaluationService.fetchEvaluation(
-        mediaId: event.mediaId,
+        mediaId: mediaId,
       );
 
       emit(state.copyWith(
@@ -45,7 +49,7 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
   ) async {
     try {
       final evaluation = await evaluationService.submitEvaluation(
-        mediaId: event.mediaId,
+        mediaId: mediaId,
         emotion: event.emotion,
       );
 
@@ -67,7 +71,7 @@ class MyEvaluationBloc extends Bloc<MyEvaluationEvent, MyEvaluationState> {
   ) async {
     try {
       await evaluationService.removeEvaluation(
-        mediaId: event.mediaId,
+        mediaId: mediaId,
       );
 
       emit(const MyEvaluationState(

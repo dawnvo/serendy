@@ -30,11 +30,7 @@ class _MediaActionBar extends StatelessWidget {
           icon: const Icon(RemixIcon.more_2_fill),
         ),
         const Spacer(),
-        _MediaEvaluateIconButton(
-          // onPressed: () => context.pushRoute();
-          onPressed: () {},
-          icon: const Icon(RemixIcon.emotion_fill),
-        ),
+        _MediaEvaluateIconButton(media: media),
       ]),
     );
   }

@@ -15,16 +15,15 @@ import 'package:serendy/presentation/@sheets/sheets.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 import 'package:serendy/presentation/media/bloc/media_bloc.dart';
 
-part 'sheets/_evaluate_media_sheet.dart';
 part 'sheets/_reaction_detail_sheet.dart';
 part 'sheets/_save_media_sheet.dart';
+part 'widgets/_action_bar.dart';
 part 'widgets/_evaluate_icon_button.dart';
-part 'widgets/_media_action_bar.dart';
-part 'widgets/_media_cover_image.dart';
 part 'widgets/_info_tile.dart';
+part 'widgets/_media_cover_image.dart';
 part 'widgets/_media_keywords.dart';
-part 'widgets/_reaction_tile.dart';
 part 'widgets/_media_title.dart';
+part 'widgets/_reaction_tile.dart';
 
 @RoutePage()
 class MediaScreen extends StatelessWidget {
@@ -33,7 +32,7 @@ class MediaScreen extends StatelessWidget {
     super.key,
   });
 
-  final String id;
+  final MediaID id;
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +45,15 @@ class MediaScreen extends StatelessWidget {
           )..add(Media$Fetched(id: id)),
         ),
         BlocProvider(
-          create: (context) => MyEvaluationBloc(
-            evaluationService: sl(),
-          )..add(MyEvaluation$Fetched(mediaId: id)),
-        ),
-        BlocProvider(
           create: (context) => MyCollectionsBloc(
             collectionService: sl(),
           )..add(const MyCollections$Fetched()),
+        ),
+        BlocProvider(
+          create: (context) => MyEvaluationBloc(
+            mediaId: id,
+            evaluationService: sl(),
+          )..add(const MyEvaluation$Fetched()),
         ),
       ],
       child: const _MediaView(),

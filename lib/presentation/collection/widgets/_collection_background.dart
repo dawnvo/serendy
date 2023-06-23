@@ -1,7 +1,7 @@
 part of 'package:serendy/presentation/collection/collection_screen.dart';
 
-class _CollectionBackgroundImage extends StatelessWidget {
-  const _CollectionBackgroundImage({required this.image});
+class _CollectionBackground extends StatelessWidget {
+  const _CollectionBackground({required this.image});
 
   final String? image;
 

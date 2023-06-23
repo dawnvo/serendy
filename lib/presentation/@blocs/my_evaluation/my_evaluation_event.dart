@@ -5,33 +5,23 @@ sealed class MyEvaluationEvent extends Equatable {
 }
 
 final class MyEvaluation$Fetched extends MyEvaluationEvent {
-  const MyEvaluation$Fetched({required this.mediaId});
-  final String mediaId;
+  const MyEvaluation$Fetched();
 
   @override
-  List<Object> get props => [mediaId];
+  List<Object> get props => [];
 }
 
 final class MyEvaluation$Evaluated extends MyEvaluationEvent {
-  const MyEvaluation$Evaluated({
-    required this.mediaId,
-    required this.emotion,
-  });
-
-  final String mediaId;
+  const MyEvaluation$Evaluated({required this.emotion});
   final Emotion emotion;
 
   @override
-  List<Object> get props => [
-        mediaId,
-        emotion,
-      ];
+  List<Object> get props => [emotion];
 }
 
 final class MyEvaluation$Removed extends MyEvaluationEvent {
-  const MyEvaluation$Removed({required this.mediaId});
-  final String mediaId;
+  const MyEvaluation$Removed();
 
   @override
-  List<Object> get props => [mediaId];
+  List<Object> get props => [];
 }
