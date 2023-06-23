@@ -15,7 +15,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         context: context,
         builder: (_) => BlocProvider.value(
           value: context.read<EditCollectionBloc>(),
-          child: const _RemoveCollectionDialog(),
+          child: const __RemoveCollectionDialog(),
         ),
       ),
       title: const Text("테마 삭제"),
@@ -28,8 +28,8 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 }
 
 /// Dialog
-class _RemoveCollectionDialog extends StatelessWidget {
-  const _RemoveCollectionDialog();
+class __RemoveCollectionDialog extends StatelessWidget {
+  const __RemoveCollectionDialog();
 
   @override
   Widget build(BuildContext context) {

@@ -22,7 +22,7 @@ class _MediaReactionTile extends StatelessWidget {
 
       return ListTile(
         onTap: () => _handleShowReactionDetailSheet(context),
-        leading: _ReactionIcons(emotions: uniqueKeys.toList()),
+        leading: __ReactionIcons(emotions: uniqueKeys.toList()),
         title: Text('$totalCount명이 감상했어요'),
         trailing: const Icon(RemixIcon.arrow_right_s_line),
       );
@@ -50,8 +50,8 @@ class _MediaReactionTile extends StatelessWidget {
 }
 
 /// Reaction Icons
-class _ReactionIcons extends StatelessWidget {
-  const _ReactionIcons({required this.emotions});
+class __ReactionIcons extends StatelessWidget {
+  const __ReactionIcons({required this.emotions});
 
   final List<Emotion> emotions;
 

@@ -31,12 +31,8 @@ class _MediaActionBar extends StatelessWidget {
         ),
         const Spacer(),
         _MediaEvaluateIconButton(
-          onPressed: () => context.showCustomModalBottomSheet(
-            (context) => BlocProvider.value(
-              value: context.read<MyEvaluationBloc>(),
-              child: _EvaluateMediaSheet(media: media),
-            ),
-          ),
+          // onPressed: () => context.pushRoute();
+          onPressed: () {},
           icon: const Icon(RemixIcon.emotion_fill),
         ),
       ]),
