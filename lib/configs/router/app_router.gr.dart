@@ -124,7 +124,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: MediaEvaluateScreen(
-          evaluation: args.evaluation,
           media: args.media,
           key: args.key,
         ),
@@ -429,14 +428,12 @@ class SignInRouteArgs {
 /// [MediaEvaluateScreen]
 class MediaEvaluateRoute extends PageRouteInfo<MediaEvaluateRouteArgs> {
   MediaEvaluateRoute({
-    required Evaluation? evaluation,
     required Media media,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           MediaEvaluateRoute.name,
           args: MediaEvaluateRouteArgs(
-            evaluation: evaluation,
             media: media,
             key: key,
           ),
@@ -451,12 +448,9 @@ class MediaEvaluateRoute extends PageRouteInfo<MediaEvaluateRouteArgs> {
 
 class MediaEvaluateRouteArgs {
   const MediaEvaluateRouteArgs({
-    required this.evaluation,
     required this.media,
     this.key,
   });
-
-  final Evaluation? evaluation;
 
   final Media media;
 
@@ -464,6 +458,6 @@ class MediaEvaluateRouteArgs {
 
   @override
   String toString() {
-    return 'MediaEvaluateRouteArgs{evaluation: $evaluation, media: $media, key: $key}';
+    return 'MediaEvaluateRouteArgs{media: $media, key: $key}';
   }
 }

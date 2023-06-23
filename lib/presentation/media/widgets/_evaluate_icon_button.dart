@@ -5,11 +5,8 @@ class _MediaEvaluateIconButton extends StatelessWidget {
 
   final Media media;
 
-  void handlePressed(BuildContext context, Evaluation? evaluation) {
-    context.pushRoute(MediaEvaluateRoute(
-      evaluation: evaluation,
-      media: media,
-    ));
+  void handlePressed(BuildContext context) {
+    context.pushRoute(MediaEvaluateRoute(media: media));
   }
 
   @override
@@ -22,7 +19,7 @@ class _MediaEvaluateIconButton extends StatelessWidget {
       if (evaluation != null) __EmotionLabel(evaluation.emotion),
       if (evaluation != null)
         IconButton(
-          onPressed: () => handlePressed(context, evaluation),
+          onPressed: () => handlePressed(context),
           icon: SvgPicture.asset(
             evaluation.emotion.filePath,
             height: Sizes.p28,
@@ -30,7 +27,7 @@ class _MediaEvaluateIconButton extends StatelessWidget {
         )
       else
         IconButton(
-          onPressed: () => handlePressed(context, evaluation),
+          onPressed: () => handlePressed(context),
           icon: const Icon(RemixIcon.emotion_fill),
         )
     ]);

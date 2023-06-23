@@ -30,7 +30,10 @@ class MediaMenuSheet extends StatelessWidget {
         const Divider(),
         Column(children: [
           _MediaMenuTile(
-            onTap: () {},
+            onTap: () {
+              context.popRoute();
+              context.pushRoute(MediaEvaluateRoute(media: media));
+            },
             icon: const Icon(RemixIcon.emotion_fill),
             title: "감상했어요",
           ),

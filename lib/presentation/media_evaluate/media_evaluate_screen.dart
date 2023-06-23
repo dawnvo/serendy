@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/locator.dart';
-import 'package:serendy/features/evaluation/evaluation.dart';
+import 'package:serendy/features/evaluation/domain/models/evaluation.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@blocs/blocs.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -20,12 +20,10 @@ part 'widgets/_media_evaluate_cover.dart';
 @RoutePage()
 class MediaEvaluateScreen extends StatelessWidget {
   const MediaEvaluateScreen({
-    required this.evaluation,
     required this.media,
     super.key,
   });
 
-  final Evaluation? evaluation;
   final Media media;
 
   @override
@@ -34,22 +32,17 @@ class MediaEvaluateScreen extends StatelessWidget {
       create: (context) => MyEvaluationBloc(
         mediaId: media.id,
         evaluationService: sl(),
-      ),
+      )..add(const MyEvaluation$Fetched()),
       child: _EvaluateView(
         media: media,
-        evaluation: evaluation,
       ),
     );
   }
 }
 
 class _EvaluateView extends StatelessWidget {
-  const _EvaluateView({
-    required this.evaluation,
-    required this.media,
-  });
+  const _EvaluateView({required this.media});
 
-  final Evaluation? evaluation;
   final Media media;
 
   @override
@@ -70,7 +63,7 @@ class _EvaluateView extends StatelessWidget {
           title: media.title,
         ),
         background: _MediaEvaluateBackground(image: media.image),
-        emotionGrid: _MediaEvaluateEmotionGrid(evaluation: evaluation),
+        emotionGrid: const _MediaEvaluateEmotionGrid(),
       ),
     );
   }

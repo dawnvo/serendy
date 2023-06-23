@@ -1,9 +1,7 @@
 part of 'package:serendy/presentation/media_evaluate/media_evaluate_screen.dart';
 
 class _MediaEvaluateEmotionGrid extends StatelessWidget {
-  const _MediaEvaluateEmotionGrid({required this.evaluation});
-
-  final Evaluation? evaluation;
+  const _MediaEvaluateEmotionGrid();
 
   void handleChange(
     BuildContext context, {
@@ -26,6 +24,10 @@ class _MediaEvaluateEmotionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final evaluation = context.select<MyEvaluationBloc, Evaluation?>(
+      (bloc) => bloc.state.evaluation,
+    );
+
     return GridView.count(
       padding: const EdgeInsets.symmetric(
         horizontal: Sizes.p48,
