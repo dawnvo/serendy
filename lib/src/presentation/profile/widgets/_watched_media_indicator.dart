@@ -1,18 +1,19 @@
 part of '../profile_screen.dart';
 
 class _ProfileWatchedMediaIndicator extends StatelessWidget {
-  const _ProfileWatchedMediaIndicator();
+  const _ProfileWatchedMediaIndicator({required this.count});
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
     const total = 10;
-    const count = 0;
 
     return GestureDetector(
       onTap: () => context.pushNamed(AppRoutes.historyName),
       behavior: HitTestBehavior.opaque, // 빈 영역 터치
       child: Column(children: [
-        const MultiLineProgressIndicator([
+        MultiLineProgressIndicator([
           ProgressBar(value: count / total, color: AppColors.brand),
         ]),
         Gap.h12,

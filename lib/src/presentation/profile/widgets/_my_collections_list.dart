@@ -1,12 +1,12 @@
 part of '../profile_screen.dart';
 
 class _ProfileMyCollectionsList extends StatelessWidget {
-  const _ProfileMyCollectionsList();
+  const _ProfileMyCollectionsList({required this.collections});
+
+  final List<Collection?> collections;
 
   @override
   Widget build(BuildContext context) {
-    final collections = collectionsMock;
-
     return MyCollectionsList(
       collections: collections,
       onSelect: (collection) {

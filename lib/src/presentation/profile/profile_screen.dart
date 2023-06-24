@@ -1,29 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
+import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/presentation/profile/profile_controller.dart';
 
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_watched_media_indicator.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   static const String routeName = 'profile';
   static const String routeLocation = '/$routeName';
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return _ProfileTemplate(
-      actions: [
-        IconButton(
-          icon: const Icon(RemixIcon.settings_3_fill),
-          onPressed: () => context.pushNamed(AppRoutes.settingsName),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileValue = ref.watch(profileControllerProvider);
+
+    return profileValue.when(
+      data: (state) => _ProfileTemplate(
+        actions: [
+          IconButton(
+            icon: const Icon(RemixIcon.settings_3_fill),
+            onPressed: () => context.pushNamed(AppRoutes.settingsName),
+          ),
+        ],
+        watchedMediaIndicator: _ProfileWatchedMediaIndicator(
+          count: state.evaluationsCount,
         ),
-      ],
-      watchedMediaIndicator: const _ProfileWatchedMediaIndicator(),
-      collectionsList: const _ProfileMyCollectionsList(),
+        collectionsList: _ProfileMyCollectionsList(
+          collections: state.myCollections,
+        ),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
+      ),
+      loading: () => const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }
