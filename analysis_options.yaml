@@ -13,6 +13,11 @@ analyzer:
   plugins:
     - custom_lint
 
+custom_lint:
+  rules:
+    # Project uses [UncontrolledProviderScope] so we can disable this rule
+    - missing_provider_scope: false
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

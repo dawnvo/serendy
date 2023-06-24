@@ -1,6 +1,20 @@
-import 'package:serendy/bootstrap.dart';
-import 'package:serendy/presentation/app.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:serendy/app_bootstrap.dart';
+import 'package:serendy/core/exceptions/async_error_logger.dart';
+import 'package:serendy/core/persistence/firebase_options.dart';
 
-void main() {
-  bootstrap(() => const SerendyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final bootstrap = AppBootstrap();
+  final container = ProviderContainer(observers: [AsyncErrorLogger()]);
+
+  final root = bootstrap.createRootWidget(container: container);
+
+  runApp(root);
 }
