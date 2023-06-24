@@ -1,7 +1,7 @@
-part of 'package:serendy/presentation/media_evaluate/media_evaluate_screen.dart';
+part of 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
 
-class _MediaEvaluateBackground extends StatelessWidget {
-  const _MediaEvaluateBackground({required this.image});
+class _EvaluateMediaBackground extends StatelessWidget {
+  const _EvaluateMediaBackground({required this.image});
 
   final String image;
 

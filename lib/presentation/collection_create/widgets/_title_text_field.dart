@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/create_collection/create_collection_screen.dart';
+part of 'package:serendy/presentation/collection_create/create_collection_screen.dart';
 
 class _CreateCollectionTitleTextField extends StatelessWidget {
   const _CreateCollectionTitleTextField();

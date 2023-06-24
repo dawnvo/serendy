@@ -7,7 +7,7 @@ class _MediaEvaluateIconButton extends StatelessWidget {
 
   void handlePressed(BuildContext context) {
     context.pushNamed(
-      AppRoutes.mediaEvaluateName,
+      AppRoutes.evaluateMediaName,
       extra: media,
     );
   }

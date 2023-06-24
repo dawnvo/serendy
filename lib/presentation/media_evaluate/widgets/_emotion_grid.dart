@@ -1,7 +1,7 @@
-part of 'package:serendy/presentation/media_evaluate/media_evaluate_screen.dart';
+part of 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
 
-class _MediaEvaluateEmotionGrid extends StatelessWidget {
-  const _MediaEvaluateEmotionGrid();
+class _EvaluateMediaEmotionGrid extends StatelessWidget {
+  const _EvaluateMediaEmotionGrid();
 
   void handleChange(
     BuildContext context, {

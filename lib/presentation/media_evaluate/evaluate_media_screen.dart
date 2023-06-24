@@ -13,14 +13,14 @@ import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@blocs/blocs.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
+part 'widgets/_background.dart';
+part 'widgets/_cover.dart';
 part 'widgets/_emotion_grid.dart';
-part 'widgets/_media_evaluate_background.dart';
-part 'widgets/_media_evaluate_cover.dart';
 
-class MediaEvaluateScreen extends StatelessWidget {
+class EvaluateMediaScreen extends StatelessWidget {
   static const String routeName = 'evaluate-media';
   static const String routeLocation = '/$routeName';
-  const MediaEvaluateScreen({
+  const EvaluateMediaScreen({
     required this.media,
     super.key,
   });
@@ -34,15 +34,15 @@ class MediaEvaluateScreen extends StatelessWidget {
         mediaId: media.id,
         evaluationService: sl(),
       )..add(const MyEvaluation$Fetched()),
-      child: _EvaluateView(
+      child: _EvaluateMediaView(
         media: media,
       ),
     );
   }
 }
 
-class _EvaluateView extends StatelessWidget {
-  const _EvaluateView({required this.media});
+class _EvaluateMediaView extends StatelessWidget {
+  const _EvaluateMediaView({required this.media});
 
   final Media media;
 
@@ -58,28 +58,28 @@ class _EvaluateView extends StatelessWidget {
             ..showSnackBar(SnackBar(content: Text(errorMessage)));
         }
       },
-      child: _EvaluateTemplate(
-        cover: _MediaEvaluateCover(
+      child: _EvaluateMediaTemplate(
+        cover: _EvaluateMediaCover(
           image: media.image,
           title: media.title,
         ),
-        background: _MediaEvaluateBackground(image: media.image),
-        emotionGrid: const _MediaEvaluateEmotionGrid(),
+        background: _EvaluateMediaBackground(image: media.image),
+        emotionGrid: const _EvaluateMediaEmotionGrid(),
       ),
     );
   }
 }
 
-class _EvaluateTemplate extends StatelessWidget {
-  const _EvaluateTemplate({
+class _EvaluateMediaTemplate extends StatelessWidget {
+  const _EvaluateMediaTemplate({
     required this.cover,
     required this.background,
     required this.emotionGrid,
   });
 
-  final _MediaEvaluateCover cover;
-  final _MediaEvaluateBackground background;
-  final _MediaEvaluateEmotionGrid emotionGrid;
+  final _EvaluateMediaCover cover;
+  final _EvaluateMediaBackground background;
+  final _EvaluateMediaEmotionGrid emotionGrid;
 
   @override
   Widget build(BuildContext context) {

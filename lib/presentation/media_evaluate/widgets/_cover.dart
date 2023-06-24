@@ -1,7 +1,7 @@
-part of 'package:serendy/presentation/media_evaluate/media_evaluate_screen.dart';
+part of 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
 
-class _MediaEvaluateCover extends StatelessWidget {
-  const _MediaEvaluateCover({
+class _EvaluateMediaCover extends StatelessWidget {
+  const _EvaluateMediaCover({
     required this.image,
     required this.title,
   });

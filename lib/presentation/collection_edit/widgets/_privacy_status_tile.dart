@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/edit_collection/edit_collection_screen.dart';
+part of 'package:serendy/presentation/collection_edit/edit_collection_screen.dart';
 
 class _EditCollectionPrivacyStatusTile extends StatelessWidget {
   const _EditCollectionPrivacyStatusTile();

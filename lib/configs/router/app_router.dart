@@ -9,13 +9,13 @@ import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/account/account_screen.dart';
 import 'package:serendy/presentation/admin/admin_screen.dart';
 import 'package:serendy/presentation/collection/collection_screen.dart';
-import 'package:serendy/presentation/create_collection/create_collection_screen.dart';
+import 'package:serendy/presentation/collection_create/create_collection_screen.dart';
+import 'package:serendy/presentation/collection_edit/edit_collection_screen.dart';
 import 'package:serendy/presentation/discover/discover_screen.dart';
-import 'package:serendy/presentation/edit_collection/edit_collection_screen.dart';
 import 'package:serendy/presentation/history/history_screen.dart';
 import 'package:serendy/presentation/home/home_screen.dart';
 import 'package:serendy/presentation/media/media_screen.dart';
-import 'package:serendy/presentation/media_evaluate/media_evaluate_screen.dart';
+import 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
 import 'package:serendy/presentation/profile/profile_screen.dart';
 import 'package:serendy/presentation/search/search_screen.dart';
 import 'package:serendy/presentation/settings/settings_screen.dart';
@@ -100,13 +100,13 @@ GoRouter goRouter() {
         },
       ),
       GoRoute(
-        name: AppRoutes.mediaEvaluateName,
-        path: AppRoutes.mediaEvaluateLocation,
+        name: AppRoutes.evaluateMediaName,
+        path: AppRoutes.evaluateMediaLocation,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
           final media = state.extra as Media;
           return _modalTransitionPage(
-            MediaEvaluateScreen(media: media),
+            EvaluateMediaScreen(media: media),
           );
         },
       ),

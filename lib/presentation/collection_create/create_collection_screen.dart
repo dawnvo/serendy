@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/create_collection/bloc/create_collection_bloc.dart';
+import 'package:serendy/presentation/collection_create/bloc/create_collection_bloc.dart';
 
 part 'widgets/_submit_button.dart';
 part 'widgets/_title_text_field.dart';

@@ -6,7 +6,7 @@ import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/edit_collection/bloc/edit_collection_bloc.dart';
+import 'package:serendy/presentation/collection_edit/bloc/edit_collection_bloc.dart';
 
 part 'widgets/_image_picker.dart';
 part 'widgets/_privacy_status_tile.dart';

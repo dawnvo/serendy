@@ -25,9 +25,9 @@ abstract final class AppRoutes {
   static const mediaName = MediaScreen.routeName;
   static const mediaLocation = MediaScreen.routeLocation;
 
-  // 미디어 메뉴
-  static const mediaEvaluateName = MediaEvaluateScreen.routeName;
-  static const mediaEvaluateLocation = MediaEvaluateScreen.routeLocation;
+  // 미디어 평가
+  static const evaluateMediaName = EvaluateMediaScreen.routeName;
+  static const evaluateMediaLocation = EvaluateMediaScreen.routeLocation;
 
   // 컬렉션 정보
   static const collectionName = CollectionScreen.routeName;
