@@ -12,7 +12,7 @@ class _MediaActionBar extends StatelessWidget {
       child: Row(children: [
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            (context) => _SaveMediaSheet(media: media),
+            (context) => SaveMediaSheet(media: media),
           ),
           icon: const Icon(RemixIcon.add_box_fill),
         ),

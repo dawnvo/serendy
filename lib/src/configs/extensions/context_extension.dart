@@ -15,7 +15,7 @@ extension ContextX on BuildContext {
 
   /// [BottomSheet] 기본 스타일을 수정해요.
   Future<T?> showCustomModalBottomSheet<T>(
-    Widget Function(BuildContext) builder,
+    Widget Function(BuildContext context) builder,
   ) {
     return showModalBottomSheet<T>(
       shape: RoundedRectangleBorder(

@@ -3,6 +3,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/presentation/@sheets/save_media_sheet.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
 
 enum MediaMenuType {
@@ -32,13 +33,19 @@ class MediaMenuSheet extends StatelessWidget {
           _MediaMenuTile(
             onTap: () {
               context.pop();
-              context.push('/evaluate-media', extra: media);
+              context.pushNamed(AppRoutes.evaluateMediaName, extra: media);
             },
             icon: const Icon(RemixIcon.emotion_fill),
             title: "감상했어요",
           ),
           _MediaMenuTile(
-            onTap: () {},
+            onTap: () {
+              // 메뉴 시트를 닫고 미디어 저장 시트를 열어요.
+              context.pop();
+              context.showCustomModalBottomSheet(
+                (context) => SaveMediaSheet(media: media),
+              );
+            },
             icon: const Icon(RemixIcon.add_box_fill),
             title: "테마에 추가하기",
           ),
