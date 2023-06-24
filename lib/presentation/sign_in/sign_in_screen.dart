@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/auth/application/google_strategy.dart';
+import 'package:serendy/features/auth/auth.dart';
 import 'package:serendy/presentation/@widgets/alert_dialog.dart';
 
 part 'widgets/_error_dialog.dart';

@@ -1,10 +1,10 @@
 part of '../sign_in_screen.dart';
 
-class _SignInButton extends StatelessWidget {
+class _SignInButton extends ConsumerWidget {
   const _SignInButton();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const double iconSize = 24;
 
     return FilledButton(
@@ -16,7 +16,9 @@ class _SignInButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        ref.read(authServiceProvider).signIn(GoogleStrategy());
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
