@@ -16,11 +16,10 @@ class SerendyApp extends StatelessWidget {
 
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-
           title: "Serendy",
-          routerConfig: goRouter,
+          routerConfig: goRouter(),
 
-          // themes
+          // Themes
           themeMode: ThemeMode.dark,
           theme: themeData.day,
           darkTheme: themeData.night,
