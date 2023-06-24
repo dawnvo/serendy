@@ -1,4 +1,4 @@
-import 'package:serendy/src/core/infrastructure_module.dart';
+import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/core/persistence/file_storage.dart';
 import 'package:serendy/src/core/persistence/firestore_path.dart';
 import 'package:serendy/src/features/collection/domain/usecases/add_collection_item_usecase.dart';

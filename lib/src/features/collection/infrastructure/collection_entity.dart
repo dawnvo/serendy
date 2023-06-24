@@ -1,4 +1,4 @@
-import 'package:serendy/src/core/utils/serializable.dart';
+import 'package:serendy/src/core/infrastructure/serializable.dart';
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
 
 part 'collection_entity.g.dart';

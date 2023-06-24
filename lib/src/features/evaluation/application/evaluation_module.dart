@@ -1,4 +1,4 @@
-import 'package:serendy/src/core/infrastructure_module.dart';
+import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/count_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_list_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_usecase.dart';

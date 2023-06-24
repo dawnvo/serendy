@@ -1,5 +1,5 @@
 import 'package:serendy/src/core/enums.dart';
-import 'package:serendy/src/core/utils/serializable.dart';
+import 'package:serendy/src/core/infrastructure/serializable.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 part 'evaluation_entity.g.dart';

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 // import 'package:serendy/src/core/exceptions/auth_exception.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
-import 'package:serendy/src/core/infrastructure_module.dart';
+import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 part 'auth_service.g.dart';
