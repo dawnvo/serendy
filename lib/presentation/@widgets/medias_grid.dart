@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -32,7 +32,10 @@ class SliverMediasGrid extends StatelessWidget {
           final media = medias[index]!;
           return MediaCard(
             media: media,
-            onTap: () => context.pushRoute(MediaRoute(id: media.id)),
+            onTap: () => context.pushNamed(
+              AppRoutes.mediaName,
+              pathParameters: {'id': media.id},
+            ),
             onLongPress: () => onLongPress(media),
           );
         },

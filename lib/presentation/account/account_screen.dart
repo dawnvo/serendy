@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/@blocs/authentication/authentication_bloc.dart';
@@ -12,8 +12,9 @@ part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
 part 'widgets/_list_tile.dart';
 
-@RoutePage()
 class AccountScreen extends StatelessWidget {
+  static const String routeName = 'account';
+  static const String routeLocation = routeName;
   const AccountScreen({super.key});
 
   @override
@@ -74,12 +75,12 @@ class _AccountView extends StatelessWidget {
             context
                 .read<AuthenticationBloc>()
                 .add(const Authentication$SignOutRequested());
-            context.router.replaceNamed('signIn');
+            context.goNamed(AppRoutes.signInName);
           },
           child: const Text('로그아웃'),
         ),
         TextButton(
-          onPressed: () => context.router.replaceAll([const HomeRoute()]),
+          onPressed: () => context.goNamed(AppRoutes.homeName),
           child: const Text('회원탈퇴'),
         ),
       ],

@@ -46,7 +46,7 @@ class _MediaEvaluateEmotionGrid extends StatelessWidget {
                 previous: evaluation?.emotion,
                 current: selected,
               );
-              context.popRoute();
+              context.pop();
             },
           )
       ],

@@ -14,7 +14,7 @@ class _ProfileWatchedMediaIndicator extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => context.pushRoute(const HistoryRoute()),
+      onTap: () => context.pushNamed(AppRoutes.historyName),
       behavior: HitTestBehavior.opaque, // 빈 영역 터치
       child: Column(children: [
         MultiLineProgressIndicator([

@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/collection/collection.dart';
@@ -17,10 +17,11 @@ part 'widgets/_collection_titles.dart';
 part 'widgets/_detail_bar.dart';
 part 'widgets/_medias_grid.dart';
 
-@RoutePage()
 class CollectionScreen extends StatelessWidget {
+  static const String routeName = 'collections';
+  static const String routeLocation = '/$routeName/:id';
   const CollectionScreen({
-    @pathParam required this.id,
+    required this.id,
     super.key,
   });
 

@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/evaluation/evaluation.dart';
@@ -11,8 +11,9 @@ import 'package:serendy/presentation/history/bloc/history_bloc.dart';
 part 'widgets/_history_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
-@RoutePage()
 class HistoryScreen extends StatelessWidget {
+  static const String routeName = 'history';
+  static const String routeLocation = routeName;
   const HistoryScreen({super.key});
 
   @override

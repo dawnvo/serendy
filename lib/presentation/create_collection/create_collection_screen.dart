@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -9,8 +9,9 @@ import 'package:serendy/presentation/create_collection/bloc/create_collection_bl
 part 'widgets/_submit_button.dart';
 part 'widgets/_title_text_field.dart';
 
-@RoutePage()
 class CreateCollectionScreen extends StatelessWidget {
+  static const String routeName = 'create-collection';
+  static const String routeLocation = '/$routeName';
   const CreateCollectionScreen({super.key});
 
   @override
@@ -31,7 +32,7 @@ class _CreateCollectionView extends StatelessWidget {
       listener: (context, state) {
         /// 요청에 성공하면 뒤로 이동해요.
         if (state.status == CreateCollectionStatus.success) {
-          context.popRoute();
+          context.pop();
         }
 
         /// 요청에 실패하면 메시지로 안내해요.

@@ -21,7 +21,7 @@ class _SaveMediaSheet extends StatelessWidget {
                   collectionId: collection.id,
                   mediaId: media.id,
                 ));
-            context.popRoute();
+            context.pop();
           },
         ),
       ]),

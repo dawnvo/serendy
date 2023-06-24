@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/collection/collection.dart';
@@ -14,8 +14,9 @@ part 'widgets/_remove_tile.dart';
 part 'widgets/_save_button.dart';
 part 'widgets/_title_text_field.dart';
 
-@RoutePage()
 class EditCollectionScreen extends StatelessWidget {
+  static const String routeName = 'edit-collection';
+  static const String routeLocation = '/$routeName';
   const EditCollectionScreen({
     required this.collection,
     super.key,
@@ -47,7 +48,7 @@ class _EditCollectionView extends StatelessWidget {
           listener: (context, state) {
             /// 요청에 성공하면 뒤로 이동해요.
             if (state.status.isSuccess) {
-              context.popRoute();
+              context.pop();
             }
 
             /// 요청에 실패하면 메시지로 안내해요.
@@ -65,7 +66,7 @@ class _EditCollectionView extends StatelessWidget {
               current.isDeleted == true,
           listener: (context, state) {
             /// 컬렉션을 삭제하면 프로필 화면으로 이동해요.
-            context.replaceRoute(const ProfileRoute());
+            context.go('/profile');
           },
         ),
       ],

@@ -12,7 +12,10 @@ class _ProfileMyCollectionsList extends StatelessWidget {
     return MyCollectionsList(
       collections: collections,
       onSelect: (collection) {
-        context.pushRoute(CollectionRoute(id: collection.id));
+        context.pushNamed(
+          AppRoutes.collectionName,
+          pathParameters: {'id': collection.id},
+        );
       },
     );
   }

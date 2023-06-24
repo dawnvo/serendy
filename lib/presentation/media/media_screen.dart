@@ -1,9 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/locator.dart';
@@ -25,10 +25,11 @@ part 'widgets/_media_keywords.dart';
 part 'widgets/_media_title.dart';
 part 'widgets/_reaction_tile.dart';
 
-@RoutePage()
 class MediaScreen extends StatelessWidget {
+  static const String routeName = 'medias';
+  static const String routeLocation = '/$routeName/:id';
   const MediaScreen({
-    @pathParam required this.id,
+    required this.id,
     super.key,
   });
 

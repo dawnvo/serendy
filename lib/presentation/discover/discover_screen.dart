@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/collection/collection.dart';
@@ -11,8 +11,9 @@ import 'package:serendy/presentation/discover/bloc/discover_bloc.dart';
 part 'widgets/_collections_grid.dart';
 part 'widgets/_search_bar.dart';
 
-@RoutePage()
 class DiscoverScreen extends StatelessWidget {
+  static const String routeName = 'discover';
+  static const String routeLocation = '/$routeName';
   const DiscoverScreen({super.key});
 
   @override

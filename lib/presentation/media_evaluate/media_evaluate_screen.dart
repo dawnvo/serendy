@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/enums.dart';
 import 'package:serendy/core/locator.dart';
@@ -17,8 +17,9 @@ part 'widgets/_emotion_grid.dart';
 part 'widgets/_media_evaluate_background.dart';
 part 'widgets/_media_evaluate_cover.dart';
 
-@RoutePage()
 class MediaEvaluateScreen extends StatelessWidget {
+  static const String routeName = 'evaluate-media';
+  static const String routeLocation = '/$routeName';
   const MediaEvaluateScreen({
     required this.media,
     super.key,

@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,8 +14,9 @@ part 'widgets/_submit_button.dart';
 part 'widgets/_title_field.dart';
 part 'widgets/_type_dropdown_field.dart';
 
-@RoutePage()
 class AdminScreen extends StatelessWidget {
+  static const String routeName = 'admin';
+  static const String routeLocation = '/$routeName';
   const AdminScreen({super.key});
 
   @override

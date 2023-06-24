@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/collection/collection.dart';
@@ -12,8 +12,9 @@ import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_watched_media_indicator.dart';
 
-@RoutePage()
 class ProfileScreen extends StatelessWidget {
+  static const String routeName = 'profile';
+  static const String routeLocation = '/$routeName';
   const ProfileScreen({super.key});
 
   @override
@@ -45,7 +46,7 @@ class _ProfileView extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(RemixIcon.settings_3_fill),
-          onPressed: () => context.pushRoute(const SettingsRoute()),
+          onPressed: () => context.pushNamed(AppRoutes.settingsName),
         ),
       ],
       watchedMediaIndicator: const _ProfileWatchedMediaIndicator(),

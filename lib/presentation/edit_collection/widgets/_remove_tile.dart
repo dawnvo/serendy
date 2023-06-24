@@ -37,7 +37,7 @@ class __RemoveCollectionDialog extends StatelessWidget {
       title: "테마를 삭제할까요?",
       actions: [
         CustomDialogAction(
-          onPressed: () => context.popRoute(),
+          onPressed: () => context.pop(),
           child: const Text("취소"),
         ),
         CustomDialogAction(

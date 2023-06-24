@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -31,8 +31,8 @@ class MediaMenuSheet extends StatelessWidget {
         Column(children: [
           _MediaMenuTile(
             onTap: () {
-              context.popRoute();
-              context.pushRoute(MediaEvaluateRoute(media: media));
+              context.pop();
+              context.push('/evaluate-media', extra: media);
             },
             icon: const Icon(RemixIcon.emotion_fill),
             title: "감상했어요",
@@ -67,7 +67,7 @@ class _HideMediaTile extends StatelessWidget {
   const _HideMediaTile();
 
   void handleHideMedia(BuildContext context) {
-    context.popRoute();
+    context.pop();
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -96,7 +96,7 @@ class _DeleteCollectionItemTile extends StatelessWidget {
   const _DeleteCollectionItemTile();
 
   void handleDeleteCollectionItem(BuildContext context) {
-    context.popRoute();
+    context.pop();
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(

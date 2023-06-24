@@ -14,7 +14,7 @@ class _SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final leading = IconButton(
-      onPressed: () => context.popRoute(),
+      onPressed: () => context.pop(),
       icon: const Icon(RemixIcon.arrow_left_line),
     );
 

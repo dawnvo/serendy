@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:flutter/material.dart';
 import 'package:serendy/configs/configs.dart';
 
 class SerendyApp extends StatelessWidget {
@@ -9,8 +7,6 @@ class SerendyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
-
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
         final themeData = AppThemeData.fillWith(
@@ -22,7 +18,7 @@ class SerendyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
 
           title: "Serendy",
-          routerConfig: appRouter.config(),
+          routerConfig: goRouter,
 
           // themes
           themeMode: ThemeMode.dark,
@@ -36,92 +32,6 @@ class SerendyApp extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-final class RouteDestination {
-  final PageRouteInfo route;
-  final String label;
-  final IconData icon;
-  final IconData selectedIcon;
-
-  const RouteDestination({
-    required this.route,
-    required this.label,
-    required this.icon,
-    required this.selectedIcon,
-  });
-}
-
-@RoutePage()
-class AppScreen extends StatelessWidget {
-  const AppScreen({super.key});
-
-  final destinations = const [
-    RouteDestination(
-      route: HomeRoute(),
-      label: '홈',
-      icon: RemixIcon.home_2_line,
-      selectedIcon: RemixIcon.home_2_fill,
-    ),
-    RouteDestination(
-      route: DiscoverRoute(),
-      label: '발견',
-      icon: RemixIcon.search_line,
-      selectedIcon: RemixIcon.search_fill,
-    ),
-    RouteDestination(
-      route: ProfileRoute(),
-      label: '내정보',
-      icon: RemixIcon.user_line,
-      selectedIcon: RemixIcon.user_fill,
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      routes: destinations.map((d) => d.route).toList(),
-      bottomNavigationBuilder: (context, tabsRouter) {
-        return _BottomNavigationBar(
-          destinations: destinations,
-          selectedIndex: tabsRouter.activeIndex,
-          onDestinationSelected: tabsRouter.setActiveIndex,
-        );
-      },
-    );
-  }
-}
-
-class _BottomNavigationBar extends StatelessWidget {
-  const _BottomNavigationBar({
-    required this.destinations,
-    required this.selectedIndex,
-    this.onDestinationSelected,
-  });
-
-  final List<RouteDestination> destinations;
-  final int selectedIndex;
-  final void Function(int)? onDestinationSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-      child: NavigationBar(
-        destinations: [
-          for (final d in destinations)
-            NavigationDestination(
-              tooltip: '',
-              label: d.label,
-              icon: Icon(d.icon),
-              selectedIcon: Icon(d.selectedIcon),
-            ),
-        ],
-        selectedIndex: selectedIndex,
-        onDestinationSelected: onDestinationSelected,
-      ),
     );
   }
 }

@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/features/collection/collection.dart' show Collection;
 import 'package:serendy/presentation/@widgets/widgets.dart';
@@ -44,7 +44,7 @@ class _CreateCollectionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       titleTextStyle: context.textTheme.bodyMedium,
-      onTap: () => context.pushRoute(const CreateCollectionRoute()),
+      onTap: () => context.pushNamed(AppRoutes.createCollectionName),
       leading: _buildImage(context),
       title: const Text('테마 만들기'),
     );

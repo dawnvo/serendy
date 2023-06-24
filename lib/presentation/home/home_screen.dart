@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,8 +11,9 @@ import 'package:serendy/presentation/home/bloc/home_bloc.dart';
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
 
-@RoutePage()
 class HomeScreen extends StatelessWidget {
+  static const String routeName = 'home';
+  static const String routeLocation = '/';
   const HomeScreen({super.key});
 
   @override

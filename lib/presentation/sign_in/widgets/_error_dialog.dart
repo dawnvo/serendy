@@ -19,7 +19,7 @@ class _SignInErrorDialog extends StatelessWidget {
       title: message ?? '로그인에 실패했어요.',
       actions: [
         CustomDialogAction(
-          onPressed: () => context.popRoute(),
+          onPressed: () => context.pop(),
           child: const Text("확인"),
         ),
       ],
