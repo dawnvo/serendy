@@ -67,6 +67,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.signInName,
         path: AppRoutes.signInLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           return const SignInScreen();
         },
@@ -74,6 +75,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.searchName,
         path: AppRoutes.searchLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           return const SearchScreen();
         },
@@ -81,6 +83,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.adminName,
         path: AppRoutes.adminLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           return const AdminScreen();
         },
@@ -90,6 +93,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.mediaName,
         path: AppRoutes.mediaLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return MediaScreen(id: id);
@@ -98,6 +102,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.mediaEvaluateName,
         path: AppRoutes.mediaEvaluateLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
           final media = state.extra as Media;
           return _modalTransitionPage(
@@ -110,6 +115,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.collectionName,
         path: AppRoutes.collectionLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return CollectionScreen(id: id);
@@ -118,6 +124,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.createCollectionName,
         path: AppRoutes.createCollectionLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
           return _modalTransitionPage(
             const CreateCollectionScreen(),
@@ -127,6 +134,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.editCollectionName,
         path: AppRoutes.editCollectionLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
           final collection = state.extra as Collection;
           return _modalTransitionPage(
@@ -139,6 +147,7 @@ GoRouter goRouter() {
       GoRoute(
         name: AppRoutes.settingsName,
         path: AppRoutes.settingsLocation,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           return const SettingsScreen();
         },
@@ -146,6 +155,7 @@ GoRouter goRouter() {
           GoRoute(
             name: AppRoutes.accountName,
             path: AppRoutes.accountLocation,
+            parentNavigatorKey: _rootNavigatorKey,
             builder: (context, state) {
               return const AccountScreen();
             },
