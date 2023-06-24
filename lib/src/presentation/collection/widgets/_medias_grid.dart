@@ -8,13 +8,13 @@ class _CollectionMediasGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverMediasGrid(
-      medias: medias,
       onLongPress: (media) => context.showCustomModalBottomSheet(
         (context) => MediaMenuSheet(
           type: MediaMenuType.collection,
           media: media,
         ),
       ),
+      medias: medias,
     );
   }
 }

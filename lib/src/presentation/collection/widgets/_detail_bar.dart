@@ -21,15 +21,15 @@ class _CollectionDetailBar extends StatelessWidget {
       ]),
       const Spacer(),
       IconButton(
-        icon: const Icon(RemixIcon.pencil_fill),
         onPressed: () => context.pushNamed(
           AppRoutes.editCollectionName,
           extra: collection,
         ),
+        icon: const Icon(RemixIcon.pencil_fill),
       ),
       IconButton(
-        icon: const Icon(RemixIcon.share_forward_fill),
         onPressed: () {},
+        icon: const Icon(RemixIcon.share_forward_fill),
       ),
     ]);
   }

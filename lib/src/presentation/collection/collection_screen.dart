@@ -2,20 +2,21 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/presentation/collection/collection_controller.dart';
 
 part 'widgets/_collection_background.dart';
 part 'widgets/_collection_titles.dart';
 part 'widgets/_detail_bar.dart';
 part 'widgets/_medias_grid.dart';
 
-class CollectionScreen extends StatelessWidget {
+class CollectionScreen extends ConsumerWidget {
   static const String routeName = 'collections';
   static const String routeLocation = '/$routeName/:id';
   const CollectionScreen({
@@ -23,25 +24,33 @@ class CollectionScreen extends StatelessWidget {
     super.key,
   });
 
-  final String id;
+  final CollectionID id;
 
   @override
-  Widget build(BuildContext context) {
-    final collection = collectionsMock[0];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final collectionValue = ref.watch(collectionControllerProvider(id));
 
-    return _CollectionTemplate(
-      background: _CollectionBackground(
-        image: collection.image,
+    return collectionValue.when(
+      data: (state) => _CollectionTemplate(
+        background: _CollectionBackground(
+          image: state.collection.image,
+        ),
+        titles: _CollectionTitles(
+          title: state.collection.title,
+          subtitle: state.collection.description,
+        ),
+        detailBar: _CollectionDetailBar(
+          collection: state.collection,
+        ),
+        mediasGrid: _CollectionMediasGrid(
+          medias: state.collection.items.map((e) => e!.media).toList(),
+        ),
       ),
-      titles: _CollectionTitles(
-        title: collection.title,
-        subtitle: collection.description,
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
-      detailBar: _CollectionDetailBar(
-        collection: collection,
-      ),
-      mediasGrid: _CollectionMediasGrid(
-        medias: collection.items.map((e) => e!.media).toList(),
+      loading: () => const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
       ),
     );
   }
