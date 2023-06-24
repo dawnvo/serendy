@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/locator.dart';
-import 'package:serendy/presentation/@blocs/authentication/authentication_bloc.dart';
 import 'package:serendy/presentation/@widgets/alert_dialog.dart';
-import 'package:serendy/presentation/sign_in/bloc/sign_in_bloc.dart';
 
 part 'widgets/_error_dialog.dart';
 part 'widgets/_sign_in_button.dart';
@@ -19,44 +15,9 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AuthenticationBloc(
-            authService: sl(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => SignInBloc(
-            authService: sl(),
-            userService: sl(),
-          ),
-        ),
-      ],
-      child: const _SignInView(),
-    );
-  }
-}
-
-class _SignInView extends StatelessWidget {
-  const _SignInView();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<SignInBloc, SignInState>(
-      listenWhen: (previous, current) => previous.status != current.status,
-      listener: (_, state) {
-        if (state.status == SignInStatus.failure) {
-          _SignInErrorDialog.show(
-            context,
-            state.errorMessage,
-          );
-        }
-      },
-      child: const _SignInTemplate(
-        signInTitle: _SignInTitle(),
-        signInButton: _SignInButton(),
-      ),
+    return const _SignInTemplate(
+      signInTitle: _SignInTitle(),
+      signInButton: _SignInButton(),
     );
   }
 }

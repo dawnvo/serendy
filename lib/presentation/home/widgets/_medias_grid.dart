@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/home/home_screen.dart';
+part of '../home_screen.dart';
 
 class _HomeMediasGrid extends StatelessWidget {
   const _HomeMediasGrid({required this.medias});

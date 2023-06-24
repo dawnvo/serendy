@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media/media_screen.dart';
+part of '../media_screen.dart';
 
 class _MediaEvaluateIconButton extends StatelessWidget {
   const _MediaEvaluateIconButton({required this.media});
@@ -14,9 +14,7 @@ class _MediaEvaluateIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = context.select<MyEvaluationBloc, Evaluation?>(
-      (bloc) => bloc.state.evaluation,
-    );
+    final evaluation = ''.isEmpty ? evaluationMock : null;
 
     return Row(children: [
       if (evaluation != null) __EmotionLabel(evaluation.emotion),

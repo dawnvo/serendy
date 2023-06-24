@@ -1,16 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/_mock.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/collection/bloc/collection_bloc.dart';
 
 part 'widgets/_collection_background.dart';
 part 'widgets/_collection_titles.dart';
@@ -29,41 +27,23 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CollectionBloc(
-        collectionService: sl(),
-      )..add(Collection$Fetched(id: id)),
-      child: const _CollectionView(),
+    final collection = collectionsMock[0];
+
+    return _CollectionTemplate(
+      background: _CollectionBackground(
+        image: collection.image,
+      ),
+      titles: _CollectionTitles(
+        title: collection.title,
+        subtitle: collection.description,
+      ),
+      detailBar: _CollectionDetailBar(
+        collection: collection,
+      ),
+      mediasGrid: _CollectionMediasGrid(
+        medias: collection.items.map((e) => e!.media).toList(),
+      ),
     );
-  }
-}
-
-class _CollectionView extends StatelessWidget {
-  const _CollectionView();
-
-  @override
-  Widget build(BuildContext context) {
-    final state = context.watch<CollectionBloc>().state;
-
-    return switch (state) {
-      CollectionLoaded() => _CollectionTemplate(
-          background: _CollectionBackground(
-            image: state.collection.image,
-          ),
-          titles: _CollectionTitles(
-            title: state.collection.title,
-            subtitle: state.collection.description,
-          ),
-          detailBar: _CollectionDetailBar(
-            collection: state.collection,
-          ),
-          mediasGrid: _CollectionMediasGrid(
-            medias: state.collection.items.map((e) => e!.media).toList(),
-          ),
-        ),
-      CollectionLoading() => const Center(child: CircularProgressIndicator()),
-      CollectionError() => Text(state.message),
-    };
   }
 }
 

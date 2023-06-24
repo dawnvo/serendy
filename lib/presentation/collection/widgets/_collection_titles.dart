@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/collection/collection_screen.dart';
+part of '../collection_screen.dart';
 
 class _CollectionTitles extends StatelessWidget {
   const _CollectionTitles({

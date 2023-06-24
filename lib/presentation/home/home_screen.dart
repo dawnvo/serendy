@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/_mock.dart';
 import 'package:serendy/features/media/media.dart';
 import 'package:serendy/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/home/bloc/home_bloc.dart';
 
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
@@ -18,43 +16,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(
-        mediaService: sl(),
-      )..add(const Home$MediasListFetched()),
-      child: const _HomeView(),
+    final filters = ["실시간 인기", "애니", "만화", "소설", "판타지", "드라마"];
+    final medias = [mediaMock];
+
+    return _HomeTemplate(
+      mediaFiltersTabBar: _HomeMediaFiltersTabBar(
+        filters: filters,
+        onSelect: (item) {},
+      ),
+      mediasGrid: _HomeMediasGrid(medias: medias),
     );
-  }
-}
-
-class _HomeView extends StatelessWidget {
-  const _HomeView();
-
-  @override
-  Widget build(BuildContext context) {
-    final state = context.watch<HomeBloc>().state;
-
-    final filters = [
-      "실시간 인기",
-      "애니",
-      "만화",
-      "소설",
-      "판타지",
-      "드라마",
-    ];
-
-    return switch (state) {
-      HomeLoaded() => _HomeTemplate(
-          mediaFiltersTabBar: _HomeMediaFiltersTabBar(
-            filters: filters,
-            onSelect: (item) {},
-          ),
-          mediasGrid: _HomeMediasGrid(medias: state.medias),
-        ),
-      HomeInitial() => const SizedBox(),
-      HomeLoading() => const SizedBox(),
-      HomeError() => const SizedBox(),
-    };
   }
 }
 

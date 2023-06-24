@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/locator.dart';
-import 'package:serendy/features/collection/collection.dart';
-import 'package:serendy/presentation/@blocs/blocs.dart';
+import 'package:serendy/core/_mock.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/profile/bloc/profile_bloc.dart';
 
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_watched_media_indicator.dart';
@@ -16,29 +12,6 @@ class ProfileScreen extends StatelessWidget {
   static const String routeName = 'profile';
   static const String routeLocation = '/$routeName';
   const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ProfileBloc(
-            evaluationService: sl(),
-          )..add(const Profile$MyEvaluationsCounted()),
-        ),
-        BlocProvider(
-          create: (context) => MyCollectionsBloc(
-            collectionService: sl(),
-          )..add(const MyCollections$Fetched()),
-        ),
-      ],
-      child: const _ProfileView(),
-    );
-  }
-}
-
-class _ProfileView extends StatelessWidget {
-  const _ProfileView();
 
   @override
   Widget build(BuildContext context) {

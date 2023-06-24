@@ -12,9 +12,9 @@ enum MediaMenuType {
 
 class MediaMenuSheet extends StatelessWidget {
   const MediaMenuSheet({
+    this.type = MediaMenuType.media,
     required this.media,
     super.key,
-    this.type = MediaMenuType.media,
   });
 
   final MediaMenuType type;

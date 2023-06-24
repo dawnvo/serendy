@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/admin/admin_screen.dart';
+part of '../admin_screen.dart';
 
 class _AdminSubmitButton extends StatelessWidget {
   const _AdminSubmitButton({required this.onSubmit});

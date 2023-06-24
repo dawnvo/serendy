@@ -1,16 +1,11 @@
-part of 'package:serendy/presentation/media/media_screen.dart';
+part of '../media_screen.dart';
 
 class _ReactionDetailSheet extends StatelessWidget {
   const _ReactionDetailSheet();
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<MediaBloc>().state;
-    List<Evaluation?> reactions = [];
-
-    if (state is MediaLoaded) {
-      reactions = state.reactions;
-    }
+    final reactions = [evaluationMock];
 
     final reactionDatas = _transform(reactions);
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
@@ -30,7 +25,7 @@ class _ReactionDetailSheet extends StatelessWidget {
         Expanded(
           child: ListView(children: [
             for (final data in reactionDatas)
-              _ReactionTile(
+              __ReactionTile(
                 color: data.emotion.color,
                 name: data.emotion.label,
                 count: data.count,
@@ -65,8 +60,8 @@ interface class _ReactionData {
 }
 
 // ReactionTile
-class _ReactionTile extends StatelessWidget {
-  const _ReactionTile({
+class __ReactionTile extends StatelessWidget {
+  const __ReactionTile({
     required this.name,
     required this.count,
     required this.color,

@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/sign_in/sign_in_screen.dart';
+part of '../sign_in_screen.dart';
 
 class _SignInButton extends StatelessWidget {
   const _SignInButton();
@@ -16,8 +16,7 @@ class _SignInButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () =>
-          context.read<SignInBloc>().add(const SignIn$WithGoogleRequested()),
+      onPressed: () {},
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

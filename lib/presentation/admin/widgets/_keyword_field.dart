@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/admin/admin_screen.dart';
+part of '../admin_screen.dart';
 
 class _AdminKeywordField extends StatelessWidget {
   const _AdminKeywordField();
@@ -6,7 +6,7 @@ class _AdminKeywordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _AddMediaFormField(
-      onChanged: (value) => context.read<AddMediaCubit>().keywordChanged(value),
+      onChanged: (value) {},
       labelText: '키워드',
       hintText: "코미디/액션",
     );

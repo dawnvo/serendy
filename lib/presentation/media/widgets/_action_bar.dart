@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media/media_screen.dart';
+part of '../media_screen.dart';
 
 class _MediaActionBar extends StatelessWidget {
   const _MediaActionBar({required this.media});
@@ -12,10 +12,7 @@ class _MediaActionBar extends StatelessWidget {
       child: Row(children: [
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(
-            (context) => BlocProvider.value(
-              value: context.read<MyCollectionsBloc>(),
-              child: _SaveMediaSheet(media: media),
-            ),
+            (context) => _SaveMediaSheet(media: media),
           ),
           icon: const Icon(RemixIcon.add_box_fill),
         ),

@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media/media_screen.dart';
+part of '../media_screen.dart';
 
 class _MediaKeywords extends StatelessWidget {
   const _MediaKeywords({

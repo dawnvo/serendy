@@ -1,18 +1,14 @@
-part of 'package:serendy/presentation/collection_create/create_collection_screen.dart';
+part of '../create_collection_screen.dart';
 
 class _CreateCollectionTitleTextField extends StatelessWidget {
   const _CreateCollectionTitleTextField();
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CreateCollectionBloc>().state;
-
     return TitleTextField(
-      onChanged: (value) => context
-          .read<CreateCollectionBloc>()
-          .add(CreateCollection$TitleChanged(title: value)),
-      value: state.title,
-      hintText: state.hintText,
+      onChanged: (value) => {},
+      value: 'title',
+      hintText: 'hintText',
       autofocus: true,
     );
   }

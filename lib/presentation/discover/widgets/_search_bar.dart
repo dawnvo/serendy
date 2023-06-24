@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/discover/discover_screen.dart';
+part of '../discover_screen.dart';
 
 class _DiscoverSearchBar extends StatelessWidget {
   const _DiscoverSearchBar();

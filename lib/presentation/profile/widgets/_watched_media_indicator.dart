@@ -1,23 +1,18 @@
-part of 'package:serendy/presentation/profile/profile_screen.dart';
+part of '../profile_screen.dart';
 
 class _ProfileWatchedMediaIndicator extends StatelessWidget {
   const _ProfileWatchedMediaIndicator();
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<ProfileBloc>().state;
     const total = 10;
-    int count = 0;
-
-    if (state is ProfileLoaded) {
-      count = state.evaluationsCount;
-    }
+    const count = 0;
 
     return GestureDetector(
       onTap: () => context.pushNamed(AppRoutes.historyName),
       behavior: HitTestBehavior.opaque, // 빈 영역 터치
       child: Column(children: [
-        MultiLineProgressIndicator([
+        const MultiLineProgressIndicator([
           ProgressBar(value: count / total, color: AppColors.brand),
         ]),
         Gap.h12,

@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
+part of '../evaluate_media_screen.dart';
 
 class _EvaluateMediaEmotionGrid extends StatelessWidget {
   const _EvaluateMediaEmotionGrid();
@@ -10,23 +10,14 @@ class _EvaluateMediaEmotionGrid extends StatelessWidget {
   }) {
     // 감정이 이전과 다르면 감정을 변경하고,
     if (previous != current) {
-      context
-          .read<MyEvaluationBloc>() //
-          .add(MyEvaluation$Evaluated(emotion: current));
     }
     // 동일하면 선택을 취소해요.
-    else {
-      context
-          .read<MyEvaluationBloc>() //
-          .add(const MyEvaluation$Removed());
-    }
+    else {}
   }
 
   @override
   Widget build(BuildContext context) {
-    final evaluation = context.select<MyEvaluationBloc, Evaluation?>(
-      (bloc) => bloc.state.evaluation,
-    );
+    final evaluation = ''.isEmpty ? evaluationMock : null;
 
     return GridView.count(
       padding: const EdgeInsets.symmetric(

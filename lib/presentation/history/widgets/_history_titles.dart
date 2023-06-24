@@ -1,13 +1,11 @@
-part of 'package:serendy/presentation/history/history_screen.dart';
+part of '../history_screen.dart';
 
 class _HistoryTitles extends StatelessWidget {
   const _HistoryTitles();
 
   @override
   Widget build(BuildContext context) {
-    final evaluationsCount = context.select<HistoryBloc, int>(
-      (bloc) => bloc.state.evaluations.length,
-    );
+    const evaluationsCount = 5;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,18 +1,14 @@
-part of 'package:serendy/presentation/admin/admin_screen.dart';
+part of '../admin_screen.dart';
 
 class _AdminStatusDropdownField extends StatelessWidget {
   const _AdminStatusDropdownField();
 
   @override
   Widget build(BuildContext context) {
-    final mediaStatus = context.select<AddMediaCubit, MediaStatus>(
-      (bloc) => bloc.state.mediaStatus,
-    );
+    const mediaStatus = MediaStatus.finished;
 
     return DropdownButton(
-      onChanged: (value) => context
-          .read<AddMediaCubit>()
-          .statusChanged(MediaStatus.values.byName(value ?? mediaStatus.name)),
+      onChanged: (value) {},
       value: mediaStatus.name,
       items: MediaStatus.values
           .map((item) => DropdownMenuItem(

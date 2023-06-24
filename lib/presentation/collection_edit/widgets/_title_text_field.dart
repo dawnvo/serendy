@@ -1,18 +1,14 @@
-part of 'package:serendy/presentation/collection_edit/edit_collection_screen.dart';
+part of '../edit_collection_screen.dart';
 
 class _EditCollectionTitleTextField extends StatelessWidget {
   const _EditCollectionTitleTextField();
 
   @override
   Widget build(BuildContext context) {
-    final title = context.select<EditCollectionBloc, String>(
-      (bloc) => bloc.state.title,
-    );
+    const title = '';
 
     return TitleTextField(
-      onChanged: (value) => context
-          .read<EditCollectionBloc>()
-          .add(EditCollection$TitleChanged(value)),
+      onChanged: (value) {},
       value: title,
       hintText: "컬렉션 이름",
     );

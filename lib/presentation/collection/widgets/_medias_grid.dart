@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/collection/collection_screen.dart';
+part of '../collection_screen.dart';
 
 class _CollectionMediasGrid extends StatelessWidget {
   const _CollectionMediasGrid({required this.medias});

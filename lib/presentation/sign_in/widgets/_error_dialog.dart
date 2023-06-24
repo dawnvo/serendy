@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/sign_in/sign_in_screen.dart';
+part of '../sign_in_screen.dart';
 
 class _SignInErrorDialog extends StatelessWidget {
   const _SignInErrorDialog({required this.message});

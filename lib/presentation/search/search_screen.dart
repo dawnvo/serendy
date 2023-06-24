@@ -18,15 +18,6 @@ class SearchScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _SearchView();
-  }
-}
-
-class _SearchView extends HookWidget {
-  const _SearchView();
-
-  @override
-  Widget build(BuildContext context) {
     final controller = useTextEditingController();
     final focusNode = useFocusNode();
 

@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/search/search_screen.dart';
+part of '../search_screen.dart';
 
 class _SearchBar extends StatelessWidget {
   const _SearchBar({

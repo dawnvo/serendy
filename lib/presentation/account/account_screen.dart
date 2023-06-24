@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
-import 'package:serendy/core/locator.dart';
-import 'package:serendy/presentation/@blocs/authentication/authentication_bloc.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
-import 'package:serendy/presentation/account/bloc/account_bloc.dart';
 
 part 'widgets/_image_picker.dart';
-part 'widgets/_name_text_field.dart';
 part 'widgets/_list_tile.dart';
+part 'widgets/_name_text_field.dart';
 
 class AccountScreen extends StatelessWidget {
   static const String routeName = 'account';
@@ -19,30 +15,6 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AuthenticationBloc(
-            authService: sl(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => AccountBloc(
-            userService: sl(),
-          )..add(const Account$Fetched()),
-        ),
-      ],
-      child: const _AccountView(),
-    );
-  }
-}
-
-class _AccountView extends StatelessWidget {
-  const _AccountView();
-
-  @override
-  Widget build(BuildContext context) {
-    final state = context.watch<AccountBloc>().state;
     final focusNode = FocusNode();
 
     return _AccountTemplate(
@@ -56,7 +28,7 @@ class _AccountView extends StatelessWidget {
         _AccountListTile(
           onTap: () {},
           label: "이메일",
-          value: state.email,
+          value: 'email',
         ),
         _AccountListTile(
           onTap: () {},
@@ -72,9 +44,6 @@ class _AccountView extends StatelessWidget {
       controls: [
         TextButton(
           onPressed: () {
-            context
-                .read<AuthenticationBloc>()
-                .add(const Authentication$SignOutRequested());
             context.goNamed(AppRoutes.signInName);
           },
           child: const Text('로그아웃'),

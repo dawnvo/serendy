@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media/media_screen.dart';
+part of '../media_screen.dart';
 
 class _MediaReactionTile extends StatelessWidget {
   const _MediaReactionTile({required this.reactions});
@@ -6,10 +6,7 @@ class _MediaReactionTile extends StatelessWidget {
 
   void _handleShowReactionDetailSheet(BuildContext context) {
     context.showCustomModalBottomSheet(
-      (context) => BlocProvider.value(
-        value: context.read<MediaBloc>(),
-        child: const _ReactionDetailSheet(),
-      ),
+      (context) => const _ReactionDetailSheet(),
     );
   }
 

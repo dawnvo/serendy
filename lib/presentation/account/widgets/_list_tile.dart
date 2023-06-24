@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/account/account_screen.dart';
+part of '../account_screen.dart';
 
 class _AccountListTile extends StatelessWidget {
   const _AccountListTile({

@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/collection_create/create_collection_screen.dart';
+part of '../create_collection_screen.dart';
 
 class _CreateCollectionSubmitButton extends StatelessWidget {
   const _CreateCollectionSubmitButton();
@@ -12,9 +12,7 @@ class _CreateCollectionSubmitButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () => context
-          .read<CreateCollectionBloc>()
-          .add(const CreateCollection$Submitted()),
+      onPressed: () {},
       child: const Text("만들기"),
     );
   }

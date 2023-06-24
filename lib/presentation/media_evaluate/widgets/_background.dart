@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/media_evaluate/evaluate_media_screen.dart';
+part of '../evaluate_media_screen.dart';
 
 class _EvaluateMediaBackground extends StatelessWidget {
   const _EvaluateMediaBackground({required this.image});

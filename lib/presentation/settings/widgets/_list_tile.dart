@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/settings/settings_screen.dart';
+part of '../settings_screen.dart';
 
 class _SettingsListTile extends StatelessWidget {
   const _SettingsListTile({

@@ -1,17 +1,14 @@
-part of 'package:serendy/presentation/admin/admin_screen.dart';
+part of '../admin_screen.dart';
 
 class _AdminAdultSwitchTile extends StatelessWidget {
   const _AdminAdultSwitchTile();
 
   @override
   Widget build(BuildContext context) {
-    final isAdult = context.select<AddMediaCubit, bool>(
-      (cubit) => cubit.state.isAdult,
-    );
+    const isAdult = false;
 
     return SwitchListTile(
-      onChanged: (status) =>
-          context.read<AddMediaCubit>().isAdultChanged(status),
+      onChanged: (status) {},
       value: isAdult,
       title: const Text("19"),
     );

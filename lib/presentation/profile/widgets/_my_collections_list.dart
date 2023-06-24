@@ -1,13 +1,11 @@
-part of 'package:serendy/presentation/profile/profile_screen.dart';
+part of '../profile_screen.dart';
 
 class _ProfileMyCollectionsList extends StatelessWidget {
   const _ProfileMyCollectionsList();
 
   @override
   Widget build(BuildContext context) {
-    final collections = context.select<MyCollectionsBloc, List<Collection?>>(
-      (bloc) => bloc.state.collections,
-    );
+    final collections = collectionsMock;
 
     return MyCollectionsList(
       collections: collections,

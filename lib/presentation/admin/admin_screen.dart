@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/configs/configs.dart';
 import 'package:serendy/core/enums.dart';
-import 'package:serendy/core/locator.dart';
-import 'package:serendy/presentation/admin/cubit/add_media_cubit.dart';
 
 part 'widgets/_adult_switch_tile.dart';
 part 'widgets/_image_url_field.dart';
@@ -21,59 +18,31 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddMediaCubit(mediaService: sl()),
-      child: const _AddMediaForm(),
-    );
-  }
-}
-
-class _AddMediaForm extends HookWidget {
-  const _AddMediaForm();
-
-  @override
-  Widget build(BuildContext context) {
     final formKey = useMemoized(GlobalKey<FormState>.new, const []);
 
-    return BlocListener<AddMediaCubit, AddMediaState>(
-      listenWhen: (previous, current) => previous.status != current.status,
-      listener: (context, state) {
-        if (state.status.isSuccess) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(content: Text("미디어를 추가했어요.")));
-        } else if (state.status.isFailure) {
-          final errorMessage = state.errorMessage ?? '서버에 문제가 생겼어요.';
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(errorMessage)));
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(title: const Text("미디어 추가")),
-        body: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(children: [
-              const _AdminTitleField(),
-              const _AdminKeywordField(),
-              const _AdminImageUrlField(),
-              const _AdminAdultSwitchTile(),
-              Gap.h24,
-              const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                _AdminTypeDropdownField(),
-                Gap.w16,
-                _AdminStatusDropdownField(),
-              ]),
-              Gap.h40,
-              _AdminSubmitButton(onSubmit: () {
-                if (formKey.currentState!.validate()) {
-                  context.read<AddMediaCubit>().submitted();
-                  formKey.currentState?.reset();
-                }
-              }),
+    return Scaffold(
+      appBar: AppBar(title: const Text("미디어 추가")),
+      body: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          child: Column(children: [
+            const _AdminTitleField(),
+            const _AdminKeywordField(),
+            const _AdminImageUrlField(),
+            const _AdminAdultSwitchTile(),
+            Gap.h24,
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              _AdminTypeDropdownField(),
+              Gap.w16,
+              _AdminStatusDropdownField(),
             ]),
-          ),
+            Gap.h40,
+            _AdminSubmitButton(onSubmit: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState?.reset();
+              }
+            }),
+          ]),
         ),
       ),
     );

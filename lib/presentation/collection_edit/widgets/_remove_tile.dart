@@ -1,4 +1,4 @@
-part of 'package:serendy/presentation/collection_edit/edit_collection_screen.dart';
+part of '../edit_collection_screen.dart';
 
 class _EditCollectionRemoveTile extends StatelessWidget {
   const _EditCollectionRemoveTile();
@@ -13,10 +13,7 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => BlocProvider.value(
-          value: context.read<EditCollectionBloc>(),
-          child: const __RemoveCollectionDialog(),
-        ),
+        builder: (_) => const __RemoveCollectionDialog(),
       ),
       title: const Text("테마 삭제"),
       trailing: Icon(
@@ -42,9 +39,7 @@ class __RemoveCollectionDialog extends StatelessWidget {
         ),
         CustomDialogAction(
           isDestructiveAction: true,
-          onPressed: () => context
-              .read<EditCollectionBloc>()
-              .add(const EditCollection$CollectionDeleted()),
+          onPressed: () => {},
           child: const Text("삭제"),
         ),
       ],
