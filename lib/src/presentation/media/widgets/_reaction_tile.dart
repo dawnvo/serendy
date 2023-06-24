@@ -2,11 +2,12 @@ part of '../media_screen.dart';
 
 class _MediaReactionTile extends StatelessWidget {
   const _MediaReactionTile({required this.reactions});
+
   final List<Evaluation?> reactions;
 
   void _handleShowReactionDetailSheet(BuildContext context) {
     context.showCustomModalBottomSheet(
-      (context) => const _ReactionDetailSheet(),
+      (context) => _ReactionDetailSheet(reactions: reactions),
     );
   }
 

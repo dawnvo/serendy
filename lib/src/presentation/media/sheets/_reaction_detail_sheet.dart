@@ -1,12 +1,12 @@
 part of '../media_screen.dart';
 
 class _ReactionDetailSheet extends StatelessWidget {
-  const _ReactionDetailSheet();
+  const _ReactionDetailSheet({required this.reactions});
+
+  final List<Evaluation?> reactions;
 
   @override
   Widget build(BuildContext context) {
-    final reactions = [evaluationMock];
-
     final reactionDatas = _transform(reactions);
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
 
