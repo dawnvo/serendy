@@ -18,9 +18,9 @@ Future<List<Media?>> searchMedia(
 @riverpod
 Future<Media> fetchMedia(
   FetchMediaRef ref, {
-  required String mediaId,
+  required String id,
 }) {
-  return MediaModule.getMediaUsecase.execute((mediaId: mediaId));
+  return MediaModule.getMediaUsecase.execute((mediaId: id));
 }
 
 /// 미디어를 추가해요.

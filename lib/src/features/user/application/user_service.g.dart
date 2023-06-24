@@ -6,7 +6,7 @@ part of 'user_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchUserHash() => r'e2544c825e48947e3dca6fa1fc2e7aa5910ff199';
+String _$fetchUserHash() => r'24acfc3ae6a4c719c4c3e62e79a3c931f8b8fb16';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -50,10 +50,10 @@ class FetchUserFamily extends Family<AsyncValue<User>> {
   ///
   /// Copied from [fetchUser].
   FetchUserProvider call({
-    required String userId,
+    required String id,
   }) {
     return FetchUserProvider(
-      userId: userId,
+      id: id,
     );
   }
 
@@ -62,7 +62,7 @@ class FetchUserFamily extends Family<AsyncValue<User>> {
     covariant FetchUserProvider provider,
   ) {
     return call(
-      userId: provider.userId,
+      id: provider.id,
     );
   }
 
@@ -89,11 +89,11 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [fetchUser].
   FetchUserProvider({
-    required this.userId,
+    required this.id,
   }) : super.internal(
           (ref) => fetchUser(
             ref,
-            userId: userId,
+            id: id,
           ),
           from: fetchUserProvider,
           name: r'fetchUserProvider',
@@ -105,23 +105,23 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
           allTransitiveDependencies: FetchUserFamily._allTransitiveDependencies,
         );
 
-  final String userId;
+  final String id;
 
   @override
   bool operator ==(Object other) {
-    return other is FetchUserProvider && other.userId == userId;
+    return other is FetchUserProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, userId.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-String _$createUserHash() => r'9221840d9751505fe6cb9148f7c8039b46306262';
+String _$createUserHash() => r'3a1bd19d916156980caa5c5fc8227c41f0f6e084';
 typedef CreateUserRef = AutoDisposeFutureProviderRef<User>;
 
 /// 사용자를 만들어요.
@@ -143,13 +143,13 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
   ///
   /// Copied from [createUser].
   CreateUserProvider call({
-    required String authId,
+    required String uid,
     required String name,
     String? email,
     String? avatar,
   }) {
     return CreateUserProvider(
-      authId: authId,
+      uid: uid,
       name: name,
       email: email,
       avatar: avatar,
@@ -161,7 +161,7 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
     covariant CreateUserProvider provider,
   ) {
     return call(
-      authId: provider.authId,
+      uid: provider.uid,
       name: provider.name,
       email: provider.email,
       avatar: provider.avatar,
@@ -191,14 +191,14 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [createUser].
   CreateUserProvider({
-    required this.authId,
+    required this.uid,
     required this.name,
     this.email,
     this.avatar,
   }) : super.internal(
           (ref) => createUser(
             ref,
-            authId: authId,
+            uid: uid,
             name: name,
             email: email,
             avatar: avatar,
@@ -214,7 +214,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
               CreateUserFamily._allTransitiveDependencies,
         );
 
-  final String authId;
+  final String uid;
   final String name;
   final String? email;
   final String? avatar;
@@ -222,7 +222,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   @override
   bool operator ==(Object other) {
     return other is CreateUserProvider &&
-        other.authId == authId &&
+        other.uid == uid &&
         other.name == name &&
         other.email == email &&
         other.avatar == avatar;
@@ -231,7 +231,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, authId.hashCode);
+    hash = _SystemHash.combine(hash, uid.hashCode);
     hash = _SystemHash.combine(hash, name.hashCode);
     hash = _SystemHash.combine(hash, email.hashCode);
     hash = _SystemHash.combine(hash, avatar.hashCode);

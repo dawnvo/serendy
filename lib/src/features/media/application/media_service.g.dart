@@ -122,7 +122,7 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
   }
 }
 
-String _$fetchMediaHash() => r'95a6c24a73137136ac0d1037fad04f8aa489eab6';
+String _$fetchMediaHash() => r'bbc13b10b1024e2168d731caeeb08a547a5c15b9';
 typedef FetchMediaRef = AutoDisposeFutureProviderRef<Media>;
 
 /// 미디어 정보를 불러와요.
@@ -144,10 +144,10 @@ class FetchMediaFamily extends Family<AsyncValue<Media>> {
   ///
   /// Copied from [fetchMedia].
   FetchMediaProvider call({
-    required String mediaId,
+    required String id,
   }) {
     return FetchMediaProvider(
-      mediaId: mediaId,
+      id: id,
     );
   }
 
@@ -156,7 +156,7 @@ class FetchMediaFamily extends Family<AsyncValue<Media>> {
     covariant FetchMediaProvider provider,
   ) {
     return call(
-      mediaId: provider.mediaId,
+      id: provider.id,
     );
   }
 
@@ -183,11 +183,11 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
   ///
   /// Copied from [fetchMedia].
   FetchMediaProvider({
-    required this.mediaId,
+    required this.id,
   }) : super.internal(
           (ref) => fetchMedia(
             ref,
-            mediaId: mediaId,
+            id: id,
           ),
           from: fetchMediaProvider,
           name: r'fetchMediaProvider',
@@ -200,17 +200,17 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
               FetchMediaFamily._allTransitiveDependencies,
         );
 
-  final String mediaId;
+  final String id;
 
   @override
   bool operator ==(Object other) {
-    return other is FetchMediaProvider && other.mediaId == mediaId;
+    return other is FetchMediaProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, mediaId.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }

@@ -8,22 +8,22 @@ part 'user_service.g.dart';
 @riverpod
 Future<User> fetchUser(
   FetchUserRef ref, {
-  required String userId,
+  required String id,
 }) {
-  return UserModule.getUserUsecase.execute((userId: userId));
+  return UserModule.getUserUsecase.execute((userId: id));
 }
 
 /// 사용자를 만들어요.
 @riverpod
 Future<User> createUser(
   CreateUserRef ref, {
-  required String authId,
+  required String uid,
   required String name,
   String? email,
   String? avatar,
 }) {
   return UserModule.createUserUsecase.execute((
-    id: authId,
+    id: uid,
     name: name,
     email: email,
     avatar: avatar,
