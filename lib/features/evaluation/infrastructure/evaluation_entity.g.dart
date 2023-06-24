@@ -10,9 +10,9 @@ EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
     EvaluationEntity(
       id: json['id'] as String,
       userId: json['user_id'] as String,
-      private: json['private'] as bool,
       emotion: $enumDecode(_$EmotionEnumMap, json['emotion']),
       media: MediaInfoEntity.fromJson(json['media'] as Map<String, dynamic>),
+      private: json['private'] as bool,
       createdAt:
           const TimestampConverter().fromJson(json['created_at'] as Timestamp),
       updatedAt:
@@ -25,9 +25,9 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
-      'private': instance.private,
       'emotion': _$EmotionEnumMap[instance.emotion]!,
       'media': instance.media.toJson(),
+      'private': instance.private,
       'created_at': const TimestampConverter().toJson(instance.createdAt),
       'updated_at': const TimestampConverter().toJson(instance.updatedAt),
       'removed_at': _$JsonConverterToJson<Timestamp, DateTime>(

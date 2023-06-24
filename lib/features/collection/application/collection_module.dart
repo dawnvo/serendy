@@ -1,7 +1,6 @@
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/infrastructure_module.dart';
 import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/core/persistence/firestore_path.dart';
-import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/collection/domain/usecases/add_collection_item_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/create_collection_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/delete_collection_item_usecase.dart';
@@ -11,42 +10,54 @@ import 'package:serendy/features/collection/domain/usecases/get_collection_useca
 import 'package:serendy/features/collection/domain/usecases/remove_collection_usecase.dart';
 import 'package:serendy/features/collection/domain/usecases/watch_collection_list_usecase.dart';
 import 'package:serendy/features/collection/infrastructure/collection_repository_impl.dart';
+import 'package:serendy/features/media/application/media_module.dart';
+import 'package:serendy/features/user/application/user_module.dart';
 
 abstract final class CollectionModule {
-  static const _instance = 'CollectionModule';
-  static void dependencies() {
-    // [Persistence]
-    sl.registerSingleton<CollectionRepository>(CollectionRepositoryImpl(sl()));
-    sl.registerSingleton<FileStorage>(
-      FileStorageImpl(FirestorePath.collection, sl()),
-      instanceName: _instance,
-    );
+  // Persistence
+  static final collectionRepository = CollectionRepositoryImpl(
+    InfrastructureModule.firestore,
+  );
 
-    // [UseCase]
-    sl.registerLazySingleton(() => GetCollectionUsecase(sl()));
-    sl.registerLazySingleton(() => GetCollectionListUsecase(sl()));
-    sl.registerLazySingleton(() => WatchCollectionListUsecase(sl()));
-    sl.registerLazySingleton(() => CreateCollectionUsecase(sl(), sl()));
-    sl.registerLazySingleton(
-        () => EditCollectionUsecase(sl(), sl(instanceName: _instance)));
-    sl.registerLazySingleton(
-        () => RemoveCollectionUsecase(sl(), sl(instanceName: _instance)));
-    sl.registerLazySingleton(() => AddCollectionItemUsecase(sl(), sl()));
-    sl.registerLazySingleton(() => DeleteCollectionItemUsecase(sl()));
+  static final collectionFileStorage = FileStorageImpl(
+    FirestorePath.collection,
+    InfrastructureModule.storage,
+  );
 
-    // [Service]
-    sl.registerLazySingleton(
-      () => CollectionService(
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-      ),
-    );
-  }
+  // UseCase
+  static final watchCollectionListUsecase = WatchCollectionListUsecase(
+    CollectionModule.collectionRepository,
+  );
+
+  static final getCollectionListUsecase = GetCollectionListUsecase(
+    CollectionModule.collectionRepository,
+  );
+
+  static final getCollectionUsecase = GetCollectionUsecase(
+    CollectionModule.collectionRepository,
+  );
+
+  static final createCollectionUsecase = CreateCollectionUsecase(
+    CollectionModule.collectionRepository,
+    UserModule.userRepository,
+  );
+
+  static final editCollectionUsecase = EditCollectionUsecase(
+    CollectionModule.collectionRepository,
+    CollectionModule.collectionFileStorage,
+  );
+
+  static final removeCollectionUsecase = RemoveCollectionUsecase(
+    CollectionModule.collectionRepository,
+    CollectionModule.collectionFileStorage,
+  );
+
+  static final addCollectionItemUsecase = AddCollectionItemUsecase(
+    CollectionModule.collectionRepository,
+    MediaModule.mediaRepository,
+  );
+
+  static final deleteCollectionItemUsecase = DeleteCollectionItemUsecase(
+    CollectionModule.collectionRepository,
+  );
 }

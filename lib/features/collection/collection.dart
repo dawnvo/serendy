@@ -1,3 +1,4 @@
+export 'application/collection_module.dart';
 export 'application/collection_service.dart';
 
 export 'domain/models/collection.dart';

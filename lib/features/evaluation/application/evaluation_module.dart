@@ -1,37 +1,44 @@
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/infrastructure_module.dart';
 import 'package:serendy/features/evaluation/domain/usecases/count_evaluations_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/get_evaluation_list_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/get_evaluation_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/remove_evaluation_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/submit_evaluation_usecase.dart';
 import 'package:serendy/features/evaluation/domain/usecases/watch_evaluation_list_usecase.dart';
-import 'package:serendy/features/evaluation/evaluation.dart';
 import 'package:serendy/features/evaluation/infrastructure/evaluation_repository_impl.dart';
+import 'package:serendy/features/media/media.dart';
+import 'package:serendy/features/user/user.dart';
 
-abstract final class EvaluationModule {
-  static void dependencies() {
-    // [Persistence]
-    sl.registerSingleton<EvaluationRepository>(EvaluationRepositoryImpl(sl()));
+class EvaluationModule {
+  // Persistence
+  static final evaluationRepository = EvaluationRepositoryImpl(
+    InfrastructureModule.firestore,
+  );
 
-    // [UseCase]
-    sl.registerLazySingleton(() => WatchEvaluationListUsecase(sl()));
-    sl.registerLazySingleton(() => GetEvaluationListUsecase(sl()));
-    sl.registerLazySingleton(() => GetEvaluationUsecase(sl()));
-    sl.registerLazySingleton(() => CountEvaluationsUsecase(sl()));
-    sl.registerLazySingleton(() => SubmitEvaluationUsecase(sl(), sl(), sl()));
-    sl.registerLazySingleton(() => RemoveEvaluationUsecase(sl()));
+  // UseCase
+  static final watchEvaluationListUsecase = WatchEvaluationListUsecase(
+    EvaluationModule.evaluationRepository,
+  );
 
-    // [Service]
-    sl.registerLazySingleton(
-      () => EvaluationService(
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-      ),
-    );
-  }
+  static final getEvaluationListUsecase = GetEvaluationListUsecase(
+    EvaluationModule.evaluationRepository,
+  );
+
+  static final countEvaluationsUsecase = CountEvaluationsUsecase(
+    EvaluationModule.evaluationRepository,
+  );
+
+  static final getEvaluationUsecase = GetEvaluationUsecase(
+    EvaluationModule.evaluationRepository,
+  );
+
+  static final submitEvaluationUsecase = SubmitEvaluationUsecase(
+    EvaluationModule.evaluationRepository,
+    UserModule.userRepository,
+    MediaModule.mediaRepository,
+  );
+
+  static final removeEvaluationUsecase = RemoveEvaluationUsecase(
+    EvaluationModule.evaluationRepository,
+  );
 }

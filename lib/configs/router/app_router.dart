@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/router/bottom_navigation_bar.dart';
-import 'package:serendy/core/locator.dart';
 import 'package:serendy/features/auth/auth.dart';
 import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/media/media.dart';
@@ -31,8 +31,8 @@ final _shellNavigatorHomeKey = GlobalKey<NavigatorState>();
 final _shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final _shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
-GoRouter goRouter() {
-  final authService = sl<AuthService>();
+final goRouterProvider = Provider<GoRouter>((ref) {
+  final authService = ref.watch(authServiceProvider);
 
   // 🔒 로그인이 필요한 화면
   final privateLocation = [
@@ -220,7 +220,7 @@ GoRouter goRouter() {
       ),
     ],
   );
-}
+});
 
 Page _modalTransitionPage(Widget child) {
   return CustomTransitionPage(

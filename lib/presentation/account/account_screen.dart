@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/configs/configs.dart';
+import 'package:serendy/features/auth/auth.dart';
 import 'package:serendy/presentation/@widgets/widgets.dart';
 
 part 'widgets/_image_picker.dart';
 part 'widgets/_list_tile.dart';
 part 'widgets/_name_text_field.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends ConsumerWidget {
   static const String routeName = 'account';
   static const String routeLocation = routeName;
   const AccountScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final focusNode = FocusNode();
 
     return _AccountTemplate(
@@ -44,6 +46,7 @@ class AccountScreen extends StatelessWidget {
       controls: [
         TextButton(
           onPressed: () {
+            ref.read(authServiceProvider).signOut();
             context.goNamed(AppRoutes.signInName);
           },
           child: const Text('로그아웃'),

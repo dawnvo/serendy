@@ -1,28 +1,25 @@
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/infrastructure_module.dart';
 import 'package:serendy/features/media/domain/usecases/add_media_usecase.dart';
 import 'package:serendy/features/media/domain/usecases/get_media_usecase.dart';
 import 'package:serendy/features/media/domain/usecases/search_media_usecase.dart';
 import 'package:serendy/features/media/infrastructure/media_repository_impl.dart';
-import 'package:serendy/features/media/media.dart';
 
 abstract final class MediaModule {
-  static void dependencies() {
-    // [Persistence]
-    sl.registerSingleton<MediaRepository>(MediaRepositoryImpl(sl()));
+  // Persistence
+  static final mediaRepository = MediaRepositoryImpl(
+    InfrastructureModule.firestore,
+  );
 
-    // [Service]
-    sl.registerLazySingleton(() => GetMediaUsecase(sl()));
-    sl.registerLazySingleton(() => SearchMediaUsecase(sl()));
-    sl.registerLazySingleton(() => AddMediaUsecase(sl()));
+  // UseCase
+  static final searchMediaUsecase = SearchMediaUsecase(
+    MediaModule.mediaRepository,
+  );
 
-    // [Service]
-    sl.registerLazySingleton(
-      () => MediaService(
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-      ),
-    );
-  }
+  static final getMediaUsecase = GetMediaUsecase(
+    MediaModule.mediaRepository,
+  );
+
+  static final addMediaUsecase = AddMediaUsecase(
+    MediaModule.mediaRepository,
+  );
 }

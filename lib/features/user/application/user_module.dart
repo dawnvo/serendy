@@ -1,39 +1,42 @@
-import 'package:serendy/core/locator.dart';
+import 'package:serendy/core/infrastructure_module.dart';
 import 'package:serendy/core/persistence/file_storage.dart';
 import 'package:serendy/core/persistence/firestore_path.dart';
+import 'package:serendy/features/collection/collection.dart';
 import 'package:serendy/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/get_user_usecase.dart';
 import 'package:serendy/features/user/domain/usecases/remove_user_usecase.dart';
 import 'package:serendy/features/user/infrastructure/user_repository_impl.dart';
-import 'package:serendy/features/user/user.dart';
 
 abstract final class UserModule {
-  static const _instance = 'UserModule';
-  static void dependencies() {
-    // [Persistence]
-    sl.registerSingleton<UserRepository>(UserRepositoryImpl(sl()));
-    sl.registerSingleton<FileStorage>(
-      FileStorageImpl(FirestorePath.user, sl()),
-      instanceName: _instance,
-    );
+  // Persistence Providers
 
-    // [UseCase]
-    sl.registerLazySingleton(() => GetUserUsecase(sl()));
-    sl.registerLazySingleton(() => CreateUserUsecase(sl(), sl()));
-    sl.registerLazySingleton(
-        () => EditProfileUsecase(sl(), sl(instanceName: _instance)));
-    sl.registerLazySingleton(() => RemoveUserUsecase(sl()));
+  static final userRepository = UserRepositoryImpl(
+    InfrastructureModule.firestore,
+  );
 
-    // [Service]
-    sl.registerLazySingleton(
-      () => UserService(
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-      ),
-    );
-  }
+  static final userFileStorage = FileStorageImpl(
+    FirestorePath.user,
+    InfrastructureModule.storage,
+  );
+
+  // UseCase Providers
+
+  static final getUserUsecase = GetUserUsecase(
+    UserModule.userRepository,
+  );
+
+  static final createUserUsecase = CreateUserUsecase(
+    UserModule.userRepository,
+    CollectionModule.collectionRepository,
+  );
+
+  static final editProfileUsecase = EditProfileUsecase(
+    UserModule.userRepository,
+    UserModule.userFileStorage,
+  );
+
+  static final removeUserUsecase = RemoveUserUsecase(
+    UserModule.userRepository,
+  );
 }

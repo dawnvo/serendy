@@ -1,12 +1,15 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:serendy/configs/configs.dart';
 
-class SerendyApp extends StatelessWidget {
+class SerendyApp extends ConsumerWidget {
   const SerendyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goRouter = ref.watch(goRouterProvider);
+
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
         final themeData = AppThemeData.fillWith(
@@ -17,7 +20,7 @@ class SerendyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: "Serendy",
-          routerConfig: goRouter(),
+          routerConfig: goRouter,
 
           // Themes
           themeMode: ThemeMode.dark,

@@ -1,48 +1,61 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:serendy/core/exceptions/auth_exception.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+// import 'package:serendy/core/exceptions/auth_exception.dart';
+import 'package:serendy/core/exceptions/core_exception.dart';
+import 'package:serendy/core/infrastructure_module.dart';
+import 'package:serendy/features/user/user.dart';
 
-final class AuthService {
-  const AuthService(
-    this._firebaseAuth,
-    this._googleSignIn,
-  );
+part 'auth_service.g.dart';
 
-  final FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn;
+/// Interface
+abstract class IAuthStrategy {
+  Future<UserCredential?> signIn(FirebaseAuth firebaseAuth);
+}
 
-  Stream<String?> get authStateChanges =>
-      _firebaseAuth.authStateChanges().map((user) => user?.uid);
+/// Auth Service
+class AuthService {
+  const AuthService(this._auth);
+  final FirebaseAuth _auth;
 
-  String? get currentUserId => _firebaseAuth.currentUser?.uid;
-
-  Future<UserCredential?> signInWithGoogle() async {
-    try {
-      final googleUser = await _googleSignIn.signIn();
-      final googleAuth = await googleUser?.authentication;
-      if (googleAuth == null) return null;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(credential);
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw SignInWithGoogleFailure.fromCode(e.code);
-    }
+  /// 이벤트 트리거
+  Stream<UserID?> get authStateChanges {
+    return _auth.authStateChanges().map((event) => event?.uid);
   }
 
+  /// 사용자 식별
+  UserID? get currentUserId => _auth.currentUser?.uid;
+
+  /// 로그인
+  Future<UserCredential?> signIn(IAuthStrategy strategy) async {
+    final userCredential = await strategy.signIn(_auth);
+    return userCredential;
+  }
+
+  /// 로그아웃
   Future<void> signOut() async {
-    try {
-      await Future.wait([
-        _firebaseAuth.signOut(),
-        _googleSignIn.signOut(),
-      ]);
-    } catch (_) {
-      throw const SignOutFailure();
-    }
+    _auth.signOut();
   }
+
+  /// 회원 탈퇴
+  Future<void> delete() async {
+    await _auth.currentUser?.delete();
+  }
+}
+
+@Riverpod(keepAlive: true)
+AuthService authService(AuthServiceRef ref) {
+  return AuthService(InfrastructureModule.auth);
+}
+
+@Riverpod(keepAlive: true)
+UserID requireUserId(RequireUserIdRef ref) {
+  final userId = ref.watch(authServiceProvider.select((_) => _.currentUserId));
+  if (userId == null) throw const UnauthorizedException();
+  return userId;
+}
+
+@riverpod
+UserID? userId(UserIdRef ref) {
+  final userId = ref.watch(authServiceProvider.select((_) => _.currentUserId));
+  return userId;
 }
