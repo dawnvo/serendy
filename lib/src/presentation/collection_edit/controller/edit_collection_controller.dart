@@ -3,6 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 
+import '../../collection/controller/collection_controller.dart';
+
 part 'edit_collection_controller.g.dart';
 part 'edit_collection_state.dart';
 
@@ -46,8 +48,8 @@ class EditCollectionController extends _$EditCollectionController
     state = state.copyWith(status: EditCollectionStatus.loading);
 
     try {
-      await ref.read(editCollectionProvider(
-        id: state.initialCollection.id,
+      final editedCollection = await ref.read(editCollectionProvider(
+        id: collection.id,
         image: state.image,
         title: state.title,
         description: state.description,
@@ -58,7 +60,12 @@ class EditCollectionController extends _$EditCollectionController
       if (!mounted) return;
       state = state.copyWith(status: EditCollectionStatus.success);
 
-      // * 이전 화면으로 돌아가요.
+      // * 컬렉션 화면의 '상태'를 갱신해요.
+      ref
+          .read(collectionControllerProvider(collection.id).notifier)
+          .update((state) => state.copyWith(collection: editedCollection));
+
+      // * 컬렉션 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
     } catch (err) {
       // * 에러가 발생하면 상태를 설정해요.
@@ -93,3 +100,5 @@ class EditCollectionController extends _$EditCollectionController
     }
   }
 }
+
+// ignore_for_file: invalid_use_of_protected_member

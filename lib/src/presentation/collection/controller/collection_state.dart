@@ -5,6 +5,10 @@ class CollectionState extends Equatable {
 
   final Collection collection;
 
+  CollectionState copyWith({final Collection? collection}) {
+    return CollectionState(collection: collection ?? this.collection);
+  }
+
   @override
   List<Object?> get props => [collection];
 }
