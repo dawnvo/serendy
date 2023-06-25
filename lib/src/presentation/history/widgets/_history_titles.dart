@@ -1,12 +1,12 @@
 part of '../history_screen.dart';
 
 class _HistoryTitles extends StatelessWidget {
-  const _HistoryTitles();
+  const _HistoryTitles({required this.evaluationsCount});
+
+  final int evaluationsCount;
 
   @override
   Widget build(BuildContext context) {
-    const evaluationsCount = 5;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

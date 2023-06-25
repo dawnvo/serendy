@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/presentation/@sheets/sheets.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+
+import 'controller/history_controller.dart';
 
 part 'widgets/_history_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends ConsumerWidget {
   static const String routeName = 'history';
   static const String routeLocation = routeName;
   const HistoryScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const _HistoryTemplate(
-      titles: _HistoryTitles(),
-      historiesList: _HistoryCardsList(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final evaluationsValue = ref.watch(historyControllerProvider);
+
+    return evaluationsValue.when(
+      data: (state) => _HistoryTemplate(
+        titles: _HistoryTitles(evaluationsCount: state.evaluations.length),
+        historiesList: _HistoryCardsList(evaluations: state.evaluations),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
+      ),
+      loading: () => const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }
