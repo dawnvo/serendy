@@ -3,7 +3,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/constants/size_constant.dart';
 
 sealed class AppColors {
-  static const brand = Color(0xFF8F85FF);
+  static const brand = Color(0xFFE5B3E5);
 
   // light
   static const _lightSurface = Color(0xFFFFFBFF);
@@ -109,11 +109,10 @@ final class AppThemeData {
 
       // SnackBar theme
       snackBarTheme: themeData.snackBarTheme.copyWith(
-        actionTextColor: colorScheme.primary,
-        backgroundColor: colorScheme.surfaceVariant,
+        behavior: SnackBarBehavior.floating,
         contentTextStyle: TextStyle(
-          color: colorScheme.onSurfaceVariant,
-          fontWeight: FontWeight.w600,
+          color: colorScheme.surfaceVariant,
+          fontWeight: FontWeight.w500,
         ),
       ),
 
