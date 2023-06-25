@@ -1,18 +1,20 @@
 part of '../edit_collection_screen.dart';
 
-class _EditCollectionSaveButton extends StatelessWidget {
-  const _EditCollectionSaveButton();
+class _EditCollectionSaveButton extends ConsumerWidget {
+  const _EditCollectionSaveButton(this.provider);
+  final EditCollectionControllerProvider provider;
 
-  void handleSubmit(BuildContext context) {
+  void handleSubmit(BuildContext context, WidgetRef ref) {
     FocusScope.of(context).unfocus();
+    ref.read(provider.notifier).submit();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final isEdited = ''.isEmpty;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isEdited = ref.watch(provider.select((state) => state.isEdited));
 
     return TextButton(
-      onPressed: isEdited ? () => handleSubmit(context) : null,
+      onPressed: isEdited ? () => handleSubmit(context, ref) : null,
       child: const Text("저장하기"),
     );
   }

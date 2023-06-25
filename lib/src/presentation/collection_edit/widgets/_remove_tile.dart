@@ -1,10 +1,11 @@
 part of '../edit_collection_screen.dart';
 
-class _EditCollectionRemoveTile extends StatelessWidget {
-  const _EditCollectionRemoveTile();
+class _EditCollectionRemoveTile extends ConsumerWidget {
+  const _EditCollectionRemoveTile(this.provider);
+  final EditCollectionControllerProvider provider;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -13,7 +14,9 @@ class _EditCollectionRemoveTile extends StatelessWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => const __RemoveCollectionDialog(),
+        builder: (_) => __RemoveCollectionDialog(
+          onDelete: () => ref.read(provider.notifier).delete(),
+        ),
       ),
       title: const Text("테마 삭제"),
       trailing: Icon(
@@ -26,7 +29,8 @@ class _EditCollectionRemoveTile extends StatelessWidget {
 
 /// Dialog
 class __RemoveCollectionDialog extends StatelessWidget {
-  const __RemoveCollectionDialog();
+  const __RemoveCollectionDialog({required this.onDelete});
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class __RemoveCollectionDialog extends StatelessWidget {
         ),
         CustomDialogAction(
           isDestructiveAction: true,
-          onPressed: () => {},
+          onPressed: onDelete,
           child: const Text("삭제"),
         ),
       ],
