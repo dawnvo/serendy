@@ -1,14 +1,18 @@
 part of '../create_collection_screen.dart';
 
-class _CreateCollectionTitleTextField extends StatelessWidget {
+class _CreateCollectionTitleTextField extends ConsumerWidget {
   const _CreateCollectionTitleTextField();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(createCollectionControllerProvider);
+
     return TitleTextField(
-      onChanged: (value) => {},
-      value: 'title',
-      hintText: 'hintText',
+      onChanged: (value) => ref
+          .read(createCollectionControllerProvider.notifier)
+          .changeTitle(value),
+      value: state.title,
+      hintText: state.hintText,
       autofocus: true,
     );
   }

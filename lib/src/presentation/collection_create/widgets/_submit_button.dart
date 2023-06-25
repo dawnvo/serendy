@@ -1,10 +1,10 @@
 part of '../create_collection_screen.dart';
 
-class _CreateCollectionSubmitButton extends StatelessWidget {
+class _CreateCollectionSubmitButton extends ConsumerWidget {
   const _CreateCollectionSubmitButton();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return FilledButton(
       style: FilledButton.styleFrom(
         minimumSize: const Size(double.infinity, 56),
@@ -12,7 +12,9 @@ class _CreateCollectionSubmitButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {},
+      onPressed: () => ref
+          .read(createCollectionControllerProvider.notifier)
+          .createCollection(),
       child: const Text("만들기"),
     );
   }
