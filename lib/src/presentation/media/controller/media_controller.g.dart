@@ -6,7 +6,7 @@ part of 'media_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mediaControllerHash() => r'35064385d4399feaa52192556c316a9c31169785';
+String _$mediaControllerHash() => r'7274d9e197f033c9620fd28d51c47a72c096b19f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,10 +30,10 @@ class _SystemHash {
 }
 
 abstract class _$MediaController
-    extends BuildlessAutoDisposeAsyncNotifier<_MediaState> {
+    extends BuildlessAutoDisposeAsyncNotifier<MediaState> {
   late final String id;
 
-  FutureOr<_MediaState> build(
+  FutureOr<MediaState> build(
     String id,
   );
 }
@@ -43,7 +43,7 @@ abstract class _$MediaController
 const mediaControllerProvider = MediaControllerFamily();
 
 /// See also [MediaController].
-class MediaControllerFamily extends Family<AsyncValue<_MediaState>> {
+class MediaControllerFamily extends Family<AsyncValue<MediaState>> {
   /// See also [MediaController].
   const MediaControllerFamily();
 
@@ -82,7 +82,7 @@ class MediaControllerFamily extends Family<AsyncValue<_MediaState>> {
 
 /// See also [MediaController].
 class MediaControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<MediaController, _MediaState> {
+    extends AutoDisposeAsyncNotifierProviderImpl<MediaController, MediaState> {
   /// See also [MediaController].
   MediaControllerProvider(
     this.id,
@@ -115,7 +115,7 @@ class MediaControllerProvider
   }
 
   @override
-  FutureOr<_MediaState> runNotifierBuild(
+  FutureOr<MediaState> runNotifierBuild(
     covariant MediaController notifier,
   ) {
     return notifier.build(

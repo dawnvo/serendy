@@ -20,9 +20,7 @@ class CreateCollectionScreen extends ConsumerWidget {
         final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(SnackBar(
-            content: Text(errorMessage),
-          ));
+          ..showSnackBar(SnackBar(content: Text(errorMessage)));
       }
     });
 

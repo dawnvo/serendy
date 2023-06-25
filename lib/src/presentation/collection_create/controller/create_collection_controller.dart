@@ -33,11 +33,11 @@ class CreateCollectionController extends _$CreateCollectionController
 
       await ref.read(createCollectionProvider(title: title).future);
 
-      // * 컨트롤러가 폐기되지 않았으면 상태를 설정해요.
+      // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
       if (!mounted) return;
       state = state.copyWith(status: CreateCollectionStatus.success);
 
-      // * 에러가 없으면 이전 화면으로 돌아가요.
+      // * 이전 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
     } catch (err) {
       // * 에러가 발생하면 상태를 설정해요.

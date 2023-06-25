@@ -7,7 +7,7 @@ part of 'collection_controller.dart';
 // **************************************************************************
 
 String _$collectionControllerHash() =>
-    r'f8d26a8d389be03debedca173dcca36e8b390d1c';
+    r'a5bf8e3b7d5e2c9faf58ce3e0df6a4884d62a274';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$CollectionController
-    extends BuildlessAutoDisposeAsyncNotifier<_CollectionState> {
+    extends BuildlessAutoDisposeAsyncNotifier<CollectionState> {
   late final String id;
 
-  FutureOr<_CollectionState> build(
+  FutureOr<CollectionState> build(
     String id,
   );
 }
@@ -44,7 +44,7 @@ abstract class _$CollectionController
 const collectionControllerProvider = CollectionControllerFamily();
 
 /// See also [CollectionController].
-class CollectionControllerFamily extends Family<AsyncValue<_CollectionState>> {
+class CollectionControllerFamily extends Family<AsyncValue<CollectionState>> {
   /// See also [CollectionController].
   const CollectionControllerFamily();
 
@@ -83,7 +83,7 @@ class CollectionControllerFamily extends Family<AsyncValue<_CollectionState>> {
 
 /// See also [CollectionController].
 class CollectionControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    CollectionController, _CollectionState> {
+    CollectionController, CollectionState> {
   /// See also [CollectionController].
   CollectionControllerProvider(
     this.id,
@@ -116,7 +116,7 @@ class CollectionControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  FutureOr<_CollectionState> runNotifierBuild(
+  FutureOr<CollectionState> runNotifierBuild(
     covariant CollectionController notifier,
   ) {
     return notifier.build(

@@ -5,7 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
-import 'package:serendy/src/presentation/profile/profile_controller.dart';
+
+import 'controller/profile_controller.dart';
 
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_watched_media_indicator.dart';

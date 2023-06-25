@@ -9,7 +9,8 @@ import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
-import 'package:serendy/src/presentation/collection/collection_controller.dart';
+
+import 'controller/collection_controller.dart';
 
 part 'widgets/_collection_background.dart';
 part 'widgets/_collection_titles.dart';

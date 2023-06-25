@@ -12,7 +12,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@sheets/save_media_sheet.dart';
 import 'package:serendy/src/presentation/@sheets/sheets.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
-import 'package:serendy/src/presentation/media/media_controller.dart';
+
+import 'controller/media_controller.dart';
 
 part 'sheets/_reaction_detail_sheet.dart';
 part 'widgets/_action_bar.dart';
