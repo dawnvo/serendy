@@ -2,19 +2,20 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+
+import 'controller/evaluate_media_controller.dart';
 
 part 'widgets/_background.dart';
 part 'widgets/_cover.dart';
 part 'widgets/_emotion_grid.dart';
 
-class EvaluateMediaScreen extends StatelessWidget {
+class EvaluateMediaScreen extends ConsumerWidget {
   static const String routeName = 'evaluate-media';
   static const String routeLocation = '/$routeName';
   const EvaluateMediaScreen({
@@ -25,14 +26,23 @@ class EvaluateMediaScreen extends StatelessWidget {
   final Media media;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
+      if (next.status == EvaluateMediaStatus.failure) {
+        final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(errorMessage)));
+      }
+    });
+
     return _EvaluateMediaTemplate(
       cover: _EvaluateMediaCover(
         image: media.image,
         title: media.title,
       ),
       background: _EvaluateMediaBackground(image: media.image),
-      emotionGrid: const _EvaluateMediaEmotionGrid(),
+      emotionGrid: _EvaluateMediaEmotionGrid(mediaId: media.id),
     );
   }
 }

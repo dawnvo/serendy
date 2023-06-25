@@ -1,23 +1,14 @@
 part of '../evaluate_media_screen.dart';
 
-class _EvaluateMediaEmotionGrid extends StatelessWidget {
-  const _EvaluateMediaEmotionGrid();
+class _EvaluateMediaEmotionGrid extends ConsumerWidget {
+  const _EvaluateMediaEmotionGrid({required this.mediaId});
 
-  void handleChange(
-    BuildContext context, {
-    required Emotion? previous,
-    required Emotion current,
-  }) {
-    // 감정이 이전과 다르면 감정을 변경하고,
-    if (previous != current) {
-    }
-    // 동일하면 선택을 취소해요.
-    else {}
-  }
+  final MediaID mediaId;
 
   @override
-  Widget build(BuildContext context) {
-    final evaluation = ''.isEmpty ? evaluationMock : null;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final evaluation = ref.watch(evaluateMediaControllerProvider(mediaId)
+        .select((state) => state.evaluation));
 
     return GridView.count(
       padding: const EdgeInsets.symmetric(
@@ -29,16 +20,11 @@ class _EvaluateMediaEmotionGrid extends StatelessWidget {
       children: [
         for (final emotion in Emotion.values)
           __EmotionGridTile(
+            onSelect: (selected) => ref
+                .read(evaluateMediaControllerProvider(mediaId).notifier)
+                .evaluate(emotion: selected),
             emotion: emotion,
             selected: emotion == evaluation?.emotion,
-            onSelect: (selected) {
-              handleChange(
-                context,
-                previous: evaluation?.emotion,
-                current: selected,
-              );
-              context.pop();
-            },
           )
       ],
     );

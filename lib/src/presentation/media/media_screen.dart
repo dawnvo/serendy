@@ -5,13 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@sheets/save_media_sheet.dart';
 import 'package:serendy/src/presentation/@sheets/sheets.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/presentation/media_evaluate/controller/evaluate_media_controller.dart';
 
 import 'controller/media_controller.dart';
 

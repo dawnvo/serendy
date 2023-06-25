@@ -15,14 +15,11 @@ class _EvaluateMediaCover extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Gap.h40, // 이미지 위치 조정
-        ClipRRect(
-          borderRadius: BorderRadius.circular(kBorderRadius),
-          child: CachedNetworkImage(
-            imageUrl: image,
-            fit: BoxFit.cover,
-            width: 200,
-            height: 200,
-          ),
+        CachedNetworkImage(
+          imageUrl: image,
+          fit: BoxFit.cover,
+          width: 200,
+          height: 200,
         ),
         Gap.h12,
         Text(

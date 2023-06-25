@@ -1,6 +1,6 @@
 part of '../media_screen.dart';
 
-class _MediaEvaluateIconButton extends StatelessWidget {
+class _MediaEvaluateIconButton extends ConsumerWidget {
   const _MediaEvaluateIconButton({required this.media});
 
   final Media media;
@@ -13,8 +13,9 @@ class _MediaEvaluateIconButton extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final evaluation = ''.isEmpty ? evaluationMock : null;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
+        .select((state) => state.evaluation));
 
     return Row(children: [
       if (evaluation != null) __EmotionLabel(evaluation.emotion),
@@ -30,7 +31,7 @@ class _MediaEvaluateIconButton extends StatelessWidget {
         IconButton(
           onPressed: () => handlePressed(context),
           icon: const Icon(RemixIcon.emotion_fill),
-        )
+        ),
     ]);
   }
 }
