@@ -32,6 +32,7 @@ class CollectionScreen extends ConsumerWidget {
     final collectionValue = ref.watch(collectionControllerProvider(id));
 
     return collectionValue.when(
+      skipLoadingOnReload: true,
       data: (state) => _CollectionTemplate(
         background: _CollectionBackground(
           image: state.collection.image,

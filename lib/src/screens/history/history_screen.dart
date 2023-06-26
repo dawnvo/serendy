@@ -21,6 +21,7 @@ class HistoryScreen extends ConsumerWidget {
     final evaluationsValue = ref.watch(historyControllerProvider);
 
     return evaluationsValue.when(
+      skipLoadingOnReload: true,
       data: (state) => _HistoryTemplate(
         titles: _HistoryTitles(evaluationsCount: state.evaluations.length),
         historiesList: _HistoryCardsList(evaluations: state.evaluations),

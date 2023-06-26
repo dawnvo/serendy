@@ -21,6 +21,7 @@ class ProfileScreen extends ConsumerWidget {
     final profileValue = ref.watch(profileControllerProvider);
 
     return profileValue.when(
+      skipLoadingOnReload: true,
       data: (state) => _ProfileTemplate(
         actions: [
           IconButton(
