@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 
@@ -18,7 +17,7 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = useMemoized(GlobalKey<FormState>.new, const []);
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("미디어 추가")),
