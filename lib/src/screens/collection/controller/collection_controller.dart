@@ -12,4 +12,10 @@ class CollectionController extends _$CollectionController {
     final collection = await ref.watch(fetchCollectionProvider(id: id).future);
     return CollectionState(collection: collection);
   }
+
+  Future<void> collectionUpdated() async {
+    final collection =
+        await ref.refresh(fetchCollectionProvider(id: id).future);
+    state = AsyncData(state.requireValue.copyWith(collection: collection));
+  }
 }

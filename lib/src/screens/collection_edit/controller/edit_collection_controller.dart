@@ -48,7 +48,8 @@ class EditCollectionController extends _$EditCollectionController
     state = state.copyWith(status: EditCollectionStatus.loading);
 
     try {
-      final editedCollection = await ref.read(editCollectionProvider(
+      // * 컬렉션을 수정해요.
+      await ref.read(editCollectionProvider(
         id: collection.id,
         image: state.image,
         title: state.title,
@@ -56,14 +57,14 @@ class EditCollectionController extends _$EditCollectionController
         private: state.private,
       ).future);
 
+      // * 컬렉션 화면의 상태를 갱신해요.
+      ref
+          .read(collectionControllerProvider(collection.id).notifier)
+          .collectionUpdated();
+
       // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
       if (!mounted) return;
       state = state.copyWith(status: EditCollectionStatus.success);
-
-      // * 컬렉션 화면의 '상태'를 갱신해요.
-      ref
-          .read(collectionControllerProvider(collection.id).notifier)
-          .update((state) => state.copyWith(collection: editedCollection));
 
       // * 컬렉션 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
@@ -100,5 +101,3 @@ class EditCollectionController extends _$EditCollectionController
     }
   }
 }
-
-// ignore_for_file: invalid_use_of_protected_member
