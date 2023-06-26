@@ -41,10 +41,9 @@ class _SignInTemplate extends StatelessWidget {
       body: Center(
         child: signInTitle,
       ),
-      bottomSheet: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kContentPadding,
-          vertical: Sizes.p40,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(kContentPadding).add(
+          const EdgeInsets.only(bottom: Sizes.p40),
         ),
         child: signInButton,
       ),
