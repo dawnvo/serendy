@@ -4,6 +4,7 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
 part 'evaluate_media_controller.g.dart';
 part 'evaluate_media_state.dart';
@@ -57,6 +58,11 @@ class EvaluateMediaController extends _$EvaluateMediaController
         newEvaluation = null;
       }
 
+      // * 평가에 성공하면 평가 개수를 갱신해요.
+      await ref
+          .read(profileControllerProvider.notifier)
+          .evaluationsCountUpdated();
+
       // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
       if (!mounted) return;
       state = state.copyWith(
@@ -64,9 +70,10 @@ class EvaluateMediaController extends _$EvaluateMediaController
         evaluation: newEvaluation,
       );
 
-      // * 에러가 없으면 이전 화면으로 돌아가요.
+      // * 이전 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
     } catch (err) {
+      // * 에러가 발생하면 상태를 설정해요.
       state = state.copyWith(
         status: EvaluateMediaStatus.failure,
         errorMessage: err.toString(),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 class DeleteEvaluationTile extends ConsumerWidget {
@@ -15,6 +16,11 @@ class DeleteEvaluationTile extends ConsumerWidget {
     try {
       // * 해당 평가를 삭제해요.
       await ref.read(removeEvaluationProvider(mediaId: media.id).future);
+
+      // * 삭제에 성공하면 평가 개수를 갱신해요.
+      await ref
+          .read(profileControllerProvider.notifier)
+          .evaluationsCountUpdated();
 
       // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
       if (!context.mounted) return;

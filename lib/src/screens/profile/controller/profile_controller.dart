@@ -18,4 +18,9 @@ class ProfileController extends _$ProfileController {
       myCollections: collections,
     );
   }
+
+  Future<void> evaluationsCountUpdated() async {
+    final count = await ref.refresh(countMyEvaluationsProvider.future);
+    state = AsyncData(state.requireValue.copyWith(evaluationsCount: count));
+  }
 }
