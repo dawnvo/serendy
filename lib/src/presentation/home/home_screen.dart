@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
-import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/presentation/home/controller/home_controller.dart';
 import 'package:serendy/src/presentation/media_menu/media_menu_sheet.dart';
 
 part 'widgets/_media_filters_tab_bar.dart';
@@ -17,14 +17,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filters = ["실시간 인기", "애니", "만화", "소설", "판타지", "드라마"];
-    final medias = [mediaMock];
 
     return _HomeTemplate(
       mediaFiltersTabBar: _HomeMediaFiltersTabBar(
         filters: filters,
         onSelect: (item) {},
       ),
-      mediasGrid: _HomeMediasGrid(medias: medias),
+      mediasGrid: const _HomeMediasGrid(),
     );
   }
 }

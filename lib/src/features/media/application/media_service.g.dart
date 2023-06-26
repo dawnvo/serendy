@@ -122,6 +122,23 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
   }
 }
 
+String _$fetchMediaListHash() => r'a2fc351bd849211386315391c36450df19eb5d8a';
+
+/// 미디어 목록을 불러와요.
+///
+/// Copied from [fetchMediaList].
+@ProviderFor(fetchMediaList)
+final fetchMediaListProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
+  fetchMediaList,
+  name: r'fetchMediaListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$fetchMediaListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FetchMediaListRef = AutoDisposeFutureProviderRef<List<Media?>>;
 String _$fetchMediaHash() => r'bbc13b10b1024e2168d731caeeb08a547a5c15b9';
 typedef FetchMediaRef = AutoDisposeFutureProviderRef<Media>;
 

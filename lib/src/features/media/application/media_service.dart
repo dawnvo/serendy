@@ -14,6 +14,14 @@ Future<List<Media?>> searchMedia(
   return MediaModule.searchMediaUsecase.execute((title: title));
 }
 
+/// 미디어 목록을 불러와요.
+@riverpod
+Future<List<Media?>> fetchMediaList(
+  FetchMediaListRef ref,
+) {
+  return MediaModule.searchMediaUsecase.execute((title: null));
+}
+
 /// 미디어 정보를 불러와요.
 @riverpod
 Future<Media> fetchMedia(
