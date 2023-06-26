@@ -23,6 +23,12 @@ class EvaluateMediaController extends _$EvaluateMediaController
       mediaId: mediaId,
     ).future);
 
+    // * 삭제한 평가라면 필터해요.
+    if (evaluation?.removedAt != null) {
+      state = const EvaluateMediaState(evaluation: null);
+      return;
+    }
+
     state = EvaluateMediaState(evaluation: evaluation);
   }
 

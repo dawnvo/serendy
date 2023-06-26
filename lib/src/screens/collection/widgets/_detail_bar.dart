@@ -11,7 +11,7 @@ class _CollectionDetailBar extends StatelessWidget {
       Row(children: [
         const CircleAvatar(
           backgroundColor: Colors.white,
-          radius: 12,
+          radius: Sizes.p12,
         ),
         const SizedBox(width: Sizes.p8),
         Text(

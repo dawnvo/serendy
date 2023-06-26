@@ -44,7 +44,7 @@ class CollectionScreen extends ConsumerWidget {
           collection: state.collection,
         ),
         mediasGrid: _CollectionMediasGrid(
-          collectionId: id,
+          collection: state.collection,
           medias: state.collection.items.map((e) => e!.media).toList(),
         ),
       ),

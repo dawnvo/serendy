@@ -19,10 +19,16 @@ extension ContextX on BuildContext {
   ) {
     return showModalBottomSheet<T>(
       useRootNavigator: true,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kBorderRadius)),
       context: this,
-      builder: (context) => BottomSheetTemplate(child: builder(this)),
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          color: context.colorScheme.background,
+        ),
+        margin: const EdgeInsets.all(kContentPadding),
+        child: BottomSheetTemplate(child: builder(this)),
+      ),
     );
   }
 }

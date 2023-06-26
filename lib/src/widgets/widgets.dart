@@ -8,6 +8,7 @@ export 'image_picker.dart';
 export 'media_card.dart';
 export 'media_item.dart';
 export 'medias_grid.dart';
+export 'menu_template.dart';
 export 'multi_line_progress_indicator.dart';
 export 'my_collections_list.dart';
 export 'tag.dart';
