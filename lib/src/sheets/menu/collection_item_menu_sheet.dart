@@ -35,7 +35,7 @@ class CollectionItemMenuSheet extends ConsumerWidget {
         EvaluateMediaTile(media: media),
         SaveMediaTile(media: media),
         if (isOwner)
-          DeleteCollectionItemTile(media: media, collectionId: collection.id)
+          DeleteCollectionItemTile(media: media, collection: collection)
         else
           HideMediaTile(media: media),
         ShareMediaTile(media: media),
