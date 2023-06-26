@@ -18,6 +18,7 @@ extension ContextX on BuildContext {
     Widget Function(BuildContext context) builder,
   ) {
     return showModalBottomSheet<T>(
+      useRootNavigator: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kBorderRadius)),
       context: this,

@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/presentation/@sheets/media_menu_sheet.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/presentation/media_menu/media_menu_sheet.dart';
 
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';

@@ -9,10 +9,10 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@sheets/save_media_sheet.dart';
-import 'package:serendy/src/presentation/@sheets/sheets.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
-import 'package:serendy/src/presentation/media_evaluate/controller/evaluate_media_controller.dart';
+import 'package:serendy/src/presentation/media_menu/media_menu_sheet.dart';
 
+import '../media_evaluate/controller/evaluate_media_controller.dart';
 import 'controller/media_controller.dart';
 
 part 'sheets/_reaction_detail_sheet.dart';
