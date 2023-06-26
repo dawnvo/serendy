@@ -12,9 +12,41 @@ void main() async {
   );
 
   final bootstrap = AppBootstrap();
-  final container = ProviderContainer(observers: [AsyncErrorLogger()]);
+  final container = ProviderContainer(observers: [
+    _TestLogger(),
+    AsyncErrorLogger(),
+  ]);
 
   final root = bootstrap.createRootWidget(container: container);
 
   runApp(root);
+}
+
+class _TestLogger extends ProviderObserver {
+  @override
+  void didAddProvider(
+    ProviderBase provider,
+    Object? value,
+    ProviderContainer container,
+  ) {
+    debugPrint('✅Added from ${provider.name ?? provider.runtimeType}');
+  }
+
+  @override
+  void didUpdateProvider(
+    ProviderBase provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
+    debugPrint('👻Updated from ${provider.name ?? provider.runtimeType}');
+  }
+
+  @override
+  void didDisposeProvider(
+    ProviderBase provider,
+    ProviderContainer container,
+  ) {
+    debugPrint('⛔Disposed from ${provider.name ?? provider.runtimeType}');
+  }
 }
