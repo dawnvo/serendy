@@ -1,19 +1,13 @@
 part of '../media_menu_sheet.dart';
 
-class _EvaluateMediaTile extends StatelessWidget {
-  const _EvaluateMediaTile({required this.media});
-
-  final Media media;
-
-  void handleEvaluateMedia(BuildContext context) {
-    context.pop();
-    context.pushNamed(AppRoutes.evaluateMediaName, extra: media);
-  }
+class _EvaluateMediaTile extends ConsumerWidget {
+  const _EvaluateMediaTile(this.provider);
+  final MediaMenuControllerProvider provider;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return _MediaMenuListTile(
-      onTap: () => handleEvaluateMedia(context),
+      onTap: () => ref.read(provider.notifier).onEvaluateMediaTapped(context),
       icon: const Icon(RemixIcon.emotion_fill),
       title: "감상했어요",
     );

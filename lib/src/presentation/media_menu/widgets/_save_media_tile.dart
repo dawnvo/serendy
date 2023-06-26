@@ -1,21 +1,13 @@
 part of '../media_menu_sheet.dart';
 
-class _SaveMediaTile extends StatelessWidget {
-  const _SaveMediaTile({required this.media});
-
-  final Media media;
-
-  void handleSaveMedia(BuildContext context) {
-    context.pop();
-    context.showCustomModalBottomSheet(
-      (context) => SaveMediaSheet(media: media),
-    );
-  }
+class _SaveMediaTile extends ConsumerWidget {
+  const _SaveMediaTile(this.provider);
+  final MediaMenuControllerProvider provider;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return _MediaMenuListTile(
-      onTap: () => handleSaveMedia(context),
+      onTap: () => ref.read(provider.notifier).onSaveMediaTapped(context),
       icon: const Icon(RemixIcon.add_box_fill),
       title: "테마에 추가하기",
     );

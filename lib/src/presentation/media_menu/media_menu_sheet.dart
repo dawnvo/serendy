@@ -1,40 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/presentation/@sheets/save_media_sheet.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
 
+import 'controller/media_menu_controller.dart';
+
 part 'widgets/_delete_collection_item_tile.dart';
+part 'widgets/_evaluate_media_tile.dart';
 part 'widgets/_hide_media_tile.dart';
 part 'widgets/_save_media_tile.dart';
-part 'widgets/_evaluate_media_tile.dart';
 part 'widgets/_share_media_tile.dart';
 
 enum MediaMenuType { media, collection }
 
+/// TODO: 메뉴별로 나눌지 고민하기
+///
+/// 미디어 메뉴, 컬렉션 메뉴, 컬렉션항목 메뉴 등...
 class MediaMenuSheet extends StatelessWidget {
   const MediaMenuSheet({
     this.type = MediaMenuType.media,
     required this.media,
     super.key,
+    this.collectionId,
   });
 
   final MediaMenuType type;
   final Media media;
+  // 컬렉션 화면에서 메뉴를 열면 식별자를 받아와요.
+  final CollectionID? collectionId;
 
   @override
   Widget build(BuildContext context) {
+    final provider = mediaMenuControllerProvider(media);
+
     return _MediaMenuTemplate(
       mediaItem: MediaItem(media: media),
-      evaluateTile: _EvaluateMediaTile(media: media),
-      saveTile: _SaveMediaTile(media: media),
+      evaluateTile: _EvaluateMediaTile(provider),
+      saveTile: _SaveMediaTile(provider),
       destructiveTile: switch (type) {
-        MediaMenuType.media => const _HideMediaTile(),
-        MediaMenuType.collection => const _DeleteCollectionItemTile(),
+        MediaMenuType.media => _HideMediaTile(provider),
+        MediaMenuType.collection => _DeleteCollectionItemTile(
+            provider,
+            collectionId: collectionId,
+          ),
       },
-      shareTile: _ShareMediaTile(media: media),
+      shareTile: _ShareMediaTile(provider),
     );
   }
 }

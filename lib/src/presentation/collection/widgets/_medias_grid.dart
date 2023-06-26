@@ -1,8 +1,12 @@
 part of '../collection_screen.dart';
 
 class _CollectionMediasGrid extends StatelessWidget {
-  const _CollectionMediasGrid({required this.medias});
+  const _CollectionMediasGrid({
+    required this.collectionId,
+    required this.medias,
+  });
 
+  final CollectionID collectionId;
   final List<Media> medias;
 
   @override
@@ -11,6 +15,7 @@ class _CollectionMediasGrid extends StatelessWidget {
       onLongPress: (media) => context.showCustomModalBottomSheet(
         (context) => MediaMenuSheet(
           type: MediaMenuType.collection,
+          collectionId: collectionId,
           media: media,
         ),
       ),

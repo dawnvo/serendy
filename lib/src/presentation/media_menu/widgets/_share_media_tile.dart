@@ -1,16 +1,13 @@
 part of '../media_menu_sheet.dart';
 
-class _ShareMediaTile extends StatelessWidget {
-  const _ShareMediaTile({required this.media});
-
-  final Media media;
-
-  void handleShare(BuildContext context) {}
+class _ShareMediaTile extends ConsumerWidget {
+  const _ShareMediaTile(this.provider);
+  final MediaMenuControllerProvider provider;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return _MediaMenuListTile(
-      onTap: () => handleShare(context),
+      onTap: () => ref.read(provider.notifier).onShareMediaTapped(context),
       icon: const Icon(RemixIcon.share_fill),
       title: "공유하기",
     );
