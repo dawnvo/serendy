@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
+import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
 
-class SaveMediaSheet extends StatelessWidget {
+class SaveMediaSheet extends ConsumerWidget {
   const SaveMediaSheet({
     required this.media,
     super.key,
@@ -14,19 +15,27 @@ class SaveMediaSheet extends StatelessWidget {
   final Media media;
 
   @override
-  Widget build(BuildContext context) {
-    final collections = collectionsMock;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final myCollectionsValue = ref.watch(watchMyCollectionsListProvider);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
-      child: CustomScrollView(shrinkWrap: true, slivers: [
-        MyCollectionsList(
-          collections: collections,
-          onSelect: (collection) {
-            context.pop();
-          },
-        ),
-      ]),
+    return myCollectionsValue.when(
+      data: (collections) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
+        child: CustomScrollView(shrinkWrap: true, slivers: [
+          MyCollectionsList(
+            onSelect: (collection) {
+              ref.read(addCollectionItemProvider(
+                id: collection.id,
+                mediaId: media.id,
+              ));
+              context.pop();
+            },
+            collections: collections,
+          ),
+        ]),
+      ),
+      error: (err, stack) => Text(err.toString()),
+      loading: () => const CircularProgressIndicator(),
     );
   }
 }
