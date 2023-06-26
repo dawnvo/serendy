@@ -11,13 +11,19 @@ part 'widgets/_error_dialog.dart';
 part 'widgets/_sign_in_button.dart';
 part 'widgets/_sign_in_title.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends ConsumerWidget {
   static const String routeName = 'signIn';
   static const String routeLocation = '/$routeName';
   const SignInScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(signInControllerProvider, (previous, next) {
+      if (next.status == SignInStatus.failure) {
+        _SignInErrorDialog.show(context, next.errorMessage);
+      }
+    });
+
     return const _SignInTemplate(
       signInTitle: _SignInTitle(),
       signInButton: _SignInButton(),

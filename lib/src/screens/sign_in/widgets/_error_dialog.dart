@@ -7,9 +7,7 @@ class _SignInErrorDialog extends StatelessWidget {
   static void show(BuildContext context, String? message) {
     showDialog(
       context: context,
-      builder: (_) => _SignInErrorDialog(
-        message: message,
-      ),
+      builder: (_) => _SignInErrorDialog(message: message),
     );
   }
 
