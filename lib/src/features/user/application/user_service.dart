@@ -18,13 +18,13 @@ Future<User> fetchUser(
 Future<User> createUser(
   CreateUserRef ref, {
   required String uid,
-  required String name,
-  String? email,
+  required String username,
+  required String email,
   String? avatar,
 }) {
   return UserModule.createUserUsecase.execute((
     id: uid,
-    name: name,
+    name: username,
     email: email,
     avatar: avatar,
   ));
@@ -34,13 +34,13 @@ Future<User> createUser(
 @riverpod
 Future<User> editProfile(
   EditProfileRef ref, {
-  String? name,
+  String? username,
   String? avatar,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return UserModule.editProfileUsecase.execute((
     executorId: userId,
-    name: name,
+    name: username,
     avatar: avatar,
   ));
 }

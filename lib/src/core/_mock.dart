@@ -5,7 +5,11 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 // User
-final userMock = User(id: 'uid', name: "Serendy");
+final userMock = User(
+  id: 'uid',
+  name: "Serendy",
+  email: 'serendy@email.com',
+);
 
 // Media
 final mediaMock = Media(

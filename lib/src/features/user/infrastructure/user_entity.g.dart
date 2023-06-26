@@ -13,7 +13,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
           const TimestampConverter().fromJson(json['created_at'] as Timestamp),
       updatedAt:
           const TimestampConverter().fromJson(json['updated_at'] as Timestamp),
-      email: json['email'] as String?,
+      email: json['email'] as String,
       avatar: json['avatar'] as String?,
       removedAt: _$JsonConverterFromJson<Timestamp, DateTime>(
           json['removed_at'], const TimestampConverter().fromJson),

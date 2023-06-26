@@ -12,14 +12,14 @@ final class UserEntity {
     required this.name,
     required this.createdAt,
     required this.updatedAt,
-    this.email,
+    required this.email,
     this.avatar,
     this.removedAt,
   });
 
   final String id;
   final String name;
-  final String? email;
+  final String email;
   final String? avatar;
 
   @TimestampConverter()

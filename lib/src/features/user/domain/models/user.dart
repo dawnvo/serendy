@@ -11,7 +11,7 @@ final class User extends Equatable {
   final String name;
 
   /// 이메일
-  final String? email;
+  final String email;
 
   /// 프로필 사진
   final String? avatar;
@@ -27,7 +27,7 @@ final class User extends Equatable {
 
   User({
     required this.name,
-    this.email,
+    required this.email,
     this.avatar,
     this.removedAt,
     final String? id,

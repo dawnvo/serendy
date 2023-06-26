@@ -5,7 +5,7 @@ import 'package:serendy/src/features/user/user.dart';
 typedef CreateUserPayload = ({
   String id,
   String name,
-  String? email,
+  String email,
   String? avatar,
 });
 

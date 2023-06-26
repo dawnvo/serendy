@@ -121,7 +121,7 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-String _$createUserHash() => r'3a1bd19d916156980caa5c5fc8227c41f0f6e084';
+String _$createUserHash() => r'37aeba42ee09d742f685b3ec27983a7e6c03325f';
 typedef CreateUserRef = AutoDisposeFutureProviderRef<User>;
 
 /// 사용자를 만들어요.
@@ -144,13 +144,13 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
   /// Copied from [createUser].
   CreateUserProvider call({
     required String uid,
-    required String name,
-    String? email,
+    required String username,
+    required String email,
     String? avatar,
   }) {
     return CreateUserProvider(
       uid: uid,
-      name: name,
+      username: username,
       email: email,
       avatar: avatar,
     );
@@ -162,7 +162,7 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
   ) {
     return call(
       uid: provider.uid,
-      name: provider.name,
+      username: provider.username,
       email: provider.email,
       avatar: provider.avatar,
     );
@@ -192,14 +192,14 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   /// Copied from [createUser].
   CreateUserProvider({
     required this.uid,
-    required this.name,
-    this.email,
+    required this.username,
+    required this.email,
     this.avatar,
   }) : super.internal(
           (ref) => createUser(
             ref,
             uid: uid,
-            name: name,
+            username: username,
             email: email,
             avatar: avatar,
           ),
@@ -215,15 +215,15 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
         );
 
   final String uid;
-  final String name;
-  final String? email;
+  final String username;
+  final String email;
   final String? avatar;
 
   @override
   bool operator ==(Object other) {
     return other is CreateUserProvider &&
         other.uid == uid &&
-        other.name == name &&
+        other.username == username &&
         other.email == email &&
         other.avatar == avatar;
   }
@@ -232,7 +232,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, uid.hashCode);
-    hash = _SystemHash.combine(hash, name.hashCode);
+    hash = _SystemHash.combine(hash, username.hashCode);
     hash = _SystemHash.combine(hash, email.hashCode);
     hash = _SystemHash.combine(hash, avatar.hashCode);
 
@@ -240,7 +240,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-String _$editProfileHash() => r'2e7dbff85dd000f1daf5fcb0415cc762a108a92c';
+String _$editProfileHash() => r'3a09b0f5c1ce6740855553de60d69dcfcc8e216a';
 typedef EditProfileRef = AutoDisposeFutureProviderRef<User>;
 
 /// 프로필을 수정해요.
@@ -262,11 +262,11 @@ class EditProfileFamily extends Family<AsyncValue<User>> {
   ///
   /// Copied from [editProfile].
   EditProfileProvider call({
-    String? name,
+    String? username,
     String? avatar,
   }) {
     return EditProfileProvider(
-      name: name,
+      username: username,
       avatar: avatar,
     );
   }
@@ -276,7 +276,7 @@ class EditProfileFamily extends Family<AsyncValue<User>> {
     covariant EditProfileProvider provider,
   ) {
     return call(
-      name: provider.name,
+      username: provider.username,
       avatar: provider.avatar,
     );
   }
@@ -304,12 +304,12 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [editProfile].
   EditProfileProvider({
-    this.name,
+    this.username,
     this.avatar,
   }) : super.internal(
           (ref) => editProfile(
             ref,
-            name: name,
+            username: username,
             avatar: avatar,
           ),
           from: editProfileProvider,
@@ -323,20 +323,20 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
               EditProfileFamily._allTransitiveDependencies,
         );
 
-  final String? name;
+  final String? username;
   final String? avatar;
 
   @override
   bool operator ==(Object other) {
     return other is EditProfileProvider &&
-        other.name == name &&
+        other.username == username &&
         other.avatar == avatar;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, name.hashCode);
+    hash = _SystemHash.combine(hash, username.hashCode);
     hash = _SystemHash.combine(hash, avatar.hashCode);
 
     return _SystemHash.finish(hash);
