@@ -56,7 +56,7 @@ class AccountController extends _$AccountController with NotifierMounted {
   /// 로그아웃해요.
   Future<void> signOut(BuildContext context) async {
     try {
-      await ref.read(authServiceProvider).signOut();
+      await ref.read(authServiceProvider).signOutWithGoogle();
 
       // * 컨트롤러가 폐기되지 않았고, 에러가 없으면 실행을 계속해요.
       if (!mounted && !state.hasError) return;
