@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/presentation/@widgets/widgets.dart';
+import 'package:serendy/src/widgets/widgets.dart';
 
 extension ContextX on BuildContext {
   /// [ThemeData]에서 필요없는 속성은 캡슐화해요.
