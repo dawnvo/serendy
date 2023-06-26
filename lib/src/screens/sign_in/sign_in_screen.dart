@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/auth/application/google_strategy.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/widgets/widgets.dart';
+
+import 'controller/sign_in_controller.dart';
 
 part 'widgets/_error_dialog.dart';
 part 'widgets/_sign_in_button.dart';

@@ -16,9 +16,8 @@ class _SignInButton extends ConsumerWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {
-        ref.read(authServiceProvider).signIn(GoogleStrategy());
-      },
+      onPressed: () =>
+          ref.read(signInControllerProvider.notifier).signInWithGoogle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
