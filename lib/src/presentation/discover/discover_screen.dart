@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/presentation/@widgets/widgets.dart';
+
+import 'controller/discover_controller.dart';
 
 part 'widgets/_collections_grid.dart';
 part 'widgets/_search_bar.dart';
