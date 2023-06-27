@@ -206,6 +206,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 },
                 routes: [
                   GoRoute(
+                    parentNavigatorKey: _rootNavigatorKey,
                     name: AppRoutes.historyName,
                     path: AppRoutes.historyLocation,
                     builder: (context, state) {

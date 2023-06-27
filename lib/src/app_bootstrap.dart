@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/app.dart';
 import 'package:serendy/src/core/exceptions/error_logger.dart';
+import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
 class AppBootstrap {
   /// Create the root widget that should be passed to [runApp].
   Widget createRootWidget({required ProviderContainer container}) {
+    // * Initialize listener
+    container.read(profileControllerProvider);
+
+    // * Register error handlers
     final errorLogger = container.read(errorLoggerProvider);
     registerErrorHandlers(errorLogger);
 
