@@ -15,7 +15,7 @@ dependencies:
 
   # State Management
   flutter_hooks: ^0.18.6
-  flutter_riverpod: ^2.3.6
+  hooks_riverpod: ^2.3.6
   riverpod_annotation: ^2.1.1
 
   # UI

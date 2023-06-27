@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';

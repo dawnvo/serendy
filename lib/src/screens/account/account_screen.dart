@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
