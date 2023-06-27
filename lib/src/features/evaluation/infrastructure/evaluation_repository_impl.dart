@@ -24,7 +24,9 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       query = query.where('media.id', isEqualTo: mediaId);
     }
 
-    final streamSnapshots = query.snapshots();
+    // * 최신순으로 정렬해요.
+    final streamSnapshots =
+        query.orderBy('updated_at', descending: true).snapshots();
 
     return streamSnapshots.map((snapshot) {
       final evaluationDataList = snapshot.docs.map((doc) => doc.data());
