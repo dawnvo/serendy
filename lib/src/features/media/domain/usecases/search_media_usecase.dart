@@ -12,7 +12,7 @@ final class SearchMediaUsecase
 
   @override
   Future<List<Media?>> execute(SearchMediaPayload payload) async {
-    final medias = await _mediaRepository.findMany(payload.title);
+    final medias = await _mediaRepository.search(payload.title);
     return medias;
   }
 }

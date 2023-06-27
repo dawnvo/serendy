@@ -11,13 +11,24 @@ final class MediaRepositoryImpl implements MediaRepository {
   final FirebaseFirestore firestore;
   final CollectionReference<Map<String, dynamic>> _ref;
 
+  /// Search medias list
+  @override
+  // TODO: 추후에 검색 솔루션 알아보기 (Algolia & Elastic)
+  Future<List<Media?>> search(String? title) async {
+    final snapshots = await _ref
+        .where("title", isGreaterThanOrEqualTo: title)
+        .where("title", isLessThanOrEqualTo: '$title\uf8ff')
+        .get();
+
+    final mediaDataList = snapshots.docs.map((doc) => doc.data());
+    final mediaEntities = mediaDataList.map(MediaEntity.fromJson);
+    return MediaMapper.toDomainModels(mediaEntities);
+  }
+
   /// Fetch medias list
   @override
-  Future<List<Media?>> findMany(String? title) async {
-    final snapshots = await _ref
-        // .where("title", isGreaterThanOrEqualTo: query.title)
-        .where("title", isEqualTo: title)
-        .get();
+  Future<List<Media?>> findMany() async {
+    final snapshots = await _ref.get();
 
     final mediaDataList = snapshots.docs.map((doc) => doc.data());
     final mediaEntities = mediaDataList.map(MediaEntity.fromJson);

@@ -122,7 +122,7 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
   }
 }
 
-String _$fetchMediaListHash() => r'a2fc351bd849211386315391c36450df19eb5d8a';
+String _$fetchMediaListHash() => r'f951c09ff9a7c2f70f6f43aed19c4580d238470a';
 
 /// 미디어 목록을 불러와요.
 ///

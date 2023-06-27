@@ -19,7 +19,7 @@ Future<List<Media?>> searchMedia(
 Future<List<Media?>> fetchMediaList(
   FetchMediaListRef ref,
 ) {
-  return MediaModule.searchMediaUsecase.execute((title: null));
+  return MediaModule.getMediaListUsecase.execute(());
 }
 
 /// 미디어 정보를 불러와요.
