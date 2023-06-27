@@ -7,19 +7,8 @@ class _SearchBar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final debouncer = ref.watch(debouncerProvider);
-    final controller = useTextEditingController();
+    final controller = ref.watch(queryControllerProvider);
     final focusNode = useFocusNode();
-
-    // * 검색어를 입력하면 검색을 진행해요.
-    useEffect(() {
-      void searchMedias() => debouncer.run(() => ref
-          .read(searchControllerProvider.notifier)
-          .searchMedias(controller.text));
-
-      controller.addListener(searchMedias);
-      return () => controller.removeListener(searchMedias);
-    }, [controller]);
 
     // * 빌드 시 SearchBar를 포커스해요.
     useEffect(() {
