@@ -14,3 +14,4 @@ export 'mixin/notifier_mounted_mixin.dart';
 // Others
 export 'router/app_router.dart';
 export 'theme/app_theme.dart';
+export 'utils/debouncer.dart';
