@@ -9,9 +9,12 @@ class _AccountNameTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final debouncer = ref.watch(debouncerProvider);
+
     return TitleTextField(
-      onChanged: (value) =>
-          ref.read(accountControllerProvider.notifier).changeName(value),
+      onChanged: (value) => debouncer.run(() {
+        ref.read(accountControllerProvider.notifier).changeName(value);
+      }),
       value: name,
       hintText: "닉네임",
     );

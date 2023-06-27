@@ -7,9 +7,12 @@ class _EditCollectionTitleTextField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final title = ref.watch(provider.select((state) => state.title));
+    final debouncer = ref.watch(debouncerProvider);
 
     return TitleTextField(
-      onChanged: (value) => ref.watch(provider.notifier).changeTitle(value),
+      onChanged: (value) => debouncer.run(() {
+        ref.watch(provider.notifier).changeTitle(value);
+      }),
       value: title,
       hintText: "컬렉션 이름",
     );
