@@ -26,7 +26,7 @@ class AccountScreen extends ConsumerWidget {
 
     ref.listen(accountControllerProvider, (previous, next) {
       // * 수정에 성공하면 메시지로 안내해요.
-      if (next.isReloading && previous != next) {
+      if (previous != next && next.isReloading) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("프로필을 수정했어요.")),
         );

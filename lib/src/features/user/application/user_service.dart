@@ -4,6 +4,13 @@ import 'package:serendy/src/features/user/user.dart';
 
 part 'user_service.g.dart';
 
+/// 내 정보를 불러와요.
+@riverpod
+Future<User> fetchMe(FetchMeRef ref) {
+  final userId = ref.watch(requireUserIdProvider);
+  return UserModule.getUserUsecase.execute((userId: userId));
+}
+
 /// 사용자 정보를 불러와요.
 @riverpod
 Future<User> fetchUser(

@@ -6,6 +6,22 @@ part of 'user_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$fetchMeHash() => r'3a6c926c88ac028f53a56f60d057d8bb5b28eaf5';
+
+/// 내 정보를 불러와요.
+///
+/// Copied from [fetchMe].
+@ProviderFor(fetchMe)
+final fetchMeProvider = AutoDisposeFutureProvider<User>.internal(
+  fetchMe,
+  name: r'fetchMeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$fetchMeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FetchMeRef = AutoDisposeFutureProviderRef<User>;
 String _$fetchUserHash() => r'24acfc3ae6a4c719c4c3e62e79a3c931f8b8fb16';
 
 /// Copied from Dart SDK

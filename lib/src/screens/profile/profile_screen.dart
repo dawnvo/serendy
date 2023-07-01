@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/profile_controller.dart';
 
 part 'widgets/_my_collections_list.dart';
+part 'widgets/_profile_header.dart';
 part 'widgets/_watched_media_indicator.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -29,6 +32,7 @@ class ProfileScreen extends ConsumerWidget {
             onPressed: () => context.pushNamed(AppRoutes.settingsName),
           ),
         ],
+        header: _ProfileHeader(user: state.user),
         watchedMediaIndicator: _ProfileWatchedMediaIndicator(
           count: state.evaluationsCount,
         ),
@@ -48,14 +52,16 @@ class ProfileScreen extends ConsumerWidget {
 
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
+    required this.actions,
+    required this.header,
     required this.watchedMediaIndicator,
     required this.collectionsList,
-    required this.actions,
   });
 
+  final List<IconButton> actions;
+  final _ProfileHeader header;
   final _ProfileWatchedMediaIndicator watchedMediaIndicator;
   final _ProfileMyCollectionsList collectionsList;
-  final List<IconButton> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +69,9 @@ class _ProfileTemplate extends StatelessWidget {
       body: CustomScrollView(slivers: [
         SliverAppBar(
           pinned: true,
-          title: const Text("내 라이브러리"),
           actions: actions,
+          flexibleSpace: header,
+          expandedHeight: 280.0,
         ),
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),

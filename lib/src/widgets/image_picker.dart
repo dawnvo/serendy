@@ -90,8 +90,8 @@ class _PickedImage extends StatelessWidget {
     else if (fileOrUrl != null &&
         fileOrUrl!.isNotEmpty &&
         Uri.parse(fileOrUrl!).isAbsolute) {
-      return CachedNetworkImage(
-        imageUrl: fileOrUrl!,
+      return Image.network(
+        fileOrUrl!,
         fit: BoxFit.cover,
       );
     }

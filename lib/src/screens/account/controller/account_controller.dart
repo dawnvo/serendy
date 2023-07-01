@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
 part 'account_state.dart';
 part 'account_controller.g.dart';
@@ -13,15 +14,13 @@ class AccountController extends _$AccountController with NotifierMounted {
   @override
   FutureOr<AccountState> build() async {
     ref.onDispose(setUnmounted);
-
-    final userId = ref.watch(requireUserIdProvider);
-    final user = await ref.watch(fetchUserProvider(id: userId).future);
+    final me = await ref.refresh(fetchMeProvider.future);
 
     return AccountState(
-      initialUser: user,
-      avatar: user.avatar,
-      name: user.name,
-      email: user.email,
+      initialUser: me,
+      avatar: me.avatar,
+      name: me.name,
+      email: me.email,
     );
   }
 
@@ -40,12 +39,22 @@ class AccountController extends _$AccountController with NotifierMounted {
     state = const AsyncLoading();
 
     final newState = await AsyncValue.guard(() async {
-      final user = await ref.read(editProfileProvider(
+      // * 프로필을 수정해요.
+      final edited = await ref.read(editProfileProvider(
         avatar: state.requireValue.avatar,
         username: state.requireValue.name,
       ).future);
 
-      return state.requireValue.copyWith(initialUser: user);
+      // * 수정에 성공하면 프로필 화면의 상태를 갱신해요.
+      await ref
+          .read(profileControllerProvider.notifier)
+          .userProfileUpdated(edited);
+
+      // * 상태를 수동으로 설정해 `isEdited`를 초기화해요.
+      return state.requireValue.copyWith(
+        initialUser: edited,
+        avatar: edited.avatar, // 로컬 이미지 주소 != 클라우드 이미지 주소
+      );
     });
 
     // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
