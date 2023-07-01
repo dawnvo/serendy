@@ -35,15 +35,15 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) =>
     };
 
 const _$EmotionEnumMap = {
-  Emotion.anger: 'anger',
+  Emotion.nice: 'nice',
+  Emotion.joy: 'joy',
+  Emotion.happyness: 'happyness',
   Emotion.surprise: 'surprise',
   Emotion.sadness: 'sadness',
-  Emotion.disgust: 'disgust',
-  Emotion.normal: 'normal',
-  Emotion.joy: 'joy',
   Emotion.fear: 'fear',
-  Emotion.happyness: 'happyness',
-  Emotion.nice: 'nice',
+  Emotion.normal: 'normal',
+  Emotion.disgust: 'disgust',
+  Emotion.anger: 'anger',
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(
