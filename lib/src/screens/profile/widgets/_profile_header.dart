@@ -15,9 +15,8 @@ class _ProfileHeader extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 160 / 2,
-            backgroundImage: user.avatar != null
-                ? CachedNetworkImageProvider(user.avatar!)
-                : null,
+            backgroundImage:
+                user.avatar != null ? NetworkImage(user.avatar!) : null,
           ),
           Gap.h64,
         ],
