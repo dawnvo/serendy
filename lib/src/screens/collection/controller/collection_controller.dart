@@ -14,6 +14,8 @@ class CollectionController extends _$CollectionController {
   }
 
   Future<void> collectionUpdated(Collection collection) async {
+    // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
+    if (!state.hasValue) return;
     state = AsyncData(state.requireValue.copyWith(collection: collection));
   }
 }
