@@ -12,28 +12,26 @@ class _ReactionDetailSheet extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-      child: Column(children: [
-        Gap.h12,
-        MultiLineProgressIndicator([
-          for (final data in reactionDatas)
-            ProgressBar(
-              color: data.emotion.color,
-              value: data.count / totalCount,
-            ),
-        ]),
-        Gap.h8,
-        Expanded(
-          child: ListView(children: [
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Gap.h12,
+          MultiLineProgressIndicator([
             for (final data in reactionDatas)
-              __ReactionTile(
+              ProgressBar(
                 color: data.emotion.color,
-                name: data.emotion.label,
-                count: data.count,
+                value: data.count / totalCount,
               ),
           ]),
-        ),
-        Gap.h24,
-      ]),
+          Gap.h8,
+          for (final data in reactionDatas)
+            __ReactionTile(
+              color: data.emotion.color,
+              name: data.emotion.label,
+              count: data.count,
+            ),
+          Gap.h12,
+        ]),
+      ),
     );
   }
 
