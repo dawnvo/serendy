@@ -7,7 +7,7 @@ part of 'edit_collection_controller.dart';
 // **************************************************************************
 
 String _$editCollectionControllerHash() =>
-    r'759e5b5bd17821e90d13daea15bf6349f28dd336';
+    r'be493688a14b97e2c7a401c44b371163ec861d6d';
 
 /// Copied from Dart SDK
 class _SystemHash {

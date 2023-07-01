@@ -20,7 +20,7 @@ class DeleteCollectionItemTile extends ConsumerWidget {
   Future<void> handleTap(BuildContext context, WidgetRef ref) async {
     try {
       // * 해당 컬렉션 항목을 삭제해요.
-      await ref.read(deleteCollectionItemProvider(
+      final itemDeleted = await ref.read(deleteCollectionItemProvider(
         id: collection.id,
         mediaId: media.id,
       ).future);
@@ -28,7 +28,7 @@ class DeleteCollectionItemTile extends ConsumerWidget {
       // * 컬렉션 화면의 상태를 갱신해요.
       ref
           .read(collectionControllerProvider(collection.id).notifier)
-          .collectionUpdated();
+          .collectionUpdated(itemDeleted);
 
       // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
       if (!context.mounted) return;

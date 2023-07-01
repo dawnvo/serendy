@@ -49,7 +49,7 @@ class EditCollectionController extends _$EditCollectionController
 
     try {
       // * 컬렉션을 수정해요.
-      await ref.read(editCollectionProvider(
+      final edited = await ref.read(editCollectionProvider(
         id: collection.id,
         image: state.image,
         title: state.title,
@@ -60,7 +60,7 @@ class EditCollectionController extends _$EditCollectionController
       // * 컬렉션 화면의 상태를 갱신해요.
       ref
           .read(collectionControllerProvider(collection.id).notifier)
-          .collectionUpdated();
+          .collectionUpdated(edited);
 
       // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
       if (!mounted) return;
