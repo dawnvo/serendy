@@ -45,7 +45,7 @@ class MediaScreen extends ConsumerWidget {
           genres: state.media.keywords,
           status: [
             '${state.media.startDate?.year}',
-            state.media.status.name,
+            state.media.status.label,
           ],
         ),
         actionBar: _MediaActionBar(media: state.media),
@@ -88,7 +88,7 @@ class _MediaTemplate extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(
-            height: context.screenWidth * (5 / 4),
+            height: context.screenWidth * (8 / 7),
             child: Stack(fit: StackFit.expand, children: [
               coverImage,
               Align(

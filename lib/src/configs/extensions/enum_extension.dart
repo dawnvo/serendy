@@ -28,3 +28,12 @@ extension EmotionX on Emotion {
         Emotion.anger => const Color(0xFFF48B9B),
       };
 }
+
+extension MediaStatusX on MediaStatus {
+  String get label => switch (this) {
+        MediaStatus.finished => '완결',
+        MediaStatus.releasing => '방영 중',
+        MediaStatus.unreleased => '방영 전',
+        MediaStatus.cancelled => '방영 취소',
+      };
+}
