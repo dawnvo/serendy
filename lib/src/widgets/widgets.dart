@@ -14,3 +14,4 @@ export 'my_collections_list.dart';
 export 'tag.dart';
 export 'title_text_field.dart';
 export 'vertical_linear_gradient.dart';
+export 'youtube_player.dart';
