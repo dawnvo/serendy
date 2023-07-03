@@ -1,7 +1,7 @@
 part of '../media_screen.dart';
 
-class _MediaReactionTile extends StatelessWidget {
-  const _MediaReactionTile({required this.reactions});
+class _MediaReactionsTile extends StatelessWidget {
+  const _MediaReactionsTile({required this.reactions});
 
   final List<Evaluation?> reactions;
 
@@ -22,7 +22,10 @@ class _MediaReactionTile extends StatelessWidget {
         onTap: () => _handleShowReactionDetailSheet(context),
         leading: __ReactionIcons(emotions: uniqueKeys.toList()),
         title: Text('$totalCount명이 감상했어요'),
-        trailing: const Icon(RemixIcon.arrow_right_s_line),
+        trailing: Icon(
+          RemixIcon.arrow_right_s_line,
+          color: context.colorScheme.outlineVariant,
+        ),
       );
     } else {
       return _buildEmptyReactionTile(context);
@@ -32,7 +35,10 @@ class _MediaReactionTile extends StatelessWidget {
   Widget _buildEmptyReactionTile(BuildContext context) {
     return ListTile(
       onTap: () => _handleShowReactionDetailSheet(context),
-      leading: const Icon(RemixIcon.emotion_sad_line, size: Sizes.p28),
+      leading: const Icon(
+        RemixIcon.emotion_sad_line,
+        size: Sizes.p28,
+      ),
       title: Text(
         '감상한 사람이 없어요',
         style: context.textTheme.bodyLarge?.copyWith(

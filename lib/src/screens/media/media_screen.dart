@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
@@ -14,10 +14,11 @@ import 'package:serendy/src/widgets/widgets.dart';
 import '../media_evaluate/controller/evaluate_media_controller.dart';
 import 'controller/media_controller.dart';
 
+part 'sheets/_media_detail_sheet.dart';
 part 'sheets/_reaction_detail_sheet.dart';
 part 'widgets/_action_bar.dart';
 part 'widgets/_evaluate_icon_button.dart';
-part 'widgets/_info_tile.dart';
+part 'widgets/_detail_tile.dart';
 part 'widgets/_media_cover_image.dart';
 part 'widgets/_media_keywords.dart';
 part 'widgets/_media_title.dart';
@@ -50,8 +51,8 @@ class MediaScreen extends ConsumerWidget {
         ),
         actionBar: _MediaActionBar(media: state.media),
         contents: [
-          _MediaReactionTile(reactions: state.reactions),
-          const _MediaInfoTile(),
+          _MediaReactionsTile(reactions: state.reactions),
+          _MediaDetailsTile(media: state.media),
         ],
       ),
       error: (err, stack) => Scaffold(
