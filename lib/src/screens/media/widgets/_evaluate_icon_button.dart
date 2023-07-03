@@ -17,22 +17,41 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
     final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
         .select((state) => state.evaluation));
 
-    return Row(children: [
-      if (evaluation != null) __EmotionLabel(evaluation.emotion),
-      if (evaluation != null)
-        IconButton(
-          onPressed: () => handlePressed(context),
-          icon: SvgPicture.asset(
-            evaluation.emotion.filePath,
-            height: Sizes.p28,
-          ),
-        )
-      else
-        IconButton(
-          onPressed: () => handlePressed(context),
-          icon: const Icon(RemixIcon.emotion_fill),
-        ),
-    ]);
+    return GestureDetector(
+      onTap: () => handlePressed(context),
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.all(kContentPadding),
+        child: Row(children: [
+          __EmotionLabel(evaluation?.emotion),
+          Gap.w8,
+          __EmotionIcon(evaluation?.emotion),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Emotion icon
+class __EmotionIcon extends StatelessWidget {
+  const __EmotionIcon(this.emotion);
+
+  final Emotion? emotion;
+
+  @override
+  Widget build(BuildContext context) {
+    if (emotion != null) {
+      return SvgPicture.asset(
+        emotion!.filePath,
+        height: Sizes.p28,
+      );
+    } else {
+      return Icon(
+        RemixIcon.emotion_fill,
+        size: Sizes.p28,
+        color: context.colorScheme.onSurfaceVariant,
+      );
+    }
   }
 }
 
@@ -40,21 +59,20 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
 class __EmotionLabel extends StatelessWidget {
   const __EmotionLabel(this.emotion);
 
-  final Emotion emotion;
+  final Emotion? emotion;
 
   @override
   Widget build(BuildContext context) {
+    final color = emotion?.color ?? context.colorScheme.onSurfaceVariant;
+    final label = emotion?.label ?? '평가하기';
+
     return Chip(
       shape: const StadiumBorder(),
-      side: BorderSide(color: emotion.color),
+      side: BorderSide(color: color),
       visualDensity: VisualDensity.compact,
       labelPadding: EdgeInsets.zero,
-      label: Text(
-        emotion.label,
-        style: context.textTheme.labelMedium?.copyWith(
-          color: emotion.color,
-        ),
-      ),
+      labelStyle: context.textTheme.labelMedium?.copyWith(color: color),
+      label: Text(label),
     );
   }
 }

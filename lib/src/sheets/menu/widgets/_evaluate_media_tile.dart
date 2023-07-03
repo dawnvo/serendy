@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/screens/media_evaluate/controller/evaluate_media_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -15,11 +14,11 @@ class EvaluateMediaTile extends ConsumerWidget {
   final Media media;
 
   void handleTap(BuildContext context) {
+    context.pop();
     context.pushNamed(
       AppRoutes.evaluateMediaName,
       extra: media,
     );
-    context.pop();
   }
 
   @override
@@ -27,18 +26,24 @@ class EvaluateMediaTile extends ConsumerWidget {
     final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
         .select((state) => state.evaluation));
 
-    return MenuListTile(
-      onTap: () => handleTap(context),
-      icon: switch (evaluation) {
-        // 평가한 감정을 표시해요.
-        Evaluation() => SvgPicture.asset(
-            evaluation.emotion.filePath,
-            height: Sizes.p24,
-          ),
-        // 평가한 감정이 없으면 아이콘을 표시해요.
-        null => const Icon(RemixIcon.emotion_fill),
-      },
-      title: "감상했어요",
-    );
+    // 평가한 감정이 존재하면 감정을 표시해요.
+    if (evaluation != null) {
+      return MenuListTile(
+        onTap: () => handleTap(context),
+        icon: SvgPicture.asset(
+          evaluation.emotion.filePath,
+          height: Sizes.p24,
+        ),
+        title: evaluation.emotion.label,
+      );
+    }
+    // 평가한 감정이 없으면 아이콘을 표시해요.
+    else {
+      return MenuListTile(
+        onTap: () => handleTap(context),
+        icon: const Icon(RemixIcon.emotion_fill),
+        title: "평가하기",
+      );
+    }
   }
 }

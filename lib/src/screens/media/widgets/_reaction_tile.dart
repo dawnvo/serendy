@@ -34,7 +34,7 @@ class _MediaReactionTile extends StatelessWidget {
       onTap: () => _handleShowReactionDetailSheet(context),
       leading: const Icon(RemixIcon.emotion_sad_line, size: Sizes.p28),
       title: Text(
-        '아직 감상한 사람이 없어요',
+        '감상한 사람이 없어요',
         style: context.textTheme.bodyLarge?.copyWith(
           color: context.colorScheme.onSurfaceVariant,
         ),
