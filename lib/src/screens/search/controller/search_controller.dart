@@ -33,7 +33,8 @@ class SearchController extends _$SearchController {
 }
 
 /// 검색어 입력 컨트롤러
-final queryControllerProvider = Provider<TextEditingController>((ref) {
+final queryControllerProvider =
+    Provider.autoDispose<TextEditingController>((ref) {
   final controller = TextEditingController();
   final debouncer = ref.watch(debouncerProvider);
 

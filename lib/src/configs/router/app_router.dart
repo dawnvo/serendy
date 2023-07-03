@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/router/bottom_navigation_bar.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/collection/collection.dart';
