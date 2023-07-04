@@ -52,6 +52,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '703645969295',
     projectId: 'serendy-7496b',
     storageBucket: 'serendy-7496b.appspot.com',
+    androidClientId:
+        '703645969295-oiv6tcj22atbfopaskv5bldvu557vqcn.apps.googleusercontent.com',
     iosClientId:
         '703645969295-3abvghsn9eqqiv77qhndhg2t46njl6so.apps.googleusercontent.com',
     iosBundleId: 'com.example.serendy',
