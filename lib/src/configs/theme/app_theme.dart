@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/constants/size_constant.dart';
 
@@ -11,7 +12,7 @@ sealed class AppColors {
   static const _lightHighlightColor = Color(0x40C8C8C8);
 
   // dark
-  static const _darkSurface = Color(0xFF121217);
+  static const _darkSurface = Color(0xFF101012);
   static const _darkSurfaceVariant = Color(0xFF212127);
   static const _darkHighlightColor = Color(0x12CCCCCC);
 
@@ -82,6 +83,13 @@ final class AppThemeData {
       splashColor: highlightColor,
       highlightColor: highlightColor,
       scaffoldBackgroundColor: colorScheme.background,
+
+      // AppBar theme
+      appBarTheme: themeData.appBarTheme.copyWith(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: colorScheme.background,
+        ),
+      ),
 
       // Divider theme
       dividerTheme: themeData.dividerTheme.copyWith(space: 1),
