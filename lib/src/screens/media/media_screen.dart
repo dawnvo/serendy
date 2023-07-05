@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/remixicon.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,8 +16,8 @@ import 'controller/media_controller.dart';
 part 'sheets/_media_detail_sheet.dart';
 part 'sheets/_reaction_detail_sheet.dart';
 part 'widgets/_action_bar.dart';
-part 'widgets/_evaluate_icon_button.dart';
 part 'widgets/_detail_tile.dart';
+part 'widgets/_evaluate_icon_button.dart';
 part 'widgets/_media_cover_image.dart';
 part 'widgets/_media_keywords.dart';
 part 'widgets/_media_title.dart';
@@ -40,7 +39,9 @@ class MediaScreen extends ConsumerWidget {
 
     return mediaValue.when(
       data: (state) => _MediaTemplate(
-        coverImage: _MediaCoverImage(image: state.media.image),
+        coverImage: _MediaCoverImage(
+          image: state.media.images.largeImageUrl,
+        ),
         title: _MediaTitle(title: state.media.title),
         keyword: _MediaKeywords(
           genres: state.media.keywords,

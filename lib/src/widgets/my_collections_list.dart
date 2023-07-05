@@ -55,7 +55,7 @@ class _CreateCollectionTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colorScheme.surfaceVariant,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(Sizes.p12),
       ),
       width: _imageSize,
       height: _imageSize,

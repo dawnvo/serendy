@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
 
@@ -44,9 +43,10 @@ class MenuInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
       child: Row(children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: CachedNetworkImage(
-            imageUrl: image,
+          borderRadius: BorderRadius.circular(Sizes.p8),
+          clipBehavior: Clip.hardEdge,
+          child: Image.network(
+            image,
             fit: BoxFit.cover,
             width: _kImageSize,
             height: _kImageSize,

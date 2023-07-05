@@ -27,7 +27,7 @@ class MultiLineProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(height: 10),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(Sizes.p4)),
       clipBehavior: Clip.hardEdge,
       child: CustomPaint(
         painter: ProgressBarPainter(

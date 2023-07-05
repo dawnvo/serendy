@@ -43,9 +43,10 @@ class MediaItem extends StatelessWidget {
 
   Widget _buildImage(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(Sizes.p8),
+      clipBehavior: Clip.hardEdge,
       child: Image.network(
-        media.image,
+        media.images.smallImageUrl,
         fit: BoxFit.cover,
         width: _kImageSize,
         height: _kImageSize,

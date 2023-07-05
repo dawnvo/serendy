@@ -12,8 +12,8 @@ class _MediaCoverImage extends StatelessWidget {
         Colors.transparent,
         context.colorScheme.surface,
       ],
-      child: CachedNetworkImage(
-        imageUrl: image,
+      child: Image.network(
+        image,
         fit: BoxFit.cover,
       ),
     );

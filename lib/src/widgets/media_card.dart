@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 
@@ -40,7 +39,7 @@ class MediaCard extends StatelessWidget {
 
           // [Material] 위젯에 스플래시 효과를 전달해요.
           child: Ink.image(
-            image: CachedNetworkImageProvider(media.image),
+            image: NetworkImage(media.image),
             fit: BoxFit.cover,
             child: InkWell(
               onTap: onTap,

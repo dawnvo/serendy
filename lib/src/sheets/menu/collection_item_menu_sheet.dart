@@ -28,7 +28,7 @@ class CollectionItemMenuSheet extends ConsumerWidget {
 
     return MenuTemplate(
       info: MenuInfo(
-        image: media.image,
+        image: media.images.smallImageUrl,
         title: media.title,
       ),
       options: [

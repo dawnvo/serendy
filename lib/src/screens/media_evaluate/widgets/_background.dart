@@ -18,8 +18,8 @@ class _EvaluateMediaBackground extends StatelessWidget {
             sigmaX: 50,
             sigmaY: 50,
           ),
-          child: CachedNetworkImage(
-            imageUrl: image,
+          child: Image.network(
+            image,
             fit: BoxFit.cover,
           ),
         ),
