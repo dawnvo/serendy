@@ -11,6 +11,7 @@ export 'medias_grid.dart';
 export 'menu_template.dart';
 export 'multi_line_progress_indicator.dart';
 export 'my_collections_list.dart';
+export 'profile_card_container.dart';
 export 'tag.dart';
 export 'title_text_field.dart';
 export 'vertical_linear_gradient.dart';

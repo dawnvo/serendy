@@ -11,7 +11,6 @@ import 'controller/profile_controller.dart';
 
 part 'widgets/_my_collections_list.dart';
 part 'widgets/_profile_card.dart';
-part 'widgets/_watched_media_indicator.dart';
 
 class ProfileScreen extends ConsumerWidget {
   static const String routeName = 'profile';
@@ -33,9 +32,7 @@ class ProfileScreen extends ConsumerWidget {
         ],
         profileCard: _ProfileCard(
           user: state.user,
-          indicator: _ProfileWatchedMediaIndicator(
-            count: state.evaluationsCount,
-          ),
+          evaluationCount: state.evaluationsCount,
         ),
         collectionsList: _ProfileMyCollectionsList(
           collections: state.myCollections,
