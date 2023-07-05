@@ -63,7 +63,7 @@ class __EmotionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = emotion?.color ?? context.colorScheme.onSurfaceVariant;
+    final color = emotion?.color ?? context.colorScheme.outline;
     final label = emotion?.label ?? '평가하기';
 
     return Chip(

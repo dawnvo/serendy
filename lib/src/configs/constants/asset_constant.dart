@@ -2,6 +2,7 @@ abstract final class Assets {
   static const collectionDefaultImage = 'https://vo.la/EKT5x';
 
   static const googleIcon = 'assets/icons/google.svg';
+  static const youtubeIcon = 'assets/icons/youtube.svg';
 
   static const createCollectionHints = [
     '지브리 명작 극장',

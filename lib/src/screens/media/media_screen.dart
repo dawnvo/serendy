@@ -90,7 +90,7 @@ class _MediaTemplate extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(
-            height: context.screenWidth * (8 / 7),
+            height: context.screenWidth * (9 / 8),
             child: Stack(fit: StackFit.expand, children: [
               coverImage,
               Align(

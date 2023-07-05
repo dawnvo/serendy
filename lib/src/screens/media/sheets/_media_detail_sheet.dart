@@ -1,33 +1,75 @@
 part of '../media_screen.dart';
 
-class _MediaDetailSheet extends ConsumerWidget {
+class _MediaDetailSheet extends StatelessWidget {
   const _MediaDetailSheet({required this.media});
 
   final Media media;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(youtubePlayerController(
-      const YoutubePlayerConfig(videoId: 'd7-GyxrbaG0'),
-    ));
+  Widget build(BuildContext context) {
+    final youtubeId = media.youtubeId;
 
+    // * DB에 트레일러 주소가 존재하면 영상을 틀어줘요.
+    if (youtubeId.isNotEmpty) {
+      return _YoutubeTrailerBody(
+        youtubeId: youtubeId.first!,
+        keywords: media.keywords.map((genre) => genre).toList(),
+      );
+    }
+    // * 트레일러 주소가 없으면 안내 화면을 표시해요.
+    else {
+      return const _EmptyBody();
+    }
+  }
+}
+
+class _YoutubeTrailerBody extends ConsumerWidget {
+  const _YoutubeTrailerBody({
+    required this.youtubeId,
+    required this.keywords,
+  });
+
+  final String youtubeId;
+  final List<String> keywords;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        YoutubePlayer(controller: controller),
+        YoutubePlayer(config: YoutubePlayerConfig(videoId: youtubeId)),
         Padding(
           padding: const EdgeInsets.all(kContentPadding),
-          child: Column(children: [
-            const Text(
-              "스파이, 암살자 그리고 초능력자. "
-              "각자 다른 사정이 있는 세 사람이"
-              "서로에게 정체를 숨기고 가상 가족을 결성한다.",
-            ),
-            Gap.h8,
-            Row(children: media.keywords.map((genre) => Tag(genre)).toList()),
-          ]),
+          child: Wrap(
+            spacing: 8,
+            children: keywords.map((genre) => Tag(genre)).toList(),
+          ),
         ),
       ],
+    );
+  }
+}
+
+class _EmptyBody extends StatelessWidget {
+  const _EmptyBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(kContentPadding),
+      child: Column(children: [
+        const SizedBox(
+          width: 200,
+          height: 200,
+          child: Placeholder(),
+        ),
+        Gap.h16,
+        Text(
+          "정보를 마련하는 중이에요\n나중에 다시 만나요",
+          textAlign: TextAlign.center,
+          style: context.textTheme.titleMedium,
+        ),
+      ]),
     );
   }
 }
