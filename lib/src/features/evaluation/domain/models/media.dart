@@ -31,5 +31,6 @@ final class MediaInfo extends Equatable {
         keywords: const [],
         type: MediaType.anime,
         status: MediaStatus.finished,
+        images: MediaImages.empty(),
       );
 }

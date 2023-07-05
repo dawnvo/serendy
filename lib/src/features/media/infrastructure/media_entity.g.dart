@@ -12,14 +12,18 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       status: $enumDecode(_$MediaStatusEnumMap, json['status']),
       title: json['title'] as String,
       image: json['image'] as String,
+      images: json['images'] == null
+          ? null
+          : MediaImagesEntity.fromJson(json['images'] as Map<String, dynamic>),
       isAdult: json['is_adult'] as bool,
       synopsis: json['synopsis'] as String?,
-      startDate: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['start_date'], const TimestampConverter().fromJson),
-      endDate: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['end_date'], const TimestampConverter().fromJson),
+      startDate: json['start_date'] as String?,
+      endDate: json['end_date'] as String?,
       keywords: (json['keywords'] as List<dynamic>?)
           ?.map((e) => e as String)
+          .toList(),
+      youtubeId: (json['youtube_id'] as List<dynamic>?)
+          ?.map((e) => e as String?)
           .toList(),
     );
 
@@ -30,13 +34,13 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) =>
       'status': _$MediaStatusEnumMap[instance.status]!,
       'title': instance.title,
       'image': instance.image,
+      'images': instance.images?.toJson(),
       'synopsis': instance.synopsis,
       'keywords': instance.keywords,
+      'youtube_id': instance.youtubeId,
       'is_adult': instance.isAdult,
-      'start_date': _$JsonConverterToJson<Timestamp, DateTime>(
-          instance.startDate, const TimestampConverter().toJson),
-      'end_date': _$JsonConverterToJson<Timestamp, DateTime>(
-          instance.endDate, const TimestampConverter().toJson),
+      'start_date': instance.startDate,
+      'end_date': instance.endDate,
     };
 
 const _$MediaTypeEnumMap = {
@@ -53,14 +57,29 @@ const _$MediaStatusEnumMap = {
   MediaStatus.cancelled: 'cancelled',
 };
 
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
+MediaImagesEntity _$MediaImagesEntityFromJson(Map<String, dynamic> json) =>
+    MediaImagesEntity(
+      jpg: MediaImageUrlEntity.fromJson(json['jpg'] as Map<String, dynamic>),
+      webp: MediaImageUrlEntity.fromJson(json['webp'] as Map<String, dynamic>),
+    );
 
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+Map<String, dynamic> _$MediaImagesEntityToJson(MediaImagesEntity instance) =>
+    <String, dynamic>{
+      'jpg': instance.jpg.toJson(),
+      'webp': instance.webp.toJson(),
+    };
+
+MediaImageUrlEntity _$MediaImageUrlEntityFromJson(Map<String, dynamic> json) =>
+    MediaImageUrlEntity(
+      imageUrl: json['image_url'] as String,
+      largeImageUrl: json['large_image_url'] as String,
+      smallImageUrl: json['small_image_url'] as String,
+    );
+
+Map<String, dynamic> _$MediaImageUrlEntityToJson(
+        MediaImageUrlEntity instance) =>
+    <String, dynamic>{
+      'image_url': instance.imageUrl,
+      'large_image_url': instance.largeImageUrl,
+      'small_image_url': instance.smallImageUrl,
+    };

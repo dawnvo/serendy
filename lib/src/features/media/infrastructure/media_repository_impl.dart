@@ -13,9 +13,9 @@ final class MediaRepositoryImpl implements MediaRepository {
 
   /// Search medias list
   @override
-  // TODO: 추후에 검색 솔루션 알아보기 (Algolia & Elastic)
   Future<List<Media?>> search(String? title) async {
     final snapshots = await _ref
+        .limit(20)
         .where("title", isGreaterThanOrEqualTo: title)
         .where("title", isLessThanOrEqualTo: '$title\uf8ff')
         .get();
@@ -28,7 +28,7 @@ final class MediaRepositoryImpl implements MediaRepository {
   /// Fetch medias list
   @override
   Future<List<Media?>> findMany() async {
-    final snapshots = await _ref.get();
+    final snapshots = await _ref.limit(20).get();
 
     final mediaDataList = snapshots.docs.map((doc) => doc.data());
     final mediaEntities = mediaDataList.map(MediaEntity.fromJson);

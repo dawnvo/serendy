@@ -31,6 +31,8 @@ final class AddMediaUsecase implements UseCase<AddMediaPayload, void> {
       isAdult: payload.isAdult,
       startDate: payload.startDate,
       endDate: payload.endDate,
+      // 이미지는 전처리로 처리할 거예요.
+      images: MediaImages.empty(),
     );
 
     await _mediaRepository.create(media);

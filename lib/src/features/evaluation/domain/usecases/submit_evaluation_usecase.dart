@@ -89,7 +89,7 @@ final class SubmitEvaluationUsecase
       media: MediaInfo(
         id: media.id,
         title: media.title,
-        image: media.image,
+        image: media.images.largeImageUrl,
       ),
     );
 

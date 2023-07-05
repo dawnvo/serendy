@@ -14,28 +14,66 @@ final class MediaEntity {
     required this.status,
     required this.title,
     required this.image,
+    required this.images,
     required this.isAdult,
     this.synopsis,
     this.startDate,
     this.endDate,
     final List<String>? keywords,
-  }) : keywords = keywords ?? [];
+    final List<String?>? youtubeId,
+  })  : keywords = keywords ?? [],
+        youtubeId = youtubeId ?? [];
 
   final String id;
   final MediaType type;
   final MediaStatus status;
   final String title;
   final String image;
+  final MediaImagesEntity? images;
   final String? synopsis;
   final List<String> keywords;
+  final List<String?> youtubeId;
   final bool isAdult;
-
-  @TimestampConverter()
-  final DateTime? startDate;
-  @TimestampConverter()
-  final DateTime? endDate;
+  final String? startDate;
+  final String? endDate;
 
   factory MediaEntity.fromJson(Map<String, dynamic> json) =>
       _$MediaEntityFromJson(json);
   Map<String, dynamic> toJson() => _$MediaEntityToJson(this);
+}
+
+/// - type: embedded
+/// - name: media_images
+@jsonSerializable
+final class MediaImagesEntity {
+  const MediaImagesEntity({
+    required this.jpg,
+    required this.webp,
+  });
+
+  final MediaImageUrlEntity jpg;
+  final MediaImageUrlEntity webp;
+
+  factory MediaImagesEntity.fromJson(Map<String, dynamic> json) =>
+      _$MediaImagesEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaImagesEntityToJson(this);
+}
+
+/// - type: embedded
+/// - name: media_images
+@jsonSerializable
+final class MediaImageUrlEntity {
+  const MediaImageUrlEntity({
+    required this.imageUrl,
+    required this.largeImageUrl,
+    required this.smallImageUrl,
+  });
+
+  final String imageUrl;
+  final String largeImageUrl;
+  final String smallImageUrl;
+
+  factory MediaImageUrlEntity.fromJson(Map<String, dynamic> json) =>
+      _$MediaImageUrlEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaImageUrlEntityToJson(this);
 }

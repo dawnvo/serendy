@@ -18,6 +18,7 @@ final mediaMock = Media(
   title: "최애의 아이",
   image: "https://vo.la/oRm94",
   keywords: const ["코미디", "액션", "능력"],
+  images: MediaImages.empty(),
 );
 
 // Evaluation

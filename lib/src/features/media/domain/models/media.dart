@@ -2,6 +2,8 @@ import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/src/core/enums.dart';
 
+part 'media_images.dart';
+
 typedef MediaID = String;
 
 /// [AggregateRoot]
@@ -20,11 +22,17 @@ final class Media extends Equatable {
   /// 사진
   final String image;
 
+  /// 크기별 사진
+  final MediaImages images;
+
   /// 줄거리
   final String? synopsis;
 
   /// 키워드
   final List<String> keywords;
+
+  /// 유튜브 PV
+  final List<String?> youtubeId;
 
   /// 민감한 콘텐츠
   final bool isAdult;
@@ -40,14 +48,17 @@ final class Media extends Equatable {
     required this.status,
     required this.title,
     required this.image,
+    required this.images,
     required this.keywords,
     this.synopsis,
     this.startDate,
     this.endDate,
     final String? id,
     final bool? isAdult,
+    final List<String?>? youtubeId,
   })  : id = id ?? Ulid().toString(),
-        isAdult = isAdult ?? false;
+        isAdult = isAdult ?? false,
+        youtubeId = youtubeId ?? const [];
 
   @override
   List<Object?> get props => [
@@ -56,8 +67,10 @@ final class Media extends Equatable {
         status,
         title,
         image,
+        images,
         synopsis,
         keywords,
+        youtubeId,
         startDate,
         endDate,
       ];
@@ -71,8 +84,10 @@ extension MediaX on Media {
     final MediaStatus? status,
     final String? title,
     final String? image,
+    final MediaImages? images,
     final String? synopsis,
     final List<String>? keywords,
+    final List<String?>? youtubeId,
     final bool? isAdult,
     final DateTime? startDate,
     final DateTime? endDate,
@@ -83,7 +98,10 @@ extension MediaX on Media {
       status: status ?? this.status,
       title: title ?? this.title,
       image: image ?? this.image,
+      images: images ?? this.images,
       keywords: keywords ?? this.keywords,
+      synopsis: synopsis ?? this.synopsis,
+      youtubeId: youtubeId ?? this.youtubeId,
       isAdult: isAdult ?? this.isAdult,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,

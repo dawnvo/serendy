@@ -1,6 +1,17 @@
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
 import 'package:serendy/src/features/media/media.dart';
 
+MediaImages mediaImagesMapper(MediaEntity media) {
+  if (media.images?.webp == null) {
+    return MediaImages.empty();
+  }
+  return MediaImages(
+    imageUrl: media.images!.webp.imageUrl,
+    largeImageUrl: media.images!.webp.largeImageUrl,
+    smallImageUrl: media.images!.webp.smallImageUrl,
+  );
+}
+
 abstract final class MediaMapper {
   static Media toDomainModel(MediaEntity entity) {
     return Media(
@@ -9,11 +20,17 @@ abstract final class MediaMapper {
       status: entity.status,
       title: entity.title,
       image: entity.image,
-      synopsis: entity.synopsis,
+      images: mediaImagesMapper(entity),
       keywords: entity.keywords,
+      synopsis: entity.synopsis,
+      youtubeId: entity.youtubeId,
       isAdult: entity.isAdult,
-      startDate: entity.startDate,
-      endDate: entity.endDate,
+      startDate: entity.startDate != null //
+          ? DateTime.parse(entity.startDate!)
+          : null,
+      endDate: entity.endDate != null //
+          ? DateTime.parse(entity.endDate!)
+          : null,
     );
   }
 
@@ -28,11 +45,14 @@ abstract final class MediaMapper {
       status: model.status,
       title: model.title,
       image: model.image,
-      synopsis: model.synopsis,
       keywords: model.keywords,
+      synopsis: model.synopsis,
+      youtubeId: model.youtubeId,
       isAdult: model.isAdult,
-      startDate: model.startDate,
-      endDate: model.endDate,
+      startDate: model.startDate?.toIso8601String(),
+      endDate: model.endDate?.toIso8601String(),
+      // 이미지는 서버에서 설정할 거예요.
+      images: null,
     );
   }
 

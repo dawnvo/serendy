@@ -1,6 +1,7 @@
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/collection/infrastructure/collection_entity.dart';
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
+import 'package:serendy/src/features/media/infrastructure/media_mapper.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 abstract final class CollectionMapper {
@@ -19,11 +20,17 @@ abstract final class CollectionMapper {
           status: item.media.status,
           title: item.media.title,
           image: item.media.image,
+          images: mediaImagesMapper(item.media),
           synopsis: item.media.synopsis,
           keywords: item.media.keywords,
+          youtubeId: item.media.youtubeId,
           isAdult: item.media.isAdult,
-          startDate: item.media.startDate,
-          endDate: item.media.endDate,
+          startDate: item.media.startDate != null
+              ? DateTime.parse(item.media.startDate!)
+              : null,
+          endDate: item.media.endDate != null
+              ? DateTime.parse(item.media.endDate!)
+              : null,
         ),
       );
     }).toList();
@@ -67,9 +74,12 @@ abstract final class CollectionMapper {
           image: item.media.image,
           synopsis: item.media.synopsis,
           keywords: item.media.keywords,
+          youtubeId: item.media.youtubeId,
           isAdult: item.media.isAdult,
-          startDate: item.media.startDate,
-          endDate: item.media.endDate,
+          startDate: item.media.startDate?.toIso8601String(),
+          endDate: item.media.endDate?.toIso8601String(),
+          // 이미지는 서버에서 설정할 거예요.
+          images: null,
         ),
       );
     }).toList();
