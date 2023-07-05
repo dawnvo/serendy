@@ -17,6 +17,12 @@ final class GetEvaluationUsecase
       payload.userId,
       payload.mediaId,
     );
+
+    // * 삭제한 평가는 필터해요.
+    if (evaluation?.removedAt != null) {
+      return null;
+    }
+
     return evaluation;
   }
 }

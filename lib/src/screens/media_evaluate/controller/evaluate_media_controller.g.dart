@@ -7,7 +7,7 @@ part of 'evaluate_media_controller.dart';
 // **************************************************************************
 
 String _$evaluateMediaControllerHash() =>
-    r'5c8b19c55f774828d6fdaae1d0d26412f9946bc5';
+    r'17c1f068b9a2ad7c4184f62e8aaf5eee9703c17b';
 
 /// Copied from Dart SDK
 class _SystemHash {
