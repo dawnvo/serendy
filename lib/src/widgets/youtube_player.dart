@@ -1,40 +1,52 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart' as yt;
+import 'package:youtube_player_flutter/youtube_player_flutter.dart' as yp;
 
 export 'package:youtube_player_flutter/youtube_player_flutter.dart'
     show YoutubePlayerFlags;
 
-class YoutubePlayer extends StatelessWidget {
-  const YoutubePlayer({
-    required this.controller,
-    super.key,
-  });
+class YoutubePlayer extends StatefulWidget {
+  const YoutubePlayer({required this.config, super.key});
+  final YoutubePlayerConfig config;
 
-  final yt.YoutubePlayerController controller;
+  @override
+  State<YoutubePlayer> createState() => _YoutubePlayerState();
+}
+
+class _YoutubePlayerState extends State<YoutubePlayer> {
+  late final yp.YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = yp.YoutubePlayerController(
+      initialVideoId: widget.config.videoId,
+      flags: widget.config.flags,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final colors = yt.ProgressBarColors(
+    final colors = yp.ProgressBarColors(
       handleColor: context.colorScheme.primary,
       playedColor: context.colorScheme.primary,
     );
 
-    return yt.YoutubePlayer(
-      controller: controller,
+    return yp.YoutubePlayer(
+      controller: _controller,
       bottomActions: [
-        yt.ProgressBar(isExpanded: true, colors: colors),
+        yp.ProgressBar(isExpanded: true, colors: colors),
       ],
     );
   }
 }
 
-/// Interface
-interface class YoutubePlayerConfig {
+/// YoutubePlayer config
+interface class YoutubePlayerConfig extends Equatable {
   const YoutubePlayerConfig({
     required this.videoId,
-    this.flags = const yt.YoutubePlayerFlags(
+    this.flags = const yp.YoutubePlayerFlags(
       loop: true,
       autoPlay: true,
       hideThumbnail: true,
@@ -44,13 +56,11 @@ interface class YoutubePlayerConfig {
   });
 
   final String videoId;
-  final yt.YoutubePlayerFlags flags;
-}
+  final yp.YoutubePlayerFlags flags;
 
-final youtubePlayerController = Provider.autoDispose
-    .family<yt.YoutubePlayerController, YoutubePlayerConfig>((ref, config) {
-  return yt.YoutubePlayerController(
-    initialVideoId: config.videoId,
-    flags: config.flags,
-  );
-});
+  @override
+  List<Object?> get props => [
+        videoId,
+        flags,
+      ];
+}
