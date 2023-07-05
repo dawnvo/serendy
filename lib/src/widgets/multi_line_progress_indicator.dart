@@ -32,7 +32,7 @@ class MultiLineProgressIndicator extends StatelessWidget {
       child: CustomPaint(
         painter: ProgressBarPainter(
           progressBarList,
-          trackColor: context.colorScheme.surfaceVariant,
+          trackColor: Colors.white12,
         ),
       ),
     );

@@ -10,7 +10,7 @@ import 'package:serendy/src/widgets/widgets.dart';
 import 'controller/profile_controller.dart';
 
 part 'widgets/_my_collections_list.dart';
-part 'widgets/_profile_header.dart';
+part 'widgets/_profile_card.dart';
 part 'widgets/_watched_media_indicator.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -31,9 +31,11 @@ class ProfileScreen extends ConsumerWidget {
             onPressed: () => context.pushNamed(AppRoutes.settingsName),
           ),
         ],
-        header: _ProfileHeader(user: state.user),
-        watchedMediaIndicator: _ProfileWatchedMediaIndicator(
-          count: state.evaluationsCount,
+        profileCard: _ProfileCard(
+          user: state.user,
+          indicator: _ProfileWatchedMediaIndicator(
+            count: state.evaluationsCount,
+          ),
         ),
         collectionsList: _ProfileMyCollectionsList(
           collections: state.myCollections,
@@ -52,14 +54,12 @@ class ProfileScreen extends ConsumerWidget {
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
     required this.actions,
-    required this.header,
-    required this.watchedMediaIndicator,
+    required this.profileCard,
     required this.collectionsList,
   });
 
   final List<IconButton> actions;
-  final _ProfileHeader header;
-  final _ProfileWatchedMediaIndicator watchedMediaIndicator;
+  final _ProfileCard profileCard;
   final _ProfileMyCollectionsList collectionsList;
 
   @override
@@ -67,14 +67,12 @@ class _ProfileTemplate extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
-          pinned: true,
+          title: const Text("내 라이브러리"),
           actions: actions,
-          flexibleSpace: header,
-          expandedHeight: 280.0,
         ),
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-          sliver: SliverToBoxAdapter(child: watchedMediaIndicator),
+          sliver: SliverToBoxAdapter(child: profileCard),
         ),
         collectionsList,
       ]),
