@@ -51,7 +51,7 @@ class _CollectionDetailBar extends StatelessWidget {
         )
       else
         const CircleAvatar(radius: Sizes.p12),
-      const SizedBox(width: Sizes.p8),
+      Gap.w12,
       Text(
         owner.name,
         style: context.textTheme.bodyMedium,

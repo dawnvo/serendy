@@ -52,9 +52,7 @@ class CollectionScreen extends ConsumerWidget {
           medias: state.collection.items.map((e) => e!.media).toList(),
         ),
       ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () => const _Placeholder$CollectionScreen(),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),
       ),
@@ -108,6 +106,68 @@ class _CollectionTemplate extends StatelessWidget {
             sliver: mediasGrid,
           ),
         ]),
+      ]),
+    );
+  }
+}
+
+//Placeholder
+class _Placeholder$CollectionScreen extends StatelessWidget {
+  const _Placeholder$CollectionScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    final titleSize = context.textTheme.headlineMedium!;
+    final usernameSize = context.textTheme.bodyMedium!;
+    return Scaffold(
+      body: CustomScrollView(slivers: [
+        const SliverAppBar(backgroundColor: Colors.transparent),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+          ),
+          sliver: SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  color: color,
+                  width: 200,
+                  height: titleSize.fontSize! * titleSize.height!,
+                ),
+                Gap.h8,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minHeight: 48),
+                  child: Row(children: [
+                    Row(children: [
+                      const CircleAvatar(radius: 12),
+                      Gap.w8,
+                      Container(
+                        color: color,
+                        width: 80,
+                        height: usernameSize.fontSize! * usernameSize.height!,
+                      ),
+                    ]),
+                    const Spacer(),
+                    Container(color: color, width: 48 * 2, height: 48),
+                  ]),
+                ),
+                Gap.h24,
+              ],
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+          ),
+          sliver: SliverMediasGrid(
+            childCount: 8,
+            addAutomaticKeepAlives: false,
+            builder: (context, index) => const Placeholder$MediaCard(),
+          ),
+        ),
       ]),
     );
   }
