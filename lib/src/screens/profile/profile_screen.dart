@@ -28,7 +28,7 @@ class ProfileScreen extends ConsumerWidget {
       data: (state) => _ProfileTemplate(
         actions: [
           IconButton(
-            icon: const Icon(RemixIcon.settings_3_fill),
+            icon: const Icon(RemixIcon.menu_3_line),
             onPressed: () => context.pushNamed(AppRoutes.settingsName),
           ),
         ],
@@ -40,9 +40,7 @@ class ProfileScreen extends ConsumerWidget {
           collections: state.myCollections,
         ),
       ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () => const _Placeholder$ProfileScreen(),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),
       ),
@@ -74,6 +72,37 @@ class _ProfileTemplate extends StatelessWidget {
           sliver: SliverToBoxAdapter(child: profileCard),
         ),
         collectionsList,
+      ]),
+    );
+  }
+}
+
+class _Placeholder$ProfileScreen extends StatelessWidget {
+  const _Placeholder$ProfileScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    return Scaffold(
+      body: CustomScrollView(slivers: [
+        const SliverAppBar(
+          title: Text("내 라이브러리"),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.only(bottom: kContentPadding),
+          sliver: SliverToBoxAdapter(
+            child: Container(
+              color: color,
+              height: 160,
+            ),
+          ),
+        ),
+        SliverMyCollectionsList(
+          childCount: 4,
+          showCreateTile: false,
+          addAutomaticKeepAlives: false,
+          builder: (context, index) => const Placeholder$CollectionItem(),
+        ),
       ]),
     );
   }

@@ -9,11 +9,13 @@ class SliverMyCollectionsList extends StatelessWidget {
     required this.builder,
     super.key,
     this.addAutomaticKeepAlives = true,
+    this.showCreateTile = true,
   });
 
   final int childCount;
   final bool addAutomaticKeepAlives;
   final NullableIndexedWidgetBuilder builder;
+  final bool showCreateTile;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,12 @@ class SliverMyCollectionsList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           // 마지막에 '테마 생성' 타일을 표시해요.
-          if (childCount <= index) {
+          if (showCreateTile && childCount <= index) {
             return const _CreateCollectionTile();
           }
-
           return builder(context, index);
         },
-        childCount: childCount + 1,
+        childCount: showCreateTile ? childCount + 1 : childCount,
         addAutomaticKeepAlives: addAutomaticKeepAlives,
       ),
     );

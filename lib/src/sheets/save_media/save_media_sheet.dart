@@ -29,29 +29,33 @@ class SaveMediaSheet extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
-      child: CustomScrollView(shrinkWrap: true, slivers: [
-        myCollectionsValue.when(
-          data: (collections) => SliverMyCollectionsList(
-            childCount: collections.length,
-            builder: (context, index) {
-              final collection = collections[index]!;
+      child: CustomScrollView(
+        shrinkWrap: true,
+        slivers: [
+          myCollectionsValue.when(
+            data: (collections) => SliverMyCollectionsList(
+              childCount: collections.length,
+              builder: (context, index) {
+                final collection = collections[index]!;
 
-              return CollectionItem(
-                onTap: () => handleSelect(collection),
-                collection: collection,
-              );
-            },
+                return CollectionItem(
+                  onTap: () => handleSelect(collection),
+                  collection: collection,
+                );
+              },
+            ),
+            loading: () => SliverMyCollectionsList(
+              childCount: 4,
+              showCreateTile: false,
+              addAutomaticKeepAlives: false,
+              builder: (context, index) => const Placeholder$CollectionItem(),
+            ),
+            error: (err, stack) => SliverToBoxAdapter(
+              child: Center(child: Text(err.toString())),
+            ),
           ),
-          loading: () => SliverMyCollectionsList(
-            childCount: 4,
-            addAutomaticKeepAlives: false,
-            builder: (context, index) => const Placeholder$CollectionItem(),
-          ),
-          error: (err, stack) => SliverToBoxAdapter(
-            child: Center(child: Text(err.toString())),
-          ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }
