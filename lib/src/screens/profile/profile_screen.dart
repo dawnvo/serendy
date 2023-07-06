@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
-import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/features/collection/collection.dart'
+    hide CollectionItem;
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 

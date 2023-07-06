@@ -7,12 +7,17 @@ class _ProfileMyCollectionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyCollectionsList(
-      collections: collections,
-      onSelect: (collection) {
-        context.pushNamed(
-          AppRoutes.collectionName,
-          pathParameters: {'id': collection.id},
+    return SliverMyCollectionsList(
+      childCount: collections.length,
+      builder: (context, index) {
+        final collection = collections[index]!;
+
+        return CollectionItem(
+          onTap: () => context.pushNamed(
+            AppRoutes.collectionName,
+            pathParameters: {'id': collection.id},
+          ),
+          collection: collection,
         );
       },
     );

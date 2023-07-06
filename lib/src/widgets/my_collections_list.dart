@@ -2,36 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/collection/collection.dart'
-    show Collection;
-import 'package:serendy/src/widgets/widgets.dart';
 
-class MyCollectionsList extends StatelessWidget {
-  const MyCollectionsList({
-    required this.collections,
+class SliverMyCollectionsList extends StatelessWidget {
+  const SliverMyCollectionsList({
+    required this.childCount,
+    required this.builder,
     super.key,
-    this.onSelect,
   });
 
-  final List<Collection?> collections;
-  final void Function(Collection collection)? onSelect;
+  final int childCount;
+  final NullableIndexedWidgetBuilder builder;
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
-      itemCount: collections.length + 1,
-      itemBuilder: (context, index) {
-        // 직접 테마를 만들 수 있도록 도와요.
-        if (collections.length <= index) {
-          return const _CreateCollectionTile();
-        }
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        childCount: childCount + 1,
+        (context, index) {
+          // 직접 테마를 만들 수 있도록 도와요.
+          if (childCount <= index) {
+            return const _CreateCollectionTile();
+          }
 
-        final collection = collections[index]!;
-        return CollectionItem(
-          collection: collection,
-          onTap: () => onSelect?.call(collection),
-        );
-      },
+          return builder(context, index);
+        },
+      ),
     );
   }
 }

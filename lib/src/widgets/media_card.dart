@@ -44,8 +44,6 @@ class MediaCard extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               onLongPress: onLongPress,
-
-              // 맨 위에 제목을 표시해요.
               child: _buildTitle(context),
             ),
           ),
@@ -73,6 +71,21 @@ class MediaCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+//Placeholder
+class Placeholder$MediaCard extends StatelessWidget {
+  const Placeholder$MediaCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(kBorderRadius),
+      clipBehavior: Clip.hardEdge,
+      child: Container(color: color),
     );
   }
 }

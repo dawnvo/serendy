@@ -9,13 +9,26 @@ class _DiscoverCollectionsGrid extends ConsumerWidget {
 
     return discoverValue.when(
       data: (state) => SliverCollectionsGrid(
-        collections: state.collections,
+        childCount: state.collections.length,
+        builder: (context, index) {
+          final collection = state.collections[index]!;
+
+          return CollectionCard(
+            collection: collection,
+            onTap: () => context.pushNamed(
+              AppRoutes.collectionName,
+              pathParameters: {'id': collection.id},
+            ),
+          );
+        },
       ),
       error: (err, stack) => SliverToBoxAdapter(
         child: Center(child: Text(err.toString())),
       ),
-      loading: () => const SliverToBoxAdapter(
-        child: Center(child: CircularProgressIndicator()),
+      loading: () => SliverCollectionsGrid(
+        childCount: 8,
+        addAutomaticKeepAlives: false,
+        builder: (context, index) => const Placeholder$CollectionCard(),
       ),
     );
   }

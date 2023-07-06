@@ -9,16 +9,29 @@ class _HomeMediasGrid extends ConsumerWidget {
 
     return homeValue.when(
       data: (state) => SliverMediasGrid(
-        onLongPress: (media) => context.showCustomModalBottomSheet(
-          (context) => MediaMenuSheet(media: media),
-        ),
-        medias: state.medias,
+        childCount: state.medias.length,
+        builder: (context, index) {
+          final media = state.medias[index]!;
+
+          return MediaCard(
+            onTap: () => context.pushNamed(
+              AppRoutes.mediaName,
+              pathParameters: {'id': media.id},
+            ),
+            onLongPress: () => context.showCustomModalBottomSheet(
+              (context) => MediaMenuSheet(media: media),
+            ),
+            media: media,
+          );
+        },
       ),
       error: (err, stack) => SliverToBoxAdapter(
         child: Center(child: Text(err.toString())),
       ),
-      loading: () => const SliverToBoxAdapter(
-        child: Center(child: CircularProgressIndicator()),
+      loading: () => SliverMediasGrid(
+        childCount: 8,
+        addAutomaticKeepAlives: false,
+        builder: (context, index) => const Placeholder$MediaCard(),
       ),
     );
   }

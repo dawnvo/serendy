@@ -1,45 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/collection/collection.dart';
-import 'package:serendy/src/widgets/widgets.dart';
 
 class SliverCollectionsGrid extends StatelessWidget {
   const SliverCollectionsGrid({
-    required this.collections,
+    required this.childCount,
+    required this.builder,
     super.key,
+    this.addAutomaticKeepAlives = true,
   });
 
-  final List<Collection?> collections;
+  final int childCount;
+  final bool addAutomaticKeepAlives;
+  final NullableIndexedWidgetBuilder builder;
+
+  static const _columns = 2;
+  static const _spacing = 8.0;
+  static const _contentHeight = 72.0;
 
   @override
   Widget build(BuildContext context) {
-    const columns = 2;
-    const spacing = 8.0;
-    const contentHeight = 72.0;
-
     final screenWidth = context.screenWidth;
-    final cardWidth = (screenWidth / columns) - (kContentPadding * 2) - spacing;
+    final cardWidth =
+        (screenWidth / _columns) - (kContentPadding * 2) - _spacing;
 
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisExtent: cardWidth + contentHeight,
-        crossAxisCount: columns,
-        mainAxisSpacing: spacing,
-        crossAxisSpacing: spacing,
+        mainAxisExtent: cardWidth + _contentHeight,
+        crossAxisCount: _columns,
+        mainAxisSpacing: _spacing,
+        crossAxisSpacing: _spacing,
       ),
       delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final collection = collections[index]!;
-          return CollectionCard(
-            collection: collection,
-            onTap: () => context.pushNamed(
-              AppRoutes.collectionName,
-              pathParameters: {'id': collection.id},
-            ),
-          );
-        },
-        childCount: collections.length,
+        builder,
+        childCount: childCount,
+        addAutomaticKeepAlives: addAutomaticKeepAlives,
       ),
     );
   }

@@ -12,13 +12,24 @@ class _CollectionMediasGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverMediasGrid(
-      onLongPress: (media) => context.showCustomModalBottomSheet(
-        (context) => CollectionItemMenuSheet(
-          collection: collection,
+      childCount: medias.length,
+      builder: (context, index) {
+        final media = medias[index];
+
+        return MediaCard(
+          onTap: () => context.pushNamed(
+            AppRoutes.mediaName,
+            pathParameters: {'id': media.id},
+          ),
+          onLongPress: () => context.showCustomModalBottomSheet(
+            (context) => CollectionItemMenuSheet(
+              collection: collection,
+              media: media,
+            ),
+          ),
           media: media,
-        ),
-      ),
-      medias: medias,
+        );
+      },
     );
   }
 }

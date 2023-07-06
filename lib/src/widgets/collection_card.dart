@@ -55,3 +55,33 @@ class CollectionCard extends StatelessWidget {
     );
   }
 }
+
+//Placeholder
+class Placeholder$CollectionCard extends StatelessWidget {
+  const Placeholder$CollectionCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          clipBehavior: Clip.hardEdge,
+          child: AspectRatio(
+            aspectRatio: 1 / 1,
+            child: Container(color: color),
+          ),
+        ),
+        Gap.h12,
+        Container(
+          color: color,
+          width: 120,
+          height: 20,
+        ),
+      ],
+    );
+  }
+}
