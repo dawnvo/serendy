@@ -8,20 +8,29 @@ class _SearchResults extends ConsumerWidget {
     final searchValue = ref.watch(searchControllerProvider);
 
     return searchValue.when(
-      data: (state) => ListView.builder(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        itemCount: state.medias.length,
-        itemBuilder: (context, index) {
-          final media = state.medias[index]!;
-          return _buildMediaItem(context, media);
-        },
+      data: (state) => SliverList(
+        delegate: SliverChildBuilderDelegate(
+          childCount: state.medias.length,
+          (context, index) {
+            final media = state.medias[index]!;
+            return _buildMediaItem(context, media);
+          },
+        ),
       ),
-      error: (err, stack) => Center(child: Text(err.toString())),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => SliverList(
+        delegate: SliverChildBuilderDelegate(
+          childCount: 4,
+          addAutomaticKeepAlives: false,
+          (context, index) => const Placeholder$MediaItem(),
+        ),
+      ),
+      error: (err, stack) => SliverToBoxAdapter(
+        child: Center(child: Text(err.toString())),
+      ),
     );
   }
 
-  MediaItem _buildMediaItem(BuildContext context, Media media) {
+  Widget _buildMediaItem(BuildContext context, Media media) {
     return MediaItem(
       onTap: () => context.pushNamed(
         AppRoutes.mediaName,

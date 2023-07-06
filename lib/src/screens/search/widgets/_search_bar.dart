@@ -3,20 +3,15 @@ part of '../search_screen.dart';
 class _SearchBar extends ConsumerWidget {
   const _SearchBar();
 
-  final double _searchBarHeight = 72.0;
+  static const _height = 72.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(queryControllerProvider);
 
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: _searchBarHeight),
+      constraints: const BoxConstraints(minHeight: _height),
       child: Row(children: [
-        //back
-        IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(RemixIcon.arrow_left_line),
-        ),
         //input
         Expanded(
           child: TextField(

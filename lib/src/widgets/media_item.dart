@@ -15,17 +15,15 @@ class MediaItem extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onMoreTap;
 
-  final double _kImageSize = 48.0;
+  static const _imageSize = 48.0;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kContentPadding,
-          vertical: Sizes.p8,
-        ),
+      child: Container(
+        constraints: const BoxConstraints(minHeight: Sizes.p64),
+        padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
         child: Row(children: [
           _buildImage(context),
           Gap.w16,
@@ -48,8 +46,8 @@ class MediaItem extends StatelessWidget {
       child: Image.network(
         media.images.smallImageUrl,
         fit: BoxFit.cover,
-        width: _kImageSize,
-        height: _kImageSize,
+        width: _imageSize,
+        height: _imageSize,
       ),
     );
   }
@@ -61,6 +59,41 @@ class MediaItem extends StatelessWidget {
       alignment: Alignment.centerRight,
       padding: EdgeInsets.zero,
       color: context.colorScheme.outline,
+    );
+  }
+}
+
+//Placeholder
+class Placeholder$MediaItem extends StatelessWidget {
+  const Placeholder$MediaItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    const imageSize = MediaItem._imageSize;
+
+    return Container(
+      constraints: const BoxConstraints(minHeight: Sizes.p64),
+      padding: const EdgeInsets.symmetric(
+        horizontal: kContentPadding,
+      ),
+      child: Row(children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          clipBehavior: Clip.hardEdge,
+          child: Container(
+            color: color,
+            width: imageSize,
+            height: imageSize,
+          ),
+        ),
+        Gap.w16,
+        Container(
+          color: color,
+          width: 120,
+          height: context.textTheme.bodyLarge?.fontSize,
+        ),
+      ]),
     );
   }
 }

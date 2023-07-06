@@ -39,11 +39,20 @@ class _SearchTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(children: [
-          searchBar,
-          const Divider(),
-          Expanded(child: searchResults),
-        ]),
+        body: CustomScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          slivers: [
+            SliverAppBar(
+              toolbarHeight: _SearchBar._height,
+              title: searchBar,
+            ),
+            const SliverToBoxAdapter(child: Divider()),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(vertical: kContentPadding),
+              sliver: searchResults,
+            ),
+          ],
+        ),
       ),
     );
   }
