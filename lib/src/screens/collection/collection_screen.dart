@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 
@@ -43,6 +44,7 @@ class CollectionScreen extends ConsumerWidget {
         ),
         detailBar: _CollectionDetailBar(
           collection: state.collection,
+          owner: state.owner,
         ),
         mediasGrid: _CollectionMediasGrid(
           collection: state.collection,
