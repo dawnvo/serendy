@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/user/user.dart';
 
@@ -11,13 +12,15 @@ class CollectionController extends _$CollectionController {
   @override
   FutureOr<CollectionState> build(CollectionID id) async {
     final collection = await ref.watch(fetchCollectionProvider(id: id).future);
-    final owner = await ref.watch(fetchUserProvider(
+    final loggedInUserId = ref.watch(userIdProvider);
+    final user = await ref.watch(fetchUserProvider(
       id: collection.owner.id,
     ).future);
 
     return CollectionState(
       collection: collection,
-      owner: owner,
+      owner: user,
+      isOwner: loggedInUserId == collection.owner.id,
     );
   }
 

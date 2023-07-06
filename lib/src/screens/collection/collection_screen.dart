@@ -45,6 +45,7 @@ class CollectionScreen extends ConsumerWidget {
         detailBar: _CollectionDetailBar(
           collection: state.collection,
           owner: state.owner,
+          isOwner: state.isOwner,
         ),
         mediasGrid: _CollectionMediasGrid(
           collection: state.collection,
