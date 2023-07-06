@@ -13,19 +13,22 @@ class Tag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      label: Text(label),
-      labelStyle: context.textTheme.labelLarge?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: labelColor,
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.p4,
+        horizontal: Sizes.p8,
       ),
-      shape: RoundedRectangleBorder(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kBorderRadius),
+        color: context.colorScheme.surfaceVariant,
       ),
-      side: BorderSide.none,
-      padding: EdgeInsets.zero,
-      visualDensity: VisualDensity.compact,
-      backgroundColor: context.colorScheme.surfaceVariant,
+      child: Text(
+        label,
+        style: context.textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: labelColor,
+        ),
+      ),
     );
   }
 }
