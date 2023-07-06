@@ -40,11 +40,11 @@ class ProfileScreen extends ConsumerWidget {
           collections: state.myCollections,
         ),
       ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
     );
   }

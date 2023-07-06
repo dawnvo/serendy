@@ -26,11 +26,11 @@ class HistoryScreen extends ConsumerWidget {
         titles: _HistoryTitles(evaluationsCount: state.evaluations.length),
         historiesList: _HistoryCardsList(evaluations: state.evaluations),
       ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/discover_controller.dart';

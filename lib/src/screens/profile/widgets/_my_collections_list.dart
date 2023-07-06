@@ -11,15 +11,18 @@ class _ProfileMyCollectionsList extends StatelessWidget {
       childCount: collections.length,
       builder: (context, index) {
         final collection = collections[index]!;
-
-        return CollectionItem(
-          onTap: () => context.pushNamed(
-            AppRoutes.collectionName,
-            pathParameters: {'id': collection.id},
-          ),
-          collection: collection,
-        );
+        return _buildCollectionItem(context, collection);
       },
+    );
+  }
+
+  Widget _buildCollectionItem(BuildContext context, Collection collection) {
+    return CollectionItem(
+      onTap: () => context.pushNamed(
+        AppRoutes.collectionName,
+        pathParameters: {'id': collection.id},
+      ),
+      collection: collection,
     );
   }
 }

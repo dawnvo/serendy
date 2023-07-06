@@ -52,11 +52,11 @@ class CollectionScreen extends ConsumerWidget {
           medias: state.collection.items.map((e) => e!.media).toList(),
         ),
       ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
     );
   }

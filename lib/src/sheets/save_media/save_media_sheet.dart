@@ -42,13 +42,13 @@ class SaveMediaSheet extends ConsumerWidget {
               );
             },
           ),
-          error: (err, stack) => SliverToBoxAdapter(
-            child: Center(child: Text(err.toString())),
-          ),
           loading: () => SliverMyCollectionsList(
             childCount: 4,
             addAutomaticKeepAlives: false,
             builder: (context, index) => const Placeholder$CollectionItem(),
+          ),
+          error: (err, stack) => SliverToBoxAdapter(
+            child: Center(child: Text(err.toString())),
           ),
         ),
       ]),

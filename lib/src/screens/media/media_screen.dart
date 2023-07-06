@@ -56,11 +56,11 @@ class MediaScreen extends ConsumerWidget {
           _MediaDetailsTile(media: state.media),
         ],
       ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
     );
   }

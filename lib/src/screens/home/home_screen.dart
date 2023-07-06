@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/menu/media_menu_sheet.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 

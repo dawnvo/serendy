@@ -12,15 +12,11 @@ class _DiscoverSearchBar extends StatelessWidget {
       titleTextStyle: context.textTheme.bodyLarge?.copyWith(
         color: context.colorScheme.onSurfaceVariant,
       ),
-      visualDensity: VisualDensity.compact,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
-      ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: kContentPadding,
-        vertical: Sizes.p4,
-      ),
       tileColor: context.colorScheme.surfaceVariant,
+      contentPadding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(kBorderRadius)),
+      ),
     );
   }
 }

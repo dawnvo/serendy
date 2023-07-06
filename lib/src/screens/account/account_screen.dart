@@ -52,11 +52,11 @@ class AccountScreen extends ConsumerWidget {
         ],
         controls: const _AccountControls(),
       ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      ),
+      error: (err, stack) => Scaffold(
+        body: Center(child: Text(err.toString())),
       ),
     );
   }
