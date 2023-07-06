@@ -1,6 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:serendy/src/core/enums.dart';
 
+extension MediaStatusX on MediaStatus {
+  String get label => switch (this) {
+        MediaStatus.finished => '완결',
+        MediaStatus.releasing => '방영 중',
+        MediaStatus.unreleased => '방영 전',
+        MediaStatus.cancelled => '방영 취소',
+      };
+}
+
 extension EmotionX on Emotion {
   String get filePath => 'assets/emotions/$name.svg';
 
@@ -29,11 +38,61 @@ extension EmotionX on Emotion {
       };
 }
 
-extension MediaStatusX on MediaStatus {
+extension RankX on Rank {
   String get label => switch (this) {
-        MediaStatus.finished => '완결',
-        MediaStatus.releasing => '방영 중',
-        MediaStatus.unreleased => '방영 전',
-        MediaStatus.cancelled => '방영 취소',
+        Rank.iron => '아이언',
+        Rank.bronze => '브론즈',
+        Rank.silver => '실버',
+        Rank.gold => '골드',
+        Rank.platinum => '플래티넘',
+        Rank.diamond => '다이아몬드',
+        Rank.master => '마스터',
+        Rank.novel => '노벨',
+      };
+
+  ({int min, int max}) get range => switch (this) {
+        Rank.iron => const (min: 0, max: 10),
+        Rank.bronze => const (min: 10, max: 20),
+        Rank.silver => const (min: 20, max: 50),
+        Rank.gold => const (min: 50, max: 100),
+        Rank.platinum => const (min: 100, max: 300),
+        Rank.diamond => const (min: 300, max: 500),
+        Rank.master => const (min: 500, max: 1000),
+        Rank.novel => const (min: 1000, max: 0),
+      };
+
+  ({Color fore, Color back}) get color => switch (this) {
+        Rank.iron => const (
+            fore: Color(0xFFB2B0B3),
+            back: Color(0xFF302E35),
+          ),
+        Rank.bronze => const (
+            fore: Color(0xFFBE9985),
+            back: Color(0xFF2B1C1C),
+          ),
+        Rank.silver => const (
+            fore: Color(0xFF94A3B6),
+            back: Color(0xFF252430),
+          ),
+        Rank.gold => const (
+            fore: Color(0xffEAC081),
+            back: Color(0xFF403A35),
+          ),
+        Rank.platinum => const (
+            fore: Color(0xFFABE3E1),
+            back: Color(0xFF263A38),
+          ),
+        Rank.diamond => const (
+            fore: Color(0xFF9BB1FF),
+            back: Color(0xFF1B1F40),
+          ),
+        Rank.master => const (
+            fore: Color(0xFFBFA4F9),
+            back: Color(0xFF2B0E3F),
+          ),
+        Rank.novel => const (
+            fore: Color(0xFFFF999D),
+            back: Color(0xFF320B0C),
+          ),
       };
 }

@@ -18,24 +18,21 @@ class ProfileCardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final hex = color.value.toRadixString(16).substring(2);
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(kBorderRadius),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: height),
-        child: Stack(children: [
-          // background
-          SvgPicture.string(
-            _cardSVG.replaceAll(_token, '#$hex'),
-            alignment: const Alignment(0, -0.2),
-            fit: BoxFit.cover,
-          ),
-          // child
-          Padding(
-            padding: const EdgeInsets.all(kContentPadding),
-            child: child,
-          ),
-        ]),
-      ),
+    return SizedBox(
+      height: height,
+      child: Stack(children: [
+        // background
+        SvgPicture.string(
+          _cardSVG.replaceAll(_token, '#$hex'),
+          alignment: const Alignment(0, -0.2),
+          fit: BoxFit.cover,
+        ),
+        // child
+        Padding(
+          padding: const EdgeInsets.all(kContentPadding),
+          child: child,
+        ),
+      ]),
     );
   }
 }

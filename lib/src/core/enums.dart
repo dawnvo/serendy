@@ -39,5 +39,5 @@ enum Rank {
   /* 플레티넘 */ platinum,
   /* 다이아 */ diamond,
   /* 마스터 */ master,
-  /* 노블 */ noble,
+  /* 노벨 */ novel,
 }

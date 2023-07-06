@@ -3,6 +3,7 @@ import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -68,7 +69,7 @@ class _ProfileTemplate extends StatelessWidget {
           actions: actions,
         ),
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+          padding: const EdgeInsets.only(bottom: kContentPadding),
           sliver: SliverToBoxAdapter(child: profileCard),
         ),
         collectionsList,
