@@ -62,7 +62,7 @@ class _CreateCollectionTemplate extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(kContentPadding).add(EdgeInsets.only(
-          bottom: context.mediaQuery.viewInsets.bottom,
+          bottom: context.mediaQuery.viewInsets.bottom.roundToDouble(),
         )),
         child: submitButton,
       ),
