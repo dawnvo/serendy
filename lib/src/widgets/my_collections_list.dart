@@ -8,24 +8,27 @@ class SliverMyCollectionsList extends StatelessWidget {
     required this.childCount,
     required this.builder,
     super.key,
+    this.addAutomaticKeepAlives = true,
   });
 
   final int childCount;
+  final bool addAutomaticKeepAlives;
   final NullableIndexedWidgetBuilder builder;
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        childCount: childCount + 1,
         (context, index) {
-          // 직접 테마를 만들 수 있도록 도와요.
+          // 마지막에 '테마 생성' 타일을 표시해요.
           if (childCount <= index) {
             return const _CreateCollectionTile();
           }
 
           return builder(context, index);
         },
+        childCount: childCount + 1,
+        addAutomaticKeepAlives: addAutomaticKeepAlives,
       ),
     );
   }

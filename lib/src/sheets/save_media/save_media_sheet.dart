@@ -27,11 +27,11 @@ class SaveMediaSheet extends ConsumerWidget {
       context.pop();
     }
 
-    return myCollectionsValue.when(
-      data: (collections) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
-        child: CustomScrollView(slivers: [
-          SliverMyCollectionsList(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
+      child: CustomScrollView(shrinkWrap: true, slivers: [
+        myCollectionsValue.when(
+          data: (collections) => SliverMyCollectionsList(
             childCount: collections.length,
             builder: (context, index) {
               final collection = collections[index]!;
@@ -42,10 +42,16 @@ class SaveMediaSheet extends ConsumerWidget {
               );
             },
           ),
-        ]),
-      ),
-      error: (err, stack) => Text(err.toString()),
-      loading: () => const CircularProgressIndicator(),
+          error: (err, stack) => SliverToBoxAdapter(
+            child: Center(child: Text(err.toString())),
+          ),
+          loading: () => SliverMyCollectionsList(
+            childCount: 4,
+            addAutomaticKeepAlives: false,
+            builder: (context, index) => const Placeholder$CollectionItem(),
+          ),
+        ),
+      ]),
     );
   }
 }

@@ -13,7 +13,7 @@ class CollectionItem extends StatelessWidget {
   final Collection collection;
   final VoidCallback? onTap;
 
-  final double _imageSize = 56.0;
+  static const _imageSize = 56.0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,52 @@ class CollectionItem extends StatelessWidget {
         width: _imageSize,
         height: _imageSize,
       ),
+    );
+  }
+}
+
+//Placeholder
+class Placeholder$CollectionItem extends StatelessWidget {
+  const Placeholder$CollectionItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    const imageSize = CollectionItem._imageSize;
+
+    return Container(
+      constraints: const BoxConstraints(minHeight: 72),
+      padding: const EdgeInsets.symmetric(
+        horizontal: kContentPadding,
+      ),
+      child: Row(children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          clipBehavior: Clip.hardEdge,
+          child: Container(
+            color: color,
+            width: imageSize,
+            height: imageSize,
+          ),
+        ),
+        Gap.w16,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: color,
+              width: 120,
+              height: context.textTheme.bodyMedium?.fontSize,
+            ),
+            Gap.h8,
+            Container(
+              color: color,
+              width: 64,
+              height: context.textTheme.bodySmall?.fontSize,
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
