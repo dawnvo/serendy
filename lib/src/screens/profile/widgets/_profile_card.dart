@@ -11,30 +11,43 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final count = evaluationCount;
     final rank = Rank.values.firstWhere((_) {
-      // 최대 레벨일 경우
-      if (_.range.max == 0) return true;
       // 사잇값에 충족하는 경우
-      return count >= _.range.min && count <= _.range.max - 1;
+      if (evaluationCount >= _.range.min &&
+          evaluationCount <= _.range.max - 1) {
+        return true;
+      }
+      // 최대 레벨일 경우
+      return _.range.max == 0;
     });
 
     return ProfileCardContainer(
       color: rank.color.back,
       height: 160,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          __ProfileCardTitles(user: user, rank: rank),
-          __WatchedMediaIndicator(
-            color: rank.color.fore,
-            min: rank.range.min,
-            max: rank.range.max,
-            count: count,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(kContentPadding),
+        child: _buildContent(context, rank: rank),
       ),
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context, {
+    required Rank rank,
+  }) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        __ProfileCardTitles(user: user, rank: rank),
+        __WatchedMediaIndicator(
+          onTap: () => context.pushNamed(AppRoutes.historyName),
+          color: rank.color.fore,
+          min: rank.range.min,
+          max: rank.range.max,
+          count: evaluationCount,
+        ),
+      ],
     );
   }
 }
@@ -50,7 +63,7 @@ class __ProfileCardTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const color = Color(0xCCFFFFFF); // opacity 80%
+    const color = Color(0xCCFFFFFF);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -59,7 +72,7 @@ class __ProfileCardTitles extends StatelessWidget {
           user.name,
           maxLines: 1,
           overflow: TextOverflow.clip,
-          style: context.textTheme.headlineLarge?.copyWith(
+          style: context.textTheme.headlineMedium?.copyWith(
             color: color,
             height: 1.5,
           ),
@@ -81,17 +94,19 @@ class __WatchedMediaIndicator extends StatelessWidget {
     required this.max,
     required this.count,
     required this.color,
+    required this.onTap,
   });
 
   final int min;
   final int max;
   final int count;
   final Color color;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(AppRoutes.historyName),
+      onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Column(children: [
         MultiLineProgressIndicator([

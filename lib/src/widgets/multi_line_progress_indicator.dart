@@ -17,11 +17,11 @@ interface class ProgressBar {
 /// 진행 상태를 여러 줄로 표시할 수 있어요. 한 줄도 가능하고요.
 class MultiLineProgressIndicator extends StatelessWidget {
   const MultiLineProgressIndicator(
-    this.progressBarList, {
+    this.progressBars, {
     super.key,
   });
 
-  final List<ProgressBar?> progressBarList;
+  final List<ProgressBar?> progressBars;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class MultiLineProgressIndicator extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: CustomPaint(
         painter: ProgressBarPainter(
-          progressBarList,
+          progressBars,
           trackColor: Colors.white12,
         ),
       ),
@@ -42,11 +42,11 @@ class MultiLineProgressIndicator extends StatelessWidget {
 /// Painter
 class ProgressBarPainter extends CustomPainter {
   const ProgressBarPainter(
-    this.progressBarList, {
+    this.progressBars, {
     required this.trackColor,
   });
 
-  final List<ProgressBar?> progressBarList;
+  final List<ProgressBar?> progressBars;
   final Color trackColor;
 
   @override
@@ -71,9 +71,9 @@ class ProgressBarPainter extends CustomPainter {
 
     // 시작점(dx) 누계
     double accumulatedX = 0;
-    final barCount = progressBarList.length;
+    final barCount = progressBars.length;
 
-    for (final progressBar in progressBarList) {
+    for (final progressBar in progressBars) {
       if (progressBar == null) return;
 
       // Paint progress bars
@@ -82,7 +82,7 @@ class ProgressBarPainter extends CustomPainter {
         progressBar.value,
         progressBar.color,
         // 막대가 두 개 이상이고, 마지막 막대가 아니면 틈을 두어요.
-        gap: barCount >= 2 && progressBar != progressBarList[barCount - 1],
+        gap: barCount >= 2 && progressBar != progressBars[barCount - 1],
       );
 
       // 다음 막대의 시작점을 설정해요.
@@ -92,6 +92,6 @@ class ProgressBarPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(ProgressBarPainter oldDelegate) {
-    return oldDelegate.progressBarList.hashCode != progressBarList.hashCode;
+    return oldDelegate.progressBars.hashCode != progressBars.hashCode;
   }
 }
