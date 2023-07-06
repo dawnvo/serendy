@@ -56,7 +56,8 @@ class Placeholder$CollectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
     const imageSize = CollectionItem._imageSize;
-
+    final titleSize = context.textTheme.bodyMedium!;
+    final subtitleSize = context.textTheme.bodySmall!;
     return Container(
       constraints: const BoxConstraints(minHeight: 72),
       padding: const EdgeInsets.symmetric(
@@ -79,13 +80,13 @@ class Placeholder$CollectionItem extends StatelessWidget {
             Container(
               color: color,
               width: 120,
-              height: context.textTheme.bodyMedium?.fontSize,
+              height: titleSize.fontSize! * titleSize.height!,
             ),
             Gap.h8,
             Container(
               color: color,
               width: 64,
-              height: context.textTheme.bodySmall?.fontSize,
+              height: subtitleSize.fontSize! * subtitleSize.height!,
             ),
           ],
         ),

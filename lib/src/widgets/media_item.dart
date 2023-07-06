@@ -71,7 +71,7 @@ class Placeholder$MediaItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
     const imageSize = MediaItem._imageSize;
-
+    final titleSize = context.textTheme.bodyLarge!;
     return Container(
       constraints: const BoxConstraints(minHeight: Sizes.p64),
       padding: const EdgeInsets.symmetric(
@@ -91,7 +91,7 @@ class Placeholder$MediaItem extends StatelessWidget {
         Container(
           color: color,
           width: 120,
-          height: context.textTheme.bodyLarge?.fontSize,
+          height: titleSize.fontSize! * titleSize.height!,
         ),
       ]),
     );

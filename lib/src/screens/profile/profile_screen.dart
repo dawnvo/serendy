@@ -77,6 +77,7 @@ class _ProfileTemplate extends StatelessWidget {
   }
 }
 
+//Placeholder
 class _Placeholder$ProfileScreen extends StatelessWidget {
   const _Placeholder$ProfileScreen();
 

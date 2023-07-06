@@ -12,7 +12,7 @@ class _SignInTitle extends StatelessWidget {
           "Serendy",
           style: context.textTheme.headlineMedium,
         ),
-        const SizedBox(height: 12),
+        Gap.h12,
         Text(
           "로그인하고 나의 수준을 확인해보세요.",
           style: context.textTheme.titleMedium,
