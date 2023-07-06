@@ -9,6 +9,7 @@ class _SearchResults extends ConsumerWidget {
 
     return searchValue.when(
       data: (state) => ListView.builder(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         itemCount: state.medias.length,
         itemBuilder: (context, index) {
           final media = state.medias[index]!;

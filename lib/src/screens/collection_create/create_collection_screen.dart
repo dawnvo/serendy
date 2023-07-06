@@ -42,32 +42,29 @@ class _CreateCollectionTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "어떤 테마를 만들까요?",
-              style: context.textTheme.titleLarge?.copyWith(
-                color: context.colorScheme.onSurfaceVariant,
-              ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "어떤 테마를 만들까요?",
+            style: context.textTheme.titleLarge?.copyWith(
+              color: context.colorScheme.onSurfaceVariant,
             ),
-            Gap.h12,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-              child: textField,
-            ),
-          ],
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(kContentPadding).add(EdgeInsets.only(
-            bottom: context.mediaQuery.viewInsets.bottom,
-          )),
-          child: submitButton,
-        ),
+          ),
+          Gap.h12,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+            child: textField,
+          ),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(kContentPadding).add(EdgeInsets.only(
+          bottom: context.mediaQuery.viewInsets.bottom,
+        )),
+        child: submitButton,
       ),
     );
   }

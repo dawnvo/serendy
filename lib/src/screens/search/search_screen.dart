@@ -40,15 +40,11 @@ class _SearchTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: GestureDetector(
-          /// TODO 뒤로가기(사이드를 당기는) 동작이랑 이벤트가 겹쳐 키보드가 닫히는 동시에 뒤로가지는 문제.
-          onPanDown: (details) => FocusScope.of(context).unfocus(),
-          child: Column(children: [
-            searchBar,
-            const Divider(),
-            Expanded(child: searchResults),
-          ]),
-        ),
+        body: Column(children: [
+          searchBar,
+          const Divider(),
+          Expanded(child: searchResults),
+        ]),
       ),
     );
   }
