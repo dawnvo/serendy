@@ -40,7 +40,7 @@ class _CreateThemeTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       titleTextStyle: context.textTheme.bodyMedium,
-      onTap: () => context.pushNamed(AppRoutes.createThemeName),
+      onTap: () => context.pushNamed(AppRoutes.createTheme),
       leading: _buildImage(context),
       title: const Text('테마 만들기'),
     );

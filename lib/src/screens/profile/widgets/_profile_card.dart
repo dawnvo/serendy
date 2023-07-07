@@ -41,7 +41,7 @@ class _ProfileCard extends StatelessWidget {
       children: [
         __ProfileCardTitles(user: user, rank: rank),
         __WatchedMediaIndicator(
-          onTap: () => context.pushNamed(AppRoutes.historyName),
+          onTap: () => context.pushNamed(AppRoutes.history),
           color: rank.color.fore,
           min: rank.range.min,
           max: rank.range.max,

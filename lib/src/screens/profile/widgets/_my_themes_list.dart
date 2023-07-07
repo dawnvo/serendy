@@ -19,8 +19,9 @@ class _ProfileMyThemesList extends StatelessWidget {
   Widget _buildThemeItem(BuildContext context, Theme theme) {
     return ThemeItem(
       onTap: () => context.pushNamed(
-        AppRoutes.themeName,
+        AppRoutes.theme,
         pathParameters: {'id': theme.id},
+        extra: theme,
       ),
       theme: theme,
     );

@@ -11,7 +11,7 @@ class EvaluateMediaTile extends ConsumerWidget {
   void handleTap(BuildContext context) {
     context.pop();
     context.pushNamed(
-      AppRoutes.evaluateMediaName,
+      AppRoutes.evaluateMedia,
       extra: media,
     );
   }

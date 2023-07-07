@@ -24,7 +24,7 @@ class ProfileScreen extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(RemixIcon.menu_3_line),
-            onPressed: () => context.pushNamed(AppRoutes.settingsName),
+            onPressed: () => context.pushNamed(AppRoutes.settings),
           ),
         ],
         profileCard: _ProfileCard(

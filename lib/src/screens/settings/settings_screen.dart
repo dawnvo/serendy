@@ -1,7 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
 
-import '../profile_card/profile_card_screen.dart';
-
 part 'widgets/_list_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -14,12 +12,12 @@ class SettingsScreen extends StatelessWidget {
     return _SettingsTemplate(
       options: [
         _SettingsListTile(
-          onTap: () => context.pushNamed(AppRoutes.accountName),
+          onTap: () => context.pushNamed(AppRoutes.account),
           icon: RemixIcon.user_line,
           title: "내 계정",
         ),
         _SettingsListTile(
-          onTap: () => ProfileCardScreen.show(context),
+          onTap: () {},
           icon: RemixIcon.eye_off_line,
           title: "관심없음",
         ),
@@ -34,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
           title: "문의하기",
         ),
         _SettingsListTile(
-          onTap: () => context.pushNamed(AppRoutes.adminName),
+          onTap: () => context.pushNamed(AppRoutes.admin),
           icon: RemixIcon.file_list_2_line,
           title: "서비스 약관",
         ),

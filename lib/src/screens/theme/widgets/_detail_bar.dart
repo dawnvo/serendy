@@ -37,7 +37,7 @@ class _ThemeDetailBar extends ConsumerWidget {
       if (isOwner)
         IconButton(
           onPressed: () => context.pushNamed(
-            AppRoutes.editThemeName,
+            AppRoutes.editTheme,
             extra: theme,
           ),
           icon: const Icon(RemixIcon.pencil_fill),

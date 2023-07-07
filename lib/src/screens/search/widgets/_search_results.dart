@@ -33,7 +33,7 @@ class _SearchResults extends ConsumerWidget {
   Widget _buildMediaItem(BuildContext context, Media media) {
     return MediaItem(
       onTap: () => context.pushNamed(
-        AppRoutes.mediaName,
+        AppRoutes.media,
         pathParameters: {'id': media.id},
       ),
       onMoreTap: () => MediaMenuSheet.show(context, (media: media)),

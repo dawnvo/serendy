@@ -6,7 +6,7 @@ class _DiscoverSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => context.pushNamed(AppRoutes.searchName),
+      onTap: () => context.pushNamed(AppRoutes.search),
       leading: const Icon(RemixIcon.search_line),
       title: const Text("무슨 애니를 찾으시나요?"),
       titleTextStyle: context.textTheme.bodyLarge?.copyWith(

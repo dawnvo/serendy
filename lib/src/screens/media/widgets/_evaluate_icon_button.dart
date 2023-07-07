@@ -7,7 +7,7 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
 
   void handlePressed(BuildContext context) {
     context.pushNamed(
-      AppRoutes.evaluateMediaName,
+      AppRoutes.evaluateMedia,
       extra: media,
     );
   }

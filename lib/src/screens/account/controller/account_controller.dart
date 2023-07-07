@@ -68,7 +68,7 @@ class AccountController extends _$AccountController with NotifierMounted {
       if (!mounted && !state.hasError) return;
 
       // * 로그아웃에 성공하면 로그인 화면으로 이동해요.
-      ref.read(goRouterProvider).goNamed(AppRoutes.signInName);
+      ref.read(goRouterProvider).goNamed(AppRoutes.signIn);
     } catch (err) {
       // * 로그아웃에 실패하면 메시지로 안내해요.
       ScaffoldMessenger.of(context).showSnackBar(

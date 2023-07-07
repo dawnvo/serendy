@@ -16,7 +16,7 @@ class _HistoryCardsList extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: Sizes.p16),
           child: HistoryCard(
             onTap: () => context.pushNamed(
-              AppRoutes.mediaName,
+              AppRoutes.media,
               pathParameters: {'id': evaluation.media.id},
             ),
             onMoreTap: () =>

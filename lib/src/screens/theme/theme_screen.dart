@@ -18,13 +18,19 @@ part 'widgets/_theme_titles.dart';
 class ThemeScreen extends ConsumerWidget {
   static const String routeName = 'themes';
   static const String routeLocation = '/$routeName/:id';
-  const ThemeScreen({required this.id});
+  const ThemeScreen({
+    required this.id,
+    this.theme,
+  });
 
   final ThemeID id;
+  final Theme? theme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeValue = ref.watch(themeControllerProvider(id));
+
+    print(theme);
 
     return themeValue.when(
       skipLoadingOnReload: true,

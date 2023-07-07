@@ -86,7 +86,7 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
       state = state.copyWith(status: EditThemeStatus.success);
 
       // * 프로필 화면으로 이동해요.
-      ref.read(goRouterProvider).goNamed(AppRoutes.profileName);
+      ref.read(goRouterProvider).goNamed(AppRoutes.profile);
     } catch (err) {
       // * 에러가 발생하면 상태를 설정해요.
       state = state.copyWith(

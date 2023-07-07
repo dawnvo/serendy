@@ -29,7 +29,7 @@ class _DiscoverThemesGrid extends ConsumerWidget {
   Widget _buildThemeCard(BuildContext context, Theme theme) {
     return ThemeCard(
       onTap: () => context.pushNamed(
-        AppRoutes.themeName,
+        AppRoutes.theme,
         pathParameters: {'id': theme.id},
         extra: theme,
       ),
