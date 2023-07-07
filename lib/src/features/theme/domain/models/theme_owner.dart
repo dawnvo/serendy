@@ -17,4 +17,10 @@ final class ThemeOwner extends Equatable {
         id,
         name,
       ];
+
+  User get convertEntity => User(
+        id: id,
+        name: name,
+        email: '',
+      );
 }

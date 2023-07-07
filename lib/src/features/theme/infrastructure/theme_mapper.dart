@@ -4,6 +4,30 @@ import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
 import 'package:serendy/src/features/media/infrastructure/media_mapper.dart';
 import 'package:serendy/src/features/media/media.dart';
 
+ThemeItem themeItemMapper(ThemeItemEntity item) {
+  return ThemeItem(
+    addedAt: item.addedAt,
+    media: Media(
+      id: item.media.id,
+      type: item.media.type,
+      status: item.media.status,
+      title: item.media.title,
+      image: item.media.image,
+      images: mediaImagesMapper(item.media),
+      synopsis: item.media.synopsis,
+      keywords: item.media.keywords,
+      youtubeId: item.media.youtubeId,
+      isAdult: item.media.isAdult,
+      startDate: item.media.startDate != null
+          ? DateTime.parse(item.media.startDate!)
+          : null,
+      endDate: item.media.endDate != null
+          ? DateTime.parse(item.media.endDate!)
+          : null,
+    ),
+  );
+}
+
 abstract final class ThemeMapper {
   static Theme toDomainModel(final ThemeEntity entity) {
     final ThemeOwner owner = ThemeOwner(
@@ -11,29 +35,8 @@ abstract final class ThemeMapper {
       name: entity.owner.name,
     );
 
-    final List<ThemeItem?> themeItems = entity.items.map((item) {
-      return ThemeItem(
-        addedAt: item!.addedAt,
-        media: Media(
-          id: item.media.id,
-          type: item.media.type,
-          status: item.media.status,
-          title: item.media.title,
-          image: item.media.image,
-          images: mediaImagesMapper(item.media),
-          synopsis: item.media.synopsis,
-          keywords: item.media.keywords,
-          youtubeId: item.media.youtubeId,
-          isAdult: item.media.isAdult,
-          startDate: item.media.startDate != null
-              ? DateTime.parse(item.media.startDate!)
-              : null,
-          endDate: item.media.endDate != null
-              ? DateTime.parse(item.media.endDate!)
-              : null,
-        ),
-      );
-    }).toList();
+    final List<ThemeItem?> themeItems =
+        entity.items.map((item) => themeItemMapper(item!)).toList();
 
     return Theme(
       id: entity.id,

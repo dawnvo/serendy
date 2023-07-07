@@ -18,7 +18,7 @@ final class ThemeItem extends Equatable {
         addedAt,
       ];
 
-  Media get convertMedia => Media(
+  Media get convertEntity => Media(
         id: media.id,
         type: media.type,
         status: media.status,

@@ -6,6 +6,7 @@ import 'package:serendy/src/features/theme/domain/usecases/add_theme_item_usecas
 import 'package:serendy/src/features/theme/domain/usecases/create_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/delete_theme_item_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/edit_theme_usecase.dart';
+import 'package:serendy/src/features/theme/domain/usecases/get_theme_items_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/get_theme_list_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/get_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/remove_theme_usecase.dart';
@@ -34,6 +35,10 @@ abstract final class ThemeModule {
   );
 
   static final getThemeUsecase = GetThemeUsecase(
+    ThemeModule.themeRepository,
+  );
+
+  static final getThemeItemsUsecase = GetThemeItemsUsecase(
     ThemeModule.themeRepository,
   );
 

@@ -13,9 +13,6 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   final FirebaseFirestore firestore;
   final CollectionReference<Map<String, dynamic>> _ref;
 
-  /// Watch themes list
-  ///
-  /// 해당 사용자의 테마만 불러와요.
   @override
   Stream<List<Theme?>> watchMany(UserID userId) {
     final streamSnapshots = _ref
@@ -31,7 +28,6 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     });
   }
 
-  /// Fetch themes list
   @override
   Future<List<Theme?>> findMany(UserID? userId) async {
     final snapshot = await _ref.where('removed_at', isNull: true).get();
@@ -41,50 +37,53 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     return ThemeMapper.toDomainModels(themeEntities);
   }
 
-  /// Fetch theme
   @override
-  Future<Theme?> findOne(ThemeID themeId) async {
+  Future<Theme?> fetchTheme(ThemeID themeId) async {
     final docRef = _ref.doc(themeId);
     final themeData = await docRef.get().then((doc) => doc.data());
 
     if (themeData == null) return null;
 
-    // 테마 항목을 불러와요.
-    final themeItemSnapshots =
-        await docRef.collection(FirestorePath.themeItem).get();
-    final themeItemDataList =
-        themeItemSnapshots.docs.map((doc) => doc.data()).toList();
-
-    // ✨ merge
-    themeData['items'] = themeItemDataList;
-
     final themeEntity = ThemeEntity.fromJson(themeData);
     return ThemeMapper.toDomainModel(themeEntity);
   }
 
-  /// Create theme
+  @override
+  Future<List<ThemeItem?>> fetchThemeItems(ThemeID themeId) async {
+    final itemDocRef = _ref.doc(themeId).collection(FirestorePath.themeItem);
+
+    final snapshots = await itemDocRef.get();
+    final themeItems = snapshots.docs
+        .map((doc) => doc.data())
+        .map(ThemeItemEntity.fromJson)
+        .map(themeItemMapper)
+        .toList();
+
+    return themeItems;
+  }
+
   @override
   Future<void> create(Theme theme) async {
     final themeEntity = ThemeMapper.toDataEntity(theme);
     final themeData = themeEntity.toJson();
 
-    // ⛔ items 속성 제거
+    //remove prop
     themeData.remove('items');
+
     await _ref.doc(theme.id).set(themeData);
   }
 
-  /// Update theme
   @override
   Future<void> update(Theme theme) async {
     final themeEntity = ThemeMapper.toDataEntity(theme);
     final themeData = themeEntity.toJson();
 
-    // ⛔ items 속성 제거
+    //remove prop
     themeData.remove('items');
+
     await _ref.doc(theme.id).update(themeData);
   }
 
-  /// Add theme item
   @override
   Future<void> addItem(Theme theme, MediaID mediaId) async {
     final themeEntity = ThemeMapper.toDataEntity(theme);
@@ -104,7 +103,6 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     await batch.commit();
   }
 
-  /// Delete theme item
   @override
   Future<void> deleteItem(Theme theme, MediaID mediaId) async {
     final docRef = _ref.doc(theme.id);

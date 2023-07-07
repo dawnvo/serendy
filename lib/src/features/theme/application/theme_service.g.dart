@@ -157,6 +157,101 @@ class FetchThemeProvider extends AutoDisposeFutureProvider<Theme> {
   }
 }
 
+String _$fetchThemeItemsHash() => r'3a0bf7c06295d549c4bbd6ba5503be2b78140094';
+typedef FetchThemeItemsRef = AutoDisposeFutureProviderRef<List<ThemeItem?>>;
+
+/// 테마 항목을 불러와요.
+///
+/// Copied from [fetchThemeItems].
+@ProviderFor(fetchThemeItems)
+const fetchThemeItemsProvider = FetchThemeItemsFamily();
+
+/// 테마 항목을 불러와요.
+///
+/// Copied from [fetchThemeItems].
+class FetchThemeItemsFamily extends Family<AsyncValue<List<ThemeItem?>>> {
+  /// 테마 항목을 불러와요.
+  ///
+  /// Copied from [fetchThemeItems].
+  const FetchThemeItemsFamily();
+
+  /// 테마 항목을 불러와요.
+  ///
+  /// Copied from [fetchThemeItems].
+  FetchThemeItemsProvider call({
+    required String id,
+  }) {
+    return FetchThemeItemsProvider(
+      id: id,
+    );
+  }
+
+  @override
+  FetchThemeItemsProvider getProviderOverride(
+    covariant FetchThemeItemsProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchThemeItemsProvider';
+}
+
+/// 테마 항목을 불러와요.
+///
+/// Copied from [fetchThemeItems].
+class FetchThemeItemsProvider
+    extends AutoDisposeFutureProvider<List<ThemeItem?>> {
+  /// 테마 항목을 불러와요.
+  ///
+  /// Copied from [fetchThemeItems].
+  FetchThemeItemsProvider({
+    required this.id,
+  }) : super.internal(
+          (ref) => fetchThemeItems(
+            ref,
+            id: id,
+          ),
+          from: fetchThemeItemsProvider,
+          name: r'fetchThemeItemsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchThemeItemsHash,
+          dependencies: FetchThemeItemsFamily._dependencies,
+          allTransitiveDependencies:
+              FetchThemeItemsFamily._allTransitiveDependencies,
+        );
+
+  final String id;
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchThemeItemsProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
 String _$createThemeHash() => r'feaafa94f0263173da92603fea0b93690b48fb0b';
 typedef CreateThemeRef = AutoDisposeFutureProviderRef<Theme>;
 

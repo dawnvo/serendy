@@ -31,6 +31,15 @@ Future<Theme> fetchTheme(
   ));
 }
 
+/// 테마 항목을 불러와요.
+@riverpod
+Future<List<ThemeItem?>> fetchThemeItems(
+  FetchThemeItemsRef ref, {
+  required String id,
+}) {
+  return ThemeModule.getThemeItemsUsecase.execute((themeId: id));
+}
+
 /// 테마를 만들어요.
 @riverpod
 Future<Theme> createTheme(
