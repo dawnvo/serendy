@@ -99,12 +99,12 @@ final class AppThemeData {
         height: Sizes.p56,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         indicatorColor: Colors.transparent,
-        surfaceTintColor: colorScheme.background,
+        surfaceTintColor: Colors.transparent,
       ),
 
       // BottomSheet theme
       bottomSheetTheme: themeData.bottomSheetTheme.copyWith(
-        surfaceTintColor: colorScheme.background,
+        surfaceTintColor: Colors.transparent,
       ),
 
       // ListTile theme

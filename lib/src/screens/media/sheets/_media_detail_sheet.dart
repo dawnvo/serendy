@@ -1,30 +1,37 @@
 part of '../media_screen.dart';
 
-class _MediaDetailSheet extends StatelessWidget {
-  const _MediaDetailSheet({required this.media});
+typedef _MediaDetailSheetPayload = ({
+  Media media,
+});
 
-  final Media media;
+class _MediaDetailSheet extends StatelessWidget {
+  const _MediaDetailSheet(this.payload);
+  final _MediaDetailSheetPayload payload;
+
+  static void show(BuildContext context, _MediaDetailSheetPayload payload) {
+    context.showCustomBottomSheet((_) => _MediaDetailSheet(payload));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final youtubeId = media.youtubeId;
+    final youtubeId = payload.media.youtubeId;
 
     // * DB에 트레일러 주소가 존재하면 영상을 틀어줘요.
     if (youtubeId.isNotEmpty) {
-      return _YoutubeTrailerBody(
+      return __YoutubeTrailerBody(
         youtubeId: youtubeId.first!,
-        keywords: media.keywords.map((genre) => genre).toList(),
+        keywords: payload.media.keywords.map((genre) => genre).toList(),
       );
     }
     // * 트레일러 주소가 없으면 안내 화면을 표시해요.
     else {
-      return const _EmptyBody();
+      return const __EmptyBody();
     }
   }
 }
 
-class _YoutubeTrailerBody extends ConsumerWidget {
-  const _YoutubeTrailerBody({
+class __YoutubeTrailerBody extends ConsumerWidget {
+  const __YoutubeTrailerBody({
     required this.youtubeId,
     required this.keywords,
   });
@@ -50,8 +57,8 @@ class _YoutubeTrailerBody extends ConsumerWidget {
   }
 }
 
-class _EmptyBody extends StatelessWidget {
-  const _EmptyBody();
+class __EmptyBody extends StatelessWidget {
+  const __EmptyBody();
 
   @override
   Widget build(BuildContext context) {

@@ -7,13 +7,17 @@ import 'package:serendy/src/features/collection/collection.dart'
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class SaveMediaSheet extends ConsumerWidget {
-  const SaveMediaSheet({
-    required this.media,
-    super.key,
-  });
+typedef SaveMediaSheetPayload = ({
+  Media media,
+});
 
-  final Media media;
+class SaveMediaSheet extends ConsumerWidget {
+  const SaveMediaSheet(this.payload, {super.key});
+  final SaveMediaSheetPayload payload;
+
+  static void show(BuildContext context, SaveMediaSheetPayload payload) {
+    context.showCustomBottomSheet((_) => SaveMediaSheet(payload));
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +26,7 @@ class SaveMediaSheet extends ConsumerWidget {
     void handleSelect(Collection collection) {
       ref.read(addCollectionItemProvider(
         id: collection.id,
-        mediaId: media.id,
+        mediaId: payload.media.id,
       ));
       context.pop();
     }

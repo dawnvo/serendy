@@ -5,17 +5,15 @@ class _MediaDetailsTile extends StatelessWidget {
 
   final Media media;
 
-  void _handleShowMediaDetailSheet(BuildContext context) {
-    context.showCustomModalBottomSheet(
-      (context) => _MediaDetailSheet(media: media),
-    );
+  void _handleShowBottomSheet(BuildContext context) {
+    _MediaDetailSheet.show(context, (media: media));
   }
 
   @override
   Widget build(BuildContext context) {
     if (media.youtubeId.isNotEmpty) {
       return ListTile(
-        onTap: () => _handleShowMediaDetailSheet(context),
+        onTap: () => _handleShowBottomSheet(context),
         leading: SvgPicture.asset(
           Assets.youtubeIcon,
           height: Sizes.p28,
@@ -33,7 +31,7 @@ class _MediaDetailsTile extends StatelessWidget {
 
   Widget _buildEmptyDetailTile(BuildContext context) {
     return ListTile(
-      onTap: () => _handleShowMediaDetailSheet(context),
+      onTap: () => _handleShowBottomSheet(context),
       leading: const Icon(
         RemixIcon.information_line,
         size: Sizes.p28,

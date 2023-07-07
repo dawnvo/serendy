@@ -19,9 +19,8 @@ class _HistoryCardsList extends StatelessWidget {
               AppRoutes.mediaName,
               pathParameters: {'id': evaluation.media.id},
             ),
-            onMoreTap: () => context.showCustomModalBottomSheet(
-              (context) => HistoryMenuSheet(evaluation: evaluation),
-            ),
+            onMoreTap: () =>
+                HistoryMenuSheet.show(context, (evaluation: evaluation)),
             evaluation: evaluation,
           ),
         );

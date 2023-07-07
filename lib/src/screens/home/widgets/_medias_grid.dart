@@ -32,9 +32,7 @@ class _HomeMediasGrid extends ConsumerWidget {
         AppRoutes.mediaName,
         pathParameters: {'id': media.id},
       ),
-      onLongPress: () => context.showCustomModalBottomSheet(
-        (context) => MediaMenuSheet(media: media),
-      ),
+      onLongPress: () => MediaMenuSheet.show(context, (media: media)),
       media: media,
     );
   }

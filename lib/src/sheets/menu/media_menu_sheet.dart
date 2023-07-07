@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -7,26 +8,30 @@ import 'widgets/_hide_media_tile.dart';
 import 'widgets/_save_media_tile.dart';
 import 'widgets/_share_media_tile.dart';
 
-class MediaMenuSheet extends StatelessWidget {
-  const MediaMenuSheet({
-    required this.media,
-    super.key,
-  });
+typedef MediaMenuSheetPayload = ({
+  Media media,
+});
 
-  final Media media;
+class MediaMenuSheet extends StatelessWidget {
+  const MediaMenuSheet(this.payload, {super.key});
+  final MediaMenuSheetPayload payload;
+
+  static void show(BuildContext context, MediaMenuSheetPayload payload) {
+    context.showCustomBottomSheet((_) => MediaMenuSheet(payload));
+  }
 
   @override
   Widget build(BuildContext context) {
     return MenuTemplate(
       info: MenuInfo(
-        image: media.images.smallImageUrl,
-        title: media.title,
+        image: payload.media.images.smallImageUrl,
+        title: payload.media.title,
       ),
       options: [
-        EvaluateMediaTile(media: media),
-        SaveMediaTile(media: media),
-        HideMediaTile(media: media),
-        ShareMediaTile(media: media),
+        EvaluateMediaTile(media: payload.media),
+        SaveMediaTile(media: payload.media),
+        HideMediaTile(media: payload.media),
+        ShareMediaTile(media: payload.media),
       ],
     );
   }

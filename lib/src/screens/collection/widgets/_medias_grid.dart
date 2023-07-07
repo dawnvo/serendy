@@ -26,12 +26,10 @@ class _CollectionMediasGrid extends StatelessWidget {
         AppRoutes.mediaName,
         pathParameters: {'id': media.id},
       ),
-      onLongPress: () => context.showCustomModalBottomSheet(
-        (context) => CollectionItemMenuSheet(
-          collection: collection,
-          media: media,
-        ),
-      ),
+      onLongPress: () => CollectionItemMenuSheet.show(context, (
+        collection: collection,
+        media: media,
+      )),
       media: media,
     );
   }
