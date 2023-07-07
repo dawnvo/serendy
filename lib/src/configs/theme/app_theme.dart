@@ -96,7 +96,7 @@ final class AppThemeData {
 
       // NavigationBar theme
       navigationBarTheme: themeData.navigationBarTheme.copyWith(
-        height: 56,
+        height: Sizes.p56,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         indicatorColor: Colors.transparent,
         surfaceTintColor: colorScheme.background,

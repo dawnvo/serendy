@@ -13,7 +13,7 @@ class CollectionItem extends StatelessWidget {
   final Collection collection;
   final VoidCallback? onTap;
 
-  static const _imageSize = 56.0;
+  static const _imageSize = Sizes.p56;
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +59,8 @@ class Placeholder$CollectionItem extends StatelessWidget {
     final titleSize = context.textTheme.bodyMedium!;
     final subtitleSize = context.textTheme.bodySmall!;
     return Container(
-      constraints: const BoxConstraints(minHeight: 72),
-      padding: const EdgeInsets.symmetric(
-        horizontal: kContentPadding,
-      ),
+      constraints: const BoxConstraints(minHeight: Sizes.p72),
+      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
       child: Row(children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(kBorderRadius),
@@ -82,7 +80,7 @@ class Placeholder$CollectionItem extends StatelessWidget {
               width: 120,
               height: titleSize.fontSize! * titleSize.height!,
             ),
-            Gap.h8,
+            Gap.h4,
             Container(
               color: color,
               width: 64,

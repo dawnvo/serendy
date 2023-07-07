@@ -3,7 +3,7 @@ part of '../search_screen.dart';
 class _SearchBar extends ConsumerWidget {
   const _SearchBar();
 
-  static const _height = 72.0;
+  static const _height = Sizes.p72;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

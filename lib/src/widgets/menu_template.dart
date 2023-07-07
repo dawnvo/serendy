@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/widgets/widgets.dart';
 
 class MenuTemplate extends StatelessWidget {
   const MenuTemplate({
@@ -15,10 +16,8 @@ class MenuTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        Gap.h4,
         info,
-        Gap.h16,
-        const Divider(),
+        Divider(color: context.colorScheme.outlineVariant),
         Column(children: options),
       ]),
     );
@@ -35,26 +34,14 @@ class MenuInfo extends StatelessWidget {
   final String image;
   final String title;
 
-  final double _kImageSize = 48.0;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-      child: Row(children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(Sizes.p8),
-          clipBehavior: Clip.hardEdge,
-          child: Image.network(
-            image,
-            fit: BoxFit.cover,
-            width: _kImageSize,
-            height: _kImageSize,
-          ),
-        ),
-        Gap.w12,
-        Text(title),
-      ]),
+      padding: const EdgeInsets.symmetric(vertical: Sizes.p8),
+      child: ListItem(
+        image: image,
+        title: title,
+      ),
     );
   }
 }
@@ -74,11 +61,11 @@ class MenuListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      visualDensity: VisualDensity.compact,
-      horizontalTitleGap: Sizes.p24,
       onTap: onTap,
       leading: icon,
       title: Text(title),
+      horizontalTitleGap: Sizes.p24,
+      visualDensity: VisualDensity.compact,
       iconColor: context.colorScheme.outline,
       titleTextStyle: context.textTheme.bodyMedium,
     );

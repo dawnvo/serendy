@@ -84,26 +84,28 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
+    //widgets
+    final profileCard = Container(
+      color: color,
+      height: 160,
+    );
+    final collectionsList = SliverMyCollectionsList(
+      childCount: 4,
+      showCreateTile: false,
+      addAutomaticKeepAlives: false,
+      builder: (context, index) => const Placeholder$CollectionItem(),
+    );
+    //template
     return Scaffold(
       body: CustomScrollView(slivers: [
-        const SliverAppBar(
-          title: Text("내 라이브러리"),
-        ),
+        const SliverAppBar(title: Text("내 라이브러리")),
         SliverPadding(
           padding: const EdgeInsets.only(bottom: kContentPadding),
           sliver: SliverToBoxAdapter(
-            child: Container(
-              color: color,
-              height: 160,
-            ),
+            child: profileCard,
           ),
         ),
-        SliverMyCollectionsList(
-          childCount: 4,
-          showCreateTile: false,
-          addAutomaticKeepAlives: false,
-          builder: (context, index) => const Placeholder$CollectionItem(),
-        ),
+        collectionsList,
       ]),
     );
   }

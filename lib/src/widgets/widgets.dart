@@ -5,6 +5,7 @@ export 'collection_item.dart';
 export 'collections_grid.dart';
 export 'history_card.dart';
 export 'image_picker.dart';
+export 'list_item.dart';
 export 'media_card.dart';
 export 'media_item.dart';
 export 'medias_grid.dart';
