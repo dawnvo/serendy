@@ -1,3 +1,4 @@
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
@@ -38,17 +39,13 @@ final class CreateUserUsecase implements UseCase<CreateUserPayload, User> {
   }
 
   /// ⭐ 사용자의 기본 테마 생성
-  /// 기본 테마는 사용자 식별자로 이루어집니다.
   Future<void> _createDefaultTheme(User user) async {
     final theme = Theme(
-      owner: ThemeOwner(
-        id: user.id,
-        name: user.name,
-      ),
-      id: user.id,
+      owner: ThemeOwner(id: user.id, name: user.name),
+      image: Assets.themeFavoriteImage,
       title: '보고싶은',
-      image: null,
       private: true,
+      id: user.id,
     );
 
     await _themeRepository.create(theme);
