@@ -1,5 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
+import '../profile_card/profile_card_screen.dart';
+
 part 'widgets/_list_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -17,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
           title: "내 계정",
         ),
         _SettingsListTile(
-          onTap: () {},
+          onTap: () => ProfileCardScreen.show(context),
           icon: RemixIcon.eye_off_line,
           title: "관심없음",
         ),

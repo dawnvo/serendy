@@ -4,7 +4,6 @@ class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
     required this.title,
     required this.actions,
-    super.key,
     this.content,
   });
 
@@ -31,7 +30,6 @@ class CustomAlertDialog extends StatelessWidget {
 class CustomDialogAction extends CupertinoDialogAction {
   const CustomDialogAction({
     required super.child,
-    super.key,
     super.onPressed,
     super.isDefaultAction,
     super.isDestructiveAction,

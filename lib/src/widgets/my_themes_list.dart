@@ -4,7 +4,6 @@ class SliverMyThemesList extends StatelessWidget {
   const SliverMyThemesList({
     required this.childCount,
     required this.builder,
-    super.key,
     this.addAutomaticKeepAlives = true,
     this.showCreateTile = true,
   });

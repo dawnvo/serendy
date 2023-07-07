@@ -5,7 +5,6 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 class HistoryCard extends StatelessWidget {
   const HistoryCard({
     required this.evaluation,
-    super.key,
     this.onTap,
     this.onMoreTap,
   });

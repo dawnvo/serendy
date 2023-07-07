@@ -6,7 +6,6 @@ import 'package:serendy/src/configs/configs.dart';
 class ImagePicker extends StatelessWidget {
   const ImagePicker({
     required this.onChange,
-    super.key,
     this.image,
     this.size = 200,
     this.circle = false,

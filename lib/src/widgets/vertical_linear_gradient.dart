@@ -3,7 +3,6 @@ import 'package:serendy/src/configs/configs.dart';
 class VerticalLinearGradient extends StatelessWidget {
   const VerticalLinearGradient({
     required this.child,
-    super.key,
     this.stops,
     this.colors,
   });

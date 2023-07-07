@@ -1,9 +1,7 @@
 part of '../account_screen.dart';
 
 class _AccountNameTextField extends ConsumerWidget {
-  const _AccountNameTextField({
-    required this.name,
-  });
+  const _AccountNameTextField({required this.name});
 
   final String name;
 

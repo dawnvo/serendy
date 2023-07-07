@@ -31,6 +31,7 @@ class _DiscoverThemesGrid extends ConsumerWidget {
       onTap: () => context.pushNamed(
         AppRoutes.themeName,
         pathParameters: {'id': theme.id},
+        extra: theme,
       ),
       theme: theme,
     );

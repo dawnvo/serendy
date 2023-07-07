@@ -2,7 +2,6 @@ import 'package:serendy/src/configs/configs.dart';
 
 class TitleTextField extends HookWidget {
   const TitleTextField({
-    super.key,
     this.focusNode,
     this.value,
     this.hintText,

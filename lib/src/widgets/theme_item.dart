@@ -5,7 +5,6 @@ import 'package:serendy/src/features/theme/theme.dart';
 class ThemeItem extends StatelessWidget {
   const ThemeItem({
     required this.theme,
-    super.key,
     this.onTap,
   });
 

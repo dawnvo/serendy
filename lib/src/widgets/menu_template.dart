@@ -5,7 +5,6 @@ class MenuTemplate extends StatelessWidget {
   const MenuTemplate({
     required this.info,
     required this.options,
-    super.key,
   });
 
   final MenuInfo info;
@@ -27,7 +26,6 @@ class MenuInfo extends StatelessWidget {
   const MenuInfo({
     required this.image,
     required this.title,
-    super.key,
   });
 
   final String image;
@@ -50,7 +48,6 @@ class MenuListTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
-    super.key,
   });
 
   final Widget icon;

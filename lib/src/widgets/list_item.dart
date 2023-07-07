@@ -4,7 +4,6 @@ class ListItem extends StatelessWidget {
   const ListItem({
     required this.image,
     required this.title,
-    super.key,
     this.trailing,
     this.onTap,
   });

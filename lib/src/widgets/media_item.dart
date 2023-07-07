@@ -5,7 +5,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 class MediaItem extends StatelessWidget {
   const MediaItem({
     required this.media,
-    super.key,
     this.onTap,
     this.onMoreTap,
   });

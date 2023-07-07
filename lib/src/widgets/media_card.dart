@@ -4,7 +4,6 @@ import 'package:serendy/src/features/media/media.dart';
 class MediaCard extends StatelessWidget {
   const MediaCard({
     required this.media,
-    super.key,
     this.onTap,
     this.onLongPress,
   });

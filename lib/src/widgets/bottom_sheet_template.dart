@@ -1,10 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
 class BottomSheetTemplate extends StatelessWidget {
-  const BottomSheetTemplate({
-    required this.child,
-    super.key,
-  });
+  const BottomSheetTemplate({required this.child});
 
   final Widget child;
 

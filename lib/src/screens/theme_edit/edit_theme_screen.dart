@@ -13,10 +13,7 @@ part 'widgets/_title_text_field.dart';
 class EditThemeScreen extends ConsumerWidget {
   static const String routeName = 'edit-theme';
   static const String routeLocation = '/$routeName';
-  const EditThemeScreen({
-    required this.theme,
-    super.key,
-  });
+  const EditThemeScreen({required this.theme});
 
   final Theme theme;
 

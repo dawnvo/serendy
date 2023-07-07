@@ -4,7 +4,6 @@ class ProfileCardContainer extends StatelessWidget {
   const ProfileCardContainer({
     required this.color,
     required this.child,
-    super.key,
     this.width,
     this.height,
   });

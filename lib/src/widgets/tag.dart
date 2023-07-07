@@ -3,7 +3,6 @@ import 'package:serendy/src/configs/configs.dart';
 class Tag extends StatelessWidget {
   const Tag(
     this.label, {
-    super.key,
     this.labelColor,
   });
 

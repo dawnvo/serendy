@@ -1,10 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
 class ScaffoldWithNavigationBar extends StatelessWidget {
-  const ScaffoldWithNavigationBar({
-    required this.navigationShell,
-    super.key,
-  });
+  const ScaffoldWithNavigationBar({required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 

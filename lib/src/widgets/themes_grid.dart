@@ -4,7 +4,6 @@ class SliverThemesGrid extends StatelessWidget {
   const SliverThemesGrid({
     required this.childCount,
     required this.builder,
-    super.key,
     this.addAutomaticKeepAlives = true,
   });
 

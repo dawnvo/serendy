@@ -18,10 +18,7 @@ part 'widgets/_theme_titles.dart';
 class ThemeScreen extends ConsumerWidget {
   static const String routeName = 'themes';
   static const String routeLocation = '/$routeName/:id';
-  const ThemeScreen({
-    required this.id,
-    super.key,
-  });
+  const ThemeScreen({required this.id});
 
   final ThemeID id;
 

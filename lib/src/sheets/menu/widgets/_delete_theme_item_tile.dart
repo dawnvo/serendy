@@ -8,7 +8,6 @@ class DeleteThemeItemTile extends ConsumerWidget {
   const DeleteThemeItemTile({
     required this.theme,
     required this.media,
-    super.key,
   });
 
   final Theme theme;

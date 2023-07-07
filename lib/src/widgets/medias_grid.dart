@@ -4,7 +4,6 @@ class SliverMediasGrid extends StatelessWidget {
   const SliverMediasGrid({
     required this.childCount,
     required this.builder,
-    super.key,
     this.addAutomaticKeepAlives = true,
   });
 
