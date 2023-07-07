@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/account_controller.dart';
 
 part 'widgets/_account_controls.dart';
+part 'widgets/_birth_tile.dart';
+part 'widgets/_email_tile.dart';
+part 'widgets/_gender_tile.dart';
 part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
 part 'widgets/_save_button.dart';
-part 'widgets/_email_tile.dart';
-part 'widgets/_birth_tile.dart';
-part 'widgets/_gender_tile.dart';
 
 class AccountScreen extends ConsumerWidget {
   static const String routeName = 'account';

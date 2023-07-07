@@ -1,13 +1,10 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
-part 'account_state.dart';
 part 'account_controller.g.dart';
+part 'account_state.dart';
 
 @riverpod
 class AccountController extends _$AccountController with NotifierMounted {

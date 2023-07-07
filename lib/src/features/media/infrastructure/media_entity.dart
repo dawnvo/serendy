@@ -3,9 +3,6 @@ import 'package:serendy/src/core/infrastructure/serializable.dart';
 
 part 'media_entity.g.dart';
 
-/// - type: collection
-/// - name: medias
-/// - key: ulid
 @jsonSerializable
 final class MediaEntity {
   MediaEntity({
@@ -42,8 +39,6 @@ final class MediaEntity {
   Map<String, dynamic> toJson() => _$MediaEntityToJson(this);
 }
 
-/// - type: embedded
-/// - name: media_images
 @jsonSerializable
 final class MediaImagesEntity {
   const MediaImagesEntity({
@@ -59,8 +54,6 @@ final class MediaImagesEntity {
   Map<String, dynamic> toJson() => _$MediaImagesEntityToJson(this);
 }
 
-/// - type: embedded
-/// - name: media_images
 @jsonSerializable
 final class MediaImageUrlEntity {
   const MediaImageUrlEntity({

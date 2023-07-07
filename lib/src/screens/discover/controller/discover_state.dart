@@ -1,10 +1,10 @@
 part of 'discover_controller.dart';
 
 class DiscoverState extends Equatable {
-  const DiscoverState({required this.collections});
+  const DiscoverState({required this.themes});
 
-  final List<Collection?> collections;
+  final List<Theme?> themes;
 
   @override
-  List<Object?> get props => [collections];
+  List<Object?> get props => [themes];
 }

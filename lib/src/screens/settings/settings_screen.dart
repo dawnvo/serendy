@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 
 part 'widgets/_list_tile.dart';

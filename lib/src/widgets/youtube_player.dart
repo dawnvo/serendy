@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as yp;
 

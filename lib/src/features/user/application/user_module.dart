@@ -1,7 +1,7 @@
 import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/core/persistence/file_storage.dart';
 import 'package:serendy/src/core/persistence/firestore_path.dart';
-import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/get_user_usecase.dart';
@@ -28,7 +28,7 @@ abstract final class UserModule {
 
   static final createUserUsecase = CreateUserUsecase(
     UserModule.userRepository,
-    CollectionModule.collectionRepository,
+    ThemeModule.themeRepository,
   );
 
   static final editProfileUsecase = EditProfileUsecase(

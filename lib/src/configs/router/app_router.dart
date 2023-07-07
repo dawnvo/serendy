@@ -1,25 +1,10 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/configs/router/bottom_navigation_bar.dart';
 import 'package:serendy/src/features/auth/auth.dart';
-import 'package:serendy/src/features/collection/collection.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/screens/account/account_screen.dart';
-import 'package:serendy/src/screens/admin/admin_screen.dart';
-import 'package:serendy/src/screens/collection/collection_screen.dart';
-import 'package:serendy/src/screens/collection_create/create_collection_screen.dart';
-import 'package:serendy/src/screens/collection_edit/edit_collection_screen.dart';
-import 'package:serendy/src/screens/discover/discover_screen.dart';
-import 'package:serendy/src/screens/history/history_screen.dart';
-import 'package:serendy/src/screens/home/home_screen.dart';
-import 'package:serendy/src/screens/media/media_screen.dart';
-import 'package:serendy/src/screens/media_evaluate/evaluate_media_screen.dart';
-import 'package:serendy/src/screens/profile/profile_screen.dart';
-import 'package:serendy/src/screens/search/search_screen.dart';
-import 'package:serendy/src/screens/settings/settings_screen.dart';
-import 'package:serendy/src/screens/sign_in/sign_in_screen.dart';
+import 'package:serendy/src/features/theme/theme.dart';
+import 'package:serendy/src/screens/screens.dart';
 
 import 'go_router_refresh_stream.dart';
 
@@ -111,34 +96,34 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
 
-      /// COLLECTION
+      /// THEME
       GoRoute(
-        name: AppRoutes.collectionName,
-        path: AppRoutes.collectionLocation,
+        name: AppRoutes.themeName,
+        path: AppRoutes.themeLocation,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           final id = state.pathParameters['id']!;
-          return CollectionScreen(id: id);
+          return ThemeScreen(id: id);
         },
       ),
       GoRoute(
-        name: AppRoutes.createCollectionName,
-        path: AppRoutes.createCollectionLocation,
+        name: AppRoutes.createThemeName,
+        path: AppRoutes.createThemeLocation,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
           return _modalTransitionPage(
-            const CreateCollectionScreen(),
+            const CreateThemeScreen(),
           );
         },
       ),
       GoRoute(
-        name: AppRoutes.editCollectionName,
-        path: AppRoutes.editCollectionLocation,
+        name: AppRoutes.editThemeName,
+        path: AppRoutes.editThemeLocation,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) {
-          final collection = state.extra as Collection;
+          final theme = state.extra as Theme;
           return _modalTransitionPage(
-            EditCollectionScreen(collection: collection),
+            EditThemeScreen(theme: theme),
           );
         },
       ),

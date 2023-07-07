@@ -1,6 +1,4 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 
 class SerendyApp extends ConsumerWidget {

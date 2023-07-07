@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
-import 'package:serendy/src/widgets/widgets.dart';
 import 'package:serendy/src/sheets/sheets.dart';
+import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/history_controller.dart';
 

@@ -29,17 +29,17 @@ abstract final class AppRoutes {
   static const evaluateMediaName = EvaluateMediaScreen.routeName;
   static const evaluateMediaLocation = EvaluateMediaScreen.routeLocation;
 
-  // 컬렉션 정보
-  static const collectionName = CollectionScreen.routeName;
-  static const collectionLocation = CollectionScreen.routeLocation;
+  // 테마 정보
+  static const themeName = ThemeScreen.routeName;
+  static const themeLocation = ThemeScreen.routeLocation;
 
-  // 컬렉션 생성
-  static const createCollectionName = CreateCollectionScreen.routeName;
-  static const createCollectionLocation = CreateCollectionScreen.routeLocation;
+  // 테마 생성
+  static const createThemeName = CreateThemeScreen.routeName;
+  static const createThemeLocation = CreateThemeScreen.routeLocation;
 
-  // 컬렉션 편집
-  static const editCollectionName = EditCollectionScreen.routeName;
-  static const editCollectionLocation = EditCollectionScreen.routeLocation;
+  // 테마 편집
+  static const editThemeName = EditThemeScreen.routeName;
+  static const editThemeLocation = EditThemeScreen.routeLocation;
 
   // 기록
   static const historyName = HistoryScreen.routeName;

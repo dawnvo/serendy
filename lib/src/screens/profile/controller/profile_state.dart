@@ -4,22 +4,22 @@ class ProfileState extends Equatable {
   const ProfileState({
     required this.user,
     required this.evaluationsCount,
-    required this.myCollections,
+    required this.myThemes,
   });
 
   final User user;
   final int evaluationsCount;
-  final List<Collection?> myCollections;
+  final List<Theme?> myThemes;
 
   ProfileState copyWith({
     final User? user,
     final int? evaluationsCount,
-    final List<Collection?>? myCollections,
+    final List<Theme?>? myThemes,
   }) {
     return ProfileState(
       user: user ?? this.user,
       evaluationsCount: evaluationsCount ?? this.evaluationsCount,
-      myCollections: myCollections ?? this.myCollections,
+      myThemes: myThemes ?? this.myThemes,
     );
   }
 
@@ -27,6 +27,6 @@ class ProfileState extends Equatable {
   List<Object?> get props => [
         user,
         evaluationsCount,
-        myCollections,
+        myThemes,
       ];
 }

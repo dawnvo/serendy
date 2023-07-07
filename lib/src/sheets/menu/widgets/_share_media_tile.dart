@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_remix_icon/remixicon.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 

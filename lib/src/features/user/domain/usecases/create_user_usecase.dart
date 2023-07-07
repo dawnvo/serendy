@@ -1,5 +1,5 @@
 import 'package:serendy/src/core/domain/usecase.dart';
-import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 typedef CreateUserPayload = ({
@@ -12,11 +12,11 @@ typedef CreateUserPayload = ({
 final class CreateUserUsecase implements UseCase<CreateUserPayload, User> {
   const CreateUserUsecase(
     this._userRepository,
-    this._collectionRepository,
+    this._themeRepository,
   );
 
   final UserRepository _userRepository;
-  final CollectionRepository _collectionRepository;
+  final ThemeRepository _themeRepository;
 
   @override
   Future<User> execute(CreateUserPayload payload) async {
@@ -32,16 +32,16 @@ final class CreateUserUsecase implements UseCase<CreateUserPayload, User> {
     );
 
     await _userRepository.create(user);
-    await _createDefaultCollection(user);
+    await _createDefaultTheme(user);
 
     return user;
   }
 
   /// ⭐ 사용자의 기본 테마 생성
   /// 기본 테마는 사용자 식별자로 이루어집니다.
-  Future<void> _createDefaultCollection(User user) async {
-    final collection = Collection(
-      owner: CollectionOwner(
+  Future<void> _createDefaultTheme(User user) async {
+    final theme = Theme(
+      owner: ThemeOwner(
         id: user.id,
         name: user.name,
       ),
@@ -51,6 +51,6 @@ final class CreateUserUsecase implements UseCase<CreateUserPayload, User> {
       private: true,
     );
 
-    await _collectionRepository.create(collection);
+    await _themeRepository.create(theme);
   }
 }

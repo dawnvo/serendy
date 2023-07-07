@@ -27,8 +27,8 @@ final class MediaRepositoryImpl implements MediaRepository {
 
   /// Fetch medias list
   @override
-  Future<List<Media?>> findMany() async {
-    final snapshots = await _ref.limit(20).get();
+  Future<List<Media?>> findMany(int pageSize) async {
+    final snapshots = await _ref.limit(pageSize).get();
 
     final mediaDataList = snapshots.docs.map((doc) => doc.data());
     final mediaEntities = mediaDataList.map(MediaEntity.fromJson);

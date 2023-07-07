@@ -1,8 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';

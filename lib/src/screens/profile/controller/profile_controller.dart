@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 part 'profile_controller.g.dart';
@@ -13,12 +12,12 @@ class ProfileController extends _$ProfileController {
   FutureOr<ProfileState> build() async {
     final me = await ref.watch(fetchMeProvider.future);
     final count = await ref.watch(countMyEvaluationsProvider.future);
-    final collections = await ref.watch(watchMyCollectionsListProvider.future);
+    final themes = await ref.watch(watchMyThemesListProvider.future);
 
     return ProfileState(
       user: me,
       evaluationsCount: count,
-      myCollections: collections,
+      myThemes: themes,
     );
   }
 

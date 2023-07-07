@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:serendy/src/configs/configs.dart';
 
 class SliverMediasGrid extends StatelessWidget {
   const SliverMediasGrid({

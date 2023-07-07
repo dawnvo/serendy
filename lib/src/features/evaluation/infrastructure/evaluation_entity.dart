@@ -4,9 +4,6 @@ import 'package:serendy/src/features/user/user.dart';
 
 part 'evaluation_entity.g.dart';
 
-/// - type: collection
-/// - name: evaluations
-/// - key: ulid
 @jsonSerializable
 final class EvaluationEntity {
   const EvaluationEntity({
@@ -38,8 +35,6 @@ final class EvaluationEntity {
   Map<String, dynamic> toJson() => _$EvaluationEntityToJson(this);
 }
 
-/// - type: embedded
-/// - name: media
 @jsonSerializable
 final class MediaInfoEntity {
   const MediaInfoEntity({

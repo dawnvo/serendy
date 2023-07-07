@@ -1,15 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/collection/collection.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/discover_controller.dart';
 
-part 'widgets/_collections_grid.dart';
 part 'widgets/_search_bar.dart';
+part 'widgets/_themes_grid.dart';
 
 class DiscoverScreen extends StatelessWidget {
   static const String routeName = 'discover';
@@ -20,7 +16,7 @@ class DiscoverScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const _DiscoverTemplate(
       searchBar: _DiscoverSearchBar(),
-      collectionsGrid: _DiscoverCollectionsGrid(),
+      themesGrid: _DiscoverThemesGrid(),
     );
   }
 }
@@ -28,11 +24,11 @@ class DiscoverScreen extends StatelessWidget {
 class _DiscoverTemplate extends StatelessWidget {
   const _DiscoverTemplate({
     required this.searchBar,
-    required this.collectionsGrid,
+    required this.themesGrid,
   });
 
   final _DiscoverSearchBar searchBar;
-  final _DiscoverCollectionsGrid collectionsGrid;
+  final _DiscoverThemesGrid themesGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,7 @@ class _DiscoverTemplate extends StatelessWidget {
           child: CustomScrollView(slivers: [
             SliverToBoxAdapter(child: searchBar),
             const SliverToBoxAdapter(child: Gap.h24),
-            collectionsGrid,
+            themesGrid,
           ]),
         ),
       ),

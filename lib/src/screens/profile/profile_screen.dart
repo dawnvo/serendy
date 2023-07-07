@@ -1,17 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_remix_icon/flutter_remix_icon.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
-import 'package:serendy/src/features/collection/collection.dart'
-    hide CollectionItem;
+import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/profile_controller.dart';
 
-part 'widgets/_my_collections_list.dart';
+part 'widgets/_my_themes_list.dart';
 part 'widgets/_profile_card.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -36,8 +31,8 @@ class ProfileScreen extends ConsumerWidget {
           user: state.user,
           evaluationCount: state.evaluationsCount,
         ),
-        collectionsList: _ProfileMyCollectionsList(
-          collections: state.myCollections,
+        themesList: _ProfileMyThemesList(
+          themes: state.myThemes,
         ),
       ),
       loading: () => const _Placeholder$ProfileScreen(),
@@ -52,12 +47,12 @@ class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
     required this.actions,
     required this.profileCard,
-    required this.collectionsList,
+    required this.themesList,
   });
 
   final List<IconButton> actions;
   final _ProfileCard profileCard;
-  final _ProfileMyCollectionsList collectionsList;
+  final _ProfileMyThemesList themesList;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +66,7 @@ class _ProfileTemplate extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: kContentPadding),
           sliver: SliverToBoxAdapter(child: profileCard),
         ),
-        collectionsList,
+        themesList,
       ]),
     );
   }
@@ -89,11 +84,11 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
       color: color,
       height: 160,
     );
-    final collectionsList = SliverMyCollectionsList(
+    final themesList = SliverMyThemesList(
       childCount: 4,
       showCreateTile: false,
       addAutomaticKeepAlives: false,
-      builder: (context, index) => const Placeholder$CollectionItem(),
+      builder: (context, index) => const Placeholder$ThemeItem(),
     );
     //template
     return Scaffold(
@@ -105,7 +100,7 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
             child: profileCard,
           ),
         ),
-        collectionsList,
+        themesList,
       ]),
     );
   }

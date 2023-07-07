@@ -2,9 +2,6 @@ import 'package:serendy/src/core/infrastructure/serializable.dart';
 
 part 'user_entity.g.dart';
 
-/// - type: collection
-/// - name: users
-/// - key: ulid
 @jsonSerializable
 final class UserEntity {
   const UserEntity({

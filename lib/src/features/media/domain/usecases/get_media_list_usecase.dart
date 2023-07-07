@@ -8,9 +8,11 @@ final class GetMediaListUsecase
   const GetMediaListUsecase(this._mediaRepository);
   final MediaRepository _mediaRepository;
 
+  static const int pageSize = 30;
+
   @override
   Future<List<Media?>> execute(GetMediaListPayload payload) async {
-    final medias = await _mediaRepository.findMany();
+    final medias = await _mediaRepository.findMany(pageSize);
     return medias;
   }
 }

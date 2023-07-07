@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/collection/collection.dart'
-    hide CollectionItem;
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
 
 typedef SaveMediaSheetPayload = ({
@@ -21,11 +17,11 @@ class SaveMediaSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myCollectionsValue = ref.watch(watchMyCollectionsListProvider);
+    final myThemesValue = ref.watch(watchMyThemesListProvider);
 
-    void handleSelect(Collection collection) {
-      ref.read(addCollectionItemProvider(
-        id: collection.id,
+    void handleSelect(Theme theme) {
+      ref.read(addThemeItemProvider(
+        id: theme.id,
         mediaId: payload.media.id,
       ));
       context.pop();
@@ -36,23 +32,23 @@ class SaveMediaSheet extends ConsumerWidget {
       child: CustomScrollView(
         shrinkWrap: true,
         slivers: [
-          myCollectionsValue.when(
-            data: (collections) => SliverMyCollectionsList(
-              childCount: collections.length,
+          myThemesValue.when(
+            data: (themes) => SliverMyThemesList(
+              childCount: themes.length,
               builder: (context, index) {
-                final collection = collections[index]!;
+                final theme = themes[index]!;
 
-                return CollectionItem(
-                  onTap: () => handleSelect(collection),
-                  collection: collection,
+                return ThemeItem(
+                  onTap: () => handleSelect(theme),
+                  theme: theme,
                 );
               },
             ),
-            loading: () => SliverMyCollectionsList(
+            loading: () => SliverMyThemesList(
               childCount: 4,
               showCreateTile: false,
               addAutomaticKeepAlives: false,
-              builder: (context, index) => const Placeholder$CollectionItem(),
+              builder: (context, index) => const Placeholder$ThemeItem(),
             ),
             error: (err, stack) => SliverToBoxAdapter(
               child: Center(child: Text(err.toString())),
