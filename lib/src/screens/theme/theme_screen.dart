@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
@@ -41,7 +42,6 @@ class ThemeScreen extends ConsumerWidget {
         detailBar: _ThemeDetailBar(
           theme: state.theme,
           owner: state.owner,
-          isOwner: state.isOwner,
         ),
         mediasGrid: _ThemeMediasGrid(
           theme: state.theme,

@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
 
@@ -11,7 +10,6 @@ class ThemeController extends _$ThemeController {
   @override
   FutureOr<ThemeState> build(ThemeID id) async {
     final theme = await ref.watch(fetchThemeProvider(id: id).future);
-    final loggedInUserId = ref.watch(userIdProvider);
     final user = await ref.watch(fetchUserProvider(
       id: theme.owner.id,
     ).future);
@@ -19,7 +17,6 @@ class ThemeController extends _$ThemeController {
     return ThemeState(
       theme: theme,
       owner: user,
-      isOwner: loggedInUserId == theme.owner.id,
     );
   }
 

@@ -4,12 +4,10 @@ class ThemeState extends Equatable {
   const ThemeState({
     required this.theme,
     required this.owner,
-    required this.isOwner,
   });
 
   final Theme theme;
   final User owner;
-  final bool isOwner;
 
   ThemeState copyWith({
     final Theme? theme,
@@ -19,7 +17,6 @@ class ThemeState extends Equatable {
     return ThemeState(
       theme: theme ?? this.theme,
       owner: owner ?? this.owner,
-      isOwner: isOwner ?? this.isOwner,
     );
   }
 
@@ -27,6 +24,5 @@ class ThemeState extends Equatable {
   List<Object?> get props => [
         theme,
         owner,
-        isOwner,
       ];
 }
