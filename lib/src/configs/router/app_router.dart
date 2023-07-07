@@ -53,25 +53,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoutes.signInName,
         path: AppRoutes.signInLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          return const SignInScreen();
-        },
+        builder: (context, state) => const SignInScreen(),
       ),
       GoRoute(
         name: AppRoutes.searchName,
         path: AppRoutes.searchLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          return const SearchScreen();
-        },
+        builder: (context, state) => const SearchScreen(),
       ),
       GoRoute(
         name: AppRoutes.adminName,
         path: AppRoutes.adminLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          return const AdminScreen();
-        },
+        builder: (context, state) => const AdminScreen(),
       ),
 
       /// MEDIA
@@ -79,21 +73,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoutes.mediaName,
         path: AppRoutes.mediaLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return MediaScreen(id: id);
-        },
+        builder: (context, state) => MediaScreen(
+          id: state.pathParameters['id']!,
+        ),
       ),
       GoRoute(
         name: AppRoutes.evaluateMediaName,
         path: AppRoutes.evaluateMediaLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) {
-          final media = state.extra as Media;
-          return _modalTransitionPage(
-            EvaluateMediaScreen(media: media),
-          );
-        },
+        pageBuilder: (context, state) => ModalPage(
+          child: EvaluateMediaScreen(
+            media: state.extra as Media,
+          ),
+        ),
       ),
 
       /// THEME
@@ -101,31 +93,25 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoutes.themeName,
         path: AppRoutes.themeLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return ThemeScreen(id: id);
-        },
+        builder: (context, state) => ThemeScreen(
+          id: state.pathParameters['id']!,
+        ),
       ),
       GoRoute(
         name: AppRoutes.createThemeName,
         path: AppRoutes.createThemeLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) {
-          return _modalTransitionPage(
-            const CreateThemeScreen(),
-          );
-        },
+        pageBuilder: (context, state) => ModalPage(
+          child: const CreateThemeScreen(),
+        ),
       ),
       GoRoute(
         name: AppRoutes.editThemeName,
         path: AppRoutes.editThemeLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) {
-          final theme = state.extra as Theme;
-          return _modalTransitionPage(
-            EditThemeScreen(theme: theme),
-          );
-        },
+        pageBuilder: (context, state) => ModalPage(
+          child: EditThemeScreen(theme: state.extra as Theme),
+        ),
       ),
 
       /// SETTINGS
@@ -133,17 +119,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoutes.settingsName,
         path: AppRoutes.settingsLocation,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) {
-          return const SettingsScreen();
-        },
+        builder: (context, state) => const SettingsScreen(),
         routes: [
           GoRoute(
             name: AppRoutes.accountName,
             path: AppRoutes.accountLocation,
             parentNavigatorKey: _rootNavigatorKey,
-            builder: (context, state) {
-              return const AccountScreen();
-            },
+            builder: (context, state) => const AccountScreen(),
           )
         ],
       ),
@@ -162,9 +144,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 name: AppRoutes.homeName,
                 path: AppRoutes.homeLocation,
-                builder: (context, state) {
-                  return const HomeScreen();
-                },
+                builder: (context, state) => const HomeScreen(),
               ),
             ],
           ),
@@ -174,9 +154,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 name: AppRoutes.discoverName,
                 path: AppRoutes.discoverLocation,
-                builder: (context, state) {
-                  return const DiscoverScreen();
-                },
+                builder: (context, state) => const DiscoverScreen(),
               ),
             ],
           ),
@@ -186,17 +164,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 name: AppRoutes.profileName,
                 path: AppRoutes.profileLocation,
-                builder: (context, state) {
-                  return const ProfileScreen();
-                },
+                builder: (context, state) => const ProfileScreen(),
                 routes: [
                   GoRoute(
                     parentNavigatorKey: _rootNavigatorKey,
                     name: AppRoutes.historyName,
                     path: AppRoutes.historyLocation,
-                    builder: (context, state) {
-                      return const HistoryScreen();
-                    },
+                    builder: (context, state) => const HistoryScreen(),
                   ),
                 ],
               ),
@@ -208,18 +182,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   );
 });
 
-Page _modalTransitionPage(Widget child) {
-  return CustomTransitionPage(
-    child: child,
-    fullscreenDialog: true,
-    transitionDuration: const Duration(milliseconds: 400),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return SharedAxisTransition(
-        animation: animation,
-        secondaryAnimation: secondaryAnimation,
-        transitionType: SharedAxisTransitionType.vertical,
-        child: child,
-      );
-    },
-  );
+class ModalPage extends CustomTransitionPage {
+  ModalPage({required super.child, super.key})
+      : super(
+          fullscreenDialog: true,
+          transitionDuration: const Duration(milliseconds: 400),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SharedAxisTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.vertical,
+              child: child,
+            );
+          },
+        );
 }

@@ -159,17 +159,19 @@ class _Placeholder$MediaScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(backgroundColor: Colors.transparent),
-      body: Column(children: [
-        coverImage,
-        const SizedBox(height: 30),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-          child: Column(children: [
-            actionBar,
-            ...List.filled(2, listTile),
-          ]),
-        ),
-      ]),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          coverImage,
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+            child: Column(children: [
+              actionBar,
+              ...List.filled(2, listTile),
+            ]),
+          ),
+        ]),
+      ),
     );
   }
 }

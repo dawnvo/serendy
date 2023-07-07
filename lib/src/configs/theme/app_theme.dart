@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -83,6 +84,18 @@ final class AppThemeData {
       splashColor: highlightColor,
       highlightColor: highlightColor,
       scaffoldBackgroundColor: colorScheme.background,
+
+      // PageTransitions theme
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+            transitionType: SharedAxisTransitionType.horizontal,
+          ),
+          TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+            transitionType: SharedAxisTransitionType.horizontal,
+          ),
+        },
+      ),
 
       // AppBar theme
       appBarTheme: themeData.appBarTheme.copyWith(
