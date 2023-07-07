@@ -74,9 +74,7 @@ class Placeholder$MediaItem extends StatelessWidget {
     final titleSize = context.textTheme.bodyLarge!;
     return Container(
       constraints: const BoxConstraints(minHeight: Sizes.p64),
-      padding: const EdgeInsets.symmetric(
-        horizontal: kContentPadding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
       child: Row(children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(kBorderRadius),

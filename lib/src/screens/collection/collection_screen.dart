@@ -137,22 +137,19 @@ class _Placeholder$CollectionScreen extends StatelessWidget {
                   height: titleSize.fontSize! * titleSize.height!,
                 ),
                 Gap.h8,
-                ConstrainedBox(
-                  constraints: const BoxConstraints(minHeight: 48),
-                  child: Row(children: [
-                    Row(children: [
-                      const CircleAvatar(radius: 12),
-                      Gap.w8,
-                      Container(
-                        color: color,
-                        width: 80,
-                        height: usernameSize.fontSize! * usernameSize.height!,
-                      ),
-                    ]),
-                    const Spacer(),
-                    Container(color: color, width: 48 * 2, height: 48),
+                Row(children: [
+                  Row(children: [
+                    const CircleAvatar(radius: 12),
+                    Gap.w8,
+                    Container(
+                      color: color,
+                      width: 80,
+                      height: usernameSize.fontSize! * usernameSize.height!,
+                    ),
                   ]),
-                ),
+                  const Spacer(),
+                  Container(color: color, width: 48 * 2, height: 48),
+                ]),
                 Gap.h24,
               ],
             ),

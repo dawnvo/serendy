@@ -8,7 +8,7 @@ class _MediaActionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 64,
+      height: Sizes.p64,
       child: Row(children: [
         IconButton(
           onPressed: () => context.showCustomModalBottomSheet(

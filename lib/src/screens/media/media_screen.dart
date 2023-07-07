@@ -56,9 +56,7 @@ class MediaScreen extends ConsumerWidget {
           _MediaDetailsTile(media: state.media),
         ],
       ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () => const _Placeholder$MediaScreen(),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),
       ),
@@ -66,7 +64,6 @@ class MediaScreen extends ConsumerWidget {
   }
 }
 
-/// TEMPLATE
 class _MediaTemplate extends StatelessWidget {
   const _MediaTemplate({
     required this.coverImage,
@@ -108,7 +105,7 @@ class _MediaTemplate extends StatelessWidget {
                 ),
                 child: keyword,
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: kContentPadding / 2,
                 ),
@@ -117,6 +114,61 @@ class _MediaTemplate extends StatelessWidget {
               ...contents,
               Gap.h40,
             ],
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+//Placeholder
+class _Placeholder$MediaScreen extends StatelessWidget {
+  const _Placeholder$MediaScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.colorScheme.surfaceVariant;
+    final tileTitleSize = context.textTheme.bodyLarge!;
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(height: context.screenWidth * (9 / 8), color: color),
+          Gap.h24,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+            child: Column(children: [
+              SizedBox(
+                height: 64,
+                child: Row(children: [
+                  Container(color: color, width: 48 * 3, height: 48),
+                  const Spacer(),
+                  CircleAvatar(
+                    backgroundColor: color,
+                    radius: 48 / 2,
+                  ),
+                ]),
+              ),
+              ...List.filled(
+                2,
+                SizedBox(
+                  height: 72,
+                  child: Row(children: [
+                    CircleAvatar(
+                      backgroundColor: color,
+                      radius: 28 / 2,
+                    ),
+                    Gap.w16,
+                    Container(
+                      color: color,
+                      width: 160,
+                      height: tileTitleSize.fontSize! * tileTitleSize.height!,
+                    ),
+                  ]),
+                ),
+              ),
+            ]),
           ),
         ]),
       ),
