@@ -55,8 +55,8 @@ extension RankX on Rank {
         Rank.bronze => const (min: 10, max: 20),
         Rank.silver => const (min: 20, max: 50),
         Rank.gold => const (min: 50, max: 100),
-        Rank.platinum => const (min: 100, max: 300),
-        Rank.diamond => const (min: 300, max: 500),
+        Rank.platinum => const (min: 100, max: 200),
+        Rank.diamond => const (min: 200, max: 500),
         Rank.master => const (min: 500, max: 1000),
         Rank.novel => const (min: 1000, max: 0),
       };

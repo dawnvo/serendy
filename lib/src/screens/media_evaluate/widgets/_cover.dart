@@ -24,6 +24,7 @@ class _EvaluateMediaCover extends StatelessWidget {
         Gap.h12,
         Text(
           title,
+          textAlign: TextAlign.center,
           style: context.textTheme.bodyLarge?.copyWith(
             color: context.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,

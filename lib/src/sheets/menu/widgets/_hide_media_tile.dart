@@ -25,9 +25,9 @@ class HideMediaTile extends ConsumerWidget {
       ));
     } catch (err) {
       // * 숨기기에 실패하면 메시지로 안내해요.
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(err.toString())),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(err.toString()),
+      ));
     }
   }
 

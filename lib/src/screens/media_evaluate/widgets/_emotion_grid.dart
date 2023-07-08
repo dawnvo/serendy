@@ -9,6 +9,7 @@ class _EvaluateMediaEmotionGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final evaluation = ref.watch(evaluateMediaControllerProvider(mediaId)
         .select((state) => state.evaluation));
+    final debouncer = ref.watch(debouncerProvider);
 
     return GridView.count(
       padding: const EdgeInsets.symmetric(
@@ -20,9 +21,11 @@ class _EvaluateMediaEmotionGrid extends ConsumerWidget {
       children: [
         for (final emotion in Emotion.values)
           __EmotionGridTile(
-            onSelect: (selected) => ref
-                .read(evaluateMediaControllerProvider(mediaId).notifier)
-                .evaluate(emotion: selected),
+            onSelect: (selected) => debouncer.run(() {
+              ref
+                  .read(evaluateMediaControllerProvider(mediaId).notifier)
+                  .evaluate(emotion: selected);
+            }),
             emotion: emotion,
             selected: emotion == evaluation?.emotion,
           )

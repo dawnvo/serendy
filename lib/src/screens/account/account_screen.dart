@@ -24,15 +24,15 @@ class AccountScreen extends ConsumerWidget {
     ref.listen(accountControllerProvider, (previous, next) {
       // * 수정에 성공하면 메시지로 안내해요.
       if (previous != next && next.isReloading) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("프로필을 수정했어요.")),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("프로필을 수정했어요."),
+        ));
       }
       // * 수정에 실패하면 메시지로 안내해요.
       else if (next.hasError) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(next.error.toString())),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(next.error.toString()),
+        ));
       }
     });
 

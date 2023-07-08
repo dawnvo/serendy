@@ -31,9 +31,10 @@ class DeleteThemeItemTile extends ConsumerWidget {
 
       // * 삭제에 성공하면 메뉴를 닫고 메시지로 안내해요.
       context.pop();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("${theme.title}에서 삭제했어요.")),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: kSnackBarDisplayDurationShort,
+        content: Text("${theme.title}에서 삭제했어요."),
+      ));
     } catch (err) {
       // * 삭제에 실패하면 메시지로 안내해요.
       ScaffoldMessenger.of(context).showSnackBar(

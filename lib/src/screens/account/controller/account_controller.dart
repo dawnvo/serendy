@@ -71,9 +71,9 @@ class AccountController extends _$AccountController with NotifierMounted {
       ref.read(goRouterProvider).goNamed(AppRoutes.signIn);
     } catch (err) {
       // * 로그아웃에 실패하면 메시지로 안내해요.
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(err.toString())),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(err.toString()),
+      ));
     }
   }
 }

@@ -15,17 +15,23 @@ class SaveMediaSheet extends ConsumerWidget {
     context.showCustomBottomSheet((_) => SaveMediaSheet(payload));
   }
 
+  void handleSelect(BuildContext context, WidgetRef ref, Theme theme) {
+    ref.read(addThemeItemProvider(
+      id: theme.id,
+      mediaId: payload.media.id,
+    ));
+
+    // * 추가에 성공하면 메뉴를 닫고 메시지로 안내해요.
+    context.pop();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: kSnackBarDisplayDurationShort,
+      content: Text("${theme.title}에 작품을 추가했어요."),
+    ));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myThemesValue = ref.watch(watchMyThemesListProvider);
-
-    void handleSelect(Theme theme) {
-      ref.read(addThemeItemProvider(
-        id: theme.id,
-        mediaId: payload.media.id,
-      ));
-      context.pop();
-    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
@@ -39,7 +45,7 @@ class SaveMediaSheet extends ConsumerWidget {
                 final theme = themes[index]!;
 
                 return ThemeItem(
-                  onTap: () => handleSelect(theme),
+                  onTap: () => handleSelect(context, ref, theme),
                   theme: theme,
                 );
               },

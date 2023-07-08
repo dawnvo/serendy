@@ -10,6 +10,7 @@ export 'package:riverpod_annotation/riverpod_annotation.dart';
 // Constants
 export 'constants/size_constant.dart';
 export 'constants/asset_constant.dart';
+export 'constants/widget_constant.dart';
 
 // Extensions
 export 'extensions/context_extension.dart';

@@ -21,7 +21,16 @@ class EvaluateMediaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
-      if (next.status == EvaluateMediaStatus.failure) {
+      // 평가를 취소한 경우
+      if (next.status == EvaluateMediaStatus.success &&
+          next.evaluation == null) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          duration: kSnackBarDisplayDurationShort,
+          content: Text("평가를 취소했어요."),
+        ));
+      }
+      // 에러가 발생한 경우
+      else if (next.status == EvaluateMediaStatus.failure) {
         final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
@@ -61,7 +70,12 @@ class _EvaluateMediaTemplate extends StatelessWidget {
           flex: 5,
           child: Stack(children: [
             Positioned.fill(child: background),
-            Center(child: cover),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kContentPadding * 2,
+              ),
+              child: Center(child: cover),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(

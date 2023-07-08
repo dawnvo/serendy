@@ -19,14 +19,17 @@ class ProfileCardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const _ProfileCard(),
-          Gap.h24,
-          FilledButton.tonal(
-            onPressed: () => context.pop(),
-            child: const Text('계속하기'),
-          ),
-        ]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const _ProfileCard(),
+            Gap.h24,
+            FilledButton.tonal(
+              onPressed: () => context.pop(),
+              child: const Text('계속하기'),
+            ),
+          ],
+        ),
       ),
     );
   }
