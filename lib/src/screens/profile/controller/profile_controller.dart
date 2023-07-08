@@ -27,10 +27,9 @@ class ProfileController extends _$ProfileController {
     state = AsyncData(state.requireValue.copyWith(user: user));
   }
 
-  Future<void> evaluationsCountUpdated() async {
+  void evaluationsCountUpdated() async {
     // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
     if (!state.hasValue) return;
-    final count = await ref.refresh(countMyEvaluationsProvider.future);
-    state = AsyncData(state.requireValue.copyWith(evaluationsCount: count));
+    ref.invalidate(countMyEvaluationsProvider);
   }
 }

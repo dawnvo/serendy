@@ -21,13 +21,19 @@ class EvaluateMediaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
-      // 평가를 취소한 경우
-      if (next.status == EvaluateMediaStatus.success &&
-          next.evaluation == null) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          duration: kSnackBarDisplayDurationShort,
-          content: Text("평가를 취소했어요."),
-        ));
+      // 평가에 성공한 경우
+      if (next.status == EvaluateMediaStatus.success) {
+        if (next.evaluation != null) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            duration: kSnackBarDisplayDurationShort,
+            content: Text("감상한 작품에 추가했어요."),
+          ));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            duration: kSnackBarDisplayDurationShort,
+            content: Text("감상한 작품에서 삭제했어요."),
+          ));
+        }
       }
       // 에러가 발생한 경우
       else if (next.status == EvaluateMediaStatus.failure) {

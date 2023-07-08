@@ -51,9 +51,7 @@ class EvaluateMediaController extends _$EvaluateMediaController
       }
 
       // * 평가에 성공하면 평가 개수를 갱신해요.
-      await ref
-          .read(profileControllerProvider.notifier)
-          .evaluationsCountUpdated();
+      ref.read(profileControllerProvider.notifier).evaluationsCountUpdated();
 
       // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
       if (!mounted) return;
