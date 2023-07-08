@@ -2,7 +2,7 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import 'controller/discover_controller.dart';
+// import 'controller/discover_controller.dart';
 
 part 'widgets/_search_bar.dart';
 part 'widgets/_themes_grid.dart';
@@ -32,19 +32,14 @@ class _DiscoverTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
-            vertical: Sizes.p24,
-          ),
-          child: CustomScrollView(slivers: [
-            SliverToBoxAdapter(child: searchBar),
-            const SliverToBoxAdapter(child: Gap.h24),
-            themesGrid,
-          ]),
+    return Scaffold(
+      appBar: AppBar(title: searchBar),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kContentPadding,
+          vertical: Sizes.p24,
         ),
+        child: themesGrid,
       ),
     );
   }

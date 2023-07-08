@@ -5,24 +5,29 @@ class _DiscoverThemesGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final discoverValue = ref.watch(discoverControllerProvider);
+    final discoverValue = ref.watch(fetchThemesListProvider);
 
-    return discoverValue.when(
-      data: (state) => SliverThemesGrid(
-        childCount: state.themes.length,
-        builder: (context, index) {
-          final theme = state.themes[index]!;
-          return _buildThemeCard(context, theme);
-        },
-      ),
-      loading: () => SliverThemesGrid(
-        childCount: 8,
-        addAutomaticKeepAlives: false,
-        builder: (context, index) => const Placeholder$ThemeCard(),
-      ),
-      error: (err, stack) => SliverToBoxAdapter(
-        child: Center(child: Text(err.toString())),
-      ),
+    return RefreshIndicator(
+      onRefresh: () async => ref.refresh(fetchThemesListProvider),
+      child: CustomScrollView(slivers: [
+        discoverValue.when(
+          data: (themes) => SliverThemesGrid(
+            childCount: themes.length,
+            builder: (context, index) {
+              final theme = themes[index]!;
+              return _buildThemeCard(context, theme);
+            },
+          ),
+          loading: () => SliverThemesGrid(
+            childCount: 8,
+            addAutomaticKeepAlives: false,
+            builder: (context, index) => const Placeholder$ThemeCard(),
+          ),
+          error: (err, stack) => SliverToBoxAdapter(
+            child: Center(child: Text(err.toString())),
+          ),
+        ),
+      ]),
     );
   }
 
