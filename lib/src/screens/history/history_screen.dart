@@ -1,10 +1,11 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
-import 'package:serendy/src/sheets/sheets.dart';
+import 'package:serendy/src/sheets/menu_items/menu_items.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/history_controller.dart';
 
+part 'sheets/_history_menu_sheet.dart';
 part 'widgets/_history_cards_list.dart';
 part 'widgets/_history_titles.dart';
 

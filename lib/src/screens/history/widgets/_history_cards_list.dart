@@ -14,18 +14,23 @@ class _HistoryCardsList extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.only(bottom: Sizes.p16),
-          child: HistoryCard(
-            onTap: () => context.pushNamed(
-              AppRoutes.media,
-              pathParameters: {'id': evaluation.media.id},
-              extra: evaluation.media.convertEntity,
-            ),
-            onMoreTap: () =>
-                HistoryMenuSheet.show(context, (evaluation: evaluation)),
-            evaluation: evaluation,
-          ),
+          child: _buildHistoryCard(context, evaluation),
         );
       },
+    );
+  }
+
+  Widget _buildHistoryCard(BuildContext context, Evaluation evaluation) {
+    return HistoryCard(
+      onTap: () => context.pushNamed(
+        AppRoutes.media,
+        pathParameters: {'id': evaluation.media.id},
+        extra: evaluation.media.convertEntity,
+      ),
+      onMoreTap: () => context.showCustomBottomSheet(
+        (_) => _HistoryMenuSheet(evaluation),
+      ),
+      evaluation: evaluation,
     );
   }
 }

@@ -37,7 +37,7 @@ class _SearchResults extends ConsumerWidget {
         pathParameters: {'id': media.id},
         extra: media,
       ),
-      onMoreTap: () => MediaMenuSheet.show(context, (media: media)),
+      onMoreTap: () => MediaMenuSheet.show(context, media),
       media: media,
     );
   }

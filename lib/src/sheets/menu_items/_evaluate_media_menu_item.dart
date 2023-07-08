@@ -3,8 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/screens/media_evaluate/controller/evaluate_media_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class EvaluateMediaTile extends ConsumerWidget {
-  const EvaluateMediaTile({required this.media, super.key});
+class EvaluateMediaMenuItem extends ConsumerWidget {
+  const EvaluateMediaMenuItem({required this.media, super.key});
 
   final Media media;
 

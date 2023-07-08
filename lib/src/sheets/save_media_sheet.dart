@@ -3,22 +3,18 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
 
-typedef SaveMediaSheetPayload = ({
-  Media media,
-});
-
 class SaveMediaSheet extends ConsumerWidget {
-  const SaveMediaSheet(this.payload, {super.key});
-  final SaveMediaSheetPayload payload;
+  const SaveMediaSheet(this.media);
+  final Media media;
 
-  static void show(BuildContext context, SaveMediaSheetPayload payload) {
-    context.showCustomBottomSheet((_) => SaveMediaSheet(payload));
+  static void show(BuildContext context, Media media) {
+    context.showCustomBottomSheet((_) => SaveMediaSheet(media));
   }
 
   void handleSelect(BuildContext context, WidgetRef ref, Theme theme) {
     ref.read(addThemeItemProvider(
       id: theme.id,
-      mediaId: payload.media.id,
+      mediaId: media.id,
     ));
 
     // * 추가에 성공하면 메뉴를 닫고 메시지로 안내해요.

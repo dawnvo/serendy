@@ -19,6 +19,7 @@ custom_lint:
     - missing_provider_scope: false
     # Disable this as we're still using old Provider for the GoRouter instance
     - avoid_manual_providers_as_generated_provider_dependency: false
+    - avoid_public_notifier_properties: false
 
 linter:
   # The lint rules applied to this project can be customized in the

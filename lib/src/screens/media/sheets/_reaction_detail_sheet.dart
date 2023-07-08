@@ -1,18 +1,10 @@
 part of '../media_screen.dart';
 
-typedef _ReactionDetailSheetPayload = ({
-  List<Evaluation?> reactions,
-});
-
 typedef _ReactionData = ({Emotion emotion, int count});
 
 class _ReactionDetailSheet extends StatelessWidget {
-  const _ReactionDetailSheet(this.payload);
-  final _ReactionDetailSheetPayload payload;
-
-  static void show(BuildContext context, _ReactionDetailSheetPayload payload) {
-    context.showCustomBottomSheet((_) => _ReactionDetailSheet(payload));
-  }
+  const _ReactionDetailSheet(this.reactions);
+  final List<Evaluation?> reactions;
 
   /// 중복된 감정을 병합하고
   /// 정제된 감정을 데이터로 변환해요.
@@ -30,7 +22,7 @@ class _ReactionDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reactionDatas = _transform(payload.reactions);
+    final reactionDatas = _transform(reactions);
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
 
     return Padding(

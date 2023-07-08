@@ -11,7 +11,7 @@ class _MediaActionBar extends StatelessWidget {
       height: Sizes.p64,
       child: Row(children: [
         IconButton(
-          onPressed: () => SaveMediaSheet.show(context, (media: media)),
+          onPressed: () => SaveMediaSheet.show(context, media),
           icon: const Icon(RemixIcon.add_box_fill),
         ),
         IconButton(
@@ -19,7 +19,7 @@ class _MediaActionBar extends StatelessWidget {
           icon: const Icon(RemixIcon.share_fill),
         ),
         IconButton(
-          onPressed: () => MediaMenuSheet.show(context, (media: media)),
+          onPressed: () => MediaMenuSheet.show(context, media),
           icon: const Icon(RemixIcon.more_2_fill),
         ),
         const Spacer(),

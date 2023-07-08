@@ -5,14 +5,15 @@ import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
-import 'package:serendy/src/sheets/sheets.dart';
+import 'package:serendy/src/sheets/menu_items/menu_items.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/theme_controller.dart';
 
+part 'sheets/_theme_item_menu_sheet.dart';
 part 'widgets/_detail_bar.dart';
-part 'widgets/_medias_grid.dart';
 part 'widgets/_theme_background.dart';
+part 'widgets/_theme_items_grid.dart';
 part 'widgets/_theme_titles.dart';
 
 class ThemeScreen extends ConsumerWidget {
@@ -44,7 +45,7 @@ class ThemeScreen extends ConsumerWidget {
           theme: state.theme,
           owner: state.owner,
         ),
-        mediasGrid: _ThemeMediasGrid(
+        mediasGrid: _ThemeItemsGrid(
           theme: state.theme,
           medias: state.theme.items.map((e) => e!.media).toList(),
         ),

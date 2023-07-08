@@ -3,14 +3,14 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class SaveMediaTile extends StatelessWidget {
-  const SaveMediaTile({required this.media, super.key});
+class SaveMediaMenuItem extends StatelessWidget {
+  const SaveMediaMenuItem({required this.media, super.key});
 
   final Media media;
 
   void handleTap(BuildContext context) {
     context.pop();
-    SaveMediaSheet.show(context, (media: media));
+    SaveMediaSheet.show(context, media);
   }
 
   @override

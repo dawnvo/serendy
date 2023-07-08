@@ -4,8 +4,8 @@ import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/screens/theme/controller/theme_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class DeleteThemeItemTile extends ConsumerWidget {
-  const DeleteThemeItemTile({
+class DeleteThemeItemMenuItem extends ConsumerWidget {
+  const DeleteThemeItemMenuItem({
     required this.theme,
     required this.media,
   });

@@ -6,7 +6,7 @@ class _MediaReactionsTile extends StatelessWidget {
   final List<Evaluation?> reactions;
 
   void _handleShowBottomSheet(BuildContext context) {
-    _ReactionDetailSheet.show(context, (reactions: reactions));
+    context.showCustomBottomSheet((_) => _ReactionDetailSheet(reactions));
   }
 
   @override

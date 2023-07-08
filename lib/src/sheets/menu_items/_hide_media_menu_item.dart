@@ -2,8 +2,8 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class HideMediaTile extends ConsumerWidget {
-  const HideMediaTile({required this.media, super.key});
+class HideMediaMenuItem extends ConsumerWidget {
+  const HideMediaMenuItem({required this.media, super.key});
 
   final Media media;
 

@@ -4,8 +4,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class DeleteEvaluationTile extends ConsumerWidget {
-  const DeleteEvaluationTile({required this.media, super.key});
+class DeleteEvaluationMenuItem extends ConsumerWidget {
+  const DeleteEvaluationMenuItem({required this.media, super.key});
 
   final Media media;
 
@@ -15,9 +15,7 @@ class DeleteEvaluationTile extends ConsumerWidget {
       await ref.read(removeEvaluationProvider(mediaId: media.id).future);
 
       // * 삭제에 성공하면 평가 개수를 갱신해요.
-      await ref
-          .read(profileControllerProvider.notifier)
-          .evaluationsCountUpdated();
+      ref.read(profileControllerProvider.notifier).evaluationsCountUpdated();
 
       // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
       if (!context.mounted) return;

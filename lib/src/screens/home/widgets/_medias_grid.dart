@@ -33,7 +33,7 @@ class _HomeMediasGrid extends ConsumerWidget {
         pathParameters: {'id': media.id},
         extra: media,
       ),
-      onLongPress: () => MediaMenuSheet.show(context, (media: media)),
+      onLongPress: () => MediaMenuSheet.show(context, media),
       media: media,
     );
   }

@@ -2,8 +2,8 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class ShareMediaTile extends StatelessWidget {
-  const ShareMediaTile({required this.media, super.key});
+class ShareMediaMenuItem extends StatelessWidget {
+  const ShareMediaMenuItem({required this.media, super.key});
 
   final Media media;
 

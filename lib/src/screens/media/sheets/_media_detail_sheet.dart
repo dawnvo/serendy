@@ -1,26 +1,18 @@
 part of '../media_screen.dart';
 
-typedef _MediaDetailSheetPayload = ({
-  Media media,
-});
-
 class _MediaDetailSheet extends StatelessWidget {
-  const _MediaDetailSheet(this.payload);
-  final _MediaDetailSheetPayload payload;
-
-  static void show(BuildContext context, _MediaDetailSheetPayload payload) {
-    context.showCustomBottomSheet((_) => _MediaDetailSheet(payload));
-  }
+  const _MediaDetailSheet(this.media);
+  final Media media;
 
   @override
   Widget build(BuildContext context) {
-    final youtubeId = payload.media.youtubeId;
+    final youtubeId = media.youtubeId;
 
     // * DB에 트레일러 주소가 존재하면 영상을 틀어줘요.
     if (youtubeId.isNotEmpty) {
       return __YoutubeTrailerBody(
         youtubeId: youtubeId.first!,
-        keywords: payload.media.keywords.map((genre) => genre).toList(),
+        keywords: media.keywords.map((genre) => genre).toList(),
       );
     }
     // * 트레일러 주소가 없으면 안내 화면을 표시해요.

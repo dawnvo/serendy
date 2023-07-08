@@ -1,7 +1,7 @@
 part of '../theme_screen.dart';
 
-class _ThemeMediasGrid extends StatelessWidget {
-  const _ThemeMediasGrid({
+class _ThemeItemsGrid extends StatelessWidget {
+  const _ThemeItemsGrid({
     required this.theme,
     required this.medias,
   });
@@ -27,10 +27,9 @@ class _ThemeMediasGrid extends StatelessWidget {
         pathParameters: {'id': media.id},
         extra: media,
       ),
-      onLongPress: () => ThemeItemMenuSheet.show(context, (
-        theme: theme,
-        media: media,
-      )),
+      onLongPress: () => context.showCustomBottomSheet(
+        (_) => _ThemeItemMenuSheet(theme, media),
+      ),
       media: media,
     );
   }
