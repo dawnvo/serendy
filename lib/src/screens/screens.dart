@@ -6,6 +6,7 @@ export 'home/home_screen.dart';
 export 'media/media_screen.dart';
 export 'media_evaluate/evaluate_media_screen.dart';
 export 'profile/profile_screen.dart';
+export 'profile_card/profile_card_screen.dart';
 export 'search/search_screen.dart';
 export 'settings/settings_screen.dart';
 export 'sign_in/sign_in_screen.dart';

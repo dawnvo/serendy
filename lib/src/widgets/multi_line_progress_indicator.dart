@@ -15,14 +15,18 @@ interface class ProgressBar {
 ///
 /// 진행 상태를 여러 줄로 표시할 수 있어요. 한 줄도 가능하고요.
 class MultiLineProgressIndicator extends StatelessWidget {
-  const MultiLineProgressIndicator(this.progressBars);
+  const MultiLineProgressIndicator(
+    this.progressBars, {
+    this.height = 10,
+  });
 
   final List<ProgressBar?> progressBars;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(height: 10),
+      constraints: BoxConstraints.expand(height: height),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(Sizes.p4)),
       clipBehavior: Clip.hardEdge,
       child: CustomPaint(

@@ -36,5 +36,5 @@ const _token = '[COLOR]';
 const _svg =
     '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 800 1280">'
     '<path fill="$_token" d="M800 0H0v1280h800V0Z"/>'
-    '<path fill="#fff" fill-opacity=".1" d="M228 1612a686 686 0 1 0 0-1372 686 686 0 0 0 0 1372Z"/>'
+    '<path fill="#fff" fill-opacity=".08" d="M228 1612a686 686 0 1 0 0-1372 686 686 0 0 0 0 1372Z"/>'
     '</svg>';

@@ -65,36 +65,36 @@ extension RankX on Rank {
 
   ({Color fore, Color back}) get color => switch (this) {
         Rank.iron => const (
-            fore: Color(0xFFB2B0B3),
-            back: Color(0xFF302E35),
+            fore: Color(0xFF8C8C97),
+            back: Color(0xFF191921),
           ),
         Rank.bronze => const (
-            fore: Color(0xFFBE9985),
-            back: Color(0xFF2B1C1C),
+            fore: Color(0xFFE8CBA4),
+            back: Color(0xFF564226),
           ),
         Rank.silver => const (
-            fore: Color(0xFF94A3B6),
-            back: Color(0xFF252430),
+            fore: Color(0xFFF1F4F5),
+            back: Color(0xFF4B5559),
           ),
         Rank.gold => const (
-            fore: Color(0xffEAC081),
-            back: Color(0xFF403A35),
+            fore: Color(0xFFFFD971),
+            back: Color(0xFF604312),
           ),
         Rank.platinum => const (
-            fore: Color(0xFFABE3E1),
-            back: Color(0xFF263A38),
+            fore: Color(0xFF9DF0F3),
+            back: Color(0xFF245455),
           ),
         Rank.diamond => const (
-            fore: Color(0xFF9BB1FF),
-            back: Color(0xFF1B1F40),
+            fore: Color(0xFFB9CAF5),
+            back: Color(0xFF364262),
           ),
         Rank.master => const (
-            fore: Color(0xFFBFA4F9),
-            back: Color(0xFF2B0E3F),
+            fore: Color(0xFFD8B8F5),
+            back: Color(0xFF4C3662),
           ),
         Rank.novel => const (
-            fore: Color(0xFFFF999D),
-            back: Color(0xFF320B0C),
+            fore: Color(0xFFFD6AA8),
+            back: Color(0xFF5A1637),
           ),
       };
 }

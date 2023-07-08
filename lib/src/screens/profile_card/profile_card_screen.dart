@@ -5,116 +5,116 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-class ProfileCardScreen extends StatelessWidget {
-  const ProfileCardScreen({super.key});
+part 'widgets/_profile_card_titles.dart';
+part 'widgets/_watched_media_indicator.dart';
 
-  static void show(BuildContext context) {
-    showModal(
-      context: context,
-      builder: (context) => const ProfileCardScreen(),
+class ProfileCardScreen extends StatelessWidget {
+  const ProfileCardScreen({
+    required this.rank,
+    required this.count,
+  });
+
+  final Rank rank;
+  final int count;
+
+  static void show(BuildContext context, Rank rank, int count) {
+    const transitionDuration = Duration(milliseconds: 200);
+    Navigator.of(context, rootNavigator: true).push(
+      PageRouteBuilder(
+        fullscreenDialog: true,
+        transitionDuration: transitionDuration,
+        reverseTransitionDuration: transitionDuration,
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return SharedAxisTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.vertical,
+            child: ProfileCardScreen(rank: rank, count: count),
+          );
+        },
+      ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return _ProfileCardTemplate(
+      icon: SvgPicture.asset(
+        rank.filePath,
+        fit: BoxFit.cover,
+        height: 240,
+      ),
+      titles: _ProfileCardTitles(
+        rank: rank,
+        user: userMock,
+      ),
+      indicator: _WatchedMediaIndicator(
+        min: rank.range.min,
+        max: rank.range.max,
+        color: rank.color.fore,
+        count: count,
+      ),
+    );
+  }
+}
+
+class _ProfileCardTemplate extends StatelessWidget {
+  const _ProfileCardTemplate({
+    required this.icon,
+    required this.titles,
+    required this.indicator,
+  });
+
+  final SvgPicture icon;
+  final _ProfileCardTitles titles;
+  final _WatchedMediaIndicator indicator;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const _ProfileCard(),
-            Gap.h24,
-            FilledButton.tonal(
-              onPressed: () => context.pop(),
-              child: const Text('계속하기'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ProfileCard extends StatelessWidget {
-  const _ProfileCard();
-
-  @override
-  Widget build(BuildContext context) {
-    const rank = Rank.silver;
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(kBorderRadius),
-      child: ProfileCardContainer(
-        color: rank.color.back,
-        width: 280,
-        height: 480,
-        child: Stack(children: [
-          Center(
-            child: SvgPicture.asset(
-              'assets/icons/serendy.svg',
-              fit: BoxFit.cover,
-              height: 240,
-              color: rank.color.fore.withOpacity(.4),
-            ),
-          ),
-          _buildContent(rank),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Gap.h64,
+          _buildCard(context),
+          Gap.h24,
+          _buildCloseButton(context),
         ]),
       ),
     );
   }
 
-  Widget _buildContent(Rank rank) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
-          ),
-          child: __ProfileCardTitles(
-            rank: rank,
-            user: userMock,
-          ),
-        ),
-        Gap.h24,
-      ],
+  Widget _buildCard(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(kBorderRadius),
+      child: ProfileCardContainer(
+        color: Colors.black,
+        width: 280,
+        height: 480,
+        child: Stack(children: [
+          Center(child: icon),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kContentPadding,
+                ),
+                child: titles,
+              ),
+              Gap.h40,
+              indicator,
+            ],
+          )
+        ]),
+      ),
     );
   }
-}
 
-class __ProfileCardTitles extends StatelessWidget {
-  const __ProfileCardTitles({
-    required this.user,
-    required this.rank,
-  });
-
-  final User user;
-  final Rank rank;
-
-  @override
-  Widget build(BuildContext context) {
-    const color = Color(0xCCFFFFFF);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Gap.h8,
-        Text(
-          user.name,
-          maxLines: 1,
-          overflow: TextOverflow.clip,
-          style: context.textTheme.headlineMedium?.copyWith(
-            color: color,
-            height: 1.5,
-          ),
-        ),
-        Text(
-          "${rank.label} 등급",
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: color,
-          ),
-        ),
-      ],
+  Widget _buildCloseButton(BuildContext context) {
+    return CloseButton(
+      style: IconButton.styleFrom(
+        fixedSize: const Size(56, 56),
+      ),
     );
   }
 }

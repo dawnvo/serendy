@@ -21,12 +21,19 @@ class _ProfileCard extends StatelessWidget {
       return _.range.max == 0;
     });
 
-    return ProfileCardContainer(
-      color: rank.color.back,
-      height: 160,
-      child: Padding(
-        padding: const EdgeInsets.all(kContentPadding),
-        child: _buildContent(context, rank: rank),
+    return GestureDetector(
+      onTap: () => ProfileCardScreen.show(
+        context,
+        rank,
+        evaluationCount,
+      ),
+      child: ProfileCardContainer(
+        color: rank.color.back,
+        height: 160,
+        child: Padding(
+          padding: const EdgeInsets.all(kContentPadding),
+          child: _buildContent(context, rank: rank),
+        ),
       ),
     );
   }
@@ -63,26 +70,18 @@ class __ProfileCardTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const color = Color(0xCCFFFFFF);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Gap.h8,
         Text(
           user.name,
           maxLines: 1,
           overflow: TextOverflow.clip,
           style: context.textTheme.headlineMedium?.copyWith(
-            color: color,
-            height: 1.5,
+            height: 1.8,
           ),
         ),
-        Text(
-          "${rank.label} 등급",
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: color,
-          ),
-        ),
+        Text("${rank.label} 등급"),
       ],
     );
   }
