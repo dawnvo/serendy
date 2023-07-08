@@ -11,22 +11,16 @@ Future<List<Evaluation?>> fetchReactionsList(
   FetchReactionsListRef ref, {
   required String mediaId,
 }) {
-  return EvaluationModule.getEvaluationListUsecase.execute((
-    mediaId: mediaId,
-    userId: null,
-  ));
+  return EvaluationModule.getEvaluationListUsecase.execute((mediaId: mediaId));
 }
 
 /// 나의 평가 목록을 구독해요.
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<List<Evaluation?>> watchMyEvaluationsList(
   WatchMyEvaluationsListRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.watchEvaluationListUsecase.execute((
-    userId: userId,
-    mediaId: null,
-  ));
+  return EvaluationModule.watchEvaluationListUsecase.execute((userId: userId));
 }
 
 /// 나의 평가 개수를 조회해요.

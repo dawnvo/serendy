@@ -4,30 +4,6 @@ import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
 import 'package:serendy/src/features/media/infrastructure/media_mapper.dart';
 import 'package:serendy/src/features/media/media.dart';
 
-ThemeItem themeItemMapper(ThemeItemEntity item) {
-  return ThemeItem(
-    addedAt: item.addedAt,
-    media: Media(
-      id: item.media.id,
-      type: item.media.type,
-      status: item.media.status,
-      title: item.media.title,
-      image: item.media.image,
-      images: mediaImagesMapper(item.media),
-      synopsis: item.media.synopsis,
-      keywords: item.media.keywords,
-      youtubeId: item.media.youtubeId,
-      isAdult: item.media.isAdult,
-      startDate: item.media.startDate != null
-          ? DateTime.parse(item.media.startDate!)
-          : null,
-      endDate: item.media.endDate != null
-          ? DateTime.parse(item.media.endDate!)
-          : null,
-    ),
-  );
-}
-
 abstract final class ThemeMapper {
   static Theme toDomainModel(final ThemeEntity entity) {
     final ThemeOwner owner = ThemeOwner(
@@ -35,8 +11,9 @@ abstract final class ThemeMapper {
       name: entity.owner.name,
     );
 
-    final List<ThemeItem?> themeItems =
-        entity.items.map((item) => themeItemMapper(item!)).toList();
+    final List<ThemeItem?> themeItems = entity.items
+        .map((item) => ThemeItemMapper.toDomainModel(item!))
+        .toList();
 
     return Theme(
       id: entity.id,
@@ -51,10 +28,6 @@ abstract final class ThemeMapper {
       updatedAt: entity.updatedAt,
       removedAt: entity.removedAt,
     );
-  }
-
-  static List<Theme> toDomainModels(final Iterable<ThemeEntity> entities) {
-    return entities.map((entity) => ThemeMapper.toDomainModel(entity)).toList();
   }
 
   static ThemeEntity toDataEntity(final Theme model) {
@@ -98,8 +71,52 @@ abstract final class ThemeMapper {
       removedAt: model.removedAt,
     );
   }
+}
 
-  static List<ThemeEntity> toDataEntities(final Iterable<Theme> models) {
-    return models.map((model) => ThemeMapper.toDataEntity(model)).toList();
+abstract final class ThemeItemMapper {
+  static ThemeItem toDomainModel(final ThemeItemEntity item) {
+    final images = MediaImagesMapper.toDomainModel(item.media.images);
+    return ThemeItem(
+      addedAt: item.addedAt,
+      media: Media(
+        id: item.media.id,
+        type: item.media.type,
+        status: item.media.status,
+        title: item.media.title,
+        image: item.media.image,
+        images: images,
+        synopsis: item.media.synopsis,
+        keywords: item.media.keywords,
+        youtubeId: item.media.youtubeId,
+        isAdult: item.media.isAdult,
+        startDate: item.media.startDate != null
+            ? DateTime.parse(item.media.startDate!)
+            : null,
+        endDate: item.media.endDate != null
+            ? DateTime.parse(item.media.endDate!)
+            : null,
+      ),
+    );
+  }
+
+  static ThemeItemEntity toDataEntity(final ThemeItem item) {
+    return ThemeItemEntity(
+      addedAt: item.addedAt,
+      media: MediaEntity(
+        id: item.media.id,
+        type: item.media.type,
+        status: item.media.status,
+        title: item.media.title,
+        image: item.media.image,
+        synopsis: item.media.synopsis,
+        keywords: item.media.keywords,
+        youtubeId: item.media.youtubeId,
+        isAdult: item.media.isAdult,
+        startDate: item.media.startDate?.toIso8601String(),
+        endDate: item.media.endDate?.toIso8601String(),
+        // 이미지는 서버에서 설정할 거예요.
+        images: null,
+      ),
+    );
   }
 }

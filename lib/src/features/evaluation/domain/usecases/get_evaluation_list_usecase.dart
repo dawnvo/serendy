@@ -2,8 +2,7 @@ import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 typedef GetEvaluationListPayload = ({
-  String? userId,
-  String? mediaId,
+  String mediaId,
 });
 
 final class GetEvaluationListUsecase
@@ -13,10 +12,7 @@ final class GetEvaluationListUsecase
 
   @override
   Future<List<Evaluation?>> execute(GetEvaluationListPayload payload) {
-    final evaluations = _evaluationRepository.findMany(
-      userId: payload.userId,
-      mediaId: payload.mediaId,
-    );
+    final evaluations = _evaluationRepository.findMany(payload.mediaId);
     return evaluations;
   }
 }

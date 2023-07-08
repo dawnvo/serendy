@@ -21,13 +21,6 @@ abstract final class EvaluationMapper {
     );
   }
 
-  static List<Evaluation> toDomainModels(
-      final Iterable<EvaluationEntity> entities) {
-    return entities
-        .map((entity) => EvaluationMapper.toDomainModel(entity))
-        .toList();
-  }
-
   static EvaluationEntity toDataEntity(final Evaluation model) {
     final MediaInfoEntity media = MediaInfoEntity(
       id: model.media.id,
@@ -45,10 +38,5 @@ abstract final class EvaluationMapper {
       updatedAt: model.updatedAt,
       removedAt: model.removedAt,
     );
-  }
-
-  static List<EvaluationEntity> toDataEntities(
-      final Iterable<Evaluation> models) {
-    return models.map((model) => EvaluationMapper.toDataEntity(model)).toList();
   }
 }

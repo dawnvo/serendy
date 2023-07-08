@@ -11,7 +11,6 @@ final class MediaRepositoryImpl implements MediaRepository {
   final FirebaseFirestore firestore;
   final CollectionReference<Map<String, dynamic>> _ref;
 
-  /// Search medias list
   @override
   Future<List<Media?>> search(String? title) async {
     final snapshots = await _ref
@@ -20,37 +19,39 @@ final class MediaRepositoryImpl implements MediaRepository {
         .where("title", isLessThanOrEqualTo: '$title\uf8ff')
         .get();
 
-    final mediaDataList = snapshots.docs.map((doc) => doc.data());
-    final mediaEntities = mediaDataList.map(MediaEntity.fromJson);
-    return MediaMapper.toDomainModels(mediaEntities);
+    return snapshots.docs
+        .map((doc) => doc.data())
+        .map(MediaEntity.fromJson)
+        .map(MediaMapper.toDomainModel)
+        .toList();
   }
 
-  /// Fetch medias list
   @override
   Future<List<Media?>> findMany(int pageSize) async {
     final snapshots = await _ref.limit(pageSize).get();
 
-    final mediaDataList = snapshots.docs.map((doc) => doc.data());
-    final mediaEntities = mediaDataList.map(MediaEntity.fromJson);
-    return MediaMapper.toDomainModels(mediaEntities);
+    return snapshots.docs
+        .map((doc) => doc.data())
+        .map(MediaEntity.fromJson)
+        .map(MediaMapper.toDomainModel)
+        .toList();
   }
 
-  /// Fetch media
   @override
   Future<Media?> findOne(MediaID mediaId) async {
-    final docRef = _ref.doc(mediaId);
-    final mediaData = await docRef.get().then((doc) => doc.data());
+    final snapshot = await _ref.doc(mediaId).get();
 
-    if (mediaData == null) return null;
+    final data = snapshot.data();
+    if (data == null) return null;
 
-    final mediaEntity = MediaEntity.fromJson(mediaData);
-    return MediaMapper.toDomainModel(mediaEntity);
+    final entity = MediaEntity.fromJson(data);
+    return MediaMapper.toDomainModel(entity);
   }
 
   /// Create media
   @override
   Future<void> create(Media media) async {
-    final mediaEntity = MediaMapper.toDataEntity(media);
-    await _ref.doc(media.id).set(mediaEntity.toJson());
+    final entity = MediaMapper.toDataEntity(media);
+    await _ref.doc(media.id).set(entity.toJson());
   }
 }

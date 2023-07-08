@@ -7,7 +7,7 @@ part of 'evaluation_service.dart';
 // **************************************************************************
 
 String _$fetchReactionsListHash() =>
-    r'7fe70e37883b20fee6766ab75608d724704ab783';
+    r'ea163ef3623b6a2022665da4007a9824c4bc6579';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -125,14 +125,14 @@ class FetchReactionsListProvider
 }
 
 String _$watchMyEvaluationsListHash() =>
-    r'abbbe46f489dcc73d47762bd634ef050f1e1a7d9';
+    r'6a5f9d4e9f31c3a1746b780ec2563ce616f1ea41';
 
 /// 나의 평가 목록을 구독해요.
 ///
 /// Copied from [watchMyEvaluationsList].
 @ProviderFor(watchMyEvaluationsList)
 final watchMyEvaluationsListProvider =
-    AutoDisposeStreamProvider<List<Evaluation?>>.internal(
+    StreamProvider<List<Evaluation?>>.internal(
   watchMyEvaluationsList,
   name: r'watchMyEvaluationsListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -142,8 +142,7 @@ final watchMyEvaluationsListProvider =
   allTransitiveDependencies: null,
 );
 
-typedef WatchMyEvaluationsListRef
-    = AutoDisposeStreamProviderRef<List<Evaluation?>>;
+typedef WatchMyEvaluationsListRef = StreamProviderRef<List<Evaluation?>>;
 String _$countMyEvaluationsHash() =>
     r'cff6b0f9d843f55efdf356077287399605e6891e';
 

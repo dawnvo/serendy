@@ -16,25 +16,29 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Stream<List<Theme?>> watchMany(UserID userId) {
     final streamSnapshots = _ref
+        // * 삭제한 평가는 제외해요.
         .where('removed_at', isNull: true)
+        // * 로그인한 사용자의 테마만 가져와요.
         .where('owner.id', isEqualTo: userId)
+        // * 날짜순으로 정렬해요.
         .orderBy('created_at')
         .snapshots();
 
-    return streamSnapshots.map((snapshot) {
-      final themeDataList = snapshot.docs.map((doc) => doc.data());
-      final themeEntities = themeDataList.map(ThemeEntity.fromJson);
-      return ThemeMapper.toDomainModels(themeEntities);
-    });
+    return streamSnapshots.map((snapshot) => snapshot.docs
+        .map((doc) => doc.data())
+        .map(ThemeEntity.fromJson)
+        .map(ThemeMapper.toDomainModel)
+        .toList());
   }
 
   @override
   Future<List<Theme?>> findMany(UserID? userId) async {
     final snapshot = await _ref.where('removed_at', isNull: true).get();
-
-    final themeDataList = snapshot.docs.map((doc) => doc.data());
-    final themeEntities = themeDataList.map(ThemeEntity.fromJson);
-    return ThemeMapper.toDomainModels(themeEntities);
+    return snapshot.docs
+        .map((doc) => doc.data())
+        .map(ThemeEntity.fromJson)
+        .map(ThemeMapper.toDomainModel)
+        .toList();
   }
 
   @override
@@ -48,63 +52,64 @@ final class ThemeRepositoryImpl implements ThemeRepository {
 
   @override
   Future<Theme?> fetchTheme(ThemeID themeId) async {
-    final docRef = _ref.doc(themeId);
-    final themeData = await docRef.get().then((doc) => doc.data());
+    final snapshot = await _ref.doc(themeId).get();
+    final data = snapshot.data();
 
-    if (themeData == null) return null;
+    if (data == null) return null;
 
-    final themeEntity = ThemeEntity.fromJson(themeData);
-    return ThemeMapper.toDomainModel(themeEntity);
+    final entity = ThemeEntity.fromJson(data);
+    return ThemeMapper.toDomainModel(entity);
   }
 
   @override
   Future<List<ThemeItem?>> fetchThemeItems(ThemeID themeId) async {
-    final itemDocRef = _ref.doc(themeId).collection(FirestorePath.themeItem);
+    final snapshots = await _ref //
+        .doc(themeId)
+        .collection(FirestorePath.themeItem)
+        .get();
 
-    final snapshots = await itemDocRef.get();
-    final themeItems = snapshots.docs
+    return snapshots.docs
         .map((doc) => doc.data())
         .map(ThemeItemEntity.fromJson)
-        .map(themeItemMapper)
+        .map(ThemeItemMapper.toDomainModel)
         .toList();
-
-    return themeItems;
   }
 
   @override
   Future<void> create(Theme theme) async {
-    final themeEntity = ThemeMapper.toDataEntity(theme);
-    final themeData = themeEntity.toJson();
+    final entity = ThemeMapper.toDataEntity(theme);
+    final data = entity.toJson();
 
     //remove prop
-    themeData.remove('items');
+    data.remove('items');
 
-    await _ref.doc(theme.id).set(themeData);
+    await _ref.doc(theme.id).set(data);
   }
 
   @override
   Future<void> update(Theme theme) async {
-    final themeEntity = ThemeMapper.toDataEntity(theme);
-    final themeData = themeEntity.toJson();
+    final entity = ThemeMapper.toDataEntity(theme);
+    final data = entity.toJson();
 
     //remove prop
-    themeData.remove('items');
+    data.remove('items');
 
-    await _ref.doc(theme.id).update(themeData);
+    await _ref.doc(theme.id).update(data);
   }
 
   @override
   Future<void> addItem(Theme theme, MediaID mediaId) async {
-    final themeEntity = ThemeMapper.toDataEntity(theme);
-    final themeItemEntity = themeEntity.items.firstWhere(
-      (item) => item?.media.id == mediaId,
-    )!;
-
     final docRef = _ref.doc(theme.id);
     final itemDocRef = docRef.collection(FirestorePath.themeItem).doc(mediaId);
 
+    // * 추가한 항목을 찾아요.
+    final itemEntity = theme.items
+        .where((item) => item?.media.id == mediaId)
+        .map((item) => ThemeItemMapper.toDataEntity(item!))
+        .first;
+
     final batch = firestore.batch();
-    batch.set(itemDocRef, themeItemEntity.toJson());
+    batch.set(itemDocRef, itemEntity.toJson());
     batch.update(docRef, {
       "item_count": theme.itemCount,
       "updated_at": theme.updatedAt,

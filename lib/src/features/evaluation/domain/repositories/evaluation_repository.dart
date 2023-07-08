@@ -3,9 +3,9 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 abstract class EvaluationRepository {
-  Stream<List<Evaluation?>> watchMany({UserID? userId, MediaID? mediaId});
+  Stream<List<Evaluation?>> watchMany(UserID userId);
 
-  Future<List<Evaluation?>> findMany({UserID? userId, MediaID? mediaId});
+  Future<List<Evaluation?>> findMany(MediaID mediaId);
 
   Future<Evaluation?> findOne(UserID userId, MediaID mediaId);
 

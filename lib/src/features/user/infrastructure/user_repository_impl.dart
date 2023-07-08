@@ -11,33 +11,29 @@ final class UserRepositoryImpl implements UserRepository {
   final FirebaseFirestore firestore;
   final CollectionReference<Map<String, dynamic>> _ref;
 
-  /// Fetch user
   @override
   Future<User?> findOne(UserID userId) async {
-    final docRef = _ref.doc(userId);
-    final userData = await docRef.get().then((user) => user.data());
+    final snapshot = await _ref.doc(userId).get();
 
-    if (userData == null) return null;
+    final data = snapshot.data();
+    if (data == null) return null;
 
-    final userEntity = UserEntity.fromJson(userData);
+    final userEntity = UserEntity.fromJson(data);
     return UserMapper.toDomain(userEntity);
   }
 
-  /// Create user
   @override
   Future<void> create(User user) async {
     final userEntity = UserMapper.toEntity(user);
     await _ref.doc(user.id).set(userEntity.toJson());
   }
 
-  /// Update user
   @override
   Future<void> update(User user) async {
     final userEntity = UserMapper.toEntity(user);
     await _ref.doc(user.id).update(userEntity.toJson());
   }
 
-  /// Delete user
   @override
   Future<void> delete(User user) async {
     await _ref.doc(user.id).delete();

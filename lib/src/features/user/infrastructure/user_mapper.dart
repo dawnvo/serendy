@@ -14,10 +14,6 @@ abstract final class UserMapper {
     );
   }
 
-  static List<User> toDomains(final Iterable<UserEntity> entities) {
-    return entities.map((entity) => UserMapper.toDomain(entity)).toList();
-  }
-
   static UserEntity toEntity(final User model) {
     return UserEntity(
       id: model.id,
@@ -28,9 +24,5 @@ abstract final class UserMapper {
       updatedAt: model.updatedAt,
       removedAt: model.removedAt,
     );
-  }
-
-  static List<UserEntity> toEntities(final Iterable<User> models) {
-    return models.map((model) => UserMapper.toEntity(model)).toList();
   }
 }
