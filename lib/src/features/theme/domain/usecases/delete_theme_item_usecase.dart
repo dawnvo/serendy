@@ -18,7 +18,7 @@ final class DeleteThemeItemUsecase
   Future<Theme> execute(DeleteThemeItemPayload payload) async {
     // 테마를 찾을 수 없으면 예외 처리
     final theme = CoreAssert.notEmpty<Theme>(
-      await _themeRepository.fetchTheme(payload.themeId),
+      await _themeRepository.findOne(payload.themeId),
       const EntityNotFoundException(),
     );
 

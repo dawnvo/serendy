@@ -7,6 +7,8 @@ abstract class ThemeRepository {
 
   Future<List<Theme?>> findMany(UserID? userId);
 
+  Future<Theme?> findOne(String themeId);
+
   Future<Theme?> fetchTheme(String themeId);
 
   Future<List<ThemeItem?>> fetchThemeItems(ThemeID themeId);

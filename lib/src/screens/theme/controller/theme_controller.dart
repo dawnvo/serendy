@@ -22,8 +22,15 @@ class ThemeController extends _$ThemeController {
   }
 
   Future<void> themeUpdated(Theme theme) async {
+    List<ThemeItem?>? themeItems;
+    if (theme.items.isEmpty) {
+      themeItems = state.requireValue.theme.items;
+    }
+
     // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
     if (!state.hasValue) return;
-    state = AsyncData(state.requireValue.copyWith(theme: theme));
+    state = AsyncData(state.requireValue.copyWith(
+      theme: theme.copy(items: themeItems),
+    ));
   }
 }

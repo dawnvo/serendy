@@ -38,6 +38,15 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }
 
   @override
+  Future<Theme?> findOne(ThemeID themeId) async {
+    final theme = await fetchTheme(themeId);
+    if (theme == null) return null;
+
+    final items = await fetchThemeItems(themeId);
+    return theme.copy(items: items);
+  }
+
+  @override
   Future<Theme?> fetchTheme(ThemeID themeId) async {
     final docRef = _ref.doc(themeId);
     final themeData = await docRef.get().then((doc) => doc.data());
