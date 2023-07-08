@@ -39,6 +39,8 @@ extension EmotionX on Emotion {
 }
 
 extension RankX on Rank {
+  String get filePath => 'assets/ranks/$name.svg';
+
   String get label => switch (this) {
         Rank.iron => '아이언',
         Rank.bronze => '브론즈',
