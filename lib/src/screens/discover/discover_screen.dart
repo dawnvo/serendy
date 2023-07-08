@@ -33,12 +33,12 @@ class _DiscoverTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: searchBar),
+      appBar: AppBar(
+        toolbarHeight: kToolbarHeight + 32, // margin top+down
+        title: searchBar,
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kContentPadding,
-          vertical: Sizes.p24,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
         child: themesGrid,
       ),
     );
