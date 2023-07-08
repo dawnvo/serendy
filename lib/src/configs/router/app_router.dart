@@ -75,6 +75,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => MediaScreen(
           id: state.pathParameters['id']!,
+          media: state.extra as Media?,
         ),
       ),
       GoRoute(

@@ -31,6 +31,7 @@ class _HomeMediasGrid extends ConsumerWidget {
       onTap: () => context.pushNamed(
         AppRoutes.media,
         pathParameters: {'id': media.id},
+        extra: media,
       ),
       onLongPress: () => MediaMenuSheet.show(context, (media: media)),
       media: media,

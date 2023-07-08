@@ -25,6 +25,7 @@ class _ThemeMediasGrid extends StatelessWidget {
       onTap: () => context.pushNamed(
         AppRoutes.media,
         pathParameters: {'id': media.id},
+        extra: media,
       ),
       onLongPress: () => ThemeItemMenuSheet.show(context, (
         theme: theme,

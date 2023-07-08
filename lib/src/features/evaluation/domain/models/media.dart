@@ -23,7 +23,6 @@ final class MediaInfo extends Equatable {
         image,
       ];
 
-  /// Media 조각을 엔티티로 변환해요.
   Media get convertEntity => Media(
         id: id,
         title: title,

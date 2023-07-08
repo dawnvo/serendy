@@ -6,7 +6,7 @@ part of 'media_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mediaControllerHash() => r'7274d9e197f033c9620fd28d51c47a72c096b19f';
+String _$mediaControllerHash() => r'dfe9eec591904a67172f3f2aa673b5b33f080cfb';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,12 @@ class _SystemHash {
 abstract class _$MediaController
     extends BuildlessAutoDisposeAsyncNotifier<MediaState> {
   late final String id;
+  late final Media? media;
 
   FutureOr<MediaState> build(
-    String id,
-  );
+    String id, [
+    Media? media,
+  ]);
 }
 
 /// See also [MediaController].
@@ -49,10 +51,12 @@ class MediaControllerFamily extends Family<AsyncValue<MediaState>> {
 
   /// See also [MediaController].
   MediaControllerProvider call(
-    String id,
-  ) {
+    String id, [
+    Media? media,
+  ]) {
     return MediaControllerProvider(
       id,
+      media,
     );
   }
 
@@ -62,6 +66,7 @@ class MediaControllerFamily extends Family<AsyncValue<MediaState>> {
   ) {
     return call(
       provider.id,
+      provider.media,
     );
   }
 
@@ -85,9 +90,12 @@ class MediaControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<MediaController, MediaState> {
   /// See also [MediaController].
   MediaControllerProvider(
-    this.id,
-  ) : super.internal(
-          () => MediaController()..id = id,
+    this.id, [
+    this.media,
+  ]) : super.internal(
+          () => MediaController()
+            ..id = id
+            ..media = media,
           from: mediaControllerProvider,
           name: r'mediaControllerProvider',
           debugGetCreateSourceHash:
@@ -100,16 +108,20 @@ class MediaControllerProvider
         );
 
   final String id;
+  final Media? media;
 
   @override
   bool operator ==(Object other) {
-    return other is MediaControllerProvider && other.id == id;
+    return other is MediaControllerProvider &&
+        other.id == id &&
+        other.media == media;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, id.hashCode);
+    hash = _SystemHash.combine(hash, media.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -120,6 +132,7 @@ class MediaControllerProvider
   ) {
     return notifier.build(
       id,
+      media,
     );
   }
 }

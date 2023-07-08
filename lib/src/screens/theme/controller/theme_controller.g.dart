@@ -6,7 +6,7 @@ part of 'theme_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeControllerHash() => r'e44105a5dbbdb6c79a4eef9f92af1d60599f1cf2';
+String _$themeControllerHash() => r'58579edd51661dd3cbecdaa2172a12d52616adaf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,12 @@ class _SystemHash {
 abstract class _$ThemeController
     extends BuildlessAutoDisposeAsyncNotifier<ThemeState> {
   late final String id;
+  late final Theme? theme;
 
   FutureOr<ThemeState> build(
-    String id,
-  );
+    String id, [
+    Theme? theme,
+  ]);
 }
 
 /// See also [ThemeController].
@@ -49,10 +51,12 @@ class ThemeControllerFamily extends Family<AsyncValue<ThemeState>> {
 
   /// See also [ThemeController].
   ThemeControllerProvider call(
-    String id,
-  ) {
+    String id, [
+    Theme? theme,
+  ]) {
     return ThemeControllerProvider(
       id,
+      theme,
     );
   }
 
@@ -62,6 +66,7 @@ class ThemeControllerFamily extends Family<AsyncValue<ThemeState>> {
   ) {
     return call(
       provider.id,
+      provider.theme,
     );
   }
 
@@ -85,9 +90,12 @@ class ThemeControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<ThemeController, ThemeState> {
   /// See also [ThemeController].
   ThemeControllerProvider(
-    this.id,
-  ) : super.internal(
-          () => ThemeController()..id = id,
+    this.id, [
+    this.theme,
+  ]) : super.internal(
+          () => ThemeController()
+            ..id = id
+            ..theme = theme,
           from: themeControllerProvider,
           name: r'themeControllerProvider',
           debugGetCreateSourceHash:
@@ -100,16 +108,20 @@ class ThemeControllerProvider
         );
 
   final String id;
+  final Theme? theme;
 
   @override
   bool operator ==(Object other) {
-    return other is ThemeControllerProvider && other.id == id;
+    return other is ThemeControllerProvider &&
+        other.id == id &&
+        other.theme == theme;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, id.hashCode);
+    hash = _SystemHash.combine(hash, theme.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -120,6 +132,7 @@ class ThemeControllerProvider
   ) {
     return notifier.build(
       id,
+      theme,
     );
   }
 }

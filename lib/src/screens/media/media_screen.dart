@@ -21,18 +21,25 @@ part 'widgets/_reaction_tile.dart';
 class MediaScreen extends ConsumerWidget {
   static const String routeName = 'medias';
   static const String routeLocation = '/$routeName/:id';
-  const MediaScreen({required this.id});
+  const MediaScreen({
+    required this.id,
+    this.media,
+  });
 
   final MediaID id;
+  final Media? media;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mediaValue = ref.watch(mediaControllerProvider(id));
+    final mediaValue = ref.watch(mediaControllerProvider(id, media));
 
     return mediaValue.when(
       data: (state) => _MediaTemplate(
         coverImage: _MediaCoverImage(
-          image: state.media.images.largeImageUrl,
+          //TODO: 이미지 크기 개선하기
+          //historyCard media는 largeImage 없음
+          //regex 사용해 편법해도 이미지를 다시 불러와 깜빡이는 문제 발생
+          image: state.media.image,
         ),
         title: _MediaTitle(title: state.media.title),
         keyword: _MediaKeywords(
@@ -48,7 +55,7 @@ class MediaScreen extends ConsumerWidget {
           _MediaDetailsTile(media: state.media),
         ],
       ),
-      loading: () => const _Placeholder$MediaScreen(),
+      loading: () => _Placeholder$MediaScreen(media),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),
       ),
@@ -115,60 +122,29 @@ class _MediaTemplate extends StatelessWidget {
 
 //Placeholder
 class _Placeholder$MediaScreen extends StatelessWidget {
-  const _Placeholder$MediaScreen();
+  const _Placeholder$MediaScreen(this.media);
+
+  final Media? media;
 
   @override
   Widget build(BuildContext context) {
-    final color = context.colorScheme.surfaceVariant;
-    final tileTitleSize = context.textTheme.bodyLarge!;
-    //widgets
-    final coverImage = Container(
-      height: context.screenWidth * (9 / 8),
-      color: color,
-    );
-    final actionBar = SizedBox(
-      height: Sizes.p64,
-      child: Row(children: [
-        Container(color: color, width: 48 * 3, height: 48),
-        const Spacer(),
-        CircleAvatar(
-          backgroundColor: color,
-          radius: 48 / 2,
-        ),
-      ]),
-    );
-    final listTile = SizedBox(
-      height: Sizes.p72,
-      child: Row(children: [
-        CircleAvatar(
-          backgroundColor: color,
-          radius: 28 / 2,
-        ),
-        Gap.w16,
-        Container(
-          color: color,
-          width: 160,
-          height: tileTitleSize.fontSize! * tileTitleSize.height!,
-        ),
-      ]),
-    );
-    //template
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(backgroundColor: Colors.transparent),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          coverImage,
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
-            child: Column(children: [
-              actionBar,
-              ...List.filled(2, listTile),
-            ]),
-          ),
-        ]),
+    final data = media;
+    if (data == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return _MediaTemplate(
+      coverImage: _MediaCoverImage(image: data.image),
+      title: _MediaTitle(title: data.title),
+      keyword: _MediaKeywords(
+        genres: data.keywords,
+        status: [
+          '${data.startDate?.year}',
+          data.status.label,
+        ],
       ),
+      actionBar: _MediaActionBar(media: data),
+      contents: const [Center(child: CircularProgressIndicator())],
     );
   }
 }

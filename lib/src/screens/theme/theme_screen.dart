@@ -30,8 +30,6 @@ class ThemeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeValue = ref.watch(themeControllerProvider(id));
 
-    print(theme);
-
     return themeValue.when(
       skipLoadingOnReload: true,
       data: (state) => _ThemeTemplate(
@@ -51,9 +49,7 @@ class ThemeScreen extends ConsumerWidget {
           medias: state.theme.items.map((e) => e!.media).toList(),
         ),
       ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () => _Placeholder$ThemeScreen(theme),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),
       ),
@@ -72,7 +68,7 @@ class _ThemeTemplate extends StatelessWidget {
   final _ThemeBackground background;
   final _ThemeTitles titles;
   final _ThemeDetailBar detailBar;
-  final _ThemeMediasGrid mediasGrid;
+  final Widget mediasGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +104,36 @@ class _ThemeTemplate extends StatelessWidget {
           ),
         ]),
       ]),
+    );
+  }
+}
+
+//Placeholder
+class _Placeholder$ThemeScreen extends StatelessWidget {
+  const _Placeholder$ThemeScreen(this.theme);
+
+  final Theme? theme;
+
+  @override
+  Widget build(BuildContext context) {
+    final data = theme;
+    if (data == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return _ThemeTemplate(
+      background: _ThemeBackground(image: data.image),
+      titles: _ThemeTitles(
+        title: data.title,
+        subtitle: data.description,
+      ),
+      detailBar: _ThemeDetailBar(
+        owner: data.owner.convertEntity,
+        theme: data,
+      ),
+      mediasGrid: const SliverToBoxAdapter(
+        child: Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }

@@ -18,6 +18,7 @@ class _HistoryCardsList extends StatelessWidget {
             onTap: () => context.pushNamed(
               AppRoutes.media,
               pathParameters: {'id': evaluation.media.id},
+              extra: evaluation.media.convertEntity,
             ),
             onMoreTap: () =>
                 HistoryMenuSheet.show(context, (evaluation: evaluation)),
