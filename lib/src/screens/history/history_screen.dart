@@ -3,8 +3,6 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/menu_items/menu_items.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import 'controller/history_controller.dart';
-
 part 'sheets/_history_menu_sheet.dart';
 part 'widgets/_history_cards_list.dart';
 part 'widgets/_history_titles.dart';
@@ -16,13 +14,13 @@ class HistoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final evaluationsValue = ref.watch(historyControllerProvider);
+    final evaluationsValue = ref.watch(watchMyEvaluationsListProvider);
 
     return evaluationsValue.when(
       skipLoadingOnReload: true,
-      data: (state) => _HistoryTemplate(
-        titles: _HistoryTitles(evaluationsCount: state.evaluations.length),
-        historiesList: _HistoryCardsList(evaluations: state.evaluations),
+      data: (evaluations) => _HistoryTemplate(
+        titles: _HistoryTitles(evaluationsCount: evaluations.length),
+        historiesList: _HistoryCardsList(evaluations: evaluations),
       ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
