@@ -3,7 +3,6 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
-import 'package:serendy/src/screens/screens.dart';
 
 import 'controller/profile_controller.dart';
 

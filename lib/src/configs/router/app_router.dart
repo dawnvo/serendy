@@ -1,9 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/configs/router/bottom_navigation_bar.dart';
+import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
+import 'package:serendy/src/modals/modals.dart';
 import 'package:serendy/src/screens/screens.dart';
 
 import 'go_router_refresh_stream.dart';
@@ -66,6 +68,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes._adminLocation,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const AdminScreen(),
+      ),
+      GoRoute(
+        name: AppRoutes.rankUp,
+        path: AppRoutes._rankUpLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => ModalPage(
+          child: RankUpModal(state.extra as Rank),
+        ),
       ),
 
       /// MEDIA
@@ -173,6 +183,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                     name: AppRoutes.history,
                     path: AppRoutes._historyLocation,
                     builder: (context, state) => const HistoryScreen(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: _rootNavigatorKey,
+                    name: AppRoutes.profileCard,
+                    path: AppRoutes._profileCardLocation,
+                    pageBuilder: (context, state) => ModalPage(
+                      child: ProfileCardScreen(
+                        evaluationCount: state.extra as int,
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -11,21 +11,12 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rank = Rank.values.firstWhere((_) {
-      // 사잇값에 충족하는 경우
-      if (evaluationCount >= _.range.min &&
-          evaluationCount <= _.range.max - 1) {
-        return true;
-      }
-      // 최대 레벨일 경우
-      return _.range.max == 0;
-    });
+    final rank = findRankByCount(evaluationCount);
 
     return GestureDetector(
-      onTap: () => ProfileCardScreen.show(
-        context,
-        rank,
-        evaluationCount,
+      onTap: () => context.pushNamed(
+        AppRoutes.profileCard,
+        extra: evaluationCount,
       ),
       child: ProfileCardContainer(
         color: rank.color.back,

@@ -7,6 +7,8 @@ import 'package:serendy/src/core/exceptions/error_logger.dart';
 class AppBootstrap {
   /// Create the root widget that should be passed to [runApp].
   Widget createRootWidget({required ProviderContainer container}) {
+    // * Initialize to start the listener
+
     // * Register error handlers
     final errorLogger = container.read(errorLoggerProvider);
     registerErrorHandlers(errorLogger);

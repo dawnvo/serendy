@@ -12,6 +12,8 @@ class EvaluateMediaController extends _$EvaluateMediaController
     with NotifierMounted {
   @override
   EvaluateMediaState build(MediaID mediaId) {
+    ref.onDispose(setUnmounted);
+
     _fetch();
     return const EvaluateMediaState(evaluation: null);
   }

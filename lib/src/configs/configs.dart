@@ -25,3 +25,4 @@ export 'mixin/notifier_mounted_mixin.dart';
 export 'router/app_router.dart';
 export 'theme/app_theme.dart';
 export 'utils/debouncer.dart';
+export 'utils/find_rank_by_count.dart';
