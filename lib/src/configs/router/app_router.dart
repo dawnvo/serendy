@@ -12,11 +12,11 @@ import 'go_router_refresh_stream.dart';
 
 part 'app_routes.dart';
 
-// Navigators
+// Navigator keys
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorHomeKey = GlobalKey<NavigatorState>();
-final _shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
-final _shellNavigatorProfileKey = GlobalKey<NavigatorState>();
+final __shellNavigatorHomeKey = GlobalKey<NavigatorState>();
+final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
+final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authService = ref.watch(authServiceProvider);
@@ -51,82 +51,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
     initialLocation: AppRoutes._homeLocation,
     routes: [
+      ..._shellNavigator,
+      ..._modalRoutes,
+      ..._mediaRoutes,
+      ..._themeRoutes,
       GoRoute(
         name: AppRoutes.signIn,
         path: AppRoutes._signInLocation,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SignInScreen(),
       ),
-      GoRoute(
-        name: AppRoutes.search,
-        path: AppRoutes._searchLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const SearchScreen(),
-      ),
-      GoRoute(
-        name: AppRoutes.admin,
-        path: AppRoutes._adminLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const AdminScreen(),
-      ),
-      GoRoute(
-        name: AppRoutes.rankUp,
-        path: AppRoutes._rankUpLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => ModalPage(
-          child: RankUpModal(state.extra as Rank),
-        ),
-      ),
-
-      /// MEDIA
-      GoRoute(
-        name: AppRoutes.media,
-        path: AppRoutes._mediaLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => MediaScreen(
-          id: state.pathParameters['id']!,
-          media: state.extra as Media?,
-        ),
-      ),
-      GoRoute(
-        name: AppRoutes.evaluateMedia,
-        path: AppRoutes._evaluateMediaLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => ModalPage(
-          child: EvaluateMediaScreen(
-            media: state.extra as Media,
-          ),
-        ),
-      ),
-
-      /// THEME
-      GoRoute(
-        name: AppRoutes.theme,
-        path: AppRoutes._themeLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => ThemeScreen(
-          id: state.pathParameters['id']!,
-          theme: state.extra as Theme?,
-        ),
-      ),
-      GoRoute(
-        name: AppRoutes.createTheme,
-        path: AppRoutes._createThemeLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => ModalPage(
-          child: const CreateThemeScreen(),
-        ),
-      ),
-      GoRoute(
-        name: AppRoutes.editTheme,
-        path: AppRoutes._editThemeLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => ModalPage(
-          child: EditThemeScreen(theme: state.extra as Theme),
-        ),
-      ),
-
-      /// SETTINGS
       GoRoute(
         name: AppRoutes.settings,
         path: AppRoutes._settingsLocation,
@@ -141,68 +75,146 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           )
         ],
       ),
+      GoRoute(
+        name: AppRoutes.admin,
+        path: AppRoutes._adminLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const AdminScreen(),
+      ),
+    ],
+  );
+});
 
-      /// SHELL NAVIGATOR
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return ScaffoldWithNavigationBar(
-            navigationShell: navigationShell,
-          );
-        },
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: _shellNavigatorHomeKey,
-            routes: [
-              GoRoute(
-                name: AppRoutes.home,
-                path: AppRoutes._homeLocation,
-                builder: (context, state) => const HomeScreen(),
-              ),
-            ],
+/// ----------Media routes
+final List<GoRoute> _mediaRoutes = [
+  GoRoute(
+    name: AppRoutes.search,
+    path: AppRoutes._searchLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    builder: (context, state) => const SearchScreen(),
+  ),
+  GoRoute(
+    name: AppRoutes.media,
+    path: AppRoutes._mediaLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    builder: (context, state) => MediaScreen(
+      id: state.pathParameters['id']!,
+      media: state.extra as Media?,
+    ),
+  ),
+  GoRoute(
+    name: AppRoutes.evaluateMedia,
+    path: AppRoutes._evaluateMediaLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    pageBuilder: (context, state) => ModalPage(
+      child: EvaluateMediaScreen(
+        media: state.extra as Media,
+      ),
+    ),
+  ),
+];
+
+/// ----------Theme routes
+final List<GoRoute> _themeRoutes = [
+  GoRoute(
+    name: AppRoutes.theme,
+    path: AppRoutes._themeLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    builder: (context, state) => ThemeScreen(
+      id: state.pathParameters['id']!,
+      theme: state.extra as Theme?,
+    ),
+  ),
+  GoRoute(
+    name: AppRoutes.createTheme,
+    path: AppRoutes._createThemeLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    pageBuilder: (context, state) => ModalPage(
+      child: const CreateThemeScreen(),
+    ),
+  ),
+  GoRoute(
+    name: AppRoutes.editTheme,
+    path: AppRoutes._editThemeLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    pageBuilder: (context, state) => ModalPage(
+      child: EditThemeScreen(theme: state.extra as Theme),
+    ),
+  ),
+];
+
+/// ----------Modal routes
+final List<GoRoute> _modalRoutes = [
+  GoRoute(
+    name: AppRoutes.rankUp,
+    path: AppRoutes._rankUpLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    pageBuilder: (context, state) => ModalPage(
+      child: RankUpModal(state.extra as Rank),
+    ),
+  ),
+];
+
+/// ----------Shell navigator
+final List<StatefulShellRoute> _shellNavigator = [
+  StatefulShellRoute.indexedStack(
+    builder: (context, state, navigationShell) {
+      return ScaffoldWithNavigationBar(
+        navigationShell: navigationShell,
+      );
+    },
+    branches: [
+      StatefulShellBranch(
+        navigatorKey: __shellNavigatorHomeKey,
+        routes: [
+          GoRoute(
+            name: AppRoutes.home,
+            path: AppRoutes._homeLocation,
+            builder: (context, state) => const HomeScreen(),
           ),
-          StatefulShellBranch(
-            navigatorKey: _shellNavigatorDiscoverKey,
-            routes: [
-              GoRoute(
-                name: AppRoutes.discover,
-                path: AppRoutes._discoverLocation,
-                builder: (context, state) => const DiscoverScreen(),
-              ),
-            ],
+        ],
+      ),
+      StatefulShellBranch(
+        navigatorKey: __shellNavigatorDiscoverKey,
+        routes: [
+          GoRoute(
+            name: AppRoutes.discover,
+            path: AppRoutes._discoverLocation,
+            builder: (context, state) => const DiscoverScreen(),
           ),
-          StatefulShellBranch(
-            navigatorKey: _shellNavigatorProfileKey,
+        ],
+      ),
+      StatefulShellBranch(
+        navigatorKey: __shellNavigatorProfileKey,
+        routes: [
+          GoRoute(
+            name: AppRoutes.profile,
+            path: AppRoutes._profileLocation,
+            builder: (context, state) => const ProfileScreen(),
             routes: [
               GoRoute(
-                name: AppRoutes.profile,
-                path: AppRoutes._profileLocation,
-                builder: (context, state) => const ProfileScreen(),
-                routes: [
-                  GoRoute(
-                    parentNavigatorKey: _rootNavigatorKey,
-                    name: AppRoutes.history,
-                    path: AppRoutes._historyLocation,
-                    builder: (context, state) => const HistoryScreen(),
+                parentNavigatorKey: _rootNavigatorKey,
+                name: AppRoutes.history,
+                path: AppRoutes._historyLocation,
+                builder: (context, state) => const HistoryScreen(),
+              ),
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                name: AppRoutes.profileCard,
+                path: AppRoutes._profileCardLocation,
+                pageBuilder: (context, state) => ModalPage(
+                  child: ProfileCardScreen(
+                    evaluationCount: state.extra as int,
                   ),
-                  GoRoute(
-                    parentNavigatorKey: _rootNavigatorKey,
-                    name: AppRoutes.profileCard,
-                    path: AppRoutes._profileCardLocation,
-                    pageBuilder: (context, state) => ModalPage(
-                      child: ProfileCardScreen(
-                        evaluationCount: state.extra as int,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
         ],
       ),
     ],
-  );
-});
+  ),
+];
 
 class ModalPage extends CustomTransitionPage {
   ModalPage({required super.child, super.key})
