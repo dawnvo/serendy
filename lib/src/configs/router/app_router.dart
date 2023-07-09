@@ -1,6 +1,6 @@
-import 'package:animations/animations.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/configs/router/bottom_navigation_bar.dart';
+import 'package:serendy/src/configs/router/go_router_transition_page.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
@@ -86,7 +86,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
 });
 
 /// ----------Media routes
-final List<GoRoute> _mediaRoutes = [
+final _mediaRoutes = [
   GoRoute(
     name: AppRoutes.search,
     path: AppRoutes._searchLocation,
@@ -106,16 +106,19 @@ final List<GoRoute> _mediaRoutes = [
     name: AppRoutes.evaluateMedia,
     path: AppRoutes._evaluateMediaLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) => ModalPage(
-      child: EvaluateMediaScreen(
-        media: state.extra as Media,
-      ),
-    ),
+    pageBuilder: (context, state) {
+      return GoRouterTransitionPage.verticalAxis(
+        fullscreenDialog: true,
+        child: EvaluateMediaScreen(
+          media: state.extra as Media,
+        ),
+      );
+    },
   ),
 ];
 
 /// ----------Theme routes
-final List<GoRoute> _themeRoutes = [
+final _themeRoutes = [
   GoRoute(
     name: AppRoutes.theme,
     path: AppRoutes._themeLocation,
@@ -129,34 +132,43 @@ final List<GoRoute> _themeRoutes = [
     name: AppRoutes.createTheme,
     path: AppRoutes._createThemeLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) => ModalPage(
-      child: const CreateThemeScreen(),
-    ),
+    pageBuilder: (context, state) {
+      return GoRouterTransitionPage.verticalAxis(
+        fullscreenDialog: true,
+        child: const CreateThemeScreen(),
+      );
+    },
   ),
   GoRoute(
     name: AppRoutes.editTheme,
     path: AppRoutes._editThemeLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) => ModalPage(
-      child: EditThemeScreen(theme: state.extra as Theme),
-    ),
+    pageBuilder: (context, state) {
+      return GoRouterTransitionPage.verticalAxis(
+        fullscreenDialog: true,
+        child: EditThemeScreen(theme: state.extra as Theme),
+      );
+    },
   ),
 ];
 
 /// ----------Modal routes
-final List<GoRoute> _modalRoutes = [
+final _modalRoutes = [
   GoRoute(
     name: AppRoutes.rankUp,
     path: AppRoutes._rankUpLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) => ModalPage(
-      child: RankUpModal(state.extra as Rank),
-    ),
+    pageBuilder: (context, state) {
+      return GoRouterTransitionPage.verticalAxis(
+        fullscreenDialog: true,
+        child: RankUpModal(state.extra as Rank),
+      );
+    },
   ),
 ];
 
 /// ----------Shell navigator
-final List<StatefulShellRoute> _shellNavigator = [
+final _shellNavigator = [
   StatefulShellRoute.indexedStack(
     builder: (context, state, navigationShell) {
       return ScaffoldWithNavigationBar(
@@ -202,11 +214,14 @@ final List<StatefulShellRoute> _shellNavigator = [
                 parentNavigatorKey: _rootNavigatorKey,
                 name: AppRoutes.profileCard,
                 path: AppRoutes._profileCardLocation,
-                pageBuilder: (context, state) => ModalPage(
-                  child: ProfileCardScreen(
-                    evaluationCount: state.extra as int,
-                  ),
-                ),
+                pageBuilder: (context, state) {
+                  return GoRouterTransitionPage.verticalAxis(
+                    fullscreenDialog: true,
+                    child: ProfileCardScreen(
+                      evaluationCount: state.extra as int,
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -215,19 +230,3 @@ final List<StatefulShellRoute> _shellNavigator = [
     ],
   ),
 ];
-
-class ModalPage extends CustomTransitionPage {
-  ModalPage({required super.child, super.key})
-      : super(
-          fullscreenDialog: true,
-          transitionDuration: const Duration(milliseconds: 400),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SharedAxisTransition(
-              animation: animation,
-              secondaryAnimation: secondaryAnimation,
-              transitionType: SharedAxisTransitionType.vertical,
-              child: child,
-            );
-          },
-        );
-}

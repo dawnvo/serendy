@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:serendy/src/features/auth/application/auth_service.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_service.g.dart';

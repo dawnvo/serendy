@@ -6,13 +6,13 @@ part of 'user_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchMeHash() => r'3a6c926c88ac028f53a56f60d057d8bb5b28eaf5';
+String _$fetchMeHash() => r'1fa90b4320c64f2b7cb2bb079a8c7344a69684c7';
 
 /// 내 정보를 불러와요.
 ///
 /// Copied from [fetchMe].
 @ProviderFor(fetchMe)
-final fetchMeProvider = AutoDisposeFutureProvider<User>.internal(
+final fetchMeProvider = FutureProvider<User>.internal(
   fetchMe,
   name: r'fetchMeProvider',
   debugGetCreateSourceHash:
@@ -21,7 +21,7 @@ final fetchMeProvider = AutoDisposeFutureProvider<User>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef FetchMeRef = AutoDisposeFutureProviderRef<User>;
+typedef FetchMeRef = FutureProviderRef<User>;
 String _$fetchUserHash() => r'24acfc3ae6a4c719c4c3e62e79a3c931f8b8fb16';
 
 /// Copied from Dart SDK

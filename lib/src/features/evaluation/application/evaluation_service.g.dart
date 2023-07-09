@@ -144,13 +144,13 @@ final watchMyEvaluationsListProvider =
 
 typedef WatchMyEvaluationsListRef = StreamProviderRef<List<Evaluation?>>;
 String _$countMyEvaluationsHash() =>
-    r'cff6b0f9d843f55efdf356077287399605e6891e';
+    r'139f29127ea779fe16768070ae01a3669ae30f6e';
 
 /// 나의 평가 개수를 조회해요.
 ///
 /// Copied from [countMyEvaluations].
 @ProviderFor(countMyEvaluations)
-final countMyEvaluationsProvider = AutoDisposeFutureProvider<int>.internal(
+final countMyEvaluationsProvider = FutureProvider<int>.internal(
   countMyEvaluations,
   name: r'countMyEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -160,7 +160,7 @@ final countMyEvaluationsProvider = AutoDisposeFutureProvider<int>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CountMyEvaluationsRef = AutoDisposeFutureProviderRef<int>;
+typedef CountMyEvaluationsRef = FutureProviderRef<int>;
 String _$fetchEvaluationHash() => r'ded10c0252725a8921bea213fe76096721d2bb24';
 typedef FetchEvaluationRef = AutoDisposeFutureProviderRef<Evaluation?>;
 

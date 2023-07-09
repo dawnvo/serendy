@@ -24,7 +24,7 @@ Stream<List<Evaluation?>> watchMyEvaluationsList(
 }
 
 /// 나의 평가 개수를 조회해요.
-@riverpod
+@Riverpod(keepAlive: true)
 Future<int> countMyEvaluations(
   CountMyEvaluationsRef ref,
 ) {
