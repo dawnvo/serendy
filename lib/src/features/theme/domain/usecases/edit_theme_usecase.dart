@@ -44,9 +44,9 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
 
     // 데이터베이스에 있는 테마를 수정합니다.
     final edited = theme.edit(
+      image: downloadUrl,
       title: payload.title,
       description: payload.description,
-      image: downloadUrl,
       private: payload.private,
     );
 

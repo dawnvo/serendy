@@ -28,10 +28,7 @@ final class CreateThemeUsecase implements UseCase<CreateThemePayload, Theme> {
 
     // 데이터베이스에 새로운 테마를 생성합니다.
     final theme = Theme(
-      owner: ThemeOwner(
-        id: payload.executorId,
-        name: user.name,
-      ),
+      owner: ThemeOwner(id: user.id, name: user.name),
       title: payload.title,
     );
 

@@ -13,7 +13,6 @@ final class GetThemeListUsecase
   @override
   Future<List<Theme?>> execute(GetThemeListPayload payload) async {
     final themes = await _themeRepository.findMany(payload.executorId);
-
     return themes.where((theme) {
       return theme?.private == false || theme?.owner.id == payload.executorId;
     }).toList();

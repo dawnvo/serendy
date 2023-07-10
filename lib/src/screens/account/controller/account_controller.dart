@@ -63,12 +63,7 @@ class AccountController extends _$AccountController with NotifierMounted {
   Future<void> signOut(BuildContext context) async {
     try {
       await ref.read(authServiceProvider).signOutWithGoogle();
-
-      // * 컨트롤러가 폐기되지 않았고, 에러가 없으면 실행을 계속해요.
-      if (!mounted && !state.hasError) return;
-
-      // * 로그아웃에 성공하면 로그인 화면으로 이동해요.
-      ref.read(goRouterProvider).goNamed(AppRoutes.signIn);
+      // TODO: 로그인한 사용자 상태 초기화하기
     } catch (err) {
       // * 로그아웃에 실패하면 메시지로 안내해요.
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

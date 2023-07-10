@@ -27,7 +27,6 @@ final class DeleteThemeItemUsecase
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
     final deletedItem = theme.deleteItem(payload.mediaId);
-
     await _themeRepository.deleteItem(deletedItem, payload.mediaId);
 
     return deletedItem;
