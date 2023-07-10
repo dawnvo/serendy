@@ -1,6 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 class SerendyApp extends ConsumerWidget {
   const SerendyApp({super.key});
@@ -9,9 +9,18 @@ class SerendyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
 
-    // TODO: 유지보수 필요
-    // * RankUp 화면을 띄우기 위해 필요해요.
-    ref.watch(profileControllerProvider);
+    // * 핵심 기능이에요. 지속적으로 상태를 감시해
+    // * 승급 조건에 충족한 경우 RankUp 화면을 보여줘요.
+    ref.listen(countMyEvaluationsProvider, (prev, next) {
+      if (prev == null || !prev.hasValue || !next.hasValue) return;
+      final prevCount = prev.value!;
+      final nextCount = next.value!;
+
+      final rank = findRankByCount(nextCount);
+      if (prevCount < rank.range.min && nextCount == rank.range.min) {
+        ref.read(goRouterProvider).pushNamed(AppRoutes.rankUp, extra: rank);
+      }
+    });
 
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {

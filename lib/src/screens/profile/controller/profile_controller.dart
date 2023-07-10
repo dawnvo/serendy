@@ -30,13 +30,6 @@ class ProfileController extends _$ProfileController {
   void evaluationsCountUpdated() async {
     // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
     if (!state.hasValue) return;
-    final prevCount = state.requireValue.evaluationsCount;
-    final nextCount = await ref.refresh(countMyEvaluationsProvider.future);
-
-    // * 승급 조건에 충족한 경우 RankUp 화면을 보여줘요.
-    final rank = findRankByCount(nextCount);
-    if (prevCount < rank.range.min && nextCount == rank.range.min) {
-      ref.read(goRouterProvider).pushNamed(AppRoutes.rankUp, extra: rank);
-    }
+    ref.invalidate(countMyEvaluationsProvider);
   }
 }

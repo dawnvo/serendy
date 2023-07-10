@@ -4,7 +4,7 @@ import 'package:serendy/src/core/enums.dart';
 class RankUpModal extends ConsumerWidget {
   static const String routeName = 'rankUp';
   static const String routeLocation = '/$routeName';
-  const RankUpModal(this.rank);
+  const RankUpModal({required this.rank});
 
   final Rank rank;
 
@@ -22,7 +22,7 @@ class RankUpModal extends ConsumerWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(Sizes.p24),
+        padding: const EdgeInsets.all(kContentPadding),
         child: _buildButton(context),
       ),
     );

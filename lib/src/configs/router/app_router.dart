@@ -1,6 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/configs/router/bottom_navigation_bar.dart';
-import 'package:serendy/src/configs/router/go_router_transition_page.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
@@ -8,7 +6,9 @@ import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/modals/modals.dart';
 import 'package:serendy/src/screens/screens.dart';
 
+import 'bottom_navigation_bar.dart';
 import 'go_router_refresh_stream.dart';
+import 'go_router_transition_page.dart';
 
 part 'app_routes.dart';
 
@@ -30,6 +30,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
+    debugLogDiagnostics: true,
     refreshListenable: GoRouterRefreshStream(authService.authStateChanges),
     redirect: (context, state) {
       final isLoggedIn = authService.currentUserId != null;
@@ -72,7 +73,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: AppRoutes._accountLocation,
             parentNavigatorKey: _rootNavigatorKey,
             builder: (context, state) => const AccountScreen(),
-          )
+          ),
         ],
       ),
       GoRoute(
@@ -97,21 +98,21 @@ final _mediaRoutes = [
     name: AppRoutes.media,
     path: AppRoutes._mediaLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    builder: (context, state) => MediaScreen(
-      id: state.pathParameters['id']!,
-      media: state.extra as Media?,
-    ),
+    builder: (context, state) {
+      final id = state.pathParameters['id']!;
+      final media = state.extra as Media?;
+      return MediaScreen(id: id, media: media);
+    },
   ),
   GoRoute(
     name: AppRoutes.evaluateMedia,
     path: AppRoutes._evaluateMediaLocation,
     parentNavigatorKey: _rootNavigatorKey,
     pageBuilder: (context, state) {
+      final media = state.extra as Media;
       return GoRouterTransitionPage.verticalAxis(
         fullscreenDialog: true,
-        child: EvaluateMediaScreen(
-          media: state.extra as Media,
-        ),
+        child: EvaluateMediaScreen(media: media),
       );
     },
   ),
@@ -123,10 +124,23 @@ final _themeRoutes = [
     name: AppRoutes.theme,
     path: AppRoutes._themeLocation,
     parentNavigatorKey: _rootNavigatorKey,
-    builder: (context, state) => ThemeScreen(
-      id: state.pathParameters['id']!,
-      theme: state.extra as Theme?,
-    ),
+    builder: (context, state) {
+      final id = state.pathParameters['id']!;
+      final theme = state.extra as Theme?;
+      return ThemeScreen(id: id, theme: theme);
+    },
+  ),
+  GoRoute(
+    name: AppRoutes.editTheme,
+    path: AppRoutes._editThemeLocation,
+    parentNavigatorKey: _rootNavigatorKey,
+    pageBuilder: (context, state) {
+      final theme = state.extra as Theme;
+      return GoRouterTransitionPage.verticalAxis(
+        fullscreenDialog: true,
+        child: EditThemeScreen(theme: theme),
+      );
+    },
   ),
   GoRoute(
     name: AppRoutes.createTheme,
@@ -139,17 +153,6 @@ final _themeRoutes = [
       );
     },
   ),
-  GoRoute(
-    name: AppRoutes.editTheme,
-    path: AppRoutes._editThemeLocation,
-    parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) {
-      return GoRouterTransitionPage.verticalAxis(
-        fullscreenDialog: true,
-        child: EditThemeScreen(theme: state.extra as Theme),
-      );
-    },
-  ),
 ];
 
 /// ----------Modal routes
@@ -159,9 +162,10 @@ final _modalRoutes = [
     path: AppRoutes._rankUpLocation,
     parentNavigatorKey: _rootNavigatorKey,
     pageBuilder: (context, state) {
+      final rank = state.extra as Rank;
       return GoRouterTransitionPage.verticalAxis(
         fullscreenDialog: true,
-        child: RankUpModal(state.extra as Rank),
+        child: RankUpModal(rank: rank),
       );
     },
   ),
@@ -205,21 +209,20 @@ final _shellNavigator = [
             builder: (context, state) => const ProfileScreen(),
             routes: [
               GoRoute(
-                parentNavigatorKey: _rootNavigatorKey,
                 name: AppRoutes.history,
                 path: AppRoutes._historyLocation,
+                parentNavigatorKey: _rootNavigatorKey,
                 builder: (context, state) => const HistoryScreen(),
               ),
               GoRoute(
-                parentNavigatorKey: _rootNavigatorKey,
                 name: AppRoutes.profileCard,
                 path: AppRoutes._profileCardLocation,
+                parentNavigatorKey: _rootNavigatorKey,
                 pageBuilder: (context, state) {
+                  final count = state.extra as int;
                   return GoRouterTransitionPage.verticalAxis(
                     fullscreenDialog: true,
-                    child: ProfileCardScreen(
-                      evaluationCount: state.extra as int,
-                    ),
+                    child: ProfileCardScreen(evaluationCount: count),
                   );
                 },
               ),
