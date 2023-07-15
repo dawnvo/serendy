@@ -11,9 +11,14 @@ class _HomeMediaFiltersTabBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTabController(initialLength: filters.length);
-    final selectedIndex =
-        useListenableSelector(controller, () => controller.index);
+    final controller = useTabController(
+      initialLength: filters.length,
+      initialIndex: 1,
+    );
+    final selectedIndex = useListenableSelector(
+      controller,
+      () => controller.index,
+    );
 
     return TabBar(
       controller: controller,

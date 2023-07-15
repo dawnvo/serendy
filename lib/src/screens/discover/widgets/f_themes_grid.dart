@@ -15,7 +15,6 @@ class Firestore$DiscoverThemesGrid extends ConsumerWidget {
   static final query = (String userId) => FirebaseFirestore.instance
       .collection(FirestorePath.theme)
       .where('removed_at', isNull: true)
-      .where('owner.id', isEqualTo: userId)
       .orderBy('updated_at', descending: true);
 
   static const pageSize = 20;
@@ -43,17 +42,20 @@ class Firestore$DiscoverThemesGrid extends ConsumerWidget {
             );
           }
 
+          final themes = snapshot.docs
+              .map((doc) => doc.data())
+              .map(ThemeEntity.fromJson)
+              .map(ThemeMapper.toDomainModel)
+              .where((theme) => theme.private == false || theme.owner.id == userId)
+              .toList();
+
           return SliverThemesGrid(
-            childCount: snapshot.docs.length,
+            childCount: themes.length,
             builder: (context, index) {
-              final isLastItem = index + 1 == snapshot.docs.length;
+              final isLastItem = index + 1 == themes.length;
               if (isLastItem && snapshot.hasMore) snapshot.fetchMore();
 
-              final data = snapshot.docs[index].data();
-              final theme = ThemeMapper.toDomainModel(
-                ThemeEntity.fromJson(data),
-              );
-
+              final theme = themes[index];
               return _buildThemeCard(context, theme);
             },
           );

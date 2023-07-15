@@ -1,10 +1,12 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/screens/screens.dart';
 
 import 'bottom_navigation_bar.dart';
+import 'go_router_refresh_stream.dart';
 import 'go_router_transition_page.dart';
 
 part 'app_routes.dart';
@@ -16,6 +18,8 @@ final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
+  final authService = ref.watch(authServiceProvider);
+
   // 🔒 로그인이 필요한 화면
   final privateLocation = [
     AppRoutes._homeLocation,
@@ -26,8 +30,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
+    refreshListenable: GoRouterRefreshStream(authService.authStateChanges),
     redirect: (context, state) {
-      final isLoggedIn = ''.isEmpty;
+      final isLoggedIn = authService.currentUserId != null;
 
       // 로그인에 성공한 경우
       if (isLoggedIn) {
