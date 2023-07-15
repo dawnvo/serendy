@@ -1,12 +1,12 @@
 part of '../history_screen.dart';
 
-class _HistoryTitles extends StatelessWidget {
-  const _HistoryTitles({required this.evaluationsCount});
-
-  final int evaluationsCount;
+class _HistoryTitles extends ConsumerWidget {
+  const _HistoryTitles();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final evaluationsCountValue = ref.watch(countMyEvaluationsProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,7 +18,10 @@ class _HistoryTitles extends StatelessWidget {
         ),
         Gap.h4,
         Text(
-          "작품 $evaluationsCount",
+          evaluationsCountValue.maybeWhen(
+            data: (count) => "작품 $count",
+            orElse: () => "작품 0",
+          ),
           style: context.textTheme.bodyLarge?.copyWith(
             color: context.colorScheme.onSurfaceVariant,
           ),

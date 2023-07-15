@@ -5,6 +5,8 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/home_controller.dart';
 
+import 'widgets/f_medias_grid.dart';
+
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
 
@@ -22,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         filters: filters,
         onSelect: (item) {},
       ),
-      mediasGrid: const _HomeMediasGrid(),
+      mediasGrid: const Firestore$HomeMediasGrid(),
     );
   }
 }
@@ -35,7 +37,7 @@ class _HomeTemplate extends StatelessWidget {
   });
 
   final _HomeMediaFiltersTabBar mediaFiltersTabBar;
-  final _HomeMediasGrid mediasGrid;
+  final Firestore$HomeMediasGrid mediasGrid;
 
   @override
   Widget build(BuildContext context) {

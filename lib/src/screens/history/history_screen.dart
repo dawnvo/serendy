@@ -3,30 +3,21 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import 'widgets/f_evaluation_cards_list.dart';
+
 part 'widgets/_evaluation_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
-class HistoryScreen extends ConsumerWidget {
+class HistoryScreen extends StatelessWidget {
   static const String routeName = 'history';
   static const String routeLocation = routeName;
   const HistoryScreen();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final evaluationsValue = ref.watch(watchMyEvaluationsListProvider);
-
-    return evaluationsValue.when(
-      skipLoadingOnReload: true,
-      data: (evaluations) => _HistoryTemplate(
-        titles: _HistoryTitles(evaluationsCount: evaluations.length),
-        evaluationsList: _HistoryEvaluationCardsList(evaluations: evaluations),
-      ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
-      ),
+  Widget build(BuildContext context) {
+    return const _HistoryTemplate(
+      titles: _HistoryTitles(),
+      evaluationsList: Firestore$HistoryEvaluationCardsList(),
     );
   }
 }
@@ -39,7 +30,7 @@ class _HistoryTemplate extends StatelessWidget {
   });
 
   final _HistoryTitles titles;
-  final _HistoryEvaluationCardsList evaluationsList;
+  final Firestore$HistoryEvaluationCardsList evaluationsList;
 
   @override
   Widget build(BuildContext context) {
