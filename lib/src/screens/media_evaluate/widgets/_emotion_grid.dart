@@ -1,4 +1,4 @@
-part of '../evaluate_media_screen.dart';
+part of '../media_evaluate_screen.dart';
 
 class _EvaluateMediaEmotionGrid extends ConsumerWidget {
   const _EvaluateMediaEmotionGrid({required this.mediaId});
@@ -11,25 +11,22 @@ class _EvaluateMediaEmotionGrid extends ConsumerWidget {
         .select((state) => state.evaluation));
     final debouncer = ref.watch(debouncerProvider);
 
-    return GridView.count(
-      padding: const EdgeInsets.symmetric(
-        horizontal: Sizes.p48,
-        vertical: Sizes.p24,
+    return SizedBox(
+      width: 320,
+      child: GridView.count(
+        crossAxisCount: 3,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(vertical: Sizes.p24),
+        children: [
+          for (final emotion in Emotion.values)
+            __EmotionGridTile(
+              onSelect: (selected) => debouncer.run(() {}),
+              emotion: emotion,
+              selected: emotion == evaluation?.emotion,
+            )
+        ],
       ),
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 3,
-      children: [
-        for (final emotion in Emotion.values)
-          __EmotionGridTile(
-            onSelect: (selected) => debouncer.run(() {
-              ref
-                  .read(evaluateMediaControllerProvider(mediaId).notifier)
-                  .evaluate(emotion: selected);
-            }),
-            emotion: emotion,
-            selected: emotion == evaluation?.emotion,
-          )
-      ],
     );
   }
 }

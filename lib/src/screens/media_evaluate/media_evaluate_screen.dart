@@ -66,31 +66,30 @@ class _EvaluateMediaTemplate extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(backgroundColor: Colors.transparent),
-      body: Column(children: [
-        Flexible(
-          flex: 5,
-          child: Stack(children: [
-            Positioned.fill(child: background),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: kContentPadding * 2,
+      body: SingleChildScrollView(
+        child: Column(children: [
+          SizedBox(
+            height: context.screenHeight / 1.8,
+            child: Stack(children: [
+              Positioned.fill(child: background),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kContentPadding * 2,
+                ),
+                child: Center(child: cover),
               ),
-              child: Center(child: cover),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                "감상 후 어떤 느낌이 들었나요?",
-                style: context.textTheme.titleLarge,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  "감상 후 어떤 느낌이 들었나요?",
+                  style: context.textTheme.titleLarge,
+                ),
               ),
-            ),
-          ]),
-        ),
-        Flexible(
-          flex: 4,
-          child: emotionGrid,
-        ),
-      ]),
+            ]),
+          ),
+          emotionGrid,
+        ]),
+      ),
     );
   }
 }

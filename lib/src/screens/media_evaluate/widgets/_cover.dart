@@ -1,4 +1,4 @@
-part of '../evaluate_media_screen.dart';
+part of '../media_evaluate_screen.dart';
 
 class _EvaluateMediaCover extends StatelessWidget {
   const _EvaluateMediaCover({

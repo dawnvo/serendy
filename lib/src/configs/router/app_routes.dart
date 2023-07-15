@@ -60,8 +60,4 @@ abstract final class AppRoutes {
   // 계정
   static const account = AccountScreen.routeName;
   static const _accountLocation = AccountScreen.routeLocation;
-
-  // 관리자
-  static const admin = AdminScreen.routeName;
-  static const _adminLocation = AdminScreen.routeLocation;
 }

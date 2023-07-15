@@ -57,7 +57,6 @@ class _ProfileCardTemplate extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Gap.h64,
           _buildCard(context),
           Gap.h24,
           buttons,

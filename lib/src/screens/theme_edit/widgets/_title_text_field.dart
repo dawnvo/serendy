@@ -1,4 +1,4 @@
-part of '../edit_theme_screen.dart';
+part of '../theme_edit_screen.dart';
 
 class _EditThemeTitleTextField extends ConsumerWidget {
   const _EditThemeTitleTextField(this.provider);

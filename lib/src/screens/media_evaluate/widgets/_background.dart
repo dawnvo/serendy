@@ -1,4 +1,4 @@
-part of '../evaluate_media_screen.dart';
+part of '../media_evaluate_screen.dart';
 
 class _EvaluateMediaBackground extends StatelessWidget {
   const _EvaluateMediaBackground({required this.image});

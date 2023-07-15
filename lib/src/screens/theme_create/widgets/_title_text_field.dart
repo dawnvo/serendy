@@ -1,4 +1,4 @@
-part of '../create_theme_screen.dart';
+part of '../theme_create_screen.dart';
 
 class _CreateThemeTitleTextField extends ConsumerWidget {
   const _CreateThemeTitleTextField();

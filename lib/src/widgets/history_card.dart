@@ -48,7 +48,7 @@ class HistoryCard extends StatelessWidget {
         imageUrl: evaluation.media.image,
         fit: BoxFit.cover,
         width: double.infinity,
-        height: 180,
+        height: 160,
       ),
     );
   }
