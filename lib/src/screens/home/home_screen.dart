@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filters = ["실시간 인기", "애니", "만화", "소설", "판타지", "드라마"];
+    final filters = ["최신 애니", "실시간 인기", "완결 애니"];
 
     return _HomeTemplate(
       mediaFiltersTabBar: _HomeMediaFiltersTabBar(
@@ -43,7 +43,11 @@ class _HomeTemplate extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: const Text("Serendy"),
+            title: Image.asset(
+              Assets.appIcon,
+              height: Sizes.p48,
+            ),
+            centerTitle: true,
             pinned: true,
             floating: true,
             bottom: PreferredSize(

@@ -21,7 +21,11 @@ class _EvaluateMediaEmotionGrid extends ConsumerWidget {
         children: [
           for (final emotion in Emotion.values)
             __EmotionGridTile(
-              onSelect: (selected) => debouncer.run(() {}),
+              onSelect: (selected) => debouncer.run(() {
+                ref
+                    .read(evaluateMediaControllerProvider(mediaId).notifier)
+                    .evaluate(emotion: selected);
+              }),
               emotion: emotion,
               selected: emotion == evaluation?.emotion,
             )
