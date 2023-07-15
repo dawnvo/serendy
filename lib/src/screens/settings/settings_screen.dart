@@ -1,11 +1,9 @@
 import 'package:serendy/src/configs/configs.dart';
 
-part 'widgets/_list_tile.dart';
-
 class SettingsScreen extends StatelessWidget {
   static const String routeName = 'settings';
   static const String routeLocation = '/$routeName';
-  const SettingsScreen({super.key});
+  const SettingsScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +39,7 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
+//Template
 class _SettingsTemplate extends StatelessWidget {
   const _SettingsTemplate({required this.options});
 
@@ -51,6 +50,29 @@ class _SettingsTemplate extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("설정")),
       body: Column(children: options),
+    );
+  }
+}
+
+//ListTile
+class _SettingsListTile extends StatelessWidget {
+  const _SettingsListTile({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: onTap,
+      iconColor: context.colorScheme.outline,
+      leading: Icon(icon),
+      title: Text(title),
     );
   }
 }

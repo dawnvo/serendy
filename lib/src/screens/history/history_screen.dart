@@ -1,16 +1,15 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
-import 'package:serendy/src/sheets/menu_items/menu_items.dart';
+import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-part 'sheets/_history_menu_sheet.dart';
-part 'widgets/_history_cards_list.dart';
+part 'widgets/_evaluation_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
 class HistoryScreen extends ConsumerWidget {
   static const String routeName = 'history';
   static const String routeLocation = routeName;
-  const HistoryScreen({super.key});
+  const HistoryScreen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +19,7 @@ class HistoryScreen extends ConsumerWidget {
       skipLoadingOnReload: true,
       data: (evaluations) => _HistoryTemplate(
         titles: _HistoryTitles(evaluationsCount: evaluations.length),
-        historiesList: _HistoryCardsList(evaluations: evaluations),
+        evaluationsList: _HistoryEvaluationCardsList(evaluations: evaluations),
       ),
       loading: () => const Scaffold(
         body: Center(child: CircularProgressIndicator()),
@@ -32,14 +31,15 @@ class HistoryScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _HistoryTemplate extends StatelessWidget {
   const _HistoryTemplate({
     required this.titles,
-    required this.historiesList,
+    required this.evaluationsList,
   });
 
   final _HistoryTitles titles;
-  final _HistoryCardsList historiesList;
+  final _HistoryEvaluationCardsList evaluationsList;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _HistoryTemplate extends StatelessWidget {
             horizontal: kContentPadding,
             vertical: Sizes.p24,
           ),
-          sliver: historiesList,
+          sliver: evaluationsList,
         ),
       ]),
     );

@@ -43,7 +43,7 @@ class ImagePicker extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: circle ? BoxShape.circle : BoxShape.rectangle,
-        borderRadius: circle ? null : BorderRadius.circular(Sizes.p12),
+        borderRadius: circle ? null : BorderRadius.circular(kBorderRadius),
         color: context.colorScheme.surfaceVariant,
       ),
       clipBehavior: Clip.hardEdge,

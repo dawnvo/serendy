@@ -10,7 +10,7 @@ part 'widgets/_sign_in_title.dart';
 class SignInScreen extends ConsumerWidget {
   static const String routeName = 'signIn';
   static const String routeLocation = '/$routeName';
-  const SignInScreen({super.key});
+  const SignInScreen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,6 +27,7 @@ class SignInScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _SignInTemplate extends StatelessWidget {
   const _SignInTemplate({
     required this.signInTitle,

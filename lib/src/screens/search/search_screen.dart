@@ -11,7 +11,7 @@ part 'widgets/_search_results.dart';
 class SearchScreen extends StatelessWidget {
   static const String routeName = 'search';
   static const String routeLocation = '/$routeName';
-  const SearchScreen({super.key});
+  const SearchScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
+//Template
 class _SearchTemplate extends StatelessWidget {
   const _SearchTemplate({
     required this.searchBar,

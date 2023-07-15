@@ -5,7 +5,7 @@ import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 class DeleteEvaluationMenuItem extends ConsumerWidget {
-  const DeleteEvaluationMenuItem({required this.media, super.key});
+  const DeleteEvaluationMenuItem({required this.media});
 
   final Media media;
 

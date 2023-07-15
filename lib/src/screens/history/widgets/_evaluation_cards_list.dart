@@ -1,7 +1,7 @@
 part of '../history_screen.dart';
 
-class _HistoryCardsList extends StatelessWidget {
-  const _HistoryCardsList({required this.evaluations});
+class _HistoryEvaluationCardsList extends StatelessWidget {
+  const _HistoryEvaluationCardsList({required this.evaluations});
 
   final List<Evaluation?> evaluations;
 
@@ -14,22 +14,20 @@ class _HistoryCardsList extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.only(bottom: Sizes.p16),
-          child: _buildHistoryCard(context, evaluation),
+          child: _buildEvaluationCard(context, evaluation),
         );
       },
     );
   }
 
-  Widget _buildHistoryCard(BuildContext context, Evaluation evaluation) {
-    return HistoryCard(
+  Widget _buildEvaluationCard(BuildContext context, Evaluation evaluation) {
+    return EvaluationCard(
       onTap: () => context.pushNamed(
         AppRoutes.media,
         pathParameters: {'id': evaluation.media.id},
         extra: evaluation.media.convertEntity,
       ),
-      onMoreTap: () => context.showCustomBottomSheet(
-        (_) => _HistoryMenuSheet(evaluation),
-      ),
+      onMoreTap: () => EvaluationMenuSheet.show(context, evaluation),
       evaluation: evaluation,
     );
   }

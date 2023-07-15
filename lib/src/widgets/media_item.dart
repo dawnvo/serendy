@@ -39,7 +39,7 @@ class MediaItem extends StatelessWidget {
 
 //Placeholder
 class Placeholder$MediaItem extends StatelessWidget {
-  const Placeholder$MediaItem({super.key});
+  const Placeholder$MediaItem();
 
   @override
   Widget build(BuildContext context) {

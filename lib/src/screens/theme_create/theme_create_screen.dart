@@ -9,7 +9,7 @@ part 'widgets/_title_text_field.dart';
 class CreateThemeScreen extends ConsumerWidget {
   static const String routeName = 'create-theme';
   static const String routeLocation = '/$routeName';
-  const CreateThemeScreen({super.key});
+  const CreateThemeScreen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,6 +29,7 @@ class CreateThemeScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _CreateThemeTemplate extends StatelessWidget {
   const _CreateThemeTemplate({
     required this.textField,

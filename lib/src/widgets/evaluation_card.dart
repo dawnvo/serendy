@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 
-class HistoryCard extends StatelessWidget {
-  const HistoryCard({
+class EvaluationCard extends StatelessWidget {
+  const EvaluationCard({
     required this.evaluation,
     this.onTap,
     this.onMoreTap,

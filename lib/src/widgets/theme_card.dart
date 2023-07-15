@@ -56,7 +56,7 @@ class ThemeCard extends StatelessWidget {
 
 //Placeholder
 class Placeholder$ThemeCard extends StatelessWidget {
-  const Placeholder$ThemeCard({super.key});
+  const Placeholder$ThemeCard();
 
   @override
   Widget build(BuildContext context) {

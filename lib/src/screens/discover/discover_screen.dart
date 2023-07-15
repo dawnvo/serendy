@@ -10,7 +10,7 @@ part 'widgets/_themes_grid.dart';
 class DiscoverScreen extends StatelessWidget {
   static const String routeName = 'discover';
   static const String routeLocation = '/$routeName';
-  const DiscoverScreen({super.key});
+  const DiscoverScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class DiscoverScreen extends StatelessWidget {
   }
 }
 
+//Template
 class _DiscoverTemplate extends StatelessWidget {
   const _DiscoverTemplate({
     required this.searchBar,

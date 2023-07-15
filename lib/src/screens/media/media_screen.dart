@@ -8,8 +8,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 import '../media_evaluate/controller/evaluate_media_controller.dart';
 import 'controller/media_controller.dart';
 
-part 'sheets/_media_detail_sheet.dart';
-part 'sheets/_reaction_detail_sheet.dart';
 part 'widgets/_action_bar.dart';
 part 'widgets/_detail_tile.dart';
 part 'widgets/_evaluate_icon_button.dart';
@@ -36,9 +34,6 @@ class MediaScreen extends ConsumerWidget {
     return mediaValue.when(
       data: (state) => _MediaTemplate(
         coverImage: _MediaCoverImage(
-          //TODO: 이미지 크기 개선하기
-          //historyCard media는 largeImage 없음
-          //regex 사용해 편법해도 이미지를 다시 불러와 깜빡이는 문제 발생
           image: state.media.image,
         ),
         title: _MediaTitle(title: state.media.title),
@@ -63,6 +58,7 @@ class MediaScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _MediaTemplate extends StatelessWidget {
   const _MediaTemplate({
     required this.coverImage,

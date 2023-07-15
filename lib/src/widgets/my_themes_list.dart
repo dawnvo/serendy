@@ -50,7 +50,7 @@ class _CreateThemeTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colorScheme.surfaceVariant,
-        borderRadius: BorderRadius.circular(Sizes.p12),
+        borderRadius: BorderRadius.circular(kBorderRadius),
       ),
       width: _imageSize,
       height: _imageSize,

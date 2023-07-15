@@ -1,8 +1,14 @@
-part of '../media_screen.dart';
+import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/widgets/widgets.dart';
 
-class _MediaDetailSheet extends StatelessWidget {
-  const _MediaDetailSheet(this.media);
+class MediaDetailSheet extends StatelessWidget {
+  const MediaDetailSheet(this.media);
   final Media media;
+
+  static void show(BuildContext context, Media media) {
+    context.showCustomBottomSheet((_) => MediaDetailSheet(media));
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -27,9 +27,7 @@ class _ThemeItemsGrid extends StatelessWidget {
         pathParameters: {'id': media.id},
         extra: media,
       ),
-      onLongPress: () => context.showCustomBottomSheet(
-        (_) => _ThemeItemMenuSheet(theme, media),
-      ),
+      onLongPress: () => ThemeItemMenuSheet.show(context, theme, media),
       media: media,
     );
   }

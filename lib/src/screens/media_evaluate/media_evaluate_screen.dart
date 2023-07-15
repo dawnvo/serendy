@@ -50,6 +50,7 @@ class EvaluateMediaScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _EvaluateMediaTemplate extends StatelessWidget {
   const _EvaluateMediaTemplate({
     required this.cover,

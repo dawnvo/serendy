@@ -3,7 +3,7 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 class SerendyApp extends ConsumerWidget {
-  const SerendyApp({super.key});
+  const SerendyApp();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

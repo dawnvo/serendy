@@ -15,7 +15,7 @@ part 'widgets/_save_button.dart';
 class AccountScreen extends ConsumerWidget {
   static const String routeName = 'account';
   static const String routeLocation = routeName;
-  const AccountScreen({super.key});
+  const AccountScreen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,6 +59,7 @@ class AccountScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _AccountTemplate extends StatelessWidget {
   const _AccountTemplate({
     required this.saveButton,
@@ -102,6 +103,7 @@ class _AccountTemplate extends StatelessWidget {
   }
 }
 
+//ListTile
 class _AccountListTile extends StatelessWidget {
   const _AccountListTile({
     required this.label,

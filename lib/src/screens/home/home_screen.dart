@@ -11,7 +11,7 @@ part 'widgets/_medias_grid.dart';
 class HomeScreen extends StatelessWidget {
   static const String routeName = 'home';
   static const String routeLocation = '/';
-  const HomeScreen({super.key});
+  const HomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+//Template
 class _HomeTemplate extends StatelessWidget {
   const _HomeTemplate({
     required this.mediaFiltersTabBar,

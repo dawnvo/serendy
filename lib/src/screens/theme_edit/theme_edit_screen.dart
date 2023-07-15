@@ -42,6 +42,7 @@ class EditThemeScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _EditThemeTemplate extends StatelessWidget {
   const _EditThemeTemplate({
     required this.saveButton,

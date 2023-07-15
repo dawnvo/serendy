@@ -4,7 +4,7 @@ import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 class SaveMediaMenuItem extends StatelessWidget {
-  const SaveMediaMenuItem({required this.media, super.key});
+  const SaveMediaMenuItem({required this.media});
 
   final Media media;
 

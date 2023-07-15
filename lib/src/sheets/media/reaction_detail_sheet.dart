@@ -1,10 +1,17 @@
-part of '../media_screen.dart';
+import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/widgets/widgets.dart';
 
 typedef _ReactionData = ({Emotion emotion, int count});
 
-class _ReactionDetailSheet extends StatelessWidget {
-  const _ReactionDetailSheet(this.reactions);
+class ReactionDetailSheet extends StatelessWidget {
+  const ReactionDetailSheet(this.reactions);
   final List<Evaluation?> reactions;
+
+  static void show(BuildContext context, List<Evaluation?> reactions) {
+    context.showCustomBottomSheet((_) => ReactionDetailSheet(reactions));
+  }
 
   /// 중복된 감정을 병합하고
   /// 정제된 감정을 데이터로 변환해요.
@@ -26,10 +33,12 @@ class _ReactionDetailSheet extends StatelessWidget {
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+      padding: const EdgeInsets.symmetric(
+        horizontal: kContentPadding,
+        vertical: Sizes.p12,
+      ),
       child: SingleChildScrollView(
         child: Column(children: [
-          Gap.h12,
           MultiLineProgressIndicator([
             for (final data in reactionDatas)
               ProgressBar(
@@ -44,7 +53,6 @@ class _ReactionDetailSheet extends StatelessWidget {
               name: data.emotion.label,
               count: data.count,
             ),
-          Gap.h12,
         ]),
       ),
     );

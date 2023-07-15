@@ -1,7 +1,3 @@
-enum ProviderType {
-  /* 구글 */ google,
-}
-
 enum MediaType {
   /* 애니 */ anime,
   /* 영화 */ movie,
@@ -17,15 +13,12 @@ enum MediaStatus {
 }
 
 enum Emotion {
-  //==========
   /* 멋짐 */ nice,
   /* 재미 */ joy,
   /* 행복 */ happyness,
-  //==========
   /* 놀람 */ surprise,
   /* 슬픔 */ sadness,
   /* 공포 */ fear,
-  //==========
   /* 보통 */ normal,
   /* 별로 */ disgust,
   /* 분노 */ anger,

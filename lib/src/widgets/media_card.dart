@@ -75,7 +75,7 @@ class MediaCard extends StatelessWidget {
 
 //Placeholder
 class Placeholder$MediaCard extends StatelessWidget {
-  const Placeholder$MediaCard({super.key});
+  const Placeholder$MediaCard();
 
   @override
   Widget build(BuildContext context) {

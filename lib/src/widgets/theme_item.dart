@@ -48,7 +48,7 @@ class ThemeItem extends StatelessWidget {
 
 //Placeholder
 class Placeholder$ThemeItem extends StatelessWidget {
-  const Placeholder$ThemeItem({super.key});
+  const Placeholder$ThemeItem();
 
   @override
   Widget build(BuildContext context) {

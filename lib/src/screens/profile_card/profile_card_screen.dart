@@ -4,8 +4,8 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-part 'widgets/_profile_card_buttons.dart';
-part 'widgets/_profile_card_titles.dart';
+part 'widgets/_buttons.dart';
+part 'widgets/_titles.dart';
 part 'widgets/_watched_media_indicator.dart';
 
 class ProfileCardScreen extends StatelessWidget {
@@ -39,6 +39,7 @@ class ProfileCardScreen extends StatelessWidget {
   }
 }
 
+//Template
 class _ProfileCardTemplate extends StatelessWidget {
   const _ProfileCardTemplate({
     required this.icon,

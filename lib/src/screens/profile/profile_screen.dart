@@ -12,7 +12,7 @@ part 'widgets/_profile_card.dart';
 class ProfileScreen extends ConsumerWidget {
   static const String routeName = 'profile';
   static const String routeLocation = '/$routeName';
-  const ProfileScreen({super.key});
+  const ProfileScreen();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,6 +43,7 @@ class ProfileScreen extends ConsumerWidget {
   }
 }
 
+//Template
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
     required this.actions,

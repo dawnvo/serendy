@@ -6,7 +6,7 @@ class _MediaDetailsTile extends StatelessWidget {
   final Media media;
 
   void _handleShowBottomSheet(BuildContext context) {
-    context.showCustomBottomSheet((_) => _MediaDetailSheet(media));
+    MediaDetailSheet.show(context, media);
   }
 
   @override

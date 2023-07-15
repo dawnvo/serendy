@@ -4,7 +4,7 @@ import 'package:serendy/src/screens/media_evaluate/controller/evaluate_media_con
 import 'package:serendy/src/widgets/widgets.dart';
 
 class EvaluateMediaMenuItem extends ConsumerWidget {
-  const EvaluateMediaMenuItem({required this.media, super.key});
+  const EvaluateMediaMenuItem({required this.media});
 
   final Media media;
 
@@ -21,7 +21,7 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
     final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
         .select((state) => state.evaluation));
 
-    // 평가한 감정이 존재하면 감정을 표시해요.
+    // * 평가한 감정이 존재하면 감정을 표시해요.
     if (evaluation != null) {
       return MenuListTile(
         onTap: () => handleTap(context),
@@ -32,7 +32,7 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
         title: evaluation.emotion.label,
       );
     }
-    // 평가한 감정이 없으면 아이콘을 표시해요.
+    // * 평가한 감정이 없으면 아이콘을 표시해요.
     else {
       return MenuListTile(
         onTap: () => handleTap(context),

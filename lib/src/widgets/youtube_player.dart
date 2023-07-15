@@ -5,7 +5,7 @@ export 'package:youtube_player_flutter/youtube_player_flutter.dart'
     show YoutubePlayerFlags;
 
 class YoutubePlayer extends StatefulWidget {
-  const YoutubePlayer({required this.config, super.key});
+  const YoutubePlayer({required this.config});
   final YoutubePlayerConfig config;
 
   @override
