@@ -13,11 +13,12 @@ class ReactionDetailSheet extends StatelessWidget {
     context.showCustomBottomSheet((_) => ReactionDetailSheet(reactions));
   }
 
-  /// 중복된 감정을 병합하고
-  /// 정제된 감정을 데이터로 변환해요.
-  List<_ReactionData> _transform(List<Evaluation?> reactions) {
+  ///Convert `Evaluation` to `ReactionData`
+  List<_ReactionData> _convert(List<Evaluation?> reactions) {
+    // * 중복된 감정을 병합해요
     final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
 
+    // * 데이터 형식에 맞게 변환해요.
     final results = uniqueKeys.map((emotion) {
       final count = reactions.where((_) => _?.emotion == emotion).length;
       return (count: count, emotion: emotion);
@@ -29,7 +30,7 @@ class ReactionDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reactionDatas = _transform(reactions);
+    final reactionDatas = _convert(reactions);
     final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
 
     return Padding(

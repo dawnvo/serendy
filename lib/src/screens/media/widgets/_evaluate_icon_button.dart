@@ -32,7 +32,7 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
   }
 }
 
-/// Emotion icon
+///Emotion icon
 class __EmotionIcon extends StatelessWidget {
   const __EmotionIcon(this.emotion);
 
@@ -55,7 +55,7 @@ class __EmotionIcon extends StatelessWidget {
   }
 }
 
-/// Emotion label
+///Emotion label
 class __EmotionLabel extends StatelessWidget {
   const __EmotionLabel(this.emotion);
 

@@ -41,9 +41,7 @@ class _SignInTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: signInTitle,
-      ),
+      body: Center(child: signInTitle),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(kContentPadding).add(
           const EdgeInsets.only(bottom: Sizes.p40),

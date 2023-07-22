@@ -11,7 +11,7 @@ class AccountController extends _$AccountController with NotifierMounted {
   @override
   FutureOr<AccountState> build() async {
     ref.onDispose(setUnmounted);
-    final me = await ref.refresh(fetchMeProvider.future);
+    final me = await ref.watch(fetchMeProvider.future);
 
     return AccountState(
       initialUser: me,

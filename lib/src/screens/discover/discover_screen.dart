@@ -35,7 +35,9 @@ class _DiscoverTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: kToolbarHeight + 32, // margin top+down
+        backgroundColor: context.colorScheme.surface,
+        surfaceTintColor: context.colorScheme.surface,
+        toolbarHeight: kToolbarHeight + kContentPadding * 2, // margin top+down
         title: searchBar,
       ),
       body: Padding(

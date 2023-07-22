@@ -23,8 +23,8 @@ class _DiscoverThemesGrid extends ConsumerWidget {
             addAutomaticKeepAlives: false,
             builder: (context, index) => const Placeholder$ThemeCard(),
           ),
-          error: (err, stack) => SliverToBoxAdapter(
-            child: Center(child: Text(err.toString())),
+          error: (err, stack) => const SliverToBoxAdapter(
+            child: Center(child: Text("테마를 불러오지 못했어요.")),
           ),
         ),
       ]),

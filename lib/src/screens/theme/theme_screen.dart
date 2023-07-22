@@ -50,8 +50,8 @@ class ThemeScreen extends ConsumerWidget {
         ),
       ),
       loading: () => _Placeholder$ThemeScreen(theme),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
+      error: (err, stack) => const Scaffold(
+        body: Center(child: Text("테마 정보를 불러오지 못했어요.")),
       ),
     );
   }
@@ -92,7 +92,6 @@ class _ThemeTemplate extends StatelessWidget {
                 children: [
                   titles,
                   detailBar,
-                  Gap.h24,
                 ],
               ),
             ),
@@ -100,6 +99,7 @@ class _ThemeTemplate extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,
+              vertical: Sizes.p24,
             ),
             sliver: mediasGrid,
           ),

@@ -5,7 +5,7 @@ import 'package:serendy/src/configs/configs.dart';
 
 class ImagePicker extends StatelessWidget {
   const ImagePicker({
-    required this.onChange,
+    required this.onChanged,
     this.image,
     this.size = 200,
     this.circle = false,
@@ -14,7 +14,7 @@ class ImagePicker extends StatelessWidget {
   final String? image;
   final double size;
   final bool circle;
-  final void Function(String? path) onChange;
+  final void Function(String? image) onChanged;
 
   Future<void> _handlePicker() async {
     final picked = await picker.ImagePicker().pickImage(
@@ -25,7 +25,7 @@ class ImagePicker extends StatelessWidget {
       imageQuality: 60,
     );
 
-    onChange(picked?.path);
+    onChanged(picked?.path);
   }
 
   @override
@@ -64,7 +64,7 @@ class ImagePicker extends StatelessWidget {
   }
 }
 
-/// Picked image
+//Picked image
 class _PickedImage extends StatelessWidget {
   const _PickedImage(this.fileOrUrl);
 
@@ -72,7 +72,7 @@ class _PickedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Is File: 로컬에서 이미지를 선택한 경우
+    // * 로컬에서 이미지를 선택한 경우
     if (fileOrUrl != null &&
         fileOrUrl!.isNotEmpty &&
         File(fileOrUrl!).existsSync()) {
@@ -82,7 +82,7 @@ class _PickedImage extends StatelessWidget {
       );
     }
 
-    // Is URL: 서버에서 이미지를 불러온 경우
+    // * 서버에서 이미지를 불러온 경우
     else if (fileOrUrl != null &&
         fileOrUrl!.isNotEmpty &&
         Uri.parse(fileOrUrl!).isAbsolute) {
@@ -92,6 +92,7 @@ class _PickedImage extends StatelessWidget {
       );
     }
 
+    // * 이미지가 없는 경우
     return Icon(
       RemixIcon.add_fill,
       size: Sizes.p40,

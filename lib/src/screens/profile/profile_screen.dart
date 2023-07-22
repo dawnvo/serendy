@@ -1,13 +1,11 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
-import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/profile_controller.dart';
 
 part 'widgets/_my_themes_list.dart';
-part 'widgets/_profile_card.dart';
+part 'widgets/_watched_media_indicator.dart';
 
 class ProfileScreen extends ConsumerWidget {
   static const String routeName = 'profile';
@@ -27,17 +25,12 @@ class ProfileScreen extends ConsumerWidget {
             onPressed: () => context.pushNamed(AppRoutes.settings),
           ),
         ],
-        profileCard: _ProfileCard(
-          user: state.user,
-          evaluationCount: state.evaluationsCount,
-        ),
-        themesList: _ProfileMyThemesList(
-          themes: state.myThemes,
-        ),
+        indicator: _WatchedMediaIndicator(count: state.evaluationsCount),
+        themesList: _ProfileMyThemesList(themes: state.myThemes),
       ),
       loading: () => const _Placeholder$ProfileScreen(),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
+      error: (err, stack) => const Scaffold(
+        body: Center(child: Text("내 라이브러리를 불러오지 못했어요.")),
       ),
     );
   }
@@ -47,12 +40,12 @@ class ProfileScreen extends ConsumerWidget {
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
     required this.actions,
-    required this.profileCard,
+    required this.indicator,
     required this.themesList,
   });
 
   final List<IconButton> actions;
-  final _ProfileCard profileCard;
+  final _WatchedMediaIndicator indicator;
   final _ProfileMyThemesList themesList;
 
   @override
@@ -60,12 +53,13 @@ class _ProfileTemplate extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
+          backgroundColor: context.colorScheme.background,
           title: const Text("내 라이브러리"),
           actions: actions,
         ),
         SliverPadding(
-          padding: const EdgeInsets.only(bottom: kContentPadding),
-          sliver: SliverToBoxAdapter(child: profileCard),
+          padding: const EdgeInsets.all(kContentPadding),
+          sliver: SliverToBoxAdapter(child: indicator),
         ),
         themesList,
       ]),
@@ -81,9 +75,9 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
     //widgets
-    final profileCard = Container(
+    final indicator = Container(
       color: color,
-      height: 160,
+      height: 40,
     );
     final themesList = SliverMyThemesList(
       childCount: 4,
@@ -94,12 +88,12 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
     //template
     return Scaffold(
       body: CustomScrollView(slivers: [
-        const SliverAppBar(title: Text("내 라이브러리")),
+        const SliverAppBar(
+          title: Text("내 라이브러리"),
+        ),
         SliverPadding(
-          padding: const EdgeInsets.only(bottom: kContentPadding),
-          sliver: SliverToBoxAdapter(
-            child: profileCard,
-          ),
+          padding: const EdgeInsets.all(kContentPadding),
+          sliver: SliverToBoxAdapter(child: indicator),
         ),
         themesList,
       ]),

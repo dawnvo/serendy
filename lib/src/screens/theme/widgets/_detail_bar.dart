@@ -11,8 +11,8 @@ class _ThemeDetailBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loggedInUserId = ref.watch(userIdProvider);
-    final isOwner = owner.id == loggedInUserId;
+    final currentUserId = ref.watch(userIdProvider);
+    final isOwner = owner.id == currentUserId;
 
     return Row(children: [
       _buildOwnerProfile(context),
@@ -23,7 +23,7 @@ class _ThemeDetailBar extends ConsumerWidget {
       const Spacer(),
 
       // * 기본 테마라면 아무것도 표시하지 않아요.
-      if (theme.id == loggedInUserId)
+      if (theme.id == currentUserId)
         const SizedBox()
       // * 커스텀 테마라면 액션 버튼을 표시해요.
       else

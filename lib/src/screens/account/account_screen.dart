@@ -44,8 +44,8 @@ class AccountScreen extends ConsumerWidget {
         textField: _AccountNameTextField(name: state.name),
         options: [
           _AccountEmailTile(email: state.email),
-          const _AccountGenderTile(gender: '남자'),
-          const _AccountBirthTile(birth: 2000),
+          // const _AccountGenderTile(gender: '남자'),
+          // const _AccountBirthTile(birth: 2000),
         ],
         controls: const _AccountControls(),
       ),
@@ -125,11 +125,11 @@ class _AccountListTile extends StatelessWidget {
           vertical: Sizes.p20,
         ),
         child: Row(children: [
-          // Label
+          //Label
           Text(label, style: context.textTheme.bodyLarge),
           Gap.w16,
 
-          // Value
+          //Value
           Expanded(
             child: Text(
               value ?? '',
@@ -141,7 +141,7 @@ class _AccountListTile extends StatelessWidget {
           ),
 
           Gap.w4,
-          // Icon
+          //Icon
           Icon(
             RemixIcon.arrow_right_s_line,
             color: context.colorScheme.outlineVariant,

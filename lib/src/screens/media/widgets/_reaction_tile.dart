@@ -12,7 +12,7 @@ class _MediaReactionsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (reactions.isNotEmpty) {
-      /// 중복된 감정을 병합해요.
+      // * 중복된 감정을 병합해요.
       final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
       final totalCount = reactions.length.withComma;
 
@@ -51,7 +51,7 @@ class _MediaReactionsTile extends StatelessWidget {
   }
 }
 
-/// Reaction Icons
+//Reaction icons
 class __ReactionIcons extends StatelessWidget {
   const __ReactionIcons({required this.emotions});
 

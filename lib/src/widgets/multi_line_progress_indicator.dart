@@ -1,20 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
-/// Interface
-interface class ProgressBar {
-  const ProgressBar({
-    required this.value,
-    required this.color,
-  });
-
-  final double value;
-  final Color color;
-}
-
-/// Multi line progress indicator
-///
-/// 진행 상태를 여러 줄로 표시할 수 있어요. 한 줄도 가능하고요.
 class MultiLineProgressIndicator extends StatelessWidget {
+  /// 진행 상태를 여러 줄로 표시할 수 있어요. 한 줄도 가능하고요.
   const MultiLineProgressIndicator(
     this.progressBars, {
     this.height = 10,
@@ -39,7 +26,18 @@ class MultiLineProgressIndicator extends StatelessWidget {
   }
 }
 
-/// Painter
+//Interface
+interface class ProgressBar {
+  const ProgressBar({
+    required this.value,
+    required this.color,
+  });
+
+  final double value;
+  final Color color;
+}
+
+//Painter
 class ProgressBarPainter extends CustomPainter {
   const ProgressBarPainter(
     this.progressBars, {

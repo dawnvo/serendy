@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -8,7 +7,7 @@ part 'widgets/_buttons.dart';
 part 'widgets/_titles.dart';
 part 'widgets/_watched_media_indicator.dart';
 
-class ProfileCardScreen extends StatelessWidget {
+class ProfileCardScreen extends HookConsumerWidget {
   static const String routeName = 'card';
   static const String routeLocation = routeName;
   const ProfileCardScreen({required this.evaluationCount});
@@ -16,8 +15,16 @@ class ProfileCardScreen extends StatelessWidget {
   final int evaluationCount;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final rank = findRankByCount(evaluationCount);
+    final meValue = ref.watch(fetchMeProvider);
+
+    if (meValue.isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return _ProfileCardTemplate(
       icon: SvgPicture.asset(
         rank.filePath,
@@ -26,12 +33,12 @@ class ProfileCardScreen extends StatelessWidget {
       ),
       titles: _ProfileCardTitles(
         rank: rank,
-        user: userMock,
+        user: meValue.requireValue,
       ),
       indicator: _WatchedMediaIndicator(
         min: rank.range.min,
         max: rank.range.max,
-        color: rank.color.fore,
+        color: rank.color,
         count: evaluationCount,
       ),
       buttons: const _ProfileCardButtons(),
@@ -56,12 +63,24 @@ class _ProfileCardTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(),
       body: Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          _buildCard(context),
-          Gap.h24,
-          buttons,
-        ]),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: kContentPadding,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildCard(context),
+                Gap.h24,
+                buttons,
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -78,12 +97,7 @@ class _ProfileCardTemplate extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kContentPadding,
-                ),
-                child: titles,
-              ),
+              titles,
               Gap.h40,
               indicator,
             ],

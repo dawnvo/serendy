@@ -4,29 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/constants/size_constant.dart';
 
-sealed class AppColors {
-  static const brand = Color(0xFFE5B3E5);
-
-  // light
-  static const _lightSurface = Color(0xFFFFFBFF);
-  static const _lightSurfaceVariant = Color(0xFFE5E1EC);
-  static const _lightHighlightColor = Color(0x40C8C8C8);
-
-  // dark
-  static const _darkSurface = Color(0xFF101012);
-  static const _darkSurfaceVariant = Color(0xFF212127);
-  static const _darkHighlightColor = Color(0x12CCCCCC);
-
-  /// [Brightness]에 따라 색상을 가져와요.
-  static from(Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
-    return (
-      surface: isDark ? _darkSurface : _lightSurface,
-      surfaceVariant: isDark ? _darkSurfaceVariant : _lightSurfaceVariant,
-      highlightColor: isDark ? _darkHighlightColor : _lightHighlightColor,
-    );
-  }
-}
+part 'app_colors.dart';
 
 final class AppThemeData {
   final ThemeData day;
@@ -39,14 +17,14 @@ final class AppThemeData {
 
   factory AppThemeData.fillWith({ColorScheme? light, ColorScheme? dark}) {
     return AppThemeData(
-      day: _createThemeData(light, Brightness.light),
-      night: _createThemeData(dark, Brightness.dark),
+      day: _createThemeData(Brightness.light, light),
+      night: _createThemeData(Brightness.dark, dark),
     );
   }
 
   static ThemeData _createThemeData(
-    ColorScheme? scheme,
     Brightness brightness,
+    ColorScheme? scheme,
   ) {
     final fallbackScheme = ColorScheme.fromSeed(
       seedColor: AppColors.brand,
@@ -79,7 +57,7 @@ final class AppThemeData {
       fontFamily: 'Pretendard',
     );
 
-    /// * 커스텀 스타일 설정
+    /// * 기본 스타일 수정
     return themeData.copyWith(
       splashColor: highlightColor,
       highlightColor: highlightColor,
@@ -88,6 +66,9 @@ final class AppThemeData {
       // PageTransitions theme
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
+          TargetPlatform.windows: SharedAxisPageTransitionsBuilder(
+            transitionType: SharedAxisTransitionType.horizontal,
+          ),
           TargetPlatform.android: SharedAxisPageTransitionsBuilder(
             transitionType: SharedAxisTransitionType.horizontal,
           ),
@@ -99,6 +80,8 @@ final class AppThemeData {
 
       // AppBar theme
       appBarTheme: themeData.appBarTheme.copyWith(
+        titleSpacing: kContentPadding,
+        backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle(
           systemNavigationBarColor: colorScheme.background,
         ),

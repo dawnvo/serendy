@@ -3,6 +3,8 @@ part of '../profile_card_screen.dart';
 class _ProfileCardButtons extends StatelessWidget {
   const _ProfileCardButtons();
 
+  final Size _buttonSize = const Size(280, 48);
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -16,7 +18,7 @@ class _ProfileCardButtons extends StatelessWidget {
     return FilledButton(
       onPressed: () => context.pushNamed(AppRoutes.history),
       style: FilledButton.styleFrom(
-          fixedSize: const Size(280, 48),
+          fixedSize: _buttonSize,
           backgroundColor: context.colorScheme.surfaceVariant,
           foregroundColor: context.colorScheme.onSurface),
       child: const Text("감상한 작품 보기"),
@@ -27,7 +29,7 @@ class _ProfileCardButtons extends StatelessWidget {
     return OutlinedButton(
       onPressed: () => context.pop(),
       style: OutlinedButton.styleFrom(
-          fixedSize: const Size(280, 48),
+          fixedSize: _buttonSize,
           foregroundColor: context.colorScheme.onSurfaceVariant,
           side: BorderSide(color: context.colorScheme.outlineVariant)),
       child: const Text("닫기"),

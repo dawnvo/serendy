@@ -24,8 +24,8 @@ class _SearchResults extends ConsumerWidget {
           (context, index) => const Placeholder$MediaItem(),
         ),
       ),
-      error: (err, stack) => SliverToBoxAdapter(
-        child: Center(child: Text(err.toString())),
+      error: (err, stack) => const SliverToBoxAdapter(
+        child: Center(child: Text("검색 결과를 불러오지 못했어요.")),
       ),
     );
   }

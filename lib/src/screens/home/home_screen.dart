@@ -45,10 +45,8 @@ class _HomeTemplate extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Image.asset(
-              Assets.appIcon,
-              height: Sizes.p48,
-            ),
+            backgroundColor: context.colorScheme.surface,
+            surfaceTintColor: context.colorScheme.surface,
             centerTitle: true,
             pinned: true,
             floating: true,
@@ -56,7 +54,10 @@ class _HomeTemplate extends StatelessWidget {
               preferredSize: const Size.fromHeight(kTextTabBarHeight),
               child: mediaFiltersTabBar,
             ),
-            surfaceTintColor: context.colorScheme.surface,
+            title: Image.asset(
+              Assets.appIcon,
+              height: Sizes.p48,
+            ),
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(

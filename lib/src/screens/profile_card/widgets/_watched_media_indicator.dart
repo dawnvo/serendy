@@ -15,11 +15,22 @@ class _WatchedMediaIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiLineProgressIndicator(height: Sizes.p4, [
-      ProgressBar(
-        value: (count - min) / (max - min),
-        color: color,
-      )
-    ]);
+    return MultiLineProgressIndicator(
+      height: Sizes.p4,
+      [
+        // * 최대 레벨이 아닐 경우 수치를 계산해요.
+        if (max != 0)
+          ProgressBar(
+            value: (count - min) / (max - min),
+            color: color,
+          )
+        // * 최대 레벨일 경우 한계를 없애요.
+        else
+          ProgressBar(
+            value: count.toDouble(),
+            color: color,
+          )
+      ],
+    );
   }
 }

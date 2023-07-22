@@ -51,8 +51,8 @@ class MediaScreen extends ConsumerWidget {
         ],
       ),
       loading: () => _Placeholder$MediaScreen(media),
-      error: (err, stack) => Scaffold(
-        body: Center(child: Text(err.toString())),
+      error: (err, stack) => const Scaffold(
+        body: Center(child: Text("작품 정보를 불러오지 못했어요.")),
       ),
     );
   }
@@ -78,7 +78,7 @@ class _MediaTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(backgroundColor: Colors.transparent),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(

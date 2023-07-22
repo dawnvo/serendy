@@ -13,7 +13,7 @@ class _ProfileCardTitles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Text(
-        "daze",
+        user.name,
         maxLines: 1,
         overflow: TextOverflow.clip,
         style: context.textTheme.headlineMedium?.copyWith(
@@ -24,7 +24,7 @@ class _ProfileCardTitles extends StatelessWidget {
       Text(
         rank.label,
         style: context.textTheme.titleMedium?.copyWith(
-          color: rank.color.fore,
+          color: rank.color,
         ),
       ),
     ]);

@@ -52,6 +52,17 @@ extension RankX on Rank {
         Rank.novel => '노벨',
       };
 
+  Color get color => switch (this) {
+        Rank.iron => const Color(0xFF8C8C97),
+        Rank.bronze => const Color(0xFFE8CBA4),
+        Rank.silver => const Color(0xFFF1F4F5),
+        Rank.gold => const Color(0xFFFFD971),
+        Rank.platinum => const Color(0xFF9DF0F3),
+        Rank.diamond => const Color(0xFFB9CAF5),
+        Rank.master => const Color(0xFFD8B8F5),
+        Rank.novel => const Color(0xFFFD6AA8),
+      };
+
   ({int min, int max}) get range => switch (this) {
         Rank.iron => const (min: 0, max: 10),
         Rank.bronze => const (min: 10, max: 20),
@@ -61,40 +72,5 @@ extension RankX on Rank {
         Rank.diamond => const (min: 200, max: 500),
         Rank.master => const (min: 500, max: 1000),
         Rank.novel => const (min: 1000, max: 0),
-      };
-
-  ({Color fore, Color back}) get color => switch (this) {
-        Rank.iron => const (
-            fore: Color(0xFF8C8C97),
-            back: Color(0xFF191921),
-          ),
-        Rank.bronze => const (
-            fore: Color(0xFFE8CBA4),
-            back: Color(0xFF564226),
-          ),
-        Rank.silver => const (
-            fore: Color(0xFFF1F4F5),
-            back: Color(0xFF4B5559),
-          ),
-        Rank.gold => const (
-            fore: Color(0xFFFFD971),
-            back: Color(0xFF604312),
-          ),
-        Rank.platinum => const (
-            fore: Color(0xFF9DF0F3),
-            back: Color(0xFF245455),
-          ),
-        Rank.diamond => const (
-            fore: Color(0xFFB9CAF5),
-            back: Color(0xFF364262),
-          ),
-        Rank.master => const (
-            fore: Color(0xFFD8B8F5),
-            back: Color(0xFF4C3662),
-          ),
-        Rank.novel => const (
-            fore: Color(0xFFFD6AA8),
-            back: Color(0xFF5A1637),
-          ),
       };
 }

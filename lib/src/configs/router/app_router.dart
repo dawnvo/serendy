@@ -211,12 +211,9 @@ final _shellNavigator = [
                 name: AppRoutes.profileCard,
                 path: AppRoutes._profileCardLocation,
                 parentNavigatorKey: _rootNavigatorKey,
-                pageBuilder: (context, state) {
+                builder: (context, state) {
                   final count = state.extra as int;
-                  return GoRouterTransitionPage.verticalAxis(
-                    fullscreenDialog: true,
-                    child: ProfileCardScreen(evaluationCount: count),
-                  );
+                  return ProfileCardScreen(evaluationCount: count);
                 },
               ),
             ],

@@ -6,7 +6,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 class DeleteEvaluationMenuItem extends ConsumerWidget {
   const DeleteEvaluationMenuItem({required this.media});
-
   final Media media;
 
   Future<void> handleTap(BuildContext context, WidgetRef ref) async {

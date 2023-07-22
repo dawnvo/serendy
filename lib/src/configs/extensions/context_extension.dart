@@ -20,10 +20,11 @@ extension BottomSheetX on BuildContext {
       context: this,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
+      barrierColor: colorScheme.surfaceTint.withOpacity(0.2),
       builder: (context) => Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(kBorderRadius)),
-          color: context.colorScheme.background,
+          color: context.colorScheme.surface,
         ),
         margin: const EdgeInsets.all(kContentPadding),
         child: BottomSheetTemplate(child: builder(this)),

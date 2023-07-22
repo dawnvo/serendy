@@ -23,7 +23,6 @@ class ProfileCardContainer extends StatelessWidget {
       child: Stack(children: [
         SvgPicture.string(
           _svg.replaceAll(_token, '#$hex'),
-          alignment: const Alignment(0, -0.2),
           fit: BoxFit.cover,
         ),
         child,

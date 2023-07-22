@@ -5,7 +5,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 class EvaluateMediaMenuItem extends ConsumerWidget {
   const EvaluateMediaMenuItem({required this.media});
-
   final Media media;
 
   void handleTap(BuildContext context) {

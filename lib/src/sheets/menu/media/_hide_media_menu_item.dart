@@ -4,7 +4,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 class HideMediaMenuItem extends ConsumerWidget {
   const HideMediaMenuItem({required this.media});
-
   final Media media;
 
   Future<void> handleTap(BuildContext context) async {

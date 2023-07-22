@@ -49,7 +49,9 @@ class _SettingsTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("설정")),
-      body: Column(children: options),
+      body: SingleChildScrollView(
+        child: Column(children: options),
+      ),
     );
   }
 }

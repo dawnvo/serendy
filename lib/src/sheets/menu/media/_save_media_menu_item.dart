@@ -5,7 +5,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 class SaveMediaMenuItem extends StatelessWidget {
   const SaveMediaMenuItem({required this.media});
-
   final Media media;
 
   void handleTap(BuildContext context) {
