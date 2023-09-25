@@ -23,7 +23,7 @@ extension BottomSheetX on BuildContext {
       context: this,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
-      barrierColor: colorScheme.surfaceTint.withOpacity(0.2),
+      barrierColor: Colors.black.withOpacity(0.4),
       builder: (context) => Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(kBorderRadius)),
