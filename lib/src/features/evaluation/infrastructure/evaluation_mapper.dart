@@ -3,7 +3,7 @@ import 'package:serendy/src/features/evaluation/infrastructure/evaluation_entity
 
 abstract final class EvaluationMapper {
   static Evaluation toDomainModel(final EvaluationEntity entity) {
-    final MediaInfo media = MediaInfo(
+    final EvaluationMedia media = EvaluationMedia(
       id: entity.media.id,
       title: entity.media.title,
       image: entity.media.image,
@@ -22,7 +22,7 @@ abstract final class EvaluationMapper {
   }
 
   static EvaluationEntity toDataEntity(final Evaluation model) {
-    final MediaInfoEntity media = MediaInfoEntity(
+    final EvaluationMediaEntity media = EvaluationMediaEntity(
       id: model.media.id,
       title: model.media.title,
       image: model.media.image,

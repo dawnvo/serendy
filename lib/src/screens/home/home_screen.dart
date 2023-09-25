@@ -5,8 +5,6 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/home_controller.dart';
 
-import 'widgets/f_medias_grid.dart';
-
 part 'widgets/_media_filters_tab_bar.dart';
 part 'widgets/_medias_grid.dart';
 
@@ -24,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         filters: filters,
         onSelect: (item) {},
       ),
-      mediasGrid: const Firestore$HomeMediasGrid(),
+      mediasGrid: const _HomeMediasGrid(),
     );
   }
 }
@@ -37,7 +35,7 @@ class _HomeTemplate extends StatelessWidget {
   });
 
   final _HomeMediaFiltersTabBar mediaFiltersTabBar;
-  final Firestore$HomeMediasGrid mediasGrid;
+  final _HomeMediasGrid mediasGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +43,11 @@ class _HomeTemplate extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: context.colorScheme.surface,
-            surfaceTintColor: context.colorScheme.surface,
-            centerTitle: true,
             pinned: true,
             floating: true,
+            centerTitle: true,
+            backgroundColor: context.colorScheme.surface,
+            surfaceTintColor: Colors.transparent,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(kTextTabBarHeight),
               child: mediaFiltersTabBar,

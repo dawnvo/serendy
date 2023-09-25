@@ -24,7 +24,6 @@ final class ThemeItem extends Equatable {
         status: media.status,
         title: media.title,
         image: media.image,
-        images: media.images,
         keywords: media.keywords,
         synopsis: media.synopsis,
         youtubeId: media.youtubeId,

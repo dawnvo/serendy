@@ -1,6 +1,3 @@
-import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
-import 'package:serendy/src/core/persistence/file_storage.dart';
-import 'package:serendy/src/core/persistence/firestore_path.dart';
 import 'package:serendy/src/features/media/application/media_module.dart';
 import 'package:serendy/src/features/theme/domain/usecases/add_theme_item_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/create_theme_usecase.dart';
@@ -16,53 +13,44 @@ import 'package:serendy/src/features/user/application/user_module.dart';
 
 abstract final class ThemeModule {
   // Persistence
-  static final themeRepository = ThemeRepositoryImpl(
-    InfrastructureModule.firestore,
-  );
-
-  static final themeFileStorage = FileStorageImpl(
-    FirestorePath.theme,
-    InfrastructureModule.storage,
-  );
+  static const themeRepository = ThemeRepositoryImpl();
 
   // UseCase
-  static final watchThemeListUsecase = WatchThemeListUsecase(
+  static const watchThemeListUsecase = WatchThemeListUsecase(
     ThemeModule.themeRepository,
   );
 
-  static final getThemeListUsecase = GetThemeListUsecase(
+  static const getThemeListUsecase = GetThemeListUsecase(
     ThemeModule.themeRepository,
   );
 
-  static final getThemeUsecase = GetThemeUsecase(
+  static const getThemeUsecase = GetThemeUsecase(
     ThemeModule.themeRepository,
   );
 
-  static final getThemeItemsUsecase = GetThemeItemsUsecase(
+  static const getThemeItemsUsecase = GetThemeItemsUsecase(
     ThemeModule.themeRepository,
   );
 
-  static final createThemeUsecase = CreateThemeUsecase(
+  static const createThemeUsecase = CreateThemeUsecase(
     ThemeModule.themeRepository,
     UserModule.userRepository,
   );
 
-  static final editThemeUsecase = EditThemeUsecase(
+  static const editThemeUsecase = EditThemeUsecase(
     ThemeModule.themeRepository,
-    ThemeModule.themeFileStorage,
   );
 
-  static final removeThemeUsecase = RemoveThemeUsecase(
+  static const removeThemeUsecase = RemoveThemeUsecase(
     ThemeModule.themeRepository,
-    ThemeModule.themeFileStorage,
   );
 
-  static final addThemeItemUsecase = AddThemeItemUsecase(
+  static const addThemeItemUsecase = AddThemeItemUsecase(
     ThemeModule.themeRepository,
     MediaModule.mediaRepository,
   );
 
-  static final deleteThemeItemUsecase = DeleteThemeItemUsecase(
+  static const deleteThemeItemUsecase = DeleteThemeItemUsecase(
     ThemeModule.themeRepository,
   );
 }

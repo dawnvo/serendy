@@ -28,11 +28,8 @@ final class ThemeEntity {
   final int itemCount;
   final List<ThemeItemEntity?> items;
 
-  @TimestampConverter()
   final DateTime createdAt;
-  @TimestampConverter()
   final DateTime updatedAt;
-  @TimestampConverter()
   final DateTime? removedAt;
 
   factory ThemeEntity.fromJson(Map<String, dynamic> json) =>
@@ -47,7 +44,6 @@ final class ThemeItemEntity {
     required this.media,
   });
 
-  @TimestampConverter()
   final DateTime addedAt;
   final MediaEntity media;
 

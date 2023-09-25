@@ -1,8 +1,7 @@
-import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/theme/infrastructure/theme_entity.dart';
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
-import 'package:serendy/src/features/media/infrastructure/media_mapper.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/theme/infrastructure/theme_entity.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 abstract final class ThemeMapper {
   static Theme toDomainModel(final ThemeEntity entity) {
@@ -75,7 +74,6 @@ abstract final class ThemeMapper {
 
 abstract final class ThemeItemMapper {
   static ThemeItem toDomainModel(final ThemeItemEntity item) {
-    final images = MediaImagesMapper.toDomainModel(item.media.images);
     return ThemeItem(
       addedAt: item.addedAt,
       media: Media(
@@ -84,7 +82,6 @@ abstract final class ThemeItemMapper {
         status: item.media.status,
         title: item.media.title,
         image: item.media.image,
-        images: images,
         synopsis: item.media.synopsis,
         keywords: item.media.keywords,
         youtubeId: item.media.youtubeId,

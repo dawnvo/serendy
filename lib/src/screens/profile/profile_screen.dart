@@ -29,8 +29,8 @@ class ProfileScreen extends ConsumerWidget {
         themesList: _ProfileMyThemesList(themes: state.myThemes),
       ),
       loading: () => const _Placeholder$ProfileScreen(),
-      error: (err, stack) => const Scaffold(
-        body: Center(child: Text("내 라이브러리를 불러오지 못했어요.")),
+      error: (err, stack) => const ErrorTemplate(
+        message: "내 라이브러리를 불러오지 못했어요.",
       ),
     );
   }
@@ -53,13 +53,25 @@ class _ProfileTemplate extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
-          backgroundColor: context.colorScheme.background,
+          backgroundColor: context.colorScheme.surface,
+          surfaceTintColor: Colors.transparent,
+          pinned: true,
+
+          //titles
           title: const Text("내 라이브러리"),
           actions: actions,
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.all(kContentPadding),
-          sliver: SliverToBoxAdapter(child: indicator),
+
+          //indicator
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(
+              10 + 20 + kContentPadding * 3,
+              // sum: indicator + body medium + padding
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(kContentPadding),
+              child: indicator,
+            ),
+          ),
         ),
         themesList,
       ]),

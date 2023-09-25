@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef SearchMediaRef = AutoDisposeFutureProviderRef<List<Media?>>;
-
 /// 미디어를 검색해요.
 ///
 /// Copied from [searchMedia].
@@ -89,10 +87,10 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
   ///
   /// Copied from [searchMedia].
   SearchMediaProvider({
-    this.title,
-  }) : super.internal(
+    String? title,
+  }) : this._internal(
           (ref) => searchMedia(
-            ref,
+            ref as SearchMediaRef,
             title: title,
           ),
           from: searchMediaProvider,
@@ -104,9 +102,43 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
           dependencies: SearchMediaFamily._dependencies,
           allTransitiveDependencies:
               SearchMediaFamily._allTransitiveDependencies,
+          title: title,
         );
 
+  SearchMediaProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.title,
+  }) : super.internal();
+
   final String? title;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Media?>> Function(SearchMediaRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SearchMediaProvider._internal(
+        (ref) => create(ref as SearchMediaRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        title: title,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Media?>> createElement() {
+    return _SearchMediaProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -120,6 +152,19 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin SearchMediaRef on AutoDisposeFutureProviderRef<List<Media?>> {
+  /// The parameter `title` of this provider.
+  String? get title;
+}
+
+class _SearchMediaProviderElement
+    extends AutoDisposeFutureProviderElement<List<Media?>> with SearchMediaRef {
+  _SearchMediaProviderElement(super.provider);
+
+  @override
+  String? get title => (origin as SearchMediaProvider).title;
 }
 
 String _$fetchMediaListHash() => r'f951c09ff9a7c2f70f6f43aed19c4580d238470a';
@@ -140,7 +185,6 @@ final fetchMediaListProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
 
 typedef FetchMediaListRef = AutoDisposeFutureProviderRef<List<Media?>>;
 String _$fetchMediaHash() => r'bbc13b10b1024e2168d731caeeb08a547a5c15b9';
-typedef FetchMediaRef = AutoDisposeFutureProviderRef<Media>;
 
 /// 미디어 정보를 불러와요.
 ///
@@ -200,10 +244,10 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
   ///
   /// Copied from [fetchMedia].
   FetchMediaProvider({
-    required this.id,
-  }) : super.internal(
+    required String id,
+  }) : this._internal(
           (ref) => fetchMedia(
-            ref,
+            ref as FetchMediaRef,
             id: id,
           ),
           from: fetchMediaProvider,
@@ -215,9 +259,43 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
           dependencies: FetchMediaFamily._dependencies,
           allTransitiveDependencies:
               FetchMediaFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  FetchMediaProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<Media> Function(FetchMediaRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchMediaProvider._internal(
+        (ref) => create(ref as FetchMediaRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Media> createElement() {
+    return _FetchMediaProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -233,8 +311,20 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
   }
 }
 
+mixin FetchMediaRef on AutoDisposeFutureProviderRef<Media> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
+    with FetchMediaRef {
+  _FetchMediaProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchMediaProvider).id;
+}
+
 String _$addMediaHash() => r'a7eb2729bc7053244de8942ce8cb7edace5e977d';
-typedef AddMediaRef = AutoDisposeFutureProviderRef<void>;
 
 /// 미디어를 추가해요.
 ///
@@ -318,18 +408,18 @@ class AddMediaProvider extends AutoDisposeFutureProvider<void> {
   ///
   /// Copied from [addMedia].
   AddMediaProvider({
-    required this.status,
-    required this.type,
-    required this.title,
-    required this.image,
-    required this.keywords,
-    this.synopsis,
-    this.endDate,
-    this.isAdult,
-    this.startDate,
-  }) : super.internal(
+    required MediaStatus status,
+    required MediaType type,
+    required String title,
+    required String image,
+    required List<String> keywords,
+    String? synopsis,
+    DateTime? endDate,
+    bool? isAdult,
+    DateTime? startDate,
+  }) : this._internal(
           (ref) => addMedia(
-            ref,
+            ref as AddMediaRef,
             status: status,
             type: type,
             title: title,
@@ -348,7 +438,34 @@ class AddMediaProvider extends AutoDisposeFutureProvider<void> {
                   : _$addMediaHash,
           dependencies: AddMediaFamily._dependencies,
           allTransitiveDependencies: AddMediaFamily._allTransitiveDependencies,
+          status: status,
+          type: type,
+          title: title,
+          image: image,
+          keywords: keywords,
+          synopsis: synopsis,
+          endDate: endDate,
+          isAdult: isAdult,
+          startDate: startDate,
         );
+
+  AddMediaProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.status,
+    required this.type,
+    required this.title,
+    required this.image,
+    required this.keywords,
+    required this.synopsis,
+    required this.endDate,
+    required this.isAdult,
+    required this.startDate,
+  }) : super.internal();
 
   final MediaStatus status;
   final MediaType type;
@@ -359,6 +476,37 @@ class AddMediaProvider extends AutoDisposeFutureProvider<void> {
   final DateTime? endDate;
   final bool? isAdult;
   final DateTime? startDate;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(AddMediaRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: AddMediaProvider._internal(
+        (ref) => create(ref as AddMediaRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        status: status,
+        type: type,
+        title: title,
+        image: image,
+        keywords: keywords,
+        synopsis: synopsis,
+        endDate: endDate,
+        isAdult: isAdult,
+        startDate: startDate,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _AddMediaProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -390,4 +538,58 @@ class AddMediaProvider extends AutoDisposeFutureProvider<void> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin AddMediaRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `status` of this provider.
+  MediaStatus get status;
+
+  /// The parameter `type` of this provider.
+  MediaType get type;
+
+  /// The parameter `title` of this provider.
+  String get title;
+
+  /// The parameter `image` of this provider.
+  String get image;
+
+  /// The parameter `keywords` of this provider.
+  List<String> get keywords;
+
+  /// The parameter `synopsis` of this provider.
+  String? get synopsis;
+
+  /// The parameter `endDate` of this provider.
+  DateTime? get endDate;
+
+  /// The parameter `isAdult` of this provider.
+  bool? get isAdult;
+
+  /// The parameter `startDate` of this provider.
+  DateTime? get startDate;
+}
+
+class _AddMediaProviderElement extends AutoDisposeFutureProviderElement<void>
+    with AddMediaRef {
+  _AddMediaProviderElement(super.provider);
+
+  @override
+  MediaStatus get status => (origin as AddMediaProvider).status;
+  @override
+  MediaType get type => (origin as AddMediaProvider).type;
+  @override
+  String get title => (origin as AddMediaProvider).title;
+  @override
+  String get image => (origin as AddMediaProvider).image;
+  @override
+  List<String> get keywords => (origin as AddMediaProvider).keywords;
+  @override
+  String? get synopsis => (origin as AddMediaProvider).synopsis;
+  @override
+  DateTime? get endDate => (origin as AddMediaProvider).endDate;
+  @override
+  bool? get isAdult => (origin as AddMediaProvider).isAdult;
+  @override
+  DateTime? get startDate => (origin as AddMediaProvider).startDate;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

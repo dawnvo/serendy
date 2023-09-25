@@ -6,7 +6,7 @@ part of 'profile_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileControllerHash() => r'e8f77e3695ca1a2122d5ba02c553f49668a2884e';
+String _$profileControllerHash() => r'4b58bd754971454cf48379f4b59f8a895b7f92eb';
 
 /// See also [ProfileController].
 @ProviderFor(ProfileController)
@@ -22,4 +22,5 @@ final profileControllerProvider =
 );
 
 typedef _$ProfileController = AsyncNotifier<ProfileState>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

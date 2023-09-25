@@ -1,12 +1,10 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/screens/screens.dart';
 
 import 'bottom_navigation_bar.dart';
-import 'go_router_refresh_stream.dart';
 import 'go_router_transition_page.dart';
 
 part 'app_routes.dart';
@@ -18,8 +16,6 @@ final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final authService = ref.watch(authServiceProvider);
-
   // 🔒 로그인이 필요한 화면
   final privateLocation = [
     AppRoutes._homeLocation,
@@ -30,19 +26,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    refreshListenable: GoRouterRefreshStream(authService.authStateChanges),
     redirect: (context, state) {
-      final isLoggedIn = authService.currentUserId != null;
+      final isLoggedIn = ''.isEmpty;
+      final currentLocation = state.matchedLocation;
 
       // 로그인에 성공한 경우
       if (isLoggedIn) {
-        if (state.location == AppRoutes._signInLocation) {
+        if (currentLocation == AppRoutes._signInLocation) {
           return AppRoutes._homeLocation;
         }
       }
       // 로그인에 실패한 경우
       else {
-        if (privateLocation.contains(state.location)) {
+        if (privateLocation.contains(currentLocation)) {
           return AppRoutes._signInLocation;
         }
       }
@@ -151,14 +147,14 @@ final _themeRoutes = [
 /// ----------Modal routes
 final _modalRoutes = [
   GoRoute(
-    name: AppRoutes.rankUp,
-    path: AppRoutes._rankUpLocation,
+    name: AppRoutes.rank,
+    path: AppRoutes._rankLocation,
     parentNavigatorKey: _rootNavigatorKey,
     pageBuilder: (context, state) {
       final rank = state.extra as Rank;
       return GoRouterTransitionPage.verticalAxis(
         fullscreenDialog: true,
-        child: RankUpModal(rank: rank),
+        child: RankModal(rank: rank),
       );
     },
   ),

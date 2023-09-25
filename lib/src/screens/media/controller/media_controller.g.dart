@@ -90,9 +90,9 @@ class MediaControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<MediaController, MediaState> {
   /// See also [MediaController].
   MediaControllerProvider(
-    this.id, [
-    this.media,
-  ]) : super.internal(
+    String id, [
+    Media? media,
+  ]) : this._internal(
           () => MediaController()
             ..id = id
             ..media = media,
@@ -105,10 +105,58 @@ class MediaControllerProvider
           dependencies: MediaControllerFamily._dependencies,
           allTransitiveDependencies:
               MediaControllerFamily._allTransitiveDependencies,
+          id: id,
+          media: media,
         );
+
+  MediaControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.media,
+  }) : super.internal();
 
   final String id;
   final Media? media;
+
+  @override
+  FutureOr<MediaState> runNotifierBuild(
+    covariant MediaController notifier,
+  ) {
+    return notifier.build(
+      id,
+      media,
+    );
+  }
+
+  @override
+  Override overrideWith(MediaController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: MediaControllerProvider._internal(
+        () => create()
+          ..id = id
+          ..media = media,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        media: media,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<MediaController, MediaState>
+      createElement() {
+    return _MediaControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -125,15 +173,25 @@ class MediaControllerProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin MediaControllerRef on AutoDisposeAsyncNotifierProviderRef<MediaState> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `media` of this provider.
+  Media? get media;
+}
+
+class _MediaControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<MediaController, MediaState>
+    with MediaControllerRef {
+  _MediaControllerProviderElement(super.provider);
 
   @override
-  FutureOr<MediaState> runNotifierBuild(
-    covariant MediaController notifier,
-  ) {
-    return notifier.build(
-      id,
-      media,
-    );
-  }
+  String get id => (origin as MediaControllerProvider).id;
+  @override
+  Media? get media => (origin as MediaControllerProvider).media;
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

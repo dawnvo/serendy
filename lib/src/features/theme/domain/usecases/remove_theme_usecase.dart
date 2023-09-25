@@ -1,7 +1,6 @@
 import 'package:serendy/src/core/domain/assert.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
-import 'package:serendy/src/core/persistence/file_storage.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 typedef RemoveThemePayload = ({
@@ -10,13 +9,9 @@ typedef RemoveThemePayload = ({
 });
 
 final class RemoveThemeUsecase implements UseCase<RemoveThemePayload, void> {
-  const RemoveThemeUsecase(
-    this._themeRepository,
-    this._fileStorage,
-  );
+  const RemoveThemeUsecase(this._themeRepository);
 
   final ThemeRepository _themeRepository;
-  final FileStorage _fileStorage;
 
   @override
   Future<void> execute(RemoveThemePayload payload) async {
@@ -30,10 +25,8 @@ final class RemoveThemeUsecase implements UseCase<RemoveThemePayload, void> {
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // 테마에 이미지가 있으면 스토리지에서 이미지를 제거합니다.
-    if (theme.image != null) {
-      await _fileStorage.delete(theme.id);
-    }
+    // TODO: 스토리지에서 이미지를 제거합니다.
+    // if (theme.image != null) {}
 
     final removed = theme.remove();
     await _themeRepository.update(removed);

@@ -6,21 +6,7 @@ part of 'auth_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authServiceHash() => r'176db096608575a1a0bae4ea736d3912a0984df8';
-
-/// See also [authService].
-@ProviderFor(authService)
-final authServiceProvider = Provider<AuthService>.internal(
-  authService,
-  name: r'authServiceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef AuthServiceRef = ProviderRef<AuthService>;
-String _$requireUserIdHash() => r'a01b68c704a71d77ef3b7989c74d89613fd7ba76';
+String _$requireUserIdHash() => r'faac68b887a1a5e1cf4f19585d03e04487137ace';
 
 /// See also [requireUserId].
 @ProviderFor(requireUserId)
@@ -35,7 +21,7 @@ final requireUserIdProvider = Provider<String>.internal(
 );
 
 typedef RequireUserIdRef = ProviderRef<String>;
-String _$userIdHash() => r'0fd763fe6cb43d5fdd565a8812346582033a9873';
+String _$userIdHash() => r'08fbc213edbafb0383a33c216a9a2c86a2ead126';
 
 /// See also [userId].
 @ProviderFor(userId)
@@ -49,4 +35,5 @@ final userIdProvider = AutoDisposeProvider<String?>.internal(
 );
 
 typedef UserIdRef = AutoDisposeProviderRef<String?>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

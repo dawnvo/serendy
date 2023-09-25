@@ -1,7 +1,7 @@
 part of 'app_theme.dart';
 
 sealed class AppColors {
-  static const brand = Color(0xFFE5B3E5);
+  static const brand = Color(0xFFA594F9);
 
   //light
   static const _lightSurface = Color(0xFFFFFBFF);

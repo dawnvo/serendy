@@ -3,6 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 abstract class EvaluationRepository {
+  const EvaluationRepository();
+
   Stream<List<Evaluation?>> watchMany(UserID userId);
 
   Future<List<Evaluation?>> findMany(MediaID mediaId);

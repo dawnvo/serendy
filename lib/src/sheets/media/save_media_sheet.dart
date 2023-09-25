@@ -52,8 +52,9 @@ class SaveMediaSheet extends ConsumerWidget {
               addAutomaticKeepAlives: false,
               builder: (context, index) => const Placeholder$ThemeItem(),
             ),
-            error: (err, stack) => const SliverToBoxAdapter(
-              child: Center(child: Text("나의 테마를 불러오지 못했어요.")),
+            error: (err, stack) => const ErrorTemplate(
+              message: "나의 테마를 불러오지 못했어요.",
+              sliver: true,
             ),
           ),
         ],

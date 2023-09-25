@@ -1,4 +1,3 @@
-import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/count_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_list_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_usecase.dart';
@@ -11,34 +10,32 @@ import 'package:serendy/src/features/user/user.dart';
 
 class EvaluationModule {
   // Persistence
-  static final evaluationRepository = EvaluationRepositoryImpl(
-    InfrastructureModule.firestore,
-  );
+  static const evaluationRepository = EvaluationRepositoryImpl();
 
   // UseCase
-  static final watchEvaluationListUsecase = WatchEvaluationListUsecase(
+  static const watchEvaluationListUsecase = WatchEvaluationListUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static final getEvaluationListUsecase = GetEvaluationListUsecase(
+  static const getEvaluationListUsecase = GetEvaluationListUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static final countEvaluationsUsecase = CountEvaluationsUsecase(
+  static const countEvaluationsUsecase = CountEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static final getEvaluationUsecase = GetEvaluationUsecase(
+  static const getEvaluationUsecase = GetEvaluationUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static final submitEvaluationUsecase = SubmitEvaluationUsecase(
+  static const submitEvaluationUsecase = SubmitEvaluationUsecase(
     EvaluationModule.evaluationRepository,
     UserModule.userRepository,
     MediaModule.mediaRepository,
   );
 
-  static final removeEvaluationUsecase = RemoveEvaluationUsecase(
+  static const removeEvaluationUsecase = RemoveEvaluationUsecase(
     EvaluationModule.evaluationRepository,
   );
 }

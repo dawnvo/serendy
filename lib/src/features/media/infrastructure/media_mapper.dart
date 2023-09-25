@@ -3,14 +3,12 @@ import 'package:serendy/src/features/media/media.dart';
 
 abstract final class MediaMapper {
   static Media toDomainModel(MediaEntity entity) {
-    final images = MediaImagesMapper.toDomainModel(entity.images);
     return Media(
       id: entity.id,
       type: entity.type,
       status: entity.status,
       title: entity.title,
       image: entity.image,
-      images: images,
       keywords: entity.keywords,
       synopsis: entity.synopsis,
       youtubeId: entity.youtubeId,
@@ -39,18 +37,6 @@ abstract final class MediaMapper {
       endDate: model.endDate?.toIso8601String(),
       // 이미지는 서버에서 설정할 거예요.
       images: null,
-    );
-  }
-}
-
-abstract final class MediaImagesMapper {
-  static MediaImages toDomainModel(MediaImagesEntity? entity) {
-    final image = entity?.webp;
-    if (image == null) return MediaImages.empty();
-    return MediaImages(
-      imageUrl: image.imageUrl,
-      largeImageUrl: image.largeImageUrl,
-      smallImageUrl: image.smallImageUrl,
     );
   }
 }

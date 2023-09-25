@@ -22,9 +22,6 @@ final class Media extends Equatable {
   /// 사진
   final String image;
 
-  /// 크기별 사진
-  final MediaImages images;
-
   /// 줄거리
   final String? synopsis;
 
@@ -48,7 +45,6 @@ final class Media extends Equatable {
     required this.status,
     required this.title,
     required this.image,
-    required this.images,
     required this.keywords,
     this.synopsis,
     this.startDate,
@@ -67,7 +63,6 @@ final class Media extends Equatable {
         status,
         title,
         image,
-        images,
         synopsis,
         keywords,
         youtubeId,
@@ -84,7 +79,6 @@ extension MediaX on Media {
     final MediaStatus? status,
     final String? title,
     final String? image,
-    final MediaImages? images,
     final String? synopsis,
     final List<String>? keywords,
     final List<String?>? youtubeId,
@@ -98,7 +92,6 @@ extension MediaX on Media {
       status: status ?? this.status,
       title: title ?? this.title,
       image: image ?? this.image,
-      images: images ?? this.images,
       keywords: keywords ?? this.keywords,
       synopsis: synopsis ?? this.synopsis,
       youtubeId: youtubeId ?? this.youtubeId,

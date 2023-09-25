@@ -1,6 +1,8 @@
 import 'package:serendy/src/features/user/user.dart';
 
 abstract class UserRepository {
+  const UserRepository();
+
   Future<User?> findOne(UserID userId);
 
   Future<void> create(User user);

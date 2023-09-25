@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+//Theme
 extension ThemeX on BuildContext {
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => theme.textTheme;
   ColorScheme get colorScheme => theme.colorScheme;
 }
 
+//MediaQuery
 extension MediaQueryX on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   double get screenWidth => mediaQuery.size.width;
   double get screenHeight => mediaQuery.size.height;
 }
 
+//BottomSheet
 extension BottomSheetX on BuildContext {
   Future<T?> showCustomBottomSheet<T>(WidgetBuilder builder) {
     return showModalBottomSheet<T>(

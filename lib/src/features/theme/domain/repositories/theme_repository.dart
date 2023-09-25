@@ -3,6 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 abstract class ThemeRepository {
+  const ThemeRepository();
+
   Stream<List<Theme?>> watchMany(UserID userId);
 
   Future<List<Theme?>> findMany(UserID? userId);

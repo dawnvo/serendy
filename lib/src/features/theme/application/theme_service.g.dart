@@ -64,8 +64,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchThemeRef = AutoDisposeFutureProviderRef<Theme>;
-
 /// 테마를 불러와요.
 ///
 /// Copied from [fetchTheme].
@@ -124,10 +122,10 @@ class FetchThemeProvider extends AutoDisposeFutureProvider<Theme> {
   ///
   /// Copied from [fetchTheme].
   FetchThemeProvider({
-    required this.id,
-  }) : super.internal(
+    required String id,
+  }) : this._internal(
           (ref) => fetchTheme(
-            ref,
+            ref as FetchThemeRef,
             id: id,
           ),
           from: fetchThemeProvider,
@@ -139,9 +137,43 @@ class FetchThemeProvider extends AutoDisposeFutureProvider<Theme> {
           dependencies: FetchThemeFamily._dependencies,
           allTransitiveDependencies:
               FetchThemeFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  FetchThemeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<Theme> Function(FetchThemeRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchThemeProvider._internal(
+        (ref) => create(ref as FetchThemeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Theme> createElement() {
+    return _FetchThemeProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -157,8 +189,20 @@ class FetchThemeProvider extends AutoDisposeFutureProvider<Theme> {
   }
 }
 
+mixin FetchThemeRef on AutoDisposeFutureProviderRef<Theme> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchThemeProviderElement extends AutoDisposeFutureProviderElement<Theme>
+    with FetchThemeRef {
+  _FetchThemeProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchThemeProvider).id;
+}
+
 String _$fetchThemeItemsHash() => r'3a0bf7c06295d549c4bbd6ba5503be2b78140094';
-typedef FetchThemeItemsRef = AutoDisposeFutureProviderRef<List<ThemeItem?>>;
 
 /// 테마 항목을 불러와요.
 ///
@@ -219,10 +263,10 @@ class FetchThemeItemsProvider
   ///
   /// Copied from [fetchThemeItems].
   FetchThemeItemsProvider({
-    required this.id,
-  }) : super.internal(
+    required String id,
+  }) : this._internal(
           (ref) => fetchThemeItems(
-            ref,
+            ref as FetchThemeItemsRef,
             id: id,
           ),
           from: fetchThemeItemsProvider,
@@ -234,9 +278,43 @@ class FetchThemeItemsProvider
           dependencies: FetchThemeItemsFamily._dependencies,
           allTransitiveDependencies:
               FetchThemeItemsFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  FetchThemeItemsProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<ThemeItem?>> Function(FetchThemeItemsRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchThemeItemsProvider._internal(
+        (ref) => create(ref as FetchThemeItemsRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<ThemeItem?>> createElement() {
+    return _FetchThemeItemsProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -252,8 +330,21 @@ class FetchThemeItemsProvider
   }
 }
 
+mixin FetchThemeItemsRef on AutoDisposeFutureProviderRef<List<ThemeItem?>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchThemeItemsProviderElement
+    extends AutoDisposeFutureProviderElement<List<ThemeItem?>>
+    with FetchThemeItemsRef {
+  _FetchThemeItemsProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchThemeItemsProvider).id;
+}
+
 String _$createThemeHash() => r'feaafa94f0263173da92603fea0b93690b48fb0b';
-typedef CreateThemeRef = AutoDisposeFutureProviderRef<Theme>;
 
 /// 테마를 만들어요.
 ///
@@ -313,10 +404,10 @@ class CreateThemeProvider extends AutoDisposeFutureProvider<Theme> {
   ///
   /// Copied from [createTheme].
   CreateThemeProvider({
-    required this.title,
-  }) : super.internal(
+    required String title,
+  }) : this._internal(
           (ref) => createTheme(
-            ref,
+            ref as CreateThemeRef,
             title: title,
           ),
           from: createThemeProvider,
@@ -328,9 +419,43 @@ class CreateThemeProvider extends AutoDisposeFutureProvider<Theme> {
           dependencies: CreateThemeFamily._dependencies,
           allTransitiveDependencies:
               CreateThemeFamily._allTransitiveDependencies,
+          title: title,
         );
 
+  CreateThemeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.title,
+  }) : super.internal();
+
   final String title;
+
+  @override
+  Override overrideWith(
+    FutureOr<Theme> Function(CreateThemeRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CreateThemeProvider._internal(
+        (ref) => create(ref as CreateThemeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        title: title,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Theme> createElement() {
+    return _CreateThemeProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -346,8 +471,20 @@ class CreateThemeProvider extends AutoDisposeFutureProvider<Theme> {
   }
 }
 
+mixin CreateThemeRef on AutoDisposeFutureProviderRef<Theme> {
+  /// The parameter `title` of this provider.
+  String get title;
+}
+
+class _CreateThemeProviderElement
+    extends AutoDisposeFutureProviderElement<Theme> with CreateThemeRef {
+  _CreateThemeProviderElement(super.provider);
+
+  @override
+  String get title => (origin as CreateThemeProvider).title;
+}
+
 String _$editThemeHash() => r'ba2f85b3cb63e75c443712b65fdcb20da3d0def2';
-typedef EditThemeRef = AutoDisposeFutureProviderRef<Theme>;
 
 /// 테마를 수정해요.
 ///
@@ -419,14 +556,14 @@ class EditThemeProvider extends AutoDisposeFutureProvider<Theme> {
   ///
   /// Copied from [editTheme].
   EditThemeProvider({
-    required this.id,
-    required this.title,
-    this.description,
-    this.image,
-    this.private,
-  }) : super.internal(
+    required String id,
+    required String title,
+    String? description,
+    String? image,
+    bool? private,
+  }) : this._internal(
           (ref) => editTheme(
-            ref,
+            ref as EditThemeRef,
             id: id,
             title: title,
             description: description,
@@ -441,13 +578,59 @@ class EditThemeProvider extends AutoDisposeFutureProvider<Theme> {
                   : _$editThemeHash,
           dependencies: EditThemeFamily._dependencies,
           allTransitiveDependencies: EditThemeFamily._allTransitiveDependencies,
+          id: id,
+          title: title,
+          description: description,
+          image: image,
+          private: private,
         );
+
+  EditThemeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.private,
+  }) : super.internal();
 
   final String id;
   final String title;
   final String? description;
   final String? image;
   final bool? private;
+
+  @override
+  Override overrideWith(
+    FutureOr<Theme> Function(EditThemeRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: EditThemeProvider._internal(
+        (ref) => create(ref as EditThemeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        title: title,
+        description: description,
+        image: image,
+        private: private,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Theme> createElement() {
+    return _EditThemeProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -472,8 +655,40 @@ class EditThemeProvider extends AutoDisposeFutureProvider<Theme> {
   }
 }
 
+mixin EditThemeRef on AutoDisposeFutureProviderRef<Theme> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `title` of this provider.
+  String get title;
+
+  /// The parameter `description` of this provider.
+  String? get description;
+
+  /// The parameter `image` of this provider.
+  String? get image;
+
+  /// The parameter `private` of this provider.
+  bool? get private;
+}
+
+class _EditThemeProviderElement extends AutoDisposeFutureProviderElement<Theme>
+    with EditThemeRef {
+  _EditThemeProviderElement(super.provider);
+
+  @override
+  String get id => (origin as EditThemeProvider).id;
+  @override
+  String get title => (origin as EditThemeProvider).title;
+  @override
+  String? get description => (origin as EditThemeProvider).description;
+  @override
+  String? get image => (origin as EditThemeProvider).image;
+  @override
+  bool? get private => (origin as EditThemeProvider).private;
+}
+
 String _$removeThemeHash() => r'4b9dd72b11a90e962e69a3b7c06885a19c592cc1';
-typedef RemoveThemeRef = AutoDisposeFutureProviderRef<void>;
 
 /// 테마를 제거해요.
 ///
@@ -533,10 +748,10 @@ class RemoveThemeProvider extends AutoDisposeFutureProvider<void> {
   ///
   /// Copied from [removeTheme].
   RemoveThemeProvider({
-    required this.id,
-  }) : super.internal(
+    required String id,
+  }) : this._internal(
           (ref) => removeTheme(
-            ref,
+            ref as RemoveThemeRef,
             id: id,
           ),
           from: removeThemeProvider,
@@ -548,9 +763,43 @@ class RemoveThemeProvider extends AutoDisposeFutureProvider<void> {
           dependencies: RemoveThemeFamily._dependencies,
           allTransitiveDependencies:
               RemoveThemeFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  RemoveThemeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(RemoveThemeRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: RemoveThemeProvider._internal(
+        (ref) => create(ref as RemoveThemeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _RemoveThemeProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -566,8 +815,20 @@ class RemoveThemeProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+mixin RemoveThemeRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _RemoveThemeProviderElement extends AutoDisposeFutureProviderElement<void>
+    with RemoveThemeRef {
+  _RemoveThemeProviderElement(super.provider);
+
+  @override
+  String get id => (origin as RemoveThemeProvider).id;
+}
+
 String _$addThemeItemHash() => r'3c93a8379be44f00ff74b1a380242d6fed4b2451';
-typedef AddThemeItemRef = AutoDisposeFutureProviderRef<Theme>;
 
 /// 테마에 항목을 추가해요.
 ///
@@ -630,11 +891,11 @@ class AddThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
   ///
   /// Copied from [addThemeItem].
   AddThemeItemProvider({
-    required this.id,
-    required this.mediaId,
-  }) : super.internal(
+    required String id,
+    required String mediaId,
+  }) : this._internal(
           (ref) => addThemeItem(
-            ref,
+            ref as AddThemeItemRef,
             id: id,
             mediaId: mediaId,
           ),
@@ -647,10 +908,47 @@ class AddThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
           dependencies: AddThemeItemFamily._dependencies,
           allTransitiveDependencies:
               AddThemeItemFamily._allTransitiveDependencies,
+          id: id,
+          mediaId: mediaId,
         );
+
+  AddThemeItemProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.mediaId,
+  }) : super.internal();
 
   final String id;
   final String mediaId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Theme> Function(AddThemeItemRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: AddThemeItemProvider._internal(
+        (ref) => create(ref as AddThemeItemRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Theme> createElement() {
+    return _AddThemeItemProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -669,8 +967,25 @@ class AddThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
   }
 }
 
+mixin AddThemeItemRef on AutoDisposeFutureProviderRef<Theme> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _AddThemeItemProviderElement
+    extends AutoDisposeFutureProviderElement<Theme> with AddThemeItemRef {
+  _AddThemeItemProviderElement(super.provider);
+
+  @override
+  String get id => (origin as AddThemeItemProvider).id;
+  @override
+  String get mediaId => (origin as AddThemeItemProvider).mediaId;
+}
+
 String _$deleteThemeItemHash() => r'4c341c0ed91e1399d97519c1c10f759b2292a9a6';
-typedef DeleteThemeItemRef = AutoDisposeFutureProviderRef<Theme>;
 
 /// 테마 항목을 제거해요.
 ///
@@ -733,11 +1048,11 @@ class DeleteThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
   ///
   /// Copied from [deleteThemeItem].
   DeleteThemeItemProvider({
-    required this.id,
-    required this.mediaId,
-  }) : super.internal(
+    required String id,
+    required String mediaId,
+  }) : this._internal(
           (ref) => deleteThemeItem(
-            ref,
+            ref as DeleteThemeItemRef,
             id: id,
             mediaId: mediaId,
           ),
@@ -750,10 +1065,47 @@ class DeleteThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
           dependencies: DeleteThemeItemFamily._dependencies,
           allTransitiveDependencies:
               DeleteThemeItemFamily._allTransitiveDependencies,
+          id: id,
+          mediaId: mediaId,
         );
+
+  DeleteThemeItemProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.mediaId,
+  }) : super.internal();
 
   final String id;
   final String mediaId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Theme> Function(DeleteThemeItemRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DeleteThemeItemProvider._internal(
+        (ref) => create(ref as DeleteThemeItemRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Theme> createElement() {
+    return _DeleteThemeItemProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -771,4 +1123,23 @@ class DeleteThemeItemProvider extends AutoDisposeFutureProvider<Theme> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin DeleteThemeItemRef on AutoDisposeFutureProviderRef<Theme> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _DeleteThemeItemProviderElement
+    extends AutoDisposeFutureProviderElement<Theme> with DeleteThemeItemRef {
+  _DeleteThemeItemProviderElement(super.provider);
+
+  @override
+  String get id => (origin as DeleteThemeItemProvider).id;
+  @override
+  String get mediaId => (origin as DeleteThemeItemProvider).mediaId;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

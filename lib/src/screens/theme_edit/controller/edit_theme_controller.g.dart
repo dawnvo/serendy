@@ -7,7 +7,7 @@ part of 'edit_theme_controller.dart';
 // **************************************************************************
 
 String _$editThemeControllerHash() =>
-    r'd98d0eab541697d39b7fbbdba9e696cd07a854d0';
+    r'e08a10a6ca1ed58f6f3bf8bebd8d9c98b7cdbff7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -86,8 +86,8 @@ class EditThemeControllerProvider extends AutoDisposeNotifierProviderImpl<
     EditThemeController, EditThemeState> {
   /// See also [EditThemeController].
   EditThemeControllerProvider(
-    this.theme,
-  ) : super.internal(
+    Theme theme,
+  ) : this._internal(
           () => EditThemeController()..theme = theme,
           from: editThemeControllerProvider,
           name: r'editThemeControllerProvider',
@@ -98,9 +98,51 @@ class EditThemeControllerProvider extends AutoDisposeNotifierProviderImpl<
           dependencies: EditThemeControllerFamily._dependencies,
           allTransitiveDependencies:
               EditThemeControllerFamily._allTransitiveDependencies,
+          theme: theme,
         );
 
+  EditThemeControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.theme,
+  }) : super.internal();
+
   final Theme theme;
+
+  @override
+  EditThemeState runNotifierBuild(
+    covariant EditThemeController notifier,
+  ) {
+    return notifier.build(
+      theme,
+    );
+  }
+
+  @override
+  Override overrideWith(EditThemeController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: EditThemeControllerProvider._internal(
+        () => create()..theme = theme,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        theme: theme,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<EditThemeController, EditThemeState>
+      createElement() {
+    return _EditThemeControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -114,14 +156,20 @@ class EditThemeControllerProvider extends AutoDisposeNotifierProviderImpl<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin EditThemeControllerRef on AutoDisposeNotifierProviderRef<EditThemeState> {
+  /// The parameter `theme` of this provider.
+  Theme get theme;
+}
+
+class _EditThemeControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<EditThemeController,
+        EditThemeState> with EditThemeControllerRef {
+  _EditThemeControllerProviderElement(super.provider);
 
   @override
-  EditThemeState runNotifierBuild(
-    covariant EditThemeController notifier,
-  ) {
-    return notifier.build(
-      theme,
-    );
-  }
+  Theme get theme => (origin as EditThemeControllerProvider).theme;
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

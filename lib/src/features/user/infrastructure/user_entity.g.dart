@@ -9,14 +9,13 @@ part of 'user_entity.dart';
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       id: json['id'] as String,
       name: json['name'] as String,
-      createdAt:
-          const TimestampConverter().fromJson(json['created_at'] as Timestamp),
-      updatedAt:
-          const TimestampConverter().fromJson(json['updated_at'] as Timestamp),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       email: json['email'] as String,
       avatar: json['avatar'] as String?,
-      removedAt: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['removed_at'], const TimestampConverter().fromJson),
+      removedAt: json['removed_at'] == null
+          ? null
+          : DateTime.parse(json['removed_at'] as String),
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
@@ -25,20 +24,7 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'name': instance.name,
       'email': instance.email,
       'avatar': instance.avatar,
-      'created_at': const TimestampConverter().toJson(instance.createdAt),
-      'updated_at': const TimestampConverter().toJson(instance.updatedAt),
-      'removed_at': _$JsonConverterToJson<Timestamp, DateTime>(
-          instance.removedAt, const TimestampConverter().toJson),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'removed_at': instance.removedAt?.toIso8601String(),
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

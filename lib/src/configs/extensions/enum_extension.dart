@@ -1,6 +1,7 @@
-import 'package:flutter/widgets.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 
+//MediaStatus
 extension MediaStatusX on MediaStatus {
   String get label => switch (this) {
         MediaStatus.finished => '완결',
@@ -10,8 +11,9 @@ extension MediaStatusX on MediaStatus {
       };
 }
 
+//Emotion
 extension EmotionX on Emotion {
-  String get filePath => 'assets/emotions/$name.svg';
+  String get filePath => '${Assets.iconPath}/emotions/$name.svg';
 
   String get label => switch (this) {
         Emotion.nice => '멋져요',
@@ -38,8 +40,9 @@ extension EmotionX on Emotion {
       };
 }
 
+//Rank
 extension RankX on Rank {
-  String get filePath => 'assets/ranks/$name.svg';
+  String get filePath => '${Assets.iconPath}/ranks/$name.svg';
 
   String get label => switch (this) {
         Rank.iron => '아이언',

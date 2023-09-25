@@ -11,7 +11,7 @@ final class BadRequestException extends CoreException {
   const BadRequestException() : super('Bad request');
 }
 
-/// 접근 권한이 없어요. (인증이 필요해요)
+/// 접근 권한이 없어요. 인증이 필요해요.
 final class UnauthorizedException extends CoreException {
   const UnauthorizedException() : super('Unauthorized error');
 }

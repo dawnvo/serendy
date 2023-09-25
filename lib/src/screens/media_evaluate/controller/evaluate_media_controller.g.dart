@@ -86,8 +86,8 @@ class EvaluateMediaControllerProvider extends AutoDisposeNotifierProviderImpl<
     EvaluateMediaController, EvaluateMediaState> {
   /// See also [EvaluateMediaController].
   EvaluateMediaControllerProvider(
-    this.mediaId,
-  ) : super.internal(
+    String mediaId,
+  ) : this._internal(
           () => EvaluateMediaController()..mediaId = mediaId,
           from: evaluateMediaControllerProvider,
           name: r'evaluateMediaControllerProvider',
@@ -98,9 +98,51 @@ class EvaluateMediaControllerProvider extends AutoDisposeNotifierProviderImpl<
           dependencies: EvaluateMediaControllerFamily._dependencies,
           allTransitiveDependencies:
               EvaluateMediaControllerFamily._allTransitiveDependencies,
+          mediaId: mediaId,
         );
 
+  EvaluateMediaControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
   final String mediaId;
+
+  @override
+  EvaluateMediaState runNotifierBuild(
+    covariant EvaluateMediaController notifier,
+  ) {
+    return notifier.build(
+      mediaId,
+    );
+  }
+
+  @override
+  Override overrideWith(EvaluateMediaController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: EvaluateMediaControllerProvider._internal(
+        () => create()..mediaId = mediaId,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<EvaluateMediaController,
+      EvaluateMediaState> createElement() {
+    return _EvaluateMediaControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -114,14 +156,21 @@ class EvaluateMediaControllerProvider extends AutoDisposeNotifierProviderImpl<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin EvaluateMediaControllerRef
+    on AutoDisposeNotifierProviderRef<EvaluateMediaState> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _EvaluateMediaControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<EvaluateMediaController,
+        EvaluateMediaState> with EvaluateMediaControllerRef {
+  _EvaluateMediaControllerProviderElement(super.provider);
 
   @override
-  EvaluateMediaState runNotifierBuild(
-    covariant EvaluateMediaController notifier,
-  ) {
-    return notifier.build(
-      mediaId,
-    );
-  }
+  String get mediaId => (origin as EvaluateMediaControllerProvider).mediaId;
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

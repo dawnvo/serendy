@@ -1,6 +1,3 @@
-import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
-import 'package:serendy/src/core/persistence/file_storage.dart';
-import 'package:serendy/src/core/persistence/firestore_path.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/edit_profile_usecase.dart';
@@ -11,32 +8,24 @@ import 'package:serendy/src/features/user/infrastructure/user_repository_impl.da
 abstract final class UserModule {
   // Persistence Providers
 
-  static final userRepository = UserRepositoryImpl(
-    InfrastructureModule.firestore,
-  );
-
-  static final userFileStorage = FileStorageImpl(
-    FirestorePath.user,
-    InfrastructureModule.storage,
-  );
+  static const userRepository = UserRepositoryImpl();
 
   // UseCase Providers
 
-  static final getUserUsecase = GetUserUsecase(
+  static const getUserUsecase = GetUserUsecase(
     UserModule.userRepository,
   );
 
-  static final createUserUsecase = CreateUserUsecase(
+  static const createUserUsecase = CreateUserUsecase(
     UserModule.userRepository,
     ThemeModule.themeRepository,
   );
 
-  static final editProfileUsecase = EditProfileUsecase(
+  static const editProfileUsecase = EditProfileUsecase(
     UserModule.userRepository,
-    UserModule.userFileStorage,
   );
 
-  static final removeUserUsecase = RemoveUserUsecase(
+  static const removeUserUsecase = RemoveUserUsecase(
     UserModule.userRepository,
   );
 }

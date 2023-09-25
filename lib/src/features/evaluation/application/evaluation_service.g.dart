@@ -30,8 +30,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchReactionsListRef = AutoDisposeFutureProviderRef<List<Evaluation?>>;
-
 /// 미디어 평가(반응) 목록을 불러와요.
 ///
 /// Copied from [fetchReactionsList].
@@ -91,10 +89,10 @@ class FetchReactionsListProvider
   ///
   /// Copied from [fetchReactionsList].
   FetchReactionsListProvider({
-    required this.mediaId,
-  }) : super.internal(
+    required String mediaId,
+  }) : this._internal(
           (ref) => fetchReactionsList(
-            ref,
+            ref as FetchReactionsListRef,
             mediaId: mediaId,
           ),
           from: fetchReactionsListProvider,
@@ -106,9 +104,43 @@ class FetchReactionsListProvider
           dependencies: FetchReactionsListFamily._dependencies,
           allTransitiveDependencies:
               FetchReactionsListFamily._allTransitiveDependencies,
+          mediaId: mediaId,
         );
 
+  FetchReactionsListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
   final String mediaId;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Evaluation?>> Function(FetchReactionsListRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchReactionsListProvider._internal(
+        (ref) => create(ref as FetchReactionsListRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Evaluation?>> createElement() {
+    return _FetchReactionsListProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -122,6 +154,20 @@ class FetchReactionsListProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin FetchReactionsListRef on AutoDisposeFutureProviderRef<List<Evaluation?>> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _FetchReactionsListProviderElement
+    extends AutoDisposeFutureProviderElement<List<Evaluation?>>
+    with FetchReactionsListRef {
+  _FetchReactionsListProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as FetchReactionsListProvider).mediaId;
 }
 
 String _$watchMyEvaluationsListHash() =>
@@ -162,7 +208,6 @@ final countMyEvaluationsProvider = FutureProvider<int>.internal(
 
 typedef CountMyEvaluationsRef = FutureProviderRef<int>;
 String _$fetchEvaluationHash() => r'ded10c0252725a8921bea213fe76096721d2bb24';
-typedef FetchEvaluationRef = AutoDisposeFutureProviderRef<Evaluation?>;
 
 /// 나의 평가 정보를 불러와요.
 ///
@@ -222,10 +267,10 @@ class FetchEvaluationProvider extends AutoDisposeFutureProvider<Evaluation?> {
   ///
   /// Copied from [fetchEvaluation].
   FetchEvaluationProvider({
-    required this.mediaId,
-  }) : super.internal(
+    required String mediaId,
+  }) : this._internal(
           (ref) => fetchEvaluation(
-            ref,
+            ref as FetchEvaluationRef,
             mediaId: mediaId,
           ),
           from: fetchEvaluationProvider,
@@ -237,9 +282,43 @@ class FetchEvaluationProvider extends AutoDisposeFutureProvider<Evaluation?> {
           dependencies: FetchEvaluationFamily._dependencies,
           allTransitiveDependencies:
               FetchEvaluationFamily._allTransitiveDependencies,
+          mediaId: mediaId,
         );
 
+  FetchEvaluationProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
   final String mediaId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Evaluation?> Function(FetchEvaluationRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchEvaluationProvider._internal(
+        (ref) => create(ref as FetchEvaluationRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Evaluation?> createElement() {
+    return _FetchEvaluationProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -255,8 +334,21 @@ class FetchEvaluationProvider extends AutoDisposeFutureProvider<Evaluation?> {
   }
 }
 
+mixin FetchEvaluationRef on AutoDisposeFutureProviderRef<Evaluation?> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _FetchEvaluationProviderElement
+    extends AutoDisposeFutureProviderElement<Evaluation?>
+    with FetchEvaluationRef {
+  _FetchEvaluationProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as FetchEvaluationProvider).mediaId;
+}
+
 String _$submitEvaluationHash() => r'517fe010914739ac06f62df59c769f1dedb11034';
-typedef SubmitEvaluationRef = AutoDisposeFutureProviderRef<Evaluation>;
 
 /// 평가를 생성 또는 수정해요.
 ///
@@ -319,11 +411,11 @@ class SubmitEvaluationProvider extends AutoDisposeFutureProvider<Evaluation> {
   ///
   /// Copied from [submitEvaluation].
   SubmitEvaluationProvider({
-    required this.mediaId,
-    required this.emotion,
-  }) : super.internal(
+    required String mediaId,
+    required Emotion emotion,
+  }) : this._internal(
           (ref) => submitEvaluation(
-            ref,
+            ref as SubmitEvaluationRef,
             mediaId: mediaId,
             emotion: emotion,
           ),
@@ -336,10 +428,47 @@ class SubmitEvaluationProvider extends AutoDisposeFutureProvider<Evaluation> {
           dependencies: SubmitEvaluationFamily._dependencies,
           allTransitiveDependencies:
               SubmitEvaluationFamily._allTransitiveDependencies,
+          mediaId: mediaId,
+          emotion: emotion,
         );
+
+  SubmitEvaluationProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+    required this.emotion,
+  }) : super.internal();
 
   final String mediaId;
   final Emotion emotion;
+
+  @override
+  Override overrideWith(
+    FutureOr<Evaluation> Function(SubmitEvaluationRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SubmitEvaluationProvider._internal(
+        (ref) => create(ref as SubmitEvaluationRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+        emotion: emotion,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Evaluation> createElement() {
+    return _SubmitEvaluationProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -358,8 +487,26 @@ class SubmitEvaluationProvider extends AutoDisposeFutureProvider<Evaluation> {
   }
 }
 
+mixin SubmitEvaluationRef on AutoDisposeFutureProviderRef<Evaluation> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+
+  /// The parameter `emotion` of this provider.
+  Emotion get emotion;
+}
+
+class _SubmitEvaluationProviderElement
+    extends AutoDisposeFutureProviderElement<Evaluation>
+    with SubmitEvaluationRef {
+  _SubmitEvaluationProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as SubmitEvaluationProvider).mediaId;
+  @override
+  Emotion get emotion => (origin as SubmitEvaluationProvider).emotion;
+}
+
 String _$removeEvaluationHash() => r'dd080369845735156b8011412f9333f31af54e59';
-typedef RemoveEvaluationRef = AutoDisposeFutureProviderRef<void>;
 
 /// 평가를 제거해요.
 ///
@@ -419,10 +566,10 @@ class RemoveEvaluationProvider extends AutoDisposeFutureProvider<void> {
   ///
   /// Copied from [removeEvaluation].
   RemoveEvaluationProvider({
-    required this.mediaId,
-  }) : super.internal(
+    required String mediaId,
+  }) : this._internal(
           (ref) => removeEvaluation(
-            ref,
+            ref as RemoveEvaluationRef,
             mediaId: mediaId,
           ),
           from: removeEvaluationProvider,
@@ -434,9 +581,43 @@ class RemoveEvaluationProvider extends AutoDisposeFutureProvider<void> {
           dependencies: RemoveEvaluationFamily._dependencies,
           allTransitiveDependencies:
               RemoveEvaluationFamily._allTransitiveDependencies,
+          mediaId: mediaId,
         );
 
+  RemoveEvaluationProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
   final String mediaId;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(RemoveEvaluationRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: RemoveEvaluationProvider._internal(
+        (ref) => create(ref as RemoveEvaluationRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _RemoveEvaluationProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -451,4 +632,18 @@ class RemoveEvaluationProvider extends AutoDisposeFutureProvider<void> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin RemoveEvaluationRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _RemoveEvaluationProviderElement
+    extends AutoDisposeFutureProviderElement<void> with RemoveEvaluationRef {
+  _RemoveEvaluationProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as RemoveEvaluationProvider).mediaId;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

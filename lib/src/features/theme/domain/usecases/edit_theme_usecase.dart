@@ -1,7 +1,6 @@
 import 'package:serendy/src/core/domain/assert.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
-import 'package:serendy/src/core/persistence/file_storage.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 typedef EditThemePayload = ({
@@ -14,13 +13,9 @@ typedef EditThemePayload = ({
 });
 
 final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
-  const EditThemeUsecase(
-    this._themeRepository,
-    this._fileStorage,
-  );
+  const EditThemeUsecase(this._themeRepository);
 
   final ThemeRepository _themeRepository;
-  final FileStorage _fileStorage;
 
   @override
   Future<Theme> execute(EditThemePayload payload) async {
@@ -34,13 +29,8 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // 이미지가 있고, 이전과 다른 이미지라면 스토리지에 업로드를 진행합니다.
+    // TODO: 스토리지에 업로드를 진행합니다.
     String? downloadUrl;
-    if (payload.image != null &&
-        payload.image != '' &&
-        payload.image != theme.image) {
-      downloadUrl = await _fileStorage.upload(theme.id, payload.image!);
-    }
 
     // 데이터베이스에 있는 테마를 수정합니다.
     final edited = theme.edit(

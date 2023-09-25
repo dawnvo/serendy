@@ -51,8 +51,9 @@ class MediaScreen extends ConsumerWidget {
         ],
       ),
       loading: () => _Placeholder$MediaScreen(media),
-      error: (err, stack) => const Scaffold(
-        body: Center(child: Text("작품 정보를 불러오지 못했어요.")),
+      error: (err, stack) => const ErrorTemplate(
+        message: "작품 정보를 불러오지 못했어요.",
+        backButton: true,
       ),
     );
   }

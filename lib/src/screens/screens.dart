@@ -6,7 +6,7 @@ export 'media/media_screen.dart';
 export 'media_evaluate/media_evaluate_screen.dart';
 export 'profile/profile_screen.dart';
 export 'profile_card/profile_card_screen.dart';
-export 'rank_up/rank_up_modal.dart';
+export 'rank/rank_modal.dart';
 export 'search/search_screen.dart';
 export 'settings/settings_screen.dart';
 export 'sign_in/sign_in_screen.dart';

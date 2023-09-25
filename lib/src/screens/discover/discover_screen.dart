@@ -2,8 +2,6 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import 'widgets/f_themes_grid.dart';
-
 part 'widgets/_search_bar.dart';
 part 'widgets/_themes_grid.dart';
 
@@ -16,7 +14,7 @@ class DiscoverScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const _DiscoverTemplate(
       searchBar: _DiscoverSearchBar(),
-      themesGrid: Firestore$DiscoverThemesGrid(),
+      themesGrid: _DiscoverThemesGrid(),
     );
   }
 }
@@ -29,7 +27,7 @@ class _DiscoverTemplate extends StatelessWidget {
   });
 
   final _DiscoverSearchBar searchBar;
-  final Firestore$DiscoverThemesGrid themesGrid;
+  final _DiscoverThemesGrid themesGrid;
 
   @override
   Widget build(BuildContext context) {

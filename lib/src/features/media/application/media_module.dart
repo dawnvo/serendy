@@ -1,4 +1,3 @@
-import 'package:serendy/src/core/infrastructure/infrastructure_module.dart';
 import 'package:serendy/src/features/media/domain/usecases/add_media_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_media_list_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_media_usecase.dart';
@@ -7,24 +6,22 @@ import 'package:serendy/src/features/media/infrastructure/media_repository_impl.
 
 abstract final class MediaModule {
   // Persistence
-  static final mediaRepository = MediaRepositoryImpl(
-    InfrastructureModule.firestore,
-  );
+  static const mediaRepository = MediaRepositoryImpl();
 
   // UseCase
-  static final searchMediaUsecase = SearchMediaUsecase(
+  static const searchMediaUsecase = SearchMediaUsecase(
     MediaModule.mediaRepository,
   );
 
-  static final getMediaListUsecase = GetMediaListUsecase(
+  static const getMediaListUsecase = GetMediaListUsecase(
     MediaModule.mediaRepository,
   );
 
-  static final getMediaUsecase = GetMediaUsecase(
+  static const getMediaUsecase = GetMediaUsecase(
     MediaModule.mediaRepository,
   );
 
-  static final addMediaUsecase = AddMediaUsecase(
+  static const addMediaUsecase = AddMediaUsecase(
     MediaModule.mediaRepository,
   );
 }

@@ -19,11 +19,8 @@ final class UserEntity {
   final String email;
   final String? avatar;
 
-  @TimestampConverter()
   final DateTime createdAt;
-  @TimestampConverter()
   final DateTime updatedAt;
-  @TimestampConverter()
   final DateTime? removedAt;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

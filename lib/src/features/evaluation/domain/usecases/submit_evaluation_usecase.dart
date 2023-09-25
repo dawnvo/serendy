@@ -63,7 +63,6 @@ final class SubmitEvaluationUsecase
     }
 
     await _evaluationRepository.update(changed);
-
     return changed;
   }
 
@@ -86,15 +85,14 @@ final class SubmitEvaluationUsecase
     final evaluation = Evaluation(
       emotion: payload.emotion,
       userId: user.id,
-      media: MediaInfo(
+      media: EvaluationMedia(
         id: media.id,
         title: media.title,
-        image: media.images.largeImageUrl,
+        image: media.image,
       ),
     );
 
     await _evaluationRepository.create(evaluation);
-
     return evaluation;
   }
 }

@@ -20,14 +20,11 @@ final class EvaluationEntity {
   final String id;
   final UserID userId;
   final Emotion emotion;
-  final MediaInfoEntity media;
+  final EvaluationMediaEntity media;
   final bool private;
 
-  @TimestampConverter()
   final DateTime createdAt;
-  @TimestampConverter()
   final DateTime updatedAt;
-  @TimestampConverter()
   final DateTime? removedAt;
 
   factory EvaluationEntity.fromJson(Map<String, dynamic> json) =>
@@ -36,8 +33,8 @@ final class EvaluationEntity {
 }
 
 @jsonSerializable
-final class MediaInfoEntity {
-  const MediaInfoEntity({
+final class EvaluationMediaEntity {
+  const EvaluationMediaEntity({
     required this.id,
     required this.title,
     required this.image,
@@ -47,7 +44,7 @@ final class MediaInfoEntity {
   final String title;
   final String image;
 
-  factory MediaInfoEntity.fromJson(Map<String, dynamic> json) =>
-      _$MediaInfoEntityFromJson(json);
-  Map<String, dynamic> toJson() => _$MediaInfoEntityToJson(this);
+  factory EvaluationMediaEntity.fromJson(Map<String, dynamic> json) =>
+      _$EvaluationMediaEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$EvaluationMediaEntityToJson(this);
 }

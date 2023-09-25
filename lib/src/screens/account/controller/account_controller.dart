@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
@@ -59,16 +58,16 @@ class AccountController extends _$AccountController with NotifierMounted {
     state = newState;
   }
 
-  /// 로그아웃해요.
+  /// TODO 로그아웃해요.
   Future<void> signOut(BuildContext context) async {
-    try {
-      await ref.read(authServiceProvider).signOutWithGoogle();
-      // TODO: 로그인한 사용자 상태 초기화하기
-    } catch (err) {
-      // * 로그아웃에 실패하면 메시지로 안내해요.
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(err.toString()),
-      ));
-    }
+    // try {
+    //   await ref.read(authServiceProvider).signOutWithGoogle();
+    //   // TODO: 로그인한 사용자 상태 초기화하기
+    // } catch (err) {
+    //   // * 로그아웃에 실패하면 메시지로 안내해요.
+    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //     content: Text(err.toString()),
+    //   ));
+    // }
   }
 }

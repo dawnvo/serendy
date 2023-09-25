@@ -3,8 +3,6 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import 'widgets/f_evaluation_cards_list.dart';
-
 part 'widgets/_evaluation_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
@@ -17,7 +15,9 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const _HistoryTemplate(
       titles: _HistoryTitles(),
-      evaluationsList: Firestore$HistoryEvaluationCardsList(),
+      evaluationsList: _HistoryEvaluationCardsList(
+        evaluations: [],
+      ),
     );
   }
 }
@@ -30,7 +30,7 @@ class _HistoryTemplate extends StatelessWidget {
   });
 
   final _HistoryTitles titles;
-  final Firestore$HistoryEvaluationCardsList evaluationsList;
+  final _HistoryEvaluationCardsList evaluationsList;
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ part of 'account_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$accountControllerHash() => r'a3c91e61d53ef36393a8c3da2066c31f18d072ef';
+String _$accountControllerHash() => r'fd365cc142a172867c6bef40bf615871b4bc2fb9';
 
 /// See also [AccountController].
 @ProviderFor(AccountController)
@@ -22,4 +22,5 @@ final accountControllerProvider =
 );
 
 typedef _$AccountController = AutoDisposeAsyncNotifier<AccountState>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -27,34 +27,10 @@ class _ThemeDetailBar extends ConsumerWidget {
         const SizedBox()
       // * 커스텀 테마라면 액션 버튼을 표시해요.
       else
-        _buildActionIconButtons(context, isOwner),
-    ]);
-  }
-
-  Widget _buildActionIconButtons(BuildContext context, bool isOwner) {
-    return Row(children: [
-      // * 주인에게는 [편집] 아이콘을 표시해요.
-      if (isOwner)
-        IconButton(
-          onPressed: () => context.pushNamed(
-            AppRoutes.editTheme,
-            extra: theme,
-          ),
-          icon: const Icon(RemixIcon.pencil_fill),
-        )
-
-      // * 다른 사람에게는 [좋아요] 아이콘을 표시해요.
-      else
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(RemixIcon.heart_fill),
+        __ActionIconButtons(
+          theme: theme,
+          isOwner: isOwner,
         ),
-
-      //share button
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(RemixIcon.share_forward_fill),
-      ),
     ]);
   }
 
@@ -92,5 +68,45 @@ class _ThemeDetailBar extends ConsumerWidget {
         Text("공개", style: textStyle?.copyWith(color: color)),
       ]);
     }
+  }
+}
+
+//Action icon buttons
+class __ActionIconButtons extends StatelessWidget {
+  const __ActionIconButtons({
+    required this.theme,
+    required this.isOwner,
+  });
+
+  final Theme theme;
+  final bool isOwner;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      // * 주인에게는 [편집] 아이콘을 표시해요.
+      if (isOwner)
+        IconButton(
+          onPressed: () => context.pushNamed(
+            AppRoutes.editTheme,
+            extra: theme,
+          ),
+          icon: const Icon(RemixIcon.pencil_fill),
+        )
+
+      // * 다른 사람에게는 [좋아요] 아이콘을 표시해요.
+      else
+        IconButton(
+          onPressed: () {},
+          color: context.colorScheme.onSurfaceVariant,
+          icon: const Icon(RemixIcon.heart_fill),
+        ),
+
+      //share button
+      IconButton(
+        onPressed: () {},
+        icon: const Icon(RemixIcon.share_forward_fill),
+      ),
+    ]);
   }
 }

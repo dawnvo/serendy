@@ -20,8 +20,9 @@ class _HomeMediasGrid extends ConsumerWidget {
         addAutomaticKeepAlives: false,
         builder: (context, index) => const Placeholder$MediaCard(),
       ),
-      error: (err, stack) => const SliverToBoxAdapter(
-        child: Center(child: Text("작품을 불러오지 못했어요.")),
+      error: (err, stack) => const ErrorTemplate(
+        message: "작품을 불러오지 못했어요.",
+        sliver: true,
       ),
     );
   }

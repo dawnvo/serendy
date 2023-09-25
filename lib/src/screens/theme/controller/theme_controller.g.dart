@@ -6,7 +6,7 @@ part of 'theme_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeControllerHash() => r'58579edd51661dd3cbecdaa2172a12d52616adaf';
+String _$themeControllerHash() => r'6dee24b6b82762c40aa9f491aee420f36ab667d3';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -90,9 +90,9 @@ class ThemeControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<ThemeController, ThemeState> {
   /// See also [ThemeController].
   ThemeControllerProvider(
-    this.id, [
-    this.theme,
-  ]) : super.internal(
+    String id, [
+    Theme? theme,
+  ]) : this._internal(
           () => ThemeController()
             ..id = id
             ..theme = theme,
@@ -105,10 +105,58 @@ class ThemeControllerProvider
           dependencies: ThemeControllerFamily._dependencies,
           allTransitiveDependencies:
               ThemeControllerFamily._allTransitiveDependencies,
+          id: id,
+          theme: theme,
         );
+
+  ThemeControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.theme,
+  }) : super.internal();
 
   final String id;
   final Theme? theme;
+
+  @override
+  FutureOr<ThemeState> runNotifierBuild(
+    covariant ThemeController notifier,
+  ) {
+    return notifier.build(
+      id,
+      theme,
+    );
+  }
+
+  @override
+  Override overrideWith(ThemeController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: ThemeControllerProvider._internal(
+        () => create()
+          ..id = id
+          ..theme = theme,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        theme: theme,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<ThemeController, ThemeState>
+      createElement() {
+    return _ThemeControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -125,15 +173,25 @@ class ThemeControllerProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ThemeControllerRef on AutoDisposeAsyncNotifierProviderRef<ThemeState> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `theme` of this provider.
+  Theme? get theme;
+}
+
+class _ThemeControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<ThemeController, ThemeState>
+    with ThemeControllerRef {
+  _ThemeControllerProviderElement(super.provider);
 
   @override
-  FutureOr<ThemeState> runNotifierBuild(
-    covariant ThemeController notifier,
-  ) {
-    return notifier.build(
-      id,
-      theme,
-    );
-  }
+  String get id => (origin as ThemeControllerProvider).id;
+  @override
+  Theme? get theme => (origin as ThemeControllerProvider).theme;
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

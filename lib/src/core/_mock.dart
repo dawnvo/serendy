@@ -12,23 +12,73 @@ final userMock = User(
 );
 
 // Media
-final mediaMock = Media(
-  type: MediaType.anime,
-  status: MediaStatus.finished,
-  title: "최애의 아이",
-  image: "https://vo.la/oRm94",
-  keywords: const ["코미디", "액션", "능력"],
-  images: MediaImages.empty(),
-);
+// Media
+final mediasMock = [
+  Media(
+    id: 'm1',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "Apple",
+    image:
+        "https://media.disquiet.io/images/makerlog/c4585be0838c322b320e86cbbc3779d24ff7c07eeadcdc1011ef5282c57285b8",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+  Media(
+    id: 'm2',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "강철의 연금술사 BROTHERHOOD",
+    image: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+  Media(
+    id: 'm3',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "데스노트",
+    image: "https://cdn.myanimelist.net/images/anime/9/9453.jpg",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+  Media(
+    id: 'm4',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "슈타인즈 게이트",
+    image: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+  Media(
+    id: 'm5',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "진격의 거인",
+    image: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+  Media(
+    id: 'm6',
+    type: MediaType.anime,
+    status: MediaStatus.finished,
+    title: "주술회전",
+    image: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
+    keywords: const ["코미디", "액션", "능력"],
+    youtubeId: const ['gKWEUJ4r5do'],
+  ),
+];
 
 // Evaluation
 final evaluationMock = Evaluation(
   userId: userMock.id,
   emotion: Emotion.happyness,
-  media: MediaInfo(
-    id: mediaMock.id,
-    title: mediaMock.title,
-    image: mediaMock.image,
+  media: EvaluationMedia(
+    id: mediasMock[0].id,
+    title: mediasMock[0].title,
+    image: mediasMock[0].image,
   ),
 );
 
@@ -39,7 +89,7 @@ final themeOwnerMock = ThemeOwner(
 );
 final themeItemMock = ThemeItem(
   addedAt: DateTime.now(),
-  media: mediaMock,
+  media: mediasMock[0],
 );
 final themesMock = [
   Theme(

@@ -45,8 +45,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchUserRef = AutoDisposeFutureProviderRef<User>;
-
 /// 사용자 정보를 불러와요.
 ///
 /// Copied from [fetchUser].
@@ -105,10 +103,10 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [fetchUser].
   FetchUserProvider({
-    required this.id,
-  }) : super.internal(
+    required String id,
+  }) : this._internal(
           (ref) => fetchUser(
-            ref,
+            ref as FetchUserRef,
             id: id,
           ),
           from: fetchUserProvider,
@@ -119,9 +117,43 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
                   : _$fetchUserHash,
           dependencies: FetchUserFamily._dependencies,
           allTransitiveDependencies: FetchUserFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  FetchUserProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<User> Function(FetchUserRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchUserProvider._internal(
+        (ref) => create(ref as FetchUserRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<User> createElement() {
+    return _FetchUserProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -137,8 +169,20 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
+mixin FetchUserRef on AutoDisposeFutureProviderRef<User> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchUserProviderElement extends AutoDisposeFutureProviderElement<User>
+    with FetchUserRef {
+  _FetchUserProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchUserProvider).id;
+}
+
 String _$createUserHash() => r'37aeba42ee09d742f685b3ec27983a7e6c03325f';
-typedef CreateUserRef = AutoDisposeFutureProviderRef<User>;
 
 /// 사용자를 만들어요.
 ///
@@ -207,13 +251,13 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [createUser].
   CreateUserProvider({
-    required this.uid,
-    required this.username,
-    required this.email,
-    this.avatar,
-  }) : super.internal(
+    required String uid,
+    required String username,
+    required String email,
+    String? avatar,
+  }) : this._internal(
           (ref) => createUser(
-            ref,
+            ref as CreateUserRef,
             uid: uid,
             username: username,
             email: email,
@@ -228,12 +272,55 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
           dependencies: CreateUserFamily._dependencies,
           allTransitiveDependencies:
               CreateUserFamily._allTransitiveDependencies,
+          uid: uid,
+          username: username,
+          email: email,
+          avatar: avatar,
         );
+
+  CreateUserProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.uid,
+    required this.username,
+    required this.email,
+    required this.avatar,
+  }) : super.internal();
 
   final String uid;
   final String username;
   final String email;
   final String? avatar;
+
+  @override
+  Override overrideWith(
+    FutureOr<User> Function(CreateUserRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CreateUserProvider._internal(
+        (ref) => create(ref as CreateUserRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        uid: uid,
+        username: username,
+        email: email,
+        avatar: avatar,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<User> createElement() {
+    return _CreateUserProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -256,8 +343,35 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
+mixin CreateUserRef on AutoDisposeFutureProviderRef<User> {
+  /// The parameter `uid` of this provider.
+  String get uid;
+
+  /// The parameter `username` of this provider.
+  String get username;
+
+  /// The parameter `email` of this provider.
+  String get email;
+
+  /// The parameter `avatar` of this provider.
+  String? get avatar;
+}
+
+class _CreateUserProviderElement extends AutoDisposeFutureProviderElement<User>
+    with CreateUserRef {
+  _CreateUserProviderElement(super.provider);
+
+  @override
+  String get uid => (origin as CreateUserProvider).uid;
+  @override
+  String get username => (origin as CreateUserProvider).username;
+  @override
+  String get email => (origin as CreateUserProvider).email;
+  @override
+  String? get avatar => (origin as CreateUserProvider).avatar;
+}
+
 String _$editProfileHash() => r'3a09b0f5c1ce6740855553de60d69dcfcc8e216a';
-typedef EditProfileRef = AutoDisposeFutureProviderRef<User>;
 
 /// 프로필을 수정해요.
 ///
@@ -320,11 +434,11 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
   ///
   /// Copied from [editProfile].
   EditProfileProvider({
-    this.username,
-    this.avatar,
-  }) : super.internal(
+    String? username,
+    String? avatar,
+  }) : this._internal(
           (ref) => editProfile(
-            ref,
+            ref as EditProfileRef,
             username: username,
             avatar: avatar,
           ),
@@ -337,10 +451,47 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
           dependencies: EditProfileFamily._dependencies,
           allTransitiveDependencies:
               EditProfileFamily._allTransitiveDependencies,
+          username: username,
+          avatar: avatar,
         );
+
+  EditProfileProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.username,
+    required this.avatar,
+  }) : super.internal();
 
   final String? username;
   final String? avatar;
+
+  @override
+  Override overrideWith(
+    FutureOr<User> Function(EditProfileRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: EditProfileProvider._internal(
+        (ref) => create(ref as EditProfileRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        username: username,
+        avatar: avatar,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<User> createElement() {
+    return _EditProfileProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -359,8 +510,25 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
+mixin EditProfileRef on AutoDisposeFutureProviderRef<User> {
+  /// The parameter `username` of this provider.
+  String? get username;
+
+  /// The parameter `avatar` of this provider.
+  String? get avatar;
+}
+
+class _EditProfileProviderElement extends AutoDisposeFutureProviderElement<User>
+    with EditProfileRef {
+  _EditProfileProviderElement(super.provider);
+
+  @override
+  String? get username => (origin as EditProfileProvider).username;
+  @override
+  String? get avatar => (origin as EditProfileProvider).avatar;
+}
+
 String _$removeUserHash() => r'a944e951f63493b5db323195328875095f7a177d';
-typedef RemoveUserRef = AutoDisposeFutureProviderRef<void>;
 
 /// 사용자를 제거해요.
 ///
@@ -423,11 +591,11 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
   ///
   /// Copied from [removeUser].
   RemoveUserProvider({
-    required this.id,
-    this.reason,
-  }) : super.internal(
+    required String id,
+    String? reason,
+  }) : this._internal(
           (ref) => removeUser(
-            ref,
+            ref as RemoveUserRef,
             id: id,
             reason: reason,
           ),
@@ -440,10 +608,47 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
           dependencies: RemoveUserFamily._dependencies,
           allTransitiveDependencies:
               RemoveUserFamily._allTransitiveDependencies,
+          id: id,
+          reason: reason,
         );
+
+  RemoveUserProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.reason,
+  }) : super.internal();
 
   final String id;
   final String? reason;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(RemoveUserRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: RemoveUserProvider._internal(
+        (ref) => create(ref as RemoveUserRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        reason: reason,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _RemoveUserProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -461,4 +666,23 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin RemoveUserRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `reason` of this provider.
+  String? get reason;
+}
+
+class _RemoveUserProviderElement extends AutoDisposeFutureProviderElement<void>
+    with RemoveUserRef {
+  _RemoveUserProviderElement(super.provider);
+
+  @override
+  String get id => (origin as RemoveUserProvider).id;
+  @override
+  String? get reason => (origin as RemoveUserProvider).reason;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

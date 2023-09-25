@@ -50,8 +50,9 @@ class ThemeScreen extends ConsumerWidget {
         ),
       ),
       loading: () => _Placeholder$ThemeScreen(theme),
-      error: (err, stack) => const Scaffold(
-        body: Center(child: Text("테마 정보를 불러오지 못했어요.")),
+      error: (err, stack) => const ErrorTemplate(
+        message: "테마 정보를 불러오지 못했어요.",
+        backButton: true,
       ),
     );
   }

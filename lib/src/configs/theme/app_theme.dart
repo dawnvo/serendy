@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:serendy/src/configs/constants/size_constant.dart';
 
 part 'app_colors.dart';
@@ -15,25 +14,18 @@ final class AppThemeData {
     required this.night,
   });
 
-  factory AppThemeData.fillWith({ColorScheme? light, ColorScheme? dark}) {
+  factory AppThemeData.fillWith() {
     return AppThemeData(
-      day: _createThemeData(Brightness.light, light),
-      night: _createThemeData(Brightness.dark, dark),
+      day: _createThemeData(Brightness.light),
+      night: _createThemeData(Brightness.dark),
     );
   }
 
-  static ThemeData _createThemeData(
-    Brightness brightness,
-    ColorScheme? scheme,
-  ) {
-    final fallbackScheme = ColorScheme.fromSeed(
+  static ThemeData _createThemeData(Brightness brightness) {
+    final scheme = ColorScheme.fromSeed(
       seedColor: AppColors.brand,
       brightness: brightness,
     );
-
-    // On Android S+ devices, use the provided dynamic color scheme.
-    // Otherwise, use fallback schemes.
-    final harmonized = scheme?.harmonized() ?? fallbackScheme;
 
     final (
       :surface,
@@ -42,8 +34,7 @@ final class AppThemeData {
     ) = AppColors.from(brightness);
 
     /// * 기본 컬러 설정
-    final colorScheme = harmonized.copyWith(
-      primary: AppColors.brand,
+    final colorScheme = scheme.copyWith(
       background: surface,
       surface: surface,
       surfaceVariant: surfaceVariant,

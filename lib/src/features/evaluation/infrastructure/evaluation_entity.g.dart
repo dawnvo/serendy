@@ -11,14 +11,14 @@ EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       userId: json['user_id'] as String,
       emotion: $enumDecode(_$EmotionEnumMap, json['emotion']),
-      media: MediaInfoEntity.fromJson(json['media'] as Map<String, dynamic>),
+      media:
+          EvaluationMediaEntity.fromJson(json['media'] as Map<String, dynamic>),
       private: json['private'] as bool,
-      createdAt:
-          const TimestampConverter().fromJson(json['created_at'] as Timestamp),
-      updatedAt:
-          const TimestampConverter().fromJson(json['updated_at'] as Timestamp),
-      removedAt: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['removed_at'], const TimestampConverter().fromJson),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
+      removedAt: json['removed_at'] == null
+          ? null
+          : DateTime.parse(json['removed_at'] as String),
     );
 
 Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) =>
@@ -28,10 +28,9 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) =>
       'emotion': _$EmotionEnumMap[instance.emotion]!,
       'media': instance.media.toJson(),
       'private': instance.private,
-      'created_at': const TimestampConverter().toJson(instance.createdAt),
-      'updated_at': const TimestampConverter().toJson(instance.updatedAt),
-      'removed_at': _$JsonConverterToJson<Timestamp, DateTime>(
-          instance.removedAt, const TimestampConverter().toJson),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'removed_at': instance.removedAt?.toIso8601String(),
     };
 
 const _$EmotionEnumMap = {
@@ -46,26 +45,16 @@ const _$EmotionEnumMap = {
   Emotion.anger: 'anger',
 };
 
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
-
-MediaInfoEntity _$MediaInfoEntityFromJson(Map<String, dynamic> json) =>
-    MediaInfoEntity(
+EvaluationMediaEntity _$EvaluationMediaEntityFromJson(
+        Map<String, dynamic> json) =>
+    EvaluationMediaEntity(
       id: json['id'] as String,
       title: json['title'] as String,
       image: json['image'] as String,
     );
 
-Map<String, dynamic> _$MediaInfoEntityToJson(MediaInfoEntity instance) =>
+Map<String, dynamic> _$EvaluationMediaEntityToJson(
+        EvaluationMediaEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
