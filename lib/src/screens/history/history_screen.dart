@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -13,10 +14,12 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HistoryTemplate(
-      titles: _HistoryTitles(),
+    final evaluations = List.filled(12, evaluationMock);
+
+    return _HistoryTemplate(
+      titles: const _HistoryTitles(),
       evaluationsList: _HistoryEvaluationCardsList(
-        evaluations: [],
+        evaluations: evaluations,
       ),
     );
   }
@@ -36,7 +39,7 @@ class _HistoryTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: [
-        const SliverAppBar(),
+        const SliverAppBar(pinned: true),
         SliverPadding(
           padding: const EdgeInsets.symmetric(
             horizontal: kContentPadding,

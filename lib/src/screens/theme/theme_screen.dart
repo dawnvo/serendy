@@ -82,7 +82,7 @@ class _ThemeTemplate extends StatelessWidget {
           child: background,
         ),
         CustomScrollView(slivers: [
-          const SliverAppBar(backgroundColor: Colors.transparent),
+          const SliverAppBar(pinned: true),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,
