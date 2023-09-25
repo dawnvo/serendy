@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'theme_entity.dart';
+part of 'theme_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ThemeEntity _$ThemeEntityFromJson(Map<String, dynamic> json) => ThemeEntity(
+ThemeModel _$ThemeModelFromJson(Map<String, dynamic> json) => ThemeModel(
       id: json['id'] as String,
-      owner: ThemeOwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
+      owner: ThemeOwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
       title: json['title'] as String,
       private: json['private'] as bool,
       itemCount: json['item_count'] as int,
@@ -22,11 +22,11 @@ ThemeEntity _$ThemeEntityFromJson(Map<String, dynamic> json) => ThemeEntity(
       items: (json['items'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
-              : ThemeItemEntity.fromJson(e as Map<String, dynamic>))
+              : ThemeItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ThemeEntityToJson(ThemeEntity instance) =>
+Map<String, dynamic> _$ThemeModelToJson(ThemeModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'owner': instance.owner.toJson(),
@@ -41,25 +41,25 @@ Map<String, dynamic> _$ThemeEntityToJson(ThemeEntity instance) =>
       'removed_at': instance.removedAt?.toIso8601String(),
     };
 
-ThemeItemEntity _$ThemeItemEntityFromJson(Map<String, dynamic> json) =>
-    ThemeItemEntity(
+ThemeItemModel _$ThemeItemModelFromJson(Map<String, dynamic> json) =>
+    ThemeItemModel(
       addedAt: DateTime.parse(json['added_at'] as String),
-      media: MediaEntity.fromJson(json['media'] as Map<String, dynamic>),
+      media: MediaModel.fromJson(json['media'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ThemeItemEntityToJson(ThemeItemEntity instance) =>
+Map<String, dynamic> _$ThemeItemModelToJson(ThemeItemModel instance) =>
     <String, dynamic>{
       'added_at': instance.addedAt.toIso8601String(),
       'media': instance.media.toJson(),
     };
 
-ThemeOwnerEntity _$ThemeOwnerEntityFromJson(Map<String, dynamic> json) =>
-    ThemeOwnerEntity(
+ThemeOwnerModel _$ThemeOwnerModelFromJson(Map<String, dynamic> json) =>
+    ThemeOwnerModel(
       id: json['id'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$ThemeOwnerEntityToJson(ThemeOwnerEntity instance) =>
+Map<String, dynamic> _$ThemeOwnerModelToJson(ThemeOwnerModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

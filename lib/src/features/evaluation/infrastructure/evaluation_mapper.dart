@@ -1,42 +1,42 @@
 import 'package:serendy/src/features/evaluation/evaluation.dart';
-import 'package:serendy/src/features/evaluation/infrastructure/evaluation_entity.dart';
+import 'package:serendy/src/features/evaluation/infrastructure/evaluation_model.dart';
 
 abstract final class EvaluationMapper {
-  static Evaluation toDomainModel(final EvaluationEntity entity) {
+  static Evaluation toDomain(final EvaluationModel model) {
     final EvaluationMedia media = EvaluationMedia(
-      id: entity.media.id,
-      title: entity.media.title,
-      image: entity.media.image,
-    );
-
-    return Evaluation(
-      id: entity.id,
-      userId: entity.userId,
-      private: entity.private,
-      emotion: entity.emotion,
-      media: media,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
-      removedAt: entity.removedAt,
-    );
-  }
-
-  static EvaluationEntity toDataEntity(final Evaluation model) {
-    final EvaluationMediaEntity media = EvaluationMediaEntity(
       id: model.media.id,
       title: model.media.title,
       image: model.media.image,
     );
 
-    return EvaluationEntity(
+    return Evaluation(
       id: model.id,
       userId: model.userId,
-      media: media,
-      emotion: model.emotion,
       private: model.private,
+      emotion: model.emotion,
+      media: media,
       createdAt: model.createdAt,
       updatedAt: model.updatedAt,
       removedAt: model.removedAt,
+    );
+  }
+
+  static EvaluationModel toData(final Evaluation entity) {
+    final EvaluationMediaModel media = EvaluationMediaModel(
+      id: entity.media.id,
+      title: entity.media.title,
+      image: entity.media.image,
+    );
+
+    return EvaluationModel(
+      id: entity.id,
+      userId: entity.userId,
+      media: media,
+      emotion: entity.emotion,
+      private: entity.private,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+      removedAt: entity.removedAt,
     );
   }
 }

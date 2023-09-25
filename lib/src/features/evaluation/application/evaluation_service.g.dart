@@ -30,22 +30,22 @@ class _SystemHash {
   }
 }
 
-/// 미디어 평가(반응) 목록을 불러와요.
+/// 미디어 평가 목록을 불러와요.
 ///
 /// Copied from [fetchReactionsList].
 @ProviderFor(fetchReactionsList)
 const fetchReactionsListProvider = FetchReactionsListFamily();
 
-/// 미디어 평가(반응) 목록을 불러와요.
+/// 미디어 평가 목록을 불러와요.
 ///
 /// Copied from [fetchReactionsList].
 class FetchReactionsListFamily extends Family<AsyncValue<List<Evaluation?>>> {
-  /// 미디어 평가(반응) 목록을 불러와요.
+  /// 미디어 평가 목록을 불러와요.
   ///
   /// Copied from [fetchReactionsList].
   const FetchReactionsListFamily();
 
-  /// 미디어 평가(반응) 목록을 불러와요.
+  /// 미디어 평가 목록을 불러와요.
   ///
   /// Copied from [fetchReactionsList].
   FetchReactionsListProvider call({
@@ -80,12 +80,12 @@ class FetchReactionsListFamily extends Family<AsyncValue<List<Evaluation?>>> {
   String? get name => r'fetchReactionsListProvider';
 }
 
-/// 미디어 평가(반응) 목록을 불러와요.
+/// 미디어 평가 목록을 불러와요.
 ///
 /// Copied from [fetchReactionsList].
 class FetchReactionsListProvider
     extends AutoDisposeFutureProvider<List<Evaluation?>> {
-  /// 미디어 평가(반응) 목록을 불러와요.
+  /// 미디어 평가 목록을 불러와요.
   ///
   /// Copied from [fetchReactionsList].
   FetchReactionsListProvider({

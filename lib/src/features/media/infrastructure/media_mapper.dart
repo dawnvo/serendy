@@ -1,29 +1,9 @@
-import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
+import 'package:serendy/src/features/media/infrastructure/media_model.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 abstract final class MediaMapper {
-  static Media toDomainModel(MediaEntity entity) {
+  static Media toDomain(MediaModel model) {
     return Media(
-      id: entity.id,
-      type: entity.type,
-      status: entity.status,
-      title: entity.title,
-      image: entity.image,
-      keywords: entity.keywords,
-      synopsis: entity.synopsis,
-      youtubeId: entity.youtubeId,
-      isAdult: entity.isAdult,
-      startDate: entity.startDate != null //
-          ? DateTime.parse(entity.startDate!)
-          : null,
-      endDate: entity.endDate != null //
-          ? DateTime.parse(entity.endDate!)
-          : null,
-    );
-  }
-
-  static MediaEntity toDataEntity(Media model) {
-    return MediaEntity(
       id: model.id,
       type: model.type,
       status: model.status,
@@ -33,10 +13,28 @@ abstract final class MediaMapper {
       synopsis: model.synopsis,
       youtubeId: model.youtubeId,
       isAdult: model.isAdult,
-      startDate: model.startDate?.toIso8601String(),
-      endDate: model.endDate?.toIso8601String(),
-      // 이미지는 서버에서 설정할 거예요.
-      images: null,
+      startDate: model.startDate != null //
+          ? DateTime.parse(model.startDate!)
+          : null,
+      endDate: model.endDate != null //
+          ? DateTime.parse(model.endDate!)
+          : null,
+    );
+  }
+
+  static MediaModel toData(Media entity) {
+    return MediaModel(
+      id: entity.id,
+      type: entity.type,
+      status: entity.status,
+      title: entity.title,
+      image: entity.image,
+      keywords: entity.keywords,
+      synopsis: entity.synopsis,
+      youtubeId: entity.youtubeId,
+      isAdult: entity.isAdult,
+      startDate: entity.startDate?.toIso8601String(),
+      endDate: entity.endDate?.toIso8601String(),
     );
   }
 }

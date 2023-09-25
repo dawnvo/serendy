@@ -5,7 +5,7 @@ import 'package:serendy/src/core/enums.dart';
 
 part 'evaluation_service.g.dart';
 
-/// 미디어 평가(반응) 목록을 불러와요.
+/// 미디어 평가 목록을 불러와요.
 @riverpod
 Future<List<Evaluation?>> fetchReactionsList(
   FetchReactionsListRef ref, {

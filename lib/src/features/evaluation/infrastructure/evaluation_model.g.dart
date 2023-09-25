@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'evaluation_entity.dart';
+part of 'evaluation_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
-    EvaluationEntity(
+EvaluationModel _$EvaluationModelFromJson(Map<String, dynamic> json) =>
+    EvaluationModel(
       id: json['id'] as String,
       userId: json['user_id'] as String,
       emotion: $enumDecode(_$EmotionEnumMap, json['emotion']),
       media:
-          EvaluationMediaEntity.fromJson(json['media'] as Map<String, dynamic>),
+          EvaluationMediaModel.fromJson(json['media'] as Map<String, dynamic>),
       private: json['private'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
@@ -21,7 +21,7 @@ EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['removed_at'] as String),
     );
 
-Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) =>
+Map<String, dynamic> _$EvaluationModelToJson(EvaluationModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
@@ -45,16 +45,16 @@ const _$EmotionEnumMap = {
   Emotion.anger: 'anger',
 };
 
-EvaluationMediaEntity _$EvaluationMediaEntityFromJson(
+EvaluationMediaModel _$EvaluationMediaModelFromJson(
         Map<String, dynamic> json) =>
-    EvaluationMediaEntity(
+    EvaluationMediaModel(
       id: json['id'] as String,
       title: json['title'] as String,
       image: json['image'] as String,
     );
 
-Map<String, dynamic> _$EvaluationMediaEntityToJson(
-        EvaluationMediaEntity instance) =>
+Map<String, dynamic> _$EvaluationMediaModelToJson(
+        EvaluationMediaModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
