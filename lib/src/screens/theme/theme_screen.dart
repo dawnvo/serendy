@@ -46,7 +46,7 @@ class ThemeScreen extends ConsumerWidget {
         ),
         mediasGrid: _ThemeItemsGrid(
           theme: state.theme,
-          medias: state.theme.items.map((e) => e!.media).toList(),
+          medias: state.theme.items.map((item) => item!.convertEntity).toList(),
         ),
       ),
       loading: () => _Placeholder$ThemeScreen(theme),

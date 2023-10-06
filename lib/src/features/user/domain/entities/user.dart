@@ -1,9 +1,10 @@
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 
+//Identity
 typedef UserID = String;
 
-/// [AggregateRoot]
+//AggregateRoot
 final class User extends Equatable {
   final UserID id;
 
@@ -33,20 +34,12 @@ final class User extends Equatable {
     final String? id,
     final DateTime? createdAt,
     final DateTime? updatedAt,
-  })  : id = id ?? Ulid().toString(),
+  })  : id = id ?? Ulid().toCanonical(),
         createdAt = createdAt ?? DateTime.now(),
         updatedAt = updatedAt ?? DateTime.now();
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        email,
-        avatar,
-        createdAt,
-        updatedAt,
-        removedAt,
-      ];
+  List<Object?> get props => [id, email];
 }
 
 extension UserX on User {
@@ -61,9 +54,7 @@ extension UserX on User {
 
   /// 회원 탈퇴
   User remove() {
-    return copy(
-      removedAt: DateTime.now(),
-    );
+    return copy(removedAt: DateTime.now());
   }
 
   // ☹️ Boilerplate Code

@@ -32,6 +32,7 @@ class MediaScreen extends ConsumerWidget {
     final mediaValue = ref.watch(mediaControllerProvider(id, media));
 
     return mediaValue.when(
+      skipLoadingOnReload: true,
       data: (state) => _MediaTemplate(
         coverImage: _MediaCoverImage(
           image: state.media.image,

@@ -48,16 +48,7 @@ final class Evaluation extends Equatable {
         updatedAt = updatedAt ?? DateTime.now();
 
   @override
-  List<Object?> get props => [
-        id,
-        userId,
-        media,
-        emotion,
-        private,
-        createdAt,
-        updatedAt,
-        removedAt,
-      ];
+  List<Object?> get props => [id];
 }
 
 extension EvaluationX on Evaluation {

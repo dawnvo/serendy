@@ -1,34 +1,36 @@
 part of 'theme.dart';
 
-/// [Entity]
+//Entity
 final class ThemeItem extends Equatable {
-  final Media media;
+  // * 작품 식별
+  final MediaID mediaId;
 
-  /// 추가한 날짜
+  // * 제목
+  final String title;
+
+  // * 이미지
+  final String image;
+
+  // * 추가한 날짜
   final DateTime addedAt;
 
   const ThemeItem({
-    required this.media,
+    required this.mediaId,
+    required this.title,
+    required this.image,
     required this.addedAt,
   });
 
   @override
-  List<Object?> get props => [
-        media,
-        addedAt,
-      ];
+  List<Object?> get props => [mediaId];
 
   Media get convertEntity => Media(
-        id: media.id,
-        type: media.type,
-        status: media.status,
-        title: media.title,
-        image: media.image,
-        keywords: media.keywords,
-        synopsis: media.synopsis,
-        youtubeId: media.youtubeId,
-        isAdult: media.isAdult,
-        startDate: media.startDate,
-        endDate: media.endDate,
+        id: mediaId,
+        title: title,
+        image: image,
+        //dummy
+        keywords: const [],
+        type: MediaType.anime,
+        status: MediaStatus.finished,
       );
 }

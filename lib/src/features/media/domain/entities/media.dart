@@ -2,11 +2,10 @@ import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/src/core/enums.dart';
 
-part 'media_images.dart';
-
+//Identity
 typedef MediaID = String;
 
-/// [AggregateRoot]
+//AggregateRoot
 final class Media extends Equatable {
   final MediaID id;
 
@@ -52,27 +51,15 @@ final class Media extends Equatable {
     final String? id,
     final bool? isAdult,
     final List<String?>? youtubeId,
-  })  : id = id ?? Ulid().toString(),
+  })  : id = id ?? Ulid().toCanonical(),
         isAdult = isAdult ?? false,
         youtubeId = youtubeId ?? const [];
 
   @override
-  List<Object?> get props => [
-        id,
-        type,
-        status,
-        title,
-        image,
-        synopsis,
-        keywords,
-        youtubeId,
-        startDate,
-        endDate,
-      ];
+  List<Object?> get props => [id];
 }
 
 extension MediaX on Media {
-  // ☹️ Boilerplate Code
   Media copy({
     final MediaID? id,
     final MediaType? type,

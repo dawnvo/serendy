@@ -17,11 +17,7 @@ final class EvaluationMedia extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        id,
-        title,
-        image,
-      ];
+  List<Object?> get props => [id];
 
   Media get convertEntity => Media(
         id: id,

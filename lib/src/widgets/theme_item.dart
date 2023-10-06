@@ -28,7 +28,7 @@ class ThemeItem extends StatelessWidget {
       onTap: onTap,
       leading: _buildImage(context),
       title: Text(theme.title),
-      subtitle: Text('작품 ${theme.itemCount}'),
+      subtitle: Text('작품 ${theme.itemsCount}'),
     );
   }
 

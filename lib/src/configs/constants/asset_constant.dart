@@ -9,7 +9,7 @@ abstract final class Assets {
   static const googleIcon = '$iconPath/logos/google.svg';
   static const youtubeIcon = '$iconPath/logos/youtube.svg';
 
-  static const themeDefaultImage = 'https://vo.la/sonPL';
+  static final themeDefaultImage = dotenv.env['THEME_DEFAULT_IMAGE']!;
   static final themeFavoriteImage = dotenv.env['FAVORITE_THEME_IMAGE']!;
   static const createThemeHints = [
     '나의 테마',

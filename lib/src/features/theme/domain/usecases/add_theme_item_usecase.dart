@@ -39,19 +39,9 @@ final class AddThemeItemUsecase implements UseCase<AddThemeItemPayload, Theme> {
 
     final addedItem = theme.addItem(ThemeItem(
       addedAt: DateTime.now(),
-      media: Media(
-        id: media.id,
-        type: media.type,
-        status: media.status,
-        title: media.title,
-        image: media.image,
-        keywords: media.keywords,
-        synopsis: media.synopsis,
-        youtubeId: media.youtubeId,
-        isAdult: media.isAdult,
-        startDate: media.startDate,
-        endDate: media.endDate,
-      ),
+      mediaId: media.id,
+      title: media.title,
+      image: media.image,
     ));
 
     await _themeRepository.addItem(addedItem, payload.mediaId);
