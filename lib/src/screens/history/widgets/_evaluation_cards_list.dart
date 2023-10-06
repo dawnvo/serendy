@@ -11,7 +11,6 @@ class _HistoryEvaluationCardsList extends StatelessWidget {
       itemCount: evaluations.length,
       itemBuilder: (BuildContext context, int index) {
         final evaluation = evaluations[index]!;
-
         return Padding(
           padding: const EdgeInsets.only(bottom: Sizes.p16),
           child: _buildEvaluationCard(context, evaluation),

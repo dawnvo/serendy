@@ -1,25 +1,36 @@
-import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import 'controller/history_controller.dart';
+
 part 'widgets/_evaluation_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends ConsumerWidget {
   static const String routeName = 'history';
   static const String routeLocation = routeName;
   const HistoryScreen();
 
   @override
-  Widget build(BuildContext context) {
-    final evaluations = List.filled(12, evaluationMock);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final historyValue = ref.watch(historyControllerProvider);
 
-    return _HistoryTemplate(
-      titles: const _HistoryTitles(),
-      evaluationsList: _HistoryEvaluationCardsList(
-        evaluations: evaluations,
+    return historyValue.when(
+      skipLoadingOnReload: true,
+      data: (state) => _HistoryTemplate(
+        titles: _HistoryTitles(
+          evaluationsCount: state.evaluationsCount,
+        ),
+        evaluationsList: _HistoryEvaluationCardsList(
+          evaluations: state.evaluations,
+        ),
+      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => const ErrorTemplate(
+        message: "기록을 불러오지 못했어요.",
+        backButton: true,
       ),
     );
   }

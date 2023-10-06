@@ -14,8 +14,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     UserID? userId,
     MediaID? mediaId,
   }) {
-    final list = List.filled(16, evaluationMock);
-    return Stream.value(list);
+    return Stream.value(evaluationsMock);
   }
 
   /**
@@ -26,7 +25,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     UserID? userId,
     MediaID? mediaId,
   }) async {
-    return List.filled(16, evaluationMock);
+    return evaluationsMock;
   }
 
   /**
@@ -37,7 +36,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required UserID userId,
     required MediaID mediaId,
   }) async {
-    return evaluationMock;
+    return evaluationsMock[0];
   }
 
   /**
@@ -48,7 +47,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required UserID userId,
     required MediaID mediaId,
   }) async {
-    return evaluationMock;
+    return evaluationsMock[0];
   }
 
   /**

@@ -1,7 +1,7 @@
-import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 // Profile
 final profileMock = Profile(
@@ -46,13 +46,16 @@ final mediasMock = [
 ];
 
 // Evaluation
-final evaluationMock = Evaluation(
-  userId: profileMock.id,
-  emotion: Emotion.happyness,
-  media: EvaluationMedia(
-    id: mediasMock[0].id,
-    title: mediasMock[0].title,
-    image: mediasMock[0].image,
+final evaluationsMock = List.generate(
+  4,
+  (i) => Evaluation(
+    userId: profileMock.id,
+    emotion: Emotion.values[i],
+    media: EvaluationMedia(
+      id: mediasMock[0].id,
+      title: mediasMock[0].title,
+      image: mediasMock[0].image,
+    ),
   ),
 );
 
@@ -61,24 +64,28 @@ final themeOwnerMock = ThemeOwner(
   id: profileMock.id,
   name: profileMock.name,
 );
-final themeItemMock = ThemeItem(
-  addedAt: DateTime.now(),
-  mediaId: mediasMock[0].id,
-  title: mediasMock[0].title,
-  image: mediasMock[0].image,
-);
+final themeItemsMock = mediasMock
+    .map((media) => ThemeItem(
+          addedAt: DateTime.now(),
+          mediaId: media.id,
+          title: media.title,
+          image: media.image,
+        ))
+    .toList();
 final themesMock = [
   Theme(
-      owner: themeOwnerMock,
-      title: "M3",
-      image: "https://vo.la/EKT5x",
-      description: "특히 과학연구의 분야에서 실험 도중에 실패해서 얻은 결과에서 중대한 발견 또는 발명을 하는 것을 말한다",
-      items: List.filled(8, themeItemMock)),
+    owner: themeOwnerMock,
+    title: "M3",
+    image: "https://vo.la/EKT5x",
+    description: "특히 과학연구의 분야에서 실험 도중에 실패해서 얻은 결과에서 중대한 발견 또는 발명을 하는 것을 말한다",
+    items: themeItemsMock,
+  ),
   Theme(
-      owner: themeOwnerMock,
-      title: "자바스크립트",
-      image: "https://vo.la/hOQob",
-      items: List.filled(8, themeItemMock)),
+    owner: themeOwnerMock,
+    title: "자바스크립트",
+    image: "https://vo.la/hOQob",
+    items: themeItemsMock,
+  ),
   Theme(
     owner: themeOwnerMock,
     title: "ES2023에서 도입된 자바스크립트의 새로운 배열 복사 메서드",
