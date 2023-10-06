@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/app.dart';
-import 'package:serendy/src/core/exceptions/error_logger.dart';
+import 'package:serendy/src/configs/configs.dart';
 
 import 'screens/profile/controller/profile_controller.dart';
 

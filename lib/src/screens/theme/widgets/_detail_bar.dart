@@ -11,7 +11,7 @@ class _ThemeDetailBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUserId = ref.watch(userIdProvider);
+    final currentUserId = ref.watch(currentUserIdProvider);
     final isOwner = owner.id == currentUserId;
 
     return Row(children: [

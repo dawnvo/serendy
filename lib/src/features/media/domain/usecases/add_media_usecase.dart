@@ -1,5 +1,4 @@
-import 'package:serendy/src/core/domain/usecase.dart';
-import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 

@@ -1,6 +1,6 @@
 part of 'evaluation.dart';
 
-/// [Entity]
+//Entity
 final class EvaluationMedia extends Equatable {
   final MediaID id;
 

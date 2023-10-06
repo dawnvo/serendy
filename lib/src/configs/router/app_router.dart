@@ -1,6 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/screens/screens.dart';
 
@@ -16,6 +16,8 @@ final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
+  final supabase = ref.watch(supabaseProvider);
+
   // 🔒 로그인이 필요한 화면
   final privateLocation = [
     AppRoutes._homeLocation,
@@ -24,14 +26,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   ];
 
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
+    navigatorKey: _rootNavigatorKey,
     redirect: (context, state) {
-      final isLoggedIn = ''.isEmpty;
+      final session = supabase.auth.currentSession;
       final currentLocation = state.matchedLocation;
 
       // 로그인에 성공한 경우
-      if (isLoggedIn) {
+      if (session != null) {
         if (currentLocation == AppRoutes._signInLocation) {
           return AppRoutes._homeLocation;
         }

@@ -1,7 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/domain/usecase.dart';
-import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 typedef CreateProfilePayload = ({
   UserID id,
@@ -10,7 +9,8 @@ typedef CreateProfilePayload = ({
   String? avatar,
 });
 
-final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profile> {
+final class CreateProfileUsecase
+    implements UseCase<CreateProfilePayload, Profile> {
   const CreateProfileUsecase(
     this._profileRepository,
     this._themeRepository,

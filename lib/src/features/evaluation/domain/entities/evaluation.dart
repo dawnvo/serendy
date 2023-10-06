@@ -1,14 +1,27 @@
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 part 'evaluation_media.dart';
 
+//Identity
 typedef EvaluationID = String;
 
-/// [AggregateRoot]
+//Enums
+enum Emotion {
+  /* 멋짐 */ nice,
+  /* 재미 */ joy,
+  /* 행복 */ happyness,
+  /* 놀람 */ surprise,
+  /* 슬픔 */ sadness,
+  /* 공포 */ fear,
+  /* 보통 */ normal,
+  /* 별로 */ disgust,
+  /* 분노 */ anger,
+}
+
+//AggregateRoot
 final class Evaluation extends Equatable {
   final EvaluationID id;
 
@@ -73,7 +86,7 @@ extension EvaluationX on Evaluation {
     );
   }
 
-  // ☹️ Boilerplate Code
+  // 평가 복사
   Evaluation copy({
     final EvaluationID? id,
     final UserID? userId,

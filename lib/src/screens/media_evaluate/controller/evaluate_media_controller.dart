@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 
@@ -7,7 +6,8 @@ part 'evaluate_media_controller.g.dart';
 part 'evaluate_media_state.dart';
 
 @riverpod
-class EvaluateMediaController extends _$EvaluateMediaController with NotifierMounted {
+class EvaluateMediaController extends _$EvaluateMediaController
+    with NotifierMounted {
   @override
   EvaluateMediaState build(MediaID mediaId) {
     ref.onDispose(setUnmounted);

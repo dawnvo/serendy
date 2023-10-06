@@ -1,6 +1,4 @@
-import 'package:serendy/src/core/domain/assert.dart';
-import 'package:serendy/src/core/domain/usecase.dart';
-import 'package:serendy/src/core/exceptions/core_exception.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 typedef RemoveProfilePayload = ({
@@ -8,7 +6,8 @@ typedef RemoveProfilePayload = ({
   String? reason,
 });
 
-final class RemoveProfileUsecase implements UseCase<RemoveProfilePayload, void> {
+final class RemoveProfileUsecase
+    implements UseCase<RemoveProfilePayload, void> {
   const RemoveProfileUsecase(this._profileRepository);
   final ProfileRepository _profileRepository;
 

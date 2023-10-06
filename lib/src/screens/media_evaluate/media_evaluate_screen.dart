@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 

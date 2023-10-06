@@ -1,9 +1,23 @@
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/src/core/enums.dart';
 
 //Identity
 typedef MediaID = String;
+
+//Enums
+enum MediaType {
+  /* 애니 */ anime,
+  /* 영화 */ movie,
+  /* 만화 */ manga,
+  /* 소설 */ novel,
+}
+
+enum MediaStatus {
+  /* 방영 끝 */ finished,
+  /* 방영 중 */ releasing,
+  /* 방영 전 */ unreleased,
+  /* 방영 취소 */ cancelled,
+}
 
 //AggregateRoot
 final class Media extends Equatable {
@@ -60,6 +74,7 @@ final class Media extends Equatable {
 }
 
 extension MediaX on Media {
+  // 미디어 복사
   Media copy({
     final MediaID? id,
     final MediaType? type,

@@ -1,4 +1,3 @@
-import 'package:serendy/src/features/profile/infrastructure/profile_entity.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 abstract final class ProfileMapper {

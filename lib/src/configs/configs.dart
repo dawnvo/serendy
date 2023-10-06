@@ -1,3 +1,4 @@
+//packages
 export 'package:flutter/material.dart' hide Theme;
 export 'package:flutter_hooks/flutter_hooks.dart';
 export 'package:flutter_remix_icon/remixicon.dart';
@@ -12,6 +13,19 @@ export 'package:responsive_builder/responsive_builder.dart' hide WidgetBuilder;
 export 'constants/asset_constant.dart';
 export 'constants/size_constant.dart';
 export 'constants/widget_constant.dart';
+
+//domain
+export 'domain/assert.dart';
+export 'domain/types.dart';
+export 'domain/usecase.dart';
+
+//exceptions
+export 'exceptions/core_exception.dart';
+export 'exceptions/error_logger.dart';
+
+//persistence
+export 'persistence/supabase.dart';
+export 'persistence/table_path.dart';
 
 //extensions
 export 'extensions/context_extension.dart';

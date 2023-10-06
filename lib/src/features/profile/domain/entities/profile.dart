@@ -4,6 +4,18 @@ import 'package:equatable/equatable.dart';
 //Identity
 typedef UserID = String;
 
+//Enums
+enum Rank {
+  /* 아이언 */ iron,
+  /* 브론즈 */ bronze,
+  /* 실버 */ silver,
+  /* 골드 */ gold,
+  /* 플레티넘 */ platinum,
+  /* 다이아 */ diamond,
+  /* 마스터 */ master,
+  /* 노벨 */ novel,
+}
+
 //AggregateRoot
 final class Profile extends Equatable {
   final UserID id;
@@ -57,7 +69,7 @@ extension ProfileX on Profile {
     return copy(removedAt: DateTime.now());
   }
 
-  // ☹️ Boilerplate Code
+  // 프로필 복사
   Profile copy({
     final UserID? id,
     final String? name,

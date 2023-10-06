@@ -1,5 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 class RankModal extends ConsumerWidget {
   static const String routeName = 'rank';

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:serendy/src/core/domain/types.dart';
+import 'package:serendy/src/configs/configs.dart';
 
 part 'profile_entity.g.dart';
 

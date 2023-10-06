@@ -1,4 +1,4 @@
-import 'package:serendy/src/core/_mock.dart';
+import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 final class ProfileRepositoryImpl implements ProfileRepository {

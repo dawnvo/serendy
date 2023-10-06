@@ -1,4 +1,3 @@
-import 'package:serendy/src/features/theme/infrastructure/theme_entity.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 abstract final class ThemeMapper {

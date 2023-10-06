@@ -1,6 +1,4 @@
-import 'package:serendy/src/core/domain/assert.dart';
-import 'package:serendy/src/core/domain/usecase.dart';
-import 'package:serendy/src/core/exceptions/core_exception.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';

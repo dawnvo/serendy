@@ -1,5 +1,5 @@
+import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/core/_mock.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';

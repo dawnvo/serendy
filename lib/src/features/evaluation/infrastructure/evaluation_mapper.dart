@@ -1,6 +1,4 @@
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
-import 'package:serendy/src/features/evaluation/infrastructure/evaluation_entity.dart';
 
 abstract final class EvaluationMapper {
   static Evaluation toDomain(final EvaluationEntity entity) {

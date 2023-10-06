@@ -19,7 +19,7 @@ Stream<List<Theme?>> watchMyThemesList(
 Future<List<Theme?>> fetchThemesList(
   FetchThemesListRef ref,
 ) {
-  final userId = ref.watch(userIdProvider);
+  final userId = ref.watch(currentUserIdProvider);
   return ThemeModule.getThemeListUsecase.execute((executorId: userId));
 }
 
@@ -29,7 +29,7 @@ Future<Theme> fetchTheme(
   FetchThemeRef ref, {
   required ThemeID id,
 }) {
-  final userId = ref.watch(userIdProvider);
+  final userId = ref.watch(currentUserIdProvider);
   return ThemeModule.getThemeUsecase.execute((
     executorId: userId,
     themeId: id,

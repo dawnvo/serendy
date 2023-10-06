@@ -17,7 +17,7 @@ dependencies:
   supabase_flutter: ^1.10.19
 
   # State
-  fpdart: ^1.1.0
+  # fpdart: ^1.1.0
   equatable: ^2.0.5
   flutter_hooks: ^0.20.2
   hooks_riverpod: ^2.4.2
@@ -34,8 +34,8 @@ dependencies:
 
   # Others
   ulid: ^2.0.0
-  crypto: ^3.0.3
-  flutter_appauth: ^6.0.2
+  # crypto: ^3.0.3
+  # flutter_appauth: ^6.0.2
   flutter_dotenv: ^5.1.0
   json_annotation: ^4.8.1
 

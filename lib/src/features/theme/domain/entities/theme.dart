@@ -1,6 +1,5 @@
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
-import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
@@ -121,7 +120,7 @@ extension ThemeX on Theme {
     );
   }
 
-  // ☹️ Boilerplate Code
+  // 테마 복사
   Theme copy({
     final ThemeID? id,
     final ThemeOwner? owner,

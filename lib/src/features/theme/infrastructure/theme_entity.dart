@@ -1,8 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:serendy/src/core/domain/types.dart';
-import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/infrastructure/profile_entity.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
