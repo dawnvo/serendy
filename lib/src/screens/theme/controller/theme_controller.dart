@@ -1,6 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 part 'theme_controller.g.dart';
 part 'theme_state.dart';
@@ -11,7 +11,7 @@ class ThemeController extends _$ThemeController {
   FutureOr<ThemeState> build(ThemeID id, [Theme? theme]) async {
     theme ??= await ref.watch(fetchThemeProvider(id: id).future);
     final items = await ref.watch(fetchThemeItemsProvider(id: id).future);
-    final owner = await ref.watch(fetchUserProvider(
+    final owner = await ref.watch(fetchProfileProvider(
       id: theme!.owner.id,
     ).future);
 
@@ -27,7 +27,7 @@ class ThemeController extends _$ThemeController {
       themeItems = state.requireValue.theme.items;
     }
 
-    // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
+    // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
     state = AsyncData(state.requireValue.copyWith(
       theme: theme.copy(items: themeItems),

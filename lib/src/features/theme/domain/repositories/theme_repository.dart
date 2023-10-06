@@ -1,23 +1,37 @@
-import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 abstract class ThemeRepository {
   const ThemeRepository();
 
-  Stream<List<Theme?>> watchMany(UserID userId);
+  //Theme --------------------
 
-  Future<List<Theme?>> findMany(UserID? userId);
+  Stream<List<Theme?>> watchThemesList({
+    UserID? userId,
+  });
 
-  Future<Theme?> findOne(String themeId);
+  Future<List<Theme?>> fetchThemesList({
+    UserID? userId,
+  });
 
-  Future<Theme?> fetchTheme(String themeId);
+  Future<Theme?> fetchThemeSlice({
+    required ThemeID id,
+  });
 
-  Future<List<ThemeItem?>> fetchThemeItems(ThemeID themeId);
+  Future<Theme?> fetchTheme({
+    required ThemeID id,
+  });
 
-  Future<void> create(Theme theme);
+  Future<void> createTheme(Theme theme);
 
-  Future<void> update(Theme theme);
+  Future<void> updateTheme(Theme theme);
+
+  //ThemeItem --------------------
+
+  Future<List<ThemeItem?>> fetchItems({
+    required ThemeID id,
+  });
 
   Future<void> addItem(Theme theme, MediaID mediaId);
 

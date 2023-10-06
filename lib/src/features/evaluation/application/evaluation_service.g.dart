@@ -6,8 +6,8 @@ part of 'evaluation_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchReactionsListHash() =>
-    r'ea163ef3623b6a2022665da4007a9824c4bc6579';
+String _$fetchMediaReactionsListHash() =>
+    r'3a75ec5881046ad30a44a9d1a380e0ac61e98725';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,35 +30,36 @@ class _SystemHash {
   }
 }
 
-/// 미디어 평가 목록을 불러와요.
+/// 작품 평가 목록을 불러와요.
 ///
-/// Copied from [fetchReactionsList].
-@ProviderFor(fetchReactionsList)
-const fetchReactionsListProvider = FetchReactionsListFamily();
+/// Copied from [fetchMediaReactionsList].
+@ProviderFor(fetchMediaReactionsList)
+const fetchMediaReactionsListProvider = FetchMediaReactionsListFamily();
 
-/// 미디어 평가 목록을 불러와요.
+/// 작품 평가 목록을 불러와요.
 ///
-/// Copied from [fetchReactionsList].
-class FetchReactionsListFamily extends Family<AsyncValue<List<Evaluation?>>> {
-  /// 미디어 평가 목록을 불러와요.
+/// Copied from [fetchMediaReactionsList].
+class FetchMediaReactionsListFamily
+    extends Family<AsyncValue<List<Evaluation?>>> {
+  /// 작품 평가 목록을 불러와요.
   ///
-  /// Copied from [fetchReactionsList].
-  const FetchReactionsListFamily();
+  /// Copied from [fetchMediaReactionsList].
+  const FetchMediaReactionsListFamily();
 
-  /// 미디어 평가 목록을 불러와요.
+  /// 작품 평가 목록을 불러와요.
   ///
-  /// Copied from [fetchReactionsList].
-  FetchReactionsListProvider call({
+  /// Copied from [fetchMediaReactionsList].
+  FetchMediaReactionsListProvider call({
     required String mediaId,
   }) {
-    return FetchReactionsListProvider(
+    return FetchMediaReactionsListProvider(
       mediaId: mediaId,
     );
   }
 
   @override
-  FetchReactionsListProvider getProviderOverride(
-    covariant FetchReactionsListProvider provider,
+  FetchMediaReactionsListProvider getProviderOverride(
+    covariant FetchMediaReactionsListProvider provider,
   ) {
     return call(
       mediaId: provider.mediaId,
@@ -77,37 +78,37 @@ class FetchReactionsListFamily extends Family<AsyncValue<List<Evaluation?>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchReactionsListProvider';
+  String? get name => r'fetchMediaReactionsListProvider';
 }
 
-/// 미디어 평가 목록을 불러와요.
+/// 작품 평가 목록을 불러와요.
 ///
-/// Copied from [fetchReactionsList].
-class FetchReactionsListProvider
+/// Copied from [fetchMediaReactionsList].
+class FetchMediaReactionsListProvider
     extends AutoDisposeFutureProvider<List<Evaluation?>> {
-  /// 미디어 평가 목록을 불러와요.
+  /// 작품 평가 목록을 불러와요.
   ///
-  /// Copied from [fetchReactionsList].
-  FetchReactionsListProvider({
+  /// Copied from [fetchMediaReactionsList].
+  FetchMediaReactionsListProvider({
     required String mediaId,
   }) : this._internal(
-          (ref) => fetchReactionsList(
-            ref as FetchReactionsListRef,
+          (ref) => fetchMediaReactionsList(
+            ref as FetchMediaReactionsListRef,
             mediaId: mediaId,
           ),
-          from: fetchReactionsListProvider,
-          name: r'fetchReactionsListProvider',
+          from: fetchMediaReactionsListProvider,
+          name: r'fetchMediaReactionsListProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchReactionsListHash,
-          dependencies: FetchReactionsListFamily._dependencies,
+                  : _$fetchMediaReactionsListHash,
+          dependencies: FetchMediaReactionsListFamily._dependencies,
           allTransitiveDependencies:
-              FetchReactionsListFamily._allTransitiveDependencies,
+              FetchMediaReactionsListFamily._allTransitiveDependencies,
           mediaId: mediaId,
         );
 
-  FetchReactionsListProvider._internal(
+  FetchMediaReactionsListProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -121,12 +122,13 @@ class FetchReactionsListProvider
 
   @override
   Override overrideWith(
-    FutureOr<List<Evaluation?>> Function(FetchReactionsListRef provider) create,
+    FutureOr<List<Evaluation?>> Function(FetchMediaReactionsListRef provider)
+        create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: FetchReactionsListProvider._internal(
-        (ref) => create(ref as FetchReactionsListRef),
+      override: FetchMediaReactionsListProvider._internal(
+        (ref) => create(ref as FetchMediaReactionsListRef),
         from: from,
         name: null,
         dependencies: null,
@@ -139,12 +141,12 @@ class FetchReactionsListProvider
 
   @override
   AutoDisposeFutureProviderElement<List<Evaluation?>> createElement() {
-    return _FetchReactionsListProviderElement(this);
+    return _FetchMediaReactionsListProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchReactionsListProvider && other.mediaId == mediaId;
+    return other is FetchMediaReactionsListProvider && other.mediaId == mediaId;
   }
 
   @override
@@ -156,75 +158,74 @@ class FetchReactionsListProvider
   }
 }
 
-mixin FetchReactionsListRef on AutoDisposeFutureProviderRef<List<Evaluation?>> {
+mixin FetchMediaReactionsListRef
+    on AutoDisposeFutureProviderRef<List<Evaluation?>> {
   /// The parameter `mediaId` of this provider.
   String get mediaId;
 }
 
-class _FetchReactionsListProviderElement
+class _FetchMediaReactionsListProviderElement
     extends AutoDisposeFutureProviderElement<List<Evaluation?>>
-    with FetchReactionsListRef {
-  _FetchReactionsListProviderElement(super.provider);
+    with FetchMediaReactionsListRef {
+  _FetchMediaReactionsListProviderElement(super.provider);
 
   @override
-  String get mediaId => (origin as FetchReactionsListProvider).mediaId;
+  String get mediaId => (origin as FetchMediaReactionsListProvider).mediaId;
 }
 
-String _$watchMyEvaluationsListHash() =>
-    r'6a5f9d4e9f31c3a1746b780ec2563ce616f1ea41';
+String _$watchEvaluationsListHash() =>
+    r'768221f96f01dc2c0e82438f1e530e5e1295add5';
 
-/// 나의 평가 목록을 구독해요.
+/// 평가 목록을 구독해요.
 ///
-/// Copied from [watchMyEvaluationsList].
-@ProviderFor(watchMyEvaluationsList)
-final watchMyEvaluationsListProvider =
-    StreamProvider<List<Evaluation?>>.internal(
-  watchMyEvaluationsList,
-  name: r'watchMyEvaluationsListProvider',
+/// Copied from [watchEvaluationsList].
+@ProviderFor(watchEvaluationsList)
+final watchEvaluationsListProvider = StreamProvider<List<Evaluation?>>.internal(
+  watchEvaluationsList,
+  name: r'watchEvaluationsListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$watchMyEvaluationsListHash,
+      : _$watchEvaluationsListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef WatchMyEvaluationsListRef = StreamProviderRef<List<Evaluation?>>;
-String _$countMyEvaluationsHash() =>
-    r'139f29127ea779fe16768070ae01a3669ae30f6e';
+typedef WatchEvaluationsListRef = StreamProviderRef<List<Evaluation?>>;
+String _$countEvaluationsHash() => r'6f780ac3c3bd24297d8f338c81d7c97f1c8889ad';
 
-/// 나의 평가 개수를 조회해요.
+/// 평가 개수를 조회해요.
 ///
-/// Copied from [countMyEvaluations].
-@ProviderFor(countMyEvaluations)
-final countMyEvaluationsProvider = FutureProvider<int>.internal(
-  countMyEvaluations,
-  name: r'countMyEvaluationsProvider',
+/// Copied from [countEvaluations].
+@ProviderFor(countEvaluations)
+final countEvaluationsProvider = FutureProvider<int>.internal(
+  countEvaluations,
+  name: r'countEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$countMyEvaluationsHash,
+      : _$countEvaluationsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef CountMyEvaluationsRef = FutureProviderRef<int>;
-String _$fetchEvaluationHash() => r'ded10c0252725a8921bea213fe76096721d2bb24';
+typedef CountEvaluationsRef = FutureProviderRef<int>;
+String _$fetchEvaluationHash() => r'379ee6ce97979a6f137f5854735c726cd4c4f53e';
 
-/// 나의 평가 정보를 불러와요.
+/// 평가 정보를 불러와요.
 ///
 /// Copied from [fetchEvaluation].
 @ProviderFor(fetchEvaluation)
 const fetchEvaluationProvider = FetchEvaluationFamily();
 
-/// 나의 평가 정보를 불러와요.
+/// 평가 정보를 불러와요.
 ///
 /// Copied from [fetchEvaluation].
 class FetchEvaluationFamily extends Family<AsyncValue<Evaluation?>> {
-  /// 나의 평가 정보를 불러와요.
+  /// 평가 정보를 불러와요.
   ///
   /// Copied from [fetchEvaluation].
   const FetchEvaluationFamily();
 
-  /// 나의 평가 정보를 불러와요.
+  /// 평가 정보를 불러와요.
   ///
   /// Copied from [fetchEvaluation].
   FetchEvaluationProvider call({
@@ -259,11 +260,11 @@ class FetchEvaluationFamily extends Family<AsyncValue<Evaluation?>> {
   String? get name => r'fetchEvaluationProvider';
 }
 
-/// 나의 평가 정보를 불러와요.
+/// 평가 정보를 불러와요.
 ///
 /// Copied from [fetchEvaluation].
 class FetchEvaluationProvider extends AutoDisposeFutureProvider<Evaluation?> {
-  /// 나의 평가 정보를 불러와요.
+  /// 평가 정보를 불러와요.
   ///
   /// Copied from [fetchEvaluation].
   FetchEvaluationProvider({
@@ -348,7 +349,7 @@ class _FetchEvaluationProviderElement
   String get mediaId => (origin as FetchEvaluationProvider).mediaId;
 }
 
-String _$submitEvaluationHash() => r'517fe010914739ac06f62df59c769f1dedb11034';
+String _$submitEvaluationHash() => r'd1354b7f20d14382af4d7bf97c53a185cec71bf1';
 
 /// 평가를 생성 또는 수정해요.
 ///
@@ -506,7 +507,7 @@ class _SubmitEvaluationProviderElement
   Emotion get emotion => (origin as SubmitEvaluationProvider).emotion;
 }
 
-String _$removeEvaluationHash() => r'dd080369845735156b8011412f9333f31af54e59';
+String _$removeEvaluationHash() => r'da7b7279e2f82acfc67ea9628fe11482171ac068';
 
 /// 평가를 제거해요.
 ///

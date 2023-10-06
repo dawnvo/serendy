@@ -4,10 +4,10 @@ part of 'evaluation.dart';
 final class EvaluationMedia extends Equatable {
   final MediaID id;
 
-  /// 미디어 제목
+  /// 작품 제목
   final String title;
 
-  /// 미디어 이미지
+  /// 작품 이미지
   final String image;
 
   const EvaluationMedia({

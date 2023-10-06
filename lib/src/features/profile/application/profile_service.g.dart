@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_service.dart';
+part of 'profile_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchMeHash() => r'1fa90b4320c64f2b7cb2bb079a8c7344a69684c7';
+String _$fetchMeHash() => r'34cf00222aef5c2f3bf9181420ddf9f5bc474706';
 
 /// 내 정보를 불러와요.
 ///
 /// Copied from [fetchMe].
 @ProviderFor(fetchMe)
-final fetchMeProvider = FutureProvider<User>.internal(
+final fetchMeProvider = FutureProvider<Profile>.internal(
   fetchMe,
   name: r'fetchMeProvider',
   debugGetCreateSourceHash:
@@ -21,8 +21,8 @@ final fetchMeProvider = FutureProvider<User>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef FetchMeRef = FutureProviderRef<User>;
-String _$fetchUserHash() => r'24acfc3ae6a4c719c4c3e62e79a3c931f8b8fb16';
+typedef FetchMeRef = FutureProviderRef<Profile>;
+String _$fetchProfileHash() => r'2dd6d51f69a9de7e802f438682d8ac03859de252';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -47,33 +47,33 @@ class _SystemHash {
 
 /// 사용자 정보를 불러와요.
 ///
-/// Copied from [fetchUser].
-@ProviderFor(fetchUser)
-const fetchUserProvider = FetchUserFamily();
+/// Copied from [fetchProfile].
+@ProviderFor(fetchProfile)
+const fetchProfileProvider = FetchProfileFamily();
 
 /// 사용자 정보를 불러와요.
 ///
-/// Copied from [fetchUser].
-class FetchUserFamily extends Family<AsyncValue<User>> {
+/// Copied from [fetchProfile].
+class FetchProfileFamily extends Family<AsyncValue<Profile>> {
   /// 사용자 정보를 불러와요.
   ///
-  /// Copied from [fetchUser].
-  const FetchUserFamily();
+  /// Copied from [fetchProfile].
+  const FetchProfileFamily();
 
   /// 사용자 정보를 불러와요.
   ///
-  /// Copied from [fetchUser].
-  FetchUserProvider call({
+  /// Copied from [fetchProfile].
+  FetchProfileProvider call({
     required String id,
   }) {
-    return FetchUserProvider(
+    return FetchProfileProvider(
       id: id,
     );
   }
 
   @override
-  FetchUserProvider getProviderOverride(
-    covariant FetchUserProvider provider,
+  FetchProfileProvider getProviderOverride(
+    covariant FetchProfileProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -92,35 +92,36 @@ class FetchUserFamily extends Family<AsyncValue<User>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchUserProvider';
+  String? get name => r'fetchProfileProvider';
 }
 
 /// 사용자 정보를 불러와요.
 ///
-/// Copied from [fetchUser].
-class FetchUserProvider extends AutoDisposeFutureProvider<User> {
+/// Copied from [fetchProfile].
+class FetchProfileProvider extends AutoDisposeFutureProvider<Profile> {
   /// 사용자 정보를 불러와요.
   ///
-  /// Copied from [fetchUser].
-  FetchUserProvider({
+  /// Copied from [fetchProfile].
+  FetchProfileProvider({
     required String id,
   }) : this._internal(
-          (ref) => fetchUser(
-            ref as FetchUserRef,
+          (ref) => fetchProfile(
+            ref as FetchProfileRef,
             id: id,
           ),
-          from: fetchUserProvider,
-          name: r'fetchUserProvider',
+          from: fetchProfileProvider,
+          name: r'fetchProfileProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchUserHash,
-          dependencies: FetchUserFamily._dependencies,
-          allTransitiveDependencies: FetchUserFamily._allTransitiveDependencies,
+                  : _$fetchProfileHash,
+          dependencies: FetchProfileFamily._dependencies,
+          allTransitiveDependencies:
+              FetchProfileFamily._allTransitiveDependencies,
           id: id,
         );
 
-  FetchUserProvider._internal(
+  FetchProfileProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -134,12 +135,12 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
 
   @override
   Override overrideWith(
-    FutureOr<User> Function(FetchUserRef provider) create,
+    FutureOr<Profile> Function(FetchProfileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: FetchUserProvider._internal(
-        (ref) => create(ref as FetchUserRef),
+      override: FetchProfileProvider._internal(
+        (ref) => create(ref as FetchProfileRef),
         from: from,
         name: null,
         dependencies: null,
@@ -151,13 +152,13 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<User> createElement() {
-    return _FetchUserProviderElement(this);
+  AutoDisposeFutureProviderElement<Profile> createElement() {
+    return _FetchProfileProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchUserProvider && other.id == id;
+    return other is FetchProfileProvider && other.id == id;
   }
 
   @override
@@ -169,46 +170,46 @@ class FetchUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-mixin FetchUserRef on AutoDisposeFutureProviderRef<User> {
+mixin FetchProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _FetchUserProviderElement extends AutoDisposeFutureProviderElement<User>
-    with FetchUserRef {
-  _FetchUserProviderElement(super.provider);
+class _FetchProfileProviderElement
+    extends AutoDisposeFutureProviderElement<Profile> with FetchProfileRef {
+  _FetchProfileProviderElement(super.provider);
 
   @override
-  String get id => (origin as FetchUserProvider).id;
+  String get id => (origin as FetchProfileProvider).id;
 }
 
-String _$createUserHash() => r'37aeba42ee09d742f685b3ec27983a7e6c03325f';
+String _$createProfileHash() => r'3453a3e6f54552afdf8bfa0dd1dd126afd14cbf0';
 
 /// 사용자를 만들어요.
 ///
-/// Copied from [createUser].
-@ProviderFor(createUser)
-const createUserProvider = CreateUserFamily();
+/// Copied from [createProfile].
+@ProviderFor(createProfile)
+const createProfileProvider = CreateProfileFamily();
 
 /// 사용자를 만들어요.
 ///
-/// Copied from [createUser].
-class CreateUserFamily extends Family<AsyncValue<User>> {
+/// Copied from [createProfile].
+class CreateProfileFamily extends Family<AsyncValue<Profile>> {
   /// 사용자를 만들어요.
   ///
-  /// Copied from [createUser].
-  const CreateUserFamily();
+  /// Copied from [createProfile].
+  const CreateProfileFamily();
 
   /// 사용자를 만들어요.
   ///
-  /// Copied from [createUser].
-  CreateUserProvider call({
+  /// Copied from [createProfile].
+  CreateProfileProvider call({
     required String uid,
     required String username,
     required String email,
     String? avatar,
   }) {
-    return CreateUserProvider(
+    return CreateProfileProvider(
       uid: uid,
       username: username,
       email: email,
@@ -217,8 +218,8 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
   }
 
   @override
-  CreateUserProvider getProviderOverride(
-    covariant CreateUserProvider provider,
+  CreateProfileProvider getProviderOverride(
+    covariant CreateProfileProvider provider,
   ) {
     return call(
       uid: provider.uid,
@@ -240,45 +241,45 @@ class CreateUserFamily extends Family<AsyncValue<User>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'createUserProvider';
+  String? get name => r'createProfileProvider';
 }
 
 /// 사용자를 만들어요.
 ///
-/// Copied from [createUser].
-class CreateUserProvider extends AutoDisposeFutureProvider<User> {
+/// Copied from [createProfile].
+class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
   /// 사용자를 만들어요.
   ///
-  /// Copied from [createUser].
-  CreateUserProvider({
+  /// Copied from [createProfile].
+  CreateProfileProvider({
     required String uid,
     required String username,
     required String email,
     String? avatar,
   }) : this._internal(
-          (ref) => createUser(
-            ref as CreateUserRef,
+          (ref) => createProfile(
+            ref as CreateProfileRef,
             uid: uid,
             username: username,
             email: email,
             avatar: avatar,
           ),
-          from: createUserProvider,
-          name: r'createUserProvider',
+          from: createProfileProvider,
+          name: r'createProfileProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$createUserHash,
-          dependencies: CreateUserFamily._dependencies,
+                  : _$createProfileHash,
+          dependencies: CreateProfileFamily._dependencies,
           allTransitiveDependencies:
-              CreateUserFamily._allTransitiveDependencies,
+              CreateProfileFamily._allTransitiveDependencies,
           uid: uid,
           username: username,
           email: email,
           avatar: avatar,
         );
 
-  CreateUserProvider._internal(
+  CreateProfileProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -298,12 +299,12 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
 
   @override
   Override overrideWith(
-    FutureOr<User> Function(CreateUserRef provider) create,
+    FutureOr<Profile> Function(CreateProfileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: CreateUserProvider._internal(
-        (ref) => create(ref as CreateUserRef),
+      override: CreateProfileProvider._internal(
+        (ref) => create(ref as CreateProfileRef),
         from: from,
         name: null,
         dependencies: null,
@@ -318,13 +319,13 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<User> createElement() {
-    return _CreateUserProviderElement(this);
+  AutoDisposeFutureProviderElement<Profile> createElement() {
+    return _CreateProfileProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CreateUserProvider &&
+    return other is CreateProfileProvider &&
         other.uid == uid &&
         other.username == username &&
         other.email == email &&
@@ -343,7 +344,7 @@ class CreateUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-mixin CreateUserRef on AutoDisposeFutureProviderRef<User> {
+mixin CreateProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `uid` of this provider.
   String get uid;
 
@@ -357,21 +358,21 @@ mixin CreateUserRef on AutoDisposeFutureProviderRef<User> {
   String? get avatar;
 }
 
-class _CreateUserProviderElement extends AutoDisposeFutureProviderElement<User>
-    with CreateUserRef {
-  _CreateUserProviderElement(super.provider);
+class _CreateProfileProviderElement
+    extends AutoDisposeFutureProviderElement<Profile> with CreateProfileRef {
+  _CreateProfileProviderElement(super.provider);
 
   @override
-  String get uid => (origin as CreateUserProvider).uid;
+  String get uid => (origin as CreateProfileProvider).uid;
   @override
-  String get username => (origin as CreateUserProvider).username;
+  String get username => (origin as CreateProfileProvider).username;
   @override
-  String get email => (origin as CreateUserProvider).email;
+  String get email => (origin as CreateProfileProvider).email;
   @override
-  String? get avatar => (origin as CreateUserProvider).avatar;
+  String? get avatar => (origin as CreateProfileProvider).avatar;
 }
 
-String _$editProfileHash() => r'3a09b0f5c1ce6740855553de60d69dcfcc8e216a';
+String _$editProfileHash() => r'cbfa7704fe13210168b57746f56bbd8254040590';
 
 /// 프로필을 수정해요.
 ///
@@ -382,7 +383,7 @@ const editProfileProvider = EditProfileFamily();
 /// 프로필을 수정해요.
 ///
 /// Copied from [editProfile].
-class EditProfileFamily extends Family<AsyncValue<User>> {
+class EditProfileFamily extends Family<AsyncValue<Profile>> {
   /// 프로필을 수정해요.
   ///
   /// Copied from [editProfile].
@@ -429,7 +430,7 @@ class EditProfileFamily extends Family<AsyncValue<User>> {
 /// 프로필을 수정해요.
 ///
 /// Copied from [editProfile].
-class EditProfileProvider extends AutoDisposeFutureProvider<User> {
+class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
   /// 프로필을 수정해요.
   ///
   /// Copied from [editProfile].
@@ -471,7 +472,7 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
 
   @override
   Override overrideWith(
-    FutureOr<User> Function(EditProfileRef provider) create,
+    FutureOr<Profile> Function(EditProfileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -489,7 +490,7 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<User> createElement() {
+  AutoDisposeFutureProviderElement<Profile> createElement() {
     return _EditProfileProviderElement(this);
   }
 
@@ -510,7 +511,7 @@ class EditProfileProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-mixin EditProfileRef on AutoDisposeFutureProviderRef<User> {
+mixin EditProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `username` of this provider.
   String? get username;
 
@@ -518,8 +519,8 @@ mixin EditProfileRef on AutoDisposeFutureProviderRef<User> {
   String? get avatar;
 }
 
-class _EditProfileProviderElement extends AutoDisposeFutureProviderElement<User>
-    with EditProfileRef {
+class _EditProfileProviderElement
+    extends AutoDisposeFutureProviderElement<Profile> with EditProfileRef {
   _EditProfileProviderElement(super.provider);
 
   @override
@@ -528,39 +529,39 @@ class _EditProfileProviderElement extends AutoDisposeFutureProviderElement<User>
   String? get avatar => (origin as EditProfileProvider).avatar;
 }
 
-String _$removeUserHash() => r'a944e951f63493b5db323195328875095f7a177d';
+String _$removeProfileHash() => r'8ee8d77c988351366c675c180ffbaa915b206051';
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-@ProviderFor(removeUser)
-const removeUserProvider = RemoveUserFamily();
+/// Copied from [removeProfile].
+@ProviderFor(removeProfile)
+const removeProfileProvider = RemoveProfileFamily();
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-class RemoveUserFamily extends Family<AsyncValue<void>> {
+/// Copied from [removeProfile].
+class RemoveProfileFamily extends Family<AsyncValue<void>> {
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  const RemoveUserFamily();
+  /// Copied from [removeProfile].
+  const RemoveProfileFamily();
 
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  RemoveUserProvider call({
+  /// Copied from [removeProfile].
+  RemoveProfileProvider call({
     required String id,
     String? reason,
   }) {
-    return RemoveUserProvider(
+    return RemoveProfileProvider(
       id: id,
       reason: reason,
     );
   }
 
   @override
-  RemoveUserProvider getProviderOverride(
-    covariant RemoveUserProvider provider,
+  RemoveProfileProvider getProviderOverride(
+    covariant RemoveProfileProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -580,39 +581,39 @@ class RemoveUserFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'removeUserProvider';
+  String? get name => r'removeProfileProvider';
 }
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
+/// Copied from [removeProfile].
+class RemoveProfileProvider extends AutoDisposeFutureProvider<void> {
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  RemoveUserProvider({
+  /// Copied from [removeProfile].
+  RemoveProfileProvider({
     required String id,
     String? reason,
   }) : this._internal(
-          (ref) => removeUser(
-            ref as RemoveUserRef,
+          (ref) => removeProfile(
+            ref as RemoveProfileRef,
             id: id,
             reason: reason,
           ),
-          from: removeUserProvider,
-          name: r'removeUserProvider',
+          from: removeProfileProvider,
+          name: r'removeProfileProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$removeUserHash,
-          dependencies: RemoveUserFamily._dependencies,
+                  : _$removeProfileHash,
+          dependencies: RemoveProfileFamily._dependencies,
           allTransitiveDependencies:
-              RemoveUserFamily._allTransitiveDependencies,
+              RemoveProfileFamily._allTransitiveDependencies,
           id: id,
           reason: reason,
         );
 
-  RemoveUserProvider._internal(
+  RemoveProfileProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -628,12 +629,12 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(RemoveUserRef provider) create,
+    FutureOr<void> Function(RemoveProfileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: RemoveUserProvider._internal(
-        (ref) => create(ref as RemoveUserRef),
+      override: RemoveProfileProvider._internal(
+        (ref) => create(ref as RemoveProfileRef),
         from: from,
         name: null,
         dependencies: null,
@@ -647,12 +648,12 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   AutoDisposeFutureProviderElement<void> createElement() {
-    return _RemoveUserProviderElement(this);
+    return _RemoveProfileProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is RemoveUserProvider &&
+    return other is RemoveProfileProvider &&
         other.id == id &&
         other.reason == reason;
   }
@@ -667,7 +668,7 @@ class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
-mixin RemoveUserRef on AutoDisposeFutureProviderRef<void> {
+mixin RemoveProfileRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
   String get id;
 
@@ -675,14 +676,14 @@ mixin RemoveUserRef on AutoDisposeFutureProviderRef<void> {
   String? get reason;
 }
 
-class _RemoveUserProviderElement extends AutoDisposeFutureProviderElement<void>
-    with RemoveUserRef {
-  _RemoveUserProviderElement(super.provider);
+class _RemoveProfileProviderElement
+    extends AutoDisposeFutureProviderElement<void> with RemoveProfileRef {
+  _RemoveProfileProviderElement(super.provider);
 
   @override
-  String get id => (origin as RemoveUserProvider).id;
+  String get id => (origin as RemoveProfileProvider).id;
   @override
-  String? get reason => (origin as RemoveUserProvider).reason;
+  String? get reason => (origin as RemoveProfileProvider).reason;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

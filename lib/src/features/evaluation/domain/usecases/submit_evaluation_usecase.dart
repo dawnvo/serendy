@@ -4,95 +4,104 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef SubmitEvaluationPayload = ({
-  String executorId,
-  String mediaId,
+  UserID executorId,
+  MediaID mediaId,
   Emotion emotion,
 });
 
-final class SubmitEvaluationUsecase
-    implements UseCase<SubmitEvaluationPayload, Evaluation> {
+final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, Evaluation> {
   const SubmitEvaluationUsecase(
     this._evaluationRepository,
-    this._userRepository,
+    this._profileRepository,
     this._mediaRepository,
   );
 
   final EvaluationRepository _evaluationRepository;
-  final UserRepository _userRepository;
+  final ProfileRepository _profileRepository;
   final MediaRepository _mediaRepository;
 
   @override
   Future<Evaluation> execute(SubmitEvaluationPayload payload) async {
     final Evaluation evaluation;
 
-    final doesEvaluationExist = await _evaluationRepository.findOne(
-      payload.executorId,
-      payload.mediaId,
+    // * 평가가 존재하는지 확인해요.
+    final doesEvaluationExist = await _evaluationRepository.fetchEvaluationSlice(
+      userId: payload.executorId,
+      mediaId: payload.mediaId,
     );
 
+    // * 평가한 적이 있으면 평가를 갱신해요.
     if (doesEvaluationExist != null) {
-      // 평가한 적이 있으면, 평가를 갱신합니다.
-      evaluation = await changeEmotion(payload, doesEvaluationExist);
-    } else {
-      // 평가한 적이 없으면, 새롭게 만듭니다.
-      evaluation = await createEvaluation(payload);
+      evaluation = await _changeEmotion(payload, doesEvaluationExist);
+    }
+    // * 평가한 적이 없으면 새롭게 만들어요.
+    else {
+      evaluation = await _createEvaluation(payload);
     }
 
     return evaluation;
   }
 
-  Future<Evaluation> changeEmotion(
+  /**
+   * 평가 감정을 변경해요.
+   */
+  Future<Evaluation> _changeEmotion(
     SubmitEvaluationPayload payload,
     Evaluation evaluation,
   ) async {
-    // 권한이 없으면 예외 처리
+    // * 올바른 실행자인지 확인해요.
     CoreAssert.isTrue(
       payload.executorId == evaluation.userId,
       const AccessDeniedException(),
     );
 
-    // 평가 수정
+    // * 감정을 변경해요.
     Evaluation changed = evaluation.changeEmotion(payload.emotion);
 
-    // 제거한 적이 있으면, 생성 날짜를 갱신
+    // * 제거한 기록이 존재하면 복원해요.
     if (evaluation.removedAt != null) {
       changed = changed.restore();
     }
 
-    await _evaluationRepository.update(changed);
+    // * 평가를 갱신해요.
+    await _evaluationRepository.updateEvaluation(changed);
     return changed;
   }
 
-  Future<Evaluation> createEvaluation(
+  /**
+   * 평가를 생성해요.
+   */
+  Future<Evaluation> _createEvaluation(
     SubmitEvaluationPayload payload,
   ) async {
-    // 사용자를 찾을 수 없으면 예외 처리
-    final user = CoreAssert.notEmpty<User>(
-      await _userRepository.findOne(payload.executorId),
+    // * 프로필이 존재하는지 확인해요.
+    final profile = CoreAssert.notEmpty<Profile>(
+      await _profileRepository.fetchProfile(id: payload.executorId),
       const EntityNotFoundException(overrideMessage: "사용자를 찾을 수 없어요."),
     );
 
-    // 미디어를 찾을 수 없으면 예외 처리
+    // * 작품이 존재하는지 확인해요.
     final media = CoreAssert.notEmpty<Media>(
-      await _mediaRepository.findOne(payload.mediaId),
-      const EntityNotFoundException(overrideMessage: "미디어를 찾을 수 없어요."),
+      await _mediaRepository.fetchMediaSlice(id: payload.mediaId),
+      const EntityNotFoundException(overrideMessage: "작품을 찾을 수 없어요."),
     );
 
-    // 평가 생성
+    // * 평가 인스턴스를 생성해요.
     final evaluation = Evaluation(
-      emotion: payload.emotion,
-      userId: user.id,
       media: EvaluationMedia(
         id: media.id,
         title: media.title,
         image: media.image,
       ),
+      userId: profile.id,
+      emotion: payload.emotion,
     );
 
-    await _evaluationRepository.create(evaluation);
+    // * 평가를 생성해요.
+    await _evaluationRepository.createEvaluation(evaluation);
     return evaluation;
   }
 }

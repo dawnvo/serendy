@@ -1,28 +1,23 @@
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef GetEvaluationPayload = ({
-  String userId,
-  String mediaId,
+  UserID userId,
+  MediaID mediaId,
 });
 
-final class GetEvaluationUsecase
-    implements UseCase<GetEvaluationPayload, Evaluation?> {
+final class GetEvaluationUsecase implements UseCase<GetEvaluationPayload, Evaluation?> {
   const GetEvaluationUsecase(this._evaluationRepository);
   final EvaluationRepository _evaluationRepository;
 
   @override
   Future<Evaluation?> execute(GetEvaluationPayload payload) async {
-    final evaluation = await _evaluationRepository.findOne(
-      payload.userId,
-      payload.mediaId,
+    final evaluation = await _evaluationRepository.fetchEvaluation(
+      userId: payload.userId,
+      mediaId: payload.mediaId,
     );
-
-    // * 삭제한 평가는 필터해요.
-    if (evaluation?.removedAt != null) {
-      return null;
-    }
-
     return evaluation;
   }
 }

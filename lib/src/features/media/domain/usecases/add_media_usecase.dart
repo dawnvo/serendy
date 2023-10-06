@@ -1,9 +1,10 @@
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef AddMediaPayload = ({
-  String executorId,
+  UserID executorId,
   MediaType type,
   MediaStatus status,
   String title,
@@ -33,6 +34,6 @@ final class AddMediaUsecase implements UseCase<AddMediaPayload, void> {
       endDate: payload.endDate,
     );
 
-    await _mediaRepository.create(media);
+    await _mediaRepository.insertMedia(media);
   }
 }

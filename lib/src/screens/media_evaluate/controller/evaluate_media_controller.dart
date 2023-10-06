@@ -2,14 +2,12 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
 
 part 'evaluate_media_controller.g.dart';
 part 'evaluate_media_state.dart';
 
 @riverpod
-class EvaluateMediaController extends _$EvaluateMediaController
-    with NotifierMounted {
+class EvaluateMediaController extends _$EvaluateMediaController with NotifierMounted {
   @override
   EvaluateMediaState build(MediaID mediaId) {
     ref.onDispose(setUnmounted);
@@ -27,14 +25,14 @@ class EvaluateMediaController extends _$EvaluateMediaController
     state = EvaluateMediaState(evaluation: evaluation);
   }
 
-  /// 미디어를 평가해요.
+  /// 작품을 평가해요.
   Future<void> evaluate({required Emotion emotion}) async {
     final previousEvaluation = state.evaluation;
     Evaluation? newEvaluation;
 
     try {
       // * 평가한 감정이 없거나 감정을 변경한 경우에만 제출해요.
-      if (previousEvaluation?.emotion == null ||
+      if (previousEvaluation?.emotion == null || //
           previousEvaluation?.emotion != emotion) {
         final submitted = await ref.read(submitEvaluationProvider(
           mediaId: mediaId,
@@ -52,10 +50,7 @@ class EvaluateMediaController extends _$EvaluateMediaController
         newEvaluation = null;
       }
 
-      // * 평가에 성공하면 평가 개수를 갱신해요.
-      ref.read(profileControllerProvider.notifier).evaluationsCountUpdated();
-
-      // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
+      // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
       state = state.copyWith(
         status: EvaluateMediaStatus.success,

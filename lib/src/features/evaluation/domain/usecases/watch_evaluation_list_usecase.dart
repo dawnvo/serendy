@@ -1,8 +1,9 @@
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef WatchEvaluationListPayload = ({
-  String userId,
+  UserID userId,
 });
 
 final class WatchEvaluationListUsecase
@@ -12,7 +13,9 @@ final class WatchEvaluationListUsecase
 
   @override
   Stream<List<Evaluation?>> execute(WatchEvaluationListPayload payload) {
-    final evaluations = _evaluationRepository.watchMany(payload.userId);
+    final evaluations = _evaluationRepository.watchEvaluationsList(
+      userId: payload.userId,
+    );
     return evaluations;
   }
 }

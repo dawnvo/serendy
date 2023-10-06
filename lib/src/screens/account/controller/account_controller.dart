@@ -1,6 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/user/user.dart';
-import 'package:serendy/src/screens/profile/controller/profile_controller.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 part 'account_controller.g.dart';
 part 'account_state.dart';
@@ -13,7 +12,7 @@ class AccountController extends _$AccountController with NotifierMounted {
     final me = await ref.watch(fetchMeProvider.future);
 
     return AccountState(
-      initialUser: me,
+      initialProfile: me,
       avatar: me.avatar,
       name: me.name,
       email: me.email,
@@ -41,19 +40,14 @@ class AccountController extends _$AccountController with NotifierMounted {
         username: state.requireValue.name,
       ).future);
 
-      // * 수정에 성공하면 프로필 화면의 상태를 갱신해요.
-      await ref
-          .read(profileControllerProvider.notifier)
-          .userProfileUpdated(edited);
-
       // * 상태를 수동으로 설정해 `isEdited`를 초기화해요.
       return state.requireValue.copyWith(
-        initialUser: edited,
+        initialProfile: edited,
         avatar: edited.avatar, // 로컬 이미지 주소 != 클라우드 이미지 주소
       );
     });
 
-    // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
+    // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!mounted) return;
     state = newState;
   }

@@ -1,10 +1,11 @@
 import 'package:serendy/src/core/domain/assert.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 typedef EditThemePayload = ({
-  String executorId,
+  UserID executorId,
   String themeId,
   String? title,
   String? description,
@@ -14,25 +15,24 @@ typedef EditThemePayload = ({
 
 final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
   const EditThemeUsecase(this._themeRepository);
-
   final ThemeRepository _themeRepository;
 
   @override
   Future<Theme> execute(EditThemePayload payload) async {
-    // 테마를 찾을 수 없으면 예외 처리
+    // * 테마가 존재하는지 확인해요.
     final theme = CoreAssert.notEmpty<Theme>(
-      await _themeRepository.fetchTheme(payload.themeId),
+      await _themeRepository.fetchThemeSlice(id: payload.themeId),
       const EntityNotFoundException(overrideMessage: "테마를 찾을 수 없어요."),
     );
 
-    // 권한이 없으면 예외 처리
+    // * 올바른 실행자인지 확인해요.
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // TODO: 스토리지에 업로드를 진행합니다.
+    // TODO: 사진을 업로드해요.
     String? downloadUrl;
 
-    // 데이터베이스에 있는 테마를 수정합니다.
+    // * 테마 정보를 수정해요.
     final edited = theme.edit(
       image: downloadUrl,
       title: payload.title,
@@ -40,8 +40,8 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
       private: payload.private,
     );
 
-    await _themeRepository.update(edited);
-
+    // * commit
+    await _themeRepository.updateTheme(edited);
     return edited;
   }
 }

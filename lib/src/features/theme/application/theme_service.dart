@@ -1,19 +1,24 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/features/auth/auth.dart';
+import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_service.g.dart';
 
 /// 나의 테마를 구독해요.
 @Riverpod(keepAlive: true)
-Stream<List<Theme?>> watchMyThemesList(WatchMyThemesListRef ref) {
+Stream<List<Theme?>> watchMyThemesList(
+  WatchMyThemesListRef ref,
+) {
   final userId = ref.watch(requireUserIdProvider);
   return ThemeModule.watchThemeListUsecase.execute((userId: userId));
 }
 
 /// 여러 테마를 불러와요.
 @riverpod
-Future<List<Theme?>> fetchThemesList(FetchThemesListRef ref) {
+Future<List<Theme?>> fetchThemesList(
+  FetchThemesListRef ref,
+) {
   final userId = ref.watch(userIdProvider);
   return ThemeModule.getThemeListUsecase.execute((executorId: userId));
 }
@@ -22,7 +27,7 @@ Future<List<Theme?>> fetchThemesList(FetchThemesListRef ref) {
 @riverpod
 Future<Theme> fetchTheme(
   FetchThemeRef ref, {
-  required String id,
+  required ThemeID id,
 }) {
   final userId = ref.watch(userIdProvider);
   return ThemeModule.getThemeUsecase.execute((
@@ -35,7 +40,7 @@ Future<Theme> fetchTheme(
 @riverpod
 Future<List<ThemeItem?>> fetchThemeItems(
   FetchThemeItemsRef ref, {
-  required String id,
+  required ThemeID id,
 }) {
   return ThemeModule.getThemeItemsUsecase.execute((themeId: id));
 }
@@ -57,7 +62,7 @@ Future<Theme> createTheme(
 @riverpod
 Future<Theme> editTheme(
   EditThemeRef ref, {
-  required String id,
+  required ThemeID id,
   required String title,
   final String? description,
   final String? image,
@@ -78,7 +83,7 @@ Future<Theme> editTheme(
 @riverpod
 Future<void> removeTheme(
   RemoveThemeRef ref, {
-  required String id,
+  required ThemeID id,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return ThemeModule.removeThemeUsecase.execute((
@@ -91,8 +96,8 @@ Future<void> removeTheme(
 @riverpod
 Future<Theme> addThemeItem(
   AddThemeItemRef ref, {
-  required String id,
-  required String mediaId,
+  required ThemeID id,
+  required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return ThemeModule.addThemeItemUsecase.execute((
@@ -106,8 +111,8 @@ Future<Theme> addThemeItem(
 @riverpod
 Future<Theme> deleteThemeItem(
   DeleteThemeItemRef ref, {
-  required String id,
-  required String mediaId,
+  required ThemeID id,
+  required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return ThemeModule.deleteThemeItemUsecase.execute((

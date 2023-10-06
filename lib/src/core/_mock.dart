@@ -2,11 +2,10 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
-// User
-final userMock = User(
-  id: 'uid',
+// Profile
+final profileMock = Profile(
   name: "Serendy",
   email: 'serendy@email.com',
 );
@@ -49,7 +48,7 @@ final mediasMock = [
 
 // Evaluation
 final evaluationMock = Evaluation(
-  userId: userMock.id,
+  userId: profileMock.id,
   emotion: Emotion.happyness,
   media: EvaluationMedia(
     id: mediasMock[0].id,
@@ -60,8 +59,8 @@ final evaluationMock = Evaluation(
 
 // Theme
 final themeOwnerMock = ThemeOwner(
-  id: userMock.id,
-  name: userMock.name,
+  id: profileMock.id,
+  name: profileMock.name,
 );
 final themeItemMock = ThemeItem(
   addedAt: DateTime.now(),

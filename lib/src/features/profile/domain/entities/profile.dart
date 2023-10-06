@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 typedef UserID = String;
 
 //AggregateRoot
-final class User extends Equatable {
+final class Profile extends Equatable {
   final UserID id;
 
   /// 이름
@@ -26,7 +26,7 @@ final class User extends Equatable {
   /// 제거 날짜
   final DateTime? removedAt;
 
-  User({
+  Profile({
     required this.name,
     required this.email,
     this.avatar,
@@ -42,9 +42,9 @@ final class User extends Equatable {
   List<Object?> get props => [id, email];
 }
 
-extension UserX on User {
+extension ProfileX on Profile {
   /// 프로필 수정
-  User edit({String? name, String? avatar}) {
+  Profile edit({String? name, String? avatar}) {
     return copy(
       name: name,
       avatar: avatar,
@@ -52,13 +52,13 @@ extension UserX on User {
     );
   }
 
-  /// 회원 탈퇴
-  User remove() {
+  /// 프로필 제거
+  Profile remove() {
     return copy(removedAt: DateTime.now());
   }
 
   // ☹️ Boilerplate Code
-  User copy({
+  Profile copy({
     final UserID? id,
     final String? name,
     final String? email,
@@ -67,7 +67,7 @@ extension UserX on User {
     final DateTime? updatedAt,
     final DateTime? removedAt,
   }) {
-    return User(
+    return Profile(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,

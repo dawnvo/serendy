@@ -1,6 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/core/enums.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 part 'widgets/_buttons.dart';
@@ -33,7 +33,7 @@ class ProfileCardScreen extends HookConsumerWidget {
       ),
       titles: _ProfileCardTitles(
         rank: rank,
-        user: meValue.requireValue,
+        profile: meValue.requireValue,
       ),
       indicator: _WatchedMediaIndicator(
         min: rank.range.min,

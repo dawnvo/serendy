@@ -14,9 +14,9 @@ ThemeEntity _$ThemeEntityFromJson(Map<String, dynamic> json) => ThemeEntity(
       description: json['description'] as String?,
       itemsCount: json['items_count'] as int?,
       ownerId: json['owner_id'] as String?,
-      users: json['users'] == null
+      profiles: json['profiles'] == null
           ? null
-          : UserEntity.fromJson(json['users'] as Map<String, dynamic>),
+          : ProfileEntity.fromJson(json['profiles'] as Map<String, dynamic>),
       themeItems: (json['theme_items'] as List<dynamic>?)
           ?.map((e) => ThemeItemEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -47,7 +47,7 @@ Map<String, dynamic> _$ThemeEntityToJson(ThemeEntity instance) {
   writeNotNull('description', instance.description);
   writeNotNull('items_count', instance.itemsCount);
   writeNotNull('owner_id', instance.ownerId);
-  writeNotNull('users', instance.users?.toJson());
+  writeNotNull('profiles', instance.profiles?.toJson());
   writeNotNull(
       'theme_items', instance.themeItems?.map((e) => e.toJson()).toList());
   writeNotNull('created_at', instance.createdAt?.toIso8601String());

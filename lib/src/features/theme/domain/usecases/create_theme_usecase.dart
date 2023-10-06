@@ -2,38 +2,42 @@ import 'package:serendy/src/core/domain/assert.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef CreateThemePayload = ({
-  String executorId,
+  UserID executorId,
   String title,
 });
 
 final class CreateThemeUsecase implements UseCase<CreateThemePayload, Theme> {
   const CreateThemeUsecase(
     this._themeRepository,
-    this._userRepository,
+    this._profileRepository,
   );
 
   final ThemeRepository _themeRepository;
-  final UserRepository _userRepository;
+  final ProfileRepository _profileRepository;
 
   @override
   Future<Theme> execute(CreateThemePayload payload) async {
-    // 사용자를 찾을 수 없으면 예외 처리
-    final user = CoreAssert.notEmpty<User>(
-      await _userRepository.findOne(payload.executorId),
+    // * 프로필이 존재하는지 확인해요.
+    final profile = CoreAssert.notEmpty<Profile>(
+      await _profileRepository.fetchProfile(id: payload.executorId),
       const EntityNotFoundException(overrideMessage: "사용자를 찾을 수 없어요."),
     );
 
-    // 데이터베이스에 새로운 테마를 생성합니다.
+    // * 테마 인스턴스를 생성해요.
     final theme = Theme(
-      owner: ThemeOwner(id: user.id, name: user.name),
+      owner: ThemeOwner(
+        id: profile.id,
+        name: profile.name,
+        avatar: profile.avatar,
+      ),
       title: payload.title,
     );
 
-    await _themeRepository.create(theme);
-
+    // * commit
+    await _themeRepository.createTheme(theme);
     return theme;
   }
 }

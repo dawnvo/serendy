@@ -1,7 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/user/user.dart';
 
 part 'profile_controller.g.dart';
 part 'profile_state.dart';
@@ -10,26 +9,19 @@ part 'profile_state.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<ProfileState> build() async {
-    final me = await ref.watch(fetchMeProvider.future);
     final themes = await ref.watch(watchMyThemesListProvider.future);
-    final count = await ref.watch(countMyEvaluationsProvider.future);
+    final count = await ref.watch(countEvaluationsProvider.future);
 
     return ProfileState(
-      user: me,
-      myThemes: themes,
       evaluationsCount: count,
+      themes: themes,
     );
   }
 
-  Future<void> userProfileUpdated(User user) async {
-    // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
+  // Event: 평가 개수를 갱신해요.
+  void onEvaluationsCountUpdated() {
+    // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
-    state = AsyncData(state.requireValue.copyWith(user: user));
-  }
-
-  void evaluationsCountUpdated() async {
-    // * 컨트롤러를 초기화한 경우에만 상태를 설정해요.
-    if (!state.hasValue) return;
-    ref.invalidate(countMyEvaluationsProvider);
+    ref.invalidate(countEvaluationsProvider);
   }
 }

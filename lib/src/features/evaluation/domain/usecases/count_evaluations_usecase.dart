@@ -1,18 +1,20 @@
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 typedef CountEvaluationsPayload = ({
-  String userId,
+  UserID userId,
 });
 
-final class CountEvaluationsUsecase
-    implements UseCase<CountEvaluationsPayload, int> {
+final class CountEvaluationsUsecase implements UseCase<CountEvaluationsPayload, int> {
   const CountEvaluationsUsecase(this._evaluationRepository);
   final EvaluationRepository _evaluationRepository;
 
   @override
   Future<int> execute(CountEvaluationsPayload payload) async {
-    final count = await _evaluationRepository.count(payload.userId);
+    final count = await _evaluationRepository.countEvaluations(
+      userId: payload.userId,
+    );
     return count;
   }
 }

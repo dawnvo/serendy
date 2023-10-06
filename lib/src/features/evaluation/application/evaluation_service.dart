@@ -2,41 +2,42 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/core/enums.dart';
+import 'package:serendy/src/features/media/media.dart';
 
 part 'evaluation_service.g.dart';
 
-/// 미디어 평가 목록을 불러와요.
+/// 작품 평가 목록을 불러와요.
 @riverpod
-Future<List<Evaluation?>> fetchReactionsList(
-  FetchReactionsListRef ref, {
-  required String mediaId,
+Future<List<Evaluation?>> fetchMediaReactionsList(
+  FetchMediaReactionsListRef ref, {
+  required MediaID mediaId,
 }) {
   return EvaluationModule.getEvaluationListUsecase.execute((mediaId: mediaId));
 }
 
-/// 나의 평가 목록을 구독해요.
+/// 평가 목록을 구독해요.
 @Riverpod(keepAlive: true)
-Stream<List<Evaluation?>> watchMyEvaluationsList(
-  WatchMyEvaluationsListRef ref,
+Stream<List<Evaluation?>> watchEvaluationsList(
+  WatchEvaluationsListRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
   return EvaluationModule.watchEvaluationListUsecase.execute((userId: userId));
 }
 
-/// 나의 평가 개수를 조회해요.
+/// 평가 개수를 조회해요.
 @Riverpod(keepAlive: true)
-Future<int> countMyEvaluations(
-  CountMyEvaluationsRef ref,
+Future<int> countEvaluations(
+  CountEvaluationsRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
   return EvaluationModule.countEvaluationsUsecase.execute((userId: userId));
 }
 
-/// 나의 평가 정보를 불러와요.
+/// 평가 정보를 불러와요.
 @riverpod
 Future<Evaluation?> fetchEvaluation(
   FetchEvaluationRef ref, {
-  required String mediaId,
+  required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return EvaluationModule.getEvaluationUsecase.execute((
@@ -49,7 +50,7 @@ Future<Evaluation?> fetchEvaluation(
 @riverpod
 Future<Evaluation> submitEvaluation(
   SubmitEvaluationRef ref, {
-  required String mediaId,
+  required MediaID mediaId,
   required Emotion emotion,
 }) {
   final userId = ref.watch(requireUserIdProvider);
@@ -64,7 +65,7 @@ Future<Evaluation> submitEvaluation(
 @riverpod
 Future<void> removeEvaluation(
   RemoveEvaluationRef ref, {
-  required String mediaId,
+  required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return EvaluationModule.removeEvaluationUsecase.execute((

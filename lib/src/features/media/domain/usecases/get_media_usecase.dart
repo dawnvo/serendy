@@ -4,7 +4,7 @@ import 'package:serendy/src/core/exceptions/core_exception.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 typedef GetMediaPayload = ({
-  String mediaId,
+  MediaID mediaId,
 });
 
 final class GetMediaUsecase implements UseCase<GetMediaPayload, Media> {
@@ -14,8 +14,8 @@ final class GetMediaUsecase implements UseCase<GetMediaPayload, Media> {
   @override
   Future<Media> execute(GetMediaPayload payload) async {
     final media = CoreAssert.notEmpty<Media>(
-      await _mediaRepository.findOne(payload.mediaId),
-      const EntityNotFoundException(overrideMessage: "미디어를 찾을 수 없어요."),
+      await _mediaRepository.fetchMedia(id: payload.mediaId),
+      const EntityNotFoundException(overrideMessage: "작품을 찾을 수 없어요."),
     );
 
     return media;

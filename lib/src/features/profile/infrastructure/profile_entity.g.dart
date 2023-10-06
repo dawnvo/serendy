@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_entity.dart';
+part of 'profile_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
+ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
+    ProfileEntity(
       id: json['id'] as String?,
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -22,7 +23,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
           : DateTime.parse(json['removed_at'] as String),
     );
 
-Map<String, dynamic> _$UserEntityToJson(UserEntity instance) {
+Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

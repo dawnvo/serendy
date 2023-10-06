@@ -7,11 +7,11 @@ class ThemeState extends Equatable {
   });
 
   final Theme theme;
-  final User owner;
+  final Profile owner;
 
   ThemeState copyWith({
     final Theme? theme,
-    final User? owner,
+    final Profile? owner,
   }) {
     return ThemeState(
       theme: theme ?? this.theme,

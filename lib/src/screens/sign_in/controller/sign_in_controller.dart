@@ -23,7 +23,7 @@ class SignInController extends _$SignInController {
       //   final firebaseUser = userCredential.user;
       //   if (firebaseUser == null) return;
 
-      //   // * 서버에 해당 사용자가 존재하는지 확인해요.
+      //   // * 서버에 해당 프로필이 존재하는지 확인해요.
       //   try {
       //     await ref.read(fetchUserProvider(id: firebaseUser.uid).future);
       //   }

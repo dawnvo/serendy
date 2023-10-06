@@ -1,4 +1,5 @@
 import 'package:serendy/src/features/media/application/media_module.dart';
+import 'package:serendy/src/features/profile/application/profile_module.dart';
 import 'package:serendy/src/features/theme/domain/usecases/add_theme_item_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/create_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/delete_theme_item_usecase.dart';
@@ -9,7 +10,6 @@ import 'package:serendy/src/features/theme/domain/usecases/get_theme_usecase.dar
 import 'package:serendy/src/features/theme/domain/usecases/remove_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/watch_theme_list_usecase.dart';
 import 'package:serendy/src/features/theme/infrastructure/theme_repository_impl.dart';
-import 'package:serendy/src/features/user/application/user_module.dart';
 
 abstract final class ThemeModule {
   // Persistence
@@ -34,7 +34,7 @@ abstract final class ThemeModule {
 
   static const createThemeUsecase = CreateThemeUsecase(
     ThemeModule.themeRepository,
-    UserModule.userRepository,
+    ProfileModule.profileRepository,
   );
 
   static const editThemeUsecase = EditThemeUsecase(

@@ -2,7 +2,7 @@ import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 part 'evaluation_media.dart';
 
@@ -15,7 +15,7 @@ final class Evaluation extends Equatable {
   /// 평가한 사용자
   final UserID userId;
 
-  /// 평가한 미디어
+  /// 평가한 작품
   final EvaluationMedia media;
 
   /// 감정 평가

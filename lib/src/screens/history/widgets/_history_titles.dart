@@ -5,7 +5,7 @@ class _HistoryTitles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final evaluationsCountValue = ref.watch(countMyEvaluationsProvider);
+    final evaluationsCountValue = ref.watch(countEvaluationsProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

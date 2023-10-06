@@ -1,13 +1,14 @@
 import 'package:serendy/src/core/domain/assert.dart';
 import 'package:serendy/src/core/domain/usecase.dart';
 import 'package:serendy/src/core/exceptions/core_exception.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 typedef AddThemeItemPayload = ({
-  String executorId,
+  UserID executorId,
   String themeId,
-  String mediaId,
+  MediaID mediaId,
 });
 
 final class AddThemeItemUsecase implements UseCase<AddThemeItemPayload, Theme> {
@@ -21,31 +22,32 @@ final class AddThemeItemUsecase implements UseCase<AddThemeItemPayload, Theme> {
 
   @override
   Future<Theme> execute(AddThemeItemPayload payload) async {
-    // 테마를 찾을 수 없으면 예외 처리
+    // * 테마가 존재하는지 확인해요.
     final theme = CoreAssert.notEmpty<Theme>(
-      await _themeRepository.findOne(payload.themeId),
+      await _themeRepository.fetchThemeSlice(id: payload.themeId),
       const EntityNotFoundException(overrideMessage: "테마를 찾을 수 없어요."),
     );
 
-    // 권한이 없으면 예외 처리
+    // * 올바른 실행자인지 확인해요.
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // 미디어를 찾을 수 없으면 예외 처리
+    // * 작품이 존재하는지 확인해요.
     final media = CoreAssert.notEmpty<Media>(
-      await _mediaRepository.findOne(payload.mediaId),
-      const EntityNotFoundException(overrideMessage: "미디어를 찾을 수 없어요."),
+      await _mediaRepository.fetchMediaSlice(id: payload.mediaId),
+      const EntityNotFoundException(overrideMessage: "작품을 찾을 수 없어요."),
     );
 
-    final addedItem = theme.addItem(ThemeItem(
+    // * 테마에 항목을 추가해요.
+    final itemAdded = theme.addItem(ThemeItem(
       addedAt: DateTime.now(),
       mediaId: media.id,
       title: media.title,
       image: media.image,
     ));
 
-    await _themeRepository.addItem(addedItem, payload.mediaId);
-
-    return addedItem;
+    // * commit
+    await _themeRepository.addItem(itemAdded, payload.mediaId);
+    return itemAdded;
   }
 }

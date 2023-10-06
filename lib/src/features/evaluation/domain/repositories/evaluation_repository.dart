@@ -1,19 +1,35 @@
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 abstract class EvaluationRepository {
   const EvaluationRepository();
 
-  Stream<List<Evaluation?>> watchMany(UserID userId);
+  Stream<List<Evaluation?>> watchEvaluationsList({
+    UserID? userId,
+    MediaID? mediaId,
+  });
 
-  Future<List<Evaluation?>> findMany(MediaID mediaId);
+  Future<List<Evaluation?>> fetchEvaluationsList({
+    UserID? userId,
+    MediaID? mediaId,
+  });
 
-  Future<Evaluation?> findOne(UserID userId, MediaID mediaId);
+  Future<Evaluation?> fetchEvaluationSlice({
+    required UserID userId,
+    required MediaID mediaId,
+  });
 
-  Future<int> count(UserID userId);
+  Future<Evaluation?> fetchEvaluation({
+    required UserID userId,
+    required MediaID mediaId,
+  });
 
-  Future<void> create(Evaluation evaluation);
+  Future<int> countEvaluations({
+    required UserID userId,
+  });
 
-  Future<void> update(Evaluation evaluation);
+  Future<void> createEvaluation(Evaluation evaluation);
+
+  Future<void> updateEvaluation(Evaluation evaluation);
 }

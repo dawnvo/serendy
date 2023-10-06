@@ -3,11 +3,19 @@ import 'package:serendy/src/features/media/media.dart';
 abstract class MediaRepository {
   const MediaRepository();
 
-  Future<List<Media?>> search(String? title);
+  Future<List<Media?>> searchMedias({
+    required String query,
+  });
 
-  Future<List<Media?>> findMany(int pageKey);
+  Future<List<Media?>> fetchMediasList();
 
-  Future<Media?> findOne(MediaID mediaId);
+  Future<Media?> fetchMediaSlice({
+    required MediaID id,
+  });
 
-  Future<void> create(Media media);
+  Future<Media?> fetchMedia({
+    required MediaID id,
+  });
+
+  Future<void> insertMedia(Media media);
 }

@@ -29,11 +29,11 @@ abstract final class AppRoutes {
   static const rank = RankModal.routeName;
   static const _rankLocation = RankModal.routeLocation;
 
-  // 미디어 정보
+  // 작품 정보
   static const media = MediaScreen.routeName;
   static const _mediaLocation = MediaScreen.routeLocation;
 
-  // 미디어 평가
+  // 작품 평가
   static const evaluateMedia = EvaluateMediaScreen.routeName;
   static const _evaluateMediaLocation = EvaluateMediaScreen.routeLocation;
 

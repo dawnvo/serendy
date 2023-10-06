@@ -6,8 +6,8 @@ abstract final class ThemeMapper {
     return Theme(
       owner: ThemeOwner(
         id: entity.ownerId ?? '',
-        name: entity.users?.name ?? '',
-        avatar: entity.users?.avatar,
+        name: entity.profiles?.name ?? '',
+        avatar: entity.profiles?.avatar,
       ),
       items: entity.themeItems //
           ?.map(ThemeItemMapper.toDomain)

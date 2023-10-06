@@ -1,32 +1,27 @@
 part of 'profile_controller.dart';
 
-class ProfileState extends Equatable {
+final class ProfileState extends Equatable {
   const ProfileState({
-    required this.user,
-    required this.myThemes,
-    required this.evaluationsCount,
+    this.evaluationsCount = 0,
+    this.themes = const [],
   });
 
-  final User user;
-  final List<Theme?> myThemes;
   final int evaluationsCount;
+  final List<Theme?> themes;
 
   ProfileState copyWith({
-    final User? user,
-    final List<Theme?>? myThemes,
     final int? evaluationsCount,
+    final List<Theme?>? themes,
   }) {
     return ProfileState(
-      user: user ?? this.user,
-      myThemes: myThemes ?? this.myThemes,
       evaluationsCount: evaluationsCount ?? this.evaluationsCount,
+      themes: themes ?? this.themes,
     );
   }
 
   @override
   List<Object?> get props => [
-        user,
-        myThemes,
         evaluationsCount,
+        themes,
       ];
 }

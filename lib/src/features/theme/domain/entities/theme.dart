@@ -1,8 +1,8 @@
-import 'package:serendy/src/core/enums.dart';
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
+import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 part 'theme_item.dart';
 part 'theme_owner.dart';
@@ -111,7 +111,7 @@ extension ThemeX on Theme {
     );
   }
 
-  /// 테마 항목 제거
+  /// 테마 항목 삭제
   Theme deleteItem(MediaID mediaId) {
     final deleted = items.where((_) => _?.mediaId != mediaId).toList();
     return copy(

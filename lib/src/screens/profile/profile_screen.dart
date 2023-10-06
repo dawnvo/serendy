@@ -1,6 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
+import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 
 import 'controller/profile_controller.dart';
 
@@ -19,18 +19,12 @@ class ProfileScreen extends ConsumerWidget {
     return profileValue.when(
       skipLoadingOnReload: true,
       data: (state) => _ProfileTemplate(
-        actions: [
-          IconButton(
-            icon: const Icon(RemixIcon.menu_3_line),
-            onPressed: () => context.pushNamed(AppRoutes.settings),
-          ),
-        ],
         indicator: _WatchedMediaIndicator(count: state.evaluationsCount),
-        themesList: _ProfileMyThemesList(themes: state.myThemes),
+        themesList: _ProfileMyThemesList(themes: state.themes),
       ),
       loading: () => const _Placeholder$ProfileScreen(),
       error: (err, stack) => const ErrorTemplate(
-        message: "내 라이브러리를 불러오지 못했어요.",
+        message: "라이브러리를 불러오지 못했어요.",
       ),
     );
   }
@@ -39,12 +33,10 @@ class ProfileScreen extends ConsumerWidget {
 //Template
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
-    required this.actions,
     required this.indicator,
     required this.themesList,
   });
 
-  final List<IconButton> actions;
   final _WatchedMediaIndicator indicator;
   final _ProfileMyThemesList themesList;
 
@@ -59,13 +51,18 @@ class _ProfileTemplate extends StatelessWidget {
 
           //titles
           title: const Text("내 라이브러리"),
-          actions: actions,
+          actions: [
+            IconButton(
+              icon: const Icon(RemixIcon.menu_3_line),
+              onPressed: () => context.pushNamed(AppRoutes.settings),
+            ),
+          ],
 
           //indicator
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(
+              // sum: indicator + text + padding
               10 + 20 + kContentPadding * 3,
-              // sum: indicator + body medium + padding
             ),
             child: Padding(
               padding: const EdgeInsets.all(kContentPadding),

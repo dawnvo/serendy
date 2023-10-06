@@ -5,6 +5,7 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import '../profile/controller/profile_controller.dart';
 import 'controller/evaluate_media_controller.dart';
 
 part 'widgets/_background.dart';
@@ -21,16 +22,22 @@ class EvaluateMediaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
-      // 평가에 성공한 경우
+      //success
       if (next.status == EvaluateMediaStatus.success) {
+        // * 평가를 번복한 경우 메시지로 안내해요.
         if (next.evaluation == null) {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             duration: kSnackBarDisplayDurationShort,
             content: Text("감상한 작품에서 삭제했어요."),
           ));
         }
+
+        // * 나의 평가 수를 갱신해요.
+        ref //
+            .read(profileControllerProvider.notifier)
+            .onEvaluationsCountUpdated();
       }
-      // 에러가 발생한 경우
+      //failure
       else if (next.status == EvaluateMediaStatus.failure) {
         final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
         ScaffoldMessenger.of(context)

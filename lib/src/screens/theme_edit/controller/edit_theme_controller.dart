@@ -57,7 +57,7 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
       // * 테마 화면의 상태를 갱신해요.
       ref.read(themeControllerProvider(theme.id).notifier).themeUpdated(edited);
 
-      // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
+      // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
       state = state.copyWith(status: EditThemeStatus.success);
 
@@ -81,7 +81,7 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
         id: state.initialTheme.id,
       ).future);
 
-      // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
+      // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
       state = state.copyWith(status: EditThemeStatus.success);
 

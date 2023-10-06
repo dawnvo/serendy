@@ -6,7 +6,7 @@ part of 'media_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchMediaHash() => r'26b01c149ec1482c7d49231c4f42a7cdd75f2b6a';
+String _$searchMediaHash() => r'7e8b8f00d45c62950b7a8889d5a628a168aa3040';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,26 +29,26 @@ class _SystemHash {
   }
 }
 
-/// 미디어를 검색해요.
+/// 작품을 검색해요.
 ///
 /// Copied from [searchMedia].
 @ProviderFor(searchMedia)
 const searchMediaProvider = SearchMediaFamily();
 
-/// 미디어를 검색해요.
+/// 작품을 검색해요.
 ///
 /// Copied from [searchMedia].
 class SearchMediaFamily extends Family<AsyncValue<List<Media?>>> {
-  /// 미디어를 검색해요.
+  /// 작품을 검색해요.
   ///
   /// Copied from [searchMedia].
   const SearchMediaFamily();
 
-  /// 미디어를 검색해요.
+  /// 작품을 검색해요.
   ///
   /// Copied from [searchMedia].
   SearchMediaProvider call({
-    String? title,
+    required String title,
   }) {
     return SearchMediaProvider(
       title: title,
@@ -79,15 +79,15 @@ class SearchMediaFamily extends Family<AsyncValue<List<Media?>>> {
   String? get name => r'searchMediaProvider';
 }
 
-/// 미디어를 검색해요.
+/// 작품을 검색해요.
 ///
 /// Copied from [searchMedia].
 class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
-  /// 미디어를 검색해요.
+  /// 작품을 검색해요.
   ///
   /// Copied from [searchMedia].
   SearchMediaProvider({
-    String? title,
+    required String title,
   }) : this._internal(
           (ref) => searchMedia(
             ref as SearchMediaRef,
@@ -115,7 +115,7 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
     required this.title,
   }) : super.internal();
 
-  final String? title;
+  final String title;
 
   @override
   Override overrideWith(
@@ -156,7 +156,7 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
 mixin SearchMediaRef on AutoDisposeFutureProviderRef<List<Media?>> {
   /// The parameter `title` of this provider.
-  String? get title;
+  String get title;
 }
 
 class _SearchMediaProviderElement
@@ -164,12 +164,12 @@ class _SearchMediaProviderElement
   _SearchMediaProviderElement(super.provider);
 
   @override
-  String? get title => (origin as SearchMediaProvider).title;
+  String get title => (origin as SearchMediaProvider).title;
 }
 
 String _$fetchMediaListHash() => r'f951c09ff9a7c2f70f6f43aed19c4580d238470a';
 
-/// 미디어 목록을 불러와요.
+/// 작품 목록을 불러와요.
 ///
 /// Copied from [fetchMediaList].
 @ProviderFor(fetchMediaList)
@@ -184,24 +184,24 @@ final fetchMediaListProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
 );
 
 typedef FetchMediaListRef = AutoDisposeFutureProviderRef<List<Media?>>;
-String _$fetchMediaHash() => r'bbc13b10b1024e2168d731caeeb08a547a5c15b9';
+String _$fetchMediaHash() => r'e9637e0e7fc278310cdad9b3586184fdc5161362';
 
-/// 미디어 정보를 불러와요.
+/// 작품 정보를 불러와요.
 ///
 /// Copied from [fetchMedia].
 @ProviderFor(fetchMedia)
 const fetchMediaProvider = FetchMediaFamily();
 
-/// 미디어 정보를 불러와요.
+/// 작품 정보를 불러와요.
 ///
 /// Copied from [fetchMedia].
 class FetchMediaFamily extends Family<AsyncValue<Media>> {
-  /// 미디어 정보를 불러와요.
+  /// 작품 정보를 불러와요.
   ///
   /// Copied from [fetchMedia].
   const FetchMediaFamily();
 
-  /// 미디어 정보를 불러와요.
+  /// 작품 정보를 불러와요.
   ///
   /// Copied from [fetchMedia].
   FetchMediaProvider call({
@@ -236,11 +236,11 @@ class FetchMediaFamily extends Family<AsyncValue<Media>> {
   String? get name => r'fetchMediaProvider';
 }
 
-/// 미디어 정보를 불러와요.
+/// 작품 정보를 불러와요.
 ///
 /// Copied from [fetchMedia].
 class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
-  /// 미디어 정보를 불러와요.
+  /// 작품 정보를 불러와요.
   ///
   /// Copied from [fetchMedia].
   FetchMediaProvider({
@@ -326,22 +326,22 @@ class _FetchMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
 
 String _$addMediaHash() => r'a7eb2729bc7053244de8942ce8cb7edace5e977d';
 
-/// 미디어를 추가해요.
+/// 작품을 추가해요.
 ///
 /// Copied from [addMedia].
 @ProviderFor(addMedia)
 const addMediaProvider = AddMediaFamily();
 
-/// 미디어를 추가해요.
+/// 작품을 추가해요.
 ///
 /// Copied from [addMedia].
 class AddMediaFamily extends Family<AsyncValue<void>> {
-  /// 미디어를 추가해요.
+  /// 작품을 추가해요.
   ///
   /// Copied from [addMedia].
   const AddMediaFamily();
 
-  /// 미디어를 추가해요.
+  /// 작품을 추가해요.
   ///
   /// Copied from [addMedia].
   AddMediaProvider call({
@@ -400,11 +400,11 @@ class AddMediaFamily extends Family<AsyncValue<void>> {
   String? get name => r'addMediaProvider';
 }
 
-/// 미디어를 추가해요.
+/// 작품을 추가해요.
 ///
 /// Copied from [addMedia].
 class AddMediaProvider extends AutoDisposeFutureProvider<void> {
-  /// 미디어를 추가해요.
+  /// 작품을 추가해요.
   ///
   /// Copied from [addMedia].
   AddMediaProvider({

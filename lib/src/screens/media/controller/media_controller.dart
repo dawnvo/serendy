@@ -11,9 +11,7 @@ class MediaController extends _$MediaController {
   @override
   FutureOr<MediaState> build(MediaID id, [Media? media]) async {
     media ??= await ref.watch(fetchMediaProvider(id: id).future);
-    final reactions = await ref.watch(
-      fetchReactionsListProvider(mediaId: id).future,
-    );
+    final reactions = await ref.watch(fetchMediaReactionsListProvider(mediaId: id).future);
 
     return MediaState(
       media: media!,

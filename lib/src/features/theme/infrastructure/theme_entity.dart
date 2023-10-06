@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serendy/src/core/domain/types.dart';
-import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/user/user.dart';
-import 'package:serendy/src/features/user/infrastructure/user_entity.dart';
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
+import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/profile/infrastructure/profile_entity.dart';
+import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_entity.g.dart';
 
@@ -18,7 +18,7 @@ final class ThemeEntity {
     this.description,
     this.itemsCount,
     this.ownerId,
-    this.users,
+    this.profiles,
     this.themeItems,
     this.createdAt,
     this.updatedAt,
@@ -34,7 +34,7 @@ final class ThemeEntity {
 
   //foreign
   final UserID? ownerId;
-  final UserEntity? users;
+  final ProfileEntity? profiles;
   final List<ThemeItemEntity>? themeItems;
 
   //timestamp

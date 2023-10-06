@@ -4,8 +4,8 @@ import 'package:serendy/src/core/enums.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/infrastructure/media_entity.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/domain/entities/user.dart';
-import 'package:serendy/src/features/user/infrastructure/user_entity.dart';
+import 'package:serendy/src/features/profile/infrastructure/profile_entity.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 part 'evaluation_entity.g.dart';
 
@@ -15,7 +15,7 @@ final class EvaluationEntity {
     this.id,
     this.emotion,
     this.userId,
-    this.users,
+    this.profiles,
     this.mediaId,
     this.medias,
     this.createdAt,
@@ -28,7 +28,7 @@ final class EvaluationEntity {
 
   //foreign
   final UserID? userId;
-  final UserEntity? users;
+  final ProfileEntity? profiles;
   final MediaID? mediaId;
   final MediaEntity? medias;
 

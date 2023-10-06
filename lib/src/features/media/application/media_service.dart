@@ -5,16 +5,16 @@ import 'package:serendy/src/features/media/media.dart';
 
 part 'media_service.g.dart';
 
-/// 미디어를 검색해요.
+/// 작품을 검색해요.
 @riverpod
 Future<List<Media?>> searchMedia(
   SearchMediaRef ref, {
-  String? title,
+  required String title,
 }) {
   return MediaModule.searchMediaUsecase.execute((title: title));
 }
 
-/// 미디어 목록을 불러와요.
+/// 작품 목록을 불러와요.
 @riverpod
 Future<List<Media?>> fetchMediaList(
   FetchMediaListRef ref,
@@ -22,16 +22,16 @@ Future<List<Media?>> fetchMediaList(
   return MediaModule.getMediaListUsecase.execute(());
 }
 
-/// 미디어 정보를 불러와요.
+/// 작품 정보를 불러와요.
 @riverpod
 Future<Media> fetchMedia(
   FetchMediaRef ref, {
-  required String id,
+  required MediaID id,
 }) {
   return MediaModule.getMediaUsecase.execute((mediaId: id));
 }
 
-/// 미디어를 추가해요.
+/// 작품을 추가해요.
 @riverpod
 Future<void> addMedia(
   AddMediaRef ref, {

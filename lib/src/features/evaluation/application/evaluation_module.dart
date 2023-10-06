@@ -6,7 +6,7 @@ import 'package:serendy/src/features/evaluation/domain/usecases/submit_evaluatio
 import 'package:serendy/src/features/evaluation/domain/usecases/watch_evaluation_list_usecase.dart';
 import 'package:serendy/src/features/evaluation/infrastructure/evaluation_repository_impl.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/profile/profile.dart';
 
 class EvaluationModule {
   // Persistence
@@ -31,7 +31,7 @@ class EvaluationModule {
 
   static const submitEvaluationUsecase = SubmitEvaluationUsecase(
     EvaluationModule.evaluationRepository,
-    UserModule.userRepository,
+    ProfileModule.profileRepository,
     MediaModule.mediaRepository,
   );
 

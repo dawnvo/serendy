@@ -7,7 +7,7 @@ class _ThemeDetailBar extends ConsumerWidget {
   });
 
   final Theme theme;
-  final User owner;
+  final Profile owner;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
