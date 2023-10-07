@@ -7,10 +7,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   const EvaluationRepositoryImpl();
 
   /**
-   * 평가를 여럿 관찰해요.
+   * 평가 여럿을 관찰해요.
    */
   @override
-  Stream<List<Evaluation?>> watchEvaluationsList({
+  Stream<List<Evaluation?>> watchEvaluations({
     UserID? userId,
     MediaID? mediaId,
   }) {
@@ -18,10 +18,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   }
 
   /**
-   * 평가를 여럿 불러와요.
+   * 평가 여럿을 불러와요.
    */
   @override
-  Future<List<Evaluation?>> fetchEvaluationsList({
+  Future<List<Evaluation?>> fetchEvaluations({
     UserID? userId,
     MediaID? mediaId,
   }) async {
@@ -29,7 +29,17 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   }
 
   /**
-   * 평가 정보를 불러와요. (경량)
+   * 평가 수를 불러와요.
+   */
+  @override
+  Future<int> countEvaluations({
+    required UserID userId,
+  }) async {
+    return 800;
+  }
+
+  /**
+   * (경량) 평가 정보를 불러와요.
    */
   @override
   Future<Evaluation?> fetchEvaluationSlice({
@@ -51,20 +61,12 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   }
 
   /**
-   * 평가 수를 불러와요.
-   */
-  @override
-  Future<int> countEvaluations({
-    required UserID userId,
-  }) async {
-    return 800;
-  }
-
-  /**
    * 평가를 만들어요.
    */
   @override
-  Future<void> createEvaluation(Evaluation evaluation) async {
+  Future<void> createEvaluation(
+    Evaluation evaluation,
+  ) async {
     throw UnimplementedError();
   }
 
@@ -72,7 +74,9 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
    * 평가를 갱신해요.
    */
   @override
-  Future<void> updateEvaluation(Evaluation evaluation) async {
+  Future<void> updateEvaluation(
+    Evaluation evaluation,
+  ) async {
     throw UnimplementedError();
   }
 }

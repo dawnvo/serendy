@@ -1,9 +1,9 @@
 import 'package:serendy/src/features/evaluation/domain/usecases/count_evaluations_usecase.dart';
-import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_list_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_usecase.dart';
+import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/remove_evaluation_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/submit_evaluation_usecase.dart';
-import 'package:serendy/src/features/evaluation/domain/usecases/watch_evaluation_list_usecase.dart';
+import 'package:serendy/src/features/evaluation/domain/usecases/watch_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/infrastructure/evaluation_repository_impl.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
@@ -13,11 +13,11 @@ class EvaluationModule {
   static const evaluationRepository = EvaluationRepositoryImpl();
 
   // UseCase
-  static const watchEvaluationListUsecase = WatchEvaluationListUsecase(
+  static const watchEvaluationsUsecase = WatchEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static const getEvaluationListUsecase = GetEvaluationListUsecase(
+  static const getEvaluationsUsecase = GetEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 

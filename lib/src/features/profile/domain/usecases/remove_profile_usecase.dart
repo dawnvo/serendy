@@ -6,8 +6,7 @@ typedef RemoveProfilePayload = ({
   String? reason,
 });
 
-final class RemoveProfileUsecase
-    implements UseCase<RemoveProfilePayload, void> {
+final class RemoveProfileUsecase implements UseCase<RemoveProfilePayload, void> {
   const RemoveProfileUsecase(this._profileRepository);
   final ProfileRepository _profileRepository;
 
@@ -23,7 +22,7 @@ final class RemoveProfileUsecase
     final hasAccess = payload.executorId == profile.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // * 사용자를 제거해요.
+    // * 프로필을 제거해요.
     final removed = profile.remove();
 
     // * commit

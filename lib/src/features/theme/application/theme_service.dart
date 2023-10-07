@@ -7,26 +7,26 @@ part 'theme_service.g.dart';
 
 /// 나의 테마를 구독해요.
 @Riverpod(keepAlive: true)
-Stream<List<Theme?>> watchMyThemesList(
-  WatchMyThemesListRef ref,
+Stream<List<Theme?>> watchMyThemes(
+  WatchMyThemesRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.watchThemeListUsecase.execute((userId: userId));
+  return ThemeModule.watchThemesUsecase.execute((userId: userId));
 }
 
-/// 여러 테마를 불러와요.
+/// 테마 여럿을 불러와요.
 @riverpod
-Future<List<Theme?>> fetchThemesList(
-  FetchThemesListRef ref,
+Future<List<Theme?>> getThemes(
+  GetThemesRef ref,
 ) {
   final userId = ref.watch(currentUserIdProvider);
-  return ThemeModule.getThemeListUsecase.execute((executorId: userId));
+  return ThemeModule.getThemesUsecase.execute((executorId: userId));
 }
 
 /// 테마를 불러와요.
 @riverpod
-Future<Theme> fetchTheme(
-  FetchThemeRef ref, {
+Future<Theme> getTheme(
+  GetThemeRef ref, {
   required ThemeID id,
 }) {
   final userId = ref.watch(currentUserIdProvider);
@@ -34,15 +34,6 @@ Future<Theme> fetchTheme(
     executorId: userId,
     themeId: id,
   ));
-}
-
-/// 테마 항목을 불러와요.
-@riverpod
-Future<List<ThemeItem?>> fetchThemeItems(
-  FetchThemeItemsRef ref, {
-  required ThemeID id,
-}) {
-  return ThemeModule.getThemeItemsUsecase.execute((themeId: id));
 }
 
 /// 테마를 만들어요.
@@ -92,6 +83,15 @@ Future<void> removeTheme(
   ));
 }
 
+/// 테마 항목을 불러와요.
+@riverpod
+Future<List<ThemeItem?>> getThemeItems(
+  GetThemeItemsRef ref, {
+  required ThemeID id,
+}) {
+  return ThemeModule.getThemeItemsUsecase.execute((themeId: id));
+}
+
 /// 테마에 항목을 추가해요.
 @riverpod
 Future<Theme> addThemeItem(
@@ -107,7 +107,7 @@ Future<Theme> addThemeItem(
   ));
 }
 
-/// 테마 항목을 제거해요.
+/// 테마의 항목을 제거해요.
 @riverpod
 Future<Theme> deleteThemeItem(
   DeleteThemeItemRef ref, {

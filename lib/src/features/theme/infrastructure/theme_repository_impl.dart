@@ -7,27 +7,27 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   const ThemeRepositoryImpl();
 
   /**
-   * 테마를 여럿 관찰해요.
+   * 테마 여럿을 관찰해요.
    */
   @override
-  Stream<List<Theme?>> watchThemesList({
+  Stream<List<Theme?>> watchThemes({
     UserID? userId,
   }) {
     return Stream.value(themesMock);
   }
 
   /**
-   * 테마를 여럿 불러와요.
+   * 테마 여럿을 불러와요.
    */
   @override
-  Future<List<Theme?>> fetchThemesList({
+  Future<List<Theme?>> fetchThemes({
     UserID? userId,
   }) async {
     return themesMock;
   }
 
   /**
-   * 테마 정보를 불러와요. (경량)
+   * (경량) 테마 정보를 불러와요.
    */
   @override
   Future<Theme?> fetchThemeSlice({
@@ -50,7 +50,9 @@ final class ThemeRepositoryImpl implements ThemeRepository {
    * 테마를 만들어요.
    */
   @override
-  Future<void> createTheme(Theme theme) async {
+  Future<void> createTheme(
+    Theme theme,
+  ) async {
     throw UnimplementedError();
   }
 
@@ -58,7 +60,9 @@ final class ThemeRepositoryImpl implements ThemeRepository {
    * 테마를 갱신해요.
    */
   @override
-  Future<void> updateTheme(Theme theme) async {
+  Future<void> updateTheme(
+    Theme theme,
+  ) async {
     throw UnimplementedError();
   }
 
@@ -76,7 +80,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
    * 테마에 항목을 추가해요.
    */
   @override
-  Future<void> addItem(Theme theme, MediaID mediaId) async {
+  Future<void> addItem(
+    Theme theme,
+    MediaID mediaId,
+  ) async {
     throw UnimplementedError();
   }
 
@@ -84,7 +91,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
    * 테마의 항목을 삭제해요.
    */
   @override
-  Future<void> deleteItem(Theme theme, MediaID mediaId) async {
+  Future<void> deleteItem(
+    Theme theme,
+    MediaID mediaId,
+  ) async {
     throw UnimplementedError();
   }
 }

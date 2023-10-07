@@ -6,23 +6,23 @@ part of 'profile_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchMeHash() => r'34cf00222aef5c2f3bf9181420ddf9f5bc474706';
+String _$getMeHash() => r'1151859edef618d6aea7d8c54045d2f038eba2f9';
 
-/// 내 정보를 불러와요.
+/// 나의 프로필을 불러와요.
 ///
-/// Copied from [fetchMe].
-@ProviderFor(fetchMe)
-final fetchMeProvider = FutureProvider<Profile>.internal(
-  fetchMe,
-  name: r'fetchMeProvider',
+/// Copied from [getMe].
+@ProviderFor(getMe)
+final getMeProvider = FutureProvider<Profile>.internal(
+  getMe,
+  name: r'getMeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$fetchMeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef FetchMeRef = FutureProviderRef<Profile>;
-String _$fetchProfileHash() => r'2dd6d51f69a9de7e802f438682d8ac03859de252';
+typedef GetMeRef = FutureProviderRef<Profile>;
+String _$getProfileHash() => r'287213ad4dcadf79de2869d6cbe26b03448c028b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -45,35 +45,35 @@ class _SystemHash {
   }
 }
 
-/// 사용자 정보를 불러와요.
+/// 프로필을 불러와요.
 ///
-/// Copied from [fetchProfile].
-@ProviderFor(fetchProfile)
-const fetchProfileProvider = FetchProfileFamily();
+/// Copied from [getProfile].
+@ProviderFor(getProfile)
+const getProfileProvider = GetProfileFamily();
 
-/// 사용자 정보를 불러와요.
+/// 프로필을 불러와요.
 ///
-/// Copied from [fetchProfile].
-class FetchProfileFamily extends Family<AsyncValue<Profile>> {
-  /// 사용자 정보를 불러와요.
+/// Copied from [getProfile].
+class GetProfileFamily extends Family<AsyncValue<Profile>> {
+  /// 프로필을 불러와요.
   ///
-  /// Copied from [fetchProfile].
-  const FetchProfileFamily();
+  /// Copied from [getProfile].
+  const GetProfileFamily();
 
-  /// 사용자 정보를 불러와요.
+  /// 프로필을 불러와요.
   ///
-  /// Copied from [fetchProfile].
-  FetchProfileProvider call({
+  /// Copied from [getProfile].
+  GetProfileProvider call({
     required String id,
   }) {
-    return FetchProfileProvider(
+    return GetProfileProvider(
       id: id,
     );
   }
 
   @override
-  FetchProfileProvider getProviderOverride(
-    covariant FetchProfileProvider provider,
+  GetProfileProvider getProviderOverride(
+    covariant GetProfileProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -92,36 +92,36 @@ class FetchProfileFamily extends Family<AsyncValue<Profile>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchProfileProvider';
+  String? get name => r'getProfileProvider';
 }
 
-/// 사용자 정보를 불러와요.
+/// 프로필을 불러와요.
 ///
-/// Copied from [fetchProfile].
-class FetchProfileProvider extends AutoDisposeFutureProvider<Profile> {
-  /// 사용자 정보를 불러와요.
+/// Copied from [getProfile].
+class GetProfileProvider extends AutoDisposeFutureProvider<Profile> {
+  /// 프로필을 불러와요.
   ///
-  /// Copied from [fetchProfile].
-  FetchProfileProvider({
+  /// Copied from [getProfile].
+  GetProfileProvider({
     required String id,
   }) : this._internal(
-          (ref) => fetchProfile(
-            ref as FetchProfileRef,
+          (ref) => getProfile(
+            ref as GetProfileRef,
             id: id,
           ),
-          from: fetchProfileProvider,
-          name: r'fetchProfileProvider',
+          from: getProfileProvider,
+          name: r'getProfileProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchProfileHash,
-          dependencies: FetchProfileFamily._dependencies,
+                  : _$getProfileHash,
+          dependencies: GetProfileFamily._dependencies,
           allTransitiveDependencies:
-              FetchProfileFamily._allTransitiveDependencies,
+              GetProfileFamily._allTransitiveDependencies,
           id: id,
         );
 
-  FetchProfileProvider._internal(
+  GetProfileProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -135,12 +135,12 @@ class FetchProfileProvider extends AutoDisposeFutureProvider<Profile> {
 
   @override
   Override overrideWith(
-    FutureOr<Profile> Function(FetchProfileRef provider) create,
+    FutureOr<Profile> Function(GetProfileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: FetchProfileProvider._internal(
-        (ref) => create(ref as FetchProfileRef),
+      override: GetProfileProvider._internal(
+        (ref) => create(ref as GetProfileRef),
         from: from,
         name: null,
         dependencies: null,
@@ -153,12 +153,12 @@ class FetchProfileProvider extends AutoDisposeFutureProvider<Profile> {
 
   @override
   AutoDisposeFutureProviderElement<Profile> createElement() {
-    return _FetchProfileProviderElement(this);
+    return _GetProfileProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchProfileProvider && other.id == id;
+    return other is GetProfileProvider && other.id == id;
   }
 
   @override
@@ -170,37 +170,37 @@ class FetchProfileProvider extends AutoDisposeFutureProvider<Profile> {
   }
 }
 
-mixin FetchProfileRef on AutoDisposeFutureProviderRef<Profile> {
+mixin GetProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _FetchProfileProviderElement
-    extends AutoDisposeFutureProviderElement<Profile> with FetchProfileRef {
-  _FetchProfileProviderElement(super.provider);
+class _GetProfileProviderElement
+    extends AutoDisposeFutureProviderElement<Profile> with GetProfileRef {
+  _GetProfileProviderElement(super.provider);
 
   @override
-  String get id => (origin as FetchProfileProvider).id;
+  String get id => (origin as GetProfileProvider).id;
 }
 
 String _$createProfileHash() => r'3453a3e6f54552afdf8bfa0dd1dd126afd14cbf0';
 
-/// 사용자를 만들어요.
+/// 프로필을 만들어요.
 ///
 /// Copied from [createProfile].
 @ProviderFor(createProfile)
 const createProfileProvider = CreateProfileFamily();
 
-/// 사용자를 만들어요.
+/// 프로필을 만들어요.
 ///
 /// Copied from [createProfile].
 class CreateProfileFamily extends Family<AsyncValue<Profile>> {
-  /// 사용자를 만들어요.
+  /// 프로필을 만들어요.
   ///
   /// Copied from [createProfile].
   const CreateProfileFamily();
 
-  /// 사용자를 만들어요.
+  /// 프로필을 만들어요.
   ///
   /// Copied from [createProfile].
   CreateProfileProvider call({
@@ -244,11 +244,11 @@ class CreateProfileFamily extends Family<AsyncValue<Profile>> {
   String? get name => r'createProfileProvider';
 }
 
-/// 사용자를 만들어요.
+/// 프로필을 만들어요.
 ///
 /// Copied from [createProfile].
 class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
-  /// 사용자를 만들어요.
+  /// 프로필을 만들어요.
   ///
   /// Copied from [createProfile].
   CreateProfileProvider({
@@ -531,22 +531,22 @@ class _EditProfileProviderElement
 
 String _$removeProfileHash() => r'8ee8d77c988351366c675c180ffbaa915b206051';
 
-/// 사용자를 제거해요.
+/// 프로필을 제거해요.
 ///
 /// Copied from [removeProfile].
 @ProviderFor(removeProfile)
 const removeProfileProvider = RemoveProfileFamily();
 
-/// 사용자를 제거해요.
+/// 프로필을 제거해요.
 ///
 /// Copied from [removeProfile].
 class RemoveProfileFamily extends Family<AsyncValue<void>> {
-  /// 사용자를 제거해요.
+  /// 프로필을 제거해요.
   ///
   /// Copied from [removeProfile].
   const RemoveProfileFamily();
 
-  /// 사용자를 제거해요.
+  /// 프로필을 제거해요.
   ///
   /// Copied from [removeProfile].
   RemoveProfileProvider call({
@@ -584,11 +584,11 @@ class RemoveProfileFamily extends Family<AsyncValue<void>> {
   String? get name => r'removeProfileProvider';
 }
 
-/// 사용자를 제거해요.
+/// 프로필을 제거해요.
 ///
 /// Copied from [removeProfile].
 class RemoveProfileProvider extends AutoDisposeFutureProvider<void> {
-  /// 사용자를 제거해요.
+  /// 프로필을 제거해요.
   ///
   /// Copied from [removeProfile].
   RemoveProfileProvider({

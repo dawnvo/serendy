@@ -9,9 +9,9 @@ part 'theme_state.dart';
 class ThemeController extends _$ThemeController {
   @override
   FutureOr<ThemeState> build(ThemeID id, [Theme? theme]) async {
-    theme ??= await ref.watch(fetchThemeProvider(id: id).future);
-    final items = await ref.watch(fetchThemeItemsProvider(id: id).future);
-    final owner = await ref.watch(fetchProfileProvider(
+    theme ??= await ref.watch(getThemeProvider(id: id).future);
+    final items = await ref.watch(getThemeItemsProvider(id: id).future);
+    final owner = await ref.watch(getProfileProvider(
       id: theme!.owner.id,
     ).future);
 

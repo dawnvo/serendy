@@ -6,8 +6,7 @@ part 'evaluate_media_controller.g.dart';
 part 'evaluate_media_state.dart';
 
 @riverpod
-class EvaluateMediaController extends _$EvaluateMediaController
-    with NotifierMounted {
+class EvaluateMediaController extends _$EvaluateMediaController with NotifierMounted {
   @override
   EvaluateMediaState build(MediaID mediaId) {
     ref.onDispose(setUnmounted);
@@ -18,7 +17,7 @@ class EvaluateMediaController extends _$EvaluateMediaController
 
   /// 평가를 불러와요.
   Future<void> _fetch() async {
-    final evaluation = await ref.watch(fetchEvaluationProvider(
+    final evaluation = await ref.watch(getEvaluationProvider(
       mediaId: mediaId,
     ).future);
 

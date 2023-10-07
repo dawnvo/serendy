@@ -8,8 +8,7 @@ typedef GetEvaluationPayload = ({
   MediaID mediaId,
 });
 
-final class GetEvaluationUsecase
-    implements UseCase<GetEvaluationPayload, Evaluation?> {
+final class GetEvaluationUsecase implements UseCase<GetEvaluationPayload, Evaluation?> {
   const GetEvaluationUsecase(this._evaluationRepository);
   final EvaluationRepository _evaluationRepository;
 

@@ -5,22 +5,22 @@ import 'package:serendy/src/features/media/media.dart';
 
 part 'evaluation_service.g.dart';
 
-/// 작품 평가 목록을 불러와요.
+/// 반응 목록을 불러와요.
 @riverpod
-Future<List<Evaluation?>> fetchMediaReactionsList(
-  FetchMediaReactionsListRef ref, {
+Future<List<Evaluation?>> getMediaReactions(
+  GetMediaReactionsRef ref, {
   required MediaID mediaId,
 }) {
-  return EvaluationModule.getEvaluationListUsecase.execute((mediaId: mediaId));
+  return EvaluationModule.getEvaluationsUsecase.execute((mediaId: mediaId));
 }
 
 /// 평가 목록을 구독해요.
 @Riverpod(keepAlive: true)
-Stream<List<Evaluation?>> watchEvaluationsList(
-  WatchEvaluationsListRef ref,
+Stream<List<Evaluation?>> watchEvaluations(
+  WatchEvaluationsRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.watchEvaluationListUsecase.execute((userId: userId));
+  return EvaluationModule.watchEvaluationsUsecase.execute((userId: userId));
 }
 
 /// 평가 개수를 조회해요.
@@ -34,8 +34,8 @@ Future<int> countEvaluations(
 
 /// 평가 정보를 불러와요.
 @riverpod
-Future<Evaluation?> fetchEvaluation(
-  FetchEvaluationRef ref, {
+Future<Evaluation?> getEvaluation(
+  GetEvaluationRef ref, {
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);

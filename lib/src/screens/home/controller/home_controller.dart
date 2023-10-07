@@ -8,7 +8,7 @@ part 'home_state.dart';
 class HomeController extends _$HomeController {
   @override
   FutureOr<HomeState> build() async {
-    final medias = await ref.watch(fetchMediaListProvider.future);
+    final medias = await ref.watch(getMediasProvider.future);
     return HomeState(medias: medias);
   }
 }

@@ -6,7 +6,7 @@ part of 'media_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchMediaHash() => r'7e8b8f00d45c62950b7a8889d5a628a168aa3040';
+String _$searchMediasHash() => r'add19c87c3b49a3d2a0eb2a113c81d5d29a14fee';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,33 +31,33 @@ class _SystemHash {
 
 /// 작품을 검색해요.
 ///
-/// Copied from [searchMedia].
-@ProviderFor(searchMedia)
-const searchMediaProvider = SearchMediaFamily();
+/// Copied from [searchMedias].
+@ProviderFor(searchMedias)
+const searchMediasProvider = SearchMediasFamily();
 
 /// 작품을 검색해요.
 ///
-/// Copied from [searchMedia].
-class SearchMediaFamily extends Family<AsyncValue<List<Media?>>> {
+/// Copied from [searchMedias].
+class SearchMediasFamily extends Family<AsyncValue<List<Media?>>> {
   /// 작품을 검색해요.
   ///
-  /// Copied from [searchMedia].
-  const SearchMediaFamily();
+  /// Copied from [searchMedias].
+  const SearchMediasFamily();
 
   /// 작품을 검색해요.
   ///
-  /// Copied from [searchMedia].
-  SearchMediaProvider call({
+  /// Copied from [searchMedias].
+  SearchMediasProvider call({
     required String title,
   }) {
-    return SearchMediaProvider(
+    return SearchMediasProvider(
       title: title,
     );
   }
 
   @override
-  SearchMediaProvider getProviderOverride(
-    covariant SearchMediaProvider provider,
+  SearchMediasProvider getProviderOverride(
+    covariant SearchMediasProvider provider,
   ) {
     return call(
       title: provider.title,
@@ -76,36 +76,36 @@ class SearchMediaFamily extends Family<AsyncValue<List<Media?>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'searchMediaProvider';
+  String? get name => r'searchMediasProvider';
 }
 
 /// 작품을 검색해요.
 ///
-/// Copied from [searchMedia].
-class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
+/// Copied from [searchMedias].
+class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
   /// 작품을 검색해요.
   ///
-  /// Copied from [searchMedia].
-  SearchMediaProvider({
+  /// Copied from [searchMedias].
+  SearchMediasProvider({
     required String title,
   }) : this._internal(
-          (ref) => searchMedia(
-            ref as SearchMediaRef,
+          (ref) => searchMedias(
+            ref as SearchMediasRef,
             title: title,
           ),
-          from: searchMediaProvider,
-          name: r'searchMediaProvider',
+          from: searchMediasProvider,
+          name: r'searchMediasProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$searchMediaHash,
-          dependencies: SearchMediaFamily._dependencies,
+                  : _$searchMediasHash,
+          dependencies: SearchMediasFamily._dependencies,
           allTransitiveDependencies:
-              SearchMediaFamily._allTransitiveDependencies,
+              SearchMediasFamily._allTransitiveDependencies,
           title: title,
         );
 
-  SearchMediaProvider._internal(
+  SearchMediasProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -119,12 +119,12 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
   @override
   Override overrideWith(
-    FutureOr<List<Media?>> Function(SearchMediaRef provider) create,
+    FutureOr<List<Media?>> Function(SearchMediasRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: SearchMediaProvider._internal(
-        (ref) => create(ref as SearchMediaRef),
+      override: SearchMediasProvider._internal(
+        (ref) => create(ref as SearchMediasRef),
         from: from,
         name: null,
         dependencies: null,
@@ -137,12 +137,12 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
   @override
   AutoDisposeFutureProviderElement<List<Media?>> createElement() {
-    return _SearchMediaProviderElement(this);
+    return _SearchMediasProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SearchMediaProvider && other.title == title;
+    return other is SearchMediasProvider && other.title == title;
   }
 
   @override
@@ -154,67 +154,67 @@ class SearchMediaProvider extends AutoDisposeFutureProvider<List<Media?>> {
   }
 }
 
-mixin SearchMediaRef on AutoDisposeFutureProviderRef<List<Media?>> {
+mixin SearchMediasRef on AutoDisposeFutureProviderRef<List<Media?>> {
   /// The parameter `title` of this provider.
   String get title;
 }
 
-class _SearchMediaProviderElement
-    extends AutoDisposeFutureProviderElement<List<Media?>> with SearchMediaRef {
-  _SearchMediaProviderElement(super.provider);
+class _SearchMediasProviderElement
+    extends AutoDisposeFutureProviderElement<List<Media?>>
+    with SearchMediasRef {
+  _SearchMediasProviderElement(super.provider);
 
   @override
-  String get title => (origin as SearchMediaProvider).title;
+  String get title => (origin as SearchMediasProvider).title;
 }
 
-String _$fetchMediaListHash() => r'f951c09ff9a7c2f70f6f43aed19c4580d238470a';
+String _$getMediasHash() => r'5059c9047c55ee700920fe89dc03a96d463ec8ac';
 
 /// 작품 목록을 불러와요.
 ///
-/// Copied from [fetchMediaList].
-@ProviderFor(fetchMediaList)
-final fetchMediaListProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
-  fetchMediaList,
-  name: r'fetchMediaListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$fetchMediaListHash,
+/// Copied from [getMedias].
+@ProviderFor(getMedias)
+final getMediasProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
+  getMedias,
+  name: r'getMediasProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMediasHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef FetchMediaListRef = AutoDisposeFutureProviderRef<List<Media?>>;
-String _$fetchMediaHash() => r'e9637e0e7fc278310cdad9b3586184fdc5161362';
+typedef GetMediasRef = AutoDisposeFutureProviderRef<List<Media?>>;
+String _$getMediaHash() => r'f0d6ce6870bb2629198bd7db0a0ee51d70dd8ae6';
 
 /// 작품 정보를 불러와요.
 ///
-/// Copied from [fetchMedia].
-@ProviderFor(fetchMedia)
-const fetchMediaProvider = FetchMediaFamily();
+/// Copied from [getMedia].
+@ProviderFor(getMedia)
+const getMediaProvider = GetMediaFamily();
 
 /// 작품 정보를 불러와요.
 ///
-/// Copied from [fetchMedia].
-class FetchMediaFamily extends Family<AsyncValue<Media>> {
+/// Copied from [getMedia].
+class GetMediaFamily extends Family<AsyncValue<Media>> {
   /// 작품 정보를 불러와요.
   ///
-  /// Copied from [fetchMedia].
-  const FetchMediaFamily();
+  /// Copied from [getMedia].
+  const GetMediaFamily();
 
   /// 작품 정보를 불러와요.
   ///
-  /// Copied from [fetchMedia].
-  FetchMediaProvider call({
+  /// Copied from [getMedia].
+  GetMediaProvider call({
     required String id,
   }) {
-    return FetchMediaProvider(
+    return GetMediaProvider(
       id: id,
     );
   }
 
   @override
-  FetchMediaProvider getProviderOverride(
-    covariant FetchMediaProvider provider,
+  GetMediaProvider getProviderOverride(
+    covariant GetMediaProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -233,36 +233,35 @@ class FetchMediaFamily extends Family<AsyncValue<Media>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchMediaProvider';
+  String? get name => r'getMediaProvider';
 }
 
 /// 작품 정보를 불러와요.
 ///
-/// Copied from [fetchMedia].
-class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
+/// Copied from [getMedia].
+class GetMediaProvider extends AutoDisposeFutureProvider<Media> {
   /// 작품 정보를 불러와요.
   ///
-  /// Copied from [fetchMedia].
-  FetchMediaProvider({
+  /// Copied from [getMedia].
+  GetMediaProvider({
     required String id,
   }) : this._internal(
-          (ref) => fetchMedia(
-            ref as FetchMediaRef,
+          (ref) => getMedia(
+            ref as GetMediaRef,
             id: id,
           ),
-          from: fetchMediaProvider,
-          name: r'fetchMediaProvider',
+          from: getMediaProvider,
+          name: r'getMediaProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchMediaHash,
-          dependencies: FetchMediaFamily._dependencies,
-          allTransitiveDependencies:
-              FetchMediaFamily._allTransitiveDependencies,
+                  : _$getMediaHash,
+          dependencies: GetMediaFamily._dependencies,
+          allTransitiveDependencies: GetMediaFamily._allTransitiveDependencies,
           id: id,
         );
 
-  FetchMediaProvider._internal(
+  GetMediaProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -276,12 +275,12 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
 
   @override
   Override overrideWith(
-    FutureOr<Media> Function(FetchMediaRef provider) create,
+    FutureOr<Media> Function(GetMediaRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: FetchMediaProvider._internal(
-        (ref) => create(ref as FetchMediaRef),
+      override: GetMediaProvider._internal(
+        (ref) => create(ref as GetMediaRef),
         from: from,
         name: null,
         dependencies: null,
@@ -294,12 +293,12 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
 
   @override
   AutoDisposeFutureProviderElement<Media> createElement() {
-    return _FetchMediaProviderElement(this);
+    return _GetMediaProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchMediaProvider && other.id == id;
+    return other is GetMediaProvider && other.id == id;
   }
 
   @override
@@ -311,17 +310,17 @@ class FetchMediaProvider extends AutoDisposeFutureProvider<Media> {
   }
 }
 
-mixin FetchMediaRef on AutoDisposeFutureProviderRef<Media> {
+mixin GetMediaRef on AutoDisposeFutureProviderRef<Media> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _FetchMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
-    with FetchMediaRef {
-  _FetchMediaProviderElement(super.provider);
+class _GetMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
+    with GetMediaRef {
+  _GetMediaProviderElement(super.provider);
 
   @override
-  String get id => (origin as FetchMediaProvider).id;
+  String get id => (origin as GetMediaProvider).id;
 }
 
 String _$addMediaHash() => r'a7eb2729bc7053244de8942ce8cb7edace5e977d';

@@ -17,7 +17,7 @@ class SearchController extends _$SearchController {
     if (text.isEmpty) return clearMedias();
 
     final newState = await AsyncValue.guard(() async {
-      final medias = await ref.watch(searchMediaProvider(title: text).future);
+      final medias = await ref.watch(searchMediasProvider(title: text).future);
       return state.requireValue.copyWith(medias: medias);
     });
 
@@ -30,8 +30,7 @@ class SearchController extends _$SearchController {
 }
 
 /// 검색어 입력 컨트롤러
-final queryControllerProvider =
-    Provider.autoDispose<TextEditingController>((ref) {
+final queryControllerProvider = Provider.autoDispose<TextEditingController>((ref) {
   final controller = TextEditingController();
   final debouncer = ref.watch(debouncerProvider);
 
@@ -42,9 +41,7 @@ final queryControllerProvider =
     lastValue = controller.text;
 
     // * 검색을 요청해요.
-    debouncer.run(() => ref
-        .read(searchControllerProvider.notifier)
-        .searchMedias(controller.text));
+    debouncer.run(() => ref.read(searchControllerProvider.notifier).searchMedias(controller.text));
   });
 
   // * 컨트롤러를 초기화해요.

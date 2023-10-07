@@ -16,7 +16,7 @@ class ProfileCardScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rank = findRankByCount(evaluationCount);
-    final meValue = ref.watch(fetchMeProvider);
+    final meValue = ref.watch(getMeProvider);
 
     if (meValue.isLoading) {
       return const Scaffold(

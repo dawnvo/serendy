@@ -5,10 +5,10 @@ import 'package:serendy/src/features/theme/domain/usecases/create_theme_usecase.
 import 'package:serendy/src/features/theme/domain/usecases/delete_theme_item_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/edit_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/get_theme_items_usecase.dart';
-import 'package:serendy/src/features/theme/domain/usecases/get_theme_list_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/get_theme_usecase.dart';
+import 'package:serendy/src/features/theme/domain/usecases/get_themes_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/remove_theme_usecase.dart';
-import 'package:serendy/src/features/theme/domain/usecases/watch_theme_list_usecase.dart';
+import 'package:serendy/src/features/theme/domain/usecases/watch_themes_usecase.dart';
 import 'package:serendy/src/features/theme/infrastructure/theme_repository_impl.dart';
 
 abstract final class ThemeModule {
@@ -16,19 +16,15 @@ abstract final class ThemeModule {
   static const themeRepository = ThemeRepositoryImpl();
 
   // UseCase
-  static const watchThemeListUsecase = WatchThemeListUsecase(
+  static const watchThemesUsecase = WatchThemesUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const getThemeListUsecase = GetThemeListUsecase(
+  static const getThemesUsecase = GetThemesUsecase(
     ThemeModule.themeRepository,
   );
 
   static const getThemeUsecase = GetThemeUsecase(
-    ThemeModule.themeRepository,
-  );
-
-  static const getThemeItemsUsecase = GetThemeItemsUsecase(
     ThemeModule.themeRepository,
   );
 
@@ -42,6 +38,10 @@ abstract final class ThemeModule {
   );
 
   static const removeThemeUsecase = RemoveThemeUsecase(
+    ThemeModule.themeRepository,
+  );
+
+  static const getThemeItemsUsecase = GetThemeItemsUsecase(
     ThemeModule.themeRepository,
   );
 

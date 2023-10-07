@@ -6,25 +6,25 @@ part 'media_service.g.dart';
 
 /// 작품을 검색해요.
 @riverpod
-Future<List<Media?>> searchMedia(
-  SearchMediaRef ref, {
+Future<List<Media?>> searchMedias(
+  SearchMediasRef ref, {
   required String title,
 }) {
-  return MediaModule.searchMediaUsecase.execute((title: title));
+  return MediaModule.searchMediasUsecase.execute((title: title));
 }
 
 /// 작품 목록을 불러와요.
 @riverpod
-Future<List<Media?>> fetchMediaList(
-  FetchMediaListRef ref,
+Future<List<Media?>> getMedias(
+  GetMediasRef ref,
 ) {
-  return MediaModule.getMediaListUsecase.execute(());
+  return MediaModule.getMediasUsecase.execute(());
 }
 
 /// 작품 정보를 불러와요.
 @riverpod
-Future<Media> fetchMedia(
-  FetchMediaRef ref, {
+Future<Media> getMedia(
+  GetMediaRef ref, {
   required MediaID id,
 }) {
   return MediaModule.getMediaUsecase.execute((mediaId: id));

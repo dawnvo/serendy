@@ -15,15 +15,15 @@ final class MediaRepositoryImpl implements MediaRepository {
   }
 
   /**
-   * 작품을 여럿 불러와요.
+   * 작품 여럿을 불러와요.
    */
   @override
-  Future<List<Media?>> fetchMediasList() async {
+  Future<List<Media?>> fetchMedias() async {
     return mediasMock;
   }
 
   /**
-   * 작품 정보를 불러와요. (경량)
+   * (경량) 작품 정보를 불러와요.
    */
   @override
   Future<Media?> fetchMediaSlice({
@@ -46,7 +46,9 @@ final class MediaRepositoryImpl implements MediaRepository {
    * 작품을 추가해요.
    */
   @override
-  Future<void> insertMedia(Media media) async {
+  Future<void> insertMedia(
+    Media media,
+  ) async {
     throw UnimplementedError();
   }
 }

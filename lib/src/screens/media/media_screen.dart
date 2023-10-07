@@ -7,6 +7,10 @@ import 'package:serendy/src/widgets/widgets.dart';
 import '../media_evaluate/controller/evaluate_media_controller.dart';
 import 'controller/media_controller.dart';
 
+import 'sheets/save_media_sheet.dart';
+import 'sheets/media_detail_sheet.dart';
+import 'sheets/reaction_detail_sheet.dart';
+
 part 'widgets/_action_bar.dart';
 part 'widgets/_detail_tile.dart';
 part 'widgets/_evaluate_icon_button.dart';

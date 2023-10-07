@@ -4,23 +4,23 @@ import 'package:serendy/src/features/profile/profile.dart';
 
 part 'profile_service.g.dart';
 
-/// 내 정보를 불러와요.
+/// 나의 프로필을 불러와요.
 @Riverpod(keepAlive: true)
-Future<Profile> fetchMe(FetchMeRef ref) {
+Future<Profile> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
   return ProfileModule.getProfileUsecase.execute((userId: userId));
 }
 
-/// 사용자 정보를 불러와요.
+/// 프로필을 불러와요.
 @riverpod
-Future<Profile> fetchProfile(
-  FetchProfileRef ref, {
+Future<Profile> getProfile(
+  GetProfileRef ref, {
   required UserID id,
 }) {
   return ProfileModule.getProfileUsecase.execute((userId: id));
 }
 
-/// 사용자를 만들어요.
+/// 프로필을 만들어요.
 @riverpod
 Future<Profile> createProfile(
   CreateProfileRef ref, {
@@ -52,7 +52,7 @@ Future<Profile> editProfile(
   ));
 }
 
-/// 사용자를 제거해요.
+/// 프로필을 제거해요.
 @riverpod
 Future<void> removeProfile(
   RemoveProfileRef ref, {

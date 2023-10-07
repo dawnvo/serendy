@@ -5,7 +5,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   const ProfileRepositoryImpl();
 
   /**
-   * 사용자 정보를 불러와요.
+   * 프로필을 불러와요.
    */
   @override
   Future<Profile?> fetchProfile({
@@ -15,18 +15,22 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   /**
-   * 사용자를 만들어요.
+   * 프로필을 만들어요.
    */
   @override
-  Future<void> createProfile(Profile profile) async {
+  Future<void> createProfile(
+    Profile profile,
+  ) async {
     throw UnimplementedError();
   }
 
   /**
-   * 사용자를 갱신해요.
+   * 프로필을 갱신해요.
    */
   @override
-  Future<void> updateProfile(Profile profile) async {
+  Future<void> updateProfile(
+    Profile profile,
+  ) async {
     throw UnimplementedError();
   }
 }
