@@ -1,4 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/auth.dart';
+import 'package:serendy/src/features/profile/application/profile_service.dart';
 
 part 'sign_in_controller.g.dart';
 part 'sign_in_state.dart';
@@ -10,36 +12,33 @@ class SignInController extends _$SignInController {
     return const SignInState();
   }
 
-  /// TODO Google 로그인을 진행해요.
+  /// Google 로그인을 진행해요.
   Future<void> signInWithGoogle() async {
+    // * loading
     state = state.copyWith(status: SignInStatus.loading);
 
     try {
-      //   // * 로그인을 진행해요.
-      //   final userCredential =
-      //       await ref.read(authServiceProvider).signInWithGoogle();
+      // * 구글 로그인을 진행해요.
+      final auth = await ref.read(signInWithGoogleProvider.future);
+      final supabaseUser = auth.user!;
 
-      //   // * 로그인한 사용자를 성공적으로 불러왔는지 확인해요.
-      //   final firebaseUser = userCredential.user;
-      //   if (firebaseUser == null) return;
+      // * 프로필이 존재하는지 확인해요.
+      try {
+        await ref.watch(getProfileProvider(id: supabaseUser.id).future);
+      }
+      // * 프로필을 찾을 수 없으면 새로 만들어요.
+      on EntityNotFoundException {
+        await ref.read(createProfileProvider(
+          uid: supabaseUser.id,
+          email: supabaseUser.userMetadata!['email'],
+          username: supabaseUser.userMetadata!['name'],
+          avatar: supabaseUser.userMetadata!['picture'],
+        ).future);
+      }
 
-      //   // * 서버에 해당 프로필이 존재하는지 확인해요.
-      //   try {
-      //     await ref.read(fetchUserProvider(id: firebaseUser.uid).future);
-      //   }
-      //   // * 사용자를 찾을 수 없으면 새로 만들어요.
-      //   on EntityNotFoundException {
-      //     ref.read(createUserProvider(
-      //       uid: firebaseUser.uid,
-      //       username: firebaseUser.displayName!,
-      //       email: firebaseUser.email!,
-      //     ));
-      //   }
-
+      // * loaded
       state = state.copyWith(status: SignInStatus.success);
-    }
-    // * 로그인에 실패하면 상태를 설정해요.
-    catch (err) {
+    } catch (err) {
       state = state.copyWith(
         status: SignInStatus.failure,
         errorMessage: err.toString(),

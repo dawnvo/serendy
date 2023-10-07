@@ -15,7 +15,7 @@ Future<List<Evaluation?>> getMediaReactions(
 }
 
 /// 평가 목록을 구독해요.
-@Riverpod(keepAlive: true)
+@riverpod
 Stream<List<Evaluation?>> watchEvaluations(
   WatchEvaluationsRef ref,
 ) {
@@ -24,7 +24,7 @@ Stream<List<Evaluation?>> watchEvaluations(
 }
 
 /// 평가 개수를 조회해요.
-@Riverpod(keepAlive: true)
+@riverpod
 Future<int> countEvaluations(
   CountEvaluationsRef ref,
 ) {

@@ -2,12 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:serendy/src/app.dart';
 import 'package:serendy/src/configs/configs.dart';
 
-import 'screens/profile/controller/profile_controller.dart';
-
 class AppBootstrap {
   Widget createRootWidget({required ProviderContainer container}) {
     // * Initialize to start the listener
-    container.read(profileControllerProvider);
+    // container.read(profileControllerProvider);
 
     // * Register error handlers
     final errorLogger = container.read(errorLoggerProvider);

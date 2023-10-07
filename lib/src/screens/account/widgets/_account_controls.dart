@@ -7,8 +7,9 @@ class _AccountControls extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return __ControlsBar(controls: [
       TextButton(
-        onPressed: () =>
-            ref.read(accountControllerProvider.notifier).signOut(context),
+        onPressed: () => ref //
+            .read(accountControllerProvider.notifier)
+            .signOut(),
         child: const Text('로그아웃'),
       ),
       TextButton(

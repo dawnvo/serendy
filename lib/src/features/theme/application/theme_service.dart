@@ -6,7 +6,7 @@ import 'package:serendy/src/features/theme/theme.dart';
 part 'theme_service.g.dart';
 
 /// 나의 테마를 구독해요.
-@Riverpod(keepAlive: true)
+@riverpod
 Stream<List<Theme?>> watchMyThemes(
   WatchMyThemesRef ref,
 ) {

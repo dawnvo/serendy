@@ -169,13 +169,14 @@ class _GetMediaReactionsProviderElement
   String get mediaId => (origin as GetMediaReactionsProvider).mediaId;
 }
 
-String _$watchEvaluationsHash() => r'0a8823e946a0491d5f7e8c793ba80c81f9897645';
+String _$watchEvaluationsHash() => r'435ad1e7244c3fd68b09f1b2eb484cc08561558f';
 
 /// 평가 목록을 구독해요.
 ///
 /// Copied from [watchEvaluations].
 @ProviderFor(watchEvaluations)
-final watchEvaluationsProvider = StreamProvider<List<Evaluation?>>.internal(
+final watchEvaluationsProvider =
+    AutoDisposeStreamProvider<List<Evaluation?>>.internal(
   watchEvaluations,
   name: r'watchEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -185,14 +186,14 @@ final watchEvaluationsProvider = StreamProvider<List<Evaluation?>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef WatchEvaluationsRef = StreamProviderRef<List<Evaluation?>>;
-String _$countEvaluationsHash() => r'6f780ac3c3bd24297d8f338c81d7c97f1c8889ad';
+typedef WatchEvaluationsRef = AutoDisposeStreamProviderRef<List<Evaluation?>>;
+String _$countEvaluationsHash() => r'f3be6547042028f257d9ad6c15f960df5da57c10';
 
 /// 평가 개수를 조회해요.
 ///
 /// Copied from [countEvaluations].
 @ProviderFor(countEvaluations)
-final countEvaluationsProvider = FutureProvider<int>.internal(
+final countEvaluationsProvider = AutoDisposeFutureProvider<int>.internal(
   countEvaluations,
   name: r'countEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -202,7 +203,7 @@ final countEvaluationsProvider = FutureProvider<int>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CountEvaluationsRef = FutureProviderRef<int>;
+typedef CountEvaluationsRef = AutoDisposeFutureProviderRef<int>;
 String _$getEvaluationHash() => r'3dc7080884aad08ba4c108fb02e39318c9ab5601';
 
 /// 평가 정보를 불러와요.

@@ -5,7 +5,7 @@ import 'package:serendy/src/features/theme/theme.dart';
 part 'profile_controller.g.dart';
 part 'profile_state.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<ProfileState> build() async {

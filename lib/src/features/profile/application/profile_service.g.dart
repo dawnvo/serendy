@@ -6,13 +6,13 @@ part of 'profile_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMeHash() => r'1151859edef618d6aea7d8c54045d2f038eba2f9';
+String _$getMeHash() => r'3d816b0dd62c783c2b04077bb9526157f5df0188';
 
 /// 나의 프로필을 불러와요.
 ///
 /// Copied from [getMe].
 @ProviderFor(getMe)
-final getMeProvider = FutureProvider<Profile>.internal(
+final getMeProvider = AutoDisposeFutureProvider<Profile>.internal(
   getMe,
   name: r'getMeProvider',
   debugGetCreateSourceHash:
@@ -21,7 +21,7 @@ final getMeProvider = FutureProvider<Profile>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef GetMeRef = FutureProviderRef<Profile>;
+typedef GetMeRef = AutoDisposeFutureProviderRef<Profile>;
 String _$getProfileHash() => r'287213ad4dcadf79de2869d6cbe26b03448c028b';
 
 /// Copied from Dart SDK

@@ -5,12 +5,12 @@ class _DiscoverThemesGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final discoverValue = ref.watch(getThemesProvider);
+    final themesValue = ref.watch(getThemesProvider);
 
     return RefreshIndicator(
       onRefresh: () async => ref.refresh(getThemesProvider),
       child: CustomScrollView(slivers: [
-        discoverValue.when(
+        themesValue.when(
           data: (themes) => SliverThemesGrid(
             childCount: themes.length,
             builder: (context, index) {
