@@ -9,8 +9,7 @@ typedef CreateProfilePayload = ({
   String? avatar,
 });
 
-final class CreateProfileUsecase
-    implements UseCase<CreateProfilePayload, Profile> {
+final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profile> {
   const CreateProfileUsecase(
     this._profileRepository,
     this._themeRepository,

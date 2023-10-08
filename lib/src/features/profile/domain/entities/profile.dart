@@ -1,4 +1,3 @@
-import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
 
 //Identity
@@ -39,15 +38,14 @@ final class Profile extends Equatable {
   final DateTime? removedAt;
 
   Profile({
+    required this.id,
     required this.name,
     required this.email,
     this.avatar,
     this.removedAt,
-    final String? id,
     final DateTime? createdAt,
     final DateTime? updatedAt,
-  })  : id = id ?? Ulid().toCanonical(),
-        createdAt = createdAt ?? DateTime.now(),
+  })  : createdAt = createdAt ?? DateTime.now(),
         updatedAt = updatedAt ?? DateTime.now();
 
   @override

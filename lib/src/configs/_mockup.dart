@@ -5,6 +5,7 @@ import 'package:serendy/src/features/theme/theme.dart';
 
 // Profile
 final profileMock = Profile(
+  id: 'uid',
   name: "Serendy",
   email: 'serendy@email.com',
 );
