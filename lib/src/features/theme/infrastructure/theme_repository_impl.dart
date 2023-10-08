@@ -119,7 +119,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     const columns = '''
       added_at,
       media_id,
-      medias ( * )
+      medias ( title, image )
     ''';
     return supabase
         .from(_tableThemeItems)

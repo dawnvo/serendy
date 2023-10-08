@@ -1,6 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/profile/profile.dart';
 
 part 'theme_controller.g.dart';
 part 'theme_state.dart';
@@ -11,13 +10,9 @@ class ThemeController extends _$ThemeController {
   FutureOr<ThemeState> build(ThemeID id, [Theme? theme]) async {
     theme ??= await ref.watch(getThemeProvider(id: id).future);
     final items = await ref.watch(getThemeItemsProvider(id: id).future);
-    final owner = await ref.watch(getProfileProvider(
-      id: theme!.owner.id,
-    ).future);
 
     return ThemeState(
-      theme: theme.copy(items: items),
-      owner: owner,
+      theme: theme!.copy(items: items),
     );
   }
 

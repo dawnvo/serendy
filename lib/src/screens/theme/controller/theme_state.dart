@@ -1,27 +1,13 @@
 part of 'theme_controller.dart';
 
 class ThemeState extends Equatable {
-  const ThemeState({
-    required this.theme,
-    required this.owner,
-  });
-
+  const ThemeState({required this.theme});
   final Theme theme;
-  final Profile owner;
 
-  ThemeState copyWith({
-    final Theme? theme,
-    final Profile? owner,
-  }) {
-    return ThemeState(
-      theme: theme ?? this.theme,
-      owner: owner ?? this.owner,
-    );
+  ThemeState copyWith({final Theme? theme}) {
+    return ThemeState(theme: theme ?? this.theme);
   }
 
   @override
-  List<Object?> get props => [
-        theme,
-        owner,
-      ];
+  List<Object?> get props => [theme];
 }

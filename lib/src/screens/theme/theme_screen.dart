@@ -4,7 +4,6 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -42,7 +41,6 @@ class ThemeScreen extends ConsumerWidget {
         ),
         detailBar: _ThemeDetailBar(
           theme: state.theme,
-          owner: state.owner,
         ),
         mediasGrid: _ThemeItemsGrid(
           theme: state.theme,
@@ -130,7 +128,6 @@ class _Placeholder$ThemeScreen extends StatelessWidget {
         subtitle: data.description,
       ),
       detailBar: _ThemeDetailBar(
-        owner: data.owner.convertEntity,
         theme: data,
       ),
       mediasGrid: const SliverToBoxAdapter(

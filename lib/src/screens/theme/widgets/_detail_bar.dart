@@ -3,48 +3,49 @@ part of '../theme_screen.dart';
 class _ThemeDetailBar extends ConsumerWidget {
   const _ThemeDetailBar({
     required this.theme,
-    required this.owner,
   });
 
   final Theme theme;
-  final Profile owner;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUserId = ref.watch(currentUserIdProvider);
-    final isOwner = owner.id == currentUserId;
+    final isOwner = theme.owner.id == currentUserId;
+    final isDefaultTheme = theme.id == currentUserId;
 
-    return Row(children: [
-      _buildOwnerProfile(context),
-      Gap.w12,
+    return SizedBox(
+      height: Sizes.p48,
+      child: Row(children: [
+        // * 소유자 정보
+        _buildOwnerProfile(context),
+        Gap.w12,
 
-      // * 테마 주인에게만 비공개 상태를 표시해요.
-      if (isOwner) _buildPrivacyStatus(context),
-      const Spacer(),
+        // * 소유자에게만 상태 여부를 표시해요.
+        if (isOwner) _buildPrivacyStatus(context),
+        const Spacer(),
 
-      // * 기본 테마라면 아무것도 표시하지 않아요.
-      if (theme.id == currentUserId)
-        const SizedBox()
-      // * 커스텀 테마라면 액션 버튼을 표시해요.
-      else
-        __ActionIconButtons(
-          theme: theme,
-          isOwner: isOwner,
-        ),
-    ]);
+        // * 기본 테마라면 - 아무것도 표시하지 않아요.
+        // * 사용자 테마라면 - 액션 버튼을 표시해요.
+        if (!isDefaultTheme)
+          __ActionIconButtons(
+            theme: theme,
+            isOwner: isOwner,
+          ),
+      ]),
+    );
   }
 
   Widget _buildOwnerProfile(BuildContext context) {
     return Row(children: [
       CircleAvatar(
         radius: Sizes.p12,
-        backgroundImage: owner.avatar != null //
-            ? NetworkImage(owner.avatar!)
+        backgroundImage: theme.owner.avatar != null //
+            ? NetworkImage(theme.owner.avatar!)
             : null,
       ),
       Gap.w8,
       Text(
-        owner.name,
+        theme.owner.name,
         style: context.textTheme.bodyMedium,
       ),
     ]);
