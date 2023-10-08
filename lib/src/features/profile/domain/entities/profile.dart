@@ -49,7 +49,12 @@ final class Profile extends Equatable {
         updatedAt = updatedAt ?? DateTime.now();
 
   @override
-  List<Object?> get props => [id, email];
+  List<Object?> get props => [
+        id,
+        name,
+        email,
+        avatar,
+      ];
 }
 
 extension ProfileX on Profile {
