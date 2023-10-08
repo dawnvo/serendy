@@ -1,6 +1,7 @@
-import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+
+import 'profile_mapper.dart';
 
 final class ProfileRepositoryImpl implements ProfileRepository {
   const ProfileRepositoryImpl(this.supabase);
@@ -14,8 +15,14 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Profile?> fetchProfile({
     required UserID id,
-  }) async {
-    return profileMock;
+  }) {
+    const columns = '*';
+    return supabase
+        .from(_tableProfiles)
+        .select(columns)
+        .eq('id', id)
+        .maybeSingle()
+        .withConverter(ProfileMapper.toSingle);
   }
 
   /**
@@ -24,8 +31,11 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> createProfile(
     Profile profile,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = ProfileMapper.toEntity(profile);
+    return supabase //
+        .from(_tableProfiles)
+        .insert(entity.toJson());
   }
 
   /**
@@ -34,7 +44,11 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> updateProfile(
     Profile profile,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = ProfileMapper.toEntity(profile);
+    return supabase //
+        .from(_tableProfiles)
+        .update(entity.toJson())
+        .eq('id', entity.id);
   }
 }
