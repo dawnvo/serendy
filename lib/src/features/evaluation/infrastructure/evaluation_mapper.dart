@@ -3,7 +3,7 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 abstract final class EvaluationMapper {
   /**
-   *  Json -> Domain
+   *  Entity -> Domain
    */
   static Evaluation toDomain(final EvaluationEntity entity) {
     return Evaluation(
@@ -21,6 +21,9 @@ abstract final class EvaluationMapper {
     );
   }
 
+  /**
+   *  Json -> Domain
+   */
   static Evaluation? toSingle(dynamic data) {
     if (data == null) return null;
     final entity = EvaluationEntity.fromJson(data as Json);

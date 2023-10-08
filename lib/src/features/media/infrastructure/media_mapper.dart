@@ -3,24 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 
 abstract final class MediaMapper {
   /**
-   *  Entity <-> Domain
+   *  Entity -> Domain
    */
-  static MediaEntity toEntity(Media model) {
-    return MediaEntity(
-      id: model.id,
-      type: model.type,
-      status: model.status,
-      title: model.title,
-      image: model.image,
-      keywords: model.keywords,
-      synopsis: model.synopsis,
-      youtubeId: model.youtubeId,
-      isAdult: model.isAdult,
-      startDate: model.startDate,
-      endDate: model.endDate,
-    );
-  }
-
   static Media toDomain(MediaEntity entity) {
     return Media(
       id: entity.id ?? '',

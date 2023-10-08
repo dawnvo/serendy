@@ -6,9 +6,9 @@ typedef EditThemePayload = ({
   UserID executorId,
   String themeId,
   String? title,
-  String? description,
   String? image,
   bool? private,
+  String? description,
 });
 
 final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
@@ -34,8 +34,8 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
     final edited = theme.edit(
       image: downloadUrl,
       title: payload.title,
-      description: payload.description,
       private: payload.private,
+      description: payload.description,
     );
 
     // * commit

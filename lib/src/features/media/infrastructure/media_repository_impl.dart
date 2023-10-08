@@ -80,10 +80,22 @@ final class MediaRepositoryImpl implements MediaRepository {
    * 작품을 추가해요.
    */
   @override
-  Future<void> insertMedia(
+  Future<void> upsertMedia(
     Media media,
   ) {
-    final entity = MediaMapper.toEntity(media);
+    final entity = MediaEntity(
+      id: media.id,
+      type: media.type,
+      status: media.status,
+      title: media.title,
+      image: media.image,
+      keywords: media.keywords,
+      synopsis: media.synopsis,
+      youtubeId: media.youtubeId,
+      isAdult: media.isAdult,
+      startDate: media.startDate,
+      endDate: media.endDate,
+    );
     return supabase //
         .from(_tableMedias)
         .upsert(entity.toJson());

@@ -3,19 +3,8 @@ import 'package:serendy/src/features/profile/profile.dart';
 
 abstract final class ProfileMapper {
   /**
-   *  Entity <-> Domain
+   *  Entity -> Domain
    */
-  static ProfileEntity toEntity(final Profile model) {
-    return ProfileEntity(
-      id: model.id,
-      name: model.name,
-      email: model.email,
-      avatar: model.avatar,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
-    );
-  }
-
   static Profile toDomain(final ProfileEntity entity) {
     return Profile(
       id: entity.id ?? '',

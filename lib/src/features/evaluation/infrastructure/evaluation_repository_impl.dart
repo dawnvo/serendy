@@ -62,14 +62,18 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required MediaID mediaId,
   }) {
     const columns = '''
-      emotion
+      id,
+      user_id,
+      media_id,
+      removed_at
     ''';
+    // * 제거한 평가도 가져와요.
+    // * 평가 유무 검증에 필요해요.
     return supabase
         .from(_tableEvaluations)
         .select(columns)
         .eq('user_id', userId)
         .eq('media_id', mediaId)
-        .is_('removed_at', null)
         .maybeSingle()
         .withConverter(EvaluationMapper.toSingle);
   }
@@ -83,13 +87,12 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required MediaID mediaId,
   }) {
     const columns = '*';
-    // * 제거한 평가도 가져와요.
-    // * 평가 유무 검증에 필요해요.
     return supabase
         .from(_tableEvaluations)
         .select(columns)
         .eq('user_id', userId)
         .eq('media_id', mediaId)
+        .is_('removed_at', null)
         .maybeSingle()
         .withConverter(EvaluationMapper.toSingle);
   }
@@ -127,8 +130,8 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
         .from(_tableEvaluations)
         // [JsonSerializable] include_if_null: false
         .update({...entity.toJson(), 'removed_at': null})
-        .eq('user_id', entity.userId)
-        .eq('media_id', entity.mediaId);
+        .eq('user_id', evaluation.userId)
+        .eq('media_id', evaluation.media.id);
   }
 
   /**
@@ -144,7 +147,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     return supabase
         .from(_tableEvaluations)
         .update(entity.toJson())
-        .eq('user_id', entity.userId)
-        .eq('media_id', entity.mediaId);
+        .eq('user_id', evaluation.userId)
+        .eq('media_id', evaluation.media.id);
   }
 }

@@ -45,7 +45,8 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     required ThemeID id,
   }) {
     const columns = '''
-      id
+      id,
+      owner_id
     ''';
     return supabase
         .from(_tableThemes)
@@ -64,13 +65,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     required ThemeID id,
   }) {
     const columns = '''
-      id,
-      title,
-      image,
-      private,
-      description,
-      items_count,
-      owner_id,
+      *,
       profiles ( name, avatar )
     ''';
     return supabase
@@ -89,7 +84,13 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   Future<void> createTheme(
     Theme theme,
   ) {
-    final entity = ThemeMapper.toEntity(theme);
+    final entity = ThemeEntity(
+      id: theme.id,
+      title: theme.title,
+      image: theme.image,
+      private: theme.private,
+      ownerId: theme.owner.id,
+    );
     return supabase //
         .from(_tableThemes)
         .insert(entity.toJson());
@@ -102,11 +103,17 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   Future<void> updateTheme(
     Theme theme,
   ) {
-    final entity = ThemeMapper.toEntity(theme);
+    final entity = ThemeEntity(
+      title: theme.title,
+      image: theme.image,
+      private: theme.private,
+      description: theme.description,
+      updatedAt: theme.updatedAt,
+    );
     return supabase //
         .from(_tableThemes)
         .update(entity.toJson())
-        .eq('id', entity.id);
+        .eq('id', theme.id);
   }
 
   /**

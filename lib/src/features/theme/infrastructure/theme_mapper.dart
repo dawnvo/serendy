@@ -3,23 +3,8 @@ import 'package:serendy/src/features/theme/theme.dart';
 
 abstract final class ThemeMapper {
   /**
-   *  Entity <-> Domain
+   *  Entity -> Domain
    */
-  static ThemeEntity toEntity(final Theme model) {
-    return ThemeEntity(
-      id: model.id,
-      ownerId: model.owner.id,
-      title: model.title,
-      description: model.description,
-      image: model.image,
-      private: model.private,
-      itemsCount: model.itemsCount,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
-      removedAt: model.removedAt,
-    );
-  }
-
   static Theme toDomain(final ThemeEntity entity) {
     return Theme(
       owner: ThemeOwner(

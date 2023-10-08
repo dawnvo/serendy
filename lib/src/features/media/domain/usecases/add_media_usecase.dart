@@ -33,6 +33,6 @@ final class AddMediaUsecase implements UseCase<AddMediaPayload, void> {
       endDate: payload.endDate,
     );
 
-    await _mediaRepository.insertMedia(media);
+    await _mediaRepository.upsertMedia(media);
   }
 }

@@ -32,7 +32,12 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> createProfile(
     Profile profile,
   ) {
-    final entity = ProfileMapper.toEntity(profile);
+    final entity = ProfileEntity(
+      id: profile.id,
+      name: profile.name,
+      email: profile.email,
+      avatar: profile.avatar,
+    );
     return supabase //
         .from(_tableProfiles)
         .insert(entity.toJson());
@@ -45,10 +50,14 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> updateProfile(
     Profile profile,
   ) {
-    final entity = ProfileMapper.toEntity(profile);
+    final entity = ProfileEntity(
+      name: profile.name,
+      email: profile.email,
+      avatar: profile.avatar,
+    );
     return supabase //
         .from(_tableProfiles)
         .update(entity.toJson())
-        .eq('id', entity.id);
+        .eq('id', profile.id);
   }
 }

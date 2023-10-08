@@ -25,7 +25,7 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
     final Evaluation evaluation;
 
     // * 평가가 존재하는지 확인해요.
-    final doesEvaluationExist = await _evaluationRepository.fetchEvaluation(
+    final doesEvaluationExist = await _evaluationRepository.fetchEvaluationSlice(
       userId: payload.executorId,
       mediaId: payload.mediaId,
     );

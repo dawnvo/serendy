@@ -22,7 +22,7 @@ abstract class MediaRepository {
   });
 
   /// 작품을 추가해요.
-  Future<void> insertMedia(
+  Future<void> upsertMedia(
     Media media,
   );
 }
