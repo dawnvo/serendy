@@ -9,16 +9,20 @@ part 'profile_state.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<ProfileState> build() async {
-    final themes = await ref.watch(getThemesProvider.future);
-    final count = await ref.watch(countEvaluationsProvider.future);
+    // * 내 평가 개수를 불러와요.
+    final evaluationsCount = await ref.watch(countEvaluationsProvider.future);
 
+    // * 내 테마를 불러와요.
+    final themes = await ref.watch(getThemesProvider.future);
+
+    // * loaded
     return ProfileState(
-      evaluationsCount: count,
+      evaluationsCount: evaluationsCount,
       themes: themes,
     );
   }
 
-  // Event: 평가 개수를 갱신해요.
+  /// [EVENT] 평가 개수를 갱신해요.
   void onEvaluationsCountUpdated() {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;

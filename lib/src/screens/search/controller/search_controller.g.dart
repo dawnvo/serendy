@@ -6,7 +6,25 @@ part of 'search_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchControllerHash() => r'e6c5599b5a85755099a553fe8c39048ba74e1698';
+String _$searchQueryControllerHash() =>
+    r'dfd2e655f8c0f0a98359a886b1ac343c75826980';
+
+/// See also [searchQueryController].
+@ProviderFor(searchQueryController)
+final searchQueryControllerProvider =
+    AutoDisposeProvider<TextEditingController>.internal(
+  searchQueryController,
+  name: r'searchQueryControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$searchQueryControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SearchQueryControllerRef
+    = AutoDisposeProviderRef<TextEditingController>;
+String _$searchControllerHash() => r'69e7f80d694f2101b95760fc2aca828f4ba773ab';
 
 /// See also [SearchController].
 @ProviderFor(SearchController)

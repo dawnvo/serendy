@@ -8,20 +8,19 @@ part 'sign_in_state.dart';
 @riverpod
 class SignInController extends _$SignInController {
   @override
-  SignInState build() {
-    return const SignInState();
+  FutureOr<void> build() async {
+    // nothing to do
   }
 
   /// Google 로그인을 진행해요.
   Future<void> signInWithGoogle() async {
-    // * loading
-    state = state.copyWith(status: SignInStatus.loading);
-
-    try {
-      // * 구글 로그인을 진행해요.
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      // * 로그인을 진행해요.
       final auth = await ref.read(signInWithGoogleProvider.future);
       final supabaseUser = auth.user!;
 
+      // * 로그인에 성공하면
       // * 프로필이 존재하는지 확인해요.
       try {
         await ref.watch(getProfileProvider(id: supabaseUser.id).future);
@@ -35,14 +34,6 @@ class SignInController extends _$SignInController {
           avatar: supabaseUser.userMetadata!['picture'],
         ).future);
       }
-
-      // * loaded
-      state = state.copyWith(status: SignInStatus.success);
-    } catch (err) {
-      state = state.copyWith(
-        status: SignInStatus.failure,
-        errorMessage: err.toString(),
-      );
-    }
+    });
   }
 }

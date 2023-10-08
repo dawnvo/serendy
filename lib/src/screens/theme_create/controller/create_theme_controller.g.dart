@@ -7,7 +7,7 @@ part of 'create_theme_controller.dart';
 // **************************************************************************
 
 String _$createThemeControllerHash() =>
-    r'aea18657b7aec71427c4caaca7c12ab41848f03a';
+    r'b138efe1e8ceaf89da01ad80d504cea064b5c1f6';
 
 /// See also [CreateThemeController].
 @ProviderFor(CreateThemeController)

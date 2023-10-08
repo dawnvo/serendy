@@ -15,8 +15,8 @@ class SignInScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(signInControllerProvider, (previous, next) {
-      if (next.status == SignInStatus.failure) {
-        _SignInErrorDialog.show(context, next.errorMessage);
+      if (next.hasError) {
+        _SignInErrorDialog.show(context, next.error.toString());
       }
     });
 

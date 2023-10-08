@@ -15,7 +15,7 @@ class CreateThemeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(createThemeControllerProvider, (previous, next) {
       if (next.status == CreateThemeStatus.failure) {
-        final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
+        final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(SnackBar(content: Text(errorMessage)));

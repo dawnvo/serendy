@@ -84,9 +84,23 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
     //widgets
-    final indicator = Container(
-      color: color,
-      height: 40,
+    final indicator = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 12,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(Sizes.p4),
+          ),
+        ),
+        Gap.h12,
+        Container(
+          height: 18,
+          width: 80,
+          color: color,
+        ),
+      ],
     );
     final themesList = SliverMyThemesList(
       childCount: 4,

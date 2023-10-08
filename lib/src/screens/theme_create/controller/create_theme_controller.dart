@@ -5,11 +5,13 @@ part 'create_theme_controller.g.dart';
 part 'create_theme_state.dart';
 
 @riverpod
-class CreateThemeController extends _$CreateThemeController
-    with NotifierMounted {
+class CreateThemeController extends _$CreateThemeController with NotifierMounted {
   @override
   CreateThemeState build() {
+    // * initialize
     ref.onDispose(setUnmounted);
+
+    // * loaded
     return CreateThemeState(
       hintText: Assets.createThemeHints.pickRandomly()!,
     );
@@ -21,24 +23,28 @@ class CreateThemeController extends _$CreateThemeController
   }
 
   /// 테마를 만들어요.
-  Future<void> createTheme() async {
+  Future<void> submit() async {
     state = state.copyWith(status: CreateThemeStatus.loading);
 
     try {
-      // * 제목을 입력하지 않으면 힌트가 제목을 대신해요.
+      // * 제목을 입력하지 않으면 힌트가 대신해요.
       var title = state.title;
       if (title.isEmpty) title = state.hintText;
 
+      // * 테마를 만들어요.
       await ref.read(createThemeProvider(title: title).future);
 
-      // * 컨트롤러가 폐기되지 않은 경우에만 상태를 설정해요.
+      // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
+
+      // * loaded
       state = state.copyWith(status: CreateThemeStatus.success);
 
       // * 이전 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
+
+      // * failure
     } catch (err) {
-      // * 에러가 발생하면 상태를 설정해요.
       state = state.copyWith(
         status: CreateThemeStatus.failure,
         errorMessage: err.toString(),

@@ -3,39 +3,39 @@ part of 'account_controller.dart';
 class AccountState extends Equatable {
   const AccountState({
     required this.initialProfile,
-    required this.avatar,
-    required this.name,
     required this.email,
+    required this.name,
+    required this.avatar,
   });
 
   final Profile initialProfile;
-  final String? avatar;
-  final String name;
   final String email;
+  final String name;
+  final String? avatar;
 
   bool get isEdited =>
-      initialProfile.avatar != avatar ||
+      initialProfile.email != email ||
       initialProfile.name != name ||
-      initialProfile.email != email;
+      initialProfile.avatar != avatar;
 
   AccountState copyWith({
     final Profile? initialProfile,
-    final String? avatar,
-    final String? name,
     final String? email,
+    final String? name,
+    final String? avatar,
   }) {
     return AccountState(
       initialProfile: initialProfile ?? this.initialProfile,
-      avatar: avatar ?? this.avatar,
-      name: name ?? this.name,
       email: email ?? this.email,
+      name: name ?? this.name,
+      avatar: avatar ?? this.avatar,
     );
   }
 
   @override
   List<Object?> get props => [
-        avatar,
-        name,
         email,
+        name,
+        avatar,
       ];
 }

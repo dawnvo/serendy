@@ -11,43 +11,50 @@ class SearchController extends _$SearchController {
     return const SearchState();
   }
 
-  Future<void> searchMedias(String text) async {
-    state = const AsyncLoading();
+  /// 미디어를 검색해요.
+  Future<void> search(String text) async {
+    // * 검색어가 없으면 검색결과를 제거해요.
+    if (text.isEmpty) return clear();
 
-    if (text.isEmpty) return clearMedias();
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      // * 검색어에 부합하는 작품을 불러와요.
+      final medias = await ref.watch(searchMediasProvider(
+        title: text,
+      ).future);
 
-    final newState = await AsyncValue.guard(() async {
-      final medias = await ref.watch(searchMediasProvider(title: text).future);
       return state.requireValue.copyWith(medias: medias);
     });
-
-    state = newState;
   }
 
-  void clearMedias() {
-    state = AsyncData(state.requireValue.copyWith(medias: []));
+  /// 검색결과를 제거해요.
+  void clear() {
+    state = AsyncValue.data(state.requireValue.copyWith(
+      medias: [],
+    ));
   }
 }
 
-/// 검색어 입력 컨트롤러
-final queryControllerProvider = Provider.autoDispose<TextEditingController>((ref) {
+@riverpod
+// ignore: unsupported_provider_value
+TextEditingController searchQueryController(SearchQueryControllerRef ref) {
   final controller = TextEditingController();
   final debouncer = ref.watch(debouncerProvider);
 
   String lastValue = "";
-  controller.addListener(() async {
+  controller.addListener(() {
     // * 마지막 검색어와 동일하면 검색 요청을 무시해요.
     if (lastValue == controller.text) return;
     lastValue = controller.text;
 
-    // * 검색을 요청해요.
-    debouncer.run(() => ref.read(searchControllerProvider.notifier).searchMedias(controller.text));
+    // * 검색을 진행해요.
+    debouncer.run(() => ref //
+        .read(searchControllerProvider.notifier)
+        .search(controller.text));
   });
 
-  // * 컨트롤러를 초기화해요.
-  ref.onDispose(() {
-    controller.dispose();
-  });
+  // * 컨트롤러가 폐기되면 같이 처분해요.
+  ref.onDispose(controller.dispose);
 
   return controller;
-});
+}

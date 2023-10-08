@@ -8,15 +8,13 @@ part 'history_state.dart';
 class HistoryController extends _$HistoryController {
   @override
   FutureOr<HistoryState> build() async {
-    // * LODING
-    state = const AsyncValue.loading();
-
+    // * 내 평가 개수를 불러와요.
     final evaluationsCount = await ref.watch(countEvaluationsProvider.future);
 
-    // * 내 평가를 여럿 불러와요.
+    // * 내 평가를 불러와요.
     final evaluations = await ref.watch(getEvaluationsProvider.future);
 
-    // * LOADED
+    // * loaded
     return HistoryState(
       evaluationsCount: evaluationsCount,
       evaluations: evaluations,

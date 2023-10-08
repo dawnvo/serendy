@@ -5,19 +5,20 @@ class _SignInButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const double iconSize = 24;
+    const double iconSize = Sizes.p24;
 
     return FilledButton(
       style: FilledButton.styleFrom(
-        minimumSize: const Size.fromHeight(56),
+        minimumSize: const Size.fromHeight(Sizes.p56),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         textStyle: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () =>
-          ref.read(signInControllerProvider.notifier).signInWithGoogle(),
+      onPressed: () => ref //
+          .read(signInControllerProvider.notifier)
+          .signInWithGoogle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/account_controller.dart';

@@ -6,7 +6,7 @@ class CreateThemeState extends Equatable {
   const CreateThemeState({
     this.status = CreateThemeStatus.initial,
     this.title = '',
-    this.hintText = '',
+    this.hintText = '나의 테마',
     this.errorMessage,
   });
 

@@ -107,7 +107,7 @@ UserID? currentUserId(
   CurrentUserIdRef ref,
 ) {
   final auth = ref.watch(supabaseProvider.select((_) => _.auth));
-  return auth.currentUser?.id;
+  return auth.currentSession?.user.id;
 }
 
 /// 사용자 식별자를 엄격히 가져와요.

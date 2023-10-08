@@ -7,15 +7,12 @@ class _AccountControls extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return __ControlsBar(controls: [
       TextButton(
-        onPressed: () => ref //
-            .read(accountControllerProvider.notifier)
-            .signOut(),
+        onPressed: () => ref.read(signOutProvider),
         child: const Text('로그아웃'),
       ),
       TextButton(
-        onPressed: () => ref //
-            .read(accountControllerProvider.notifier)
-            .deleteUser()
+        onPressed: () => ref 
+            .read(deleteUserProvider.future)
             .then((value) => context.goNamed(AppRoutes.signIn)),
         child: const Text('회원탈퇴'),
       ),

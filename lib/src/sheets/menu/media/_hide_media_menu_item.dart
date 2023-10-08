@@ -10,7 +10,7 @@ class HideMediaMenuItem extends ConsumerWidget {
     try {
       // * 숨기기 로직
 
-      // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
+      // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
 
       // * 숨기기 취소 로직

@@ -17,8 +17,9 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
-        .select((state) => state.evaluation));
+    final evaluation = ref.watch(
+      evaluateMediaControllerProvider(media.id).select((_) => _.evaluation),
+    );
 
     // * 평가한 감정이 존재하면 감정을 표시해요.
     if (evaluation != null) {

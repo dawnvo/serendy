@@ -22,8 +22,9 @@ class EditThemeScreen extends ConsumerWidget {
     final provider = editThemeControllerProvider(theme);
 
     ref.listen(provider, (previous, next) {
+      //failure
       if (next.status == EditThemeStatus.failure) {
-        final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
+        final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(SnackBar(content: Text(errorMessage)));

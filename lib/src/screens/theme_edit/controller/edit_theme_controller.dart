@@ -54,17 +54,22 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
         private: state.private,
       ).future);
 
-      // * 테마 화면의 상태를 갱신해요.
-      ref.read(themeControllerProvider(theme.id).notifier).themeUpdated(edited);
+      // * [EVENT] 테마 화면의 상태를 갱신해요.
+      ref //
+          .read(themeControllerProvider(theme.id).notifier)
+          .themeUpdated(edited);
 
       // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
+
+      // * loaded
       state = state.copyWith(status: EditThemeStatus.success);
 
-      // * 테마 화면으로 돌아가요.
+      // * 이전 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
+
+      // * failure
     } catch (err) {
-      // * 에러가 발생하면 상태를 설정해요.
       state = state.copyWith(
         status: EditThemeStatus.failure,
         errorMessage: err.toString(),
@@ -73,22 +78,26 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
   }
 
   /// 테마를 삭제해요.
-  Future<void> delete() async {
+  Future<void> remove() async {
     state = state.copyWith(status: EditThemeStatus.loading);
 
     try {
+      // * 테마를 제거해요.
       await ref.read(removeThemeProvider(
         id: state.initialTheme.id,
       ).future);
 
       // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
+
+      // * loaded
       state = state.copyWith(status: EditThemeStatus.success);
 
       // * 프로필 화면으로 이동해요.
       ref.read(goRouterProvider).goNamed(AppRoutes.profile);
+
+      // * failure
     } catch (err) {
-      // * 에러가 발생하면 상태를 설정해요.
       state = state.copyWith(
         status: EditThemeStatus.failure,
         errorMessage: err.toString(),

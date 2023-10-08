@@ -12,8 +12,9 @@ class _CreateThemeSubmitButton extends ConsumerWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () =>
-          ref.read(createThemeControllerProvider.notifier).createTheme(),
+      onPressed: () => ref //
+          .read(createThemeControllerProvider.notifier)
+          .submit(),
       child: const Text("만들기"),
     );
   }

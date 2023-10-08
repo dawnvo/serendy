@@ -8,8 +8,9 @@ class _CreateThemeTitleTextField extends ConsumerWidget {
     final state = ref.watch(createThemeControllerProvider);
 
     return TitleTextField(
-      onChanged: (value) =>
-          ref.read(createThemeControllerProvider.notifier).changeTitle(value),
+      onChanged: (value) => ref //
+          .read(createThemeControllerProvider.notifier)
+          .changeTitle(value),
       value: state.title,
       hintText: state.hintText,
       autofocus: true,

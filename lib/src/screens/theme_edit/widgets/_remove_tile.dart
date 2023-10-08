@@ -15,7 +15,7 @@ class _EditThemeRemoveTile extends ConsumerWidget {
       onLongPress: () => showDialog(
         context: context,
         builder: (_) => __RemoveThemeDialog(
-          onDelete: () => ref.read(provider.notifier).delete(),
+          onDelete: () => ref.read(provider.notifier).remove(),
         ),
       ),
       title: const Text("테마 삭제"),

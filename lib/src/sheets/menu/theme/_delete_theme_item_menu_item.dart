@@ -15,28 +15,29 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
 
   Future<void> handleTap(BuildContext context, WidgetRef ref) async {
     try {
-      // * 해당 테마 항목을 삭제해요.
+      // * 해당 항목을 삭제해요.
       final itemDeleted = await ref.read(deleteThemeItemProvider(
         id: theme.id,
         mediaId: media.id,
       ).future);
 
-      // * 테마 화면 상태를 갱신해요.
-      ref
-          .read(themeControllerProvider(theme.id).notifier)
-          .themeUpdated(itemDeleted);
+      // * [EVENT] 테마 화면의 상태를 갱신해요.
+      ref.read(themeControllerProvider(theme.id).notifier).themeUpdated(itemDeleted);
 
-      // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
+      // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
 
-      // * 삭제에 성공하면 메뉴를 닫고 메시지로 안내해요.
+      // * 메뉴를 닫아요.
       context.pop();
+
+      // * success
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: kSnackBarDisplayDurationShort,
         content: Text("${theme.title}에서 삭제했어요."),
       ));
+
+      // * failure
     } catch (err) {
-      // * 삭제에 실패하면 메시지로 안내해요.
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(err.toString())),
       );

@@ -54,8 +54,8 @@ class Placeholder$ThemeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
     const imageSize = ThemeItem._imageSize;
-    final titleSize = context.textTheme.bodyMedium!;
-    final subtitleSize = context.textTheme.bodySmall!;
+    final titleStyle = context.textTheme.bodyMedium!;
+    final subtitleStyle = context.textTheme.bodySmall!;
     return Container(
       constraints: const BoxConstraints(minHeight: Sizes.p72),
       padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
@@ -76,13 +76,13 @@ class Placeholder$ThemeItem extends StatelessWidget {
             Container(
               color: color,
               width: 120,
-              height: titleSize.fontSize! * titleSize.height!,
+              height: titleStyle.fontSize! * titleStyle.height!,
             ),
             Gap.h4,
             Container(
               color: color,
               width: 64,
-              height: subtitleSize.fontSize! * subtitleSize.height!,
+              height: subtitleStyle.fontSize! * subtitleStyle.height!,
             ),
           ],
         ),

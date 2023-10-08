@@ -7,7 +7,7 @@ class _AccountSaveButton extends ConsumerWidget {
 
   void handleSubmit(BuildContext context, WidgetRef ref) {
     FocusScope.of(context).unfocus();
-    ref.read(accountControllerProvider.notifier).editProfile();
+    ref.read(accountControllerProvider.notifier).submit();
   }
 
   @override

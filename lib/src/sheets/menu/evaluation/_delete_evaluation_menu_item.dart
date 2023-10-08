@@ -13,18 +13,19 @@ class DeleteEvaluationMenuItem extends ConsumerWidget {
       // * 해당 평가를 삭제해요.
       await ref.read(removeEvaluationProvider(mediaId: media.id).future);
 
-      // * 삭제에 성공하면 평가 개수를 갱신해요.
+      // * [EVENT] 평가 개수를 갱신해요.
       ref //
           .read(profileControllerProvider.notifier)
           .onEvaluationsCountUpdated();
 
-      // * 위젯이 폐기되지 않은 경우에만 실행을 계속해요.
+      // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
 
-      // * 삭제에 성공하면 메뉴를 닫아요.
+      // * 메뉴를 닫아요.
       context.pop();
+
+      // * failure
     } catch (err) {
-      // * 삭제에 실패하면 메시지로 안내해요.
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(err.toString())),
       );

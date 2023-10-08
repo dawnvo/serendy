@@ -32,14 +32,14 @@ class EvaluateMediaScreen extends ConsumerWidget {
           ));
         }
 
-        // * 나의 평가 수를 갱신해요.
+        // * [EVENT] 평가 개수를 갱신해요.
         ref //
             .read(profileControllerProvider.notifier)
             .onEvaluationsCountUpdated();
       }
       //failure
-      else if (next.status == EvaluateMediaStatus.failure) {
-        final errorMessage = next.errorMessage ?? '서버에 문제가 생겼어요.';
+      if (next.status == EvaluateMediaStatus.failure) {
+        final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(SnackBar(content: Text(errorMessage)));

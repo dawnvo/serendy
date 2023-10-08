@@ -7,7 +7,7 @@ class _SearchBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(queryControllerProvider);
+    final controller = ref.watch(searchQueryControllerProvider);
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: _height),
@@ -23,7 +23,7 @@ class _SearchBar extends ConsumerWidget {
             autofocus: true,
           ),
         ),
-        //clear
+        //button
         ValueListenableBuilder(
           valueListenable: controller,
           child: IconButton(

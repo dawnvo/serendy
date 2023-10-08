@@ -7,9 +7,10 @@ class _EvaluateMediaEmotionGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final evaluation = ref.watch(evaluateMediaControllerProvider(mediaId)
-        .select((state) => state.evaluation));
     final debouncer = ref.watch(debouncerProvider);
+    final evaluation = ref.watch(
+      evaluateMediaControllerProvider(mediaId).select((_) => _.evaluation),
+    );
 
     return SizedBox(
       width: 320,

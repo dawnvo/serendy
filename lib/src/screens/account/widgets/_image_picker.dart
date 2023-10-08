@@ -8,8 +8,9 @@ class _AccountImagePicker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ImagePicker(
-      onChanged: (image) =>
-          ref.read(accountControllerProvider.notifier).changeAvatar(image),
+      onChanged: (image) => ref //
+          .read(accountControllerProvider.notifier)
+          .changeAvatar(image),
       image: image,
       circle: true,
     );
