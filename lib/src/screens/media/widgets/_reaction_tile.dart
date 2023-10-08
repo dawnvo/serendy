@@ -33,9 +33,10 @@ class _MediaReactionsTile extends StatelessWidget {
   Widget _buildEmptyReactionTile(BuildContext context) {
     return ListTile(
       onTap: () => _handleShowBottomSheet(context),
-      leading: const Icon(
-        RemixIcon.emotion_sad_line,
+      leading: Icon(
+        RemixIcon.emotion_normal_line,
         size: Sizes.p28,
+        color: context.colorScheme.outline,
       ),
       title: Text(
         '감상한 사람이 없어요',
@@ -59,10 +60,8 @@ class __ReactionIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final displayEmotions = emotions
-        .take(2)
-        .map((emotion) => _buildIcon(context, emotion))
-        .toList();
+    final displayEmotions =
+        emotions.take(2).map((emotion) => _buildIcon(context, emotion)).toList();
 
     return Wrap(
       spacing: -12,

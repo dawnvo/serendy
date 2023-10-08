@@ -8,7 +8,10 @@ class DeleteEvaluationMenuItem extends ConsumerWidget {
   const DeleteEvaluationMenuItem({required this.media});
   final Media media;
 
-  Future<void> handleTap(BuildContext context, WidgetRef ref) async {
+  Future<void> handleTap(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
     try {
       // * 해당 평가를 삭제해요.
       await ref.read(removeEvaluationProvider(mediaId: media.id).future);

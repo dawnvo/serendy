@@ -8,11 +8,12 @@ class ReactionDetailSheet extends StatelessWidget {
   const ReactionDetailSheet(this.reactions);
   final List<Evaluation?> reactions;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, List<Evaluation?> reactions) {
     context.showCustomBottomSheet((_) => ReactionDetailSheet(reactions));
   }
 
-  ///Convert `Evaluation` to `ReactionData`
+  /// Convert `Evaluation` to `ReactionData`
   List<_ReactionData> _convert(List<Evaluation?> reactions) {
     // * 중복된 감정을 병합해요
     final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
@@ -23,7 +24,7 @@ class ReactionDetailSheet extends StatelessWidget {
       return (count: count, emotion: emotion);
     }).toList();
 
-    // 정렬: 내림차순
+    // * 정렬: 내림차순
     return results..sort((b, a) => a.count.compareTo(b.count));
   }
 

@@ -11,6 +11,7 @@ class MediaMenuSheet extends StatelessWidget {
   const MediaMenuSheet(this.media);
   final Media media;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, Media media) {
     context.showCustomBottomSheet((_) => MediaMenuSheet(media));
   }

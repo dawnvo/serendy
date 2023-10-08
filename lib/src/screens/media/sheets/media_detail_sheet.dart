@@ -14,14 +14,14 @@ class MediaDetailSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final youtubeId = media.youtubeId;
 
-    // * DB에 트레일러 주소가 존재하면 영상을 틀어줘요.
+    // * 예고편 주소가 존재하면 영상을 틀어요.
     if (youtubeId.isNotEmpty) {
       return __YoutubeTrailerBody(
         youtubeId: youtubeId.first!,
         keywords: media.keywords.map((genre) => genre).toList(),
       );
     }
-    // * 트레일러 주소가 없으면 안내 화면을 표시해요.
+    // * 없으면 안내 화면을 표시해요.
     else {
       return const __EmptyBody();
     }
@@ -70,7 +70,7 @@ class __EmptyBody extends StatelessWidget {
         ),
         Gap.h16,
         Text(
-          "정보를 마련하는 중이에요\n나중에 다시 만나요",
+          "정보를 마련하는 중이에요",
           textAlign: TextAlign.center,
           style: context.textTheme.titleMedium,
         ),

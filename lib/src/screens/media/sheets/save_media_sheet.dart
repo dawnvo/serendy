@@ -9,11 +9,14 @@ class SaveMediaSheet extends ConsumerWidget {
   const SaveMediaSheet(this.media);
   final Media media;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, Media media) {
     context.showCustomBottomSheet((_) => SaveMediaSheet(media));
   }
 
+  /// 미디어를 저장할 곳(테마)을 선택해요.
   void handleSelect(BuildContext context, WidgetRef ref, Theme theme) {
+    // * 테마에 작품을 추가해요.
     ref.read(addThemeItemProvider(
       id: theme.id,
       mediaId: media.id,
@@ -24,7 +27,7 @@ class SaveMediaSheet extends ConsumerWidget {
         .read(profileControllerProvider.notifier)
         .onMyThemesUpdated();
 
-    // * 추가에 성공하면 메뉴를 닫고 메시지로 안내해요.
+    // * 메뉴를 닫고 메시지로 안내해요.
     context.pop();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: kSnackBarDisplayDurationShort,

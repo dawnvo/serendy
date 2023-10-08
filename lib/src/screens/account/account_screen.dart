@@ -6,9 +6,7 @@ import 'package:serendy/src/widgets/widgets.dart';
 import 'controller/account_controller.dart';
 
 part 'widgets/_account_controls.dart';
-part 'widgets/_birth_tile.dart';
 part 'widgets/_email_tile.dart';
-part 'widgets/_gender_tile.dart';
 part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
 part 'widgets/_save_button.dart';

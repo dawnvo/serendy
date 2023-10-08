@@ -8,7 +8,9 @@ class SaveMediaMenuItem extends StatelessWidget {
   final Media media;
 
   void handleTap(BuildContext context) {
+    // * 메뉴를 닫아요.
     context.pop();
+    // * 미디어 추가 시트를 열어요.
     SaveMediaSheet.show(context, media);
   }
 

@@ -7,8 +7,10 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
   const EvaluateMediaMenuItem({required this.media});
   final Media media;
 
-  void handleTap(BuildContext context) {
+  void handleTap(BuildContext context, WidgetRef ref) {
+    // * 메뉴를 닫아요.
     context.pop();
+    // * 평가 화면으로 이동해요.
     context.pushNamed(
       AppRoutes.evaluateMedia,
       extra: media,
@@ -21,10 +23,10 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
       evaluateMediaControllerProvider(media.id).select((_) => _.evaluation),
     );
 
-    // * 평가한 감정이 존재하면 감정을 표시해요.
+    // * 평가가 존재하면 표시해요.
     if (evaluation != null) {
       return MenuListTile(
-        onTap: () => handleTap(context),
+        onTap: () => handleTap(context, ref),
         icon: SvgPicture.asset(
           evaluation.emotion.filePath,
           height: Sizes.p24,
@@ -32,10 +34,10 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
         title: evaluation.emotion.label,
       );
     }
-    // * 평가한 감정이 없으면 아이콘을 표시해요.
+    // * 없으면 아이콘을 표시해요.
     else {
       return MenuListTile(
-        onTap: () => handleTap(context),
+        onTap: () => handleTap(context, ref),
         icon: const Icon(RemixIcon.emotion_fill),
         title: "평가하기",
       );

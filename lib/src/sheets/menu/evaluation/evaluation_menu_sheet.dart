@@ -11,6 +11,7 @@ class EvaluationMenuSheet extends StatelessWidget {
   const EvaluationMenuSheet(this.evaluation);
   final Evaluation evaluation;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, Evaluation evaluation) {
     context.showCustomBottomSheet((_) => EvaluationMenuSheet(evaluation));
   }

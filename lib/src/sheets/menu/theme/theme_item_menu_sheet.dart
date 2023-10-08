@@ -15,6 +15,7 @@ class ThemeItemMenuSheet extends ConsumerWidget {
   final Theme theme;
   final Media media;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, Theme theme, Media media) {
     context.showCustomBottomSheet((_) => ThemeItemMenuSheet(theme, media));
   }

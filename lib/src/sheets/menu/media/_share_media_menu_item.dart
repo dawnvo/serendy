@@ -6,7 +6,10 @@ class ShareMediaMenuItem extends StatelessWidget {
   const ShareMediaMenuItem({required this.media});
   final Media media;
 
-  void handleTap(BuildContext context) {}
+  void handleTap(BuildContext context) {
+    // TODO 딥링크 구현하기
+    throw UnimplementedError();
+  }
 
   @override
   Widget build(BuildContext context) {

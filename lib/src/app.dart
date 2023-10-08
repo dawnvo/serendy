@@ -10,7 +10,7 @@ class SerendyApp extends ConsumerWidget {
     final themeData = AppThemeData.fillWith();
 
     // * 핵심 기능이에요. 지속적으로 상태를 감시해
-    // * 승급 조건에 충족한 경우 RankUp 화면을 보여줘요.
+    // * 조건에 충족할 경우 RankUp 화면을 보여줘요.
     ref.listen(countEvaluationsProvider, (prev, next) {
       if (prev == null || !prev.hasValue || !next.hasValue) return;
       final prevCount = prev.value!;
