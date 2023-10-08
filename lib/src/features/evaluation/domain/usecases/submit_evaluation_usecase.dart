@@ -25,7 +25,7 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
     final Evaluation evaluation;
 
     // * 평가가 존재하는지 확인해요.
-    final doesEvaluationExist = await _evaluationRepository.fetchEvaluationSlice(
+    final doesEvaluationExist = await _evaluationRepository.fetchEvaluation(
       userId: payload.executorId,
       mediaId: payload.mediaId,
     );
@@ -63,7 +63,7 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
       changed = changed.restore();
     }
 
-    // * 평가를 갱신해요.
+    // * commit
     await _evaluationRepository.updateEvaluation(changed);
     return changed;
   }
@@ -97,7 +97,7 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
       emotion: payload.emotion,
     );
 
-    // * 평가를 생성해요.
+    // * commit
     await _evaluationRepository.createEvaluation(evaluation);
     return evaluation;
   }

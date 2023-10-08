@@ -37,4 +37,9 @@ abstract class EvaluationRepository {
   Future<void> updateEvaluation(
     Evaluation evaluation,
   );
+
+  /// 평가를 제거해요.
+  Future<void> removeEvaluation(
+    Evaluation evaluation,
+  );
 }

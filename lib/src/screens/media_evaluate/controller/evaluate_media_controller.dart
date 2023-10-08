@@ -47,7 +47,7 @@ class EvaluateMediaController extends _$EvaluateMediaController with NotifierMou
       }
 
       // * 동일한 감정을 선택한 경우 평가를 취소해요.
-      if (previousEvaluation?.emotion == emotion) {
+      else if (previousEvaluation?.emotion == emotion) {
         await ref.read(removeEvaluationProvider(
           mediaId: mediaId,
         ).future);

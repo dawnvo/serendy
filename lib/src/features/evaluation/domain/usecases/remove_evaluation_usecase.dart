@@ -8,12 +8,12 @@ typedef RemoveEvaluationPayload = ({
   MediaID mediaId,
 });
 
-final class RemoveEvaluationUsecase implements UseCase<RemoveEvaluationPayload, void> {
+final class RemoveEvaluationUsecase implements UseCase<RemoveEvaluationPayload, Evaluation> {
   const RemoveEvaluationUsecase(this._evaluationRepository);
   final EvaluationRepository _evaluationRepository;
 
   @override
-  Future<void> execute(RemoveEvaluationPayload payload) async {
+  Future<Evaluation> execute(RemoveEvaluationPayload payload) async {
     // * 평가가 존재하는지 확인해요.
     final evaluation = CoreAssert.notEmpty<Evaluation>(
       await _evaluationRepository.fetchEvaluationSlice(
@@ -31,6 +31,7 @@ final class RemoveEvaluationUsecase implements UseCase<RemoveEvaluationPayload, 
     final removed = evaluation.remove();
 
     // * commit
-    await _evaluationRepository.updateEvaluation(removed);
+    await _evaluationRepository.removeEvaluation(removed);
+    return removed;
   }
 }

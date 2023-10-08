@@ -3,20 +3,8 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 abstract final class EvaluationMapper {
   /**
-   *  Entity <-> Domain
+   *  Json -> Domain
    */
-  static EvaluationEntity toEntity(final Evaluation domain) {
-    return EvaluationEntity(
-      id: domain.id,
-      userId: domain.userId,
-      mediaId: domain.media.id,
-      emotion: domain.emotion,
-      createdAt: domain.createdAt,
-      updatedAt: domain.updatedAt,
-      removedAt: domain.removedAt,
-    );
-  }
-
   static Evaluation toDomain(final EvaluationEntity entity) {
     return Evaluation(
       media: EvaluationMedia(
@@ -33,9 +21,6 @@ abstract final class EvaluationMapper {
     );
   }
 
-  /**
-   *  Json -> Domain
-   */
   static Evaluation? toSingle(dynamic data) {
     if (data == null) return null;
     final entity = EvaluationEntity.fromJson(data as Json);

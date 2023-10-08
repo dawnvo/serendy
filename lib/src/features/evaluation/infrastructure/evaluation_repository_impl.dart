@@ -62,7 +62,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required MediaID mediaId,
   }) {
     const columns = '''
-      id
+      emotion
     ''';
     return supabase
         .from(_tableEvaluations)
@@ -82,15 +82,14 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     required UserID userId,
     required MediaID mediaId,
   }) {
-    const columns = '''
-      emotion
-    ''';
+    const columns = '*';
+    // * 제거한 평가도 가져와요.
+    // * 평가 유무 검증에 필요해요.
     return supabase
         .from(_tableEvaluations)
         .select(columns)
         .eq('user_id', userId)
         .eq('media_id', mediaId)
-        .is_('removed_at', null)
         .maybeSingle()
         .withConverter(EvaluationMapper.toSingle);
   }
@@ -102,7 +101,12 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<void> createEvaluation(
     Evaluation evaluation,
   ) {
-    final entity = EvaluationMapper.toEntity(evaluation);
+    final entity = EvaluationEntity(
+      id: evaluation.id,
+      userId: evaluation.userId,
+      mediaId: evaluation.media.id,
+      emotion: evaluation.emotion,
+    );
     return supabase //
         .from(_tableEvaluations)
         .insert(entity.toJson());
@@ -115,7 +119,28 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<void> updateEvaluation(
     Evaluation evaluation,
   ) {
-    final entity = EvaluationMapper.toEntity(evaluation);
+    final entity = EvaluationEntity(
+      emotion: evaluation.emotion,
+      updatedAt: evaluation.updatedAt,
+    );
+    return supabase
+        .from(_tableEvaluations)
+        // [JsonSerializable] include_if_null: false
+        .update({...entity.toJson(), 'removed_at': null})
+        .eq('user_id', entity.userId)
+        .eq('media_id', entity.mediaId);
+  }
+
+  /**
+   * 평가를 제거해요.
+   */
+  @override
+  Future<void> removeEvaluation(
+    Evaluation evaluation,
+  ) {
+    final entity = EvaluationEntity(
+      removedAt: evaluation.removedAt,
+    );
     return supabase
         .from(_tableEvaluations)
         .update(entity.toJson())

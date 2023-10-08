@@ -25,17 +25,14 @@ enum Emotion {
 final class Evaluation extends Equatable {
   final EvaluationID id;
 
-  /// 평가한 사용자
-  final UserID userId;
-
   /// 평가한 작품
   final EvaluationMedia media;
 
+  /// 평가한 사용자
+  final UserID userId;
+
   /// 감정 평가
   final Emotion emotion;
-
-  /// 비공개 상태
-  final bool private;
 
   /// 생성 날짜
   final DateTime createdAt;
@@ -47,21 +44,19 @@ final class Evaluation extends Equatable {
   final DateTime? removedAt;
 
   Evaluation({
-    required this.userId,
     required this.media,
+    required this.userId,
     required this.emotion,
     this.removedAt,
     final String? id,
-    final bool? private,
     final DateTime? createdAt,
     final DateTime? updatedAt,
   })  : id = id ?? Ulid().toString(),
-        private = private ?? true,
         createdAt = createdAt ?? DateTime.now(),
         updatedAt = updatedAt ?? DateTime.now();
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, emotion];
 }
 
 extension EvaluationX on Evaluation {
@@ -89,20 +84,18 @@ extension EvaluationX on Evaluation {
   // 평가 복사
   Evaluation copy({
     final EvaluationID? id,
-    final UserID? userId,
-    final bool? private,
-    final Emotion? emotion,
     final EvaluationMedia? media,
+    final UserID? userId,
+    final Emotion? emotion,
     final DateTime? createdAt,
     final DateTime? updatedAt,
     final DateTime? removedAt,
   }) {
     return Evaluation(
       id: id ?? this.id,
-      userId: userId ?? this.userId,
       media: media ?? this.media,
+      userId: userId ?? this.userId,
       emotion: emotion ?? this.emotion,
-      private: private ?? this.private,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       removedAt: removedAt,

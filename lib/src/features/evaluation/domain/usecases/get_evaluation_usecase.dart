@@ -14,7 +14,7 @@ final class GetEvaluationUsecase implements UseCase<GetEvaluationPayload, Evalua
 
   @override
   Future<Evaluation?> execute(GetEvaluationPayload payload) async {
-    final evaluation = await _evaluationRepository.fetchEvaluation(
+    final evaluation = await _evaluationRepository.fetchEvaluationSlice(
       userId: payload.userId,
       mediaId: payload.mediaId,
     );
