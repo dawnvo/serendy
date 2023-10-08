@@ -13,7 +13,10 @@ class _AccountControls extends ConsumerWidget {
         child: const Text('로그아웃'),
       ),
       TextButton(
-        onPressed: () => context.goNamed(AppRoutes.home),
+        onPressed: () => ref //
+            .read(accountControllerProvider.notifier)
+            .deleteUser()
+            .then((value) => context.goNamed(AppRoutes.signIn)),
         child: const Text('회원탈퇴'),
       ),
     ]);

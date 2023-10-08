@@ -7,6 +7,7 @@ export 'package:equatable/equatable.dart';
 export 'package:go_router/go_router.dart';
 export 'package:hooks_riverpod/hooks_riverpod.dart';
 export 'package:riverpod_annotation/riverpod_annotation.dart';
+export 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
 export 'package:responsive_builder/responsive_builder.dart' hide WidgetBuilder;
 
 //constants

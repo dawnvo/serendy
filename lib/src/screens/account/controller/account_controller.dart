@@ -32,29 +32,38 @@ class AccountController extends _$AccountController with NotifierMounted {
 
   /// 프로필을 수정해요.
   Future<void> editProfile() async {
-    state = const AsyncLoading();
+    // * loading
+    state = const AsyncValue.loading();
 
-    final newState = await AsyncValue.guard(() async {
+    try {
       // * 프로필을 수정해요.
       final edited = await ref.read(editProfileProvider(
         avatar: state.requireValue.avatar,
         username: state.requireValue.name,
       ).future);
 
-      // * 상태를 수동으로 설정해 `isEdited`를 초기화해요.
-      return state.requireValue.copyWith(
-        initialProfile: edited,
-        avatar: edited.avatar, // 로컬 이미지 주소 != 클라우드 이미지 주소
-      );
-    });
+      // * 컨트롤러가 폐기된 경우 작업을 끝내요.
+      if (!mounted) return;
 
-    // * 컨트롤러가 폐기된 경우 작업을 끝내요.
-    if (!mounted) return;
-    state = newState;
+      // * loaded
+      state = AsyncValue.data(state.requireValue.copyWith(
+        // 상태를 다시 설정해 `isEdited` 초기화
+        initialProfile: edited,
+        // 로컬 이미지 주소 != 클라우드 이미지 주소
+        avatar: edited.avatar,
+      ));
+    } catch (err, stack) {
+      state = AsyncValue.error(err, stack);
+    }
   }
 
-  /// TODO 로그아웃해요.
+  /// 로그아웃해요.
   Future<void> signOut() async {
     await ref.read(signOutProvider.future);
+  }
+
+  /// 회원탈퇴해요.
+  Future<void> deleteUser() async {
+    await ref.read(deleteUserProvider.future);
   }
 }

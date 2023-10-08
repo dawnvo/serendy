@@ -3,17 +3,18 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/profile/profile.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 part 'auth_service.g.dart';
 
 /// 구글 로그인을 진행해요.
 @riverpod
-Future<AuthResponse> signInWithGoogle(SignInWithGoogleRef ref) async {
+Future<AuthResponse> signInWithGoogle(
+  SignInWithGoogleRef ref,
+) async {
   const appAuth = FlutterAppAuth();
 
   // * Just a random string
@@ -83,21 +84,37 @@ Future<AuthResponse> signInWithGoogle(SignInWithGoogleRef ref) async {
 
 /// 로그아웃해요.
 @riverpod
-Future<void> signOut(SignOutRef ref) async {
+Future<void> signOut(
+  SignOutRef ref,
+) async {
   final supabase = ref.watch(supabaseProvider);
   await supabase.auth.signOut();
 }
 
+/// 회원탈퇴해요.
+@riverpod
+Future<void> deleteUser(
+  DeleteUserRef ref,
+) async {
+  final userId = ref.watch(requireUserIdProvider);
+  final supabase = ref.watch(supabaseProvider);
+  await supabase.auth.admin.deleteUser(userId);
+}
+
 /// 사용자 식별자를 가져와요.
 @riverpod
-UserID? currentUserId(CurrentUserIdRef ref) {
+UserID? currentUserId(
+  CurrentUserIdRef ref,
+) {
   final auth = ref.watch(supabaseProvider.select((_) => _.auth));
   return auth.currentUser?.id;
 }
 
 /// 사용자 식별자를 엄격히 가져와요.
 @riverpod
-UserID requireUserId(RequireUserIdRef ref) {
+UserID requireUserId(
+  RequireUserIdRef ref,
+) {
   final userId = ref.watch(currentUserIdProvider);
   if (userId == null) throw const UnauthorizedException();
   return userId;
