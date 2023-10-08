@@ -2,6 +2,8 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import '../profile/controller/profile_controller.dart';
+import '../theme/controller/theme_controller.dart';
 import 'controller/edit_theme_controller.dart';
 
 part 'widgets/_image_picker.dart';
@@ -22,8 +24,20 @@ class EditThemeScreen extends ConsumerWidget {
     final provider = editThemeControllerProvider(theme);
 
     ref.listen(provider, (previous, next) {
+      //success
+      if (next.status == EditThemeStatus.success) {
+        // * [EVENT] 테마 정보를 갱신해요.
+        ref //
+            .read(themeControllerProvider(theme.id).notifier)
+            .themeUpdated(next.editedTheme!);
+
+        // * [EVENT] 나의 테마 목록을 갱신해요.
+        ref //
+            .read(profileControllerProvider.notifier)
+            .onMyThemesUpdated();
+      }
       //failure
-      if (next.status == EditThemeStatus.failure) {
+      else if (next.status == EditThemeStatus.failure) {
         final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()

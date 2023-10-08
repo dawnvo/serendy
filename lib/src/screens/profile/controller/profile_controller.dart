@@ -30,4 +30,11 @@ class ProfileController extends _$ProfileController {
     // * 해당 공급자를 새로고침(초기화)해요.
     ref.invalidate(countEvaluationsProvider);
   }
+
+  /// [EVENT] 나의 테마 목록을 갱신해요.
+  Future<void> onMyThemesUpdated() async {
+    // * 컨트롤러가 초기화됐다면 해당 공급자를 새로고침해요.
+    if (!state.hasValue) return;
+    ref.invalidate(getThemesProvider);
+  }
 }

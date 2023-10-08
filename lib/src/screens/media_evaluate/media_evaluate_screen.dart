@@ -25,14 +25,6 @@ class EvaluateMediaScreen extends ConsumerWidget {
     ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
       //success
       if (next.status == EvaluateMediaStatus.success) {
-        // * 평가를 번복한 경우 메시지로 안내해요.
-        if (next.evaluation == null) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            duration: kSnackBarDisplayDurationShort,
-            content: Text("감상한 작품에서 삭제했어요."),
-          ));
-        }
-
         // * [EVENT] 미디어의 반응 목록을 갱신해요.
         ref //
             .read(mediaControllerProvider(media.id, media).notifier)
@@ -42,6 +34,14 @@ class EvaluateMediaScreen extends ConsumerWidget {
         ref //
             .read(profileControllerProvider.notifier)
             .onEvaluationsCountUpdated();
+
+        // * 평가를 번복한 경우 메시지로 안내해요.
+        if (next.evaluation == null) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            duration: kSnackBarDisplayDurationShort,
+            content: Text("감상한 작품에서 삭제했어요."),
+          ));
+        }
       }
       //failure
       if (next.status == EvaluateMediaStatus.failure) {

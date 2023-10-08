@@ -8,6 +8,7 @@ final class EditThemeState extends Equatable {
     required this.initialTheme,
     required this.private,
     required this.title,
+    this.editedTheme,
     this.image,
     this.description,
     this.errorMessage,
@@ -15,10 +16,11 @@ final class EditThemeState extends Equatable {
 
   final EditThemeStatus status;
   final Theme initialTheme;
-  final String? image;
+  final Theme? editedTheme;
   final String title;
-  final String? description;
+  final String? image;
   final bool private;
+  final String? description;
   final String? errorMessage;
 
   bool get isEdited =>
@@ -30,19 +32,21 @@ final class EditThemeState extends Equatable {
   EditThemeState copyWith({
     final EditThemeStatus? status,
     final Theme? initialTheme,
-    final String? image,
+    final Theme? editedTheme,
     final String? title,
-    final String? description,
+    final String? image,
     final bool? private,
+    final String? description,
     final String? errorMessage,
   }) {
     return EditThemeState(
       status: status ?? this.status,
       initialTheme: initialTheme ?? this.initialTheme,
-      image: image ?? this.image,
+      editedTheme: editedTheme ?? this.editedTheme,
       title: title ?? this.title,
-      description: description ?? this.description,
+      image: image ?? this.image,
       private: private ?? this.private,
+      description: description ?? this.description,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
@@ -50,10 +54,10 @@ final class EditThemeState extends Equatable {
   @override
   List<Object?> get props => [
         status,
-        image,
         title,
-        description,
+        image,
         private,
+        description,
         errorMessage,
       ];
 }

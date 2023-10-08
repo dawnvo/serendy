@@ -3,6 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
 
+import '../../profile/controller/profile_controller.dart';
+
 class SaveMediaSheet extends ConsumerWidget {
   const SaveMediaSheet(this.media);
   final Media media;
@@ -16,6 +18,11 @@ class SaveMediaSheet extends ConsumerWidget {
       id: theme.id,
       mediaId: media.id,
     ));
+
+    // * [EVENT] 나의 테마 목록을 갱신해요.
+    ref //
+        .read(profileControllerProvider.notifier)
+        .onMyThemesUpdated();
 
     // * 추가에 성공하면 메뉴를 닫고 메시지로 안내해요.
     context.pop();

@@ -1,8 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
-import '../../theme/controller/theme_controller.dart';
-
 part 'edit_theme_controller.g.dart';
 part 'edit_theme_state.dart';
 
@@ -27,12 +25,12 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
 
   /// 제목을 수정해요.
   void changeTitle(String title) {
-    state = state.copyWith(title: title);
+    state = state.copyWith(title: title.trim());
   }
 
   /// 설명을 수정해요.
   void changeDescription(String description) {
-    state = state.copyWith(description: description);
+    state = state.copyWith(description: description.trim());
   }
 
   /// 상태를 변경해요.
@@ -54,16 +52,14 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
         private: state.private,
       ).future);
 
-      // * [EVENT] 테마 화면의 상태를 갱신해요.
-      ref //
-          .read(themeControllerProvider(theme.id).notifier)
-          .themeUpdated(edited);
-
       // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
 
       // * loaded
-      state = state.copyWith(status: EditThemeStatus.success);
+      state = state.copyWith(
+        status: EditThemeStatus.success,
+        editedTheme: edited,
+      );
 
       // * 이전 화면으로 돌아가요.
       ref.read(goRouterProvider).pop();
