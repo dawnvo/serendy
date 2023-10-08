@@ -5,12 +5,6 @@ import 'package:serendy/src/features/profile/profile.dart';
 abstract class EvaluationRepository {
   const EvaluationRepository();
 
-  /// 평가 여럿을 관찰해요.
-  Stream<List<Evaluation?>> watchEvaluations({
-    UserID? userId,
-    MediaID? mediaId,
-  });
-
   /// 평가 여럿을 불러와요.
   Future<List<Evaluation?>> fetchEvaluations({
     UserID? userId,

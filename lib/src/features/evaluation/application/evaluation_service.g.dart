@@ -6,7 +6,7 @@ part of 'evaluation_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMediaReactionsHash() => r'89b4b06ea8c2b458f25f25f67d79a428dbf012a1';
+String _$getMediaReactionsHash() => r'11e3a78864ab15b98c11303e0e06de37a61c7850';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -169,24 +169,24 @@ class _GetMediaReactionsProviderElement
   String get mediaId => (origin as GetMediaReactionsProvider).mediaId;
 }
 
-String _$watchEvaluationsHash() => r'435ad1e7244c3fd68b09f1b2eb484cc08561558f';
+String _$getEvaluationsHash() => r'84728e9ba405893ef3a2c16bc81f9e71bd0fe576';
 
 /// 평가 목록을 구독해요.
 ///
-/// Copied from [watchEvaluations].
-@ProviderFor(watchEvaluations)
-final watchEvaluationsProvider =
-    AutoDisposeStreamProvider<List<Evaluation?>>.internal(
-  watchEvaluations,
-  name: r'watchEvaluationsProvider',
+/// Copied from [getEvaluations].
+@ProviderFor(getEvaluations)
+final getEvaluationsProvider =
+    AutoDisposeFutureProvider<List<Evaluation?>>.internal(
+  getEvaluations,
+  name: r'getEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$watchEvaluationsHash,
+      : _$getEvaluationsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef WatchEvaluationsRef = AutoDisposeStreamProviderRef<List<Evaluation?>>;
+typedef GetEvaluationsRef = AutoDisposeFutureProviderRef<List<Evaluation?>>;
 String _$countEvaluationsHash() => r'f3be6547042028f257d9ad6c15f960df5da57c10';
 
 /// 평가 개수를 조회해요.

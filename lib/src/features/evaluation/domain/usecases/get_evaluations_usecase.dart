@@ -3,7 +3,8 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 typedef GetEvaluationsPayload = ({
-  MediaID mediaId,
+  MediaID? mediaId,
+  MediaID? userId,
 });
 
 final class GetEvaluationsUsecase implements UseCase<GetEvaluationsPayload, List<Evaluation?>> {
@@ -14,6 +15,7 @@ final class GetEvaluationsUsecase implements UseCase<GetEvaluationsPayload, List
   Future<List<Evaluation?>> execute(GetEvaluationsPayload payload) {
     final evaluations = _evaluationRepository.fetchEvaluations(
       mediaId: payload.mediaId,
+      userId: payload.userId,
     );
     return evaluations;
   }

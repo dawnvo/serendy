@@ -1,24 +1,15 @@
-import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+
+import 'evaluation_mapper.dart';
 
 final class EvaluationRepositoryImpl extends EvaluationRepository {
   const EvaluationRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
   static const String _tableEvaluations = TablePath.evaluations;
-  /**
-   * 평가 여럿을 관찰해요.
-   */
-  @override
-  Stream<List<Evaluation?>> watchEvaluations({
-    UserID? userId,
-    MediaID? mediaId,
-  }) {
-    return Stream.value(evaluationsMock);
-  }
 
   /**
    * 평가 여럿을 불러와요.
@@ -27,8 +18,20 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<List<Evaluation?>> fetchEvaluations({
     UserID? userId,
     MediaID? mediaId,
-  }) async {
-    return evaluationsMock;
+  }) {
+    const columns = '''
+      id,
+      emotion,
+      media_id,
+      medias ( title, image )
+    ''';
+    final query = supabase.from(_tableEvaluations).select(columns);
+    if (userId != null) query.eq('user_id', userId);
+    if (mediaId != null) query.eq('media_id', mediaId);
+    return query //
+        .is_('removed_at', null)
+        .range(0, 10)
+        .withConverter(EvaluationMapper.toList);
   }
 
   /**
@@ -37,8 +40,17 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   @override
   Future<int> countEvaluations({
     required UserID userId,
-  }) async {
-    return 800;
+  }) {
+    const options = FetchOptions(
+      count: CountOption.exact,
+      head: true,
+    );
+    return supabase
+        .from(_tableEvaluations)
+        .select('id', options)
+        .eq('user_id', userId)
+        .is_('removed_at', null)
+        .then((res) => res.count);
   }
 
   /**
@@ -48,8 +60,18 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<Evaluation?> fetchEvaluationSlice({
     required UserID userId,
     required MediaID mediaId,
-  }) async {
-    return evaluationsMock[0];
+  }) {
+    const columns = '''
+      id
+    ''';
+    return supabase
+        .from(_tableEvaluations)
+        .select(columns)
+        .eq('user_id', userId)
+        .eq('media_id', mediaId)
+        .is_('removed_at', null)
+        .maybeSingle()
+        .withConverter(EvaluationMapper.toSingle);
   }
 
   /**
@@ -59,8 +81,18 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<Evaluation?> fetchEvaluation({
     required UserID userId,
     required MediaID mediaId,
-  }) async {
-    return evaluationsMock[0];
+  }) {
+    const columns = '''
+      emotion
+    ''';
+    return supabase
+        .from(_tableEvaluations)
+        .select(columns)
+        .eq('user_id', userId)
+        .eq('media_id', mediaId)
+        .is_('removed_at', null)
+        .maybeSingle()
+        .withConverter(EvaluationMapper.toSingle);
   }
 
   /**
@@ -69,8 +101,11 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   @override
   Future<void> createEvaluation(
     Evaluation evaluation,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = EvaluationMapper.toEntity(evaluation);
+    return supabase //
+        .from(_tableEvaluations)
+        .insert(entity.toJson());
   }
 
   /**
@@ -79,7 +114,12 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   @override
   Future<void> updateEvaluation(
     Evaluation evaluation,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = EvaluationMapper.toEntity(evaluation);
+    return supabase
+        .from(_tableEvaluations)
+        .update(entity.toJson())
+        .eq('user_id', entity.userId)
+        .eq('media_id', entity.mediaId);
   }
 }

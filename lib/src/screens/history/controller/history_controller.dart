@@ -14,7 +14,7 @@ class HistoryController extends _$HistoryController {
     final evaluationsCount = await ref.watch(countEvaluationsProvider.future);
 
     // * 내 평가를 여럿 불러와요.
-    final evaluations = await ref.watch(watchEvaluationsProvider.future);
+    final evaluations = await ref.watch(getEvaluationsProvider.future);
 
     // * LOADED
     return HistoryState(

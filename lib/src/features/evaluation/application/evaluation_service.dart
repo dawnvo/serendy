@@ -11,16 +11,22 @@ Future<List<Evaluation?>> getMediaReactions(
   GetMediaReactionsRef ref, {
   required MediaID mediaId,
 }) {
-  return EvaluationModule.getEvaluationsUsecase.execute((mediaId: mediaId));
+  return EvaluationModule.getEvaluationsUsecase.execute((
+    mediaId: mediaId,
+    userId: null,
+  ));
 }
 
 /// 평가 목록을 구독해요.
 @riverpod
-Stream<List<Evaluation?>> watchEvaluations(
-  WatchEvaluationsRef ref,
+Future<List<Evaluation?>> getEvaluations(
+  GetEvaluationsRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.watchEvaluationsUsecase.execute((userId: userId));
+  return EvaluationModule.getEvaluationsUsecase.execute((
+    userId: userId,
+    mediaId: null,
+  ));
 }
 
 /// 평가 개수를 조회해요.

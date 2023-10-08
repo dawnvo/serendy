@@ -3,7 +3,6 @@ import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluation_u
 import 'package:serendy/src/features/evaluation/domain/usecases/get_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/remove_evaluation_usecase.dart';
 import 'package:serendy/src/features/evaluation/domain/usecases/submit_evaluation_usecase.dart';
-import 'package:serendy/src/features/evaluation/domain/usecases/watch_evaluations_usecase.dart';
 import 'package:serendy/src/features/evaluation/infrastructure/evaluation_repository_impl.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
@@ -16,10 +15,6 @@ class EvaluationModule {
   );
 
   // UseCase
-  static final watchEvaluationsUsecase = WatchEvaluationsUsecase(
-    EvaluationModule.evaluationRepository,
-  );
-
   static final getEvaluationsUsecase = GetEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
