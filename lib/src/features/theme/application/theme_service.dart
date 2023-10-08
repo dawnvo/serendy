@@ -5,15 +5,6 @@ import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_service.g.dart';
 
-/// 나의 테마를 구독해요.
-@riverpod
-Stream<List<Theme?>> watchMyThemes(
-  WatchMyThemesRef ref,
-) {
-  final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.watchThemesUsecase.execute((userId: userId));
-}
-
 /// 테마 여럿을 불러와요.
 @riverpod
 Future<List<Theme?>> getThemes(

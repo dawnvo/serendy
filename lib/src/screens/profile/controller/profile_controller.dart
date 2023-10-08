@@ -9,7 +9,7 @@ part 'profile_state.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<ProfileState> build() async {
-    final themes = await ref.watch(watchMyThemesProvider.future);
+    final themes = await ref.watch(getThemesProvider.future);
     final count = await ref.watch(countEvaluationsProvider.future);
 
     return ProfileState(

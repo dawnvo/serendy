@@ -5,11 +5,6 @@ import 'package:serendy/src/features/theme/theme.dart';
 abstract class ThemeRepository {
   const ThemeRepository();
 
-  /// 테마 여럿을 관찰해요.
-  Stream<List<Theme?>> watchThemes({
-    UserID? userId,
-  });
-
   /// 테마 여럿을 불러와요.
   Future<List<Theme?>> fetchThemes({
     UserID? userId,
@@ -41,14 +36,14 @@ abstract class ThemeRepository {
   });
 
   /// 테마에 항목을 추가해요.
-  Future<void> addItem(
-    Theme theme,
-    MediaID mediaId,
-  );
+  Future<void> addItem({
+    required ThemeID themeId,
+    required MediaID mediaId,
+  });
 
   /// 테마의 항목을 삭제해요.
-  Future<void> deleteItem(
-    Theme theme,
-    MediaID mediaId,
-  );
+  Future<void> deleteItem({
+    required ThemeID themeId,
+    required MediaID mediaId,
+  });
 }

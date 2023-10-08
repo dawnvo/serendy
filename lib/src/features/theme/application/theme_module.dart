@@ -8,7 +8,6 @@ import 'package:serendy/src/features/theme/domain/usecases/get_theme_items_useca
 import 'package:serendy/src/features/theme/domain/usecases/get_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/get_themes_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/remove_theme_usecase.dart';
-import 'package:serendy/src/features/theme/domain/usecases/watch_themes_usecase.dart';
 import 'package:serendy/src/features/theme/infrastructure/theme_repository_impl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -19,9 +18,6 @@ abstract final class ThemeModule {
   );
 
   // UseCase
-  static final watchThemesUsecase = WatchThemesUsecase(
-    ThemeModule.themeRepository,
-  );
 
   static final getThemesUsecase = GetThemesUsecase(
     ThemeModule.themeRepository,

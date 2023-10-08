@@ -6,23 +6,6 @@ part of 'theme_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$watchMyThemesHash() => r'a5879cba946418bda25eb5bb7d1433a9f2e436df';
-
-/// 나의 테마를 구독해요.
-///
-/// Copied from [watchMyThemes].
-@ProviderFor(watchMyThemes)
-final watchMyThemesProvider = AutoDisposeStreamProvider<List<Theme?>>.internal(
-  watchMyThemes,
-  name: r'watchMyThemesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$watchMyThemesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef WatchMyThemesRef = AutoDisposeStreamProviderRef<List<Theme?>>;
 String _$getThemesHash() => r'8aff11e49cfce1513cd49eb69b6e5b37d02ca208';
 
 /// 테마 여럿을 불러와요.

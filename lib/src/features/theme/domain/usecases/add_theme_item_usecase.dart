@@ -45,7 +45,10 @@ final class AddThemeItemUsecase implements UseCase<AddThemeItemPayload, Theme> {
     ));
 
     // * commit
-    await _themeRepository.addItem(itemAdded, payload.mediaId);
+    await _themeRepository.addItem(
+      themeId: itemAdded.id,
+      mediaId: payload.mediaId,
+    );
     return itemAdded;
   }
 }

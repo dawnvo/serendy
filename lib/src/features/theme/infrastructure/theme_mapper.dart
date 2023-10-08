@@ -1,6 +1,25 @@
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 abstract final class ThemeMapper {
+  /**
+   *  Entity <-> Domain
+   */
+  static ThemeEntity toEntity(final Theme model) {
+    return ThemeEntity(
+      id: model.id,
+      ownerId: model.owner.id,
+      title: model.title,
+      description: model.description,
+      image: model.image,
+      private: model.private,
+      itemsCount: model.itemsCount,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
+      removedAt: model.removedAt,
+    );
+  }
+
   static Theme toDomain(final ThemeEntity entity) {
     return Theme(
       owner: ThemeOwner(
@@ -23,23 +42,26 @@ abstract final class ThemeMapper {
     );
   }
 
-  static ThemeEntity toData(final Theme model) {
-    return ThemeEntity(
-      id: model.id,
-      ownerId: model.owner.id,
-      title: model.title,
-      description: model.description,
-      image: model.image,
-      private: model.private,
-      itemsCount: model.itemsCount,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
-      removedAt: model.removedAt,
-    );
+  /**
+   *  Json -> Domain
+   */
+  static Theme? toSingle(dynamic data) {
+    if (data == null) return null;
+    final entity = ThemeEntity.fromJson(data as Json);
+    return toDomain(entity);
+  }
+
+  static List<Theme?> toList(dynamic data) {
+    if (data == null) return [];
+    final dataList = data as List<dynamic>;
+    return dataList.map((item) => toSingle(item)).toList();
   }
 }
 
 abstract final class ThemeItemMapper {
+  /**
+   *  Entity -> Domain
+   */
   static ThemeItem toDomain(final ThemeItemEntity entity) {
     return ThemeItem(
       mediaId: entity.mediaId ?? '',
@@ -49,10 +71,18 @@ abstract final class ThemeItemMapper {
     );
   }
 
-  static ThemeItemEntity toData(final ThemeItem item) {
-    return ThemeItemEntity(
-      addedAt: item.addedAt,
-      mediaId: item.mediaId,
-    );
+  /**
+   *  Json -> Domain
+   */
+  static ThemeItem? toSingle(dynamic data) {
+    if (data == null) return null;
+    final entity = ThemeItemEntity.fromJson(data as Json);
+    return toDomain(entity);
+  }
+
+  static List<ThemeItem?> toList(dynamic data) {
+    if (data == null) return [];
+    final dataList = data as List<dynamic>;
+    return dataList.map((item) => toSingle(item)).toList();
   }
 }

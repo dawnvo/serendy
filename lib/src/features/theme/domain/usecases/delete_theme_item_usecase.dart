@@ -9,8 +9,7 @@ typedef DeleteThemeItemPayload = ({
   MediaID mediaId,
 });
 
-final class DeleteThemeItemUsecase
-    implements UseCase<DeleteThemeItemPayload, Theme> {
+final class DeleteThemeItemUsecase implements UseCase<DeleteThemeItemPayload, Theme> {
   const DeleteThemeItemUsecase(this._themeRepository);
   final ThemeRepository _themeRepository;
 
@@ -30,7 +29,10 @@ final class DeleteThemeItemUsecase
     final itemDeleted = theme.deleteItem(payload.mediaId);
 
     // * commit
-    await _themeRepository.deleteItem(itemDeleted, payload.mediaId);
+    await _themeRepository.deleteItem(
+      themeId: itemDeleted.id,
+      mediaId: payload.mediaId,
+    );
     return itemDeleted;
   }
 }

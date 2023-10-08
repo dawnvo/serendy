@@ -1,8 +1,9 @@
-import 'package:serendy/src/configs/_mockup.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 import 'package:serendy/src/features/theme/theme.dart';
+
+import 'theme_mapper.dart';
 
 final class ThemeRepositoryImpl implements ThemeRepository {
   const ThemeRepositoryImpl(this.supabase);
@@ -12,23 +13,28 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   static const String _tableThemeItems = TablePath.themeItems;
 
   /**
-   * 테마 여럿을 관찰해요.
-   */
-  @override
-  Stream<List<Theme?>> watchThemes({
-    UserID? userId,
-  }) {
-    return Stream.value(themesMock);
-  }
-
-  /**
    * 테마 여럿을 불러와요.
    */
   @override
   Future<List<Theme?>> fetchThemes({
     UserID? userId,
-  }) async {
-    return themesMock;
+  }) {
+    const columns = '''
+      id,
+      title,
+      image,
+      private,
+      description,
+      items_count,
+      owner_id,
+      profiles ( name, avatar )
+    ''';
+    final query = supabase.from(_tableThemes).select(columns);
+    if (userId != null) query.eq('owner_id', userId);
+    return query //
+        .is_('removed_at', null)
+        .range(0, 10)
+        .withConverter(ThemeMapper.toList);
   }
 
   /**
@@ -37,8 +43,17 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<Theme?> fetchThemeSlice({
     required ThemeID id,
-  }) async {
-    return themesMock[0];
+  }) {
+    const columns = '''
+      id
+    ''';
+    return supabase
+        .from(_tableThemes)
+        .select(columns)
+        .eq('id', id)
+        .is_('removed_at', null)
+        .maybeSingle()
+        .withConverter(ThemeMapper.toSingle);
   }
 
   /**
@@ -47,8 +62,24 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<Theme?> fetchTheme({
     required ThemeID id,
-  }) async {
-    return themesMock[0];
+  }) {
+    const columns = '''
+      id,
+      title,
+      image,
+      private,
+      description,
+      items_count,
+      owner_id,
+      profiles ( name, avatar )
+    ''';
+    return supabase
+        .from(_tableThemes)
+        .select(columns)
+        .eq('id', id)
+        .is_('removed_at', null)
+        .maybeSingle()
+        .withConverter(ThemeMapper.toSingle);
   }
 
   /**
@@ -57,8 +88,11 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<void> createTheme(
     Theme theme,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = ThemeMapper.toEntity(theme);
+    return supabase //
+        .from(_tableThemes)
+        .insert(entity.toJson());
   }
 
   /**
@@ -67,8 +101,12 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<void> updateTheme(
     Theme theme,
-  ) async {
-    throw UnimplementedError();
+  ) {
+    final entity = ThemeMapper.toEntity(theme);
+    return supabase //
+        .from(_tableThemes)
+        .update(entity.toJson())
+        .eq('id', entity.id);
   }
 
   /**
@@ -77,29 +115,51 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<List<ThemeItem?>> fetchItems({
     required ThemeID id,
-  }) async {
-    return themesMock[0].items;
+  }) {
+    const columns = '''
+      added_at,
+      media_id,
+      medias ( * )
+    ''';
+    return supabase
+        .from(_tableThemeItems)
+        .select(columns)
+        .eq('theme_id', id)
+        .withConverter(ThemeItemMapper.toList);
   }
 
   /**
    * 테마에 항목을 추가해요.
    */
   @override
-  Future<void> addItem(
-    Theme theme,
-    MediaID mediaId,
-  ) async {
-    throw UnimplementedError();
+  Future<void> addItem({
+    required ThemeID themeId,
+    required MediaID mediaId,
+  }) {
+    final entity = ThemeItemEntity(
+      themeId: themeId,
+      mediaId: mediaId,
+    );
+    return supabase //
+        .from(_tableThemeItems)
+        .upsert(entity.toJson());
   }
 
   /**
    * 테마의 항목을 삭제해요.
    */
   @override
-  Future<void> deleteItem(
-    Theme theme,
-    MediaID mediaId,
-  ) async {
-    throw UnimplementedError();
+  Future<void> deleteItem({
+    required ThemeID themeId,
+    required MediaID mediaId,
+  }) {
+    final entity = ThemeItemEntity(
+      themeId: themeId,
+      mediaId: mediaId,
+    );
+    return supabase //
+        .from(_tableThemeItems)
+        .delete()
+        .match(entity.toJson());
   }
 }
