@@ -6,7 +6,7 @@ part of 'media_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mediaControllerHash() => r'960a9c580de901048f9381b34b5c5ec98e9bc3b0';
+String _$mediaControllerHash() => r'27b870289bab8af48fec83f074ad510769bebae2';
 
 /// Copied from Dart SDK
 class _SystemHash {

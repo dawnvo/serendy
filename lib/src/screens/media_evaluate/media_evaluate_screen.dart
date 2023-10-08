@@ -5,6 +5,7 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import '../media/controller/media_controller.dart';
 import '../profile/controller/profile_controller.dart';
 import 'controller/evaluate_media_controller.dart';
 
@@ -32,7 +33,12 @@ class EvaluateMediaScreen extends ConsumerWidget {
           ));
         }
 
-        // * [EVENT] 평가 개수를 갱신해요.
+        // * [EVENT] 미디어의 반응 목록을 갱신해요.
+        ref //
+            .read(mediaControllerProvider(media.id, media).notifier)
+            .onMediaReactionsUpdated();
+
+        // * [EVENT] 나의 평가 개수를 갱신해요.
         ref //
             .read(profileControllerProvider.notifier)
             .onEvaluationsCountUpdated();

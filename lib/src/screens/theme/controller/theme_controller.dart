@@ -8,7 +8,7 @@ part 'theme_state.dart';
 class ThemeController extends _$ThemeController {
   @override
   FutureOr<ThemeState> build(ThemeID id, [Theme? theme]) async {
-    // * 이미 작품을 불러온 경우 재사용해요.
+    // * 이미 테마를 불러온 경우 재사용해요.
     // * 특수 경로로 유입한 경우 새로 불러와요.
     theme ??= await ref.watch(getThemeProvider(id: id).future);
 
