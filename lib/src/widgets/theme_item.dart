@@ -52,37 +52,42 @@ class Placeholder$ThemeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = context.colorScheme.surfaceVariant;
-    const imageSize = ThemeItem._imageSize;
     final titleStyle = context.textTheme.bodyMedium!;
     final subtitleStyle = context.textTheme.bodySmall!;
+    final color = context.colorScheme.surfaceVariant;
+    final decoration = BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(Sizes.p4)),
+      color: color,
+    );
     return Container(
       constraints: const BoxConstraints(minHeight: Sizes.p72),
       padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
       child: Row(children: [
+        //image
         ClipRRect(
           borderRadius: BorderRadius.circular(kBorderRadius),
           clipBehavior: Clip.hardEdge,
           child: Container(
+            width: ThemeItem._imageSize,
+            height: ThemeItem._imageSize,
             color: color,
-            width: imageSize,
-            height: imageSize,
           ),
         ),
         Gap.w16,
+        //titles
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: color,
               width: 120,
-              height: titleStyle.fontSize! * titleStyle.height!,
+              height: titleStyle.fontSize!,
+              decoration: decoration,
             ),
-            Gap.h4,
+            Gap.h8,
             Container(
-              color: color,
               width: 64,
-              height: subtitleStyle.fontSize! * subtitleStyle.height!,
+              height: subtitleStyle.fontSize!,
+              decoration: decoration,
             ),
           ],
         ),

@@ -124,16 +124,17 @@ class _MediaTemplate extends StatelessWidget {
 //Placeholder
 class _Placeholder$MediaScreen extends StatelessWidget {
   const _Placeholder$MediaScreen(this.media);
-
   final Media? media;
 
   @override
   Widget build(BuildContext context) {
     final data = media;
     if (data == null) {
-      return const Center(child: CircularProgressIndicator());
+      return Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: CircularProgressIndicator()),
+      );
     }
-
     return _MediaTemplate(
       coverImage: _MediaCoverImage(image: data.image),
       title: _MediaTitle(title: data.title),

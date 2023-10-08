@@ -19,7 +19,7 @@ class MediaCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Material(
         child: DecoratedBox(
-          // [Image] 위젯에 그라디언트 효과를 적용해요.
+          //gradient effect
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -35,7 +35,7 @@ class MediaCard extends StatelessWidget {
             ),
           ),
 
-          // [Material] 위젯에 스플래시 효과를 전달해요.
+          //ripple effect
           child: Ink.image(
             image: NetworkImage(media.image),
             fit: BoxFit.cover,

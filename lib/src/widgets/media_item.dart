@@ -43,9 +43,12 @@ class Placeholder$MediaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleStyle = context.textTheme.bodyLarge!;
     final color = context.colorScheme.surfaceVariant;
-    const imageSize = MediaItem._imageSize;
-    final titleStyle = context.textTheme.bodyMedium!;
+    final decoration = BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(Sizes.p4)),
+      color: color,
+    );
     return Container(
       constraints: const BoxConstraints(minHeight: Sizes.p64),
       padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
@@ -54,16 +57,16 @@ class Placeholder$MediaItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(kBorderRadius),
           clipBehavior: Clip.hardEdge,
           child: Container(
+            width: MediaItem._imageSize,
+            height: MediaItem._imageSize,
             color: color,
-            width: imageSize,
-            height: imageSize,
           ),
         ),
         Gap.w16,
         Container(
-          color: color,
           width: 120,
-          height: titleStyle.fontSize! * titleStyle.height!,
+          height: titleStyle.fontSize!,
+          decoration: decoration,
         ),
       ]),
     );

@@ -44,7 +44,9 @@ class ThemeScreen extends ConsumerWidget {
         ),
         mediasGrid: _ThemeItemsGrid(
           theme: state.theme,
-          medias: state.theme.items.map((item) => item!.convertEntity).toList(),
+          medias: state.theme.items //
+              .map((item) => item!.convertEntity)
+              .toList(),
         ),
       ),
       loading: () => _Placeholder$ThemeScreen(theme),
@@ -111,16 +113,17 @@ class _ThemeTemplate extends StatelessWidget {
 //Placeholder
 class _Placeholder$ThemeScreen extends StatelessWidget {
   const _Placeholder$ThemeScreen(this.theme);
-
   final Theme? theme;
 
   @override
   Widget build(BuildContext context) {
     final data = theme;
     if (data == null) {
-      return const Center(child: CircularProgressIndicator());
+      return Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: CircularProgressIndicator()),
+      );
     }
-
     return _ThemeTemplate(
       background: _ThemeBackground(image: data.image),
       titles: _ThemeTitles(

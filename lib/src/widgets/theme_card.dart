@@ -61,12 +61,19 @@ class Placeholder$ThemeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
+    final decoration = BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(Sizes.p4)),
+      color: color,
+    );
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        //image
         ClipRRect(
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(kBorderRadius),
+          ),
           clipBehavior: Clip.hardEdge,
           child: AspectRatio(
             aspectRatio: 1 / 1,
@@ -74,10 +81,11 @@ class Placeholder$ThemeCard extends StatelessWidget {
           ),
         ),
         Gap.h12,
+        //title
         Container(
-          color: color,
           width: 120,
           height: 20,
+          decoration: decoration,
         ),
       ],
     );

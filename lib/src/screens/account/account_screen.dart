@@ -48,8 +48,9 @@ class AccountScreen extends ConsumerWidget {
         ],
         controls: const _AccountControls(),
       ),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
+      loading: () => Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: CircularProgressIndicator()),
       ),
       error: (err, stack) => Scaffold(
         body: Center(child: Text(err.toString())),

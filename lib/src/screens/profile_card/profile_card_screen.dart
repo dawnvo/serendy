@@ -19,8 +19,9 @@ class ProfileCardScreen extends HookConsumerWidget {
     final meValue = ref.watch(getMeProvider);
 
     if (meValue.isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
+      return Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
 

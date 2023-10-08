@@ -70,6 +70,8 @@ class _ProfileTemplate extends StatelessWidget {
             ),
           ),
         ),
+
+        //list
         themesList,
       ]),
     );
@@ -83,22 +85,23 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = context.colorScheme.surfaceVariant;
+    final decoration = BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(Sizes.p4)),
+      color: color,
+    );
     //widgets
-    final indicator = Column(
+    final Column indicator = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 12,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(Sizes.p4),
-          ),
+          height: 14,
+          decoration: decoration,
         ),
         Gap.h12,
         Container(
-          height: 18,
+          height: 16,
           width: 80,
-          color: color,
+          decoration: decoration,
         ),
       ],
     );
