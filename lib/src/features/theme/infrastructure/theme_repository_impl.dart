@@ -1,10 +1,15 @@
 import 'package:serendy/src/configs/_mockup.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/theme/theme.dart';
 
 final class ThemeRepositoryImpl implements ThemeRepository {
-  const ThemeRepositoryImpl();
+  const ThemeRepositoryImpl(this.supabase);
+  final SupabaseClient supabase;
+
+  static const String _tableThemes = TablePath.themes;
+  static const String _tableThemeItems = TablePath.themeItems;
 
   /**
    * 테마 여럿을 관찰해요.

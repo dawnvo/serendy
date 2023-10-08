@@ -1,8 +1,12 @@
 import 'package:serendy/src/configs/_mockup.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 final class ProfileRepositoryImpl implements ProfileRepository {
-  const ProfileRepositoryImpl();
+  const ProfileRepositoryImpl(this.supabase);
+  final SupabaseClient supabase;
+
+  static const String _tableProfiles = TablePath.profiles;
 
   /**
    * 프로필을 불러와요.

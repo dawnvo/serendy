@@ -1,8 +1,12 @@
 import 'package:serendy/src/configs/_mockup.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 final class MediaRepositoryImpl implements MediaRepository {
-  const MediaRepositoryImpl();
+  const MediaRepositoryImpl(this.supabase);
+  final SupabaseClient supabase;
+
+  static const String _tableMedias = TablePath.medias;
 
   /**
    * 작품을 검색해요.

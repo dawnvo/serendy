@@ -10,47 +10,50 @@ import 'package:serendy/src/features/theme/domain/usecases/get_themes_usecase.da
 import 'package:serendy/src/features/theme/domain/usecases/remove_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/watch_themes_usecase.dart';
 import 'package:serendy/src/features/theme/infrastructure/theme_repository_impl.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract final class ThemeModule {
   // Persistence
-  static const themeRepository = ThemeRepositoryImpl();
+  static final themeRepository = ThemeRepositoryImpl(
+    Supabase.instance.client,
+  );
 
   // UseCase
-  static const watchThemesUsecase = WatchThemesUsecase(
+  static final watchThemesUsecase = WatchThemesUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const getThemesUsecase = GetThemesUsecase(
+  static final getThemesUsecase = GetThemesUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const getThemeUsecase = GetThemeUsecase(
+  static final getThemeUsecase = GetThemeUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const createThemeUsecase = CreateThemeUsecase(
+  static final createThemeUsecase = CreateThemeUsecase(
     ThemeModule.themeRepository,
     ProfileModule.profileRepository,
   );
 
-  static const editThemeUsecase = EditThemeUsecase(
+  static final editThemeUsecase = EditThemeUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const removeThemeUsecase = RemoveThemeUsecase(
+  static final removeThemeUsecase = RemoveThemeUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const getThemeItemsUsecase = GetThemeItemsUsecase(
+  static final getThemeItemsUsecase = GetThemeItemsUsecase(
     ThemeModule.themeRepository,
   );
 
-  static const addThemeItemUsecase = AddThemeItemUsecase(
+  static final addThemeItemUsecase = AddThemeItemUsecase(
     ThemeModule.themeRepository,
     MediaModule.mediaRepository,
   );
 
-  static const deleteThemeItemUsecase = DeleteThemeItemUsecase(
+  static final deleteThemeItemUsecase = DeleteThemeItemUsecase(
     ThemeModule.themeRepository,
   );
 }

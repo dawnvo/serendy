@@ -1,11 +1,14 @@
 import 'package:serendy/src/configs/_mockup.dart';
+import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
 final class EvaluationRepositoryImpl extends EvaluationRepository {
-  const EvaluationRepositoryImpl();
+  const EvaluationRepositoryImpl(this.supabase);
+  final SupabaseClient supabase;
 
+  static const String _tableEvaluations = TablePath.evaluations;
   /**
    * 평가 여럿을 관찰해요.
    */

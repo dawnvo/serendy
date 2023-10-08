@@ -7,35 +7,38 @@ import 'package:serendy/src/features/evaluation/domain/usecases/watch_evaluation
 import 'package:serendy/src/features/evaluation/infrastructure/evaluation_repository_impl.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EvaluationModule {
   // Persistence
-  static const evaluationRepository = EvaluationRepositoryImpl();
+  static final evaluationRepository = EvaluationRepositoryImpl(
+    Supabase.instance.client,
+  );
 
   // UseCase
-  static const watchEvaluationsUsecase = WatchEvaluationsUsecase(
+  static final watchEvaluationsUsecase = WatchEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static const getEvaluationsUsecase = GetEvaluationsUsecase(
+  static final getEvaluationsUsecase = GetEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static const countEvaluationsUsecase = CountEvaluationsUsecase(
+  static final countEvaluationsUsecase = CountEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static const getEvaluationUsecase = GetEvaluationUsecase(
+  static final getEvaluationUsecase = GetEvaluationUsecase(
     EvaluationModule.evaluationRepository,
   );
 
-  static const submitEvaluationUsecase = SubmitEvaluationUsecase(
+  static final submitEvaluationUsecase = SubmitEvaluationUsecase(
     EvaluationModule.evaluationRepository,
     ProfileModule.profileRepository,
     MediaModule.mediaRepository,
   );
 
-  static const removeEvaluationUsecase = RemoveEvaluationUsecase(
+  static final removeEvaluationUsecase = RemoveEvaluationUsecase(
     EvaluationModule.evaluationRepository,
   );
 }
