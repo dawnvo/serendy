@@ -102,7 +102,7 @@ Future<void> deleteUser(
 }
 
 /// 사용자 식별자를 가져와요.
-@riverpod
+@Riverpod(keepAlive: true)
 UserID? currentUserId(
   CurrentUserIdRef ref,
 ) {
@@ -111,7 +111,7 @@ UserID? currentUserId(
 }
 
 /// 사용자 식별자를 엄격히 가져와요.
-@riverpod
+@Riverpod(keepAlive: true)
 UserID requireUserId(
   RequireUserIdRef ref,
 ) {

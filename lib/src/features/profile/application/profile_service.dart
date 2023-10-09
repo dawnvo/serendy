@@ -6,7 +6,7 @@ import 'package:serendy/src/features/profile/profile.dart';
 part 'profile_service.g.dart';
 
 /// 나의 프로필을 불러와요.
-@riverpod
+@Riverpod(keepAlive: true)
 Future<Profile> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
   return ProfileModule.getProfileUsecase.execute((userId: userId));

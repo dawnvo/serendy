@@ -56,13 +56,13 @@ final deleteUserProvider = AutoDisposeFutureProvider<void>.internal(
 );
 
 typedef DeleteUserRef = AutoDisposeFutureProviderRef<void>;
-String _$currentUserIdHash() => r'9fe7aa4d99d500bda12ebe2694d11c8537a6480a';
+String _$currentUserIdHash() => r'396497a03206c19e60d3f5d281078b3020d0fcbc';
 
 /// 사용자 식별자를 가져와요.
 ///
 /// Copied from [currentUserId].
 @ProviderFor(currentUserId)
-final currentUserIdProvider = AutoDisposeProvider<String?>.internal(
+final currentUserIdProvider = Provider<String?>.internal(
   currentUserId,
   name: r'currentUserIdProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -72,14 +72,14 @@ final currentUserIdProvider = AutoDisposeProvider<String?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CurrentUserIdRef = AutoDisposeProviderRef<String?>;
-String _$requireUserIdHash() => r'c672917c56e02a82140e2eddc92c47ad22bafcb5';
+typedef CurrentUserIdRef = ProviderRef<String?>;
+String _$requireUserIdHash() => r'474d4cb71cd6126a14442f647264f90428f04d89';
 
 /// 사용자 식별자를 엄격히 가져와요.
 ///
 /// Copied from [requireUserId].
 @ProviderFor(requireUserId)
-final requireUserIdProvider = AutoDisposeProvider<String>.internal(
+final requireUserIdProvider = Provider<String>.internal(
   requireUserId,
   name: r'requireUserIdProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -89,6 +89,6 @@ final requireUserIdProvider = AutoDisposeProvider<String>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef RequireUserIdRef = AutoDisposeProviderRef<String>;
+typedef RequireUserIdRef = ProviderRef<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
