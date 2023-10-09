@@ -1,4 +1,4 @@
-part of '../profile_card_screen.dart';
+part of '../profile_card_modal.dart';
 
 class _ProfileCardButtons extends StatelessWidget {
   const _ProfileCardButtons();

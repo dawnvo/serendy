@@ -21,10 +21,6 @@ abstract final class AppRoutes {
   static const profile = ProfileScreen.routeName;
   static const _profileLocation = ProfileScreen.routeLocation;
 
-  // 프로필 카드
-  static const profileCard = ProfileCardScreen.routeName;
-  static const _profileCardLocation = ProfileCardScreen.routeLocation;
-
   // 승급
   static const rank = RankModal.routeName;
   static const _rankLocation = RankModal.routeLocation;

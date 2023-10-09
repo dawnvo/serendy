@@ -12,10 +12,11 @@ class _WatchedMediaIndicator extends StatelessWidget {
     final max = rank.range.max;
 
     return GestureDetector(
-      onTap: () => context.pushNamed(
-        AppRoutes.profileCard,
-        extra: count,
-      ),
+      // onTap: () => context.pushNamed(
+      //   AppRoutes.profileCard,
+      //   extra: count,
+      // ),
+      onTap: () => ProfileCardModal.show(context, count),
       behavior: HitTestBehavior.opaque,
       child: Column(children: [
         MultiLineProgressIndicator([

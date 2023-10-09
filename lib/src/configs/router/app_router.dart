@@ -200,15 +200,6 @@ final _shellNavigator = [
                 parentNavigatorKey: _rootNavigatorKey,
                 builder: (context, state) => const HistoryScreen(),
               ),
-              GoRoute(
-                name: AppRoutes.profileCard,
-                path: AppRoutes._profileCardLocation,
-                parentNavigatorKey: _rootNavigatorKey,
-                builder: (context, state) {
-                  final count = state.extra as int;
-                  return ProfileCardScreen(evaluationCount: count);
-                },
-              ),
             ],
           ),
         ],

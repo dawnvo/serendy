@@ -1,7 +1,8 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/widgets/widgets.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
+import 'package:serendy/src/widgets/widgets.dart';
 
+import '../profile_card/profile_card_modal.dart';
 import 'controller/profile_controller.dart';
 
 part 'widgets/_my_themes_list.dart';
