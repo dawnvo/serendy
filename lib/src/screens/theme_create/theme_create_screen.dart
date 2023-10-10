@@ -1,6 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import '../profile/controller/profile_controller.dart';
 import 'controller/create_theme_controller.dart';
 
 part 'widgets/_submit_button.dart';
@@ -14,7 +15,15 @@ class CreateThemeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(createThemeControllerProvider, (previous, next) {
-      if (next.status == CreateThemeStatus.failure) {
+      //success
+      if (next.status == CreateThemeStatus.success) {
+        // * [EVENT] 나의 테마 목록을 갱신해요.
+        ref //
+            .read(profileControllerProvider.notifier)
+            .onMyThemesUpdated();
+      }
+      //failure
+      else if (next.status == CreateThemeStatus.failure) {
         final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()

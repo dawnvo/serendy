@@ -22,7 +22,7 @@ class AccountScreen extends ConsumerWidget {
 
     ref.listen(accountControllerProvider, (previous, next) {
       //success
-      if (previous != next && !next.hasError) {
+      if (previous != next && next.isReloading) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("프로필을 수정했어요."),
         ));
@@ -30,7 +30,7 @@ class AccountScreen extends ConsumerWidget {
         // TODO 프로필 관련 공급자 모두 초기화하기
       }
       //failure
-      else {
+      else if (next.hasError) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(next.error.toString()),
         ));

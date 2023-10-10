@@ -47,7 +47,7 @@ class AccountController extends _$AccountController with NotifierMounted {
       // * loaded
       return state.requireValue.copyWith(
         initialProfile: edited, // isEdited 초기화
-        avatar: edited.avatar, // avatarUrl 교체
+        avatar: edited.avatar, // imageUrl 교체
       );
     });
   }
