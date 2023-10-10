@@ -7,7 +7,7 @@ part of 'edit_theme_controller.dart';
 // **************************************************************************
 
 String _$editThemeControllerHash() =>
-    r'ac286638206d3a845617cf30fc814c4a8c94a36c';
+    r'c893f59864311f256701c373ca4bafdb241f1fed';
 
 /// Copied from Dart SDK
 class _SystemHash {

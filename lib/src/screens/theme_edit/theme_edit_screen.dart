@@ -26,15 +26,18 @@ class EditThemeScreen extends ConsumerWidget {
     ref.listen(provider, (previous, next) {
       //success
       if (next.status == EditThemeStatus.success) {
-        // * [EVENT] 테마 정보를 갱신해요.
-        ref //
-            .read(themeControllerProvider(theme.id).notifier)
-            .themeUpdated(next.editedTheme!);
-
         // * [EVENT] 나의 테마 목록을 갱신해요.
         ref //
             .read(profileControllerProvider.notifier)
             .onMyThemesUpdated();
+
+        // * 편집하지 않은 경우 작업을 끝내요. (테마 삭제 등)
+        if (next.editedTheme == null) return;
+
+        // * [EVENT] 테마 정보를 갱신해요.
+        ref //
+            .read(themeControllerProvider(theme.id).notifier)
+            .themeUpdated(next.editedTheme!);
       }
       //failure
       else if (next.status == EditThemeStatus.failure) {

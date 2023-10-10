@@ -86,6 +86,12 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
       // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
 
+      // * loaded
+      state = state.copyWith(
+        status: EditThemeStatus.success,
+        editedTheme: null,
+      );
+
       // * 프로필 화면으로 이동해요.
       ref.read(goRouterProvider).goNamed(AppRoutes.profile);
 

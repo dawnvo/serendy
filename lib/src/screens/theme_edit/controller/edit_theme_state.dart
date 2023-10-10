@@ -1,6 +1,11 @@
 part of 'edit_theme_controller.dart';
 
-enum EditThemeStatus { initial, loading, success, failure }
+enum EditThemeStatus {
+  initial,
+  loading,
+  success,
+  failure,
+}
 
 final class EditThemeState extends Equatable {
   const EditThemeState({
