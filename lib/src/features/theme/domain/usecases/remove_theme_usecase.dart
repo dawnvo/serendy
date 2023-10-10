@@ -30,6 +30,6 @@ final class RemoveThemeUsecase implements UseCase<RemoveThemePayload, void> {
     final removed = theme.remove();
 
     // * commit
-    await _themeRepository.updateTheme(removed);
+    await _themeRepository.removeTheme(removed);
   }
 }

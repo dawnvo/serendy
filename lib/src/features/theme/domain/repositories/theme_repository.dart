@@ -30,6 +30,11 @@ abstract class ThemeRepository {
     Theme theme,
   );
 
+  /// 테마를 제거해요.
+  Future<void> removeTheme(
+    Theme theme,
+  );
+
   /// 테마 항목을 불러와요.
   Future<List<ThemeItem?>> fetchItems({
     required ThemeID id,

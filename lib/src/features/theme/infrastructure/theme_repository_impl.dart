@@ -33,6 +33,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     if (userId != null) query.eq('owner_id', userId);
     return query //
         .is_('removed_at', null)
+        .order('updated_at')
         .range(0, 10)
         .withConverter(ThemeMapper.toList);
   }
@@ -46,7 +47,8 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }) {
     const columns = '''
       id,
-      owner_id
+      owner_id,
+      image
     ''';
     return supabase
         .from(_tableThemes)
@@ -90,10 +92,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       image: theme.image,
       private: theme.private,
       ownerId: theme.owner.id,
-    );
+    ).toJson();
     return supabase //
         .from(_tableThemes)
-        .insert(entity.toJson());
+        .insert(entity);
   }
 
   /**
@@ -109,10 +111,28 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       private: theme.private,
       description: theme.description,
       updatedAt: theme.updatedAt,
-    );
+    ).toJson();
     return supabase //
         .from(_tableThemes)
-        .update(entity.toJson())
+        .update(entity)
+        .eq('id', theme.id);
+  }
+
+  /**
+   * 테마를 제거해요.
+   */
+  @override
+  Future<void> removeTheme(
+    Theme theme,
+  ) {
+    final entity = ThemeEntity(
+      removedAt: theme.removedAt,
+    ).toJson();
+    // [serializable] include_if_null: false
+    entity['image'] = null;
+    return supabase //
+        .from(_tableThemes)
+        .update(entity)
         .eq('id', theme.id);
   }
 
@@ -146,10 +166,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     final entity = ThemeItemEntity(
       themeId: themeId,
       mediaId: mediaId,
-    );
+    ).toJson();
     return supabase //
         .from(_tableThemeItems)
-        .upsert(entity.toJson());
+        .upsert(entity);
   }
 
   /**
@@ -163,10 +183,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     final entity = ThemeItemEntity(
       themeId: themeId,
       mediaId: mediaId,
-    );
+    ).toJson();
     return supabase //
         .from(_tableThemeItems)
         .delete()
-        .match(entity.toJson());
+        .match(entity);
   }
 }
