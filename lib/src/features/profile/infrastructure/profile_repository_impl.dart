@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/profile/profile.dart';
 
@@ -37,10 +39,10 @@ final class ProfileRepositoryImpl implements ProfileRepository {
       name: profile.name,
       email: profile.email,
       avatar: profile.avatar,
-    );
+    ).toJson();
     return supabase //
         .from(_tableProfiles)
-        .insert(entity.toJson());
+        .insert(entity);
   }
 
   /**
@@ -54,10 +56,60 @@ final class ProfileRepositoryImpl implements ProfileRepository {
       name: profile.name,
       email: profile.email,
       avatar: profile.avatar,
-    );
+    ).toJson();
     return supabase //
         .from(_tableProfiles)
-        .update(entity.toJson())
+        .update(entity)
         .eq('id', profile.id);
+  }
+
+  /**
+   * 이미지를 업로드해요.
+   */
+  @override
+  Future<String?> uploadProfileImage(
+    Profile profile,
+  ) async {
+    // * 이미지가 존재하는지 확인해요.
+    if (profile.avatar == null || profile.avatar == '') return null;
+
+    // * 파일이 존재하는지 확인해요.
+    final imageFile = File(profile.avatar!);
+    if (!await imageFile.exists()) return null;
+
+    // * 이미지를 업로드해요.
+    final imagePath = profile.id;
+    await supabase //
+        .storage
+        .from(_tableProfiles)
+        .upload(
+          imagePath,
+          imageFile,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    // * 이미지 URL 주소
+    return supabase //
+        .storage
+        .from(_tableProfiles)
+        .getPublicUrl(imagePath);
+  }
+
+  /**
+   * 업로드한 이미지를 삭제해요.
+   */
+  @override
+  Future<void> deleteProfileImage(
+    Profile profile,
+  ) async {
+    // * 이미지가 존재하는지 확인해요.
+    if (profile.avatar == null || profile.avatar == '') return;
+
+    // * 업로드한 이미지를 삭제해요.
+    final imagePath = profile.id;
+    await supabase //
+        .storage
+        .from(_tableProfiles)
+        .remove([imagePath]);
   }
 }

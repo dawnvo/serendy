@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/profile/profile.dart';
@@ -188,5 +190,51 @@ final class ThemeRepositoryImpl implements ThemeRepository {
         .from(_tableThemeItems)
         .delete()
         .match(entity);
+  }
+
+  /**
+   * 이미지를 업로드해요.
+   */
+  @override
+  Future<String?> uploadThemeImage(Theme theme) async {
+    // * 이미지가 존재하는지 확인해요.
+    if (theme.image == null || theme.image == '') return null;
+
+    // * 파일이 존재하는지 확인해요.
+    final imageFile = File(theme.image!);
+    if (!await imageFile.exists()) return null;
+
+    // * 이미지를 업로드해요.
+    final imagePath = '${theme.owner.id}/${theme.id}';
+    await supabase //
+        .storage
+        .from(_tableThemes)
+        .upload(
+          imagePath,
+          imageFile,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    // * 이미지 URL 주소
+    return supabase //
+        .storage
+        .from(_tableThemes)
+        .getPublicUrl(imagePath);
+  }
+
+  /**
+   * 업로드한 이미지를 삭제해요.
+   */
+  @override
+  Future<void> deleteThemeImage(Theme theme) async {
+    // * 이미지가 존재하는지 확인해요.
+    if (theme.image == null || theme.image == '') return;
+
+    // * 업로드한 이미지를 삭제해요.
+    final imagePath = '${theme.owner.id}/${theme.id}';
+    await supabase //
+        .storage
+        .from(_tableThemes)
+        .remove([imagePath]);
   }
 }

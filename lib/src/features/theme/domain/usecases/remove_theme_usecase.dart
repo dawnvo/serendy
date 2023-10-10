@@ -23,8 +23,10 @@ final class RemoveThemeUsecase implements UseCase<RemoveThemePayload, void> {
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // TODO: 사진을 삭제해요.
-    // if (theme.image != null) {}
+    // * 업로드한 이미지가 존재하면 삭제해요.
+    if (theme.image != null) {
+      await _themeRepository.deleteThemeImage(theme);
+    }
 
     // * 테마를 삭제해요.
     final removed = theme.remove();

@@ -26,13 +26,18 @@ final class EditProfileUsecase implements UseCase<EditProfilePayload, Profile> {
     final hasAccess = payload.executorId == profile.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // TODO: 사진을 업로드해요.
-    String? downloadUrl;
+    // * 이미지를 변경했다면 업로드를 진행해요.
+    String? avatarUrl;
+    if (payload.avatar != profile.avatar) {
+      avatarUrl = await _profileRepository.uploadProfileImage(
+        profile.copy(avatar: payload.avatar), // 변경한 이미지로 교체
+      );
+    }
 
     // * 사용자 정보를 수정해요.
     final edited = profile.edit(
+      avatar: avatarUrl,
       name: payload.name,
-      avatar: downloadUrl,
     );
 
     // * commit

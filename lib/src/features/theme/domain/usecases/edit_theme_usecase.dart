@@ -27,12 +27,17 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
     final hasAccess = payload.executorId == theme.owner.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // TODO: 사진을 업로드해요.
-    String? downloadUrl;
+    // * 이미지를 변경했다면 업로드를 진행해요.
+    String? imageUrl;
+    if (payload.image != theme.image) {
+      imageUrl = await _themeRepository.uploadThemeImage(
+        theme.copy(image: payload.image), // 변경한 이미지로 교체
+      );
+    }
 
     // * 테마 정보를 수정해요.
     final edited = theme.edit(
-      image: downloadUrl,
+      image: imageUrl,
       title: payload.title,
       private: payload.private,
       description: payload.description,

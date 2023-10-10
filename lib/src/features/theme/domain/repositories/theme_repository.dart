@@ -51,4 +51,14 @@ abstract class ThemeRepository {
     required ThemeID themeId,
     required MediaID mediaId,
   });
+
+  /// 이미지를 업로드해요.
+  Future<String?> uploadThemeImage(
+    Theme theme,
+  );
+
+  /// 업로드한 이미지를 삭제해요.
+  Future<void> deleteThemeImage(
+    Theme theme,
+  );
 }
