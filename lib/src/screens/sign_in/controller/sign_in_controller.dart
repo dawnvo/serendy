@@ -24,6 +24,7 @@ class SignInController extends _$SignInController {
       // * 프로필이 존재하는지 확인해요.
       try {
         await ref.watch(getProfileProvider(id: supabaseUser.id).future);
+        return;
       }
       // * 프로필을 찾을 수 없으면 새로 만들어요.
       on EntityNotFoundException {

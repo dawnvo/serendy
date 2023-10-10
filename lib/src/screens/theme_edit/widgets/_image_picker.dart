@@ -6,10 +6,14 @@ class _EditThemeImagePicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imagePath = ref.watch(provider.select((state) => state.image));
+    final imagePath = ref.watch(provider.select(
+      (state) => state.image,
+    ));
 
     return ImagePicker(
-      onChanged: (image) => ref.read(provider.notifier).changeImage(image),
+      onChanged: (image) => ref //
+          .read(provider.notifier)
+          .changeImage(image),
       image: imagePath,
     );
   }

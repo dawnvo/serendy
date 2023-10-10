@@ -95,9 +95,9 @@ final class MediaRepositoryImpl implements MediaRepository {
       isAdult: media.isAdult,
       startDate: media.startDate,
       endDate: media.endDate,
-    );
+    ).toJson();
     return supabase //
         .from(_tableMedias)
-        .upsert(entity.toJson());
+        .upsert(entity);
   }
 }

@@ -73,7 +73,7 @@ class _PickedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // * 로컬에서 이미지를 선택한 경우
-    if (fileOrUrl != null &&
+    if (fileOrUrl != null && //
         fileOrUrl!.isNotEmpty &&
         File(fileOrUrl!).existsSync()) {
       return Image.file(
@@ -83,7 +83,7 @@ class _PickedImage extends StatelessWidget {
     }
 
     // * 서버에서 이미지를 불러온 경우
-    else if (fileOrUrl != null &&
+    else if (fileOrUrl != null && //
         fileOrUrl!.isNotEmpty &&
         Uri.parse(fileOrUrl!).isAbsolute) {
       return Image.network(

@@ -14,7 +14,7 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final evaluation = ref.watch(evaluateMediaControllerProvider(media.id)
+    final evaluation = ref.watch(evaluateMediaControllerProvider(media.id) //
         .select((state) => state.evaluation));
 
     return GestureDetector(

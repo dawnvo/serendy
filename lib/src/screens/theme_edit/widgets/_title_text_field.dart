@@ -6,8 +6,10 @@ class _EditThemeTitleTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = ref.watch(provider.select((state) => state.title));
     final debouncer = ref.watch(debouncerProvider);
+    final title = ref.watch(provider.select(
+      (state) => state.title,
+    ));
 
     return TitleTextField(
       onChanged: (value) => debouncer.run(() {

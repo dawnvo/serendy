@@ -11,10 +11,14 @@ class _EditThemeSaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isEdited = ref.watch(provider.select((state) => state.isEdited));
+    final isEdited = ref.watch(provider.select(
+      (state) => state.isEdited,
+    ));
 
     return TextButton(
-      onPressed: isEdited ? () => handleSubmit(context, ref) : null,
+      onPressed: isEdited //
+          ? () => handleSubmit(context, ref)
+          : null,
       child: const Text("저장하기"),
     );
   }

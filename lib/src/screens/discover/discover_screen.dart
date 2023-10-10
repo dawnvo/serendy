@@ -39,7 +39,10 @@ class _DiscoverTemplate extends StatelessWidget {
         title: searchBar,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kContentPadding),
+        padding: const EdgeInsets.symmetric(
+          horizontal: kContentPadding,
+          vertical: Sizes.p8,
+        ),
         child: themesGrid,
       ),
     );

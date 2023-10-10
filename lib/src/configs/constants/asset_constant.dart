@@ -10,7 +10,7 @@ abstract final class Assets {
   static const youtubeIcon = '$iconPath/logos/youtube.svg';
 
   static final themeDefaultImage = dotenv.env['THEME_DEFAULT_IMAGE']!;
-  static final themeFavoriteImage = dotenv.env['FAVORITE_THEME_IMAGE']!;
+  static final themeFavoriteImage = dotenv.env['THEME_FAVORITE_IMAGE']!;
   static const createThemeHints = [
     '나의 테마',
     '잔잔한 애니',

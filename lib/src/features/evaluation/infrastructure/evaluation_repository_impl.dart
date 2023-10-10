@@ -109,10 +109,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       userId: evaluation.userId,
       mediaId: evaluation.media.id,
       emotion: evaluation.emotion,
-    );
+    ).toJson();
     return supabase //
         .from(_tableEvaluations)
-        .insert(entity.toJson());
+        .insert(entity);
   }
 
   /**
@@ -125,11 +125,12 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     final entity = EvaluationEntity(
       emotion: evaluation.emotion,
       updatedAt: evaluation.updatedAt,
-    );
+    ).toJson();
+    // [serializable] include_if_null: false
+    entity['removed_at'] = null;
     return supabase
         .from(_tableEvaluations)
-        // [JsonSerializable] include_if_null: false
-        .update({...entity.toJson(), 'removed_at': null})
+        .update(entity)
         .eq('user_id', evaluation.userId)
         .eq('media_id', evaluation.media.id);
   }
@@ -143,10 +144,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   ) {
     final entity = EvaluationEntity(
       removedAt: evaluation.removedAt,
-    );
+    ).toJson();
     return supabase
         .from(_tableEvaluations)
-        .update(entity.toJson())
+        .update(entity)
         .eq('user_id', evaluation.userId)
         .eq('media_id', evaluation.media.id);
   }
