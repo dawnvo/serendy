@@ -79,8 +79,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
 
     // * 이미지를 업로드해요.
     final imagePath = profile.id;
-    await supabase //
-        .storage
+    await supabase.storage //
         .from(_tableProfiles)
         .upload(
           imagePath,
@@ -88,11 +87,14 @@ final class ProfileRepositoryImpl implements ProfileRepository {
           fileOptions: const FileOptions(upsert: true),
         );
 
-    // * 이미지 URL 주소
-    return supabase //
-        .storage
+    // * 이미지 주소를 가져와요.
+    final imageUrl = supabase.storage //
         .from(_tableProfiles)
         .getPublicUrl(imagePath);
+
+    // * 이미지 주소에 타임스탬프를 추가해
+    // * 변경을 (캐싱이) 감지할 수 있도록 해요.
+    return addTimestampToUrl(imageUrl);
   }
 
   /**
@@ -107,8 +109,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
 
     // * 업로드한 이미지를 삭제해요.
     final imagePath = profile.id;
-    await supabase //
-        .storage
+    await supabase.storage //
         .from(_tableProfiles)
         .remove([imagePath]);
   }
