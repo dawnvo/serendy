@@ -1,7 +1,9 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 
-typedef GetMediasPayload = ();
+typedef GetMediasPayload = ({
+  int? pageKey,
+});
 
 final class GetMediasUsecase implements UseCase<GetMediasPayload, List<Media?>> {
   const GetMediasUsecase(this._mediaRepository);
@@ -9,7 +11,9 @@ final class GetMediasUsecase implements UseCase<GetMediasPayload, List<Media?>> 
 
   @override
   Future<List<Media?>> execute(GetMediasPayload payload) async {
-    final medias = await _mediaRepository.fetchMedias();
+    final medias = await _mediaRepository.fetchMedias(
+      pageKey: payload.pageKey,
+    );
     return medias;
   }
 }

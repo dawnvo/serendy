@@ -6,10 +6,13 @@ abstract class MediaRepository {
   /// 작품을 검색해요.
   Future<List<Media?>> searchMedias({
     required String query,
+    int? pageKey,
   });
 
   /// 작품 여럿을 불러와요.
-  Future<List<Media?>> fetchMedias();
+  Future<List<Media?>> fetchMedias({
+    int? pageKey,
+  });
 
   /// (경량) 작품 정보를 불러와요.
   Future<Media?> fetchMediaSlice({

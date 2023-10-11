@@ -24,7 +24,7 @@ final searchQueryControllerProvider =
 
 typedef SearchQueryControllerRef
     = AutoDisposeProviderRef<TextEditingController>;
-String _$searchControllerHash() => r'69e7f80d694f2101b95760fc2aca828f4ba773ab';
+String _$searchControllerHash() => r'5be1848d5f694f259105695cf463a277ff8a3f1e';
 
 /// See also [SearchController].
 @ProviderFor(SearchController)

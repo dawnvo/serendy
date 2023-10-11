@@ -6,7 +6,7 @@ part of 'media_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchMediasHash() => r'add19c87c3b49a3d2a0eb2a113c81d5d29a14fee';
+String _$searchMediasHash() => r'868c98429a6f8a4779d71a7dba839f964055b3ea';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -48,10 +48,12 @@ class SearchMediasFamily extends Family<AsyncValue<List<Media?>>> {
   ///
   /// Copied from [searchMedias].
   SearchMediasProvider call({
-    required String title,
+    required String query,
+    int? pageKey,
   }) {
     return SearchMediasProvider(
-      title: title,
+      query: query,
+      pageKey: pageKey,
     );
   }
 
@@ -60,7 +62,8 @@ class SearchMediasFamily extends Family<AsyncValue<List<Media?>>> {
     covariant SearchMediasProvider provider,
   ) {
     return call(
-      title: provider.title,
+      query: provider.query,
+      pageKey: provider.pageKey,
     );
   }
 
@@ -87,11 +90,13 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
   ///
   /// Copied from [searchMedias].
   SearchMediasProvider({
-    required String title,
+    required String query,
+    int? pageKey,
   }) : this._internal(
           (ref) => searchMedias(
             ref as SearchMediasRef,
-            title: title,
+            query: query,
+            pageKey: pageKey,
           ),
           from: searchMediasProvider,
           name: r'searchMediasProvider',
@@ -102,7 +107,8 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
           dependencies: SearchMediasFamily._dependencies,
           allTransitiveDependencies:
               SearchMediasFamily._allTransitiveDependencies,
-          title: title,
+          query: query,
+          pageKey: pageKey,
         );
 
   SearchMediasProvider._internal(
@@ -112,10 +118,12 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.title,
+    required this.query,
+    required this.pageKey,
   }) : super.internal();
 
-  final String title;
+  final String query;
+  final int? pageKey;
 
   @override
   Override overrideWith(
@@ -130,7 +138,8 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        title: title,
+        query: query,
+        pageKey: pageKey,
       ),
     );
   }
@@ -142,21 +151,27 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
   @override
   bool operator ==(Object other) {
-    return other is SearchMediasProvider && other.title == title;
+    return other is SearchMediasProvider &&
+        other.query == query &&
+        other.pageKey == pageKey;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, title.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+    hash = _SystemHash.combine(hash, pageKey.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin SearchMediasRef on AutoDisposeFutureProviderRef<List<Media?>> {
-  /// The parameter `title` of this provider.
-  String get title;
+  /// The parameter `query` of this provider.
+  String get query;
+
+  /// The parameter `pageKey` of this provider.
+  int? get pageKey;
 }
 
 class _SearchMediasProviderElement
@@ -165,25 +180,150 @@ class _SearchMediasProviderElement
   _SearchMediasProviderElement(super.provider);
 
   @override
-  String get title => (origin as SearchMediasProvider).title;
+  String get query => (origin as SearchMediasProvider).query;
+  @override
+  int? get pageKey => (origin as SearchMediasProvider).pageKey;
 }
 
-String _$getMediasHash() => r'5059c9047c55ee700920fe89dc03a96d463ec8ac';
+String _$getMediasHash() => r'ff124349f3d4c7fdeadda4f6fbe9ab4dd401caca';
 
 /// 작품 목록을 불러와요.
 ///
 /// Copied from [getMedias].
 @ProviderFor(getMedias)
-final getMediasProvider = AutoDisposeFutureProvider<List<Media?>>.internal(
-  getMedias,
-  name: r'getMediasProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getMediasHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const getMediasProvider = GetMediasFamily();
 
-typedef GetMediasRef = AutoDisposeFutureProviderRef<List<Media?>>;
+/// 작품 목록을 불러와요.
+///
+/// Copied from [getMedias].
+class GetMediasFamily extends Family<AsyncValue<List<Media?>>> {
+  /// 작품 목록을 불러와요.
+  ///
+  /// Copied from [getMedias].
+  const GetMediasFamily();
+
+  /// 작품 목록을 불러와요.
+  ///
+  /// Copied from [getMedias].
+  GetMediasProvider call({
+    int? pageKey,
+  }) {
+    return GetMediasProvider(
+      pageKey: pageKey,
+    );
+  }
+
+  @override
+  GetMediasProvider getProviderOverride(
+    covariant GetMediasProvider provider,
+  ) {
+    return call(
+      pageKey: provider.pageKey,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getMediasProvider';
+}
+
+/// 작품 목록을 불러와요.
+///
+/// Copied from [getMedias].
+class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
+  /// 작품 목록을 불러와요.
+  ///
+  /// Copied from [getMedias].
+  GetMediasProvider({
+    int? pageKey,
+  }) : this._internal(
+          (ref) => getMedias(
+            ref as GetMediasRef,
+            pageKey: pageKey,
+          ),
+          from: getMediasProvider,
+          name: r'getMediasProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getMediasHash,
+          dependencies: GetMediasFamily._dependencies,
+          allTransitiveDependencies: GetMediasFamily._allTransitiveDependencies,
+          pageKey: pageKey,
+        );
+
+  GetMediasProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.pageKey,
+  }) : super.internal();
+
+  final int? pageKey;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Media?>> Function(GetMediasRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetMediasProvider._internal(
+        (ref) => create(ref as GetMediasRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        pageKey: pageKey,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Media?>> createElement() {
+    return _GetMediasProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetMediasProvider && other.pageKey == pageKey;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, pageKey.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetMediasRef on AutoDisposeFutureProviderRef<List<Media?>> {
+  /// The parameter `pageKey` of this provider.
+  int? get pageKey;
+}
+
+class _GetMediasProviderElement
+    extends AutoDisposeFutureProviderElement<List<Media?>> with GetMediasRef {
+  _GetMediasProviderElement(super.provider);
+
+  @override
+  int? get pageKey => (origin as GetMediasProvider).pageKey;
+}
+
 String _$getMediaHash() => r'f0d6ce6870bb2629198bd7db0a0ee51d70dd8ae6';
 
 /// 작품 정보를 불러와요.

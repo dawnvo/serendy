@@ -2,7 +2,8 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 typedef SearchMediasPayload = ({
-  String title,
+  String query,
+  int? pageKey,
 });
 
 final class SearchMediasUsecase implements UseCase<SearchMediasPayload, List<Media?>> {
@@ -11,7 +12,10 @@ final class SearchMediasUsecase implements UseCase<SearchMediasPayload, List<Med
 
   @override
   Future<List<Media?>> execute(SearchMediasPayload payload) async {
-    final medias = await _mediaRepository.searchMedias(query: payload.title);
+    final medias = await _mediaRepository.searchMedias(
+      query: payload.query,
+      pageKey: payload.pageKey,
+    );
     return medias;
   }
 }

@@ -20,7 +20,7 @@ class SearchController extends _$SearchController {
     state = await AsyncValue.guard(() async {
       // * 검색어에 부합하는 작품을 불러와요.
       final medias = await ref.watch(searchMediasProvider(
-        title: text,
+        query: text,
       ).future);
 
       return state.requireValue.copyWith(medias: medias);

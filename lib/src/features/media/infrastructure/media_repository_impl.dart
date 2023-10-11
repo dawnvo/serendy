@@ -15,15 +15,15 @@ final class MediaRepositoryImpl implements MediaRepository {
   @override
   Future<List<Media?>> searchMedias({
     required String query,
+    int? pageKey,
   }) {
     const columns = '*';
-    int from = 0;
-    int to = 9;
+    final range = getPagination(pageKey ?? 0);
     return supabase
         .from(_tableMedias)
         .select(columns)
         .textSearch('title', "'$query'")
-        .range(from, to)
+        .range(range.from, range.to)
         .withConverter(MediaMapper.toList);
   }
 
@@ -31,14 +31,15 @@ final class MediaRepositoryImpl implements MediaRepository {
    * 작품 여럿을 불러와요.
    */
   @override
-  Future<List<Media?>> fetchMedias() {
+  Future<List<Media?>> fetchMedias({
+    int? pageKey,
+  }) {
     const columns = '*';
-    int from = 0;
-    int to = 9;
+    final range = getPagination(pageKey ?? 0);
     return supabase
         .from(_tableMedias)
         .select(columns)
-        .range(from, to)
+        .range(range.from, range.to)
         .withConverter(MediaMapper.toList);
   }
 

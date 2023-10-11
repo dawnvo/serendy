@@ -8,17 +8,22 @@ part 'media_service.g.dart';
 @riverpod
 Future<List<Media?>> searchMedias(
   SearchMediasRef ref, {
-  required String title,
+  required String query,
+  int? pageKey,
 }) {
-  return MediaModule.searchMediasUsecase.execute((title: title));
+  return MediaModule.searchMediasUsecase.execute((
+    query: query,
+    pageKey: pageKey,
+  ));
 }
 
 /// 작품 목록을 불러와요.
 @riverpod
 Future<List<Media?>> getMedias(
-  GetMediasRef ref,
-) {
-  return MediaModule.getMediasUsecase.execute(());
+  GetMediasRef ref, {
+  int? pageKey,
+}) {
+  return MediaModule.getMediasUsecase.execute((pageKey: pageKey));
 }
 
 /// 작품 정보를 불러와요.
