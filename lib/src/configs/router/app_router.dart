@@ -44,10 +44,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
     initialLocation: AppRoutes._homeLocation,
     routes: [
-      ..._shellNavigator,
-      ..._modalRoutes,
-      ..._mediaRoutes,
-      ..._themeRoutes,
+      /// Other routes
       GoRoute(
         name: AppRoutes.signIn,
         path: AppRoutes._signInLocation,
@@ -65,6 +62,73 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: AppRoutes._accountLocation,
             parentNavigatorKey: _rootNavigatorKey,
             builder: (context, state) => const AccountScreen(),
+          ),
+        ],
+      ),
+
+      /// Modal routes
+      GoRoute(
+        name: AppRoutes.rank,
+        path: AppRoutes._rankLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) {
+          final rank = state.extra as Rank;
+          return GoRouterTransitionPage.verticalAxis(
+            fullscreenDialog: true,
+            child: RankModal(rank: rank),
+          );
+        },
+      ),
+
+      /// Shell navigator
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNavigationBar(
+            navigationShell: navigationShell,
+          );
+        },
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: __shellNavigatorHomeKey,
+            routes: [
+              GoRoute(
+                name: AppRoutes.home,
+                path: AppRoutes._homeLocation,
+                builder: (context, state) => const HomeScreen(),
+                routes: [
+                  ..._mediaRoutes,
+                  ..._themeRoutes,
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: __shellNavigatorDiscoverKey,
+            routes: [
+              GoRoute(
+                name: AppRoutes.discover,
+                path: AppRoutes._discoverLocation,
+                builder: (context, state) => const DiscoverScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: __shellNavigatorProfileKey,
+            routes: [
+              GoRoute(
+                name: AppRoutes.profile,
+                path: AppRoutes._profileLocation,
+                builder: (context, state) => const ProfileScreen(),
+                routes: [
+                  GoRoute(
+                    name: AppRoutes.history,
+                    path: AppRoutes._historyLocation,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const HistoryScreen(),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
@@ -138,72 +202,5 @@ final _themeRoutes = [
         child: const CreateThemeScreen(),
       );
     },
-  ),
-];
-
-/// ----------Modal routes
-final _modalRoutes = [
-  GoRoute(
-    name: AppRoutes.rank,
-    path: AppRoutes._rankLocation,
-    parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) {
-      final rank = state.extra as Rank;
-      return GoRouterTransitionPage.verticalAxis(
-        fullscreenDialog: true,
-        child: RankModal(rank: rank),
-      );
-    },
-  ),
-];
-
-/// ----------Shell navigator
-final _shellNavigator = [
-  StatefulShellRoute.indexedStack(
-    builder: (context, state, navigationShell) {
-      return ScaffoldWithNavigationBar(
-        navigationShell: navigationShell,
-      );
-    },
-    branches: [
-      StatefulShellBranch(
-        navigatorKey: __shellNavigatorHomeKey,
-        routes: [
-          GoRoute(
-            name: AppRoutes.home,
-            path: AppRoutes._homeLocation,
-            builder: (context, state) => const HomeScreen(),
-          ),
-        ],
-      ),
-      StatefulShellBranch(
-        navigatorKey: __shellNavigatorDiscoverKey,
-        routes: [
-          GoRoute(
-            name: AppRoutes.discover,
-            path: AppRoutes._discoverLocation,
-            builder: (context, state) => const DiscoverScreen(),
-          ),
-        ],
-      ),
-      StatefulShellBranch(
-        navigatorKey: __shellNavigatorProfileKey,
-        routes: [
-          GoRoute(
-            name: AppRoutes.profile,
-            path: AppRoutes._profileLocation,
-            builder: (context, state) => const ProfileScreen(),
-            routes: [
-              GoRoute(
-                name: AppRoutes.history,
-                path: AppRoutes._historyLocation,
-                parentNavigatorKey: _rootNavigatorKey,
-                builder: (context, state) => const HistoryScreen(),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ],
   ),
 ];

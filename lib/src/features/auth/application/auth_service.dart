@@ -96,6 +96,7 @@ Future<void> signOut(
 Future<void> deleteUser(
   DeleteUserRef ref,
 ) async {
+  // TODO 회원탈퇴, 권한 없어서 에러 뜨는듯
   final userId = ref.watch(requireUserIdProvider);
   final supabase = ref.watch(supabaseProvider);
   await supabase.auth.admin.deleteUser(userId);

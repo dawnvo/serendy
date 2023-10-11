@@ -10,7 +10,7 @@ part 'widgets/_search_results.dart';
 
 class SearchScreen extends StatelessWidget {
   static const String routeName = 'search';
-  static const String routeLocation = '/$routeName';
+  static const String routeLocation = routeName;
   const SearchScreen();
 
   @override

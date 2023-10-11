@@ -21,7 +21,7 @@ part 'widgets/_reaction_tile.dart';
 
 class MediaScreen extends ConsumerWidget {
   static const String routeName = 'medias';
-  static const String routeLocation = '/$routeName/:id';
+  static const String routeLocation = '$routeName/:id';
   const MediaScreen({
     required this.id,
     this.media,
