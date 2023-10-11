@@ -15,7 +15,7 @@ part 'widgets/_emotion_grid.dart';
 
 class EvaluateMediaScreen extends ConsumerWidget {
   static const String routeName = 'evaluate-media';
-  static const String routeLocation = routeName;
+  static const String routeLocation = 'evaluate';
   const EvaluateMediaScreen({required this.media});
 
   final Media media;

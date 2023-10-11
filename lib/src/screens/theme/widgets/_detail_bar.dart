@@ -90,6 +90,7 @@ class __ActionIconButtons extends StatelessWidget {
         IconButton(
           onPressed: () => context.pushNamed(
             AppRoutes.editTheme,
+            pathParameters: {'id': theme.id},
             extra: theme,
           ),
           icon: const Icon(RemixIcon.pencil_fill),

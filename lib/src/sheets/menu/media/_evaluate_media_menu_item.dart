@@ -13,6 +13,7 @@ class EvaluateMediaMenuItem extends ConsumerWidget {
     // * 평가 화면으로 이동해요.
     context.pushNamed(
       AppRoutes.evaluateMedia,
+      pathParameters: {'id': media.id},
       extra: media,
     );
   }

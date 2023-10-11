@@ -153,18 +153,28 @@ final _mediaRoutes = [
       final media = state.extra as Media?;
       return MediaScreen(id: id, media: media);
     },
-  ),
-  GoRoute(
-    name: AppRoutes.evaluateMedia,
-    path: AppRoutes._evaluateMediaLocation,
-    parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) {
-      final media = state.extra as Media;
-      return GoRouterTransitionPage.verticalAxis(
-        fullscreenDialog: true,
-        child: EvaluateMediaScreen(media: media),
-      );
-    },
+    routes: [
+      GoRoute(
+        name: AppRoutes.evaluateMedia,
+        path: AppRoutes._evaluateMediaLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        redirect: (context, state) {
+          // * 매개가 없으면 작품 화면으로 되돌아가요.
+          if (state.extra is! Media) {
+            final mediaId = state.pathParameters['id']!;
+            return '/${AppRoutes.media}/$mediaId';
+          }
+          return null;
+        },
+        pageBuilder: (context, state) {
+          final media = state.extra as Media;
+          return GoRouterTransitionPage.verticalAxis(
+            fullscreenDialog: true,
+            child: EvaluateMediaScreen(media: media),
+          );
+        },
+      ),
+    ],
   ),
 ];
 
@@ -179,18 +189,28 @@ final _themeRoutes = [
       final theme = state.extra as Theme?;
       return ThemeScreen(id: id, theme: theme);
     },
-  ),
-  GoRoute(
-    name: AppRoutes.editTheme,
-    path: AppRoutes._editThemeLocation,
-    parentNavigatorKey: _rootNavigatorKey,
-    pageBuilder: (context, state) {
-      final theme = state.extra as Theme;
-      return GoRouterTransitionPage.verticalAxis(
-        fullscreenDialog: true,
-        child: EditThemeScreen(theme: theme),
-      );
-    },
+    routes: [
+      GoRoute(
+        name: AppRoutes.editTheme,
+        path: AppRoutes._editThemeLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        redirect: (context, state) {
+          // * 매개가 없으면 테마 화면으로 되돌아가요.
+          if (state.extra is! Theme) {
+            final themeId = state.pathParameters['id']!;
+            return '/${AppRoutes.theme}/$themeId';
+          }
+          return null;
+        },
+        pageBuilder: (context, state) {
+          final theme = state.extra as Theme;
+          return GoRouterTransitionPage.verticalAxis(
+            fullscreenDialog: true,
+            child: EditThemeScreen(theme: theme),
+          );
+        },
+      ),
+    ],
   ),
   GoRoute(
     name: AppRoutes.createTheme,

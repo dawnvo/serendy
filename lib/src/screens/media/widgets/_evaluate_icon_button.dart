@@ -8,6 +8,7 @@ class _MediaEvaluateIconButton extends ConsumerWidget {
   void handlePressed(BuildContext context) {
     context.pushNamed(
       AppRoutes.evaluateMedia,
+      pathParameters: {'id': media.id},
       extra: media,
     );
   }
