@@ -22,7 +22,7 @@ class _ProfileCardTitles extends StatelessWidget {
           ),
         )
       else
-        const CircularProgressIndicator(color: Colors.white),
+        const LoadingIndicator(),
       Gap.h8,
       Text(
         rank.label,

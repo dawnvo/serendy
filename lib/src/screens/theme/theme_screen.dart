@@ -121,7 +121,7 @@ class _Placeholder$ThemeScreen extends StatelessWidget {
     if (data == null) {
       return Scaffold(
         appBar: AppBar(),
-        body: const Center(child: CircularProgressIndicator()),
+        body: const Center(child: LoadingIndicator()),
       );
     }
     return _ThemeTemplate(
@@ -134,7 +134,7 @@ class _Placeholder$ThemeScreen extends StatelessWidget {
         theme: data,
       ),
       mediasGrid: const SliverToBoxAdapter(
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(child: LoadingIndicator()),
       ),
     );
   }

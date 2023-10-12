@@ -23,6 +23,7 @@ class SearchController extends _$SearchController {
         query: text,
       ).future);
 
+      // * loaded
       return state.requireValue.copyWith(medias: medias);
     });
   }

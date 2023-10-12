@@ -2,6 +2,7 @@ export 'common/alert_dialog.dart';
 export 'common/glassmorphic_container.dart';
 export 'common/image_picker.dart';
 export 'common/list_item.dart';
+export 'common/loading_indicator.dart';
 export 'common/multi_line_progress_indicator.dart';
 export 'common/tag.dart';
 export 'common/title_text_field.dart';

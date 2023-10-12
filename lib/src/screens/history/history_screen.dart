@@ -29,7 +29,7 @@ class HistoryScreen extends ConsumerWidget {
       ),
       loading: () => Scaffold(
         appBar: AppBar(),
-        body: const Center(child: CircularProgressIndicator()),
+        body: const Center(child: LoadingIndicator()),
       ),
       error: (err, stack) => const ErrorTemplate(
         message: "기록을 불러오지 못했어요.",

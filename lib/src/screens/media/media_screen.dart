@@ -132,7 +132,7 @@ class _Placeholder$MediaScreen extends StatelessWidget {
     if (data == null) {
       return Scaffold(
         appBar: AppBar(),
-        body: const Center(child: CircularProgressIndicator()),
+        body: const Center(child: LoadingIndicator()),
       );
     }
     return _MediaTemplate(
@@ -146,7 +146,7 @@ class _Placeholder$MediaScreen extends StatelessWidget {
         ],
       ),
       actionBar: _MediaActionBar(media: data),
-      contents: const [Center(child: CircularProgressIndicator())],
+      contents: const [Center(child: LoadingIndicator())],
     );
   }
 }
