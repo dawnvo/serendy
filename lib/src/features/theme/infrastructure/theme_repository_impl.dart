@@ -33,17 +33,19 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       owner_id,
       profiles ( name, avatar )
     ''';
-    final query = supabase.from(_tableThemes).select(columns);
+    final query = supabase //
+        .from(_tableThemes)
+        .select(columns)
+        .is_('removed_at', null);
+    //identity
     if (userId != null) query.eq('owner_id', userId);
-    final range = getPagination(
-      page ?? 0,
-      perPage ?? 20,
-    );
-    return query //
-        .is_('removed_at', null)
-        .order('updated_at')
-        .range(range.from, range.to)
-        .withConverter(ThemeMapper.toList);
+    //pagination
+    if (page != null) {
+      final range = getPagination(page, perPage ?? 20);
+      query.range(range.from, range.to);
+    }
+    //result
+    return query.order('updated_at').withConverter(ThemeMapper.toList);
   }
 
   /**

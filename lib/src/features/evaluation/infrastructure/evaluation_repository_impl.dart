@@ -31,15 +31,15 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
         .from(_tableEvaluations)
         .select(columns)
         .is_('removed_at', null);
-
+    //identity
     if (userId != null) query.eq('user_id', userId);
     if (mediaId != null) query.eq('media_id', mediaId);
-
+    //pagination
     if (page != null) {
       final range = getPagination(page, perPage ?? 20);
       query.range(range.from, range.to);
     }
-
+    //result
     return query.withConverter(EvaluationMapper.toList);
   }
 

@@ -9,7 +9,9 @@ class DiscoverController extends _$DiscoverController {
   @override
   FutureOr<DiscoverState> build() async {
     // * 추천 테마를 불러와요.
-    final themes = await ref.watch(getThemesProvider().future);
+    final themes = await ref.watch(getThemesProvider(
+      page: 0,
+    ).future);
     // * loaded
     return DiscoverState(themes: themes);
   }
