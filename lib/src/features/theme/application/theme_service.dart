@@ -8,10 +8,14 @@ part 'theme_service.g.dart';
 /// 테마 여럿을 불러와요.
 @riverpod
 Future<List<Theme?>> getThemes(
-  GetThemesRef ref,
-) {
+  GetThemesRef ref, {
+  int? page,
+}) {
   final userId = ref.watch(currentUserIdProvider);
-  return ThemeModule.getThemesUsecase.execute((executorId: userId));
+  return ThemeModule.getThemesUsecase.execute((
+    executorId: userId,
+    page: page,
+  ));
 }
 
 /// 테마를 불러와요.

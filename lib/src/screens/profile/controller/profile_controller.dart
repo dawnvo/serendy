@@ -13,7 +13,7 @@ class ProfileController extends _$ProfileController {
     final evaluationsCount = await ref.watch(countEvaluationsProvider.future);
 
     // * 내 테마를 불러와요.
-    final themes = await ref.watch(getThemesProvider.future);
+    final themes = await ref.watch(getThemesProvider().future);
 
     // * loaded
     return ProfileState(

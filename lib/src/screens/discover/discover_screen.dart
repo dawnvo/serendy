@@ -2,6 +2,8 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import 'controller/discover_controller.dart';
+
 part 'widgets/_search_bar.dart';
 part 'widgets/_themes_grid.dart';
 

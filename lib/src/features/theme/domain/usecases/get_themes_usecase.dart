@@ -3,6 +3,7 @@ import 'package:serendy/src/features/theme/theme.dart';
 
 typedef GetThemesPayload = ({
   String? executorId,
+  int? page,
 });
 
 final class GetThemesUsecase implements UseCase<GetThemesPayload, List<Theme?>> {
@@ -13,6 +14,8 @@ final class GetThemesUsecase implements UseCase<GetThemesPayload, List<Theme?>> 
   Future<List<Theme?>> execute(GetThemesPayload payload) async {
     final themes = await _themeRepository.fetchThemes(
       userId: payload.executorId,
+      page: payload.page,
+      perPage: 20,
     );
     return themes;
   }

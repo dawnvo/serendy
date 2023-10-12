@@ -20,6 +20,8 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   @override
   Future<List<Theme?>> fetchThemes({
     UserID? userId,
+    int? page,
+    int? perPage,
   }) {
     const columns = '''
       id,
@@ -33,10 +35,14 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     ''';
     final query = supabase.from(_tableThemes).select(columns);
     if (userId != null) query.eq('owner_id', userId);
+    final range = getPagination(
+      page ?? 0,
+      perPage ?? 20,
+    );
     return query //
         .is_('removed_at', null)
         .order('updated_at')
-        .range(0, 10)
+        .range(range.from, range.to)
         .withConverter(ThemeMapper.toList);
   }
 

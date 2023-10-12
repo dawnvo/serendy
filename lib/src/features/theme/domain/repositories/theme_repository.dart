@@ -8,6 +8,8 @@ abstract class ThemeRepository {
   /// 테마 여럿을 불러와요.
   Future<List<Theme?>> fetchThemes({
     UserID? userId,
+    int? page,
+    int? perPage,
   });
 
   /// (경량) 테마 정보를 불러와요.

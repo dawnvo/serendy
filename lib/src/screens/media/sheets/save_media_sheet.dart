@@ -37,7 +37,7 @@ class SaveMediaSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myThemesValue = ref.watch(getThemesProvider);
+    final myThemesValue = ref.watch(getThemesProvider());
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Sizes.p12),

@@ -6,23 +6,7 @@ part of 'theme_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getThemesHash() => r'8aff11e49cfce1513cd49eb69b6e5b37d02ca208';
-
-/// 테마 여럿을 불러와요.
-///
-/// Copied from [getThemes].
-@ProviderFor(getThemes)
-final getThemesProvider = AutoDisposeFutureProvider<List<Theme?>>.internal(
-  getThemes,
-  name: r'getThemesProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getThemesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef GetThemesRef = AutoDisposeFutureProviderRef<List<Theme?>>;
-String _$getThemeHash() => r'52b550de781885149f139d1be304927defd0caa7';
+String _$getThemesHash() => r'847d745d0d09954131f82ed901cfed7bea116a10';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,6 +28,145 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// 테마 여럿을 불러와요.
+///
+/// Copied from [getThemes].
+@ProviderFor(getThemes)
+const getThemesProvider = GetThemesFamily();
+
+/// 테마 여럿을 불러와요.
+///
+/// Copied from [getThemes].
+class GetThemesFamily extends Family<AsyncValue<List<Theme?>>> {
+  /// 테마 여럿을 불러와요.
+  ///
+  /// Copied from [getThemes].
+  const GetThemesFamily();
+
+  /// 테마 여럿을 불러와요.
+  ///
+  /// Copied from [getThemes].
+  GetThemesProvider call({
+    int? page,
+  }) {
+    return GetThemesProvider(
+      page: page,
+    );
+  }
+
+  @override
+  GetThemesProvider getProviderOverride(
+    covariant GetThemesProvider provider,
+  ) {
+    return call(
+      page: provider.page,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getThemesProvider';
+}
+
+/// 테마 여럿을 불러와요.
+///
+/// Copied from [getThemes].
+class GetThemesProvider extends AutoDisposeFutureProvider<List<Theme?>> {
+  /// 테마 여럿을 불러와요.
+  ///
+  /// Copied from [getThemes].
+  GetThemesProvider({
+    int? page,
+  }) : this._internal(
+          (ref) => getThemes(
+            ref as GetThemesRef,
+            page: page,
+          ),
+          from: getThemesProvider,
+          name: r'getThemesProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getThemesHash,
+          dependencies: GetThemesFamily._dependencies,
+          allTransitiveDependencies: GetThemesFamily._allTransitiveDependencies,
+          page: page,
+        );
+
+  GetThemesProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.page,
+  }) : super.internal();
+
+  final int? page;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Theme?>> Function(GetThemesRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetThemesProvider._internal(
+        (ref) => create(ref as GetThemesRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        page: page,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Theme?>> createElement() {
+    return _GetThemesProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetThemesProvider && other.page == page;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetThemesRef on AutoDisposeFutureProviderRef<List<Theme?>> {
+  /// The parameter `page` of this provider.
+  int? get page;
+}
+
+class _GetThemesProviderElement
+    extends AutoDisposeFutureProviderElement<List<Theme?>> with GetThemesRef {
+  _GetThemesProviderElement(super.provider);
+
+  @override
+  int? get page => (origin as GetThemesProvider).page;
+}
+
+String _$getThemeHash() => r'52b550de781885149f139d1be304927defd0caa7';
 
 /// 테마를 불러와요.
 ///
