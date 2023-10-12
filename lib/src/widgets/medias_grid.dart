@@ -11,8 +11,8 @@ class SliverMediasGrid extends StatelessWidget {
   final bool addAutomaticKeepAlives;
   final NullableIndexedWidgetBuilder builder;
 
-  static const _spacing = 4.0;
   static const _aspectRatio = 1 / 1.3333;
+  static const _spacing = 4.0;
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,6 @@ import 'package:serendy/src/features/media/media.dart';
 
 typedef GetMediasPayload = ({
   int? page,
-  int? perPage,
 });
 
 final class GetMediasUsecase implements UseCase<GetMediasPayload, List<Media?>> {
@@ -14,7 +13,7 @@ final class GetMediasUsecase implements UseCase<GetMediasPayload, List<Media?>> 
   Future<List<Media?>> execute(GetMediasPayload payload) async {
     final medias = await _mediaRepository.fetchMedias(
       page: payload.page,
-      perPage: payload.perPage,
+      perPage: 20,
     );
     return medias;
   }

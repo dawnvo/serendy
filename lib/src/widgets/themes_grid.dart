@@ -11,8 +11,8 @@ class SliverThemesGrid extends StatelessWidget {
   final bool addAutomaticKeepAlives;
   final NullableIndexedWidgetBuilder builder;
 
-  static const _spacing = 8.0;
   static const _contentHeight = 72.0;
+  static const _spacing = 8.0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,7 @@ class SliverThemesGrid extends StatelessWidget {
       mobile: 2,
       tablet: 4,
     );
-    final cardWidth =
-        (screenWidth / columns) - (kContentPadding * 2) - _spacing;
+    final cardWidth = (screenWidth / columns) - (kContentPadding * 2) - _spacing;
 
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -10,12 +10,10 @@ Future<List<Media?>> searchMedias(
   SearchMediasRef ref, {
   required String query,
   int? page,
-  int? perPage,
 }) {
   return MediaModule.searchMediasUsecase.execute((
     query: query,
     page: page,
-    perPage: perPage,
   ));
 }
 
@@ -24,12 +22,8 @@ Future<List<Media?>> searchMedias(
 Future<List<Media?>> getMedias(
   GetMediasRef ref, {
   int? page,
-  int? perPage,
 }) {
-  return MediaModule.getMediasUsecase.execute((
-    page: page,
-    perPage: perPage,
-  ));
+  return MediaModule.getMediasUsecase.execute((page: page));
 }
 
 /// 작품 정보를 불러와요.
