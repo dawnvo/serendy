@@ -9,11 +9,13 @@ part 'media_service.g.dart';
 Future<List<Media?>> searchMedias(
   SearchMediasRef ref, {
   required String query,
-  int? pageKey,
+  int? page,
+  int? perPage,
 }) {
   return MediaModule.searchMediasUsecase.execute((
     query: query,
-    pageKey: pageKey,
+    page: page,
+    perPage: perPage,
   ));
 }
 
@@ -21,9 +23,13 @@ Future<List<Media?>> searchMedias(
 @riverpod
 Future<List<Media?>> getMedias(
   GetMediasRef ref, {
-  int? pageKey,
+  int? page,
+  int? perPage,
 }) {
-  return MediaModule.getMediasUsecase.execute((pageKey: pageKey));
+  return MediaModule.getMediasUsecase.execute((
+    page: page,
+    perPage: perPage,
+  ));
 }
 
 /// 작품 정보를 불러와요.

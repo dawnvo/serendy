@@ -3,7 +3,8 @@ import 'package:serendy/src/features/media/media.dart';
 
 typedef SearchMediasPayload = ({
   String query,
-  int? pageKey,
+  int? page,
+  int? perPage,
 });
 
 final class SearchMediasUsecase implements UseCase<SearchMediasPayload, List<Media?>> {
@@ -14,7 +15,8 @@ final class SearchMediasUsecase implements UseCase<SearchMediasPayload, List<Med
   Future<List<Media?>> execute(SearchMediasPayload payload) async {
     final medias = await _mediaRepository.searchMedias(
       query: payload.query,
-      pageKey: payload.pageKey,
+      page: payload.page,
+      perPage: payload.perPage,
     );
     return medias;
   }

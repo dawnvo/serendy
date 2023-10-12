@@ -6,7 +6,7 @@ part of 'media_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchMediasHash() => r'868c98429a6f8a4779d71a7dba839f964055b3ea';
+String _$searchMediasHash() => r'e5774e3689687e062f4259ce815059694854cfe6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -49,11 +49,13 @@ class SearchMediasFamily extends Family<AsyncValue<List<Media?>>> {
   /// Copied from [searchMedias].
   SearchMediasProvider call({
     required String query,
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) {
     return SearchMediasProvider(
       query: query,
-      pageKey: pageKey,
+      page: page,
+      perPage: perPage,
     );
   }
 
@@ -63,7 +65,8 @@ class SearchMediasFamily extends Family<AsyncValue<List<Media?>>> {
   ) {
     return call(
       query: provider.query,
-      pageKey: provider.pageKey,
+      page: provider.page,
+      perPage: provider.perPage,
     );
   }
 
@@ -91,12 +94,14 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
   /// Copied from [searchMedias].
   SearchMediasProvider({
     required String query,
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) : this._internal(
           (ref) => searchMedias(
             ref as SearchMediasRef,
             query: query,
-            pageKey: pageKey,
+            page: page,
+            perPage: perPage,
           ),
           from: searchMediasProvider,
           name: r'searchMediasProvider',
@@ -108,7 +113,8 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
           allTransitiveDependencies:
               SearchMediasFamily._allTransitiveDependencies,
           query: query,
-          pageKey: pageKey,
+          page: page,
+          perPage: perPage,
         );
 
   SearchMediasProvider._internal(
@@ -119,11 +125,13 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.query,
-    required this.pageKey,
+    required this.page,
+    required this.perPage,
   }) : super.internal();
 
   final String query;
-  final int? pageKey;
+  final int? page;
+  final int? perPage;
 
   @override
   Override overrideWith(
@@ -139,7 +147,8 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         query: query,
-        pageKey: pageKey,
+        page: page,
+        perPage: perPage,
       ),
     );
   }
@@ -153,14 +162,16 @@ class SearchMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
   bool operator ==(Object other) {
     return other is SearchMediasProvider &&
         other.query == query &&
-        other.pageKey == pageKey;
+        other.page == page &&
+        other.perPage == perPage;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, query.hashCode);
-    hash = _SystemHash.combine(hash, pageKey.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+    hash = _SystemHash.combine(hash, perPage.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -170,8 +181,11 @@ mixin SearchMediasRef on AutoDisposeFutureProviderRef<List<Media?>> {
   /// The parameter `query` of this provider.
   String get query;
 
-  /// The parameter `pageKey` of this provider.
-  int? get pageKey;
+  /// The parameter `page` of this provider.
+  int? get page;
+
+  /// The parameter `perPage` of this provider.
+  int? get perPage;
 }
 
 class _SearchMediasProviderElement
@@ -182,10 +196,12 @@ class _SearchMediasProviderElement
   @override
   String get query => (origin as SearchMediasProvider).query;
   @override
-  int? get pageKey => (origin as SearchMediasProvider).pageKey;
+  int? get page => (origin as SearchMediasProvider).page;
+  @override
+  int? get perPage => (origin as SearchMediasProvider).perPage;
 }
 
-String _$getMediasHash() => r'ff124349f3d4c7fdeadda4f6fbe9ab4dd401caca';
+String _$getMediasHash() => r'34652e2eb5f148732a6db0d8eef291ec31da89de';
 
 /// 작품 목록을 불러와요.
 ///
@@ -206,10 +222,12 @@ class GetMediasFamily extends Family<AsyncValue<List<Media?>>> {
   ///
   /// Copied from [getMedias].
   GetMediasProvider call({
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) {
     return GetMediasProvider(
-      pageKey: pageKey,
+      page: page,
+      perPage: perPage,
     );
   }
 
@@ -218,7 +236,8 @@ class GetMediasFamily extends Family<AsyncValue<List<Media?>>> {
     covariant GetMediasProvider provider,
   ) {
     return call(
-      pageKey: provider.pageKey,
+      page: provider.page,
+      perPage: provider.perPage,
     );
   }
 
@@ -245,11 +264,13 @@ class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
   ///
   /// Copied from [getMedias].
   GetMediasProvider({
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) : this._internal(
           (ref) => getMedias(
             ref as GetMediasRef,
-            pageKey: pageKey,
+            page: page,
+            perPage: perPage,
           ),
           from: getMediasProvider,
           name: r'getMediasProvider',
@@ -259,7 +280,8 @@ class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
                   : _$getMediasHash,
           dependencies: GetMediasFamily._dependencies,
           allTransitiveDependencies: GetMediasFamily._allTransitiveDependencies,
-          pageKey: pageKey,
+          page: page,
+          perPage: perPage,
         );
 
   GetMediasProvider._internal(
@@ -269,10 +291,12 @@ class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.pageKey,
+    required this.page,
+    required this.perPage,
   }) : super.internal();
 
-  final int? pageKey;
+  final int? page;
+  final int? perPage;
 
   @override
   Override overrideWith(
@@ -287,7 +311,8 @@ class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        pageKey: pageKey,
+        page: page,
+        perPage: perPage,
       ),
     );
   }
@@ -299,21 +324,27 @@ class GetMediasProvider extends AutoDisposeFutureProvider<List<Media?>> {
 
   @override
   bool operator ==(Object other) {
-    return other is GetMediasProvider && other.pageKey == pageKey;
+    return other is GetMediasProvider &&
+        other.page == page &&
+        other.perPage == perPage;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, pageKey.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+    hash = _SystemHash.combine(hash, perPage.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin GetMediasRef on AutoDisposeFutureProviderRef<List<Media?>> {
-  /// The parameter `pageKey` of this provider.
-  int? get pageKey;
+  /// The parameter `page` of this provider.
+  int? get page;
+
+  /// The parameter `perPage` of this provider.
+  int? get perPage;
 }
 
 class _GetMediasProviderElement
@@ -321,7 +352,9 @@ class _GetMediasProviderElement
   _GetMediasProviderElement(super.provider);
 
   @override
-  int? get pageKey => (origin as GetMediasProvider).pageKey;
+  int? get page => (origin as GetMediasProvider).page;
+  @override
+  int? get perPage => (origin as GetMediasProvider).perPage;
 }
 
 String _$getMediaHash() => r'f0d6ce6870bb2629198bd7db0a0ee51d70dd8ae6';

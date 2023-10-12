@@ -15,10 +15,14 @@ final class MediaRepositoryImpl implements MediaRepository {
   @override
   Future<List<Media?>> searchMedias({
     required String query,
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) {
     const columns = '*';
-    final range = getPagination(pageKey ?? 0);
+    final range = getPagination(
+      page ?? 0,
+      perPage ?? 20,
+    );
     return supabase
         .from(_tableMedias)
         .select(columns)
@@ -32,10 +36,14 @@ final class MediaRepositoryImpl implements MediaRepository {
    */
   @override
   Future<List<Media?>> fetchMedias({
-    int? pageKey,
+    int? page,
+    int? perPage,
   }) {
     const columns = '*';
-    final range = getPagination(pageKey ?? 0);
+    final range = getPagination(
+      page ?? 0,
+      perPage ?? 20,
+    );
     return supabase
         .from(_tableMedias)
         .select(columns)

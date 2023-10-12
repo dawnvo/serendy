@@ -1,4 +1,4 @@
-PaginationRange getPagination(int page, [int perPage = 20]) {
+PaginationRange getPagination(int page, int perPage) {
   final from = page * perPage;
   final to = from + perPage - 1;
 
