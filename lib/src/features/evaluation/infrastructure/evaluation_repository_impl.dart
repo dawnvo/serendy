@@ -18,6 +18,8 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   Future<List<Evaluation?>> fetchEvaluations({
     UserID? userId,
     MediaID? mediaId,
+    int? page,
+    int? perPage,
   }) {
     const columns = '''
       id,
@@ -25,13 +27,20 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       media_id,
       medias ( title, image )
     ''';
-    final query = supabase.from(_tableEvaluations).select(columns);
+    final query = supabase //
+        .from(_tableEvaluations)
+        .select(columns)
+        .is_('removed_at', null);
+
     if (userId != null) query.eq('user_id', userId);
     if (mediaId != null) query.eq('media_id', mediaId);
-    return query //
-        .is_('removed_at', null)
-        .range(0, 10)
-        .withConverter(EvaluationMapper.toList);
+
+    if (page != null) {
+      final range = getPagination(page, perPage ?? 20);
+      query.range(range.from, range.to);
+    }
+
+    return query.withConverter(EvaluationMapper.toList);
   }
 
   /**

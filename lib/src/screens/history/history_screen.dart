@@ -8,7 +8,7 @@ import 'controller/history_controller.dart';
 part 'widgets/_evaluation_cards_list.dart';
 part 'widgets/_history_titles.dart';
 
-class HistoryScreen extends ConsumerWidget {
+class HistoryScreen extends HookConsumerWidget {
   static const String routeName = 'history';
   static const String routeLocation = routeName;
   const HistoryScreen();
@@ -16,10 +16,26 @@ class HistoryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final historyValue = ref.watch(historyControllerProvider);
+    final scrollController = useScrollController();
+
+    // * 맨 아래로 스크롤하면 작품을 더 불러와요.
+    void fetchMoreListener() {
+      if (scrollController.offset >= //ReachMaxExtent
+          scrollController.position.maxScrollExtent - 80) {
+        ref.read(historyControllerProvider.notifier).fetchMore();
+      }
+    }
+
+    // * scroll listener
+    useEffect(() {
+      scrollController.addListener(fetchMoreListener);
+      return null;
+    }, [fetchMoreListener]);
 
     return historyValue.when(
       skipLoadingOnReload: true,
       data: (state) => _HistoryTemplate(
+        controller: scrollController,
         titles: _HistoryTitles(
           evaluationsCount: state.evaluationsCount,
         ),
@@ -42,32 +58,37 @@ class HistoryScreen extends ConsumerWidget {
 //Template
 class _HistoryTemplate extends StatelessWidget {
   const _HistoryTemplate({
+    required this.controller,
     required this.titles,
     required this.evaluationsList,
   });
 
+  final ScrollController controller;
   final _HistoryTitles titles;
   final _HistoryEvaluationCardsList evaluationsList;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(slivers: [
-        const SliverAppBar(pinned: true),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
+      body: CustomScrollView(
+        controller: controller,
+        slivers: [
+          const SliverAppBar(pinned: true),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kContentPadding,
+            ),
+            sliver: SliverToBoxAdapter(child: titles),
           ),
-          sliver: SliverToBoxAdapter(child: titles),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
-            vertical: Sizes.p24,
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kContentPadding,
+              vertical: Sizes.p24,
+            ),
+            sliver: evaluationsList,
           ),
-          sliver: evaluationsList,
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

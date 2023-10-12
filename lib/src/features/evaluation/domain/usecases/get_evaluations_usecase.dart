@@ -5,6 +5,7 @@ import 'package:serendy/src/features/media/media.dart';
 typedef GetEvaluationsPayload = ({
   MediaID? mediaId,
   MediaID? userId,
+  int? page,
 });
 
 final class GetEvaluationsUsecase implements UseCase<GetEvaluationsPayload, List<Evaluation?>> {
@@ -16,6 +17,8 @@ final class GetEvaluationsUsecase implements UseCase<GetEvaluationsPayload, List
     final evaluations = _evaluationRepository.fetchEvaluations(
       mediaId: payload.mediaId,
       userId: payload.userId,
+      page: payload.page,
+      perPage: 20,
     );
     return evaluations;
   }

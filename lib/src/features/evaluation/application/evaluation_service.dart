@@ -15,18 +15,21 @@ Future<List<Evaluation?>> getMediaReactions(
   return EvaluationModule.getEvaluationsUsecase.execute((
     mediaId: mediaId,
     userId: null,
+    page: null, // 한번에 전부 불러와요.
   ));
 }
 
 /// 평가 목록을 구독해요.
 @riverpod
 Future<List<Evaluation?>> getEvaluations(
-  GetEvaluationsRef ref,
-) {
+  GetEvaluationsRef ref, {
+  int? page,
+}) {
   final userId = ref.watch(requireUserIdProvider);
   return EvaluationModule.getEvaluationsUsecase.execute((
-    userId: userId,
     mediaId: null,
+    userId: userId,
+    page: page,
   ));
 }
 

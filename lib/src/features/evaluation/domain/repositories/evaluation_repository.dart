@@ -9,6 +9,8 @@ abstract class EvaluationRepository {
   Future<List<Evaluation?>> fetchEvaluations({
     UserID? userId,
     MediaID? mediaId,
+    int? page,
+    int? perPage,
   });
 
   /// 평가 수를 불러와요.

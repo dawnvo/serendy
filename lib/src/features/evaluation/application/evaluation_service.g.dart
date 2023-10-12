@@ -6,7 +6,7 @@ part of 'evaluation_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMediaReactionsHash() => r'11e3a78864ab15b98c11303e0e06de37a61c7850';
+String _$getMediaReactionsHash() => r'22b39ffe3179c9d3749ec722ee8aae45d327ede8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -169,24 +169,148 @@ class _GetMediaReactionsProviderElement
   String get mediaId => (origin as GetMediaReactionsProvider).mediaId;
 }
 
-String _$getEvaluationsHash() => r'84728e9ba405893ef3a2c16bc81f9e71bd0fe576';
+String _$getEvaluationsHash() => r'a39cdbb25b417f85c0e09103369edc06dbe80f05';
 
 /// 평가 목록을 구독해요.
 ///
 /// Copied from [getEvaluations].
 @ProviderFor(getEvaluations)
-final getEvaluationsProvider =
-    AutoDisposeFutureProvider<List<Evaluation?>>.internal(
-  getEvaluations,
-  name: r'getEvaluationsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getEvaluationsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const getEvaluationsProvider = GetEvaluationsFamily();
 
-typedef GetEvaluationsRef = AutoDisposeFutureProviderRef<List<Evaluation?>>;
+/// 평가 목록을 구독해요.
+///
+/// Copied from [getEvaluations].
+class GetEvaluationsFamily extends Family<AsyncValue<List<Evaluation?>>> {
+  /// 평가 목록을 구독해요.
+  ///
+  /// Copied from [getEvaluations].
+  const GetEvaluationsFamily();
+
+  /// 평가 목록을 구독해요.
+  ///
+  /// Copied from [getEvaluations].
+  GetEvaluationsProvider call({
+    int? page,
+  }) {
+    return GetEvaluationsProvider(
+      page: page,
+    );
+  }
+
+  @override
+  GetEvaluationsProvider getProviderOverride(
+    covariant GetEvaluationsProvider provider,
+  ) {
+    return call(
+      page: provider.page,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getEvaluationsProvider';
+}
+
+/// 평가 목록을 구독해요.
+///
+/// Copied from [getEvaluations].
+class GetEvaluationsProvider
+    extends AutoDisposeFutureProvider<List<Evaluation?>> {
+  /// 평가 목록을 구독해요.
+  ///
+  /// Copied from [getEvaluations].
+  GetEvaluationsProvider({
+    int? page,
+  }) : this._internal(
+          (ref) => getEvaluations(
+            ref as GetEvaluationsRef,
+            page: page,
+          ),
+          from: getEvaluationsProvider,
+          name: r'getEvaluationsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getEvaluationsHash,
+          dependencies: GetEvaluationsFamily._dependencies,
+          allTransitiveDependencies:
+              GetEvaluationsFamily._allTransitiveDependencies,
+          page: page,
+        );
+
+  GetEvaluationsProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.page,
+  }) : super.internal();
+
+  final int? page;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Evaluation?>> Function(GetEvaluationsRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetEvaluationsProvider._internal(
+        (ref) => create(ref as GetEvaluationsRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        page: page,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Evaluation?>> createElement() {
+    return _GetEvaluationsProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetEvaluationsProvider && other.page == page;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetEvaluationsRef on AutoDisposeFutureProviderRef<List<Evaluation?>> {
+  /// The parameter `page` of this provider.
+  int? get page;
+}
+
+class _GetEvaluationsProviderElement
+    extends AutoDisposeFutureProviderElement<List<Evaluation?>>
+    with GetEvaluationsRef {
+  _GetEvaluationsProviderElement(super.provider);
+
+  @override
+  int? get page => (origin as GetEvaluationsProvider).page;
+}
+
 String _$countEvaluationsHash() => r'f3be6547042028f257d9ad6c15f960df5da57c10';
 
 /// 평가 개수를 조회해요.
