@@ -1,8 +1,10 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
-import 'package:serendy/src/screens/theme/controller/theme_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
+
+import '../../../screens/profile/controller/profile_controller.dart';
+import '../../../screens/theme/controller/theme_controller.dart';
 
 class DeleteThemeItemMenuItem extends ConsumerWidget {
   const DeleteThemeItemMenuItem({
@@ -16,13 +18,20 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
   Future<void> handleTap(BuildContext context, WidgetRef ref) async {
     try {
       // * 해당 항목을 삭제해요.
-      final itemDeleted = await ref.read(deleteThemeItemProvider(
+      await ref.read(deleteThemeItemProvider(
         id: theme.id,
         mediaId: media.id,
       ).future);
 
       // * [EVENT] 테마 화면의 상태를 갱신해요.
-      ref.read(themeControllerProvider(theme.id).notifier).themeUpdated(itemDeleted);
+      ref //
+          .read(themeControllerProvider(theme.id).notifier)
+          .onThemeItemsUpdated();
+
+      // * [EVENT] 나의 테마 목록을 갱신해요.
+      ref //
+          .read(profileControllerProvider.notifier)
+          .onMyThemesUpdated();
 
       // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
@@ -38,9 +47,9 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
 
       // * failure
     } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(err.toString())),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(err.toString()),
+      ));
     }
   }
 

@@ -20,7 +20,7 @@ class ThemeController extends _$ThemeController {
   }
 
   /// [EVENT] 테마를 갱신해요.
-  Future<void> themeUpdated(Theme theme) async {
+  Future<void> onThemeUpdated(Theme theme) async {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
 
@@ -31,5 +31,13 @@ class ThemeController extends _$ThemeController {
 
     // * loaded
     state = AsyncValue.data(state.requireValue.copyWith(theme: theme));
+  }
+
+  /// [EVENT] 테마 항목을 갱신해요.
+  void onThemeItemsUpdated() {
+    // * 컨트롤러가 폐기된 경우 작업을 끝내요.
+    if (!state.hasValue) return;
+    // * 공급자를 새로고침(초기화)해요.
+    ref.invalidate(getThemeItemsProvider(id: id));
   }
 }

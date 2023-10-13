@@ -57,8 +57,8 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }) {
     const columns = '''
       id,
-      owner_id,
-      image
+      image,
+      owner_id
     ''';
     return supabase
         .from(_tableThemes)

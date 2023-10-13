@@ -15,24 +15,37 @@ class SaveMediaSheet extends ConsumerWidget {
   }
 
   /// 미디어를 저장할 곳(테마)을 선택해요.
-  void handleSelect(BuildContext context, WidgetRef ref, Theme theme) {
-    // * 테마에 작품을 추가해요.
-    ref.read(addThemeItemProvider(
-      id: theme.id,
-      mediaId: media.id,
-    ));
+  Future<void> handleSelect(BuildContext context, WidgetRef ref, Theme theme) async {
+    try {
+      // * 테마에 작품을 추가해요.
+      await ref.read(addThemeItemProvider(
+        id: theme.id,
+        mediaId: media.id,
+      ).future);
 
-    // * [EVENT] 나의 테마 목록을 갱신해요.
-    ref //
-        .read(profileControllerProvider.notifier)
-        .onMyThemesUpdated();
+      // * [EVENT] 나의 테마 목록을 갱신해요.
+      ref //
+          .read(profileControllerProvider.notifier)
+          .onMyThemesUpdated();
 
-    // * 메뉴를 닫고 메시지로 안내해요.
-    context.pop();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: kSnackBarDisplayDurationShort,
-      content: Text("${theme.title}에 작품을 추가했어요."),
-    ));
+      // * 위젯이 폐기된 경우 작업을 끝내요.
+      if (!context.mounted) return;
+
+      // * 메뉴를 닫아요.
+      context.pop();
+
+      // * success
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: kSnackBarDisplayDurationShort,
+        content: Text("${theme.title}에 작품을 추가했어요."),
+      ));
+
+      // * failure
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(err.toString()),
+      ));
+    }
   }
 
   @override

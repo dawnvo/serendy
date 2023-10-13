@@ -26,14 +26,13 @@ class ProfileController extends _$ProfileController {
   void onEvaluationsCountUpdated() {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
-
-    // * 해당 공급자를 새로고침(초기화)해요.
+    // * 공급자를 새로고침(초기화)해요.
     ref.invalidate(countEvaluationsProvider);
   }
 
   /// [EVENT] 나의 테마 목록을 갱신해요.
-  Future<void> onMyThemesUpdated() async {
-    // * 컨트롤러가 초기화됐다면 해당 공급자를 새로고침해요.
+  void onMyThemesUpdated() {
+    // * 컨트롤러가 초기화됐다면 공급자를 새로고침해요.
     if (!state.hasValue) return;
     ref.invalidate(getMyThemesProvider);
   }

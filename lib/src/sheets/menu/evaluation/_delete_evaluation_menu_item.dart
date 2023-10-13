@@ -29,9 +29,9 @@ class DeleteEvaluationMenuItem extends ConsumerWidget {
 
       // * failure
     } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(err.toString())),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(err.toString()),
+      ));
     }
   }
 
