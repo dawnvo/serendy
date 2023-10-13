@@ -33,6 +33,7 @@ export 'extensions/context_extension.dart';
 export 'extensions/enum_extension.dart';
 export 'extensions/list_extension.dart';
 export 'extensions/number_extension.dart';
+export 'extensions/string_extension.dart';
 
 //mixin
 export 'mixin/notifier_mounted_mixin.dart';

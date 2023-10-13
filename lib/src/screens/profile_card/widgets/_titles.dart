@@ -14,12 +14,11 @@ class _ProfileCardTitles extends StatelessWidget {
     return Column(children: [
       if (profile?.name != null)
         Text(
-          profile!.name,
+          profile!.name.ellipsis(),
           maxLines: 1,
-          overflow: TextOverflow.clip,
-          style: context.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.w300,
-          ),
+          style: profile!.name.length < 8
+              ? context.textTheme.headlineMedium
+              : context.textTheme.headlineSmall,
         )
       else
         const LoadingIndicator(),

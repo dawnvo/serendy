@@ -45,7 +45,7 @@ class _ThemeDetailBar extends ConsumerWidget {
       ),
       Gap.w8,
       Text(
-        theme.owner.name,
+        theme.owner.name.ellipsis(),
         style: context.textTheme.bodyMedium,
       ),
     ]);
