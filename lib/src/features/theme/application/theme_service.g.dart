@@ -6,6 +6,22 @@ part of 'theme_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$getMyThemesHash() => r'b49b5246874a3982f9033dd91ba22ae612fa818e';
+
+/// 나의 테마 목록을 불러와요.
+///
+/// Copied from [getMyThemes].
+@ProviderFor(getMyThemes)
+final getMyThemesProvider = AutoDisposeFutureProvider<List<Theme?>>.internal(
+  getMyThemes,
+  name: r'getMyThemesProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMyThemesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetMyThemesRef = AutoDisposeFutureProviderRef<List<Theme?>>;
 String _$getThemesHash() => r'847d745d0d09954131f82ed901cfed7bea116a10';
 
 /// Copied from Dart SDK

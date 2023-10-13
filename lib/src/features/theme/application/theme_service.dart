@@ -5,6 +5,18 @@ import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_service.g.dart';
 
+/// 나의 테마 목록을 불러와요.
+@riverpod
+Future<List<Theme?>> getMyThemes(
+  GetMyThemesRef ref,
+) {
+  final userId = ref.watch(currentUserIdProvider);
+  return ThemeModule.getThemesUsecase.execute((
+    executorId: userId,
+    page: null,
+  ));
+}
+
 /// 테마 여럿을 불러와요.
 @riverpod
 Future<List<Theme?>> getThemes(

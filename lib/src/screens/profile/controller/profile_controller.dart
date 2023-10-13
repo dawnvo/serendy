@@ -13,7 +13,7 @@ class ProfileController extends _$ProfileController {
     final evaluationsCount = await ref.watch(countEvaluationsProvider.future);
 
     // * 내 테마를 불러와요.
-    final themes = await ref.watch(getThemesProvider().future);
+    final themes = await ref.watch(getMyThemesProvider.future);
 
     // * loaded
     return ProfileState(
@@ -35,6 +35,6 @@ class ProfileController extends _$ProfileController {
   Future<void> onMyThemesUpdated() async {
     // * 컨트롤러가 초기화됐다면 해당 공급자를 새로고침해요.
     if (!state.hasValue) return;
-    ref.invalidate(getThemesProvider);
+    ref.invalidate(getMyThemesProvider);
   }
 }
