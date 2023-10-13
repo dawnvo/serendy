@@ -6,12 +6,14 @@ class AccountState extends Equatable {
     required this.email,
     required this.name,
     required this.avatar,
+    this.isSubmitted = false,
   });
 
   final Profile initialProfile;
   final String email;
   final String name;
   final String? avatar;
+  final bool isSubmitted;
 
   bool get isEdited =>
       initialProfile.email != email ||
@@ -23,9 +25,11 @@ class AccountState extends Equatable {
     final String? email,
     final String? name,
     final String? avatar,
+    final bool? isSubmitted,
   }) {
     return AccountState(
       initialProfile: initialProfile ?? this.initialProfile,
+      isSubmitted: isSubmitted ?? this.isSubmitted,
       email: email ?? this.email,
       name: name ?? this.name,
       avatar: avatar ?? this.avatar,
@@ -37,5 +41,6 @@ class AccountState extends Equatable {
         email,
         name,
         avatar,
+        isSubmitted,
       ];
 }
