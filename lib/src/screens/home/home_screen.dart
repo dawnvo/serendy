@@ -22,7 +22,7 @@ class HomeScreen extends HookConsumerWidget {
     // * 맨 아래로 스크롤하면 작품을 더 불러와요.
     void fetchMoreListener() {
       if (scrollController.offset >= //ReachMaxExtent
-          scrollController.position.maxScrollExtent - 80) {
+          scrollController.position.maxScrollExtent) {
         ref.read(homeControllerProvider.notifier).fetchMore();
       }
     }
@@ -30,8 +30,8 @@ class HomeScreen extends HookConsumerWidget {
     // * Infinite scroll listener
     useEffect(() {
       scrollController.addListener(fetchMoreListener);
-      return null;
-    }, [fetchMoreListener]);
+      return () => scrollController.removeListener(fetchMoreListener);
+    }, [scrollController]);
 
     return _HomeTemplate(
       controller: scrollController,
