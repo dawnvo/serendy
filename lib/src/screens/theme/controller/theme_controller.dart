@@ -37,7 +37,7 @@ class ThemeController extends _$ThemeController {
   void onThemeItemsUpdated() {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
-    // * 공급자를 새로고침(초기화)해요.
+    // * 관련 공급자를 새로고침(초기화)해요.
     ref.invalidate(getThemeItemsProvider(id: id));
   }
 }
