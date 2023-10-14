@@ -1,4 +1,8 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/dislike/application/dislike_service.dart';
+import 'package:serendy/src/widgets/widgets.dart';
+
+part 'widgets/clear_dislikes_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = 'settings';
@@ -14,11 +18,7 @@ class SettingsScreen extends StatelessWidget {
           icon: RemixIcon.user_line,
           title: "내 계정",
         ),
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.eye_off_line,
-          title: "숨기기 초기화",
-        ),
+        const _ClearDislikesTile(),
         _SettingsListTile(
           onTap: () {},
           icon: RemixIcon.book_2_line,
@@ -43,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
 class _SettingsTemplate extends StatelessWidget {
   const _SettingsTemplate({required this.options});
 
-  final List<_SettingsListTile> options;
+  final List<Widget> options;
 
   @override
   Widget build(BuildContext context) {

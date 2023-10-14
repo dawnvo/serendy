@@ -14,7 +14,7 @@ class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const titleStyle = TextStyle(
-      height: 1.5,
+      height: 1.8,
       fontSize: 18.0,
       fontWeight: FontWeight.w400,
     );

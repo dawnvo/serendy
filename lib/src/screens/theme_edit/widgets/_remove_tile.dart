@@ -14,9 +14,9 @@ class _EditThemeRemoveTile extends ConsumerWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => __RemoveThemeDialog(
-          onDelete: () => ref.read(provider.notifier).remove(),
-        ),
+        builder: (_) => __RemoveThemeDialog(onRemove: () {
+          ref.read(provider.notifier).remove();
+        }),
       ),
       title: const Text("테마 삭제"),
       trailing: Icon(
@@ -27,10 +27,10 @@ class _EditThemeRemoveTile extends ConsumerWidget {
   }
 }
 
-/// Dialog
+//Dialog
 class __RemoveThemeDialog extends StatelessWidget {
-  const __RemoveThemeDialog({required this.onDelete});
-  final VoidCallback onDelete;
+  const __RemoveThemeDialog({required this.onRemove});
+  final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class __RemoveThemeDialog extends StatelessWidget {
         ),
         CustomDialogAction(
           isDestructiveAction: true,
-          onPressed: onDelete,
+          onPressed: onRemove,
           child: const Text("삭제"),
         ),
       ],
