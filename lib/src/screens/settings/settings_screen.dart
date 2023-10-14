@@ -17,17 +17,17 @@ class SettingsScreen extends StatelessWidget {
         _SettingsListTile(
           onTap: () {},
           icon: RemixIcon.eye_off_line,
-          title: "관심없음",
+          title: "숨기기 초기화",
         ),
         _SettingsListTile(
           onTap: () {},
-          icon: RemixIcon.notification_3_line,
-          title: "알림",
+          icon: RemixIcon.book_2_line,
+          title: "DB 수정/추가",
         ),
         _SettingsListTile(
           onTap: () {},
           icon: RemixIcon.error_warning_line,
-          title: "문의하기",
+          title: "문제 신고",
         ),
         _SettingsListTile(
           onTap: () {},
