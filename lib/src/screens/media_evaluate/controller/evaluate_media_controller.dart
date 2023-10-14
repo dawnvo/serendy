@@ -13,12 +13,12 @@ class EvaluateMediaController extends _$EvaluateMediaController with NotifierMou
     ref.onDispose(setUnmounted);
 
     // * lazy Loading
-    _fetchEvaluation();
+    _fetch();
     return const EvaluateMediaState(evaluation: null);
   }
 
   /// 평가를 불러와요.
-  Future<void> _fetchEvaluation() async {
+  Future<void> _fetch() async {
     // * 내 평가를 불러와요.
     final evaluation = await ref.watch(getEvaluationProvider(
       mediaId: mediaId,
