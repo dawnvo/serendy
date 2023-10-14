@@ -4,4 +4,5 @@ abstract final class TablePath {
   static const themes = 'themes';
   static const themeItems = 'theme_items';
   static const evaluations = 'evaluations';
+  static const dislikes = 'dislikes';
 }
