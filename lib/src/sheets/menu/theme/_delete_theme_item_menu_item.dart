@@ -3,7 +3,6 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import '../../../screens/profile/controller/profile_controller.dart';
 import '../../../screens/theme/controller/theme_controller.dart';
 
 class DeleteThemeItemMenuItem extends ConsumerWidget {
@@ -28,16 +27,11 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
           .read(themeControllerProvider(theme.id).notifier)
           .onThemeItemsUpdated();
 
-      // * [EVENT] 나의 테마 목록을 갱신해요.
-      ref //
-          .read(profileControllerProvider.notifier)
-          .onMyThemesUpdated();
+      // * 나의 테마 목록을 새로고침(초기화)해요.
+      ref.invalidate(getMyThemesProvider);
 
       // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
-
-      // * 메뉴를 닫아요.
-      context.pop();
 
       // * success
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -50,6 +44,10 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(err.toString()),
       ));
+
+      // * 메뉴를 닫아요.
+    } finally {
+      context.pop();
     }
   }
 

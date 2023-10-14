@@ -16,9 +16,6 @@ class HideMediaMenuItem extends ConsumerWidget {
       // * 숨기기 취소 로직
       void cancelAction() {}
 
-      // * 메뉴를 닫고 메시지로 안내해요.
-      context.pop();
-
       // * success
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         action: SnackBarAction(onPressed: cancelAction, label: "취소"),
@@ -30,6 +27,10 @@ class HideMediaMenuItem extends ConsumerWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(err.toString()),
       ));
+
+      // * 메뉴를 닫아요.
+    } finally {
+      context.pop();
     }
   }
 

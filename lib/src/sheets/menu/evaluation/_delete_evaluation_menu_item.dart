@@ -24,14 +24,15 @@ class DeleteEvaluationMenuItem extends ConsumerWidget {
       // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
 
-      // * 메뉴를 닫아요.
-      context.pop();
-
       // * failure
     } catch (err) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(err.toString()),
       ));
+
+      // * 메뉴를 닫아요.
+    } finally {
+      context.pop();
     }
   }
 

@@ -3,8 +3,6 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
 
-import '../../profile/controller/profile_controller.dart';
-
 class SaveMediaSheet extends ConsumerWidget {
   const SaveMediaSheet(this.media);
   final Media media;
@@ -23,16 +21,11 @@ class SaveMediaSheet extends ConsumerWidget {
         mediaId: media.id,
       ).future);
 
-      // * [EVENT] 나의 테마 목록을 갱신해요.
-      ref //
-          .read(profileControllerProvider.notifier)
-          .onMyThemesUpdated();
+      // * 나의 테마 목록을 새로고침(초기화)해요.
+      ref.invalidate(getMyThemesProvider);
 
       // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
-
-      // * 메뉴를 닫아요.
-      context.pop();
 
       // * success
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -45,6 +38,10 @@ class SaveMediaSheet extends ConsumerWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(err.toString()),
       ));
+
+      // * 메뉴를 닫아요.
+    } finally {
+      context.pop();
     }
   }
 
