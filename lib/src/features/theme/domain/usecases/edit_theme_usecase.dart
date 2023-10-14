@@ -19,7 +19,7 @@ final class EditThemeUsecase implements UseCase<EditThemePayload, Theme> {
   Future<Theme> execute(EditThemePayload payload) async {
     // * 테마가 존재하는지 확인해요.
     final theme = CoreAssert.notEmpty<Theme>(
-      await _themeRepository.fetchThemeSlice(id: payload.themeId),
+      await _themeRepository.fetchTheme(id: payload.themeId),
       const EntityNotFoundException(overrideMessage: "테마를 찾을 수 없어요."),
     );
 
