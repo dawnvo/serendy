@@ -27,7 +27,7 @@ class ThemeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeValue = ref.watch(themeControllerProvider(id));
+    final themeValue = ref.watch(themeControllerProvider(id, theme));
 
     return themeValue.when(
       skipLoadingOnReload: true,

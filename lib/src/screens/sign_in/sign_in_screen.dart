@@ -15,6 +15,7 @@ class SignInScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(signInControllerProvider, (previous, next) {
+      //failure
       if (next.status == SignInStatus.failure) {
         final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
         _SignInErrorDialog.show(context, errorMessage);
