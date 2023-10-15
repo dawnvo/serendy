@@ -1,37 +1,44 @@
+import 'dart:async';
+
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/dislike/dislike.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
+
+/// [addDislike] 호출을 30초 연기해요.
+/// 실수로 누른 경우 실행을 취소할 수 있어요.
+final delayedDislikeProvider = //
+    Provider.autoDispose.family<Timer, MediaID>((ref, mediaId) {
+  final timer = Timer(
+    const Duration(seconds: 30),
+    () => ref.read(addDislikeProvider(mediaId: mediaId)),
+  );
+  ref.onDispose(timer.cancel);
+  return timer;
+});
 
 class HideMediaMenuItem extends ConsumerWidget {
   const HideMediaMenuItem({required this.media});
   final Media media;
 
-  Future<void> handleTap(BuildContext context, WidgetRef ref) async {
-    try {
-      // * TODO 관심없는 미디어에 추가해요.
+  void handleTap(BuildContext context, WidgetRef ref) {
+    // * 관심없는 목록에 추가해요.
+    final delayedDislike = ref.read(delayedDislikeProvider(media.id));
 
-      // * 위젯이 폐기된 경우 작업을 끝내요.
-      if (!context.mounted) return;
+    // * 위젯이 폐기된 경우 작업을 끝내요.
+    if (!context.mounted) return;
 
-      // * 숨기기 취소 로직
-      void cancelAction() {}
+    // * 메뉴를 닫아요.
+    context.pop();
 
-      // * success
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        action: SnackBarAction(onPressed: cancelAction, label: "취소"),
-        content: const Text('앞으로 이 작품은 보이지 않습니다.'),
-      ));
+    // * 숨기기 취소 액션
+    void cancelAction() => delayedDislike.cancel();
 
-      // * failure
-    } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(err.toString()),
-      ));
-
-      // * 메뉴를 닫아요.
-    } finally {
-      context.pop();
-    }
+    // * 메시지로 안내해요.
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      action: SnackBarAction(onPressed: cancelAction, label: "취소"),
+      content: const Text('앞으로 이 작품은 보이지 않습니다.'),
+    ));
   }
 
   @override
