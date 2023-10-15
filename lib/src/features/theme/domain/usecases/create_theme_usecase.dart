@@ -29,7 +29,7 @@ final class CreateThemeUsecase implements UseCase<CreateThemePayload, Theme> {
       owner: ThemeOwner(
         id: profile.id,
         name: profile.name,
-        avatar: profile.avatar,
+        image: profile.image,
       ),
       title: payload.title,
     );

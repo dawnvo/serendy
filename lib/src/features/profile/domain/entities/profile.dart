@@ -26,7 +26,7 @@ final class Profile extends Equatable {
   final String email;
 
   /// 프로필 사진
-  final String? avatar;
+  final String? image;
 
   /// 생성 날짜
   final DateTime createdAt;
@@ -41,7 +41,7 @@ final class Profile extends Equatable {
     required this.id,
     required this.name,
     required this.email,
-    this.avatar,
+    this.image,
     this.removedAt,
     final DateTime? createdAt,
     final DateTime? updatedAt,
@@ -53,16 +53,16 @@ final class Profile extends Equatable {
         id,
         name,
         email,
-        avatar,
+        image,
       ];
 }
 
 extension ProfileX on Profile {
   /// 프로필 수정
-  Profile edit({String? name, String? avatar}) {
+  Profile edit({String? name, String? image}) {
     return copy(
       name: name,
-      avatar: avatar,
+      image: image,
       updatedAt: DateTime.now(),
     );
   }
@@ -77,7 +77,7 @@ extension ProfileX on Profile {
     final UserID? id,
     final String? name,
     final String? email,
-    final String? avatar,
+    final String? image,
     final DateTime? createdAt,
     final DateTime? updatedAt,
     final DateTime? removedAt,
@@ -86,7 +86,7 @@ extension ProfileX on Profile {
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
-      avatar: avatar ?? this.avatar,
+      image: image ?? this.image,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       removedAt: removedAt ?? this.removedAt,

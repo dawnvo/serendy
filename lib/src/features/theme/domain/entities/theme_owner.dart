@@ -8,12 +8,12 @@ final class ThemeOwner extends Equatable {
   final String name;
 
   // * 프로필 사진
-  final String? avatar;
+  final String? image;
 
   const ThemeOwner({
     required this.id,
     required this.name,
-    this.avatar,
+    this.image,
   });
 
   @override

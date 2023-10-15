@@ -11,7 +11,7 @@ ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       name: json['name'] as String?,
       email: json['email'] as String?,
-      avatar: json['avatar'] as String?,
+      image: json['image'] as String?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -35,7 +35,7 @@ Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) {
   writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('email', instance.email);
-  writeNotNull('avatar', instance.avatar);
+  writeNotNull('image', instance.image);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());

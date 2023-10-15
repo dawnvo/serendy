@@ -38,7 +38,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
       id: profile.id,
       name: profile.name,
       email: profile.email,
-      avatar: profile.avatar,
+      image: profile.image,
     ).toJson();
     return supabase //
         .from(_tableProfiles)
@@ -55,7 +55,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
     final entity = ProfileEntity(
       name: profile.name,
       email: profile.email,
-      avatar: profile.avatar,
+      image: profile.image,
     ).toJson();
     return supabase //
         .from(_tableProfiles)
@@ -71,10 +71,10 @@ final class ProfileRepositoryImpl implements ProfileRepository {
     Profile profile,
   ) async {
     // * 이미지가 존재하는지 확인해요.
-    if (profile.avatar == null || profile.avatar == '') return null;
+    if (profile.image == null || profile.image == '') return null;
 
     // * 파일이 존재하는지 확인해요.
-    final imageFile = File(profile.avatar!);
+    final imageFile = File(profile.image!);
     if (!await imageFile.exists()) return null;
 
     // * 이미지를 업로드해요.
@@ -105,7 +105,7 @@ final class ProfileRepositoryImpl implements ProfileRepository {
     Profile profile,
   ) async {
     // * 이미지가 존재하는지 확인해요.
-    if (profile.avatar == null || profile.avatar == '') return;
+    if (profile.image == null || profile.image == '') return;
 
     // * 업로드한 이미지를 삭제해요.
     final imagePath = profile.id;

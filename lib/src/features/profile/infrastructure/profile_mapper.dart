@@ -10,7 +10,7 @@ abstract final class ProfileMapper {
       id: entity.id ?? '',
       name: entity.name ?? '',
       email: entity.email ?? '',
-      avatar: entity.avatar,
+      image: entity.image,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );

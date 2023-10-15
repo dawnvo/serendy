@@ -5,26 +5,24 @@ class AccountState extends Equatable {
     required this.initialProfile,
     required this.email,
     required this.name,
-    required this.avatar,
+    required this.image,
     this.isSubmitted = false,
   });
 
   final Profile initialProfile;
   final String email;
   final String name;
-  final String? avatar;
+  final String? image;
   final bool isSubmitted;
 
   bool get isEdited =>
-      initialProfile.email != email ||
-      initialProfile.name != name ||
-      initialProfile.avatar != avatar;
+      initialProfile.email != email || initialProfile.name != name || initialProfile.image != image;
 
   AccountState copyWith({
     final Profile? initialProfile,
     final String? email,
     final String? name,
-    final String? avatar,
+    final String? image,
     final bool? isSubmitted,
   }) {
     return AccountState(
@@ -32,7 +30,7 @@ class AccountState extends Equatable {
       isSubmitted: isSubmitted ?? this.isSubmitted,
       email: email ?? this.email,
       name: name ?? this.name,
-      avatar: avatar ?? this.avatar,
+      image: image ?? this.image,
     );
   }
 
@@ -40,7 +38,7 @@ class AccountState extends Equatable {
   List<Object?> get props => [
         email,
         name,
-        avatar,
+        image,
         isSubmitted,
       ];
 }

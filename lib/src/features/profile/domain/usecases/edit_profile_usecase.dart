@@ -4,7 +4,7 @@ import 'package:serendy/src/features/profile/profile.dart';
 typedef EditProfilePayload = ({
   UserID executorId,
   String? name,
-  String? avatar,
+  String? image,
 });
 
 final class EditProfileUsecase implements UseCase<EditProfilePayload, Profile> {
@@ -27,16 +27,16 @@ final class EditProfileUsecase implements UseCase<EditProfilePayload, Profile> {
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
     // * 이미지를 변경했다면 업로드를 진행해요.
-    String? avatarUrl;
-    if (payload.avatar != profile.avatar) {
-      avatarUrl = await _profileRepository.uploadProfileImage(
-        profile.copy(avatar: payload.avatar), // 변경한 이미지로 교체
+    String? imageUrl;
+    if (payload.image != profile.image) {
+      imageUrl = await _profileRepository.uploadProfileImage(
+        profile.copy(image: payload.image), // 변경한 이미지로 교체
       );
     }
 
     // * 사용자 정보를 수정해요.
     final edited = profile.edit(
-      avatar: avatarUrl,
+      image: imageUrl,
       name: payload.name,
     );
 

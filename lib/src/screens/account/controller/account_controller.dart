@@ -17,14 +17,14 @@ class AccountController extends _$AccountController with NotifierMounted {
       initialProfile: profile,
       email: profile.email,
       name: profile.name,
-      avatar: profile.avatar,
+      image: profile.image,
     );
   }
 
   /// 이미지를 변경해요.
   void changeAvatar(String? imagePath) {
     state = AsyncValue.data(state.requireValue.copyWith(
-      avatar: imagePath,
+      image: imagePath,
     ));
   }
 
@@ -41,7 +41,7 @@ class AccountController extends _$AccountController with NotifierMounted {
       // * 프로필을 수정해요.
       final edited = await ref.read(editProfileProvider(
         username: state.requireValue.name,
-        avatar: state.requireValue.avatar,
+        image: state.requireValue.image,
       ).future);
 
       // * 프로필 관련 공급자를 새로고침해요.
@@ -51,7 +51,7 @@ class AccountController extends _$AccountController with NotifierMounted {
       // * loaded
       return state.requireValue.copyWith(
         initialProfile: edited, // isEdited 초기화
-        avatar: edited.avatar, // imageUrl 교체
+        image: edited.image, // imageUrl 교체
         isSubmitted: true,
       );
     });

@@ -39,7 +39,7 @@ class AccountScreen extends ConsumerWidget {
       skipLoadingOnReload: true,
       data: (state) => _AccountTemplate(
         saveButton: _AccountSaveButton(isEdited: state.isEdited),
-        imagePicker: _AccountImagePicker(image: state.avatar),
+        imagePicker: _AccountImagePicker(image: state.image),
         textField: _AccountNameTextField(name: state.name),
         options: [
           _AccountEmailTile(email: state.email),

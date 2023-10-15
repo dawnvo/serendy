@@ -23,7 +23,7 @@ final class RemoveProfileUsecase implements UseCase<RemoveProfilePayload, void> 
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
     // * 업로드한 이미지가 존재하면 삭제해요.
-    if (profile.avatar != null) {
+    if (profile.image != null) {
       await _profileRepository.deleteProfileImage(profile);
     }
 

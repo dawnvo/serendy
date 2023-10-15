@@ -39,8 +39,8 @@ class _ThemeDetailBar extends ConsumerWidget {
     return Row(children: [
       CircleAvatar(
         radius: Sizes.p12,
-        backgroundImage: theme.owner.avatar != null //
-            ? NetworkImage(theme.owner.avatar!)
+        backgroundImage: theme.owner.image != null //
+            ? NetworkImage(theme.owner.image!)
             : null,
       ),
       Gap.w8,

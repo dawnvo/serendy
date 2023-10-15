@@ -183,7 +183,7 @@ class _GetProfileProviderElement
   String get id => (origin as GetProfileProvider).id;
 }
 
-String _$createProfileHash() => r'3453a3e6f54552afdf8bfa0dd1dd126afd14cbf0';
+String _$createProfileHash() => r'a7f05c3f391d99aac3b44d0ffbf10d6d1d4ef466';
 
 /// 프로필을 만들어요.
 ///
@@ -207,13 +207,13 @@ class CreateProfileFamily extends Family<AsyncValue<Profile>> {
     required String uid,
     required String username,
     required String email,
-    String? avatar,
+    String? image,
   }) {
     return CreateProfileProvider(
       uid: uid,
       username: username,
       email: email,
-      avatar: avatar,
+      image: image,
     );
   }
 
@@ -225,7 +225,7 @@ class CreateProfileFamily extends Family<AsyncValue<Profile>> {
       uid: provider.uid,
       username: provider.username,
       email: provider.email,
-      avatar: provider.avatar,
+      image: provider.image,
     );
   }
 
@@ -255,14 +255,14 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
     required String uid,
     required String username,
     required String email,
-    String? avatar,
+    String? image,
   }) : this._internal(
           (ref) => createProfile(
             ref as CreateProfileRef,
             uid: uid,
             username: username,
             email: email,
-            avatar: avatar,
+            image: image,
           ),
           from: createProfileProvider,
           name: r'createProfileProvider',
@@ -276,7 +276,7 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
           uid: uid,
           username: username,
           email: email,
-          avatar: avatar,
+          image: image,
         );
 
   CreateProfileProvider._internal(
@@ -289,13 +289,13 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
     required this.uid,
     required this.username,
     required this.email,
-    required this.avatar,
+    required this.image,
   }) : super.internal();
 
   final String uid;
   final String username;
   final String email;
-  final String? avatar;
+  final String? image;
 
   @override
   Override overrideWith(
@@ -313,7 +313,7 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
         uid: uid,
         username: username,
         email: email,
-        avatar: avatar,
+        image: image,
       ),
     );
   }
@@ -329,7 +329,7 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
         other.uid == uid &&
         other.username == username &&
         other.email == email &&
-        other.avatar == avatar;
+        other.image == image;
   }
 
   @override
@@ -338,7 +338,7 @@ class CreateProfileProvider extends AutoDisposeFutureProvider<Profile> {
     hash = _SystemHash.combine(hash, uid.hashCode);
     hash = _SystemHash.combine(hash, username.hashCode);
     hash = _SystemHash.combine(hash, email.hashCode);
-    hash = _SystemHash.combine(hash, avatar.hashCode);
+    hash = _SystemHash.combine(hash, image.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -354,8 +354,8 @@ mixin CreateProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `email` of this provider.
   String get email;
 
-  /// The parameter `avatar` of this provider.
-  String? get avatar;
+  /// The parameter `image` of this provider.
+  String? get image;
 }
 
 class _CreateProfileProviderElement
@@ -369,10 +369,10 @@ class _CreateProfileProviderElement
   @override
   String get email => (origin as CreateProfileProvider).email;
   @override
-  String? get avatar => (origin as CreateProfileProvider).avatar;
+  String? get image => (origin as CreateProfileProvider).image;
 }
 
-String _$editProfileHash() => r'cbfa7704fe13210168b57746f56bbd8254040590';
+String _$editProfileHash() => r'cf6446ff381978842c1aec31773765542de23b65';
 
 /// 프로필을 수정해요.
 ///
@@ -394,11 +394,11 @@ class EditProfileFamily extends Family<AsyncValue<Profile>> {
   /// Copied from [editProfile].
   EditProfileProvider call({
     String? username,
-    String? avatar,
+    String? image,
   }) {
     return EditProfileProvider(
       username: username,
-      avatar: avatar,
+      image: image,
     );
   }
 
@@ -408,7 +408,7 @@ class EditProfileFamily extends Family<AsyncValue<Profile>> {
   ) {
     return call(
       username: provider.username,
-      avatar: provider.avatar,
+      image: provider.image,
     );
   }
 
@@ -436,12 +436,12 @@ class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
   /// Copied from [editProfile].
   EditProfileProvider({
     String? username,
-    String? avatar,
+    String? image,
   }) : this._internal(
           (ref) => editProfile(
             ref as EditProfileRef,
             username: username,
-            avatar: avatar,
+            image: image,
           ),
           from: editProfileProvider,
           name: r'editProfileProvider',
@@ -453,7 +453,7 @@ class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
           allTransitiveDependencies:
               EditProfileFamily._allTransitiveDependencies,
           username: username,
-          avatar: avatar,
+          image: image,
         );
 
   EditProfileProvider._internal(
@@ -464,11 +464,11 @@ class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.username,
-    required this.avatar,
+    required this.image,
   }) : super.internal();
 
   final String? username;
-  final String? avatar;
+  final String? image;
 
   @override
   Override overrideWith(
@@ -484,7 +484,7 @@ class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         username: username,
-        avatar: avatar,
+        image: image,
       ),
     );
   }
@@ -498,14 +498,14 @@ class EditProfileProvider extends AutoDisposeFutureProvider<Profile> {
   bool operator ==(Object other) {
     return other is EditProfileProvider &&
         other.username == username &&
-        other.avatar == avatar;
+        other.image == image;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, username.hashCode);
-    hash = _SystemHash.combine(hash, avatar.hashCode);
+    hash = _SystemHash.combine(hash, image.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -515,8 +515,8 @@ mixin EditProfileRef on AutoDisposeFutureProviderRef<Profile> {
   /// The parameter `username` of this provider.
   String? get username;
 
-  /// The parameter `avatar` of this provider.
-  String? get avatar;
+  /// The parameter `image` of this provider.
+  String? get image;
 }
 
 class _EditProfileProviderElement
@@ -526,7 +526,7 @@ class _EditProfileProviderElement
   @override
   String? get username => (origin as EditProfileProvider).username;
   @override
-  String? get avatar => (origin as EditProfileProvider).avatar;
+  String? get image => (origin as EditProfileProvider).image;
 }
 
 String _$removeProfileHash() => r'8ee8d77c988351366c675c180ffbaa915b206051';
