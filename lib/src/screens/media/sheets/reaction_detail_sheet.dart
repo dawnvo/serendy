@@ -1,37 +1,19 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/evaluation/evaluation.dart';
+import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
-
-typedef _ReactionData = ({Emotion emotion, int count});
 
 class ReactionDetailSheet extends StatelessWidget {
   const ReactionDetailSheet(this.reactions);
-  final List<Evaluation?> reactions;
+  final List<MediaReaction?> reactions;
 
   /// 하단 시트를 열어요.
-  static void show(BuildContext context, List<Evaluation?> reactions) {
+  static void show(BuildContext context, List<MediaReaction?> reactions) {
     context.showCustomBottomSheet((_) => ReactionDetailSheet(reactions));
-  }
-
-  /// Convert `Evaluation` to `ReactionData`
-  List<_ReactionData> _convert(List<Evaluation?> reactions) {
-    // * 중복된 감정을 병합해요
-    final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
-
-    // * 데이터 형식에 맞게 변환해요.
-    final results = uniqueKeys.map((emotion) {
-      final count = reactions.where((_) => _?.emotion == emotion).length;
-      return (count: count, emotion: emotion);
-    }).toList();
-
-    // * 정렬: 내림차순
-    return results..sort((b, a) => a.count.compareTo(b.count));
   }
 
   @override
   Widget build(BuildContext context) {
-    final reactionDatas = _convert(reactions);
-    final totalCount = reactionDatas.fold<int>(0, (a, i) => a + i.count);
+    final totalCount = reactions.fold<int>(0, (a, i) => a + i!.count);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -41,18 +23,18 @@ class ReactionDetailSheet extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(children: [
           MultiLineProgressIndicator([
-            for (final data in reactionDatas)
+            for (final reaction in reactions)
               ProgressBar(
-                color: data.emotion.color,
-                value: data.count / totalCount,
+                color: reaction!.emotion.color,
+                value: reaction.count / totalCount,
               ),
           ]),
           Gap.h8,
-          for (final data in reactionDatas)
+          for (final reaction in reactions)
             __ReactionTile(
-              color: data.emotion.color,
-              name: data.emotion.label,
-              count: data.count,
+              color: reaction!.emotion.color,
+              name: reaction.emotion.label,
+              count: reaction.count,
             ),
         ]),
       ),

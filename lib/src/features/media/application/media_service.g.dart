@@ -463,6 +463,150 @@ class _GetMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
   String get id => (origin as GetMediaProvider).id;
 }
 
+String _$getMediaReactionsHash() => r'76b9c0bced177b6c11eb748f82ac0f0bbf4c2d81';
+
+/// 작품 반응을 불러와요.
+///
+/// Copied from [getMediaReactions].
+@ProviderFor(getMediaReactions)
+const getMediaReactionsProvider = GetMediaReactionsFamily();
+
+/// 작품 반응을 불러와요.
+///
+/// Copied from [getMediaReactions].
+class GetMediaReactionsFamily extends Family<AsyncValue<List<MediaReaction?>>> {
+  /// 작품 반응을 불러와요.
+  ///
+  /// Copied from [getMediaReactions].
+  const GetMediaReactionsFamily();
+
+  /// 작품 반응을 불러와요.
+  ///
+  /// Copied from [getMediaReactions].
+  GetMediaReactionsProvider call({
+    required String id,
+  }) {
+    return GetMediaReactionsProvider(
+      id: id,
+    );
+  }
+
+  @override
+  GetMediaReactionsProvider getProviderOverride(
+    covariant GetMediaReactionsProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getMediaReactionsProvider';
+}
+
+/// 작품 반응을 불러와요.
+///
+/// Copied from [getMediaReactions].
+class GetMediaReactionsProvider
+    extends AutoDisposeFutureProvider<List<MediaReaction?>> {
+  /// 작품 반응을 불러와요.
+  ///
+  /// Copied from [getMediaReactions].
+  GetMediaReactionsProvider({
+    required String id,
+  }) : this._internal(
+          (ref) => getMediaReactions(
+            ref as GetMediaReactionsRef,
+            id: id,
+          ),
+          from: getMediaReactionsProvider,
+          name: r'getMediaReactionsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getMediaReactionsHash,
+          dependencies: GetMediaReactionsFamily._dependencies,
+          allTransitiveDependencies:
+              GetMediaReactionsFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  GetMediaReactionsProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<MediaReaction?>> Function(GetMediaReactionsRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetMediaReactionsProvider._internal(
+        (ref) => create(ref as GetMediaReactionsRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<MediaReaction?>> createElement() {
+    return _GetMediaReactionsProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetMediaReactionsProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetMediaReactionsRef
+    on AutoDisposeFutureProviderRef<List<MediaReaction?>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _GetMediaReactionsProviderElement
+    extends AutoDisposeFutureProviderElement<List<MediaReaction?>>
+    with GetMediaReactionsRef {
+  _GetMediaReactionsProviderElement(super.provider);
+
+  @override
+  String get id => (origin as GetMediaReactionsProvider).id;
+}
+
 String _$addMediaHash() => r'a7eb2729bc7053244de8942ce8cb7edace5e977d';
 
 /// 작품을 추가해요.

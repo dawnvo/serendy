@@ -6,7 +6,7 @@ part of 'evaluation_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMediaReactionsHash() => r'22b39ffe3179c9d3749ec722ee8aae45d327ede8';
+String _$getEvaluationsHash() => r'a39cdbb25b417f85c0e09103369edc06dbe80f05';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,164 +29,22 @@ class _SystemHash {
   }
 }
 
-/// 반응 목록을 불러와요.
-///
-/// Copied from [getMediaReactions].
-@ProviderFor(getMediaReactions)
-const getMediaReactionsProvider = GetMediaReactionsFamily();
-
-/// 반응 목록을 불러와요.
-///
-/// Copied from [getMediaReactions].
-class GetMediaReactionsFamily extends Family<AsyncValue<List<Evaluation?>>> {
-  /// 반응 목록을 불러와요.
-  ///
-  /// Copied from [getMediaReactions].
-  const GetMediaReactionsFamily();
-
-  /// 반응 목록을 불러와요.
-  ///
-  /// Copied from [getMediaReactions].
-  GetMediaReactionsProvider call({
-    required String mediaId,
-  }) {
-    return GetMediaReactionsProvider(
-      mediaId: mediaId,
-    );
-  }
-
-  @override
-  GetMediaReactionsProvider getProviderOverride(
-    covariant GetMediaReactionsProvider provider,
-  ) {
-    return call(
-      mediaId: provider.mediaId,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getMediaReactionsProvider';
-}
-
-/// 반응 목록을 불러와요.
-///
-/// Copied from [getMediaReactions].
-class GetMediaReactionsProvider
-    extends AutoDisposeFutureProvider<List<Evaluation?>> {
-  /// 반응 목록을 불러와요.
-  ///
-  /// Copied from [getMediaReactions].
-  GetMediaReactionsProvider({
-    required String mediaId,
-  }) : this._internal(
-          (ref) => getMediaReactions(
-            ref as GetMediaReactionsRef,
-            mediaId: mediaId,
-          ),
-          from: getMediaReactionsProvider,
-          name: r'getMediaReactionsProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getMediaReactionsHash,
-          dependencies: GetMediaReactionsFamily._dependencies,
-          allTransitiveDependencies:
-              GetMediaReactionsFamily._allTransitiveDependencies,
-          mediaId: mediaId,
-        );
-
-  GetMediaReactionsProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.mediaId,
-  }) : super.internal();
-
-  final String mediaId;
-
-  @override
-  Override overrideWith(
-    FutureOr<List<Evaluation?>> Function(GetMediaReactionsRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetMediaReactionsProvider._internal(
-        (ref) => create(ref as GetMediaReactionsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        mediaId: mediaId,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<List<Evaluation?>> createElement() {
-    return _GetMediaReactionsProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetMediaReactionsProvider && other.mediaId == mediaId;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, mediaId.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin GetMediaReactionsRef on AutoDisposeFutureProviderRef<List<Evaluation?>> {
-  /// The parameter `mediaId` of this provider.
-  String get mediaId;
-}
-
-class _GetMediaReactionsProviderElement
-    extends AutoDisposeFutureProviderElement<List<Evaluation?>>
-    with GetMediaReactionsRef {
-  _GetMediaReactionsProviderElement(super.provider);
-
-  @override
-  String get mediaId => (origin as GetMediaReactionsProvider).mediaId;
-}
-
-String _$getEvaluationsHash() => r'a39cdbb25b417f85c0e09103369edc06dbe80f05';
-
-/// 평가 목록을 구독해요.
+/// 평가 목록을 불러와요.
 ///
 /// Copied from [getEvaluations].
 @ProviderFor(getEvaluations)
 const getEvaluationsProvider = GetEvaluationsFamily();
 
-/// 평가 목록을 구독해요.
+/// 평가 목록을 불러와요.
 ///
 /// Copied from [getEvaluations].
 class GetEvaluationsFamily extends Family<AsyncValue<List<Evaluation?>>> {
-  /// 평가 목록을 구독해요.
+  /// 평가 목록을 불러와요.
   ///
   /// Copied from [getEvaluations].
   const GetEvaluationsFamily();
 
-  /// 평가 목록을 구독해요.
+  /// 평가 목록을 불러와요.
   ///
   /// Copied from [getEvaluations].
   GetEvaluationsProvider call({
@@ -221,12 +79,12 @@ class GetEvaluationsFamily extends Family<AsyncValue<List<Evaluation?>>> {
   String? get name => r'getEvaluationsProvider';
 }
 
-/// 평가 목록을 구독해요.
+/// 평가 목록을 불러와요.
 ///
 /// Copied from [getEvaluations].
 class GetEvaluationsProvider
     extends AutoDisposeFutureProvider<List<Evaluation?>> {
-  /// 평가 목록을 구독해요.
+  /// 평가 목록을 불러와요.
   ///
   /// Copied from [getEvaluations].
   GetEvaluationsProvider({

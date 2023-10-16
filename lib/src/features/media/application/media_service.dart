@@ -35,6 +35,15 @@ Future<Media> getMedia(
   return MediaModule.getMediaUsecase.execute((mediaId: id));
 }
 
+/// 작품 반응을 불러와요.
+@riverpod
+Future<List<MediaReaction?>> getMediaReactions(
+  GetMediaReactionsRef ref, {
+  required MediaID id,
+}) {
+  return MediaModule.getMediaReactionsUsecase.execute((mediaId: id));
+}
+
 /// 작품을 추가해요.
 @riverpod
 Future<void> addMedia(

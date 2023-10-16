@@ -7,7 +7,7 @@ class MediaState extends Equatable {
   });
 
   final Media media;
-  final List<Evaluation?> reactions;
+  final List<MediaReaction?> reactions;
 
   @override
   List<Object?> get props => [

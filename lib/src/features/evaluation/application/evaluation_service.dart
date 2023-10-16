@@ -6,19 +6,6 @@ import 'package:serendy/src/features/media/media.dart';
 
 part 'evaluation_service.g.dart';
 
-/// 반응 목록을 불러와요.
-@riverpod
-Future<List<Evaluation?>> getMediaReactions(
-  GetMediaReactionsRef ref, {
-  required MediaID mediaId,
-}) {
-  return EvaluationModule.getEvaluationsUsecase.execute((
-    mediaId: mediaId,
-    userId: null,
-    page: null, // 한번에 전부 불러와요.
-  ));
-}
-
 /// 평가 목록을 불러와요.
 @riverpod
 Future<List<Evaluation?>> getEvaluations(

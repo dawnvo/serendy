@@ -3,7 +3,7 @@ part of '../media_screen.dart';
 class _MediaReactionsTile extends StatelessWidget {
   const _MediaReactionsTile({required this.reactions});
 
-  final List<Evaluation?> reactions;
+  final List<MediaReaction?> reactions;
 
   void _handleShowBottomSheet(BuildContext context) {
     ReactionDetailSheet.show(context, reactions);
@@ -12,13 +12,12 @@ class _MediaReactionsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (reactions.isNotEmpty) {
-      // * 중복된 감정을 병합해요.
-      final uniqueKeys = reactions.map((_) => _!.emotion).toSet();
-      final totalCount = reactions.length.withComma;
+      final emotions = reactions.map((_) => _!.emotion).toList();
+      final totalCount = reactions.fold<int>(0, (a, i) => a + i!.count);
 
       return ListTile(
         onTap: () => _handleShowBottomSheet(context),
-        leading: __ReactionIcons(emotions: uniqueKeys.toList()),
+        leading: __ReactionIcons(emotions: emotions),
         title: Text('$totalCount명이 감상했어요'),
         trailing: Icon(
           RemixIcon.arrow_right_s_line,

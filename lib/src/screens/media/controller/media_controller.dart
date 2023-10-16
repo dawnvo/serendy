@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 part 'media_controller.g.dart';
@@ -14,9 +13,7 @@ class MediaController extends _$MediaController {
     media ??= await ref.watch(getMediaProvider(id: id).future);
 
     // * 작품 반응을 불러와요.
-    final reactions = await ref.watch(getMediaReactionsProvider(
-      mediaId: id,
-    ).future);
+    final reactions = await ref.watch(getMediaReactionsProvider(id: id).future);
 
     // * loaded
     return MediaState(
@@ -30,6 +27,6 @@ class MediaController extends _$MediaController {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
     // * 관련 공급자를 새로고침(초기화)해요.
-    ref.invalidate(getMediaReactionsProvider(mediaId: id));
+    ref.invalidate(getMediaReactionsProvider(id: id));
   }
 }

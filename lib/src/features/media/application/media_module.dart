@@ -1,4 +1,5 @@
 import 'package:serendy/src/features/media/domain/usecases/add_media_usecase.dart';
+import 'package:serendy/src/features/media/domain/usecases/get_media_reactions_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_media_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_medias_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/search_medias_usecase.dart';
@@ -21,6 +22,10 @@ abstract final class MediaModule {
   );
 
   static final getMediaUsecase = GetMediaUsecase(
+    MediaModule.mediaRepository,
+  );
+
+  static final getMediaReactionsUsecase = GetMediaReactionsUsecase(
     MediaModule.mediaRepository,
   );
 
