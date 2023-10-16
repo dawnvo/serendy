@@ -40,7 +40,9 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       query.range(range.from, range.to);
     }
     //result
-    return query.withConverter(EvaluationMapper.toList);
+    return query //
+        .order('updated_at')
+        .withConverter(EvaluationMapper.toList);
   }
 
   /**

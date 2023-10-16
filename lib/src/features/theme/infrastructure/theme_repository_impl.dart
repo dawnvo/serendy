@@ -45,7 +45,9 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       query.range(range.from, range.to);
     }
     //result
-    return query.order('updated_at').withConverter(ThemeMapper.toList);
+    return query //
+        .order('updated_at')
+        .withConverter(ThemeMapper.toList);
   }
 
   /**

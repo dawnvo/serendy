@@ -11,7 +11,7 @@ class _AccountControls extends ConsumerWidget {
         child: const Text('로그아웃'),
       ),
       TextButton(
-        onPressed: () => ref 
+        onPressed: () => ref //
             .read(deleteUserProvider.future)
             .then((value) => context.goNamed(AppRoutes.signIn)),
         child: const Text('회원탈퇴'),
@@ -31,7 +31,7 @@ class __ControlsBar extends StatelessWidget {
       data: context.theme.copyWith(
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-            foregroundColor: context.colorScheme.onSurface.withOpacity(0.4),
+            foregroundColor: context.colorScheme.onSurface.withOpacity(0.5),
           ),
         ),
       ),

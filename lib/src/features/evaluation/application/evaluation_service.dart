@@ -19,7 +19,7 @@ Future<List<Evaluation?>> getMediaReactions(
   ));
 }
 
-/// 평가 목록을 구독해요.
+/// 평가 목록을 불러와요.
 @riverpod
 Future<List<Evaluation?>> getEvaluations(
   GetEvaluationsRef ref, {
