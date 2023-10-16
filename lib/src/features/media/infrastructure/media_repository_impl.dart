@@ -8,6 +8,7 @@ final class MediaRepositoryImpl implements MediaRepository {
   final SupabaseClient supabase;
 
   static const String _tableMedias = TablePath.medias;
+  static const String _tableMediaReactions = TablePath.mediaReactions;
 
   /**
    * 작품을 검색해요.
@@ -83,6 +84,24 @@ final class MediaRepositoryImpl implements MediaRepository {
         .eq('id', id)
         .maybeSingle()
         .withConverter(MediaMapper.toSingle);
+  }
+
+  /**
+   * 작품 반응을 불러와요.
+   */
+  @override
+  Future<List<MediaReaction?>> fetchReactions({
+    required MediaID id,
+  }) {
+    const columns = '''
+      emotion_id,
+      count
+    ''';
+    return supabase
+        .from(_tableMediaReactions)
+        .select(columns)
+        .eq('id', id)
+        .withConverter(MediaReactionMapper.toList);
   }
 
   /**

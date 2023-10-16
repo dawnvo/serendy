@@ -9,7 +9,7 @@ part of 'evaluation_entity.dart';
 EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
     EvaluationEntity(
       id: json['id'] as String?,
-      emotion: $enumDecodeNullable(_$EmotionEnumMap, json['emotion']),
+      emotionId: json['emotion_id'] as int?,
       userId: json['user_id'] as String?,
       profiles: json['profiles'] == null
           ? null
@@ -39,7 +39,7 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) {
   }
 
   writeNotNull('id', instance.id);
-  writeNotNull('emotion', _$EmotionEnumMap[instance.emotion]);
+  writeNotNull('emotion_id', instance.emotionId);
   writeNotNull('user_id', instance.userId);
   writeNotNull('profiles', instance.profiles?.toJson());
   writeNotNull('media_id', instance.mediaId);
@@ -49,15 +49,3 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) {
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());
   return val;
 }
-
-const _$EmotionEnumMap = {
-  Emotion.nice: 'nice',
-  Emotion.joy: 'joy',
-  Emotion.happyness: 'happyness',
-  Emotion.surprise: 'surprise',
-  Emotion.sadness: 'sadness',
-  Emotion.fear: 'fear',
-  Emotion.normal: 'normal',
-  Emotion.disgust: 'disgust',
-  Emotion.anger: 'anger',
-};

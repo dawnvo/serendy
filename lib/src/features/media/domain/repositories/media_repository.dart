@@ -26,6 +26,11 @@ abstract class MediaRepository {
     required MediaID id,
   });
 
+  /// 작품 반응을 불러와요.
+  Future<List<MediaReaction?>> fetchReactions({
+    required MediaID id,
+  });
+
   /// 작품을 추가해요.
   Future<void> upsertMedia(
     Media media,

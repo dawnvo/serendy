@@ -15,9 +15,14 @@ final class MediaEntity {
     this.image,
     this.synopsis,
     this.keywords,
+    this.reactions,
     this.youtubeId,
     this.startDate,
     this.endDate,
+    this.popularity,
+    this.hitsCount,
+    this.favoritesCount,
+    this.evaluationsCount,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -35,10 +40,44 @@ final class MediaEntity {
   final DateTime? startDate;
   final DateTime? endDate;
 
+  //foreign
+  final List<MediaReactionEntity>? reactions;
+
+  //analytical
+  final double? popularity;
+  final int? hitsCount;
+  final int? favoritesCount;
+  final int? evaluationsCount;
+
+  //timestamp
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final DateTime? removedAt;
 
   factory MediaEntity.fromJson(Json json) => _$MediaEntityFromJson(json);
   Json toJson() => _$MediaEntityToJson(this);
+}
+
+@JsonSerializable()
+class MediaReactionEntity {
+  const MediaReactionEntity({
+    this.id,
+    this.emotionId,
+    this.count,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  final MediaID? id;
+  final int? count;
+
+  //foreign
+  final int? emotionId;
+
+  //timestamp
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+
+  factory MediaReactionEntity.fromJson(Json json) => _$MediaReactionEntityFromJson(json);
+  Json toJson() => _$MediaReactionEntityToJson(this);
 }

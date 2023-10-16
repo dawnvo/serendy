@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 abstract final class MediaMapper {
@@ -12,8 +13,11 @@ abstract final class MediaMapper {
       status: entity.status ?? MediaStatus.finished,
       title: entity.title ?? '',
       image: entity.image ?? '',
-      keywords: entity.keywords ?? [],
       synopsis: entity.synopsis,
+      keywords: entity.keywords ?? [],
+      reactions: entity.reactions //
+          ?.map(MediaReactionMapper.toDomain)
+          .toList(),
       youtubeId: entity.youtubeId,
       isAdult: entity.isAdult,
       startDate: entity.startDate,
@@ -31,6 +35,33 @@ abstract final class MediaMapper {
   }
 
   static List<Media?> toList(dynamic data) {
+    if (data == null) return [];
+    final dataList = data as List<dynamic>;
+    return dataList.map((item) => toSingle(item)).toList();
+  }
+}
+
+abstract final class MediaReactionMapper {
+  /**
+   *  Entity -> Domain
+   */
+  static MediaReaction toDomain(final MediaReactionEntity entity) {
+    return MediaReaction(
+      emotion: EmotionEntity.toDomain(entity.emotionId ?? 1),
+      count: entity.count ?? 0,
+    );
+  }
+
+  /**
+   *  Json -> Domain
+   */
+  static MediaReaction? toSingle(dynamic data) {
+    if (data == null) return null;
+    final entity = MediaReactionEntity.fromJson(data as Json);
+    return toDomain(entity);
+  }
+
+  static List<MediaReaction?> toList(dynamic data) {
     if (data == null) return [];
     final dataList = data as List<dynamic>;
     return dataList.map((item) => toSingle(item)).toList();

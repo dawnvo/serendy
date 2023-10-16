@@ -23,8 +23,8 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   }) {
     const columns = '''
       id,
-      emotion,
       media_id,
+      emotion_id,
       medias ( title, image )
     ''';
     final query = supabase //
@@ -116,10 +116,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     Evaluation evaluation,
   ) {
     final entity = EvaluationEntity(
+      emotionId: EmotionEntity.values.byName(evaluation.emotion.name).id,
       id: evaluation.id,
       userId: evaluation.userId,
       mediaId: evaluation.media.id,
-      emotion: evaluation.emotion,
     ).toJson();
     return supabase //
         .from(_tableEvaluations)
@@ -134,7 +134,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     Evaluation evaluation,
   ) {
     final entity = EvaluationEntity(
-      emotion: evaluation.emotion,
+      emotionId: EmotionEntity.values.byName(evaluation.emotion.name).id,
       updatedAt: evaluation.updatedAt,
     ).toJson();
     // [serializable] include_if_null: false

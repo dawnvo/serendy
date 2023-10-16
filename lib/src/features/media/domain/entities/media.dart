@@ -1,5 +1,8 @@
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:ulid/ulid.dart';
 import 'package:equatable/equatable.dart';
+
+part 'media_reaction.dart';
 
 //Identity
 typedef MediaID = String;
@@ -41,6 +44,9 @@ final class Media extends Equatable {
   /// 키워드
   final List<String> keywords;
 
+  /// 반응 목록
+  final List<MediaReaction?> reactions;
+
   /// 유튜브 PV
   final List<String?> youtubeId;
 
@@ -65,9 +71,11 @@ final class Media extends Equatable {
     final String? id,
     final bool? isAdult,
     final List<String?>? youtubeId,
+    final List<MediaReaction?>? reactions,
   })  : id = id ?? Ulid().toCanonical(),
         isAdult = isAdult ?? false,
-        youtubeId = youtubeId ?? const [];
+        youtubeId = youtubeId ?? const [],
+        reactions = reactions ?? const [];
 
   @override
   List<Object?> get props => [id];
@@ -83,6 +91,7 @@ extension MediaX on Media {
     final String? image,
     final String? synopsis,
     final List<String>? keywords,
+    final List<MediaReaction?>? reactions,
     final List<String?>? youtubeId,
     final bool? isAdult,
     final DateTime? startDate,
@@ -94,8 +103,9 @@ extension MediaX on Media {
       status: status ?? this.status,
       title: title ?? this.title,
       image: image ?? this.image,
-      keywords: keywords ?? this.keywords,
       synopsis: synopsis ?? this.synopsis,
+      keywords: keywords ?? this.keywords,
+      reactions: reactions ?? this.reactions,
       youtubeId: youtubeId ?? this.youtubeId,
       isAdult: isAdult ?? this.isAdult,
       startDate: startDate ?? this.startDate,

@@ -14,7 +14,7 @@ abstract final class EvaluationMapper {
       ),
       id: entity.id ?? '',
       userId: entity.userId ?? '',
-      emotion: entity.emotion ?? Emotion.nice,
+      emotion: EmotionEntity.toDomain(entity.emotionId ?? 1),
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
       removedAt: entity.removedAt,
