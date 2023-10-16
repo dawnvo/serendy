@@ -15,23 +15,19 @@ class SettingsScreen extends StatelessWidget {
       options: [
         _SettingsListTile(
           onTap: () => context.pushNamed(AppRoutes.account),
-          icon: RemixIcon.user_line,
           title: "내 계정",
         ),
         const _ClearDislikesTile(),
         _SettingsListTile(
           onTap: () {},
-          icon: RemixIcon.book_2_line,
           title: "DB 수정/추가",
         ),
         _SettingsListTile(
           onTap: () {},
-          icon: RemixIcon.error_warning_line,
           title: "문제 신고",
         ),
         _SettingsListTile(
           onTap: () {},
-          icon: RemixIcon.file_list_2_line,
           title: "서비스 약관",
         ),
       ],
@@ -59,21 +55,18 @@ class _SettingsTemplate extends StatelessWidget {
 //ListTile
 class _SettingsListTile extends StatelessWidget {
   const _SettingsListTile({
-    required this.icon,
     required this.title,
     required this.onTap,
   });
 
-  final IconData icon;
   final String title;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      visualDensity: VisualDensity.compact,
       onTap: onTap,
-      iconColor: context.colorScheme.outline,
-      leading: Icon(icon),
       title: Text(title),
     );
   }

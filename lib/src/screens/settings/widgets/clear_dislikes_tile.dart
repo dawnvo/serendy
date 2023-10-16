@@ -15,7 +15,6 @@ class _ClearDislikesTile extends ConsumerWidget {
           ref.read(clearDislikesProvider);
         }),
       ),
-      icon: RemixIcon.eye_off_line,
       title: "숨기기 초기화",
     );
   }
