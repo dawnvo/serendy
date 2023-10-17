@@ -128,4 +128,20 @@ final class MediaRepositoryImpl implements MediaRepository {
         .from(_tableMedias)
         .upsert(entity);
   }
+
+  /**
+   * 작품 조회수를 +1 해요.
+   */
+  @override
+  Future<void> incrementHits(
+    Media media,
+  ) {
+    final entity = MediaEntity(
+      hitsCount: media.hitsCount + 1,
+    ).toJson();
+    return supabase //
+        .from(_tableMedias)
+        .update(entity)
+        .eq('id', media.id);
+  }
 }

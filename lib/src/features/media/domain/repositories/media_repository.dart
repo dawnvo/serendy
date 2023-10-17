@@ -35,4 +35,9 @@ abstract class MediaRepository {
   Future<void> upsertMedia(
     Media media,
   );
+
+  /// 작품 조회수를 +1 해요.
+  Future<void> incrementHits(
+    Media media,
+  );
 }
