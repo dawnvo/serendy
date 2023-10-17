@@ -7,17 +7,16 @@ part 'media_state.dart';
 @riverpod
 class MediaController extends _$MediaController {
   @override
-  FutureOr<MediaState> build(MediaID id, [Media? media]) async {
-    // * 이미 작품을 불러온 경우 재사용해요.
-    // * 특수 경로로 유입한 경우 새로 불러와요.
-    media ??= await ref.watch(getMediaProvider(id: id).future);
+  FutureOr<MediaState> build(MediaID id) async {
+    // * 작품 정보를 불러와요.
+    final media = await ref.watch(getMediaProvider(id: id).future);
 
     // * 작품 반응을 불러와요.
     final reactions = await ref.watch(getMediaReactionsProvider(id: id).future);
 
     // * loaded
     return MediaState(
-      media: media!,
+      media: media,
       reactions: reactions,
     );
   }

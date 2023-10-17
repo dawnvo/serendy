@@ -32,7 +32,7 @@ class MediaScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mediaValue = ref.watch(mediaControllerProvider(id, media));
+    final mediaValue = ref.watch(mediaControllerProvider(id));
 
     return mediaValue.when(
       skipLoadingOnReload: true,

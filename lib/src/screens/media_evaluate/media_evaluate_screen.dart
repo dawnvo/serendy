@@ -27,7 +27,7 @@ class EvaluateMediaScreen extends ConsumerWidget {
       if (next.status == EvaluateMediaStatus.success) {
         // * [EVENT] 미디어의 반응 목록을 갱신해요.
         ref //
-            .read(mediaControllerProvider(media.id, media).notifier)
+            .read(mediaControllerProvider(media.id).notifier)
             .onMediaReactionsUpdated();
 
         // * [EVENT] 나의 평가 개수를 갱신해요.

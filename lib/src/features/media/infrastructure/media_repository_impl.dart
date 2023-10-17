@@ -40,7 +40,15 @@ final class MediaRepositoryImpl implements MediaRepository {
     int? page,
     int? perPage,
   }) {
-    const columns = '*';
+    const columns = '''
+      id,
+      type,
+      status,
+      title,
+      image,
+      keywords,
+      start_date
+    ''';
     final range = getPagination(
       page ?? 0,
       perPage ?? 20,
@@ -49,6 +57,7 @@ final class MediaRepositoryImpl implements MediaRepository {
         .from(_tableMedias)
         .select(columns)
         .range(range.from, range.to)
+        .order('hits_count')
         .withConverter(MediaMapper.toList);
   }
 

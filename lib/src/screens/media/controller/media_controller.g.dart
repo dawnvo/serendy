@@ -6,7 +6,7 @@ part of 'media_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mediaControllerHash() => r'd5098327e1e2365816bf57596d6d177c8430b6d7';
+String _$mediaControllerHash() => r'd15a064ebcc6692b5a5d2e3c6e3d0bb50bed7670';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,12 +32,10 @@ class _SystemHash {
 abstract class _$MediaController
     extends BuildlessAutoDisposeAsyncNotifier<MediaState> {
   late final String id;
-  late final Media? media;
 
   FutureOr<MediaState> build(
-    String id, [
-    Media? media,
-  ]);
+    String id,
+  );
 }
 
 /// See also [MediaController].
@@ -51,12 +49,10 @@ class MediaControllerFamily extends Family<AsyncValue<MediaState>> {
 
   /// See also [MediaController].
   MediaControllerProvider call(
-    String id, [
-    Media? media,
-  ]) {
+    String id,
+  ) {
     return MediaControllerProvider(
       id,
-      media,
     );
   }
 
@@ -66,7 +62,6 @@ class MediaControllerFamily extends Family<AsyncValue<MediaState>> {
   ) {
     return call(
       provider.id,
-      provider.media,
     );
   }
 
@@ -90,12 +85,9 @@ class MediaControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<MediaController, MediaState> {
   /// See also [MediaController].
   MediaControllerProvider(
-    String id, [
-    Media? media,
-  ]) : this._internal(
-          () => MediaController()
-            ..id = id
-            ..media = media,
+    String id,
+  ) : this._internal(
+          () => MediaController()..id = id,
           from: mediaControllerProvider,
           name: r'mediaControllerProvider',
           debugGetCreateSourceHash:
@@ -106,7 +98,6 @@ class MediaControllerProvider
           allTransitiveDependencies:
               MediaControllerFamily._allTransitiveDependencies,
           id: id,
-          media: media,
         );
 
   MediaControllerProvider._internal(
@@ -117,11 +108,9 @@ class MediaControllerProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.id,
-    required this.media,
   }) : super.internal();
 
   final String id;
-  final Media? media;
 
   @override
   FutureOr<MediaState> runNotifierBuild(
@@ -129,7 +118,6 @@ class MediaControllerProvider
   ) {
     return notifier.build(
       id,
-      media,
     );
   }
 
@@ -138,16 +126,13 @@ class MediaControllerProvider
     return ProviderOverride(
       origin: this,
       override: MediaControllerProvider._internal(
-        () => create()
-          ..id = id
-          ..media = media,
+        () => create()..id = id,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         id: id,
-        media: media,
       ),
     );
   }
@@ -160,16 +145,13 @@ class MediaControllerProvider
 
   @override
   bool operator ==(Object other) {
-    return other is MediaControllerProvider &&
-        other.id == id &&
-        other.media == media;
+    return other is MediaControllerProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, id.hashCode);
-    hash = _SystemHash.combine(hash, media.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -178,9 +160,6 @@ class MediaControllerProvider
 mixin MediaControllerRef on AutoDisposeAsyncNotifierProviderRef<MediaState> {
   /// The parameter `id` of this provider.
   String get id;
-
-  /// The parameter `media` of this provider.
-  Media? get media;
 }
 
 class _MediaControllerProviderElement
@@ -190,8 +169,6 @@ class _MediaControllerProviderElement
 
   @override
   String get id => (origin as MediaControllerProvider).id;
-  @override
-  Media? get media => (origin as MediaControllerProvider).media;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
