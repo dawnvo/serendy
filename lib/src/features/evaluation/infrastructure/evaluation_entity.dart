@@ -6,26 +6,6 @@ import 'package:serendy/src/features/profile/profile.dart';
 
 part 'evaluation_entity.g.dart';
 
-enum EmotionEntity {
-  /* 재미 */ joy(1),
-  /* 멋짐 */ nice(2),
-  /* 행복 */ happyness(3),
-  /* 놀람 */ surprise(4),
-  /* 슬픔 */ sadness(5),
-  /* 공포 */ fear(6),
-  /* 보통 */ normal(7),
-  /* 별로 */ disgust(8),
-  /* 분노 */ anger(9);
-
-  const EmotionEntity(this.id);
-  final int id;
-
-  static Emotion toDomain(int id) {
-    final name = values.firstWhere((e) => e.id == id).name;
-    return Emotion.values.byName(name);
-  }
-}
-
 @JsonSerializable()
 final class EvaluationEntity {
   const EvaluationEntity({
@@ -57,3 +37,20 @@ final class EvaluationEntity {
   factory EvaluationEntity.fromJson(Json json) => _$EvaluationEntityFromJson(json);
   Json toJson() => _$EvaluationEntityToJson(this);
 }
+
+const Map<int, Emotion> emotionIdToEnum = {
+  // id | name
+  1: Emotion.joy,
+  2: Emotion.nice,
+  3: Emotion.happyness,
+  4: Emotion.surprise,
+  5: Emotion.sadness,
+  6: Emotion.fear,
+  7: Emotion.normal,
+  8: Emotion.disgust,
+  9: Emotion.anger,
+};
+
+final Map<Emotion, int> emotionEnumToId = Map.fromEntries(
+  emotionIdToEnum.entries.map((entry) => MapEntry(entry.value, entry.key)),
+);

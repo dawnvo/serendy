@@ -116,7 +116,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     Evaluation evaluation,
   ) {
     final entity = EvaluationEntity(
-      emotionId: EmotionEntity.values.byName(evaluation.emotion.name).id,
+      emotionId: emotionEnumToId[evaluation.emotion],
       id: evaluation.id,
       userId: evaluation.userId,
       mediaId: evaluation.media.id,
@@ -134,7 +134,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     Evaluation evaluation,
   ) {
     final entity = EvaluationEntity(
-      emotionId: EmotionEntity.values.byName(evaluation.emotion.name).id,
+      emotionId: emotionEnumToId[evaluation.emotion],
       updatedAt: evaluation.updatedAt,
     ).toJson();
     // [serializable] include_if_null: false

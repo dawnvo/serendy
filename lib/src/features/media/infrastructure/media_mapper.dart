@@ -47,7 +47,7 @@ abstract final class MediaReactionMapper {
    */
   static MediaReaction toDomain(final MediaReactionEntity entity) {
     return MediaReaction(
-      emotion: EmotionEntity.toDomain(entity.emotionId ?? 1),
+      emotion: emotionIdToEnum[entity.emotionId] ?? Emotion.joy,
       count: entity.count ?? 0,
     );
   }

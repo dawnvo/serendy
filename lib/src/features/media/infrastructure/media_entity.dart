@@ -22,7 +22,7 @@ final class MediaEntity {
     this.popularity,
     this.hitsCount,
     this.favoritesCount,
-    this.evaluationsCount,
+    this.reactionsCount,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -47,7 +47,7 @@ final class MediaEntity {
   final double? popularity;
   final int? hitsCount;
   final int? favoritesCount;
-  final int? evaluationsCount;
+  final int? reactionsCount;
 
   //timestamp
   final DateTime? createdAt;
@@ -61,17 +61,17 @@ final class MediaEntity {
 @JsonSerializable()
 class MediaReactionEntity {
   const MediaReactionEntity({
-    this.id,
-    this.emotionId,
     this.count,
+    this.mediaId,
+    this.emotionId,
     this.createdAt,
     this.updatedAt,
   });
 
-  final MediaID? id;
   final int? count;
 
   //foreign
+  final int? mediaId;
   final int? emotionId;
 
   //timestamp

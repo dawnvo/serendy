@@ -32,7 +32,7 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       popularity: (json['popularity'] as num?)?.toDouble(),
       hitsCount: json['hits_count'] as int?,
       favoritesCount: json['favorites_count'] as int?,
-      evaluationsCount: json['evaluations_count'] as int?,
+      reactionsCount: json['reactions_count'] as int?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -69,7 +69,7 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) {
   writeNotNull('popularity', instance.popularity);
   writeNotNull('hits_count', instance.hitsCount);
   writeNotNull('favorites_count', instance.favoritesCount);
-  writeNotNull('evaluations_count', instance.evaluationsCount);
+  writeNotNull('reactions_count', instance.reactionsCount);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());
@@ -92,9 +92,9 @@ const _$MediaStatusEnumMap = {
 
 MediaReactionEntity _$MediaReactionEntityFromJson(Map<String, dynamic> json) =>
     MediaReactionEntity(
-      id: json['id'] as String?,
-      emotionId: json['emotion_id'] as int?,
       count: json['count'] as int?,
+      mediaId: json['media_id'] as int?,
+      emotionId: json['emotion_id'] as int?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -112,8 +112,8 @@ Map<String, dynamic> _$MediaReactionEntityToJson(MediaReactionEntity instance) {
     }
   }
 
-  writeNotNull('id', instance.id);
   writeNotNull('count', instance.count);
+  writeNotNull('media_id', instance.mediaId);
   writeNotNull('emotion_id', instance.emotionId);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());

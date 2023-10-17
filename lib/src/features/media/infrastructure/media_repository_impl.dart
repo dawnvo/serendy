@@ -100,7 +100,7 @@ final class MediaRepositoryImpl implements MediaRepository {
     return supabase
         .from(_tableMediaReactions)
         .select(columns)
-        .eq('id', id)
+        .eq('media_id', id)
         .withConverter(MediaReactionMapper.toList);
   }
 
