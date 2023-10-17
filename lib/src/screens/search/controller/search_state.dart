@@ -1,6 +1,6 @@
 part of 'search_controller.dart';
 
-class SearchState extends Equatable {
+final class SearchState extends Equatable {
   const SearchState({
     this.medias = const [],
   });

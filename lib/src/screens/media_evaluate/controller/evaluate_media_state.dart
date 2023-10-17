@@ -2,7 +2,7 @@ part of 'evaluate_media_controller.dart';
 
 enum EvaluateMediaStatus { initial, success, failure }
 
-class EvaluateMediaState extends Equatable {
+final class EvaluateMediaState extends Equatable {
   const EvaluateMediaState({
     this.status = EvaluateMediaStatus.initial,
     required this.evaluation,

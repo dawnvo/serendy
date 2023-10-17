@@ -1,6 +1,6 @@
 part of 'home_controller.dart';
 
-class HomeState extends Equatable {
+final class HomeState extends Equatable {
   const HomeState({
     this.page = 0,
     this.medias = const [],

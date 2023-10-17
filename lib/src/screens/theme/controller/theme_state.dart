@@ -1,6 +1,6 @@
 part of 'theme_controller.dart';
 
-class ThemeState extends Equatable {
+final class ThemeState extends Equatable {
   const ThemeState({required this.theme});
   final Theme theme;
 

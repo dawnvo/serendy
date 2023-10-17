@@ -1,6 +1,6 @@
 part of 'account_controller.dart';
 
-class AccountState extends Equatable {
+final class AccountState extends Equatable {
   const AccountState({
     required this.initialProfile,
     required this.email,

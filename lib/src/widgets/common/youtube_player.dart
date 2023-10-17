@@ -1,8 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as yp;
 
-export 'package:youtube_player_flutter/youtube_player_flutter.dart'
-    show YoutubePlayerFlags;
+export 'package:youtube_player_flutter/youtube_player_flutter.dart' show YoutubePlayerFlags;
 
 class YoutubePlayer extends StatefulWidget {
   const YoutubePlayer({required this.config});

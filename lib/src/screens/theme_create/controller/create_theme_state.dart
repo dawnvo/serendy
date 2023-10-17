@@ -2,7 +2,7 @@ part of 'create_theme_controller.dart';
 
 enum CreateThemeStatus { initial, loading, success, failure }
 
-class CreateThemeState extends Equatable {
+final class CreateThemeState extends Equatable {
   const CreateThemeState({
     this.status = CreateThemeStatus.initial,
     this.title = '',

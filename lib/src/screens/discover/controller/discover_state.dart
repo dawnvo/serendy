@@ -1,6 +1,6 @@
 part of 'discover_controller.dart';
 
-class DiscoverState extends Equatable {
+final class DiscoverState extends Equatable {
   const DiscoverState({
     this.page = 0,
     this.themes = const [],
