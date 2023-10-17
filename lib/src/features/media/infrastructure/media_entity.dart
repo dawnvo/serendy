@@ -15,14 +15,13 @@ final class MediaEntity {
     this.image,
     this.synopsis,
     this.keywords,
-    this.reactions,
     this.youtubeId,
     this.startDate,
     this.endDate,
     this.popularity,
     this.hitsCount,
-    this.favoritesCount,
     this.reactionsCount,
+    this.favoritesCount,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -40,14 +39,11 @@ final class MediaEntity {
   final DateTime? startDate;
   final DateTime? endDate;
 
-  //foreign
-  final List<MediaReactionEntity>? reactions;
-
   //analytical
   final double? popularity;
   final int? hitsCount;
-  final int? favoritesCount;
   final int? reactionsCount;
+  final int? favoritesCount;
 
   //timestamp
   final DateTime? createdAt;

@@ -15,9 +15,6 @@ abstract final class MediaMapper {
       image: entity.image ?? '',
       synopsis: entity.synopsis,
       keywords: entity.keywords ?? [],
-      reactions: entity.reactions //
-          ?.map(MediaReactionMapper.toDomain)
-          .toList(),
       youtubeId: entity.youtubeId,
       isAdult: entity.isAdult,
       startDate: entity.startDate,

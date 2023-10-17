@@ -17,9 +17,6 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       keywords: (json['keywords'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      reactions: (json['reactions'] as List<dynamic>?)
-          ?.map((e) => MediaReactionEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
       youtubeId: (json['youtube_id'] as List<dynamic>?)
           ?.map((e) => e as String?)
           .toList(),
@@ -31,8 +28,8 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
           : DateTime.parse(json['end_date'] as String),
       popularity: (json['popularity'] as num?)?.toDouble(),
       hitsCount: json['hits_count'] as int?,
-      favoritesCount: json['favorites_count'] as int?,
       reactionsCount: json['reactions_count'] as int?,
+      favoritesCount: json['favorites_count'] as int?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -64,12 +61,10 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) {
   writeNotNull('youtube_id', instance.youtubeId);
   writeNotNull('start_date', instance.startDate?.toIso8601String());
   writeNotNull('end_date', instance.endDate?.toIso8601String());
-  writeNotNull(
-      'reactions', instance.reactions?.map((e) => e.toJson()).toList());
   writeNotNull('popularity', instance.popularity);
   writeNotNull('hits_count', instance.hitsCount);
-  writeNotNull('favorites_count', instance.favoritesCount);
   writeNotNull('reactions_count', instance.reactionsCount);
+  writeNotNull('favorites_count', instance.favoritesCount);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());

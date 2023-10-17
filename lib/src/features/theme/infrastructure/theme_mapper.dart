@@ -12,9 +12,6 @@ abstract final class ThemeMapper {
         name: entity.profiles?.name ?? '',
         image: entity.profiles?.image,
       ),
-      items: entity.themeItems //
-          ?.map(ThemeItemMapper.toDomain)
-          .toList(),
       id: entity.id ?? '',
       title: entity.title ?? '',
       description: entity.description,

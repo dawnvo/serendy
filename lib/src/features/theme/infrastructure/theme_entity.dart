@@ -17,7 +17,6 @@ final class ThemeEntity {
     this.itemsCount,
     this.ownerId,
     this.profiles,
-    this.themeItems,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -33,7 +32,6 @@ final class ThemeEntity {
   //foreign
   final UserID? ownerId;
   final ProfileEntity? profiles;
-  final List<ThemeItemEntity>? themeItems;
 
   //timestamp
   final DateTime? createdAt;
