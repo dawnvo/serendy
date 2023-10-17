@@ -48,9 +48,10 @@ class _ProfileTemplate extends StatelessWidget {
         SliverAppBar(
           backgroundColor: context.colorScheme.surface,
           surfaceTintColor: Colors.transparent,
+          toolbarHeight: kTextTabBarHeight,
           pinned: true,
 
-          //titles
+          //title
           title: const Text("내 라이브러리"),
           actions: [
             IconButton(

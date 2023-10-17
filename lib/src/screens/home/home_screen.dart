@@ -16,7 +16,6 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filters = ["최신 애니", "실시간 인기", "완결 애니"];
     final scrollController = useScrollController();
 
     // * 맨 아래로 스크롤하면 작품을 더 불러와요.
@@ -35,10 +34,7 @@ class HomeScreen extends HookConsumerWidget {
 
     return _HomeTemplate(
       controller: scrollController,
-      mediaFiltersTabBar: _HomeMediaFiltersTabBar(
-        filters: filters,
-        onSelect: (item) {},
-      ),
+      mediaFiltersTabBar: const _HomeMediaFiltersTabBar(),
       mediasGrid: const _HomeMediasGrid(),
     );
   }
@@ -63,20 +59,27 @@ class _HomeTemplate extends StatelessWidget {
         controller: controller,
         slivers: [
           SliverAppBar(
-            pinned: true,
-            floating: true,
-            centerTitle: true,
             backgroundColor: context.colorScheme.surface,
             surfaceTintColor: Colors.transparent,
+            toolbarHeight: kTextTabBarHeight,
+            centerTitle: true,
+            floating: true,
+            pinned: true,
+
+            //title
             title: Image.asset(
               Assets.appIcon,
               height: Sizes.p48,
             ),
+
+            //tab
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(kTextTabBarHeight),
               child: mediaFiltersTabBar,
             ),
           ),
+
+          //grid
           SliverPadding(
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,
