@@ -19,6 +19,8 @@ abstract final class MediaMapper {
       isAdult: entity.isAdult,
       startDate: entity.startDate,
       endDate: entity.endDate,
+      popularity: entity.popularity,
+      hitsCount: entity.hitsCount,
     );
   }
 

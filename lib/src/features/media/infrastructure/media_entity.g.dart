@@ -28,8 +28,6 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
           : DateTime.parse(json['end_date'] as String),
       popularity: (json['popularity'] as num?)?.toDouble(),
       hitsCount: json['hits_count'] as int?,
-      reactionsCount: json['reactions_count'] as int?,
-      favoritesCount: json['favorites_count'] as int?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -63,8 +61,6 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) {
   writeNotNull('end_date', instance.endDate?.toIso8601String());
   writeNotNull('popularity', instance.popularity);
   writeNotNull('hits_count', instance.hitsCount);
-  writeNotNull('reactions_count', instance.reactionsCount);
-  writeNotNull('favorites_count', instance.favoritesCount);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());

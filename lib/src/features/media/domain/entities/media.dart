@@ -59,6 +59,12 @@ final class Media extends Equatable {
   /// 방영 종료 날짜
   final DateTime? endDate;
 
+  /// 인기도
+  final double popularity;
+
+  /// 조회 수
+  final int hitsCount;
+
   Media({
     required this.type,
     required this.status,
@@ -72,10 +78,16 @@ final class Media extends Equatable {
     final bool? isAdult,
     final List<String?>? youtubeId,
     final List<MediaReaction?>? reactions,
+    final double? popularity,
+    final int? hitsCount,
+    final int? reactionsCount,
+    final int? favoritesCount,
   })  : id = id ?? Ulid().toCanonical(),
         isAdult = isAdult ?? false,
         youtubeId = youtubeId ?? const [],
-        reactions = reactions ?? const [];
+        reactions = reactions ?? const [],
+        popularity = popularity ?? 0.0,
+        hitsCount = hitsCount ?? 0;
 
   @override
   List<Object?> get props => [id];
@@ -96,6 +108,10 @@ extension MediaX on Media {
     final bool? isAdult,
     final DateTime? startDate,
     final DateTime? endDate,
+    final double? popularity,
+    final int? hitsCount,
+    final int? reactionsCount,
+    final int? favoritesCount,
   }) {
     return Media(
       id: id ?? this.id,
@@ -110,6 +126,8 @@ extension MediaX on Media {
       isAdult: isAdult ?? this.isAdult,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
+      popularity: popularity ?? this.popularity,
+      hitsCount: hitsCount ?? this.hitsCount,
     );
   }
 }

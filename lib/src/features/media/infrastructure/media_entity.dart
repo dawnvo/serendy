@@ -20,8 +20,6 @@ final class MediaEntity {
     this.endDate,
     this.popularity,
     this.hitsCount,
-    this.reactionsCount,
-    this.favoritesCount,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -42,8 +40,6 @@ final class MediaEntity {
   //analytical
   final double? popularity;
   final int? hitsCount;
-  final int? reactionsCount;
-  final int? favoritesCount;
 
   //timestamp
   final DateTime? createdAt;
