@@ -16,6 +16,13 @@ class HomeController extends _$HomeController {
     return HomeState(medias: medias);
   }
 
+  /// 탭을 변경해요.
+  void setTab(HomeTab tab) {
+    state = AsyncValue.data(state.requireValue.copyWith(
+      tab: tab,
+    ));
+  }
+
   /// 작품을 더 불러와요.
   Future<void> fetchMore() async {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.

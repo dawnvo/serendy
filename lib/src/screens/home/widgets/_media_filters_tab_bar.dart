@@ -1,20 +1,19 @@
 part of '../home_screen.dart';
 
-class _HomeMediaFiltersTabBar extends HookWidget {
-  const _HomeMediaFiltersTabBar({
-    required this.filters,
-    required this.onSelect,
-  });
-
-  final List<String> filters;
-  final void Function(String item) onSelect;
+class _HomeMediaFiltersTabBar extends HookConsumerWidget {
+  const _HomeMediaFiltersTabBar();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeValue = ref.watch(homeControllerProvider);
+
+    // * 탭 컨트롤러
     final controller = useTabController(
-      initialLength: filters.length,
-      initialIndex: 1,
+      initialLength: HomeTab.values.length,
+      initialIndex: homeValue.value?.tab.index ?? 1,
     );
+
+    // * 탭 변경을 감지하면 rebuild
     final selectedIndex = useListenableSelector(
       controller,
       () => controller.index,
@@ -23,14 +22,16 @@ class _HomeMediaFiltersTabBar extends HookWidget {
     return TabBar(
       controller: controller,
       isScrollable: true,
-      onTap: (index) => onSelect(filters[index]),
+      onTap: (index) => ref //
+          .read(homeControllerProvider.notifier)
+          .setTab(HomeTab.values[index]),
       tabs: [
-        for (var i = 0; i < filters.length; i++)
+        for (var i = 0; i < HomeTab.values.length; i++)
           __MediaFilterTab(
-            labelColor: selectedIndex == i
+            labelColor: selectedIndex == i //
                 ? context.colorScheme.onSurface
                 : context.colorScheme.outline,
-            label: filters[i],
+            label: HomeTab.values[i].label,
           ),
       ],
     );
