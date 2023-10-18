@@ -35,14 +35,12 @@ export 'extensions/list_extension.dart';
 export 'extensions/number_extension.dart';
 export 'extensions/string_extension.dart';
 
-//mixin
-export 'mixin/notifier_mounted_mixin.dart';
-
 //utils
 export 'utils/debouncer.dart';
 export 'utils/find_rank_by_count.dart';
 export 'utils/add_timestamp_to_url.dart';
 export 'utils/get_pagination.dart';
+export 'utils/notifier_mounted.dart';
 
 //others
 export 'router/app_router.dart';
