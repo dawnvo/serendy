@@ -11,7 +11,9 @@ class HomeController extends _$HomeController {
   @override
   FutureOr<HomeState> build() async {
     // * 추천 작품을 불러와요.
-    final medias = await ref.watch(getMediasProvider().future);
+    final medias = await ref.watch(
+      getMediasProvider().future,
+    );
     // * loaded
     return HomeState(medias: medias);
   }
@@ -29,19 +31,27 @@ class HomeController extends _$HomeController {
     if (!state.hasValue) return;
 
     final nextPage = state.requireValue.page + 1;
-    final prevMedias = state.requireValue.medias;
+    final medias = state.requireValue.medias;
 
     state = await AsyncValue.guard(() async {
       // * 미디어를 불러와요.
-      final medias = await ref.watch(getMediasProvider(
+      final newMedias = await ref.watch(getMediasProvider(
         page: nextPage,
       ).future);
 
       // * loaded
       return state.requireValue.copyWith(
+        medias: [...medias, ...newMedias],
         page: nextPage,
-        medias: [...prevMedias, ...medias],
+        isCompleted: newMedias.isEmpty,
       );
     });
+  }
+
+  bool canLoadMore() {
+    if (state.isLoading) return false;
+    if (!state.hasValue) return false;
+    if (state.requireValue.isCompleted) return false;
+    return true;
   }
 }

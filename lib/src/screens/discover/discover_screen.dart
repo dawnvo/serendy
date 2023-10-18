@@ -14,9 +14,10 @@ class DiscoverScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scrollController = usePagination(ref //
-        .read(discoverControllerProvider.notifier)
-        .fetchMore);
+    final scrollController = usePagination(
+      ref.read(discoverControllerProvider.notifier).fetchMore,
+      ref.read(discoverControllerProvider.notifier).canLoadMore,
+    );
 
     return _DiscoverTemplate(
       controller: scrollController,

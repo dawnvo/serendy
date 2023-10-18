@@ -16,9 +16,10 @@ class HistoryScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final historyValue = ref.watch(historyControllerProvider);
-    final scrollController = usePagination(ref //
-        .read(historyControllerProvider.notifier)
-        .fetchMore);
+    final scrollController = usePagination(
+      ref.read(historyControllerProvider.notifier).fetchMore,
+      ref.read(historyControllerProvider.notifier).canLoadMore,
+    );
 
     return historyValue.when(
       skipLoadingOnReload: true,

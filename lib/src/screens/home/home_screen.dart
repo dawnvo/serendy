@@ -16,9 +16,10 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scrollController = usePagination(ref //
-        .read(homeControllerProvider.notifier)
-        .fetchMore);
+    final scrollController = usePagination(
+      ref.read(homeControllerProvider.notifier).fetchMore,
+      ref.read(homeControllerProvider.notifier).canLoadMore,
+    );
 
     return _HomeTemplate(
       controller: scrollController,

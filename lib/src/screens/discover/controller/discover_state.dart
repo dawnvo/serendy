@@ -2,26 +2,30 @@ part of 'discover_controller.dart';
 
 final class DiscoverState extends Equatable {
   const DiscoverState({
-    this.page = 0,
     this.themes = const [],
+    this.page = 0,
+    this.isCompleted = false,
   });
 
-  final int page;
   final List<Theme?> themes;
+  final int page;
+  final bool isCompleted;
 
   DiscoverState copyWith({
-    final int? page,
     final List<Theme?>? themes,
+    final int? page,
+    final bool? isCompleted,
   }) {
     return DiscoverState(
-      page: page ?? this.page,
       themes: themes ?? this.themes,
+      page: page ?? this.page,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 
   @override
   List<Object?> get props => [
-        page,
         themes,
+        page,
       ];
 }

@@ -13,30 +13,34 @@ extension HomeTabX on HomeTab {
 final class HomeState extends Equatable {
   const HomeState({
     this.tab = HomeTab.popular,
-    this.page = 0,
     this.medias = const [],
+    this.page = 0,
+    this.isCompleted = false,
   });
 
   final HomeTab tab;
-  final int page;
   final List<Media?> medias;
+  final int page;
+  final bool isCompleted;
 
   HomeState copyWith({
     final HomeTab? tab,
-    final int? page,
     final List<Media?>? medias,
+    final int? page,
+    final bool? isCompleted,
   }) {
     return HomeState(
       tab: tab ?? this.tab,
-      page: page ?? this.page,
       medias: medias ?? this.medias,
+      page: page ?? this.page,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 
   @override
   List<Object?> get props => [
         tab,
-        page,
         medias,
+        page,
       ];
 }
