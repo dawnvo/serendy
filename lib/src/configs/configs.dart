@@ -35,6 +35,9 @@ export 'extensions/list_extension.dart';
 export 'extensions/number_extension.dart';
 export 'extensions/string_extension.dart';
 
+//hooks
+export 'hooks/use_pagination.dart';
+
 //utils
 export 'utils/debouncer.dart';
 export 'utils/find_rank_by_count.dart';

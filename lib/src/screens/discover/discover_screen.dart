@@ -14,21 +14,9 @@ class DiscoverScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scrollController = useScrollController();
-
-    // * 맨 아래로 스크롤하면 작품을 더 불러와요.
-    void fetchMoreListener() {
-      if (scrollController.offset >= //ReachMaxExtent
-          scrollController.position.maxScrollExtent) {
-        ref.read(discoverControllerProvider.notifier).fetchMore();
-      }
-    }
-
-    // * Infinite scroll listener
-    useEffect(() {
-      scrollController.addListener(fetchMoreListener);
-      return () => scrollController.removeListener(fetchMoreListener);
-    }, [scrollController]);
+    final scrollController = usePagination(ref //
+        .read(discoverControllerProvider.notifier)
+        .fetchMore);
 
     return _DiscoverTemplate(
       controller: scrollController,
