@@ -26,15 +26,13 @@ Future<Profile> getProfile(
 Future<Profile> createProfile(
   CreateProfileRef ref, {
   required UserID uid,
-  required String username,
   required String email,
-  String? image,
+  required String username,
 }) {
   return ProfileModule.createProfileUsecase.execute((
     id: uid,
     name: username,
     email: email,
-    image: image,
   ));
 }
 
@@ -43,13 +41,11 @@ Future<Profile> createProfile(
 Future<Profile> editProfile(
   EditProfileRef ref, {
   String? username,
-  String? image,
 }) {
   final userId = ref.watch(requireUserIdProvider);
   return ProfileModule.editProfileUsecase.execute((
     executorId: userId,
     name: username,
-    image: image,
   ));
 }
 

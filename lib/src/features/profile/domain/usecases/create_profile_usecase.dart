@@ -6,7 +6,6 @@ typedef CreateProfilePayload = ({
   UserID id,
   String name,
   String email,
-  String? image,
 });
 
 final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profile> {
@@ -25,7 +24,6 @@ final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profil
       id: payload.id,
       name: payload.name,
       email: payload.email,
-      image: payload.image,
     );
 
     // * commit

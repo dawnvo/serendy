@@ -31,7 +31,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       description,
       items_count,
       owner_id,
-      profiles ( name, image )
+      profiles ( name )
     ''';
     final query = supabase //
         .from(_tableThemes)
@@ -80,7 +80,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }) {
     const columns = '''
       *,
-      profiles ( name, image )
+      profiles ( name )
     ''';
     return supabase
         .from(_tableThemes)

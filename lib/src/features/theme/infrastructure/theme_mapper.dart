@@ -10,7 +10,6 @@ abstract final class ThemeMapper {
       owner: ThemeOwner(
         id: entity.ownerId ?? '',
         name: entity.profiles?.name ?? '',
-        image: entity.profiles?.image,
       ),
       id: entity.id ?? '',
       title: entity.title ?? '',

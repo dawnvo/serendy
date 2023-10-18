@@ -9,7 +9,6 @@ final class ProfileEntity {
     this.id,
     this.name,
     this.email,
-    this.image,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -18,7 +17,6 @@ final class ProfileEntity {
   final String? id;
   final String? name;
   final String? email;
-  final String? image;
 
   //timestamp
   final DateTime? createdAt;
