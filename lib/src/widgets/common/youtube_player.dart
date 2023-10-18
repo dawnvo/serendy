@@ -24,6 +24,12 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = yp.ProgressBarColors(
       handleColor: context.colorScheme.primary,
