@@ -117,6 +117,7 @@ class _Placeholder$ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         const SliverAppBar(
+          toolbarHeight: kTextTabBarHeight,
           title: Text("내 라이브러리"),
         ),
         SliverPadding(

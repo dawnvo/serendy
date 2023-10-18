@@ -32,7 +32,6 @@ class SignInController extends _$SignInController {
           uid: supabaseUser.id,
           email: supabaseUser.userMetadata!['email'],
           username: supabaseUser.userMetadata!['name'],
-          image: supabaseUser.userMetadata!['picture'],
         ).future);
       }
 

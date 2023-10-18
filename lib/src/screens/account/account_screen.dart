@@ -7,7 +7,6 @@ import 'controller/account_controller.dart';
 
 part 'widgets/_account_controls.dart';
 part 'widgets/_email_tile.dart';
-part 'widgets/_image_picker.dart';
 part 'widgets/_name_text_field.dart';
 part 'widgets/_save_button.dart';
 
@@ -39,7 +38,6 @@ class AccountScreen extends ConsumerWidget {
       skipLoadingOnReload: true,
       data: (state) => _AccountTemplate(
         saveButton: _AccountSaveButton(isEdited: state.isEdited),
-        imagePicker: _AccountImagePicker(image: state.image),
         textField: _AccountNameTextField(name: state.name),
         options: [
           _AccountEmailTile(email: state.email),
@@ -64,14 +62,12 @@ class AccountScreen extends ConsumerWidget {
 class _AccountTemplate extends StatelessWidget {
   const _AccountTemplate({
     required this.saveButton,
-    required this.imagePicker,
     required this.textField,
     required this.options,
     required this.controls,
   });
 
   final _AccountSaveButton saveButton;
-  final _AccountImagePicker imagePicker;
   final _AccountNameTextField textField;
   final _AccountControls controls;
   final List<Widget> options;
@@ -84,8 +80,6 @@ class _AccountTemplate extends StatelessWidget {
         appBar: AppBar(actions: [saveButton]),
         body: SingleChildScrollView(
           child: Column(children: [
-            Gap.h12,
-            imagePicker,
             Gap.h12,
             Padding(
               padding: const EdgeInsets.symmetric(

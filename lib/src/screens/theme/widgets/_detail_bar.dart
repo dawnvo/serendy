@@ -14,10 +14,13 @@ class _ThemeDetailBar extends ConsumerWidget {
     final isDefaultTheme = theme.id == currentUserId;
 
     return SizedBox(
-      height: Sizes.p48,
+      height: Sizes.p40,
       child: Row(children: [
         // * 소유자 정보
-        _buildOwnerProfile(context),
+        Text(
+          theme.owner.name.ellipsis(),
+          style: context.textTheme.bodyMedium,
+        ),
         Gap.w12,
 
         // * 소유자에게만 상태 여부를 표시해요.
@@ -33,22 +36,6 @@ class _ThemeDetailBar extends ConsumerWidget {
           ),
       ]),
     );
-  }
-
-  Widget _buildOwnerProfile(BuildContext context) {
-    return Row(children: [
-      CircleAvatar(
-        radius: Sizes.p12,
-        backgroundImage: theme.owner.image != null //
-            ? NetworkImage(theme.owner.image!)
-            : null,
-      ),
-      Gap.w8,
-      Text(
-        theme.owner.name.ellipsis(),
-        style: context.textTheme.bodyMedium,
-      ),
-    ]);
   }
 
   Widget _buildPrivacyStatus(BuildContext context) {
