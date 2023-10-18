@@ -4,13 +4,13 @@ import 'package:serendy/src/features/profile/profile.dart';
 
 //AggregateRoot
 final class Dislike extends Equatable {
-  // * 사용자 식별
+  /// 사용자 식별
   final UserID userId;
 
-  // * 작품 식별
+  /// 작품 식별
   final MediaID mediaId;
 
-  // * 추가한 날짜
+  /// 추가한 날짜
   final DateTime addedAt;
 
   Dislike({

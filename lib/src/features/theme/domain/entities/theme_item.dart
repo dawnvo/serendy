@@ -2,16 +2,16 @@ part of 'theme.dart';
 
 //Entity
 final class ThemeItem extends Equatable {
-  // * 작품 식별
+  /// 작품 식별
   final MediaID mediaId;
 
-  // * 제목
+  /// 제목
   final String title;
 
-  // * 이미지
+  /// 이미지
   final String image;
 
-  // * 추가한 날짜
+  /// 추가한 날짜
   final DateTime addedAt;
 
   const ThemeItem({
@@ -29,8 +29,8 @@ final class ThemeItem extends Equatable {
         title: title,
         image: image,
         //dummy
-        keywords: const [],
         type: MediaType.anime,
         status: MediaStatus.finished,
+        keywords: const [],
       );
 }

@@ -5,14 +5,14 @@ typedef UserID = String;
 
 //Enums
 enum Rank {
-  /* 아이언 */ iron,
-  /* 브론즈 */ bronze,
-  /* 실버 */ silver,
-  /* 골드 */ gold,
-  /* 플레티넘 */ platinum,
-  /* 다이아 */ diamond,
-  /* 마스터 */ master,
-  /* 노벨 */ novel,
+  /* 철 */ iron,
+  /* 동 */ bronze,
+  /* 은 */ silver,
+  /* 금 */ gold,
+  /* 백금 */ platinum,
+  /* 금강석 */ diamond,
+  /* 지배자 */ master,
+  /* 새로운 */ novel,
 }
 
 //AggregateRoot

@@ -7,7 +7,7 @@ final class ThemeOwner extends Equatable {
   /// 사용자 이름
   final String name;
 
-  // * 프로필 사진
+  /// 프로필 사진
   final String? image;
 
   const ThemeOwner({
