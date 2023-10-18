@@ -50,10 +50,10 @@ class _HomeTemplate extends StatelessWidget {
           SliverAppBar(
             backgroundColor: context.colorScheme.surface,
             surfaceTintColor: Colors.transparent,
-            toolbarHeight: kTextTabBarHeight,
+            toolbarHeight: kTextTabBarHeight + Sizes.p8,
             centerTitle: true,
-            floating: true,
-            pinned: true,
+            floating: false,
+            pinned: false,
 
             //title
             title: Image.asset(
@@ -62,10 +62,10 @@ class _HomeTemplate extends StatelessWidget {
             ),
 
             //tab
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(kTextTabBarHeight),
-              child: mediaFiltersTabBar,
-            ),
+            // bottom: PreferredSize(
+            //   preferredSize: const Size.fromHeight(kTextTabBarHeight),
+            //   child: mediaFiltersTabBar,
+            // ),
           ),
 
           //grid

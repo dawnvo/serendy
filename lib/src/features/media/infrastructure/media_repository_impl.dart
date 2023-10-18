@@ -57,7 +57,8 @@ final class MediaRepositoryImpl implements MediaRepository {
         .from(_tableMedias)
         .select(columns)
         .range(range.from, range.to)
-        .order('hits_count')
+        // .order('start_date')
+        // .order('hits_count')
         .withConverter(MediaMapper.toList);
   }
 
