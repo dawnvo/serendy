@@ -19,10 +19,10 @@ final class AccountState extends Equatable {
     return AccountState(
       email: email ?? this.email,
       username: username ?? this.username,
-      // 편법으로 null 상태를 저장해요.
-      errorMessage: errorMessage == '' //
-          ? null
-          : errorMessage ?? this.errorMessage,
+      // * null 값을 의도적으로 넘기기 위해 조건문을 사용해요.
+      errorMessage: errorMessage != this.errorMessage //
+          ? errorMessage
+          : this.errorMessage,
     );
   }
 

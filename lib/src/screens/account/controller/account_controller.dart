@@ -29,7 +29,7 @@ class AccountController extends _$AccountController with NotifierMounted {
     } else if (username == "void") {
       errorMessage = "이미 사용 중인 아이디에요.";
     } else {
-      errorMessage = '';
+      errorMessage = null;
     }
     state = AsyncValue.data(state.requireValue.copyWith(
       errorMessage: errorMessage,
