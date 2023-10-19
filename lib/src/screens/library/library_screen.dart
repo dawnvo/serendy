@@ -6,7 +6,7 @@ import '../profile_card/profile_card_modal.dart';
 import 'controller/library_controller.dart';
 
 part 'widgets/_my_themes_list.dart';
-part 'widgets/_watched_media_indicator.dart';
+part 'widgets/_watched_indicator.dart';
 
 class LibraryScreen extends ConsumerWidget {
   static const String routeName = 'library';
@@ -20,7 +20,7 @@ class LibraryScreen extends ConsumerWidget {
     return libraryValue.when(
       skipLoadingOnReload: true,
       data: (state) => _LibraryTemplate(
-        indicator: _LibraryWatchedMediaIndicator(count: state.evaluationsCount),
+        indicator: _LibraryWatchedIndicator(count: state.evaluationsCount),
         themesList: _LibraryMyThemesList(themes: state.themes),
       ),
       loading: () => const _Placeholder$LibraryScreen(),
@@ -38,7 +38,7 @@ class _LibraryTemplate extends StatelessWidget {
     required this.themesList,
   });
 
-  final _LibraryWatchedMediaIndicator indicator;
+  final _LibraryWatchedIndicator indicator;
   final _LibraryMyThemesList themesList;
 
   @override

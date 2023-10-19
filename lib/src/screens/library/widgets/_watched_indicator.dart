@@ -1,7 +1,7 @@
 part of '../library_screen.dart';
 
-class _LibraryWatchedMediaIndicator extends StatelessWidget {
-  const _LibraryWatchedMediaIndicator({required this.count});
+class _LibraryWatchedIndicator extends StatelessWidget {
+  const _LibraryWatchedIndicator({required this.count});
 
   final int count;
 

@@ -8,13 +8,13 @@ class _ProfileCardButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      _buildMainButton(context),
+      _buildPrimaryButton(context),
       Gap.h8,
       _buildCloseButton(context),
     ]);
   }
 
-  FilledButton _buildMainButton(BuildContext context) {
+  FilledButton _buildPrimaryButton(BuildContext context) {
     return FilledButton(
       onPressed: () => context.pushNamed(AppRoutes.history),
       style: FilledButton.styleFrom(

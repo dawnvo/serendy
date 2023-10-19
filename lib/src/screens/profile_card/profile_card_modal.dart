@@ -6,7 +6,7 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 part 'widgets/_buttons.dart';
 part 'widgets/_titles.dart';
-part 'widgets/_watched_media_indicator.dart';
+part 'widgets/_watched_indicator.dart';
 
 class ProfileCardModal extends ConsumerWidget {
   const ProfileCardModal({required this.evaluationCount});
@@ -36,7 +36,7 @@ class ProfileCardModal extends ConsumerWidget {
         user: meValue.value,
         rank: rank,
       ),
-      indicator: _WatchedMediaIndicator(
+      indicator: _ProfileCardWatchedIndicator(
         min: rank.range.min,
         max: rank.range.max,
         color: rank.color,
@@ -58,7 +58,7 @@ class _ProfileCardTemplate extends StatelessWidget {
 
   final SvgPicture icon;
   final _ProfileCardTitles titles;
-  final _WatchedMediaIndicator indicator;
+  final _ProfileCardWatchedIndicator indicator;
   final _ProfileCardButtons buttons;
 
   @override
