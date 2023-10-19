@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import 'controller/account_controller.dart';
 
-part 'widgets/_account_controls.dart';
+part 'widgets/_delete_account_tile.dart';
 part 'widgets/_email_tile.dart';
-part 'widgets/_name_text_field.dart';
-part 'widgets/_save_button.dart';
+part 'widgets/_user_name_tile.dart';
 
 class AccountScreen extends ConsumerWidget {
   static const String routeName = 'account';
@@ -35,17 +33,13 @@ class AccountScreen extends ConsumerWidget {
     });
 
     return accountValue.when(
-      skipLoadingOnReload: true,
-      data: (state) => _AccountTemplate(
-        saveButton: _AccountSaveButton(isEdited: state.isEdited),
-        textField: _AccountNameTextField(name: state.name),
-        options: [
-          _AccountEmailTile(email: state.email),
-          // const _AccountGenderTile(gender: '남자'),
-          // const _AccountBirthTile(birth: 2000),
-        ],
-        controls: const _AccountControls(),
-      ),
+      data: (state) => _AccountTemplate(options: [
+        _AccountUserNameTile(username: state.name),
+        _AccountEmailTile(email: state.email),
+        const _AccountDeleteTile(),
+        // const _AccountGenderTile(gender: '남자'),
+        // const _AccountBirthTile(birth: 2000),
+      ]),
       loading: () => Scaffold(
         appBar: AppBar(),
         body: const Center(child: LoadingIndicator()),
@@ -61,39 +55,21 @@ class AccountScreen extends ConsumerWidget {
 //Template
 class _AccountTemplate extends StatelessWidget {
   const _AccountTemplate({
-    required this.saveButton,
-    required this.textField,
     required this.options,
-    required this.controls,
   });
 
-  final _AccountSaveButton saveButton;
-  final _AccountNameTextField textField;
-  final _AccountControls controls;
   final List<Widget> options;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        appBar: AppBar(actions: [saveButton]),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Gap.h12,
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: kContentPadding,
-              ),
-              child: textField,
-            ),
-            Gap.h24,
-            ...options,
-          ]),
+    return Scaffold(
+      body: CustomScrollView(slivers: [
+        SliverAppBar(
+          backgroundColor: context.colorScheme.background,
+          title: const Text("내 계정"),
         ),
-        bottomSheet: controls,
-        resizeToAvoidBottomInset: false,
-      ),
+        SliverList.list(children: options),
+      ]),
     );
   }
 }
@@ -101,48 +77,35 @@ class _AccountTemplate extends StatelessWidget {
 //ListTile
 class _AccountListTile extends StatelessWidget {
   const _AccountListTile({
-    required this.label,
-    required this.value,
     required this.onTap,
+    required this.title,
+    this.subtitle,
+    this.isDestructiveAction = false,
   });
 
-  final String label;
-  final String? value;
   final VoidCallback onTap;
+  final String title;
+  final String? subtitle;
+  final bool isDestructiveAction;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kContentPadding,
-          vertical: Sizes.p20,
-        ),
-        child: Row(children: [
-          //Label
-          Text(label, style: context.textTheme.bodyLarge),
-          Gap.w16,
-
-          //Value
-          Expanded(
-            child: Text(
-              value ?? '',
-              textAlign: TextAlign.right,
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: context.colorScheme.outline,
-              ),
-            ),
-          ),
-
-          Gap.w4,
-          //Icon
-          Icon(
-            RemixIcon.arrow_right_s_line,
-            color: context.colorScheme.outlineVariant,
-          ),
-        ]),
+    return ListTile(
+      //style
+      visualDensity: VisualDensity.compact,
+      titleTextStyle: context.textTheme.bodyLarge?.copyWith(
+        color: !isDestructiveAction //
+            ? context.colorScheme.onSurface
+            : CupertinoColors.systemRed,
       ),
+      subtitleTextStyle: context.textTheme.bodyLarge?.copyWith(
+        color: context.colorScheme.outline,
+      ),
+
+      //content
+      onTap: onTap,
+      title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
     );
   }
 }

@@ -8,8 +8,8 @@ class _AccountEmailTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return _AccountListTile(
       onTap: () {},
-      label: "이메일",
-      value: email,
+      title: "이메일",
+      subtitle: email,
     );
   }
 }
