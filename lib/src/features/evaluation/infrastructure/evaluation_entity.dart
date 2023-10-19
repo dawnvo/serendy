@@ -40,8 +40,8 @@ final class EvaluationEntity {
 
 const Map<int, Emotion> emotionIdToEnum = {
   // id | name
-  1: Emotion.joy,
-  2: Emotion.nice,
+  1: Emotion.nice,
+  2: Emotion.joy,
   3: Emotion.happyness,
   4: Emotion.surprise,
   5: Emotion.sadness,

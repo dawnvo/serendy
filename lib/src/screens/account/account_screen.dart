@@ -93,6 +93,7 @@ class _AccountListTile extends StatelessWidget {
     return ListTile(
       //style
       visualDensity: VisualDensity.compact,
+      splashColor: Colors.transparent,
       titleTextStyle: context.textTheme.bodyLarge?.copyWith(
         color: !isDestructiveAction //
             ? context.colorScheme.onSurface

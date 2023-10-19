@@ -1,5 +1,6 @@
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/dislike/dislike.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -8,13 +9,13 @@ part 'widgets/_clear_dislikes_tile.dart';
 part 'widgets/_report_tile.dart';
 part 'widgets/_policy_tile.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   static const String routeName = 'settings';
   static const String routeLocation = '/$routeName';
   const SettingsScreen();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return _SettingsTemplate(options: [
       //account
       _SettingsListGroup([
@@ -42,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
       //sign-out
       _SettingsListGroup([
         _SettingsListTile(
-          onTap: () {},
+          onTap: () => ref.read(signOutProvider),
           icon: RemixIcon.logout_box_r_line,
           title: "로그아웃",
         ),

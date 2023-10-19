@@ -29,7 +29,7 @@ extension BottomSheetX on BuildContext {
           borderRadius: const BorderRadius.all(Radius.circular(kBorderRadius)),
           color: context.colorScheme.surface,
         ),
-        margin: const EdgeInsets.all(kContentPadding),
+        padding: const EdgeInsets.only(bottom: kContentPadding),
         child: BottomSheetTemplate(child: builder(this)),
       ),
     );

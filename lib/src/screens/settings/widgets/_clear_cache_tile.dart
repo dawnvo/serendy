@@ -10,13 +10,13 @@ class _ClearCacheTile extends StatelessWidget {
         // * 캐시를 정리해요.
         final manager = DefaultCacheManager();
         await manager.emptyCache();
-        // * 위젯이 폐기된 경우 작업을 끝내요.
-        if (!context.mounted) return;
-        // * success
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          duration: kSnackBarDisplayDurationShort,
-          content: Text("이미지 캐시를 정리했어요."),
-        ));
+        // * success -- 1초 지연해 안정감을 주어요.
+        await Future.delayed(const Duration(seconds: 1), () {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            duration: kSnackBarDisplayDurationShort,
+            content: Text("이미지 캐시를 정리했어요."),
+          ));
+        });
       },
       icon: RemixIcon.delete_bin_7_line,
       title: "이미지 캐시 정리",
