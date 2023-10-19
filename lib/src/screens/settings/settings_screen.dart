@@ -1,7 +1,9 @@
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/dislike/application/dislike_service.dart';
+import 'package:serendy/src/features/dislike/dislike.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+part 'widgets/_clear_cache_tile.dart';
 part 'widgets/_clear_dislikes_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -19,15 +21,9 @@ class SettingsScreen extends StatelessWidget {
           title: "내 계정",
         ),
       ]),
-      _SettingsListGroup([
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.delete_bin_7_line,
-          title: "이미지 캐시 정리",
-          subtitle: "불필요한 이미지 데이터를 정리해요.",
-        ),
-        //ClearDislikesTile
-        const _ClearDislikesTile(),
+      const _SettingsListGroup([
+        _ClearCacheTile(),
+        _ClearDislikesTile(),
       ]),
       _SettingsListGroup([
         _SettingsListTile(
