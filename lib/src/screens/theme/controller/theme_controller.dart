@@ -20,7 +20,7 @@ class ThemeController extends _$ThemeController {
   }
 
   /// [EVENT] 테마를 갱신해요.
-  Future<void> onThemeUpdated(Theme theme) async {
+  void onThemeUpdated(Theme theme) {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
 

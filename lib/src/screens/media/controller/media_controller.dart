@@ -22,7 +22,7 @@ class MediaController extends _$MediaController {
   }
 
   /// [EVENT] 반응 목록을 갱신해요.
-  Future<void> onMediaReactionsUpdated() async {
+  void onMediaReactionsUpdated() {
     // * 컨트롤러가 폐기된 경우 작업을 끝내요.
     if (!state.hasValue) return;
     // * 관련 공급자를 새로고침(초기화)해요.

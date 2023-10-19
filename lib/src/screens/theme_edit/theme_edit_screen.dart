@@ -36,7 +36,7 @@ class EditThemeScreen extends ConsumerWidget {
 
         // * [EVENT] 테마 정보를 갱신해요.
         ref //
-            .read(themeControllerProvider(theme.id).notifier)
+            .read(themeControllerProvider(theme.id, theme).notifier)
             .onThemeUpdated(next.editedTheme!);
       }
       //failure

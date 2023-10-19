@@ -24,7 +24,7 @@ class DeleteThemeItemMenuItem extends ConsumerWidget {
 
       // * [EVENT] 테마 화면의 상태를 갱신해요.
       ref //
-          .read(themeControllerProvider(theme.id).notifier)
+          .read(themeControllerProvider(theme.id, theme).notifier)
           .onThemeItemsUpdated();
 
       // * 나의 테마 목록을 새로고침(초기화)해요.

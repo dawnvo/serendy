@@ -63,15 +63,7 @@ final class Theme extends Equatable {
         updatedAt = updatedAt ?? DateTime.now();
 
   @override
-  List<Object?> get props => [
-        id,
-        title,
-        image,
-        private,
-        description,
-        itemsCount,
-        items,
-      ];
+  List<Object?> get props => [id];
 }
 
 extension ThemeX on Theme {
