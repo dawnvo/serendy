@@ -5,6 +5,8 @@ import 'package:serendy/src/widgets/widgets.dart';
 
 part 'widgets/_clear_cache_tile.dart';
 part 'widgets/_clear_dislikes_tile.dart';
+part 'widgets/_report_tile.dart';
+part 'widgets/_policy_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = 'settings';
@@ -14,6 +16,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SettingsTemplate(options: [
+      //account
       _SettingsListGroup([
         _SettingsListTile(
           onTap: () => context.pushNamed(AppRoutes.account),
@@ -21,35 +24,22 @@ class SettingsScreen extends StatelessWidget {
           title: "내 계정",
         ),
       ]),
+      //clear
       const _SettingsListGroup([
         _ClearCacheTile(),
         _ClearDislikesTile(),
       ]),
-      _SettingsListGroup([
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.upload_cloud_line,
-          title: "DB 수정/추가",
-          subtitle: "잘못된 정보나 빠뜨린 작품을 문의해요.",
-        ),
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.indeterminate_circle_line,
-          title: "문제 신고",
-        ),
+      //report
+      const _SettingsListGroup([
+        _RequestUpdateTile(),
+        _ReportProblemTile(),
       ]),
-      _SettingsListGroup([
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.file_list_line,
-          title: "개인정보 처리방침",
-        ),
-        _SettingsListTile(
-          onTap: () {},
-          icon: RemixIcon.file_copy_2_line,
-          title: "서비스 약관",
-        ),
+      //policy
+      const _SettingsListGroup([
+        _PrivacyPolicyTile(),
+        _TermsOfServiceTile(),
       ]),
+      //sign-out
       _SettingsListGroup([
         _SettingsListTile(
           onTap: () {},

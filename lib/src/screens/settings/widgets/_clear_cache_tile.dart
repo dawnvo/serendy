@@ -1,10 +1,10 @@
 part of '../settings_screen.dart';
 
-class _ClearCacheTile extends ConsumerWidget {
+class _ClearCacheTile extends StatelessWidget {
   const _ClearCacheTile();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return _SettingsListTile(
       onTap: () async {
         // * 캐시를 정리해요.
