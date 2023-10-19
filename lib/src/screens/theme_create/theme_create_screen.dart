@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import '../profile/controller/profile_controller.dart';
+import '../library/controller/library_controller.dart';
 import 'controller/create_theme_controller.dart';
 
 part 'widgets/_submit_button.dart';
@@ -19,7 +19,7 @@ class CreateThemeScreen extends ConsumerWidget {
       if (next.status == CreateThemeStatus.success) {
         // * [EVENT] 나의 테마 목록을 갱신해요.
         ref //
-            .read(profileControllerProvider.notifier)
+            .read(libraryControllerProvider.notifier)
             .onMyThemesUpdated();
       }
       //failure

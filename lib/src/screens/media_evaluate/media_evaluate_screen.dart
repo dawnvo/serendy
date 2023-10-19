@@ -6,7 +6,7 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import '../media/controller/media_controller.dart';
-import '../profile/controller/profile_controller.dart';
+import '../library/controller/library_controller.dart';
 import 'controller/evaluate_media_controller.dart';
 
 part 'widgets/_background.dart';
@@ -32,7 +32,7 @@ class EvaluateMediaScreen extends ConsumerWidget {
 
         // * [EVENT] 나의 평가 개수를 갱신해요.
         ref //
-            .read(profileControllerProvider.notifier)
+            .read(libraryControllerProvider.notifier)
             .onEvaluationsCountUpdated();
 
         // * 평가를 번복한 경우 메시지로 안내해요.

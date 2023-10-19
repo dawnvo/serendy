@@ -1,7 +1,8 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/screens/media_evaluate/controller/evaluate_media_controller.dart';
 import 'package:serendy/src/widgets/widgets.dart';
+
+import '../../../screens/media_evaluate/controller/evaluate_media_controller.dart';
 
 class EvaluateMediaMenuItem extends ConsumerWidget {
   const EvaluateMediaMenuItem({required this.media});

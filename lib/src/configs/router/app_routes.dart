@@ -18,8 +18,8 @@ abstract final class AppRoutes {
   static const _searchLocation = SearchScreen.routeLocation;
 
   // 프로필
-  static const profile = ProfileScreen.routeName;
-  static const _profileLocation = ProfileScreen.routeLocation;
+  static const library = LibraryScreen.routeName;
+  static const _libraryLocation = LibraryScreen.routeLocation;
 
   // 승급
   static const rank = RankModal.routeName;

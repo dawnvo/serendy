@@ -93,7 +93,7 @@ class EditThemeController extends _$EditThemeController with NotifierMounted {
       );
 
       // * 프로필 화면으로 이동해요.
-      ref.read(goRouterProvider).goNamed(AppRoutes.profile);
+      ref.read(goRouterProvider).goNamed(AppRoutes.library);
 
       // * failure
     } catch (err) {

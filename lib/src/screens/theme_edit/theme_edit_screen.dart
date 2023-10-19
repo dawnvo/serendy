@@ -2,7 +2,7 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import '../profile/controller/profile_controller.dart';
+import '../library/controller/library_controller.dart';
 import '../theme/controller/theme_controller.dart';
 import 'controller/edit_theme_controller.dart';
 
@@ -28,7 +28,7 @@ class EditThemeScreen extends ConsumerWidget {
       if (next.status == EditThemeStatus.success) {
         // * [EVENT] 나의 테마 목록을 갱신해요.
         ref //
-            .read(profileControllerProvider.notifier)
+            .read(libraryControllerProvider.notifier)
             .onMyThemesUpdated();
 
         // * 편집하지 않은 경우 작업을 끝내요. (테마 삭제 등)

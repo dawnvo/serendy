@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_controller.dart';
+part of 'library_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileControllerHash() => r'30668d53bb759296c3b00c7f11e24fb6de1415de';
+String _$libraryControllerHash() => r'6c22cbefa05f73720b7fd23ee28f04cd1416e2f7';
 
-/// See also [ProfileController].
-@ProviderFor(ProfileController)
-final profileControllerProvider =
-    AutoDisposeAsyncNotifierProvider<ProfileController, ProfileState>.internal(
-  ProfileController.new,
-  name: r'profileControllerProvider',
+/// See also [LibraryController].
+@ProviderFor(LibraryController)
+final libraryControllerProvider =
+    AutoDisposeAsyncNotifierProvider<LibraryController, LibraryState>.internal(
+  LibraryController.new,
+  name: r'libraryControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$profileControllerHash,
+      : _$libraryControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ProfileController = AutoDisposeAsyncNotifier<ProfileState>;
+typedef _$LibraryController = AutoDisposeAsyncNotifier<LibraryState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

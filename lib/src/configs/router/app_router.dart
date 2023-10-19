@@ -116,9 +116,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             navigatorKey: __shellNavigatorProfileKey,
             routes: [
               GoRoute(
-                name: AppRoutes.profile,
-                path: AppRoutes._profileLocation,
-                builder: (context, state) => const ProfileScreen(),
+                name: AppRoutes.library,
+                path: AppRoutes._libraryLocation,
+                builder: (context, state) => const LibraryScreen(),
                 routes: [
                   GoRoute(
                     name: AppRoutes.history,
