@@ -5,11 +5,11 @@ final class ThemeOwner extends Equatable {
   final UserID id;
 
   /// 사용자 이름
-  final String name;
+  final String username;
 
   const ThemeOwner({
     required this.id,
-    required this.name,
+    required this.username,
   });
 
   @override
@@ -17,7 +17,7 @@ final class ThemeOwner extends Equatable {
 
   Profile get convertEntity => Profile(
         id: id,
-        name: name,
+        username: username,
         email: '',
       );
 }

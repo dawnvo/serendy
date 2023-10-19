@@ -19,11 +19,11 @@ enum Rank {
 final class Profile extends Equatable {
   final UserID id;
 
-  /// 이름
-  final String name;
-
   /// 이메일
   final String email;
+
+  /// 사용자 이름
+  final String username;
 
   /// 생성 날짜
   final DateTime createdAt;
@@ -36,8 +36,8 @@ final class Profile extends Equatable {
 
   Profile({
     required this.id,
-    required this.name,
     required this.email,
+    required this.username,
     this.removedAt,
     final DateTime? createdAt,
     final DateTime? updatedAt,
@@ -47,16 +47,16 @@ final class Profile extends Equatable {
   @override
   List<Object?> get props => [
         id,
-        name,
         email,
+        username,
       ];
 }
 
 extension ProfileX on Profile {
   /// 프로필 수정
-  Profile edit({String? name}) {
+  Profile edit({String? username}) {
     return copy(
-      name: name,
+      username: username,
       updatedAt: DateTime.now(),
     );
   }
@@ -69,16 +69,16 @@ extension ProfileX on Profile {
   // 프로필 복사
   Profile copy({
     final UserID? id,
-    final String? name,
     final String? email,
+    final String? username,
     final DateTime? createdAt,
     final DateTime? updatedAt,
     final DateTime? removedAt,
   }) {
     return Profile(
       id: id ?? this.id,
-      name: name ?? this.name,
       email: email ?? this.email,
+      username: username ?? this.username,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       removedAt: removedAt ?? this.removedAt,

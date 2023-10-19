@@ -28,7 +28,7 @@ final class CreateThemeUsecase implements UseCase<CreateThemePayload, Theme> {
     final theme = Theme(
       owner: ThemeOwner(
         id: profile.id,
-        name: profile.name,
+        username: profile.username,
       ),
       title: payload.title,
     );

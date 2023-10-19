@@ -72,11 +72,11 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
     final baseStyle = context.textTheme.titleLarge;
     return TextField(
       controller: controller,
-      autofocus: true,
-      maxLength: 20,
-      style: baseStyle,
       onChanged: onChange,
+      autofocus: true,
+      maxLength: Assets.usernameMaxLength,
       inputFormatters: [LowerCaseTextFormatter()],
+      style: baseStyle,
       decoration: InputDecoration(
         hintStyle: baseStyle?.copyWith(
           color: context.colorScheme.outline,

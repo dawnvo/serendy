@@ -34,8 +34,8 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   ) {
     final entity = ProfileEntity(
       id: profile.id,
-      name: profile.name,
       email: profile.email,
+      username: profile.username,
     ).toJson();
     return supabase //
         .from(_tableProfiles)
@@ -50,8 +50,8 @@ final class ProfileRepositoryImpl implements ProfileRepository {
     Profile profile,
   ) {
     final entity = ProfileEntity(
-      name: profile.name,
       email: profile.email,
+      username: profile.username,
     ).toJson();
     return supabase //
         .from(_tableProfiles)

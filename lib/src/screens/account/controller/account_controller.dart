@@ -15,7 +15,7 @@ class AccountController extends _$AccountController with NotifierMounted {
     // * loaded
     return AccountState(
       email: profile.email,
-      username: profile.name,
+      username: profile.username,
     );
   }
 
@@ -50,7 +50,7 @@ class AccountController extends _$AccountController with NotifierMounted {
 
       // * loaded
       return state.requireValue.copyWith(
-        username: edited.name, // isEdited 초기화
+        username: edited.username,
       );
     });
   }

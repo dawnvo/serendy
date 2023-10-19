@@ -9,13 +9,13 @@ abstract final class ThemeMapper {
     return Theme(
       owner: ThemeOwner(
         id: entity.ownerId ?? '',
-        name: entity.profiles?.name ?? '',
+        username: entity.profiles?.username ?? '',
       ),
       id: entity.id ?? '',
       title: entity.title ?? '',
-      description: entity.description,
       image: entity.image,
       private: entity.private,
+      description: entity.description,
       itemsCount: entity.itemsCount,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,

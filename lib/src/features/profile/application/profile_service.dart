@@ -45,7 +45,7 @@ Future<Profile> editProfile(
   final userId = ref.watch(requireUserIdProvider);
   return ProfileModule.editProfileUsecase.execute((
     executorId: userId,
-    name: username,
+    username: username,
   ));
 }
 

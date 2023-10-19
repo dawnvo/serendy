@@ -12,11 +12,11 @@ class _ProfileCardTitles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      if (profile?.name != null)
+      if (profile?.username != null)
         Text(
-          profile!.name.ellipsis(),
+          profile!.username.ellipsis(),
           maxLines: 1,
-          style: profile!.name.length < 8
+          style: profile!.username.length < 8
               ? context.textTheme.headlineMedium
               : context.textTheme.headlineSmall,
         )

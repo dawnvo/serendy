@@ -8,8 +8,8 @@ abstract final class ProfileMapper {
   static Profile toDomain(final ProfileEntity entity) {
     return Profile(
       id: entity.id ?? '',
-      name: entity.name ?? '',
       email: entity.email ?? '',
+      username: entity.username ?? '',
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );

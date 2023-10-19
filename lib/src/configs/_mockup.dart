@@ -6,8 +6,8 @@ import 'package:serendy/src/features/theme/theme.dart';
 // Profile
 final profileMock = Profile(
   id: 'uid',
-  name: "Serendy",
   email: 'serendy@email.com',
+  username: "serendy",
 );
 
 // Media
@@ -63,7 +63,7 @@ final evaluationsMock = List.generate(
 // Theme
 final themeOwnerMock = ThemeOwner(
   id: profileMock.id,
-  name: profileMock.name,
+  username: profileMock.username,
 );
 final themeItemsMock = mediasMock
     .map((media) => ThemeItem(

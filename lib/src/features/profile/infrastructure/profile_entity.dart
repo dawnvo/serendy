@@ -7,16 +7,16 @@ part 'profile_entity.g.dart';
 final class ProfileEntity {
   const ProfileEntity({
     this.id,
-    this.name,
     this.email,
+    this.username,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
   });
 
   final String? id;
-  final String? name;
   final String? email;
+  final String? username;
 
   //timestamp
   final DateTime? createdAt;

@@ -3,7 +3,7 @@ import 'package:serendy/src/features/profile/profile.dart';
 
 typedef EditProfilePayload = ({
   UserID executorId,
-  String? name,
+  String? username,
 });
 
 final class EditProfileUsecase implements UseCase<EditProfilePayload, Profile> {
@@ -27,7 +27,7 @@ final class EditProfileUsecase implements UseCase<EditProfilePayload, Profile> {
 
     // * 사용자 정보를 수정해요.
     final edited = profile.edit(
-      name: payload.name,
+      username: payload.username,
     );
 
     // * commit

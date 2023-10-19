@@ -22,8 +22,8 @@ final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profil
     // * 프로필 인스턴스를 생성해요.
     final profile = Profile(
       id: payload.id,
-      name: payload.name,
       email: payload.email,
+      username: payload.name,
     );
 
     // * commit
@@ -37,7 +37,7 @@ final class CreateProfileUsecase implements UseCase<CreateProfilePayload, Profil
    */
   Future<void> _createDefaultTheme(Profile profile) async {
     final theme = Theme(
-      owner: ThemeOwner(id: profile.id, name: profile.name),
+      owner: ThemeOwner(id: profile.id, username: profile.username),
       image: Assets.themeFavoriteImage,
       title: '보고싶은',
       private: true,

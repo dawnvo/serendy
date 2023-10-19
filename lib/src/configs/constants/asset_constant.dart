@@ -16,4 +16,6 @@ abstract final class Assets {
     '잔잔한 애니',
     '한번 보면 밤샘하는 애니',
   ];
+
+  static const usernameMaxLength = 20;
 }

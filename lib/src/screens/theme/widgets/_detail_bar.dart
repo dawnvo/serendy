@@ -18,7 +18,7 @@ class _ThemeDetailBar extends ConsumerWidget {
       child: Row(children: [
         // * 소유자 정보
         Text(
-          theme.owner.name.ellipsis(),
+          theme.owner.username,
           style: context.textTheme.bodyMedium,
         ),
         Gap.w12,
