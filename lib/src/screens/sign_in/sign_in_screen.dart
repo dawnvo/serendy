@@ -29,7 +29,7 @@ class SignInScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _SignInTemplate extends StatelessWidget {
   const _SignInTemplate({
     required this.signInTitle,

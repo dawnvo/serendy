@@ -20,7 +20,7 @@ final class EvaluateMediaState extends Equatable {
   }) {
     return EvaluateMediaState(
       status: status ?? this.status,
-      // null 값을 의도적으로 넘기기 위해 조건문을 사용했어요.
+      // * null 값을 의도적으로 넘기기 위해 조건문을 사용해요.
       evaluation: evaluation != this.evaluation ? evaluation : this.evaluation,
       errorMessage: errorMessage ?? this.errorMessage,
     );

@@ -58,7 +58,7 @@ class ThemeScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _ThemeTemplate extends StatelessWidget {
   const _ThemeTemplate({
     required this.background,
@@ -110,7 +110,7 @@ class _ThemeTemplate extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class _Placeholder$ThemeScreen extends StatelessWidget {
   const _Placeholder$ThemeScreen(this.theme);
   final Theme? theme;

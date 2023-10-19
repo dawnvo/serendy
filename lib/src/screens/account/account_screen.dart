@@ -38,7 +38,7 @@ class AccountScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _AccountTemplate extends StatelessWidget {
   const _AccountTemplate({required this.options});
 
@@ -58,7 +58,7 @@ class _AccountTemplate extends StatelessWidget {
   }
 }
 
-//ListTile
+//list-tile
 class _AccountListTile extends StatelessWidget {
   const _AccountListTile({
     required this.onTap,

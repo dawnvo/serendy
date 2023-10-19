@@ -10,7 +10,7 @@ import 'go_router_transition_page.dart';
 
 part 'app_routes.dart';
 
-// Navigator keys
+//navigator-keys
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final __shellNavigatorHomeKey = GlobalKey<NavigatorState>();
 final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
@@ -29,13 +29,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       final session = supabase.auth.currentSession;
       final currentLocation = state.matchedLocation;
 
-      // 로그인에 성공한 경우
+      // * 로그인에 성공한 경우
       if (session != null) {
         if (currentLocation == AppRoutes._signInLocation) {
           return AppRoutes._homeLocation;
         }
       }
-      // 로그인에 실패한 경우
+      // * 로그인에 실패한 경우
       else {
         return AppRoutes._signInLocation;
       }
@@ -44,7 +44,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
     initialLocation: AppRoutes._homeLocation,
     routes: [
-      /// Other routes
+      //other-routes
       GoRoute(
         name: AppRoutes.signIn,
         path: AppRoutes._signInLocation,
@@ -66,7 +66,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
 
-      /// Modal routes
+      ///modal-routes
       GoRoute(
         name: AppRoutes.rank,
         path: AppRoutes._rankLocation,
@@ -80,7 +80,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
 
-      /// Shell navigator
+      ///shell-routes
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ScaffoldWithNavigationBar(
@@ -136,7 +136,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   );
 });
 
-/// ----------Media routes
+//media-routes
 final _mediaRoutes = [
   GoRoute(
     name: AppRoutes.search,
@@ -178,7 +178,7 @@ final _mediaRoutes = [
   ),
 ];
 
-/// ----------Theme routes
+//theme-routes
 final _themeRoutes = [
   GoRoute(
     name: AppRoutes.theme,

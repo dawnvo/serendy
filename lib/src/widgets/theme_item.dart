@@ -46,7 +46,7 @@ class ThemeItem extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class Placeholder$ThemeItem extends StatelessWidget {
   const Placeholder$ThemeItem();
 

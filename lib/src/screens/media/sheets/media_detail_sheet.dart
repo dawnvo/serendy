@@ -6,6 +6,7 @@ class MediaDetailSheet extends StatelessWidget {
   const MediaDetailSheet(this.media);
   final Media media;
 
+  /// 하단 시트를 열어요.
   static void show(BuildContext context, Media media) {
     context.showCustomBottomSheet((_) => MediaDetailSheet(media));
   }

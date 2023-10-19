@@ -42,7 +42,7 @@ class ReactionDetailSheet extends StatelessWidget {
   }
 }
 
-// ReactionTile
+//reaction-tile
 class __ReactionTile extends StatelessWidget {
   const __ReactionTile({
     required this.name,

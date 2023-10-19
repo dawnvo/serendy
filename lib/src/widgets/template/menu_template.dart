@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-//Template
+//template
 class MenuTemplate extends StatelessWidget {
   const MenuTemplate({
     required this.info,
@@ -23,7 +23,7 @@ class MenuTemplate extends StatelessWidget {
   }
 }
 
-//Info
+//info
 class MenuInfo extends StatelessWidget {
   const MenuInfo({
     required this.image,
@@ -45,7 +45,7 @@ class MenuInfo extends StatelessWidget {
   }
 }
 
-//ListTile
+//list-tile
 class MenuListTile extends StatelessWidget {
   const MenuListTile({
     required this.icon,

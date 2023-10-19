@@ -22,7 +22,7 @@ abstract final class Sizes {
 }
 
 abstract final class Gap {
-  // widths
+  //widths
   static const w4 = SizedBox(width: Sizes.p4);
   static const w8 = SizedBox(width: Sizes.p8);
   static const w12 = SizedBox(width: Sizes.p12);
@@ -34,7 +34,7 @@ abstract final class Gap {
   static const w48 = SizedBox(width: Sizes.p48);
   static const w64 = SizedBox(width: Sizes.p64);
 
-  // heights
+  //heights
   static const h4 = SizedBox(height: Sizes.p4);
   static const h8 = SizedBox(height: Sizes.p8);
   static const h12 = SizedBox(height: Sizes.p12);

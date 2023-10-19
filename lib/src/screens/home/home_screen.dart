@@ -1,4 +1,3 @@
-// import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/sheets.dart';
@@ -29,7 +28,7 @@ class HomeScreen extends HookConsumerWidget {
   }
 }
 
-//Template
+//template
 class _HomeTemplate extends StatelessWidget {
   const _HomeTemplate({
     required this.controller,

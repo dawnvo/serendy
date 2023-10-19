@@ -26,7 +26,7 @@ class MultiLineProgressIndicator extends StatelessWidget {
   }
 }
 
-//Interface
+//interface
 interface class ProgressBar {
   const ProgressBar({
     required this.value,
@@ -37,7 +37,7 @@ interface class ProgressBar {
   final Color color;
 }
 
-//Painter
+//painter
 class ProgressBarPainter extends CustomPainter {
   const ProgressBarPainter(
     this.progressBars, {
@@ -58,32 +58,32 @@ class ProgressBarPainter extends CustomPainter {
 
       var left = x * size.width;
       var barWidth = width * size.width;
-      if (gap) barWidth -= 2; // 막대 길이를 줄여 틈을 만들어요.
+      if (gap) barWidth -= 2; // * 막대 길이를 줄여 틈을 만들어요.
 
       final rect = Offset(left, 0.0) & Size(barWidth, size.height);
       canvas.drawRect(rect, paint);
     }
 
-    // Paint track line
+    //paint-track-line
     drawBar(0.0, size.width, trackColor);
 
-    // 시작점(dx) 누계
+    // * 시작점(dx) 누계
     double accumulatedX = 0;
     final barCount = progressBars.length;
 
     for (final progressBar in progressBars) {
       if (progressBar == null) return;
 
-      // Paint progress bars
+      //paint-progress-bars
       drawBar(
         accumulatedX,
         progressBar.value,
         progressBar.color,
-        // 막대가 두 개 이상이고, 마지막 막대가 아니면 틈을 두어요.
+        // * 막대가 두 개 이상이고, 마지막 막대가 아니면 틈을 두어요.
         gap: barCount >= 2 && progressBar != progressBars[barCount - 1],
       );
 
-      // 다음 막대의 시작점을 설정해요.
+      // * 다음 막대의 시작점을 설정해요.
       accumulatedX += progressBar.value;
     }
   }

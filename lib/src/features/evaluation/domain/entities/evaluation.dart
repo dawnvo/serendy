@@ -5,10 +5,10 @@ import 'package:serendy/src/features/user/user.dart';
 
 part 'evaluation_media.dart';
 
-//Identity
+//identity
 typedef EvaluationID = String;
 
-//Enums
+//enums
 enum Emotion {
   /* 멋짐 */ nice,
   /* 재미 */ joy,
@@ -21,7 +21,7 @@ enum Emotion {
   /* 분노 */ anger,
 }
 
-//AggregateRoot
+//aggregate-root
 final class Evaluation extends Equatable {
   final EvaluationID id;
 

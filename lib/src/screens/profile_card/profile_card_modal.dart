@@ -47,7 +47,7 @@ class ProfileCardModal extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _ProfileCardTemplate extends StatelessWidget {
   const _ProfileCardTemplate({
     required this.icon,

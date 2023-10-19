@@ -1,6 +1,6 @@
 part of 'theme.dart';
 
-//Entity
+//entity
 final class ThemeItem extends Equatable {
   /// 작품 식별
   final MediaID mediaId;

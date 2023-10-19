@@ -6,12 +6,12 @@ import 'package:serendy/src/features/user/user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DislikeModule {
-  // Persistence
+  //persistence
   static final dislikeRepository = DislikeRepositoryImpl(
     Supabase.instance.client,
   );
 
-  // UseCase
+  //use-case
   static final addDislikeUsecase = AddDislikeUsecase(
     DislikeModule.dislikeRepository,
     UserModule.userRepository,

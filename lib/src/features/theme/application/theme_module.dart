@@ -12,12 +12,12 @@ import 'package:serendy/src/features/theme/infrastructure/theme_repository_impl.
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract final class ThemeModule {
-  // Persistence
+  //persistence
   static final themeRepository = ThemeRepositoryImpl(
     Supabase.instance.client,
   );
 
-  // UseCase
+  //use-case
 
   static final getThemesUsecase = GetThemesUsecase(
     ThemeModule.themeRepository,

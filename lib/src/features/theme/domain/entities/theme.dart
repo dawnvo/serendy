@@ -6,10 +6,10 @@ import 'package:serendy/src/features/user/user.dart';
 part 'theme_item.dart';
 part 'theme_owner.dart';
 
-//Identity
+//identity
 typedef ThemeID = String;
 
-//AggregateRoot
+//aggregate-root
 final class Theme extends Equatable {
   final ThemeID id;
 
@@ -128,7 +128,7 @@ extension ThemeX on Theme {
     );
   }
 
-  // 테마 복사
+  /// 테마 복사
   Theme copy({
     final ThemeID? id,
     final ThemeOwner? owner,

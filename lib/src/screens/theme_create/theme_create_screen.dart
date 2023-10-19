@@ -38,7 +38,7 @@ class CreateThemeScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _CreateThemeTemplate extends StatelessWidget {
   const _CreateThemeTemplate({
     required this.textField,

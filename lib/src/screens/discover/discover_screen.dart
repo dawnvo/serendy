@@ -27,7 +27,7 @@ class DiscoverScreen extends HookConsumerWidget {
   }
 }
 
-//Template
+//template
 class _DiscoverTemplate extends StatelessWidget {
   const _DiscoverTemplate({
     required this.controller,
@@ -52,10 +52,10 @@ class _DiscoverTemplate extends StatelessWidget {
             floating: true,
             pinned: true,
 
-            //titles
+            //title
             title: const Text("검색"),
 
-            //searchBar
+            //search-bar
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(
                 // sum: bottom height + padding ( top + bottom )

@@ -37,7 +37,7 @@ class MediaItem extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class Placeholder$MediaItem extends StatelessWidget {
   const Placeholder$MediaItem();
 

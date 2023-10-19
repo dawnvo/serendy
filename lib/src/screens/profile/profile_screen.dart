@@ -31,7 +31,7 @@ class ProfileScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _ProfileTemplate extends StatelessWidget {
   const _ProfileTemplate({
     required this.indicator,
@@ -80,7 +80,7 @@ class _ProfileTemplate extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class _Placeholder$ProfileScreen extends StatelessWidget {
   const _Placeholder$ProfileScreen();
 

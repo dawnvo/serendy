@@ -27,7 +27,7 @@ class _ClearDislikesTile extends ConsumerWidget {
   }
 }
 
-//Dialog
+//dialog
 class __ClearDislikesDialog extends StatelessWidget {
   const __ClearDislikesDialog({required this.onClear});
   final VoidCallback onClear;

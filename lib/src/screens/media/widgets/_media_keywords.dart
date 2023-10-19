@@ -11,7 +11,7 @@ class _MediaKeywords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // "" 그리고 "null" 값은 필터해요.
+    // * "" 그리고 "null" 값은 필터해요.
     final genresFiltered = genres.where((_) => _.isNotEmpty && _ != "null");
     final statusFiltered = status.where((_) => _.isNotEmpty && _ != "null");
 
@@ -20,7 +20,8 @@ class _MediaKeywords extends StatelessWidget {
       children: [
         ...genresFiltered.take(2).map((genre) => Tag(genre)),
         ...statusFiltered.map(
-            (status) => Tag(status, labelColor: context.colorScheme.primary)),
+          (status) => Tag(status, labelColor: context.colorScheme.primary),
+        ),
       ],
     );
   }

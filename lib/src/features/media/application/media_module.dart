@@ -7,12 +7,12 @@ import 'package:serendy/src/features/media/infrastructure/media_repository_impl.
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract final class MediaModule {
-  // Persistence
+  //persistence
   static final mediaRepository = MediaRepositoryImpl(
     Supabase.instance.client,
   );
 
-  // UseCase
+  //use-case
   static final searchMediasUsecase = SearchMediasUsecase(
     MediaModule.mediaRepository,
   );

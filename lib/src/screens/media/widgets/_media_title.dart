@@ -22,15 +22,15 @@ class _MediaTitle extends StatelessWidget {
   TextStyle? _titleStyle(BuildContext context) {
     final TextStyle? style;
 
-    // [Small] 16자 이상
+    // * Small: 16자 이상
     if (title.length > 16) {
       style = context.textTheme.headlineSmall;
     }
-    // [Meduium] 12자 이상
+    // * Meduium: 12자 이상
     else if (title.length > 12) {
       style = context.textTheme.headlineMedium;
     }
-    // [Large] 기본 크기
+    // * Large: 기본 크기
     else {
       style = context.textTheme.headlineLarge;
     }

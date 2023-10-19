@@ -18,7 +18,7 @@ class SliverMyThemesList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          // 마지막에 '테마 생성' 타일을 표시해요.
+          // * 마지막에 '테마 생성' 타일을 표시해요.
           if (showCreateTile && childCount <= index) {
             return const _CreateThemeTile();
           }

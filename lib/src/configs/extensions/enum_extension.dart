@@ -3,7 +3,7 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
-//MediaStatus
+//media-status
 extension MediaStatusX on MediaStatus {
   String get label => switch (this) {
         MediaStatus.finished => '완결',
@@ -13,7 +13,7 @@ extension MediaStatusX on MediaStatus {
       };
 }
 
-//Emotion
+//emotion
 extension EmotionX on Emotion {
   String get filePath => '${Assets.iconPath}/emotions/$name.svg';
 
@@ -42,7 +42,7 @@ extension EmotionX on Emotion {
       };
 }
 
-//Rank
+//rank
 extension RankX on Rank {
   String get filePath => '${Assets.iconPath}/ranks/$name.svg';
 

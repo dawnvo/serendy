@@ -27,7 +27,7 @@ class _EditThemeRemoveTile extends ConsumerWidget {
   }
 }
 
-//Dialog
+//dialog
 class __RemoveThemeDialog extends StatelessWidget {
   const __RemoveThemeDialog({required this.onRemove});
   final VoidCallback onRemove;

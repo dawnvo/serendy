@@ -9,12 +9,12 @@ import 'package:serendy/src/features/user/user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EvaluationModule {
-  // Persistence
+  //persistence
   static final evaluationRepository = EvaluationRepositoryImpl(
     Supabase.instance.client,
   );
 
-  // UseCase
+  //use-case
   static final getEvaluationsUsecase = GetEvaluationsUsecase(
     EvaluationModule.evaluationRepository,
   );

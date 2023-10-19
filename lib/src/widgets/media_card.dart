@@ -19,7 +19,7 @@ class MediaCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Material(
         child: DecoratedBox(
-          //gradient effect
+          //gradient-effect
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -35,7 +35,7 @@ class MediaCard extends StatelessWidget {
             ),
           ),
 
-          //ripple effect
+          //ripple-effect
           child: Ink.image(
             image: NetworkImage(media.image),
             fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class MediaCard extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class Placeholder$MediaCard extends StatelessWidget {
   const Placeholder$MediaCard();
 

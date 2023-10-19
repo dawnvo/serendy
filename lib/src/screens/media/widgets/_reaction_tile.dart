@@ -51,7 +51,7 @@ class _MediaReactionsTile extends StatelessWidget {
   }
 }
 
-//Reaction icons
+//reaction-icons
 class __ReactionIcons extends StatelessWidget {
   const __ReactionIcons({required this.emotions});
 
@@ -63,10 +63,9 @@ class __ReactionIcons extends StatelessWidget {
         emotions.take(2).map((emotion) => _buildIcon(context, emotion)).toList();
 
     return Wrap(
-      spacing: -12,
-
-      // 가장 많이 받은 감정을 위에 두어요. (꼼수)
+      // * 가장 많이 받은 감정을 위에 두어요. (편법)
       textDirection: TextDirection.rtl,
+      spacing: -12,
       children: displayEmotions.reversed.toList(),
     );
   }

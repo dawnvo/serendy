@@ -60,7 +60,7 @@ class EditThemeScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _EditThemeTemplate extends StatelessWidget {
   const _EditThemeTemplate({
     required this.saveButton,

@@ -3,14 +3,14 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
-// User
+//user
 final userMock = User(
   id: 'uid',
   email: 'serendy@email.com',
   username: "serendy",
 );
 
-// Media
+//media
 final mediasMock = [
   Media(
     type: MediaType.anime,
@@ -46,7 +46,7 @@ final mediasMock = [
   ),
 ];
 
-// Evaluation
+//evaluation
 final evaluationsMock = List.generate(
   4,
   (i) => Evaluation(
@@ -60,7 +60,7 @@ final evaluationsMock = List.generate(
   ),
 );
 
-// Theme
+//theme
 final themeOwnerMock = ThemeOwner(
   id: userMock.id,
   username: userMock.username,

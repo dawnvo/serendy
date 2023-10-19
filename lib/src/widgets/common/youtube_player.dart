@@ -45,7 +45,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   }
 }
 
-//YoutubePlayer config
+//player-config
 interface class YoutubePlayerConfig extends Equatable {
   const YoutubePlayerConfig({
     required this.videoId,

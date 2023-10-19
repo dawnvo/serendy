@@ -54,7 +54,7 @@ final class AppThemeData {
       highlightColor: highlightColor,
       scaffoldBackgroundColor: colorScheme.background,
 
-      // PageTransitions theme
+      //page-transitions
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
           TargetPlatform.windows: SharedAxisPageTransitionsBuilder(
@@ -69,7 +69,7 @@ final class AppThemeData {
         },
       ),
 
-      // AppBar theme
+      //app-bar
       appBarTheme: themeData.appBarTheme.copyWith(
         titleSpacing: kContentPadding,
         backgroundColor: Colors.transparent,
@@ -78,10 +78,10 @@ final class AppThemeData {
         ),
       ),
 
-      // Divider theme
+      //divider
       dividerTheme: themeData.dividerTheme.copyWith(space: 1),
 
-      // NavigationBar theme
+      //navigation-bar
       navigationBarTheme: themeData.navigationBarTheme.copyWith(
         height: Sizes.p56,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -94,7 +94,7 @@ final class AppThemeData {
         surfaceTintColor: Colors.transparent,
       ),
 
-      // ListTile theme
+      //list-tile
       listTileTheme: themeData.listTileTheme.copyWith(
         contentPadding: const EdgeInsets.symmetric(
           vertical: Sizes.p8,
@@ -102,7 +102,7 @@ final class AppThemeData {
         ),
       ),
 
-      // SnackBar theme
+      //snack-bar
       snackBarTheme: themeData.snackBarTheme.copyWith(
         behavior: SnackBarBehavior.floating,
         contentTextStyle: TextStyle(
@@ -111,7 +111,7 @@ final class AppThemeData {
         ),
       ),
 
-      // Dialog theme
+      //dialog
       dialogTheme: themeData.dialogTheme.copyWith(
         actionsPadding: const EdgeInsets.all(Sizes.p8),
         shape: const RoundedRectangleBorder(
@@ -119,7 +119,7 @@ final class AppThemeData {
         ),
       ),
 
-      // Switch theme
+      //switch
       switchTheme: themeData.switchTheme.copyWith(
         thumbColor: MaterialStateProperty.resolveWith<Color?>((states) {
           if (states.contains(MaterialState.selected)) {
@@ -135,14 +135,14 @@ final class AppThemeData {
         }),
       ),
 
-      // TabBar theme
+      //tab-bar
       tabBarTheme: themeData.tabBarTheme.copyWith(
         indicatorColor: Colors.transparent,
         splashFactory: NoSplash.splashFactory,
         overlayColor: const MaterialStatePropertyAll<Color?>(null),
       ),
 
-      // Button theme
+      //button
       iconButtonTheme: const IconButtonThemeData(style: _buttonStyles),
       textButtonTheme: const TextButtonThemeData(style: _buttonStyles),
       filledButtonTheme: const FilledButtonThemeData(style: _buttonStyles),

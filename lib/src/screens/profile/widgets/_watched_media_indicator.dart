@@ -39,7 +39,7 @@ class _WatchedMediaIndicator extends StatelessWidget {
     );
   }
 
-  //Count text
+  //count-text
   Widget _buildCountText(BuildContext context, int max) {
     final textStyle = context.textTheme.bodyMedium;
     return Row(children: [
@@ -66,7 +66,7 @@ class _WatchedMediaIndicator extends StatelessWidget {
     ]);
   }
 
-  //More text
+  //more-text
   Widget _buildMoreText(BuildContext context) {
     final textStyle = context.textTheme.bodyMedium;
     return Row(children: [

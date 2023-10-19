@@ -59,7 +59,7 @@ class _ThemeDetailBar extends ConsumerWidget {
   }
 }
 
-//Action icon buttons
+//action-buttons
 class __ActionIconButtons extends StatelessWidget {
   const __ActionIconButtons({
     required this.theme,
@@ -91,7 +91,7 @@ class __ActionIconButtons extends StatelessWidget {
           icon: const Icon(RemixIcon.heart_fill),
         ),
 
-      //share button
+      //share-button
       IconButton(
         onPressed: () {},
         icon: const Icon(RemixIcon.share_forward_fill),

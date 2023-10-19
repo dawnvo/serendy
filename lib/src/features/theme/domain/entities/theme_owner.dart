@@ -1,6 +1,6 @@
 part of 'theme.dart';
 
-//Entity
+//entity
 final class ThemeOwner extends Equatable {
   final UserID id;
 
@@ -17,7 +17,7 @@ final class ThemeOwner extends Equatable {
 
   User get convertEntity => User(
         id: id,
-        username: username,
         email: '',
+        username: username,
       );
 }

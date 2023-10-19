@@ -19,7 +19,7 @@ class ImagePicker extends StatelessWidget {
   Future<void> _handlePicker() async {
     final picked = await picker.ImagePicker().pickImage(
       source: picker.ImageSource.gallery,
-      // ✨ 이미지 최적화
+      // * 이미지 최적화
       maxWidth: 640,
       maxHeight: 480,
       imageQuality: 60,
@@ -64,7 +64,7 @@ class ImagePicker extends StatelessWidget {
   }
 }
 
-//Picked image
+//picked-image
 class _PickedImage extends StatelessWidget {
   const _PickedImage(this.fileOrUrl);
 

@@ -22,7 +22,7 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
-//Template
+//template
 class _SearchTemplate extends StatelessWidget {
   const _SearchTemplate({
     required this.searchBar,

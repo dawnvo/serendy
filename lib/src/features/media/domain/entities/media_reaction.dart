@@ -1,6 +1,6 @@
 part of 'media.dart';
 
-//Value-Object
+//value-object
 final class MediaReaction extends Equatable {
   /// 감정
   final Emotion emotion;

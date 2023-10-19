@@ -4,7 +4,6 @@ class _SignInErrorDialog extends StatelessWidget {
   const _SignInErrorDialog({required this.message});
   final String? message;
 
-  /// 안내창을 열어요.
   static void show(BuildContext context, String? message) {
     showDialog(
       context: context,

@@ -4,10 +4,10 @@ import 'package:equatable/equatable.dart';
 
 part 'media_reaction.dart';
 
-//Identity
+//identity
 typedef MediaID = String;
 
-//Enums
+//enums
 enum MediaType {
   /* 애니 */ anime,
   /* 영화 */ movie,
@@ -22,7 +22,7 @@ enum MediaStatus {
   /* 방영 취소 */ cancelled,
 }
 
-//AggregateRoot
+//aggregate-root
 final class Media extends Equatable {
   final MediaID id;
 
@@ -94,7 +94,7 @@ final class Media extends Equatable {
 }
 
 extension MediaX on Media {
-  // 미디어 복사
+  /// 미디어 복사
   Media copy({
     final MediaID? id,
     final MediaType? type,

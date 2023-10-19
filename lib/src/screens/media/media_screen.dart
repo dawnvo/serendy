@@ -63,7 +63,7 @@ class MediaScreen extends ConsumerWidget {
   }
 }
 
-//Template
+//template
 class _MediaTemplate extends StatelessWidget {
   const _MediaTemplate({
     required this.coverImage,
@@ -121,7 +121,7 @@ class _MediaTemplate extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class _Placeholder$MediaScreen extends StatelessWidget {
   const _Placeholder$MediaScreen(this.media);
   final Media? media;

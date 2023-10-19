@@ -44,7 +44,7 @@ class HistoryScreen extends HookConsumerWidget {
   }
 }
 
-//Template
+//template
 class _HistoryTemplate extends StatelessWidget {
   const _HistoryTemplate({
     required this.controller,

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/user/user.dart';
 
-//AggregateRoot
+//aggregate-root
 final class Dislike extends Equatable {
   /// 사용자 식별
   final UserID userId;

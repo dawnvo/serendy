@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
-//Identity
+//identity
 typedef UserID = String;
 
-//Enums
+//enum
 enum Rank {
   /* 철 */ iron,
   /* 동 */ bronze,
@@ -15,7 +15,7 @@ enum Rank {
   /* 새로운 */ novel,
 }
 
-//AggregateRoot
+//aggregate-root
 final class User extends Equatable {
   final UserID id;
 
@@ -66,7 +66,7 @@ extension UserX on User {
     return copy(removedAt: DateTime.now());
   }
 
-  // 사용자 복사
+  /// 사용자 복사
   User copy({
     final UserID? id,
     final String? email,

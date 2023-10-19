@@ -54,7 +54,7 @@ class ThemeCard extends StatelessWidget {
   }
 }
 
-//Placeholder
+//placeholder
 class Placeholder$ThemeCard extends StatelessWidget {
   const Placeholder$ThemeCard();
 

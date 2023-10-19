@@ -7,13 +7,13 @@ import 'package:serendy/src/features/user/infrastructure/user_repository_impl.da
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract final class UserModule {
-  // Persistence Providers
+  //persistence
 
   static final userRepository = UserRepositoryImpl(
     Supabase.instance.client,
   );
 
-  // UseCase Providers
+  //use-case
 
   static final getUserUsecase = GetUserUsecase(
     UserModule.userRepository,

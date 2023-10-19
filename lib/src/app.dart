@@ -27,12 +27,12 @@ class SerendyApp extends ConsumerWidget {
       title: "Serendy",
       routerConfig: goRouter,
 
-      // Themes
+      //themes
       themeMode: ThemeMode.dark,
       theme: themeData.day,
       darkTheme: themeData.night,
 
-      // 글자 크기 설정을 제한해요.
+      // * 글자 크기 설정을 제한해요.
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: child!,
