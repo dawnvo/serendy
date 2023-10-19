@@ -51,20 +51,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SignInScreen(),
       ),
-      GoRoute(
-        name: AppRoutes.settings,
-        path: AppRoutes._settingsLocation,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const SettingsScreen(),
-        routes: [
-          GoRoute(
-            name: AppRoutes.account,
-            path: AppRoutes._accountLocation,
-            parentNavigatorKey: _rootNavigatorKey,
-            builder: (context, state) => const AccountScreen(),
-          ),
-        ],
-      ),
 
       ///modal-routes
       GoRoute(
@@ -98,6 +84,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 routes: [
                   ..._mediaRoutes,
                   ..._themeRoutes,
+                  GoRoute(
+                    name: AppRoutes.settings,
+                    path: AppRoutes._settingsLocation,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const SettingsScreen(),
+                  ),
+                  GoRoute(
+                    name: AppRoutes.account,
+                    path: AppRoutes._accountLocation,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const AccountScreen(),
+                  ),
                 ],
               ),
             ],

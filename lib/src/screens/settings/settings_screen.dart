@@ -11,7 +11,7 @@ part 'widgets/_policy_tile.dart';
 
 class SettingsScreen extends ConsumerWidget {
   static const String routeName = 'settings';
-  static const String routeLocation = '/$routeName';
+  static const String routeLocation = routeName;
   const SettingsScreen();
 
   @override
