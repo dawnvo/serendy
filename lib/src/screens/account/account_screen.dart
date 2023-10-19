@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -6,7 +7,7 @@ import 'controller/account_controller.dart';
 
 part 'widgets/_delete_account_tile.dart';
 part 'widgets/_email_tile.dart';
-part 'widgets/_user_name_tile.dart';
+part 'widgets/_username_tile.dart';
 
 class AccountScreen extends ConsumerWidget {
   static const String routeName = 'account';
@@ -17,28 +18,13 @@ class AccountScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final accountValue = ref.watch(accountControllerProvider);
 
-    ref.listen(accountControllerProvider, (previous, next) {
-      //success
-      if (previous != next && next.requireValue.isSubmitted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("프로필을 수정했어요."),
-        ));
-      }
-      //failure
-      else if (next.hasError) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(next.error.toString()),
-        ));
-      }
-    });
-
     return accountValue.when(
       data: (state) => _AccountTemplate(options: [
-        _AccountUserNameTile(username: state.name),
+        _AccountUsernameTile(username: state.username),
         _AccountEmailTile(email: state.email),
-        const _AccountDeleteTile(),
         // const _AccountGenderTile(gender: '남자'),
         // const _AccountBirthTile(birth: 2000),
+        const _AccountDeleteTile(),
       ]),
       loading: () => Scaffold(
         appBar: AppBar(),
@@ -54,9 +40,7 @@ class AccountScreen extends ConsumerWidget {
 
 //Template
 class _AccountTemplate extends StatelessWidget {
-  const _AccountTemplate({
-    required this.options,
-  });
+  const _AccountTemplate({required this.options});
 
   final List<Widget> options;
 

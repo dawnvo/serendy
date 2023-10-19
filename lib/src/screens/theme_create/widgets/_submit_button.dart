@@ -7,7 +7,7 @@ class _CreateThemeSubmitButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FilledButton(
       style: FilledButton.styleFrom(
-        minimumSize: const Size(double.infinity, 56),
+        minimumSize: const Size(double.infinity, Sizes.p56),
         textStyle: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.bold,
         ),

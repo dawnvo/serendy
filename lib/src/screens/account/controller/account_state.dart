@@ -2,39 +2,34 @@ part of 'account_controller.dart';
 
 final class AccountState extends Equatable {
   const AccountState({
-    required this.initialProfile,
     required this.email,
-    required this.name,
-    this.isSubmitted = false,
+    required this.username,
+    this.errorMessage,
   });
 
-  final Profile initialProfile;
   final String email;
-  final String name;
-  final bool isSubmitted;
-
-  bool get isEdited =>
-      initialProfile.email != email || //
-      initialProfile.name != name;
+  final String username;
+  final String? errorMessage;
 
   AccountState copyWith({
-    final Profile? initialProfile,
     final String? email,
-    final String? name,
-    final bool? isSubmitted,
+    final String? username,
+    final String? errorMessage,
   }) {
     return AccountState(
-      initialProfile: initialProfile ?? this.initialProfile,
-      isSubmitted: isSubmitted ?? this.isSubmitted,
       email: email ?? this.email,
-      name: name ?? this.name,
+      username: username ?? this.username,
+      // 편법으로 null 상태를 저장해요.
+      errorMessage: errorMessage == '' //
+          ? null
+          : errorMessage ?? this.errorMessage,
     );
   }
 
   @override
   List<Object?> get props => [
         email,
-        name,
-        isSubmitted,
+        username,
+        errorMessage,
       ];
 }

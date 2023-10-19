@@ -44,6 +44,7 @@ export 'utils/find_rank_by_count.dart';
 export 'utils/add_timestamp_to_url.dart';
 export 'utils/get_pagination.dart';
 export 'utils/notifier_mounted.dart';
+export 'utils/text_input_formatter.dart';
 
 //others
 export 'router/app_router.dart';
