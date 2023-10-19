@@ -2,7 +2,7 @@ import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/dislike/application/dislike_service.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-part 'widgets/clear_dislikes_tile.dart';
+part 'widgets/_clear_dislikes_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = 'settings';
@@ -11,27 +11,57 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _SettingsTemplate(
-      options: [
+    return _SettingsTemplate(options: [
+      _SettingsListGroup([
         _SettingsListTile(
           onTap: () => context.pushNamed(AppRoutes.account),
+          icon: RemixIcon.account_circle_line,
           title: "내 계정",
         ),
-        const _ClearDislikesTile(),
+      ]),
+      _SettingsListGroup([
         _SettingsListTile(
           onTap: () {},
+          icon: RemixIcon.delete_bin_7_line,
+          title: "이미지 캐시 정리",
+          subtitle: "불필요한 이미지 데이터를 정리해요.",
+        ),
+        //ClearDislikesTile
+        const _ClearDislikesTile(),
+      ]),
+      _SettingsListGroup([
+        _SettingsListTile(
+          onTap: () {},
+          icon: RemixIcon.upload_cloud_line,
           title: "DB 수정/추가",
+          subtitle: "잘못된 정보나 빠뜨린 작품을 문의해요.",
         ),
         _SettingsListTile(
           onTap: () {},
+          icon: RemixIcon.indeterminate_circle_line,
           title: "문제 신고",
         ),
+      ]),
+      _SettingsListGroup([
         _SettingsListTile(
           onTap: () {},
+          icon: RemixIcon.file_list_line,
+          title: "개인정보 처리방침",
+        ),
+        _SettingsListTile(
+          onTap: () {},
+          icon: RemixIcon.file_copy_2_line,
           title: "서비스 약관",
         ),
-      ],
-    );
+      ]),
+      _SettingsListGroup([
+        _SettingsListTile(
+          onTap: () {},
+          icon: RemixIcon.logout_box_r_line,
+          title: "로그아웃",
+        ),
+      ]),
+    ]);
   }
 }
 
@@ -44,10 +74,40 @@ class _SettingsTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("설정")),
-      body: SingleChildScrollView(
-        child: Column(children: options),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: context.colorScheme.background,
+            title: const Text("설정"),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kContentPadding,
+            ),
+            sliver: SliverList.list(children: options),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+//ListGroup
+class _SettingsListGroup extends StatelessWidget {
+  const _SettingsListGroup(this.children);
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: kContentPadding),
+      decoration: BoxDecoration(
+        color: context.colorScheme.surfaceVariant,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kBorderRadius),
+        ),
+      ),
+      child: Column(children: children),
     );
   }
 }
@@ -55,19 +115,32 @@ class _SettingsTemplate extends StatelessWidget {
 //ListTile
 class _SettingsListTile extends StatelessWidget {
   const _SettingsListTile({
-    required this.title,
     required this.onTap,
+    required this.icon,
+    required this.title,
+    this.subtitle,
   });
 
-  final String title;
   final VoidCallback onTap;
+  final IconData icon;
+  final String title;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      //style
       visualDensity: VisualDensity.compact,
+      titleAlignment: ListTileTitleAlignment.titleHeight,
+      subtitleTextStyle: context.textTheme.bodyMedium?.copyWith(
+        color: context.colorScheme.outline,
+      ),
+
+      //content
       onTap: onTap,
+      leading: Icon(icon),
       title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
     );
   }
 }

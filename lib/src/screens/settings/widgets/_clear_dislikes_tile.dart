@@ -15,7 +15,9 @@ class _ClearDislikesTile extends ConsumerWidget {
           ref.read(clearDislikesProvider);
         }),
       ),
+      icon: RemixIcon.refresh_line,
       title: "숨기기 초기화",
+      subtitle: "숨겼던 모든 작품을 다시 표시해요.",
     );
   }
 }
@@ -28,8 +30,7 @@ class __ClearDislikesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
-      title: "숨기기 초기화",
-      content: const Text("숨겼던 작품을 다시 표시할까요?"),
+      title: "숨겼던 작품을 다시 표시할까요?",
       actions: [
         CustomDialogAction(
           onPressed: () => context.pop(),
@@ -38,7 +39,7 @@ class __ClearDislikesDialog extends StatelessWidget {
         CustomDialogAction(
           isDestructiveAction: true,
           onPressed: onClear,
-          child: const Text("초기화"),
+          child: const Text("확인"),
         ),
       ],
     );
