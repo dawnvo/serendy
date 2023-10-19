@@ -44,7 +44,7 @@ class AccountController extends _$AccountController with NotifierMounted {
         username: username,
       ).future);
 
-      // * 사용자 관련 공급자를 새로고침해요.
+      // * 관련 공급자를 새로고침해요.
       ref.invalidate(getMeProvider);
       ref.invalidate(getMyThemesProvider);
 

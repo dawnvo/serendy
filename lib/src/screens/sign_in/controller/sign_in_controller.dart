@@ -35,6 +35,10 @@ class SignInController extends _$SignInController {
         ).future);
       }
 
+      // * 관련 공급자를 새로고침해요.
+      ref.invalidate(currentUserIdProvider);
+      ref.invalidate(requireUserIdProvider);
+
       // * loaded
       state = state.copyWith(status: SignInStatus.success);
 
