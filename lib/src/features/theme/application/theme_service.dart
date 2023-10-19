@@ -23,9 +23,8 @@ Future<List<Theme?>> getThemes(
   GetThemesRef ref, {
   int? page,
 }) {
-  final userId = ref.watch(currentUserIdProvider);
   return ThemeModule.getThemesUsecase.execute((
-    executorId: userId,
+    executorId: null,
     page: page,
   ));
 }

@@ -39,6 +39,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
         .is_('removed_at', null);
     //identity
     if (userId != null) query.eq('owner_id', userId);
+    if (userId == null) query.eq('private', false);
     //pagination
     if (page != null) {
       final range = getPagination(page, perPage ?? 20);

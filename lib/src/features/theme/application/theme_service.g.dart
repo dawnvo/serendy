@@ -22,7 +22,7 @@ final getMyThemesProvider = AutoDisposeFutureProvider<List<Theme?>>.internal(
 );
 
 typedef GetMyThemesRef = AutoDisposeFutureProviderRef<List<Theme?>>;
-String _$getThemesHash() => r'847d745d0d09954131f82ed901cfed7bea116a10';
+String _$getThemesHash() => r'b396556abdbe5beb7dc51fc50a8e979a1c264b1a';
 
 /// Copied from Dart SDK
 class _SystemHash {
