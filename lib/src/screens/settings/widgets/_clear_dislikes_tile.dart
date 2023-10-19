@@ -13,6 +13,11 @@ class _ClearDislikesTile extends ConsumerWidget {
           context.pop();
           // * 초기화를 진행해요.
           ref.read(clearDislikesProvider);
+          // * success
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            duration: kSnackBarDisplayDurationShort,
+            content: Text("숨기기를 초기화했어요."),
+          ));
         }),
       ),
       icon: RemixIcon.refresh_line,

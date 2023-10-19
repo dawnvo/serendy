@@ -7,11 +7,11 @@ class _ClearCacheTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return _SettingsListTile(
       onTap: () async {
+        // * 캐시를 정리해요.
         final manager = DefaultCacheManager();
         await manager.emptyCache();
-
+        // * 위젯이 폐기된 경우 작업을 끝내요.
         if (!context.mounted) return;
-
         // * success
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           duration: kSnackBarDisplayDurationShort,

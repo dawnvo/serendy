@@ -7,7 +7,7 @@ class _AccountDeleteTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return _AccountListTile(
       onTap: () {},
-      title: "회원탈퇴",
+      title: "탈퇴하기",
       isDestructiveAction: true,
     );
   }
