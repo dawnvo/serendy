@@ -1,10 +1,10 @@
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
-// Profile
-final profileMock = Profile(
+// User
+final userMock = User(
   id: 'uid',
   email: 'serendy@email.com',
   username: "serendy",
@@ -50,7 +50,7 @@ final mediasMock = [
 final evaluationsMock = List.generate(
   4,
   (i) => Evaluation(
-    userId: profileMock.id,
+    userId: userMock.id,
     emotion: Emotion.values[i],
     media: EvaluationMedia(
       id: mediasMock[0].id,
@@ -62,8 +62,8 @@ final evaluationsMock = List.generate(
 
 // Theme
 final themeOwnerMock = ThemeOwner(
-  id: profileMock.id,
-  username: profileMock.username,
+  id: userMock.id,
+  username: userMock.username,
 );
 final themeItemsMock = mediasMock
     .map((media) => ThemeItem(

@@ -1,5 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 Rank findRankByCount(int count) {
   return Rank.values.firstWhere((_) {

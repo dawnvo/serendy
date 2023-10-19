@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 part 'widgets/_buttons.dart';
@@ -33,7 +33,7 @@ class ProfileCardModal extends ConsumerWidget {
         height: 240,
       ),
       titles: _ProfileCardTitles(
-        profile: meValue.value,
+        user: meValue.value,
         rank: rank,
       ),
       indicator: _WatchedMediaIndicator(

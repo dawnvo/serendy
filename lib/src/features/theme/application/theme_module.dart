@@ -1,5 +1,5 @@
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/domain/usecases/add_theme_item_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/create_theme_usecase.dart';
 import 'package:serendy/src/features/theme/domain/usecases/delete_theme_item_usecase.dart';
@@ -29,7 +29,7 @@ abstract final class ThemeModule {
 
   static final createThemeUsecase = CreateThemeUsecase(
     ThemeModule.themeRepository,
-    ProfileModule.profileRepository,
+    UserModule.userRepository,
   );
 
   static final editThemeUsecase = EditThemeUsecase(

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 part 'theme_entity.g.dart';
@@ -16,7 +16,7 @@ final class ThemeEntity {
     this.description,
     this.itemsCount,
     this.ownerId,
-    this.profiles,
+    this.users,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -31,7 +31,7 @@ final class ThemeEntity {
 
   //foreign
   final UserID? ownerId;
-  final ProfileEntity? profiles;
+  final UserEntity? users;
 
   //timestamp
   final DateTime? createdAt;

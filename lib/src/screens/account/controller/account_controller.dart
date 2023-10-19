@@ -1,5 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 part 'account_controller.g.dart';
@@ -10,12 +10,12 @@ class AccountController extends _$AccountController with NotifierMounted {
   @override
   FutureOr<AccountState> build() async {
     // * 내 프로필을 불러와요.
-    final profile = await ref.watch(getMeProvider.future);
+    final user = await ref.watch(getMeProvider.future);
 
     // * loaded
     return AccountState(
-      email: profile.email,
-      username: profile.username,
+      email: user.email,
+      username: user.username,
     );
   }
 
@@ -36,7 +36,7 @@ class AccountController extends _$AccountController with NotifierMounted {
     ));
   }
 
-  /// 수정한 프로필을 제출해요.
+  /// 프로필을 수정해요.
   Future<void> submit({String? username}) async {
     state = await AsyncValue.guard(() async {
       // * 프로필을 수정해요.
@@ -44,7 +44,7 @@ class AccountController extends _$AccountController with NotifierMounted {
         username: username,
       ).future);
 
-      // * 프로필 관련 공급자를 새로고침해요.
+      // * 사용자 관련 공급자를 새로고침해요.
       ref.invalidate(getMeProvider);
       ref.invalidate(getMyThemesProvider);
 

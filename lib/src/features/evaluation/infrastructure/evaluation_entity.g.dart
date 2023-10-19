@@ -11,9 +11,9 @@ EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       emotionId: json['emotion_id'] as int?,
       userId: json['user_id'] as String?,
-      profiles: json['profiles'] == null
+      users: json['users'] == null
           ? null
-          : ProfileEntity.fromJson(json['profiles'] as Map<String, dynamic>),
+          : UserEntity.fromJson(json['users'] as Map<String, dynamic>),
       mediaId: json['media_id'] as String?,
       medias: json['medias'] == null
           ? null
@@ -41,7 +41,7 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) {
   writeNotNull('id', instance.id);
   writeNotNull('emotion_id', instance.emotionId);
   writeNotNull('user_id', instance.userId);
-  writeNotNull('profiles', instance.profiles?.toJson());
+  writeNotNull('users', instance.users?.toJson());
   writeNotNull('media_id', instance.mediaId);
   writeNotNull('medias', instance.medias?.toJson());
   writeNotNull('created_at', instance.createdAt?.toIso8601String());

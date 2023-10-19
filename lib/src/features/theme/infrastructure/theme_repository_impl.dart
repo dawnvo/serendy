@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 
 import 'theme_mapper.dart';
@@ -31,7 +31,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       description,
       items_count,
       owner_id,
-      profiles ( username )
+      users ( username )
     ''';
     final query = supabase //
         .from(_tableThemes)
@@ -80,7 +80,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }) {
     const columns = '''
       *,
-      profiles ( username )
+      users ( username )
     ''';
     return supabase
         .from(_tableThemes)

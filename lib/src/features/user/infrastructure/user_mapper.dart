@@ -1,12 +1,12 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
-abstract final class ProfileMapper {
+abstract final class UserMapper {
   /**
    *  Entity -> Domain
    */
-  static Profile toDomain(final ProfileEntity entity) {
-    return Profile(
+  static User toDomain(final UserEntity entity) {
+    return User(
       id: entity.id ?? '',
       email: entity.email ?? '',
       username: entity.username ?? '',
@@ -18,13 +18,13 @@ abstract final class ProfileMapper {
   /**
    *  Json -> Domain
    */
-  static Profile? toSingle(dynamic data) {
+  static User? toSingle(dynamic data) {
     if (data == null) return null;
-    final entity = ProfileEntity.fromJson(data as Json);
+    final entity = UserEntity.fromJson(data as Json);
     return toDomain(entity);
   }
 
-  static List<Profile?> toList(dynamic data) {
+  static List<User?> toList(dynamic data) {
     if (data == null) return [];
     final dataList = data as List<dynamic>;
     return dataList.map((item) => toSingle(item)).toList();

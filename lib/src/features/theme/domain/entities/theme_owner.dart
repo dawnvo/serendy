@@ -15,7 +15,7 @@ final class ThemeOwner extends Equatable {
   @override
   List<Object?> get props => [id];
 
-  Profile get convertEntity => Profile(
+  User get convertEntity => User(
         id: id,
         username: username,
         email: '',

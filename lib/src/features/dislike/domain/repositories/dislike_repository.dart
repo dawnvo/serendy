@@ -1,5 +1,5 @@
 import 'package:serendy/src/features/dislike/dislike.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 abstract class DislikeRepository {
   const DislikeRepository();

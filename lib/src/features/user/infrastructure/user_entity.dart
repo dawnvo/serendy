@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 
-part 'profile_entity.g.dart';
+part 'user_entity.g.dart';
 
 @JsonSerializable()
-final class ProfileEntity {
-  const ProfileEntity({
+final class UserEntity {
+  const UserEntity({
     this.id,
     this.email,
     this.username,
@@ -23,6 +23,6 @@ final class ProfileEntity {
   final DateTime? updatedAt;
   final DateTime? removedAt;
 
-  factory ProfileEntity.fromJson(Json json) => _$ProfileEntityFromJson(json);
-  Json toJson() => _$ProfileEntityToJson(this);
+  factory UserEntity.fromJson(Json json) => _$UserEntityFromJson(json);
+  Json toJson() => _$UserEntityToJson(this);
 }

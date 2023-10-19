@@ -5,7 +5,7 @@ import 'package:serendy/src/features/evaluation/domain/usecases/remove_evaluatio
 import 'package:serendy/src/features/evaluation/domain/usecases/submit_evaluation_usecase.dart';
 import 'package:serendy/src/features/evaluation/infrastructure/evaluation_repository_impl.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EvaluationModule {
@@ -29,7 +29,7 @@ class EvaluationModule {
 
   static final submitEvaluationUsecase = SubmitEvaluationUsecase(
     EvaluationModule.evaluationRepository,
-    ProfileModule.profileRepository,
+    UserModule.userRepository,
     MediaModule.mediaRepository,
   );
 

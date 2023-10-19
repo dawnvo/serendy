@@ -1,6 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/screens/screens.dart';
 

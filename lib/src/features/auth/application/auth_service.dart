@@ -6,7 +6,7 @@ import 'package:crypto/crypto.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 part 'auth_service.g.dart';
 

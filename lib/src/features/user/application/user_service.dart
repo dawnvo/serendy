@@ -1,35 +1,35 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/auth/auth.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
-part 'profile_service.g.dart';
+part 'user_service.g.dart';
 
-/// 나의 프로필을 불러와요.
+/// 나의 사용자를 불러와요.
 @Riverpod(keepAlive: true)
-Future<Profile> getMe(GetMeRef ref) {
+Future<User> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
-  return ProfileModule.getProfileUsecase.execute((userId: userId));
+  return UserModule.getUserUsecase.execute((userId: userId));
 }
 
-/// 프로필을 불러와요.
+/// 사용자를 불러와요.
 @riverpod
-Future<Profile> getProfile(
-  GetProfileRef ref, {
+Future<User> getUser(
+  GetUserRef ref, {
   required UserID id,
 }) {
-  return ProfileModule.getProfileUsecase.execute((userId: id));
+  return UserModule.getUserUsecase.execute((userId: id));
 }
 
-/// 프로필을 만들어요.
+/// 사용자를 만들어요.
 @riverpod
-Future<Profile> createProfile(
-  CreateProfileRef ref, {
+Future<User> createUser(
+  CreateUserRef ref, {
   required UserID uid,
   required String email,
   required String username,
 }) {
-  return ProfileModule.createProfileUsecase.execute((
+  return UserModule.createUserUsecase.execute((
     id: uid,
     name: username,
     email: email,
@@ -38,26 +38,26 @@ Future<Profile> createProfile(
 
 /// 프로필을 수정해요.
 @riverpod
-Future<Profile> editProfile(
+Future<User> editProfile(
   EditProfileRef ref, {
   String? username,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ProfileModule.editProfileUsecase.execute((
+  return UserModule.editProfileUsecase.execute((
     executorId: userId,
     username: username,
   ));
 }
 
-/// 프로필을 제거해요.
+/// 사용자를 제거해요.
 @riverpod
-Future<void> removeProfile(
-  RemoveProfileRef ref, {
+Future<void> removeUser(
+  RemoveUserRef ref, {
   required UserID id,
   String? reason,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ProfileModule.removeProfileUsecase.execute((
+  return UserModule.removeUserUsecase.execute((
     executorId: userId,
     reason: reason,
   ));

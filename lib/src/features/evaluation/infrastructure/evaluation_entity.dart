@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 part 'evaluation_entity.g.dart';
 
@@ -12,7 +12,7 @@ final class EvaluationEntity {
     this.id,
     this.emotionId,
     this.userId,
-    this.profiles,
+    this.users,
     this.mediaId,
     this.medias,
     this.createdAt,
@@ -25,7 +25,7 @@ final class EvaluationEntity {
 
   //foreign
   final UserID? userId;
-  final ProfileEntity? profiles;
+  final UserEntity? users;
   final MediaID? mediaId;
   final MediaEntity? medias;
 

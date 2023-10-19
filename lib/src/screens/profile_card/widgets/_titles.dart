@@ -2,21 +2,21 @@ part of '../profile_card_modal.dart';
 
 class _ProfileCardTitles extends StatelessWidget {
   const _ProfileCardTitles({
-    required this.profile,
+    required this.user,
     required this.rank,
   });
 
-  final Profile? profile;
+  final User? user;
   final Rank rank;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      if (profile?.username != null)
+      if (user?.username != null)
         Text(
-          profile!.username.ellipsis(),
+          user!.username.ellipsis(),
           maxLines: 1,
-          style: profile!.username.length < 8
+          style: user!.username.length < 8
               ? context.textTheme.headlineMedium
               : context.textTheme.headlineSmall,
         )

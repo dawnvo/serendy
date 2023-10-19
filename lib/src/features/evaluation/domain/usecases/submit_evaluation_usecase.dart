@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/profile/profile.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 typedef SubmitEvaluationPayload = ({
   UserID executorId,
@@ -12,12 +12,12 @@ typedef SubmitEvaluationPayload = ({
 final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, Evaluation> {
   const SubmitEvaluationUsecase(
     this._evaluationRepository,
-    this._profileRepository,
+    this._userRepository,
     this._mediaRepository,
   );
 
   final EvaluationRepository _evaluationRepository;
-  final ProfileRepository _profileRepository;
+  final UserRepository _userRepository;
   final MediaRepository _mediaRepository;
 
   @override
@@ -74,9 +74,9 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
   Future<Evaluation> _createEvaluation(
     SubmitEvaluationPayload payload,
   ) async {
-    // * 프로필이 존재하는지 확인해요.
-    final profile = CoreAssert.notEmpty<Profile>(
-      await _profileRepository.fetchProfile(id: payload.executorId),
+    // * 사용자가 존재하는지 확인해요.
+    final user = CoreAssert.notEmpty<User>(
+      await _userRepository.fetchUser(id: payload.executorId),
       const EntityNotFoundException(overrideMessage: "사용자를 찾을 수 없어요."),
     );
 
@@ -93,7 +93,7 @@ final class SubmitEvaluationUsecase implements UseCase<SubmitEvaluationPayload, 
         title: media.title,
         image: media.image,
       ),
-      userId: profile.id,
+      userId: user.id,
       emotion: payload.emotion,
     );
 

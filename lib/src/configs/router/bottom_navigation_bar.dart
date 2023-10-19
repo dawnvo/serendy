@@ -42,7 +42,7 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
               ),
               NavigationDestination(
                 tooltip: '',
-                label: '프로필',
+                label: '라이브러리',
                 icon: Icon(RemixIcon.user_line),
                 selectedIcon: Icon(RemixIcon.user_fill),
               ),
