@@ -44,9 +44,6 @@
                 <data
                     android:scheme="com.serendy.serendy"
                     android:host="app" />
-                <data
-                    android:scheme="com.serendy.serendy"
-                    android:host="login-callback" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

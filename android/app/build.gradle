@@ -49,9 +49,11 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // You need an empty manifestPlaceholders for appauth to not throw an error
         manifestPlaceholders += [
-            'appAuthRedirectScheme': 'com.googleusercontent.apps.18600735360-hbntcrqhblrsha7p5gcevmit4581tngv'
+            'appAuthRedirectScheme': ''
         ]
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -67,4 +69,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
+}
