@@ -10,8 +10,8 @@ class _ClearCacheTile extends StatelessWidget {
         // * 캐시를 정리해요.
         final manager = DefaultCacheManager();
         await manager.emptyCache();
-        // * success -- 1초 지연해 안정감을 주어요.
-        await Future.delayed(const Duration(seconds: 1), () {
+        // * success -- 메시지 표시를 지연해 안정감을 주어요.
+        await Future.delayed(const Duration(milliseconds: 600), () {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             duration: kSnackBarDisplayDurationShort,
             content: Text("이미지 캐시를 정리했어요."),

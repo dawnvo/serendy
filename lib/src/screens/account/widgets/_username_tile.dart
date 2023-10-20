@@ -73,7 +73,6 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
     return TextField(
       controller: controller,
       onChanged: onChange,
-      autofocus: true,
       maxLength: Assets.usernameMaxLength,
       inputFormatters: [LowerCaseTextFormatter()],
       style: baseStyle,

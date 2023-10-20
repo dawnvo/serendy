@@ -38,6 +38,8 @@ class AccountController extends _$AccountController with NotifierMounted {
 
   /// 프로필을 수정해요.
   Future<void> submit({String? username}) async {
+    // * 이전과 동일한 이름일 경우 작업을 끝내요.
+    if (username == state.requireValue.username) return;
     state = await AsyncValue.guard(() async {
       // * 프로필을 수정해요.
       final edited = await ref.read(editProfileProvider(
