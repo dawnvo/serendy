@@ -18,6 +18,7 @@ class AccountScreen extends ConsumerWidget {
     final accountValue = ref.watch(accountControllerProvider);
 
     return accountValue.when(
+      skipLoadingOnReload: true,
       data: (state) => _AccountTemplate(options: [
         _AccountUsernameTile(username: state.username),
         _AccountEmailTile(email: state.email),

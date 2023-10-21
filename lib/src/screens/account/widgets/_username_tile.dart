@@ -57,8 +57,8 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
     TextEditingController controller,
   ) {
     final debouncer = ref.watch(debouncerProvider);
-    final errorMessage = ref.watch(accountControllerProvider.select(
-      (_) => _.value?.errorMessage,
+    final errorText = ref.watch(accountControllerProvider.select(
+      (_) => _.value?.errorText,
     ));
 
     final onChange = useCallback((String value) {
@@ -84,7 +84,7 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
         labelText: "아이디 변경",
         hintText: "아이디",
         counterText: "",
-        errorText: errorMessage,
+        errorText: errorText,
       ),
     );
   }
@@ -94,9 +94,7 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
     WidgetRef ref,
     TextEditingController controller,
   ) {
-    final errorMessage = ref.watch(accountControllerProvider.select(
-      (_) => _.value?.errorMessage,
-    ));
+    final accountValue = ref.watch(accountControllerProvider);
 
     final onPressed = useCallback(() async {
       try {
@@ -125,12 +123,15 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
       }
     }, [controller]);
 
+    final hasError = accountValue.value?.errorText != null;
+    final isLoading = accountValue.isLoading;
+
     return FilledButton(
       style: FilledButton.styleFrom(
         minimumSize: const Size.fromHeight(Sizes.p40),
       ),
-      onPressed: errorMessage == null ? onPressed : null,
-      child: const Text("변경하기"),
+      onPressed: !hasError && !isLoading ? onPressed : null,
+      child: !isLoading ? const Text("변경하기") : const LoadingIndicator(),
     );
   }
 }

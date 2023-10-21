@@ -4,25 +4,25 @@ final class AccountState extends Equatable {
   const AccountState({
     required this.email,
     required this.username,
-    this.errorMessage,
+    this.errorText,
   });
 
   final String email;
   final String username;
-  final String? errorMessage;
+  final String? errorText;
 
   AccountState copyWith({
     final String? email,
     final String? username,
-    final String? errorMessage,
+    final String? errorText,
   }) {
     return AccountState(
       email: email ?? this.email,
       username: username ?? this.username,
       // * null 값을 의도적으로 넘기기 위해 조건문을 사용해요.
-      errorMessage: errorMessage != this.errorMessage //
-          ? errorMessage
-          : this.errorMessage,
+      errorText: errorText != this.errorText //
+          ? errorText
+          : this.errorText,
     );
   }
 
@@ -30,6 +30,6 @@ final class AccountState extends Equatable {
   List<Object?> get props => [
         email,
         username,
-        errorMessage,
+        errorText,
       ];
 }
