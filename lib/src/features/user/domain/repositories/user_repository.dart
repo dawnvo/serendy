@@ -5,7 +5,8 @@ abstract class UserRepository {
 
   /// 사용자를 불러와요.
   Future<User?> fetchUser({
-    required UserID id,
+    UserID? id,
+    String? username,
   });
 
   /// 사용자를 만들어요.

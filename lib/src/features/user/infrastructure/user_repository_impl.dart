@@ -15,13 +15,18 @@ final class UserRepositoryImpl implements UserRepository {
    */
   @override
   Future<User?> fetchUser({
-    required UserID id,
+    UserID? id,
+    String? username,
   }) {
     const columns = '*';
-    return supabase
+    final query = supabase //
         .from(_tableUsers)
-        .select(columns)
-        .eq('id', id)
+        .select(columns);
+    //identity
+    if (id != null) query.eq('id', id);
+    if (username != null) query.eq('username', username);
+    //result
+    return query //
         .maybeSingle()
         .withConverter(UserMapper.toSingle);
   }

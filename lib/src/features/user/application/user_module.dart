@@ -1,4 +1,5 @@
 import 'package:serendy/src/features/theme/theme.dart';
+import 'package:serendy/src/features/user/domain/usecases/check_username_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/get_user_usecase.dart';
@@ -14,6 +15,10 @@ abstract final class UserModule {
   );
 
   //use-case
+
+  static final checkUsernameUsecase = CheckUsernameUsecase(
+    UserModule.userRepository,
+  );
 
   static final getUserUsecase = GetUserUsecase(
     UserModule.userRepository,

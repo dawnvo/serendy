@@ -9,7 +9,21 @@ part 'user_service.g.dart';
 @Riverpod(keepAlive: true)
 Future<User> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
-  return UserModule.getUserUsecase.execute((userId: userId));
+  return UserModule.getUserUsecase.execute((
+    userId: userId, //
+  ));
+}
+
+/// 사용자 이름이 존재하는지 확인해요.
+/// 존재하면 True.
+@riverpod
+Future<bool> checkUsername(
+  CheckUsernameRef ref, {
+  required String username,
+}) {
+  return UserModule.checkUsernameUsecase.execute((
+    username: username, //
+  ));
 }
 
 /// 사용자를 불러와요.

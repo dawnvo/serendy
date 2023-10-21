@@ -22,7 +22,7 @@ final getMeProvider = FutureProvider<User>.internal(
 );
 
 typedef GetMeRef = FutureProviderRef<User>;
-String _$getUserHash() => r'872c4db50d395481490f8d4b8ca2da875da0bb59';
+String _$checkUsernameHash() => r'7258c28ab3600312d38e8c47182d3dd096439105';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,6 +44,152 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// 사용자 이름이 존재하는지 확인해요.
+/// 존재하면 True.
+///
+/// Copied from [checkUsername].
+@ProviderFor(checkUsername)
+const checkUsernameProvider = CheckUsernameFamily();
+
+/// 사용자 이름이 존재하는지 확인해요.
+/// 존재하면 True.
+///
+/// Copied from [checkUsername].
+class CheckUsernameFamily extends Family<AsyncValue<bool>> {
+  /// 사용자 이름이 존재하는지 확인해요.
+  /// 존재하면 True.
+  ///
+  /// Copied from [checkUsername].
+  const CheckUsernameFamily();
+
+  /// 사용자 이름이 존재하는지 확인해요.
+  /// 존재하면 True.
+  ///
+  /// Copied from [checkUsername].
+  CheckUsernameProvider call({
+    required String username,
+  }) {
+    return CheckUsernameProvider(
+      username: username,
+    );
+  }
+
+  @override
+  CheckUsernameProvider getProviderOverride(
+    covariant CheckUsernameProvider provider,
+  ) {
+    return call(
+      username: provider.username,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'checkUsernameProvider';
+}
+
+/// 사용자 이름이 존재하는지 확인해요.
+/// 존재하면 True.
+///
+/// Copied from [checkUsername].
+class CheckUsernameProvider extends AutoDisposeFutureProvider<bool> {
+  /// 사용자 이름이 존재하는지 확인해요.
+  /// 존재하면 True.
+  ///
+  /// Copied from [checkUsername].
+  CheckUsernameProvider({
+    required String username,
+  }) : this._internal(
+          (ref) => checkUsername(
+            ref as CheckUsernameRef,
+            username: username,
+          ),
+          from: checkUsernameProvider,
+          name: r'checkUsernameProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$checkUsernameHash,
+          dependencies: CheckUsernameFamily._dependencies,
+          allTransitiveDependencies:
+              CheckUsernameFamily._allTransitiveDependencies,
+          username: username,
+        );
+
+  CheckUsernameProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.username,
+  }) : super.internal();
+
+  final String username;
+
+  @override
+  Override overrideWith(
+    FutureOr<bool> Function(CheckUsernameRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CheckUsernameProvider._internal(
+        (ref) => create(ref as CheckUsernameRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        username: username,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<bool> createElement() {
+    return _CheckUsernameProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CheckUsernameProvider && other.username == username;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, username.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CheckUsernameRef on AutoDisposeFutureProviderRef<bool> {
+  /// The parameter `username` of this provider.
+  String get username;
+}
+
+class _CheckUsernameProviderElement
+    extends AutoDisposeFutureProviderElement<bool> with CheckUsernameRef {
+  _CheckUsernameProviderElement(super.provider);
+
+  @override
+  String get username => (origin as CheckUsernameProvider).username;
+}
+
+String _$getUserHash() => r'872c4db50d395481490f8d4b8ca2da875da0bb59';
 
 /// 사용자를 불러와요.
 ///
