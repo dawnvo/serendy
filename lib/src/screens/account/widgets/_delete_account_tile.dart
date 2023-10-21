@@ -6,7 +6,7 @@ class _AccountDeleteTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return _AccountListTile(
-      onTap: () {},
+      onTap: () => context.pushNamed(AppRoutes.exit),
       title: "탈퇴하기",
       isDestructiveAction: true,
     );

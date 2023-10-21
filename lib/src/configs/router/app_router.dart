@@ -95,6 +95,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                     path: AppRoutes._accountLocation,
                     parentNavigatorKey: _rootNavigatorKey,
                     builder: (context, state) => const AccountScreen(),
+                    routes: [
+                      GoRoute(
+                        name: AppRoutes.exit,
+                        path: AppRoutes._exitLocation,
+                        parentNavigatorKey: _rootNavigatorKey,
+                        builder: (context, state) => const ExitScreen(),
+                      ),
+                    ],
                   ),
                 ],
               ),

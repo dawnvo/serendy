@@ -56,4 +56,8 @@ abstract final class AppRoutes {
   // 계정
   static const account = AccountScreen.routeName;
   static const _accountLocation = AccountScreen.routeLocation;
+
+  // 탈퇴
+  static const exit = ExitScreen.routeName;
+  static const _exitLocation = ExitScreen.routeLocation;
 }
