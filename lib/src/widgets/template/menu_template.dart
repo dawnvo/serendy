@@ -64,7 +64,6 @@ class MenuListTile extends StatelessWidget {
       leading: icon,
       title: Text(title),
       horizontalTitleGap: Sizes.p24,
-      visualDensity: VisualDensity.compact,
       iconColor: context.colorScheme.outline,
       titleTextStyle: context.textTheme.bodyMedium,
     );

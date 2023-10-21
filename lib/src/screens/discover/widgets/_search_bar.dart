@@ -8,7 +8,6 @@ class _DiscoverSearchBar extends StatelessWidget {
     final color = context.colorScheme.outline;
     return ListTile(
       //styles
-      visualDensity: VisualDensity.compact,
       contentPadding: const EdgeInsets.symmetric(horizontal: kContentPadding),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(kBorderRadius)),

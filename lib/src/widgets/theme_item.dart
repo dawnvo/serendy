@@ -16,6 +16,7 @@ class ThemeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      visualDensity: VisualDensity.standard,
       contentPadding: const EdgeInsets.symmetric(
         horizontal: kContentPadding,
       ),

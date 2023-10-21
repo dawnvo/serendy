@@ -74,9 +74,7 @@ class _AccountListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //style
-      visualDensity: VisualDensity.compact,
-      splashColor: Colors.transparent,
+      //style\
       titleTextStyle: context.textTheme.bodyLarge?.copyWith(
         color: !isDestructiveAction //
             ? context.colorScheme.onSurface

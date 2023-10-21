@@ -50,9 +50,9 @@ final class AppThemeData {
 
     /// * 기본 스타일 수정
     return themeData.copyWith(
-      splashColor: highlightColor,
-      highlightColor: highlightColor,
       scaffoldBackgroundColor: colorScheme.background,
+      highlightColor: highlightColor,
+      splashColor: Colors.transparent,
 
       //page-transitions
       pageTransitionsTheme: const PageTransitionsTheme(
@@ -96,6 +96,7 @@ final class AppThemeData {
 
       //list-tile
       listTileTheme: themeData.listTileTheme.copyWith(
+        visualDensity: VisualDensity.compact,
         contentPadding: const EdgeInsets.symmetric(
           vertical: Sizes.p8,
           horizontal: kContentPadding,
