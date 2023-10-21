@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 import 'controller/exit_controller.dart';
 

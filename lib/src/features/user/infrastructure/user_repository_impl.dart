@@ -8,6 +8,7 @@ final class UserRepositoryImpl implements UserRepository {
   final SupabaseClient supabase;
 
   static const String _tableUsers = TablePath.users;
+  static const String _tableUserExitReasons = TablePath.userExitReasons;
 
   /**
    * 사용자를 불러와요.
@@ -57,5 +58,28 @@ final class UserRepositoryImpl implements UserRepository {
         .from(_tableUsers)
         .update(entity)
         .eq('id', user.id);
+  }
+
+  /**
+   * 사용자를 삭제해요.
+   */
+  @override
+  Future<void> deleteUser({
+    required UserID userId,
+    required ExitReason reason,
+    String? comment,
+  }) async {
+    final entity = UserExitReasonEntity(
+      userId: userId,
+      reason: reason,
+      comment: comment,
+    ).toJson();
+    await supabase //
+        .from(_tableUserExitReasons)
+        .insert(entity);
+    await supabase //
+        .from(_tableUsers)
+        .delete()
+        .eq('id', userId);
   }
 }

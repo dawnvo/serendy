@@ -15,6 +15,15 @@ enum Rank {
   /* 새로운 */ novel,
 }
 
+enum ExitReason {
+  /* 불편 */ inconvenience,
+  /* 부재 */ absence,
+  /* 보안 */ security,
+  /* 대안 */ alternative,
+  /* 빈도 */ infrequency,
+  /* 기타 */ other,
+}
+
 //aggregate-root
 final class User extends Equatable {
   final UserID id;
@@ -31,14 +40,10 @@ final class User extends Equatable {
   /// 갱신 날짜
   final DateTime updatedAt;
 
-  /// 제거 날짜
-  final DateTime? removedAt;
-
   User({
     required this.id,
     required this.email,
     required this.username,
-    this.removedAt,
     final DateTime? createdAt,
     final DateTime? updatedAt,
   })  : createdAt = createdAt ?? DateTime.now(),
@@ -61,11 +66,6 @@ extension UserX on User {
     );
   }
 
-  /// 사용자 제거
-  User remove() {
-    return copy(removedAt: DateTime.now());
-  }
-
   /// 사용자 복사
   User copy({
     final UserID? id,
@@ -73,7 +73,6 @@ extension UserX on User {
     final String? username,
     final DateTime? createdAt,
     final DateTime? updatedAt,
-    final DateTime? removedAt,
   }) {
     return User(
       id: id ?? this.id,
@@ -81,7 +80,6 @@ extension UserX on User {
       username: username ?? this.username,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
-      removedAt: removedAt ?? this.removedAt,
     );
   }
 }

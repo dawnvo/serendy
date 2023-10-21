@@ -1,5 +1,6 @@
 abstract final class TablePath {
   static const users = 'users';
+  static const userExitReasons = 'user_exit_reasons';
   static const dislikes = 'dislikes';
   static const evaluations = 'evaluations';
   static const medias = 'medias';

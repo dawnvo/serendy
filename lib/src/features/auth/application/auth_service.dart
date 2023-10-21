@@ -122,16 +122,16 @@ Future<void> signOut(
   await supabase.auth.signOut();
 }
 
-/// 회원탈퇴해요.
-@riverpod
-Future<void> deleteUser(
-  DeleteUserRef ref,
-) async {
-  // TODO 회원탈퇴, 권한 없어서 에러 뜨는듯
-  final userId = ref.watch(requireUserIdProvider);
-  final supabase = ref.watch(supabaseProvider);
-  await supabase.auth.admin.deleteUser(userId);
-}
+/// 회원탈퇴
+// @riverpod
+// Future<void> deleteUser(
+//   DeleteUserRef ref,
+// ) async {
+//   // TODO Supabase 회원탈퇴, 권한 없어서 에러 뜨는듯
+//   final userId = ref.watch(requireUserIdProvider);
+//   final supabase = ref.watch(supabaseProvider);
+//   await supabase.auth.admin.deleteUser(userId);
+// }
 
 /// 사용자 식별자를 가져와요.
 @Riverpod(keepAlive: true)

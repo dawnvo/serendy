@@ -40,24 +40,9 @@ final signOutProvider = AutoDisposeFutureProvider<void>.internal(
 );
 
 typedef SignOutRef = AutoDisposeFutureProviderRef<void>;
-String _$deleteUserHash() => r'4866a1be1f15f527a155d785d90ca6cc4da193bc';
-
-/// 회원탈퇴해요.
-///
-/// Copied from [deleteUser].
-@ProviderFor(deleteUser)
-final deleteUserProvider = AutoDisposeFutureProvider<void>.internal(
-  deleteUser,
-  name: r'deleteUserProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$deleteUserHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef DeleteUserRef = AutoDisposeFutureProviderRef<void>;
 String _$currentUserIdHash() => r'396497a03206c19e60d3f5d281078b3020d0fcbc';
 
+/// 회원탈퇴
 /// 사용자 식별자를 가져와요.
 ///
 /// Copied from [currentUserId].

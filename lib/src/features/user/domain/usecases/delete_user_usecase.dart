@@ -1,17 +1,18 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/user/user.dart';
 
-typedef RemoveUserPayload = ({
+typedef DeleteUserPayload = ({
   UserID executorId,
-  String? reason,
+  ExitReason reason,
+  String? comment,
 });
 
-final class RemoveUserUsecase implements UseCase<RemoveUserPayload, void> {
-  const RemoveUserUsecase(this._userRepository);
+final class DeleteUserUsecase implements UseCase<DeleteUserPayload, void> {
+  const DeleteUserUsecase(this._userRepository);
   final UserRepository _userRepository;
 
   @override
-  Future<void> execute(RemoveUserPayload payload) async {
+  Future<void> execute(DeleteUserPayload payload) async {
     // * 사용자가 존재하는지 확인해요.
     final user = CoreAssert.notEmpty<User>(
       await _userRepository.fetchUser(id: payload.executorId),
@@ -22,10 +23,11 @@ final class RemoveUserUsecase implements UseCase<RemoveUserPayload, void> {
     final hasAccess = payload.executorId == user.id;
     CoreAssert.isTrue(hasAccess, const AccessDeniedException());
 
-    // * 사용자를 제거해요.
-    final removed = user.remove();
-
     // * commit
-    await _userRepository.updateUser(removed);
+    await _userRepository.deleteUser(
+      userId: user.id,
+      reason: payload.reason,
+      comment: payload.comment,
+    );
   }
 }

@@ -84,7 +84,7 @@ const _$MediaStatusEnumMap = {
 MediaReactionEntity _$MediaReactionEntityFromJson(Map<String, dynamic> json) =>
     MediaReactionEntity(
       count: json['count'] as int?,
-      mediaId: json['media_id'] as int?,
+      mediaId: json['media_id'] as String?,
       emotionId: json['emotion_id'] as int?,
       createdAt: json['created_at'] == null
           ? null

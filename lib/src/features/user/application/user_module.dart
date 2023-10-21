@@ -2,7 +2,7 @@ import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/get_user_usecase.dart';
-import 'package:serendy/src/features/user/domain/usecases/remove_user_usecase.dart';
+import 'package:serendy/src/features/user/domain/usecases/delete_user_usecase.dart';
 import 'package:serendy/src/features/user/infrastructure/user_repository_impl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -28,7 +28,7 @@ abstract final class UserModule {
     UserModule.userRepository,
   );
 
-  static final removeUserUsecase = RemoveUserUsecase(
+  static final deleteUserUsecase = DeleteUserUsecase(
     UserModule.userRepository,
   );
 }

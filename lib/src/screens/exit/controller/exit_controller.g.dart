@@ -6,7 +6,7 @@ part of 'exit_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$exitControllerHash() => r'22da54a585b29410cb6799bbe60feef4c6b0ed5e';
+String _$exitControllerHash() => r'331314a7225ab25954a58aad85456bd9bb9e59cb';
 
 /// See also [ExitController].
 @ProviderFor(ExitController)

@@ -79,3 +79,15 @@ extension RankX on Rank {
         Rank.novel => const (min: 1000, max: 0),
       };
 }
+
+//exit-reason
+extension ExitReasonX on ExitReason {
+  String get label => switch (this) {
+        ExitReason.inconvenience => '서비스 이용이 불편해요.',
+        ExitReason.absence => '원하는 기능 또는 콘텐츠가 부재해요.',
+        ExitReason.security => '보안 및 개인정보가 걱정돼요.',
+        ExitReason.alternative => '다른 서비스를 이용하고 있어요.',
+        ExitReason.infrequency => '사용 빈도가 낮아요.',
+        ExitReason.other => '기타',
+      };
+}

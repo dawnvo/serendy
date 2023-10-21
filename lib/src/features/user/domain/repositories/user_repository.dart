@@ -17,4 +17,11 @@ abstract class UserRepository {
   Future<void> updateUser(
     User user,
   );
+
+  /// 사용자를 삭제해요.
+  Future<void> deleteUser({
+    required UserID userId,
+    required ExitReason reason,
+    String? comment,
+  });
 }

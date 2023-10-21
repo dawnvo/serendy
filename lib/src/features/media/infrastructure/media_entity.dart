@@ -63,7 +63,7 @@ class MediaReactionEntity {
   final int? count;
 
   //foreign
-  final int? mediaId;
+  final MediaID? mediaId;
   final int? emotionId;
 
   //timestamp

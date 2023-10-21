@@ -51,14 +51,15 @@ Future<User> editProfile(
 
 /// 사용자를 제거해요.
 @riverpod
-Future<void> removeUser(
-  RemoveUserRef ref, {
-  required UserID id,
-  String? reason,
+Future<void> deleteUser(
+  DeleteUserRef ref, {
+  required ExitReason reason,
+  String? comment,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return UserModule.removeUserUsecase.execute((
+  return UserModule.deleteUserUsecase.execute((
     executorId: userId,
     reason: reason,
+    comment: comment,
   ));
 }

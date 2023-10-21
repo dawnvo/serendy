@@ -495,43 +495,43 @@ class _EditProfileProviderElement extends AutoDisposeFutureProviderElement<User>
   String? get username => (origin as EditProfileProvider).username;
 }
 
-String _$removeUserHash() => r'8d1d3ff9ae58d2dff2a564c3d29239d203d23eaf';
+String _$deleteUserHash() => r'b259795534a856131814d11de8b948faa2dddbb3';
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-@ProviderFor(removeUser)
-const removeUserProvider = RemoveUserFamily();
+/// Copied from [deleteUser].
+@ProviderFor(deleteUser)
+const deleteUserProvider = DeleteUserFamily();
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-class RemoveUserFamily extends Family<AsyncValue<void>> {
+/// Copied from [deleteUser].
+class DeleteUserFamily extends Family<AsyncValue<void>> {
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  const RemoveUserFamily();
+  /// Copied from [deleteUser].
+  const DeleteUserFamily();
 
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  RemoveUserProvider call({
-    required String id,
-    String? reason,
+  /// Copied from [deleteUser].
+  DeleteUserProvider call({
+    required ExitReason reason,
+    String? comment,
   }) {
-    return RemoveUserProvider(
-      id: id,
+    return DeleteUserProvider(
       reason: reason,
+      comment: comment,
     );
   }
 
   @override
-  RemoveUserProvider getProviderOverride(
-    covariant RemoveUserProvider provider,
+  DeleteUserProvider getProviderOverride(
+    covariant DeleteUserProvider provider,
   ) {
     return call(
-      id: provider.id,
       reason: provider.reason,
+      comment: provider.comment,
     );
   }
 
@@ -547,109 +547,109 @@ class RemoveUserFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'removeUserProvider';
+  String? get name => r'deleteUserProvider';
 }
 
 /// 사용자를 제거해요.
 ///
-/// Copied from [removeUser].
-class RemoveUserProvider extends AutoDisposeFutureProvider<void> {
+/// Copied from [deleteUser].
+class DeleteUserProvider extends AutoDisposeFutureProvider<void> {
   /// 사용자를 제거해요.
   ///
-  /// Copied from [removeUser].
-  RemoveUserProvider({
-    required String id,
-    String? reason,
+  /// Copied from [deleteUser].
+  DeleteUserProvider({
+    required ExitReason reason,
+    String? comment,
   }) : this._internal(
-          (ref) => removeUser(
-            ref as RemoveUserRef,
-            id: id,
+          (ref) => deleteUser(
+            ref as DeleteUserRef,
             reason: reason,
+            comment: comment,
           ),
-          from: removeUserProvider,
-          name: r'removeUserProvider',
+          from: deleteUserProvider,
+          name: r'deleteUserProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$removeUserHash,
-          dependencies: RemoveUserFamily._dependencies,
+                  : _$deleteUserHash,
+          dependencies: DeleteUserFamily._dependencies,
           allTransitiveDependencies:
-              RemoveUserFamily._allTransitiveDependencies,
-          id: id,
+              DeleteUserFamily._allTransitiveDependencies,
           reason: reason,
+          comment: comment,
         );
 
-  RemoveUserProvider._internal(
+  DeleteUserProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.id,
     required this.reason,
+    required this.comment,
   }) : super.internal();
 
-  final String id;
-  final String? reason;
+  final ExitReason reason;
+  final String? comment;
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(RemoveUserRef provider) create,
+    FutureOr<void> Function(DeleteUserRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: RemoveUserProvider._internal(
-        (ref) => create(ref as RemoveUserRef),
+      override: DeleteUserProvider._internal(
+        (ref) => create(ref as DeleteUserRef),
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        id: id,
         reason: reason,
+        comment: comment,
       ),
     );
   }
 
   @override
   AutoDisposeFutureProviderElement<void> createElement() {
-    return _RemoveUserProviderElement(this);
+    return _DeleteUserProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is RemoveUserProvider &&
-        other.id == id &&
-        other.reason == reason;
+    return other is DeleteUserProvider &&
+        other.reason == reason &&
+        other.comment == comment;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
     hash = _SystemHash.combine(hash, reason.hashCode);
+    hash = _SystemHash.combine(hash, comment.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin RemoveUserRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `id` of this provider.
-  String get id;
-
+mixin DeleteUserRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `reason` of this provider.
-  String? get reason;
+  ExitReason get reason;
+
+  /// The parameter `comment` of this provider.
+  String? get comment;
 }
 
-class _RemoveUserProviderElement extends AutoDisposeFutureProviderElement<void>
-    with RemoveUserRef {
-  _RemoveUserProviderElement(super.provider);
+class _DeleteUserProviderElement extends AutoDisposeFutureProviderElement<void>
+    with DeleteUserRef {
+  _DeleteUserProviderElement(super.provider);
 
   @override
-  String get id => (origin as RemoveUserProvider).id;
+  ExitReason get reason => (origin as DeleteUserProvider).reason;
   @override
-  String? get reason => (origin as RemoveUserProvider).reason;
+  String? get comment => (origin as DeleteUserProvider).comment;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

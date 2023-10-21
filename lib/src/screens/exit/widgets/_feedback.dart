@@ -38,10 +38,10 @@ class _ExitFeedback extends ConsumerWidget {
 
   Widget _buildDropdownButton({
     required String hintText,
-    required Reason? value,
-    required void Function(Reason?) onChanged,
+    required ExitReason? value,
+    required void Function(ExitReason?) onChanged,
   }) {
-    final items = Reason.values.map((value) {
+    final items = ExitReason.values.map((value) {
       return DropdownMenuItem(
         value: value,
         child: Text(value.label),
