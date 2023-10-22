@@ -4,6 +4,8 @@ import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/dislike/dislike.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
+import 'controller/settings_controller.dart';
+
 part 'widgets/_clear_cache_tile.dart';
 part 'widgets/_clear_dislikes_tile.dart';
 part 'widgets/_report_tile.dart';
