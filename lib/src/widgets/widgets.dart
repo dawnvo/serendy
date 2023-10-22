@@ -7,6 +7,7 @@ export 'common/multi_line_progress_indicator.dart';
 export 'common/tag.dart';
 export 'common/title_text_field.dart';
 export 'common/vertical_linear_gradient.dart';
+export 'common/web_view.dart';
 export 'common/youtube_player.dart';
 export 'evaluation_card.dart';
 export 'media_card.dart';
