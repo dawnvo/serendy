@@ -31,7 +31,8 @@ class ExitController extends _$ExitController with NotifierMounted {
 
   /// 의견을 입력해요.
   void changeComment(String? comment) {
-    state = state.copyWith(comment: comment);
+    final input = comment == null || comment.isEmpty ? null : comment;
+    state = state.copyWith(comment: input);
   }
 
   /// 회원 탈퇴해요.

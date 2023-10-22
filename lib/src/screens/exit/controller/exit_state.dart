@@ -28,7 +28,8 @@ final class ExitState extends Equatable {
       status: status ?? this.status,
       username: username ?? this.username,
       reason: reason ?? this.reason,
-      comment: comment ?? this.comment,
+      // * null 값을 의도적으로 넘기기 위해 조건문을 사용해요.
+      comment: comment != this.comment ? comment : this.comment,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
