@@ -118,20 +118,28 @@ Future<void> signOut(
   SignOutRef ref,
 ) async {
   final supabase = ref.watch(supabaseProvider);
-  // TODO 구글 로그아웃 적용하기
   await supabase.auth.signOut();
 }
 
-/// 회원탈퇴
-// @riverpod
-// Future<void> deleteUser(
-//   DeleteUserRef ref,
-// ) async {
-//   // TODO Supabase 회원탈퇴, 권한 없어서 에러 뜨는듯
-//   final userId = ref.watch(requireUserIdProvider);
-//   final supabase = ref.watch(supabaseProvider);
-//   await supabase.auth.admin.deleteUser(userId);
-// }
+/// 구글 로그아웃해요.
+@riverpod
+Future<void> signOutWithGoogle(
+  SignOutWithGoogleRef ref,
+) async {
+  await ref.read(signOutProvider.future);
+  final googleSignIn = GoogleSignIn();
+  await googleSignIn.signOut();
+}
+
+/// 계정을 삭제해요.
+@riverpod
+Future<void> deleteAuthUser(
+  DeleteAuthUserRef ref,
+) async {
+  final userId = ref.watch(requireUserIdProvider);
+  final supabaseAdmin = ref.watch(supabaseAdminProvider);
+  await supabaseAdmin.auth.admin.deleteUser(userId);
+}
 
 /// 사용자 식별자를 가져와요.
 @Riverpod(keepAlive: true)

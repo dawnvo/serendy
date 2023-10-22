@@ -40,9 +40,42 @@ final signOutProvider = AutoDisposeFutureProvider<void>.internal(
 );
 
 typedef SignOutRef = AutoDisposeFutureProviderRef<void>;
+String _$signOutWithGoogleHash() => r'6ab9c3ad85afd7d0a5cd6d1bb887b32fadb82cae';
+
+/// 구글 로그아웃해요.
+///
+/// Copied from [signOutWithGoogle].
+@ProviderFor(signOutWithGoogle)
+final signOutWithGoogleProvider = AutoDisposeFutureProvider<void>.internal(
+  signOutWithGoogle,
+  name: r'signOutWithGoogleProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signOutWithGoogleHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SignOutWithGoogleRef = AutoDisposeFutureProviderRef<void>;
+String _$deleteAuthUserHash() => r'8339cc66131f56c7b7481d2b0388ebd071365d01';
+
+/// 계정을 삭제해요.
+///
+/// Copied from [deleteAuthUser].
+@ProviderFor(deleteAuthUser)
+final deleteAuthUserProvider = AutoDisposeFutureProvider<void>.internal(
+  deleteAuthUser,
+  name: r'deleteAuthUserProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deleteAuthUserHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DeleteAuthUserRef = AutoDisposeFutureProviderRef<void>;
 String _$currentUserIdHash() => r'396497a03206c19e60d3f5d281078b3020d0fcbc';
 
-/// 회원탈퇴
 /// 사용자 식별자를 가져와요.
 ///
 /// Copied from [currentUserId].

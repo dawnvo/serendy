@@ -43,7 +43,7 @@ class SettingsScreen extends ConsumerWidget {
       //sign-out
       _SettingsListGroup([
         _SettingsListTile(
-          onTap: () => ref.read(signOutProvider),
+          onTap: () => ref.read(signOutWithGoogleProvider),
           icon: RemixIcon.logout_box_r_line,
           title: "로그아웃",
         ),
