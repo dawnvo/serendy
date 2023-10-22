@@ -51,17 +51,24 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   @override
   Future<int> countEvaluations({
     required UserID userId,
-  }) {
+  }) async {
     const options = FetchOptions(
       count: CountOption.exact,
-      head: true,
     );
-    return supabase
-        .from(_tableEvaluations)
-        .select('id', options)
-        .eq('user_id', userId)
-        .is_('removed_at', null)
-        .then((res) => res.count);
+    try {
+      final res = await supabase
+          .from(_tableEvaluations)
+          .select('id', options)
+          .eq('user_id', userId)
+          .is_('removed_at', null);
+      return res.count ?? 0;
+
+      // * Requested range not satisfiable
+      // * FIXME: 범위 결과가 0일 경우 에러가 발생해요.
+    } on PostgrestException catch (err) {
+      if (err.code == 'PGRST103') return 0;
+      throw Exception(err.message);
+    }
   }
 
   /**
