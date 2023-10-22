@@ -16,6 +16,8 @@ class AccountScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final accountValue = ref.watch(accountControllerProvider);
+    // FIXME: Assertion failed: _lastFuture == null
+    // * 탈퇴하고 바로 로그인 후 접속할 경우 에러 발생
 
     return accountValue.when(
       skipLoadingOnReload: true,

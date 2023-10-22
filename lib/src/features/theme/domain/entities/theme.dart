@@ -138,8 +138,7 @@ extension ThemeX on Theme {
       id: id ?? this.id,
       owner: owner ?? this.owner,
       title: title ?? this.title,
-      // * null 값을 의도적으로 넘기기 위해 조건문을 사용해요.
-      image: image != this.image ? image : this.image,
+      image: image ?? this.image,
       private: private ?? this.private,
       description: description ?? this.description,
       items: items ?? this.items,
