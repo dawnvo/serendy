@@ -58,6 +58,7 @@ final class UserRepositoryImpl implements UserRepository {
     final entity = UserEntity(
       email: user.email,
       username: user.username,
+      updatedAt: user.updatedAt,
     ).toJson();
     return supabase //
         .from(_tableUsers)
@@ -74,17 +75,23 @@ final class UserRepositoryImpl implements UserRepository {
     required ExitReason reason,
     String? comment,
   }) async {
-    final entity = UserExitReasonEntity(
+    // * 탈퇴 사유
+    final userExitReasonEntity = UserExitReasonEntity(
       userId: userId,
       reason: reason,
       comment: comment,
     ).toJson();
     await supabase //
         .from(_tableUserExitReasons)
-        .insert(entity);
+        .insert(userExitReasonEntity);
+    // * 개인정보 삭제
+    final userEntity = const UserEntity().toJson();
+    // [serializable] include_if_null: false
+    userEntity['email'] = null;
+    userEntity['username'] = null;
     await supabase //
         .from(_tableUsers)
-        .delete()
+        .update(userEntity)
         .eq('id', userId);
   }
 }

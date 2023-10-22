@@ -7,13 +7,23 @@ part 'widgets/_caution.dart';
 part 'widgets/_feedback.dart';
 part 'widgets/_submit_button.dart';
 
-class ExitScreen extends StatelessWidget {
+class ExitScreen extends ConsumerWidget {
   static const String routeName = 'exit';
   static const String routeLocation = routeName;
   const ExitScreen();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(exitControllerProvider, (previous, next) {
+      //failure
+      if (next.status == ExitStatus.failure) {
+        final errorMessage = next.errorMessage ?? '서버에 문제가 발생했어요.';
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(errorMessage)));
+      }
+    });
+
     return const _ExitTemplate(
       caution: _ExitCaution(),
       feedback: _ExitFeedback(),

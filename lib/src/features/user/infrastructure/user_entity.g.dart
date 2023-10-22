@@ -16,9 +16,6 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      removedAt: json['removed_at'] == null
-          ? null
-          : DateTime.parse(json['removed_at'] as String),
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) {
@@ -35,7 +32,6 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) {
   writeNotNull('username', instance.username);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
-  writeNotNull('removed_at', instance.removedAt?.toIso8601String());
   return val;
 }
 

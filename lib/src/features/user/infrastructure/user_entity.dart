@@ -12,7 +12,6 @@ final class UserEntity {
     this.username,
     this.createdAt,
     this.updatedAt,
-    this.removedAt,
   });
 
   final UserID? id;
@@ -22,7 +21,6 @@ final class UserEntity {
   //timestamp
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final DateTime? removedAt;
 
   factory UserEntity.fromJson(Json json) => _$UserEntityFromJson(json);
   Json toJson() => _$UserEntityToJson(this);

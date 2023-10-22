@@ -39,20 +39,28 @@ class ExitController extends _$ExitController with NotifierMounted {
     state = state.copyWith(status: ExitStatus.loading);
 
     try {
-      // * 테마를 수정해요.
-      await ref.read(deleteUserProvider(
+      final futures = <Future>[];
+
+      // * 사용자 정보를 삭제해요.
+      futures.add(ref.read(deleteUserProvider(
         reason: state.reason!,
         comment: state.comment,
-      ).future);
+      ).future));
+
+      // * 사용자 계정을 삭제해요.
+      futures.add(ref.read(deleteAuthUserProvider.future));
+
+      // * 로그아웃해요.
+      futures.add(ref.read(signOutWithGoogleProvider.future));
+
+      // * batching
+      await Future.wait(futures);
 
       // * 컨트롤러가 폐기된 경우 작업을 끝내요.
       if (!mounted) return;
 
       // * loaded
       state = state.copyWith(status: ExitStatus.success);
-
-      // * 로그아웃해요. TODO Supbase 회원탈퇴 돕기
-      ref.read(signOutProvider);
 
       // * failure
     } catch (err) {
