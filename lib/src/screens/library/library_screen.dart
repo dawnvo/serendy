@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/theme/theme.dart' hide ThemeItem;
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -20,7 +21,10 @@ class LibraryScreen extends ConsumerWidget {
     return libraryValue.when(
       skipLoadingOnReload: true,
       data: (state) => RefreshIndicator(
-        onRefresh: () => ref.refresh(libraryControllerProvider.future),
+        onRefresh: () async {
+          ref.invalidate(countEvaluationsProvider);
+          ref.invalidate(getMyThemesProvider);
+        },
         child: _LibraryTemplate(
           indicator: _LibraryWatchedIndicator(count: state.evaluationsCount),
           themesList: _LibraryMyThemesList(themes: state.themes),
