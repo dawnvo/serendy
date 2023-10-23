@@ -81,30 +81,32 @@ class _ThemeTemplate extends StatelessWidget {
           width: double.infinity,
           child: background,
         ),
-        CustomScrollView(slivers: [
-          const SliverAppBar(pinned: true),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kContentPadding,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  titles,
-                  detailBar,
-                ],
+        NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            const SliverAppBar(pinned: true),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kContentPadding,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    titles,
+                    detailBar,
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverPadding(
+          ],
+          body: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: kContentPadding,
               vertical: Sizes.p24,
             ),
-            sliver: mediasGrid,
+            child: mediasGrid,
           ),
-        ]),
+        ),
       ]),
     );
   }
@@ -133,9 +135,9 @@ class _Placeholder$ThemeScreen extends StatelessWidget {
       detailBar: _ThemeDetailBar(
         theme: data,
       ),
-      mediasGrid: const SliverToBoxAdapter(
-        child: Center(child: LoadingIndicator()),
-      ),
+      mediasGrid: const Column(children: [
+        LoadingIndicator(),
+      ]),
     );
   }
 }

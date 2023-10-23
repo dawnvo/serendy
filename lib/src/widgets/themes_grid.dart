@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
-class SliverThemesGrid extends StatelessWidget {
-  const SliverThemesGrid({
+class ThemesGrid extends StatelessWidget {
+  const ThemesGrid({
     required this.childCount,
     required this.builder,
     this.addAutomaticKeepAlives = true,
@@ -24,18 +24,16 @@ class SliverThemesGrid extends StatelessWidget {
     );
     final cardWidth = (screenWidth / columns) - (kContentPadding * 2) - _spacing;
 
-    return SliverGrid(
+    return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisExtent: cardWidth + _contentHeight,
         crossAxisCount: columns,
         mainAxisSpacing: _spacing,
         crossAxisSpacing: _spacing,
       ),
-      delegate: SliverChildBuilderDelegate(
-        builder,
-        childCount: childCount,
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-      ),
+      itemBuilder: builder,
+      itemCount: childCount,
+      addAutomaticKeepAlives: addAutomaticKeepAlives,
     );
   }
 }

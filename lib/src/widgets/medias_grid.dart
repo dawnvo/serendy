@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 
-class SliverMediasGrid extends StatelessWidget {
-  const SliverMediasGrid({
+class MediasGrid extends StatelessWidget {
+  const MediasGrid({
     required this.childCount,
     required this.builder,
     this.addAutomaticKeepAlives = true,
@@ -22,18 +22,17 @@ class SliverMediasGrid extends StatelessWidget {
       tablet: 4,
     );
 
-    return SliverGrid(
+    return GridView.builder(
+      padding: EdgeInsets.zero,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: columns,
         mainAxisSpacing: _spacing,
         crossAxisSpacing: _spacing,
         childAspectRatio: _aspectRatio,
       ),
-      delegate: SliverChildBuilderDelegate(
-        builder,
-        childCount: childCount,
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-      ),
+      itemBuilder: builder,
+      itemCount: childCount,
+      addAutomaticKeepAlives: addAutomaticKeepAlives,
     );
   }
 }

@@ -42,9 +42,9 @@ class _DiscoverTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      body: NestedScrollView(
         controller: controller,
-        slivers: [
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
             backgroundColor: context.colorScheme.surface,
             surfaceTintColor: Colors.transparent,
@@ -67,15 +67,14 @@ class _DiscoverTemplate extends StatelessWidget {
               ),
             ),
           ),
-
-          //grid
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kContentPadding,
-            ),
-            sliver: themesGrid,
-          ),
         ],
+        //grid
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+          ),
+          child: themesGrid,
+        ),
       ),
     );
   }

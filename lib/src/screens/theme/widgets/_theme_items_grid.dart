@@ -11,7 +11,7 @@ class _ThemeItemsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverMediasGrid(
+    return MediasGrid(
       childCount: medias.length,
       builder: (context, index) {
         final media = medias[index];

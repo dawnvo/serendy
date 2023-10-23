@@ -8,11 +8,10 @@ ScrollController usePagination(
   final scrollController = useScrollController();
 
   void scrollListener() {
-    // * 조건부 실행
-    if (canLoadMore() == false) return;
     // * 최대 스크롤 범위에 달하면 [fetchData]를 실행해요.
-    if (scrollController.position.pixels >= //
-        scrollController.position.maxScrollExtent) {
+    double maxScroll = scrollController.position.maxScrollExtent;
+    double currentScroll = scrollController.position.pixels;
+    if (maxScroll <= currentScroll && canLoadMore()) {
       fetchData();
     }
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/sheets.dart';
@@ -43,13 +44,12 @@ class _HomeTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      body: NestedScrollView(
         controller: controller,
-        slivers: [
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
             backgroundColor: context.colorScheme.surface,
             surfaceTintColor: Colors.transparent,
-            toolbarHeight: kTextTabBarHeight + Sizes.p8,
             centerTitle: true,
             floating: false,
             pinned: false,
@@ -66,15 +66,14 @@ class _HomeTemplate extends StatelessWidget {
             //   child: mediaFiltersTabBar,
             // ),
           ),
-
-          //grid
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kContentPadding,
-            ),
-            sliver: mediasGrid,
-          ),
         ],
+        //grid
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+          ),
+          child: mediasGrid,
+        ),
       ),
     );
   }

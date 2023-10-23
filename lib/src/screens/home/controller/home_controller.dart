@@ -12,7 +12,7 @@ class HomeController extends _$HomeController {
   FutureOr<HomeState> build() async {
     // * 추천 작품을 불러와요.
     final medias = await ref.watch(
-      getMediasProvider().future,
+      getMediasProvider(page: 0).future,
     );
     // * loaded
     return HomeState(medias: medias);

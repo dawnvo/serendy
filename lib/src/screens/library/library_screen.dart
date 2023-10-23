@@ -19,9 +19,12 @@ class LibraryScreen extends ConsumerWidget {
 
     return libraryValue.when(
       skipLoadingOnReload: true,
-      data: (state) => _LibraryTemplate(
-        indicator: _LibraryWatchedIndicator(count: state.evaluationsCount),
-        themesList: _LibraryMyThemesList(themes: state.themes),
+      data: (state) => RefreshIndicator(
+        onRefresh: () => ref.refresh(libraryControllerProvider.future),
+        child: _LibraryTemplate(
+          indicator: _LibraryWatchedIndicator(count: state.evaluationsCount),
+          themesList: _LibraryMyThemesList(themes: state.themes),
+        ),
       ),
       loading: () => const _Placeholder$LibraryScreen(),
       error: (err, stack) => const ErrorTemplate(

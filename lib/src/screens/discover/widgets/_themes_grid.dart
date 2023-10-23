@@ -8,21 +8,24 @@ class _DiscoverThemesGrid extends ConsumerWidget {
     final discoverValue = ref.watch(discoverControllerProvider);
 
     return discoverValue.when(
-      data: (state) => SliverThemesGrid(
-        childCount: state.themes.length,
-        builder: (context, index) {
-          final theme = state.themes[index]!;
-          return _buildThemeCard(context, theme);
-        },
+      skipLoadingOnReload: true,
+      data: (state) => RefreshIndicator(
+        onRefresh: () => ref.refresh(getThemesProvider(page: 0).future),
+        child: ThemesGrid(
+          childCount: state.themes.length,
+          builder: (context, index) {
+            final theme = state.themes[index]!;
+            return _buildThemeCard(context, theme);
+          },
+        ),
       ),
-      loading: () => SliverThemesGrid(
+      loading: () => ThemesGrid(
         childCount: 8,
         addAutomaticKeepAlives: false,
         builder: (context, index) => const Placeholder$ThemeCard(),
       ),
       error: (err, stack) => const ErrorTemplate(
         message: "테마를 불러오지 못했어요.",
-        sliver: true,
       ),
     );
   }
