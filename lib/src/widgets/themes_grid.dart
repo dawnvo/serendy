@@ -25,6 +25,7 @@ class ThemesGrid extends StatelessWidget {
     final cardWidth = (screenWidth / columns) - (kContentPadding * 2) - _spacing;
 
     return GridView.builder(
+      padding: EdgeInsets.zero,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisExtent: cardWidth + _contentHeight,
         crossAxisCount: columns,

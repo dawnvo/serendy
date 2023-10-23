@@ -42,7 +42,7 @@ class ThemeScreen extends ConsumerWidget {
         detailBar: _ThemeDetailBar(
           theme: state.theme,
         ),
-        mediasGrid: _ThemeItemsGrid(
+        itemsGrid: _ThemeItemsGrid(
           theme: state.theme,
           medias: state.theme.items //
               .map((item) => item!.convertEntity)
@@ -64,13 +64,13 @@ class _ThemeTemplate extends StatelessWidget {
     required this.background,
     required this.titles,
     required this.detailBar,
-    required this.mediasGrid,
+    required this.itemsGrid,
   });
 
   final _ThemeBackground background;
   final _ThemeTitles titles;
   final _ThemeDetailBar detailBar;
-  final Widget mediasGrid;
+  final Widget itemsGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +82,7 @@ class _ThemeTemplate extends StatelessWidget {
           child: background,
         ),
         NestedScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             const SliverAppBar(pinned: true),
             SliverToBoxAdapter(
@@ -104,7 +105,7 @@ class _ThemeTemplate extends StatelessWidget {
               horizontal: kContentPadding,
               vertical: Sizes.p24,
             ),
-            child: mediasGrid,
+            child: itemsGrid,
           ),
         ),
       ]),
@@ -135,7 +136,7 @@ class _Placeholder$ThemeScreen extends StatelessWidget {
       detailBar: _ThemeDetailBar(
         theme: data,
       ),
-      mediasGrid: const Column(children: [
+      itemsGrid: const Column(children: [
         LoadingIndicator(),
       ]),
     );
