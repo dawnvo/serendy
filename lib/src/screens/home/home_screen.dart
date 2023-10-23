@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/sheets.dart';

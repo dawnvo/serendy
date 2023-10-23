@@ -1,7 +1,7 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
-import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/theme/theme.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/screens/screens.dart';
 
 import 'bottom_navigation_bar.dart';
@@ -25,21 +25,32 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: GoRouterRefreshStream(
       supabase.auth.onAuthStateChange,
     ),
-    redirect: (context, state) {
+    redirect: (context, state) async {
+      // * 인증 세션이 유효한지 확인해요.
+      // * 유효하지 않으면 로그인 화면으로 이동해요.
       final session = supabase.auth.currentSession;
-      final currentLocation = state.matchedLocation;
-
-      // * 로그인에 성공한 경우
-      if (session != null) {
-        if (currentLocation == AppRoutes._signInLocation) {
-          return AppRoutes._homeLocation;
-        }
-      }
-      // * 로그인에 실패한 경우
-      else {
+      if (session == null) {
         return AppRoutes._signInLocation;
       }
 
+      // * [EDGE_CASE]
+      // * 사용자가 존재하는지 확인해요.
+      // * 존재하지 않으면 회원가입 화면으로 이동해요.
+      try {
+        await ref.read(getUserProvider(id: session.user.id).future);
+      } on EntityNotFoundException {
+        return AppRoutes._signUpLocation;
+      }
+
+      // * 인증 세션이 유효하고
+      // * 현재 경로가 로그인 화면이라면
+      final location = state.matchedLocation;
+      if (location == AppRoutes._signInLocation) {
+        // * 홈 화면으로 이동해요.
+        return AppRoutes._homeLocation;
+      }
+
+      // * navigate
       return null;
     },
     initialLocation: AppRoutes._homeLocation,
@@ -50,6 +61,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes._signInLocation,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SignInScreen(),
+      ),
+      GoRoute(
+        name: AppRoutes.signUp,
+        path: AppRoutes._signUpLocation,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const SignUpScreen(),
       ),
 
       ///modal-routes

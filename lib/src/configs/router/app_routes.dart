@@ -5,6 +5,10 @@ abstract final class AppRoutes {
   static const signIn = SignInScreen.routeName;
   static const _signInLocation = SignInScreen.routeLocation;
 
+  // 회원가입
+  static const signUp = SignUpScreen.routeName;
+  static const _signUpLocation = SignUpScreen.routeLocation;
+
   // 홈
   static const home = HomeScreen.routeName;
   static const _homeLocation = HomeScreen.routeLocation;

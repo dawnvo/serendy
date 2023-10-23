@@ -5,24 +5,40 @@ import 'package:serendy/src/features/user/user.dart';
 
 part 'user_service.g.dart';
 
-/// 나의 사용자를 불러와요.
+/// 사용자 이름이 존재하는지 확인해요.
+/// 존재하면 True.
+@riverpod
+Future<String?> checkUsername(
+  CheckUsernameRef ref, {
+  required String username,
+}) async {
+  // * 문자열을 검증해요.
+  if (username.contains(RegExp(r'[^a-zA-Z0-9_]+'))) {
+    return '영문자, 숫자 및 밑줄(_)만 사용 가능해요.';
+  }
+
+  // * 문자 수를 검증해요.
+  if (username.length < 3) {
+    return "아이디는 3자 이상이어야 해요.";
+  }
+
+  final isUsernameTaken = await UserModule.checkUsernameUsecase.execute((
+    username: username, //
+  ));
+
+  if (isUsernameTaken) {
+    return "이미 사용 중인 아이디에요.";
+  }
+
+  return null;
+}
+
+/// 내 정보를 불러와요.
 @Riverpod(keepAlive: true)
 Future<User> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
   return UserModule.getUserUsecase.execute((
     userId: userId, //
-  ));
-}
-
-/// 사용자 이름이 존재하는지 확인해요.
-/// 존재하면 True.
-@riverpod
-Future<bool> checkUsername(
-  CheckUsernameRef ref, {
-  required String username,
-}) {
-  return UserModule.checkUsernameUsecase.execute((
-    username: username, //
   ));
 }
 

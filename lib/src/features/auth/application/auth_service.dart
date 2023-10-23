@@ -21,6 +21,11 @@ Future<AuthResponse> signInWithGoogle(
       ? "18600735360-l83sb41qcsuh9dn10hgiiikl0b9n1k0t.apps.googleusercontent.com"
       : "18600735360-2cvesdao3ihimqgt1n9ck11b7kivlkuo.apps.googleusercontent.com";
 
+  final scopes = [
+    'openid',
+    'email',
+  ];
+
   late final String? idToken;
   late final String? accessToken;
   String? rawNonce;
@@ -49,11 +54,7 @@ Future<AuthResponse> signInWithGoogle(
         redirectUrl,
         discoveryUrl: discoveryUrl,
         nonce: hashedNonce,
-        scopes: [
-          'openid',
-          'email',
-          'profile',
-        ],
+        scopes: scopes,
       ),
     );
 
@@ -70,11 +71,7 @@ Future<AuthResponse> signInWithGoogle(
         discoveryUrl: discoveryUrl,
         codeVerifier: result.codeVerifier,
         nonce: result.nonce,
-        scopes: [
-          'openid',
-          'email',
-          'profile',
-        ],
+        scopes: scopes,
       ),
     );
 
@@ -83,11 +80,7 @@ Future<AuthResponse> signInWithGoogle(
   } else {
     final googleSignIn = GoogleSignIn(
       serverClientId: clientId,
-      scopes: [
-        'openid',
-        'email',
-        'profile',
-      ],
+      scopes: scopes,
     );
 
     final googleUser = await googleSignIn.signIn();

@@ -6,7 +6,7 @@ part of 'auth_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInWithGoogleHash() => r'7c267a6641da1c4f07da9839aec70e5072e806ce';
+String _$signInWithGoogleHash() => r'b8b9b343b1fe8a026d878de9a0bb52df410118cb';
 
 /// 구글 로그인을 진행해요.
 ///

@@ -6,9 +6,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:serendy/src/app_bootstrap.dart';
 import 'package:serendy/src/configs/exceptions/async_error_logger.dart';
 
-/// [] offset 때문인지 orderby 때문인지 데이터가 중복되는 문제
-/// [] 테마 항목이 이미 존재하면 힌트 표시
-/// [] 홈, 발견 화면에 새로고침 지원하기
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

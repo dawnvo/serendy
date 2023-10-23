@@ -7,7 +7,7 @@ class _ExitCaution extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(exitControllerProvider);
 
-    final title = '${state.username}님과 이별인가요?';
+    final title = '${state.username}님과 이별인가요...';
     final message = '계정을 삭제하면 '
         '${state.username}님의 (아이디, 이메일) 정보는 즉시 삭제되며, '
         '게시한 콘텐츠는 접근 권한이 손실돼요. '

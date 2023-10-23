@@ -125,12 +125,14 @@ class _AccountUsernameBottomSheet extends HookConsumerWidget {
 
     final hasError = accountValue.value?.errorText != null;
     final isLoading = accountValue.isLoading;
+    final isEmpty = accountValue.value?.username == null || //
+        accountValue.value!.username.isEmpty;
 
     return FilledButton(
       style: FilledButton.styleFrom(
         minimumSize: const Size.fromHeight(Sizes.p40),
       ),
-      onPressed: !hasError && !isLoading ? onPressed : null,
+      onPressed: !hasError && !isLoading && !isEmpty ? onPressed : null,
       child: !isLoading ? const Text("변경하기") : const LoadingIndicator(),
     );
   }

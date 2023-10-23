@@ -50,6 +50,7 @@ class _CreateThemeTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottom = context.mediaQuery.viewInsets.bottom;
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -69,9 +70,8 @@ class _CreateThemeTemplate extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(kContentPadding).add(EdgeInsets.only(
-          bottom: context.mediaQuery.viewInsets.bottom.roundToDouble(),
-        )),
+        padding: const EdgeInsets.all(kContentPadding) //
+            .add(EdgeInsets.only(bottom: bottom.roundToDouble())),
         child: submitButton,
       ),
     );

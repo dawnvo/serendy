@@ -6,6 +6,10 @@ class _EditThemeRemoveTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void onRemove() {
+      ref.read(provider.notifier).remove();
+    }
+
     return ListTile(
       onTap: () => ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -14,9 +18,7 @@ class _EditThemeRemoveTile extends ConsumerWidget {
         ),
       onLongPress: () => showDialog(
         context: context,
-        builder: (_) => __RemoveThemeDialog(onRemove: () {
-          ref.read(provider.notifier).remove();
-        }),
+        builder: (_) => __RemoveThemeDialog(onRemove: onRemove),
       ),
       title: const Text("테마 삭제"),
       trailing: Icon(

@@ -6,23 +6,7 @@ part of 'user_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMeHash() => r'df1d60e2dd8777095bd3aaff9b468b4d9b663a6b';
-
-/// 나의 사용자를 불러와요.
-///
-/// Copied from [getMe].
-@ProviderFor(getMe)
-final getMeProvider = FutureProvider<User>.internal(
-  getMe,
-  name: r'getMeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getMeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef GetMeRef = FutureProviderRef<User>;
-String _$checkUsernameHash() => r'7258c28ab3600312d38e8c47182d3dd096439105';
+String _$checkUsernameHash() => r'81736b0096c9c2096c931a96ab5e7295b4e07286';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -56,7 +40,7 @@ const checkUsernameProvider = CheckUsernameFamily();
 /// 존재하면 True.
 ///
 /// Copied from [checkUsername].
-class CheckUsernameFamily extends Family<AsyncValue<bool>> {
+class CheckUsernameFamily extends Family<AsyncValue<String?>> {
   /// 사용자 이름이 존재하는지 확인해요.
   /// 존재하면 True.
   ///
@@ -103,7 +87,7 @@ class CheckUsernameFamily extends Family<AsyncValue<bool>> {
 /// 존재하면 True.
 ///
 /// Copied from [checkUsername].
-class CheckUsernameProvider extends AutoDisposeFutureProvider<bool> {
+class CheckUsernameProvider extends AutoDisposeFutureProvider<String?> {
   /// 사용자 이름이 존재하는지 확인해요.
   /// 존재하면 True.
   ///
@@ -141,7 +125,7 @@ class CheckUsernameProvider extends AutoDisposeFutureProvider<bool> {
 
   @override
   Override overrideWith(
-    FutureOr<bool> Function(CheckUsernameRef provider) create,
+    FutureOr<String?> Function(CheckUsernameRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -158,7 +142,7 @@ class CheckUsernameProvider extends AutoDisposeFutureProvider<bool> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<bool> createElement() {
+  AutoDisposeFutureProviderElement<String?> createElement() {
     return _CheckUsernameProviderElement(this);
   }
 
@@ -176,19 +160,35 @@ class CheckUsernameProvider extends AutoDisposeFutureProvider<bool> {
   }
 }
 
-mixin CheckUsernameRef on AutoDisposeFutureProviderRef<bool> {
+mixin CheckUsernameRef on AutoDisposeFutureProviderRef<String?> {
   /// The parameter `username` of this provider.
   String get username;
 }
 
 class _CheckUsernameProviderElement
-    extends AutoDisposeFutureProviderElement<bool> with CheckUsernameRef {
+    extends AutoDisposeFutureProviderElement<String?> with CheckUsernameRef {
   _CheckUsernameProviderElement(super.provider);
 
   @override
   String get username => (origin as CheckUsernameProvider).username;
 }
 
+String _$getMeHash() => r'df1d60e2dd8777095bd3aaff9b468b4d9b663a6b';
+
+/// 내 정보를 불러와요.
+///
+/// Copied from [getMe].
+@ProviderFor(getMe)
+final getMeProvider = FutureProvider<User>.internal(
+  getMe,
+  name: r'getMeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetMeRef = FutureProviderRef<User>;
 String _$getUserHash() => r'872c4db50d395481490f8d4b8ca2da875da0bb59';
 
 /// 사용자를 불러와요.

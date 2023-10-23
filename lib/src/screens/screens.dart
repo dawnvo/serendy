@@ -11,6 +11,7 @@ export 'rank/rank_modal.dart';
 export 'search/search_screen.dart';
 export 'settings/settings_screen.dart';
 export 'sign_in/sign_in_screen.dart';
+export 'sign_up/sign_up_screen.dart';
 export 'theme/theme_screen.dart';
 export 'theme_create/theme_create_screen.dart';
 export 'theme_edit/theme_edit_screen.dart';
