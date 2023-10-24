@@ -26,6 +26,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       supabase.auth.onAuthStateChange,
     ),
     redirect: (context, state) async {
+      final location = state.matchedLocation;
+
       // * 인증 세션이 유효한지 확인해요.
       // * 유효하지 않으면 로그인 화면으로 이동해요.
       final session = supabase.auth.currentSession;
@@ -33,18 +35,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         return AppRoutes._signInLocation;
       }
 
-      // * [EDGE_CASE]
-      // * 사용자가 존재하는지 확인해요.
-      // * 존재하지 않으면 회원가입 화면으로 이동해요.
-      try {
-        await ref.read(getUserProvider(id: session.user.id).future);
-      } on EntityNotFoundException {
-        return AppRoutes._signUpLocation;
+      // * 존재하지 않는 사용자일 경우
+      // * FIXME: 회원가입 화면으로 이동해요.
+      if (location == AppRoutes._homeLocation) {
+        try {
+          await ref.read(getUserProvider(id: session.user.id).future);
+        } on EntityNotFoundException {
+          return AppRoutes._signUpLocation;
+        }
       }
 
       // * 인증 세션이 유효하고
       // * 현재 경로가 로그인 화면이라면
-      final location = state.matchedLocation;
       if (location == AppRoutes._signInLocation) {
         // * 홈 화면으로 이동해요.
         return AppRoutes._homeLocation;
