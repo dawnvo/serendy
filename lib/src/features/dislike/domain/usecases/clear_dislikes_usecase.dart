@@ -7,10 +7,7 @@ typedef ClearDislikesPayload = ({
 });
 
 final class ClearDislikesUsecase implements UseCase<ClearDislikesPayload, void> {
-  const ClearDislikesUsecase(
-    this._dislikeRepository,
-  );
-
+  const ClearDislikesUsecase(this._dislikeRepository);
   final DislikeRepository _dislikeRepository;
 
   @override

@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:crypto/crypto.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:flutter_appauth/flutter_appauth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/user/user.dart';
 
@@ -17,9 +18,9 @@ Future<AuthResponse> signInWithGoogle(
   SignInWithGoogleRef ref,
 ) async {
   // * Client ID that you registered with Google Cloud.
-  final clientId = Platform.isIOS
-      ? "18600735360-l83sb41qcsuh9dn10hgiiikl0b9n1k0t.apps.googleusercontent.com"
-      : "18600735360-2cvesdao3ihimqgt1n9ck11b7kivlkuo.apps.googleusercontent.com";
+  final clientId = Platform.isIOS //
+      ? dotenv.env["GOOGLE_CLIENT_ID_IOS"] as String
+      : dotenv.env["GOOGLE_CLIENT_ID_WEB"] as String;
 
   final scopes = [
     'openid',
