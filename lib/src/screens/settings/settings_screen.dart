@@ -34,8 +34,8 @@ class SettingsScreen extends ConsumerWidget {
       ]),
       //report
       const _SettingsListGroup([
-        _RequestUpdateTile(),
         _ReportProblemTile(),
+        _RequestUpdateTile(),
       ]),
       //policy
       const _SettingsListGroup([

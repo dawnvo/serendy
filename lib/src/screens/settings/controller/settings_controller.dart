@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/user/application/user_service.dart';
 
 part 'settings_controller.g.dart';
 part 'settings_state.dart';
@@ -20,13 +21,17 @@ class SettingsController extends _$SettingsController {
         .from('serendy_urls')
         .select<PostgrestList>('url');
 
+    // * 내 정보를 불러와요.
+    final user = await ref.watch(getMeProvider.future);
+    final queryParam = '?email=${user.email}';
+
     // * DB 순서대로 값을 전달해요.
     final urls = data.map((_) => _['url']).toList();
     state = SettingsState(
       privacyPolicyUrl: urls[0],
       termsOfServiceUrl: urls[1],
-      reportProblemUrl: urls[2],
-      requestUpdateUrl: urls[3],
+      reportProblemUrl: '${urls[2]}$queryParam',
+      requestUpdateUrl: '${urls[3]}$queryParam',
     );
   }
 }
