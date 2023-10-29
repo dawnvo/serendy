@@ -11,13 +11,13 @@ EvaluationEntity _$EvaluationEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       emotionId: json['emotion_id'] as int?,
       userId: json['user_id'] as String?,
-      users: json['users'] == null
+      user: json['user'] == null
           ? null
-          : UserEntity.fromJson(json['users'] as Map<String, dynamic>),
+          : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       mediaId: json['media_id'] as String?,
-      medias: json['medias'] == null
+      media: json['media'] == null
           ? null
-          : MediaEntity.fromJson(json['medias'] as Map<String, dynamic>),
+          : MediaEntity.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -41,9 +41,9 @@ Map<String, dynamic> _$EvaluationEntityToJson(EvaluationEntity instance) {
   writeNotNull('id', instance.id);
   writeNotNull('emotion_id', instance.emotionId);
   writeNotNull('user_id', instance.userId);
-  writeNotNull('users', instance.users?.toJson());
+  writeNotNull('user', instance.user?.toJson());
   writeNotNull('media_id', instance.mediaId);
-  writeNotNull('medias', instance.medias?.toJson());
+  writeNotNull('media', instance.media?.toJson());
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());

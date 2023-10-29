@@ -11,8 +11,8 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   const ThemeRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
-  static const String _tableThemes = TablePath.themes;
-  static const String _tableThemeItems = TablePath.themeItems;
+  static const String _tableTheme = TablePath.theme;
+  static const String _tableThemeItem = TablePath.themeItem;
 
   /**
    * 테마 여럿을 불러와요.
@@ -31,10 +31,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       description,
       items_count,
       owner_id,
-      users ( username )
+      user ( username )
     ''';
     final query = supabase //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .select(columns)
         .is_('removed_at', null);
     //identity
@@ -64,7 +64,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       owner_id
     ''';
     return supabase
-        .from(_tableThemes)
+        .from(_tableTheme)
         .select(columns)
         .eq('id', id)
         .is_('removed_at', null)
@@ -81,10 +81,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   }) {
     const columns = '''
       *,
-      users ( username )
+      user ( username )
     ''';
     return supabase
-        .from(_tableThemes)
+        .from(_tableTheme)
         .select(columns)
         .eq('id', id)
         .is_('removed_at', null)
@@ -107,7 +107,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       ownerId: theme.owner.id,
     ).toJson();
     return supabase //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .insert(entity);
   }
 
@@ -126,7 +126,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       updatedAt: theme.updatedAt,
     ).toJson();
     return supabase //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .update(entity)
         .eq('id', theme.id);
   }
@@ -144,7 +144,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     // [serializable] include_if_null: false
     entity['image'] = null;
     return supabase //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .update(entity)
         .eq('id', theme.id);
   }
@@ -159,10 +159,10 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     const columns = '''
       added_at,
       media_id,
-      medias ( title, image )
+      media ( title, image )
     ''';
     return supabase
-        .from(_tableThemeItems)
+        .from(_tableThemeItem)
         .select(columns)
         .eq('theme_id', id)
         .withConverter(ThemeItemMapper.toList);
@@ -181,7 +181,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       mediaId: mediaId,
     ).toJson();
     return supabase //
-        .from(_tableThemeItems)
+        .from(_tableThemeItem)
         .upsert(entity);
   }
 
@@ -198,7 +198,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
       mediaId: mediaId,
     ).toJson();
     return supabase //
-        .from(_tableThemeItems)
+        .from(_tableThemeItem)
         .delete()
         .match(entity);
   }
@@ -218,7 +218,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     // * 이미지를 업로드해요.
     final imagePath = '${theme.owner.id}/${theme.id}';
     await supabase.storage //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .upload(
           imagePath,
           imageFile,
@@ -227,7 +227,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
 
     // * 이미지 주소를 가져와요.
     final imageUrl = supabase.storage //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .getPublicUrl(imagePath);
 
     // * 이미지 주소에 타임스탬프를 추가해
@@ -246,7 +246,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
     // * 업로드한 이미지를 삭제해요.
     final imagePath = '${theme.owner.id}/${theme.id}';
     await supabase.storage //
-        .from(_tableThemes)
+        .from(_tableTheme)
         .remove([imagePath]);
   }
 }

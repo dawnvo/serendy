@@ -7,8 +7,8 @@ final class UserRepositoryImpl implements UserRepository {
   const UserRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
-  static const String _tableUsers = TablePath.users;
-  static const String _tableUserExitReasons = TablePath.userExitReasons;
+  static const String _tableUser = TablePath.user;
+  static const String _tableUserExitReason = TablePath.userExitReason;
 
   /**
    * 사용자를 불러와요.
@@ -20,7 +20,7 @@ final class UserRepositoryImpl implements UserRepository {
   }) {
     const columns = '*';
     final query = supabase //
-        .from(_tableUsers)
+        .from(_tableUser)
         .select(columns);
     //identity
     if (id != null) query.eq('id', id);
@@ -44,7 +44,7 @@ final class UserRepositoryImpl implements UserRepository {
       username: user.username,
     ).toJson();
     return supabase //
-        .from(_tableUsers)
+        .from(_tableUser)
         .insert(entity);
   }
 
@@ -61,7 +61,7 @@ final class UserRepositoryImpl implements UserRepository {
       updatedAt: user.updatedAt,
     ).toJson();
     return supabase //
-        .from(_tableUsers)
+        .from(_tableUser)
         .update(entity)
         .eq('id', user.id);
   }
@@ -82,7 +82,7 @@ final class UserRepositoryImpl implements UserRepository {
       comment: comment,
     ).toJson();
     await supabase //
-        .from(_tableUserExitReasons)
+        .from(_tableUserExitReason)
         .insert(userExitReasonEntity);
     // * 개인정보 삭제
     final userEntity = const UserEntity().toJson();
@@ -90,7 +90,7 @@ final class UserRepositoryImpl implements UserRepository {
     userEntity['email'] = null;
     userEntity['username'] = null;
     await supabase //
-        .from(_tableUsers)
+        .from(_tableUser)
         .update(userEntity)
         .eq('id', userId);
   }

@@ -7,8 +7,8 @@ final class MediaRepositoryImpl implements MediaRepository {
   const MediaRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
-  static const String _tableMedias = TablePath.medias;
-  static const String _tableMediaReactions = TablePath.mediaReactions;
+  static const String _tableMedia = TablePath.media;
+  static const String _tableMediaReaction = TablePath.mediaReaction;
 
   /**
    * 작품을 검색해요.
@@ -25,7 +25,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       perPage ?? 20,
     );
     return supabase
-        .from(_tableMedias)
+        .from(_tableMedia)
         .select(columns)
         .textSearch('title', "'$query'")
         .range(range.from, range.to)
@@ -54,7 +54,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       perPage ?? 20,
     );
     return supabase
-        .from(_tableMedias)
+        .from(_tableMedia)
         .select(columns)
         .range(range.from, range.to)
         // .order('start_date')
@@ -73,7 +73,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       id
     ''';
     return supabase
-        .from(_tableMedias)
+        .from(_tableMedia)
         .select(columns)
         .eq('id', id)
         .maybeSingle()
@@ -89,7 +89,7 @@ final class MediaRepositoryImpl implements MediaRepository {
   }) {
     const columns = '*';
     return supabase
-        .from(_tableMedias)
+        .from(_tableMedia)
         .select(columns)
         .eq('id', id)
         .maybeSingle()
@@ -108,7 +108,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       count
     ''';
     return supabase
-        .from(_tableMediaReactions)
+        .from(_tableMediaReaction)
         .select(columns)
         .eq('media_id', id)
         .withConverter(MediaReactionMapper.toList);
@@ -135,7 +135,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       endDate: media.endDate,
     ).toJson();
     return supabase //
-        .from(_tableMedias)
+        .from(_tableMedia)
         .upsert(entity);
   }
 
@@ -150,7 +150,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       hitsCount: media.hitsCount + 1,
     ).toJson();
     return supabase //
-        .from(_tableMedias)
+        .from(_tableMedia)
         .update(entity)
         .eq('id', media.id);
   }

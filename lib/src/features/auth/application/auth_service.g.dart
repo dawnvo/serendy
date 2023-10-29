@@ -6,7 +6,7 @@ part of 'auth_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInWithGoogleHash() => r'b8b9b343b1fe8a026d878de9a0bb52df410118cb';
+String _$signInWithGoogleHash() => r'5584260f00045ef0abd8658435c024246d658596';
 
 /// 구글 로그인을 진행해요.
 ///
@@ -80,7 +80,7 @@ String _$currentUserIdHash() => r'396497a03206c19e60d3f5d281078b3020d0fcbc';
 ///
 /// Copied from [currentUserId].
 @ProviderFor(currentUserId)
-final currentUserIdProvider = Provider<String?>.internal(
+final currentUserIdProvider = Provider<UserID?>.internal(
   currentUserId,
   name: r'currentUserIdProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -90,14 +90,14 @@ final currentUserIdProvider = Provider<String?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CurrentUserIdRef = ProviderRef<String?>;
+typedef CurrentUserIdRef = ProviderRef<UserID?>;
 String _$requireUserIdHash() => r'474d4cb71cd6126a14442f647264f90428f04d89';
 
 /// 사용자 식별자를 엄격히 가져와요.
 ///
 /// Copied from [requireUserId].
 @ProviderFor(requireUserId)
-final requireUserIdProvider = Provider<String>.internal(
+final requireUserIdProvider = Provider<UserID>.internal(
   requireUserId,
   name: r'requireUserIdProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -107,6 +107,6 @@ final requireUserIdProvider = Provider<String>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef RequireUserIdRef = ProviderRef<String>;
+typedef RequireUserIdRef = ProviderRef<UserID>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -18,7 +18,7 @@ class SettingsController extends _$SettingsController {
     // * URL을 불러와요.
     final supabase = ref.watch(supabaseProvider);
     final data = await supabase //
-        .from('serendy_urls')
+        .from(TablePath.rootUrl)
         .select<PostgrestList>('url');
 
     // * 내 정보를 불러와요.

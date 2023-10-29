@@ -8,9 +8,9 @@ abstract final class EvaluationMapper {
   static Evaluation toDomain(final EvaluationEntity entity) {
     return Evaluation(
       media: EvaluationMedia(
-        id: entity.mediaId ?? entity.medias?.id ?? '',
-        title: entity.medias?.title ?? '',
-        image: entity.medias?.image ?? '',
+        id: entity.mediaId ?? entity.media?.id ?? '',
+        title: entity.media?.title ?? '',
+        image: entity.media?.image ?? '',
       ),
       emotion: emotionIdToEnum[entity.emotionId] ?? Emotion.joy,
       id: entity.id ?? '',

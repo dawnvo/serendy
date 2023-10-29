@@ -14,9 +14,9 @@ ThemeEntity _$ThemeEntityFromJson(Map<String, dynamic> json) => ThemeEntity(
       description: json['description'] as String?,
       itemsCount: json['items_count'] as int?,
       ownerId: json['owner_id'] as String?,
-      users: json['users'] == null
+      user: json['user'] == null
           ? null
-          : UserEntity.fromJson(json['users'] as Map<String, dynamic>),
+          : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -44,7 +44,7 @@ Map<String, dynamic> _$ThemeEntityToJson(ThemeEntity instance) {
   writeNotNull('description', instance.description);
   writeNotNull('items_count', instance.itemsCount);
   writeNotNull('owner_id', instance.ownerId);
-  writeNotNull('users', instance.users?.toJson());
+  writeNotNull('user', instance.user?.toJson());
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   writeNotNull('removed_at', instance.removedAt?.toIso8601String());
@@ -55,9 +55,9 @@ ThemeItemEntity _$ThemeItemEntityFromJson(Map<String, dynamic> json) =>
     ThemeItemEntity(
       themeId: json['theme_id'] as String?,
       mediaId: json['media_id'] as String?,
-      medias: json['medias'] == null
+      media: json['media'] == null
           ? null
-          : MediaEntity.fromJson(json['medias'] as Map<String, dynamic>),
+          : MediaEntity.fromJson(json['media'] as Map<String, dynamic>),
       addedAt: json['added_at'] == null
           ? null
           : DateTime.parse(json['added_at'] as String),
@@ -74,7 +74,7 @@ Map<String, dynamic> _$ThemeItemEntityToJson(ThemeItemEntity instance) {
 
   writeNotNull('theme_id', instance.themeId);
   writeNotNull('media_id', instance.mediaId);
-  writeNotNull('medias', instance.medias?.toJson());
+  writeNotNull('media', instance.media?.toJson());
   writeNotNull('added_at', instance.addedAt?.toIso8601String());
   return val;
 }

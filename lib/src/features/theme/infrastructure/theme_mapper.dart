@@ -9,7 +9,7 @@ abstract final class ThemeMapper {
     return Theme(
       owner: ThemeOwner(
         id: entity.ownerId ?? '',
-        username: entity.users?.username ?? '',
+        username: entity.user?.username ?? '',
       ),
       id: entity.id ?? '',
       title: entity.title ?? '',
@@ -46,8 +46,8 @@ abstract final class ThemeItemMapper {
   static ThemeItem toDomain(final ThemeItemEntity entity) {
     return ThemeItem(
       mediaId: entity.mediaId ?? '',
-      title: entity.medias?.title ?? '',
-      image: entity.medias?.image ?? '',
+      title: entity.media?.title ?? '',
+      image: entity.media?.image ?? '',
       addedAt: entity.addedAt ?? DateTime.now(),
     );
   }

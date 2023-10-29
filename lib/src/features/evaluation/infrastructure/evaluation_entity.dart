@@ -12,9 +12,9 @@ final class EvaluationEntity {
     this.id,
     this.emotionId,
     this.userId,
-    this.users,
+    this.user,
     this.mediaId,
-    this.medias,
+    this.media,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -25,9 +25,9 @@ final class EvaluationEntity {
 
   //foreign
   final UserID? userId;
-  final UserEntity? users;
+  final UserEntity? user;
   final MediaID? mediaId;
-  final MediaEntity? medias;
+  final MediaEntity? media;
 
   //timestamp
   final DateTime? createdAt;

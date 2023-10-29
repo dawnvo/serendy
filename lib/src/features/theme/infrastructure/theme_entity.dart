@@ -16,7 +16,7 @@ final class ThemeEntity {
     this.description,
     this.itemsCount,
     this.ownerId,
-    this.users,
+    this.user,
     this.createdAt,
     this.updatedAt,
     this.removedAt,
@@ -31,7 +31,7 @@ final class ThemeEntity {
 
   //foreign
   final UserID? ownerId;
-  final UserEntity? users;
+  final UserEntity? user;
 
   //timestamp
   final DateTime? createdAt;
@@ -47,14 +47,14 @@ final class ThemeItemEntity {
   const ThemeItemEntity({
     this.themeId,
     this.mediaId,
-    this.medias,
+    this.media,
     this.addedAt,
   });
 
   //foreign
   final ThemeID? themeId;
   final MediaID? mediaId;
-  final MediaEntity? medias;
+  final MediaEntity? media;
 
   //timestamp
   final DateTime? addedAt;

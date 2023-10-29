@@ -6,7 +6,7 @@ final class DislikeRepositoryImpl extends DislikeRepository {
   const DislikeRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
-  static const String _tableDislikes = TablePath.dislikes;
+  static const String _tableDislike = TablePath.mediaDislike;
 
   /**
    * 관심없는 목록에 추가해요.
@@ -21,7 +21,7 @@ final class DislikeRepositoryImpl extends DislikeRepository {
       addedAt: dislike.addedAt,
     ).toJson();
     return supabase //
-        .from(_tableDislikes)
+        .from(_tableDislike)
         .insert(entity);
   }
 
@@ -33,7 +33,7 @@ final class DislikeRepositoryImpl extends DislikeRepository {
     UserID userId,
   ) {
     return supabase //
-        .from(_tableDislikes)
+        .from(_tableDislike)
         .delete()
         .eq('user_id', userId);
   }

@@ -9,7 +9,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   const EvaluationRepositoryImpl(this.supabase);
   final SupabaseClient supabase;
 
-  static const String _tableEvaluations = TablePath.evaluations;
+  static const String _tableEvaluation = TablePath.evaluation;
 
   /**
    * 평가 여럿을 불러와요.
@@ -25,10 +25,10 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       id,
       media_id,
       emotion_id,
-      medias ( title, image )
+      media ( title, image )
     ''';
     final query = supabase //
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .select(columns)
         .is_('removed_at', null);
     //identity
@@ -57,7 +57,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     );
     try {
       final res = await supabase
-          .from(_tableEvaluations)
+          .from(_tableEvaluation)
           .select('id', options)
           .eq('user_id', userId)
           .is_('removed_at', null);
@@ -88,7 +88,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     // * 제거한 평가도 가져와요.
     // * 평가 유무 검증에 필요해요.
     return supabase
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .select(columns)
         .eq('user_id', userId)
         .eq('media_id', mediaId)
@@ -106,7 +106,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
   }) {
     const columns = '*';
     return supabase
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .select(columns)
         .eq('user_id', userId)
         .eq('media_id', mediaId)
@@ -129,7 +129,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       mediaId: evaluation.media.id,
     ).toJson();
     return supabase //
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .insert(entity);
   }
 
@@ -147,7 +147,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
     // [serializable] include_if_null: false
     entity['removed_at'] = null;
     return supabase
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .update(entity)
         .eq('user_id', evaluation.userId)
         .eq('media_id', evaluation.media.id);
@@ -164,7 +164,7 @@ final class EvaluationRepositoryImpl extends EvaluationRepository {
       removedAt: evaluation.removedAt,
     ).toJson();
     return supabase
-        .from(_tableEvaluations)
+        .from(_tableEvaluation)
         .update(entity)
         .eq('user_id', evaluation.userId)
         .eq('media_id', evaluation.media.id);

@@ -1,10 +1,11 @@
 abstract final class TablePath {
-  static const users = 'users';
-  static const userExitReasons = 'user_exit_reasons';
-  static const dislikes = 'dislikes';
-  static const evaluations = 'evaluations';
-  static const medias = 'medias';
-  static const mediaReactions = 'media_reactions';
-  static const themes = 'themes';
-  static const themeItems = 'theme_items';
+  static const rootUrl = 'serendy_url';
+  static const user = 'user';
+  static const userExitReason = 'user_exit_reason';
+  static const evaluation = 'evaluation';
+  static const media = 'media';
+  static const mediaDislike = 'media_dislike';
+  static const mediaReaction = 'media_reaction';
+  static const theme = 'theme';
+  static const themeItem = 'theme_item';
 }
