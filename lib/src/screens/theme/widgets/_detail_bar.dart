@@ -93,7 +93,10 @@ class __ActionIconButtons extends StatelessWidget {
 
       //share-button
       IconButton(
-        onPressed: () {},
+        onPressed: () => Share.share(
+          '${Assets.applink}/themes/${theme.id}',
+          subject: theme.title,
+        ),
         icon: const Icon(RemixIcon.share_forward_fill),
       ),
     ]);

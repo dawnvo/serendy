@@ -12,9 +12,7 @@ class CreateThemeController extends _$CreateThemeController with NotifierMounted
     ref.onDispose(setUnmounted);
 
     // * loaded
-    return CreateThemeState(
-      hintText: Assets.createThemeHints.pickRandomly()!,
-    );
+    return const CreateThemeState();
   }
 
   /// 제목을 입력해요.

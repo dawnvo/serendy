@@ -1,14 +1,17 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ShareMediaMenuItem extends StatelessWidget {
   const ShareMediaMenuItem({required this.media});
   final Media media;
 
   void handleTap(BuildContext context) {
-    // TODO 딥링크 구현하기
-    throw UnimplementedError();
+    Share.share(
+      '${Assets.applink}/medias/${media.id}',
+      subject: media.title,
+    );
   }
 
   @override

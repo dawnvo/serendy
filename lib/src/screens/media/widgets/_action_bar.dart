@@ -15,7 +15,10 @@ class _MediaActionBar extends StatelessWidget {
           icon: const Icon(RemixIcon.add_box_fill),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () => Share.share(
+            '${Assets.applink}/medias/${media.id}',
+            subject: media.title,
+          ),
           icon: const Icon(RemixIcon.share_fill),
         ),
         IconButton(
