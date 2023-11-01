@@ -97,7 +97,7 @@ Future<AuthResponse> signInWithGoogle(
     throw 'No Access Token';
   }
 
-  final supabase = ref.watch(supabaseProvider);
+  final supabase = ref.watch(supabaseClientProvider);
   return supabase.auth.signInWithIdToken(
     provider: sb.Provider.google,
     idToken: idToken,
@@ -111,7 +111,7 @@ Future<AuthResponse> signInWithGoogle(
 Future<void> signOut(
   SignOutRef ref,
 ) async {
-  final supabase = ref.watch(supabaseProvider);
+  final supabase = ref.watch(supabaseClientProvider);
   await supabase.auth.signOut();
 }
 
@@ -140,7 +140,7 @@ Future<void> deleteAuthUser(
 UserID? currentUserId(
   CurrentUserIdRef ref,
 ) {
-  final auth = ref.watch(supabaseProvider.select((_) => _.auth));
+  final auth = ref.watch(supabaseClientProvider.select((_) => _.auth));
   return auth.currentSession?.user.id;
 }
 

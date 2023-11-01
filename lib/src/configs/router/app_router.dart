@@ -17,7 +17,7 @@ final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final supabase = ref.watch(supabaseProvider);
+  final supabase = ref.watch(supabaseClientProvider);
 
   return GoRouter(
     debugLogDiagnostics: true,

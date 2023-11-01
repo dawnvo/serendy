@@ -16,7 +16,7 @@ class SettingsController extends _$SettingsController {
   /// 세렌디 주요 URL을 불러와요.
   Future<void> _fetch() async {
     // * URL을 불러와요.
-    final supabase = ref.watch(supabaseProvider);
+    final supabase = ref.watch(supabaseClientProvider);
     final data = await supabase //
         .from(TablePath.rootUrl)
         .select<PostgrestList>('url');

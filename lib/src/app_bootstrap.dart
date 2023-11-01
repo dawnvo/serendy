@@ -3,9 +3,9 @@ import 'package:serendy/src/app.dart';
 import 'package:serendy/src/configs/configs.dart';
 
 class AppBootstrap {
-  Widget createRootWidget({required ProviderContainer container}) {
+  Future<Widget> createRootWidget(ProviderContainer container) async {
     // * Initialize to start the listener
-    // container.read(profileControllerProvider);
+    await container.read(supabaseProvider.future);
 
     // * Register error handlers
     final errorLogger = container.read(errorLoggerProvider);
