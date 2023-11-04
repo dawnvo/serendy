@@ -9,13 +9,16 @@ class _SignInTitle extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Serendy",
-          style: context.textTheme.headlineMedium,
+          "내가 찾던 모든 애니",
+          style: context.textTheme.displaySmall?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         Gap.h12,
         Text(
-          "로그인하고 나의 수준을 확인해보세요.",
-          style: context.textTheme.titleMedium,
+          "세렌디에서 알아보세요",
+          style: context.textTheme.headlineSmall,
         ),
       ],
     );

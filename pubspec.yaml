@@ -21,12 +21,15 @@ dependencies:
 
   # UI
   go_router: ^12.0.0
+  share_plus: ^7.2.1
   animations: ^2.0.8
+  simple_animations: ^5.0.2
   flutter_remix_icon:
     git:
       url: https://github.com/mzeealii/flutter-remix-icon.git
   flutter_svg: ^2.0.7
   image_picker: ^1.0.4
+  webview_flutter: ^4.4.1
   responsive_builder: ^0.7.0
   cached_network_image: ^3.3.0
   youtube_player_flutter: ^8.1.2
@@ -39,8 +42,6 @@ dependencies:
   flutter_dotenv: ^5.1.0
   json_annotation: ^4.8.1
   flutter_cache_manager: ^3.3.1
-  webview_flutter: ^4.4.1
-  share_plus: ^7.2.1
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +60,7 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/images/induction/
     - assets/icons/logos/
     - assets/icons/ranks/
     - assets/icons/emotions/
