@@ -4,11 +4,11 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/env.dart';
 
 part 'auth_service.g.dart';
 
@@ -19,8 +19,8 @@ Future<AuthResponse> signInWithGoogle(
 ) async {
   // * Client ID that you registered with Google Cloud.
   final clientId = Platform.isIOS //
-      ? dotenv.env["GOOGLE_CLIENT_ID_IOS"] as String
-      : dotenv.env["GOOGLE_CLIENT_ID_WEB"] as String;
+      ? Env.googleClientIdIos
+      : Env.googleClientIdWeb;
 
   final scopes = [
     'openid',
@@ -36,7 +36,6 @@ Future<AuthResponse> signInWithGoogle(
   if (Platform.isIOS) {
     const appAuth = FlutterAppAuth();
 
-    // Just a random string
     // Just a random string
     final random = Random.secure();
     rawNonce = base64Url.encode(List.generate(16, (_) => random.nextInt(256)));
