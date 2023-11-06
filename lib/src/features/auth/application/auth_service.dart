@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
@@ -96,6 +97,9 @@ Future<AuthResponse> signInWithGoogle(
     throw 'No Access Token';
   }
 
+  // * log analytics
+  ref.read(firebaseAnalyticsProvider).logLogin(loginMethod: 'Google');
+
   final supabase = ref.watch(supabaseClientProvider);
   return supabase.auth.signInWithIdToken(
     provider: sb.Provider.google,
@@ -129,6 +133,7 @@ Future<void> signOutWithGoogle(
 Future<void> deleteAuthUser(
   DeleteAuthUserRef ref,
 ) async {
+  if (kDebugMode) return;
   final userId = ref.watch(requireUserIdProvider);
   final supabaseAdmin = ref.watch(supabaseAdminProvider);
   await supabaseAdmin.auth.admin.deleteUser(userId);

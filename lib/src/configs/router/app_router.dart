@@ -3,6 +3,7 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/screens/screens.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'bottom_navigation_bar.dart';
 import 'go_router_refresh_stream.dart';
@@ -18,8 +19,10 @@ final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final supabase = ref.watch(supabaseClientProvider);
+  final analytics = ref.watch(firebaseAnalyticsProvider);
 
   return GoRouter(
+    observers: [FirebaseAnalyticsObserver(analytics: analytics)],
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     refreshListenable: GoRouterRefreshStream(

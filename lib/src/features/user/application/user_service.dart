@@ -59,6 +59,7 @@ Future<User> createUser(
   required String email,
   required String username,
 }) {
+  ref.read(firebaseAnalyticsProvider).logSignUp(signUpMethod: 'Google');
   return ref.read(createUserUsecaseProvider).execute((
     id: uid,
     name: username,

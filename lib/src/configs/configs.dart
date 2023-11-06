@@ -27,6 +27,7 @@ export 'exceptions/error_logger.dart';
 //persistence
 export 'persistence/in_memory_store.dart';
 export 'persistence/supabase.dart';
+export 'persistence/firebase.dart';
 export 'persistence/table_path.dart';
 
 //extensions
