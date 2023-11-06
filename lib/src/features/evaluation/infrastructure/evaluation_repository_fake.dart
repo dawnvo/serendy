@@ -10,7 +10,7 @@ import 'package:serendy/src/features/user/user.dart';
 final class EvaluationRepositoryFake extends EvaluationRepository {
   EvaluationRepositoryFake();
 
-  final _evaluationStore = InMemoryStore<List<Evaluation>>([]);
+  final _evaluationStore = InMemoryStore(mockEvaluations);
 
   @override
   Future<List<Evaluation?>> fetchEvaluations({
@@ -101,4 +101,4 @@ final mockEvaluations = mockMedias.map((media) {
       image: media.image,
     ),
   );
-});
+}).toList();

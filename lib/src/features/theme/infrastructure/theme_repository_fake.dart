@@ -10,8 +10,8 @@ import 'package:serendy/src/features/theme/theme.dart';
 final class ThemeRepositoryFake implements ThemeRepository {
   ThemeRepositoryFake();
 
-  final _themeStore = InMemoryStore<List<Theme>>(mockThemes);
-  final _themeItemStore = InMemoryStore<List<ThemeItem>>(mockThemeItems);
+  final _themeStore = InMemoryStore(mockThemes);
+  final _themeItemStore = InMemoryStore(mockThemeItems);
 
   @override
   Future<List<Theme?>> fetchThemes({
