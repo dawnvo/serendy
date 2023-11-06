@@ -11,7 +11,7 @@ Future<List<Media?>> searchMedias(
   required String query,
   int? page,
 }) {
-  return MediaModule.searchMediasUsecase.execute((
+  return ref.read(searchMediasUsecaseProvider).execute((
     query: query,
     page: page,
   ));
@@ -23,7 +23,7 @@ Future<List<Media?>> getMedias(
   GetMediasRef ref, {
   int? page,
 }) {
-  return MediaModule.getMediasUsecase.execute((page: page));
+  return ref.read(getMediasUsecaseProvider).execute((page: page));
 }
 
 /// 작품 정보를 불러와요.
@@ -32,7 +32,7 @@ Future<Media> getMedia(
   GetMediaRef ref, {
   required MediaID id,
 }) {
-  return MediaModule.getMediaUsecase.execute((mediaId: id));
+  return ref.read(getMediaUsecaseProvider).execute((mediaId: id));
 }
 
 /// 작품 반응을 불러와요.
@@ -41,7 +41,7 @@ Future<List<MediaReaction?>> getMediaReactions(
   GetMediaReactionsRef ref, {
   required MediaID id,
 }) {
-  return MediaModule.getMediaReactionsUsecase.execute((mediaId: id));
+  return ref.read(getMediaReactionsUsecaseProvider).execute((mediaId: id));
 }
 
 /// 작품을 추가해요.
@@ -59,7 +59,7 @@ Future<void> addMedia(
   DateTime? startDate,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return MediaModule.addMediaUsecase.execute((
+  return ref.read(addMediaUsecaseProvider).execute((
     executorId: userId,
     image: image,
     keywords: keywords,

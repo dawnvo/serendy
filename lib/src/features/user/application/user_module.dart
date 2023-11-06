@@ -1,39 +1,48 @@
-import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/domain/usecases/check_username_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/create_user_usecase.dart';
+import 'package:serendy/src/features/user/domain/usecases/delete_user_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/edit_profile_usecase.dart';
 import 'package:serendy/src/features/user/domain/usecases/get_user_usecase.dart';
-import 'package:serendy/src/features/user/domain/usecases/delete_user_usecase.dart';
 import 'package:serendy/src/features/user/infrastructure/user_repository_impl.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:serendy/src/features/user/user.dart';
+import 'package:serendy/src/features/theme/theme.dart';
+import 'package:serendy/src/configs/configs.dart';
 
-abstract final class UserModule {
-  //persistence
+part 'user_module.g.dart';
 
-  static final userRepository = UserRepositoryImpl(
-    Supabase.instance.client,
-  );
+@riverpod
+UserRepository userRepository(UserRepositoryRef ref) {
+  final supabase = ref.watch(supabaseClientProvider);
+  return UserRepositoryImpl(supabase);
+}
 
-  //use-case
+@riverpod
+CheckUsernameUsecase checkUsernameUsecase(CheckUsernameUsecaseRef ref) {
+  final userRepository = ref.watch(userRepositoryProvider);
+  return CheckUsernameUsecase(userRepository);
+}
 
-  static final checkUsernameUsecase = CheckUsernameUsecase(
-    UserModule.userRepository,
-  );
+@riverpod
+GetUserUsecase getUserUsecase(GetUserUsecaseRef ref) {
+  final userRepository = ref.watch(userRepositoryProvider);
+  return GetUserUsecase(userRepository);
+}
 
-  static final getUserUsecase = GetUserUsecase(
-    UserModule.userRepository,
-  );
+@riverpod
+CreateUserUsecase createUserUsecase(CreateUserUsecaseRef ref) {
+  final userRepository = ref.watch(userRepositoryProvider);
+  final themeRepository = ref.watch(themeRepositoryProvider);
+  return CreateUserUsecase(userRepository, themeRepository);
+}
 
-  static final createUserUsecase = CreateUserUsecase(
-    UserModule.userRepository,
-    ThemeModule.themeRepository,
-  );
+@riverpod
+EditProfileUsecase editProfileUsecase(EditProfileUsecaseRef ref) {
+  final userRepository = ref.watch(userRepositoryProvider);
+  return EditProfileUsecase(userRepository);
+}
 
-  static final editProfileUsecase = EditProfileUsecase(
-    UserModule.userRepository,
-  );
-
-  static final deleteUserUsecase = DeleteUserUsecase(
-    UserModule.userRepository,
-  );
+@riverpod
+DeleteUserUsecase deleteUserUsecase(DeleteUserUsecaseRef ref) {
+  final userRepository = ref.watch(userRepositoryProvider);
+  return DeleteUserUsecase(userRepository);
 }

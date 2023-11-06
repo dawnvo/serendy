@@ -36,7 +36,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       }
 
       // * 존재하지 않는 사용자일 경우
-      // * FIXME: 회원가입 화면으로 이동해요.
+      // * 회원가입 화면으로 이동해요.
       if (location == AppRoutes._homeLocation) {
         try {
           await ref.read(getUserProvider(id: session.user.id).future);

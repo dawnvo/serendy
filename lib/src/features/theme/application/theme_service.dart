@@ -11,7 +11,7 @@ Future<List<Theme?>> getMyThemes(
   GetMyThemesRef ref,
 ) {
   final userId = ref.watch(currentUserIdProvider);
-  return ThemeModule.getThemesUsecase.execute((
+  return ref.read(getThemesUsecaseProvider).execute((
     executorId: userId,
     page: null,
   ));
@@ -23,7 +23,7 @@ Future<List<Theme?>> getThemes(
   GetThemesRef ref, {
   int? page,
 }) {
-  return ThemeModule.getThemesUsecase.execute((
+  return ref.read(getThemesUsecaseProvider).execute((
     executorId: null,
     page: page,
   ));
@@ -36,7 +36,7 @@ Future<Theme> getTheme(
   required ThemeID id,
 }) {
   final userId = ref.watch(currentUserIdProvider);
-  return ThemeModule.getThemeUsecase.execute((
+  return ref.read(getThemeUsecaseProvider).execute((
     executorId: userId,
     themeId: id,
   ));
@@ -49,7 +49,7 @@ Future<Theme> createTheme(
   required String title,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.createThemeUsecase.execute((
+  return ref.read(createThemeUsecaseProvider).execute((
     executorId: userId,
     title: title,
   ));
@@ -66,7 +66,7 @@ Future<Theme> editTheme(
   final bool? private,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.editThemeUsecase.execute((
+  return ref.read(editThemeUsecaseProvider).execute((
     executorId: userId,
     themeId: id,
     description: description,
@@ -83,7 +83,7 @@ Future<void> removeTheme(
   required ThemeID id,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.removeThemeUsecase.execute((
+  return ref.read(removeThemeUsecaseProvider).execute((
     executorId: userId,
     themeId: id,
   ));
@@ -95,7 +95,7 @@ Future<List<ThemeItem?>> getThemeItems(
   GetThemeItemsRef ref, {
   required ThemeID id,
 }) {
-  return ThemeModule.getThemeItemsUsecase.execute((themeId: id));
+  return ref.read(getThemeItemsUsecaseProvider).execute((themeId: id));
 }
 
 /// 테마에 항목을 추가해요.
@@ -106,7 +106,7 @@ Future<Theme> addThemeItem(
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.addThemeItemUsecase.execute((
+  return ref.read(addThemeItemUsecaseProvider).execute((
     executorId: userId,
     themeId: id,
     mediaId: mediaId,
@@ -121,7 +121,7 @@ Future<Theme> deleteThemeItem(
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return ThemeModule.deleteThemeItemUsecase.execute((
+  return ref.read(deleteThemeItemUsecaseProvider).execute((
     executorId: userId,
     themeId: id,
     mediaId: mediaId,

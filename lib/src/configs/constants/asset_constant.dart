@@ -13,8 +13,8 @@ abstract final class Assets {
   static const String youtubeIcon = '$iconPath/logos/youtube.svg';
 
   static const String storagePath = 'https://hsahnzxaihjnacdycfuk.supabase.co/storage/v1';
-  static const String themeDefaultImage = '$storagePath/object/public/assets/theme_favorite.png';
-  static const String themeFavoriteImage = '$storagePath/object/public/assets/theme_default.png';
+  static const String themeDefaultImage = '$storagePath/object/public/assets/theme_default.png';
+  static const String themeFavoriteImage = '$storagePath/object/public/assets/theme_favorite.png';
 
   static const int usernameMaxLength = 20;
 }

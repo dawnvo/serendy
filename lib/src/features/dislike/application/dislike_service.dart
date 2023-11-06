@@ -13,7 +13,7 @@ Future<Dislike?> addDislike(
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return DislikeModule.addDislikeUsecase.execute((
+  return ref.read(addDislikeUsecaseProvider).execute((
     executorId: userId,
     mediaId: mediaId,
   ));
@@ -25,7 +25,7 @@ Future<void> clearDislikes(
   ClearDislikesRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return DislikeModule.clearDislikesUsecase.execute((
+  return ref.read(clearDislikesUsecaseProvider).execute((
     executorId: userId, //
   ));
 }

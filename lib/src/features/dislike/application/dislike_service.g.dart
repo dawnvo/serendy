@@ -6,7 +6,7 @@ part of 'dislike_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addDislikeHash() => r'63ea5b18fea9d1bc0439bf0ba9f55194cda36b0c';
+String _$addDislikeHash() => r'41c190f76ccc5e34f7edbb5290d97328e4061293';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -167,7 +167,7 @@ class _AddDislikeProviderElement
   String get mediaId => (origin as AddDislikeProvider).mediaId;
 }
 
-String _$clearDislikesHash() => r'7121784785b9b181c0e128a77255e770df657858';
+String _$clearDislikesHash() => r'8ea84708c0d93a8d7479c8dd5e4678d5966eab3b';
 
 /// 관심없는 목록을 초기화해요.
 ///

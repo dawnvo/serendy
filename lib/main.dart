@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:serendy/env.dart';
 import 'package:serendy/src/app_bootstrap.dart';
-import 'package:serendy/src/app_bootstrap_firebase.dart';
+import 'package:serendy/src/app_bootstrap_prod.dart';
 
 import 'firebase_options.dart';
 
@@ -24,7 +24,7 @@ void main() async {
 
   // * 앱 설정
   final appBootstrap = AppBootstrap();
-  final container = await appBootstrap.createFirebaseProviderContainer();
+  final container = await appBootstrap.createProdProviderContainer();
 
   // * 앱 시작
   final root = appBootstrap.createRootWidget(container);

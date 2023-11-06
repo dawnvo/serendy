@@ -22,9 +22,9 @@ Future<String?> checkUsername(
     return "아이디는 3자 이상이어야 해요.";
   }
 
-  final isUsernameTaken = await UserModule.checkUsernameUsecase.execute((
-    username: username, //
-  ));
+  final isUsernameTaken = await ref //
+      .read(checkUsernameUsecaseProvider)
+      .execute((username: username));
 
   if (isUsernameTaken) {
     return "이미 사용 중인 아이디에요.";
@@ -37,7 +37,7 @@ Future<String?> checkUsername(
 @Riverpod(keepAlive: true)
 Future<User> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
-  return UserModule.getUserUsecase.execute((
+  return ref.read(getUserUsecaseProvider).execute((
     userId: userId, //
   ));
 }
@@ -48,7 +48,7 @@ Future<User> getUser(
   GetUserRef ref, {
   required UserID id,
 }) {
-  return UserModule.getUserUsecase.execute((userId: id));
+  return ref.read(getUserUsecaseProvider).execute((userId: id));
 }
 
 /// 사용자를 만들어요.
@@ -59,7 +59,7 @@ Future<User> createUser(
   required String email,
   required String username,
 }) {
-  return UserModule.createUserUsecase.execute((
+  return ref.read(createUserUsecaseProvider).execute((
     id: uid,
     name: username,
     email: email,
@@ -73,7 +73,7 @@ Future<User> editProfile(
   String? username,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return UserModule.editProfileUsecase.execute((
+  return ref.read(editProfileUsecaseProvider).execute((
     executorId: userId,
     username: username,
   ));
@@ -87,7 +87,7 @@ Future<void> deleteUser(
   String? comment,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return UserModule.deleteUserUsecase.execute((
+  return ref.read(deleteUserUsecaseProvider).execute((
     executorId: userId,
     reason: reason,
     comment: comment,

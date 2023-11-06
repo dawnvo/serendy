@@ -13,7 +13,7 @@ Future<List<Evaluation?>> getEvaluations(
   int? page,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.getEvaluationsUsecase.execute((
+  return ref.read(getEvaluationsUsecaseProvider).execute((
     mediaId: null,
     userId: userId,
     page: page,
@@ -26,7 +26,9 @@ Future<int> countEvaluations(
   CountEvaluationsRef ref,
 ) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.countEvaluationsUsecase.execute((userId: userId));
+  return ref.read(countEvaluationsUsecaseProvider).execute((
+    userId: userId, //
+  ));
 }
 
 /// 평가 정보를 불러와요.
@@ -36,7 +38,7 @@ Future<Evaluation?> getEvaluation(
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.getEvaluationUsecase.execute((
+  return ref.read(getEvaluationUsecaseProvider).execute((
     userId: userId,
     mediaId: mediaId,
   ));
@@ -50,7 +52,7 @@ Future<Evaluation> submitEvaluation(
   required Emotion emotion,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.submitEvaluationUsecase.execute((
+  return ref.read(submitEvaluationUsecaseProvider).execute((
     executorId: userId,
     mediaId: mediaId,
     emotion: emotion,
@@ -64,7 +66,7 @@ Future<void> removeEvaluation(
   required MediaID mediaId,
 }) {
   final userId = ref.watch(requireUserIdProvider);
-  return EvaluationModule.removeEvaluationUsecase.execute((
+  return ref.read(removeEvaluationUsecaseProvider).execute((
     executorId: userId,
     mediaId: mediaId,
   ));

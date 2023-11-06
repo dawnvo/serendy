@@ -51,7 +51,7 @@ class MediaScreen extends ConsumerWidget {
         ),
         actionBar: _MediaActionBar(media: state.media),
         contents: [
-          _MediaReactionsTile(reactions: state.reactions),
+          _MediaReactionsTile(reactions: state.reactions.toSet().toList()),
           _MediaDetailsTile(media: state.media),
         ],
       ),

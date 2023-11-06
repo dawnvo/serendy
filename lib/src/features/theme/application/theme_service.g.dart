@@ -6,7 +6,7 @@ part of 'theme_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getMyThemesHash() => r'b49b5246874a3982f9033dd91ba22ae612fa818e';
+String _$getMyThemesHash() => r'eb6e15d810deac41f6d5ef8632f36469cbbeebd5';
 
 /// 나의 테마 목록을 불러와요.
 ///
@@ -22,7 +22,7 @@ final getMyThemesProvider = AutoDisposeFutureProvider<List<Theme?>>.internal(
 );
 
 typedef GetMyThemesRef = AutoDisposeFutureProviderRef<List<Theme?>>;
-String _$getThemesHash() => r'b396556abdbe5beb7dc51fc50a8e979a1c264b1a';
+String _$getThemesHash() => r'e409e4ef66410fecadb0c1bbc4244db18a9f47ff';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -182,7 +182,7 @@ class _GetThemesProviderElement
   int? get page => (origin as GetThemesProvider).page;
 }
 
-String _$getThemeHash() => r'52b550de781885149f139d1be304927defd0caa7';
+String _$getThemeHash() => r'013c8fd81c7782fd2ae9c0bb6c939315583f0fec';
 
 /// 테마를 불러와요.
 ///
@@ -321,7 +321,7 @@ class _GetThemeProviderElement extends AutoDisposeFutureProviderElement<Theme>
   String get id => (origin as GetThemeProvider).id;
 }
 
-String _$createThemeHash() => r'feaafa94f0263173da92603fea0b93690b48fb0b';
+String _$createThemeHash() => r'8e676c21a57f816d65d8fc08d6c3438e8ce246fb';
 
 /// 테마를 만들어요.
 ///
@@ -461,7 +461,7 @@ class _CreateThemeProviderElement
   String get title => (origin as CreateThemeProvider).title;
 }
 
-String _$editThemeHash() => r'c87e7384c8bd9662d54b25587971de18dce9b3a3';
+String _$editThemeHash() => r'f6d647824e2ff8d2d9da0e99dfab46ada5436fa5';
 
 /// 테마를 수정해요.
 ///
@@ -665,7 +665,7 @@ class _EditThemeProviderElement extends AutoDisposeFutureProviderElement<Theme>
   bool? get private => (origin as EditThemeProvider).private;
 }
 
-String _$removeThemeHash() => r'5e3ec084d59bd6371fd523acf99f9cb16eaff4c8';
+String _$removeThemeHash() => r'89dc719a5202000962f4ef53a5ac6da59e760a25';
 
 /// 테마를 제거해요.
 ///
@@ -805,7 +805,7 @@ class _RemoveThemeProviderElement extends AutoDisposeFutureProviderElement<void>
   String get id => (origin as RemoveThemeProvider).id;
 }
 
-String _$getThemeItemsHash() => r'b21c2162e09827936a672d0c7b7dc6a95f576460';
+String _$getThemeItemsHash() => r'e5fed9b6a310ea140edcde31bddece70b0941d90';
 
 /// 테마 항목을 불러와요.
 ///
@@ -947,7 +947,7 @@ class _GetThemeItemsProviderElement
   String get id => (origin as GetThemeItemsProvider).id;
 }
 
-String _$addThemeItemHash() => r'e8d989a18617b37a60ab76cae66892063b694b10';
+String _$addThemeItemHash() => r'f3cfff0881476af657c3ab84e2d38a4b5310202e';
 
 /// 테마에 항목을 추가해요.
 ///
@@ -1104,7 +1104,7 @@ class _AddThemeItemProviderElement
   String get mediaId => (origin as AddThemeItemProvider).mediaId;
 }
 
-String _$deleteThemeItemHash() => r'a10fc13579ecbb79aa60053620ec912b13015d60';
+String _$deleteThemeItemHash() => r'39b7c178ccbcce4836197a7d9930b595e9ac9743';
 
 /// 테마의 항목을 제거해요.
 ///

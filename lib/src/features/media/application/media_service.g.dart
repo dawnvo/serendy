@@ -6,7 +6,7 @@ part of 'media_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchMediasHash() => r'1fe419cb664cad18a6606718c079f802eaaec48a';
+String _$searchMediasHash() => r'd2c50427dff51cb905cf1364c36848be4082677a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -185,7 +185,7 @@ class _SearchMediasProviderElement
   int? get page => (origin as SearchMediasProvider).page;
 }
 
-String _$getMediasHash() => r'a3d0525dfa0c8d33e4bd74fdf5bfe5481468a84a';
+String _$getMediasHash() => r'895d7f89bc42d4959f5f1e6afb67019708b6dcb6';
 
 /// 작품 목록을 불러와요.
 ///
@@ -324,7 +324,7 @@ class _GetMediasProviderElement
   int? get page => (origin as GetMediasProvider).page;
 }
 
-String _$getMediaHash() => r'f0d6ce6870bb2629198bd7db0a0ee51d70dd8ae6';
+String _$getMediaHash() => r'b32394427f9475e24132374f59ee1873faf72e70';
 
 /// 작품 정보를 불러와요.
 ///
@@ -463,7 +463,7 @@ class _GetMediaProviderElement extends AutoDisposeFutureProviderElement<Media>
   String get id => (origin as GetMediaProvider).id;
 }
 
-String _$getMediaReactionsHash() => r'76b9c0bced177b6c11eb748f82ac0f0bbf4c2d81';
+String _$getMediaReactionsHash() => r'f89d4d67723b87f8af445ee87b3ac92ff3e49e82';
 
 /// 작품 반응을 불러와요.
 ///
@@ -607,7 +607,7 @@ class _GetMediaReactionsProviderElement
   String get id => (origin as GetMediaReactionsProvider).id;
 }
 
-String _$addMediaHash() => r'a7eb2729bc7053244de8942ce8cb7edace5e977d';
+String _$addMediaHash() => r'7e9a717e195da422662751e79f9cc3192bef14f9';
 
 /// 작품을 추가해요.
 ///

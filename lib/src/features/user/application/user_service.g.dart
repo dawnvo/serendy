@@ -6,7 +6,7 @@ part of 'user_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$checkUsernameHash() => r'81736b0096c9c2096c931a96ab5e7295b4e07286';
+String _$checkUsernameHash() => r'a33540c49d6a37eeeeec686735b23b7c5b45fd30';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -173,7 +173,7 @@ class _CheckUsernameProviderElement
   String get username => (origin as CheckUsernameProvider).username;
 }
 
-String _$getMeHash() => r'df1d60e2dd8777095bd3aaff9b468b4d9b663a6b';
+String _$getMeHash() => r'0614a7fca65ebed1fea9090baec34e777aa71ec3';
 
 /// 내 정보를 불러와요.
 ///
@@ -189,7 +189,7 @@ final getMeProvider = FutureProvider<User>.internal(
 );
 
 typedef GetMeRef = FutureProviderRef<User>;
-String _$getUserHash() => r'872c4db50d395481490f8d4b8ca2da875da0bb59';
+String _$getUserHash() => r'501dbda824eb4b81aede143f7da9986625fec861';
 
 /// 사용자를 불러와요.
 ///
@@ -328,7 +328,7 @@ class _GetUserProviderElement extends AutoDisposeFutureProviderElement<User>
   String get id => (origin as GetUserProvider).id;
 }
 
-String _$createUserHash() => r'0c4d8c15947df60b6ece890b525bd31a5ba9546f';
+String _$createUserHash() => r'4fd6395818fcf5d81fb38a2546b4ab2df9ad28d6';
 
 /// 사용자를 만들어요.
 ///
@@ -501,7 +501,7 @@ class _CreateUserProviderElement extends AutoDisposeFutureProviderElement<User>
   String get username => (origin as CreateUserProvider).username;
 }
 
-String _$editProfileHash() => r'25f72e9a660e2f9836e166190fdcd09665759e5e';
+String _$editProfileHash() => r'a32dbcf071c6dfeb5df6d9dd49f5a0a81b5c2833';
 
 /// 프로필을 수정해요.
 ///
@@ -641,7 +641,7 @@ class _EditProfileProviderElement extends AutoDisposeFutureProviderElement<User>
   String? get username => (origin as EditProfileProvider).username;
 }
 
-String _$deleteUserHash() => r'b259795534a856131814d11de8b948faa2dddbb3';
+String _$deleteUserHash() => r'25a6387ce6fd02e6e8c45ea21d4cbd77628885f6';
 
 /// 사용자를 제거해요.
 ///

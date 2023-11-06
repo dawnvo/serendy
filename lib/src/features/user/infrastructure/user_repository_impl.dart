@@ -85,8 +85,8 @@ final class UserRepositoryImpl implements UserRepository {
         .from(_tableUserExitReason)
         .insert(userExitReasonEntity);
     // * 개인정보 삭제
-    final userEntity = const UserEntity().toJson();
     // [serializable] include_if_null: false
+    final userEntity = const UserEntity().toJson();
     userEntity['email'] = null;
     userEntity['username'] = null;
     await supabase //

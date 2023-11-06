@@ -4,32 +4,43 @@ import 'package:serendy/src/features/media/domain/usecases/get_media_usecase.dar
 import 'package:serendy/src/features/media/domain/usecases/get_medias_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/search_medias_usecase.dart';
 import 'package:serendy/src/features/media/infrastructure/media_repository_impl.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/configs/configs.dart';
 
-abstract final class MediaModule {
-  //persistence
-  static final mediaRepository = MediaRepositoryImpl(
-    Supabase.instance.client,
-  );
+part 'media_module.g.dart';
 
-  //use-case
-  static final searchMediasUsecase = SearchMediasUsecase(
-    MediaModule.mediaRepository,
-  );
+@riverpod
+MediaRepository mediaRepository(MediaRepositoryRef ref) {
+  final supabase = ref.watch(supabaseClientProvider);
+  return MediaRepositoryImpl(supabase);
+}
 
-  static final getMediasUsecase = GetMediasUsecase(
-    MediaModule.mediaRepository,
-  );
+@riverpod
+SearchMediasUsecase searchMediasUsecase(SearchMediasUsecaseRef ref) {
+  final mediaRepository = ref.watch(mediaRepositoryProvider);
+  return SearchMediasUsecase(mediaRepository);
+}
 
-  static final getMediaUsecase = GetMediaUsecase(
-    MediaModule.mediaRepository,
-  );
+@riverpod
+GetMediasUsecase getMediasUsecase(GetMediasUsecaseRef ref) {
+  final mediaRepository = ref.watch(mediaRepositoryProvider);
+  return GetMediasUsecase(mediaRepository);
+}
 
-  static final getMediaReactionsUsecase = GetMediaReactionsUsecase(
-    MediaModule.mediaRepository,
-  );
+@riverpod
+GetMediaUsecase getMediaUsecase(GetMediaUsecaseRef ref) {
+  final mediaRepository = ref.watch(mediaRepositoryProvider);
+  return GetMediaUsecase(mediaRepository);
+}
 
-  static final addMediaUsecase = AddMediaUsecase(
-    MediaModule.mediaRepository,
-  );
+@riverpod
+GetMediaReactionsUsecase getMediaReactionsUsecase(GetMediaReactionsUsecaseRef ref) {
+  final mediaRepository = ref.watch(mediaRepositoryProvider);
+  return GetMediaReactionsUsecase(mediaRepository);
+}
+
+@riverpod
+AddMediaUsecase addMediaUsecase(AddMediaUsecaseRef ref) {
+  final mediaRepository = ref.watch(mediaRepositoryProvider);
+  return AddMediaUsecase(mediaRepository);
 }
