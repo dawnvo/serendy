@@ -11,17 +11,17 @@ import 'package:serendy/env.dart';
 
 class AuthRepositoryImpl {
   const AuthRepositoryImpl(
-    this.supabase,
-    this.googleSignIn,
+    this._supabase,
+    this._googleSignIn,
   );
 
-  final SupabaseClient supabase;
-  final GoogleSignIn googleSignIn;
+  final SupabaseClient _supabase;
+  final GoogleSignIn _googleSignIn;
 
   /**
    * 인증 상태를 감시해요.
    */
-  Stream<sb.User?> authStateChange() => supabase //
+  Stream<sb.User?> authStateChange() => _supabase //
       .auth
       .onAuthStateChange
       .map((event) => event.session?.user);
@@ -29,14 +29,14 @@ class AuthRepositoryImpl {
   /**
    * 인증 정보를 불러와요.
    */
-  sb.User? get currentUser => supabase.auth.currentUser;
+  sb.User? get currentUser => _supabase.auth.currentUser;
 
   /**
    * 구글 로그아웃해요.
    */
   Future<void> signOutWithGoogle() async {
-    await googleSignIn.signOut();
-    await supabase.auth.signOut();
+    await _googleSignIn.signOut();
+    await _supabase.auth.signOut();
   }
 
   /**
@@ -58,7 +58,7 @@ class AuthRepositoryImpl {
     String? rawNonce;
 
     // Use AppAuth to perform Google sign in on iOS
-    // and use GoogleSignIn package for Google sign in on Android
+    // and use _googleSignIn package for Google sign in on Android
     if (Platform.isIOS) {
       const appAuth = FlutterAppAuth();
 
@@ -120,7 +120,7 @@ class AuthRepositoryImpl {
       throw 'No Access Token';
     }
 
-    return supabase.auth
+    return _supabase.auth
         .signInWithIdToken(
           provider: sb.Provider.google,
           idToken: idToken,

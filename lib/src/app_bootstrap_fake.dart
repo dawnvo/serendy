@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/app_bootstrap.dart';
 import 'package:serendy/src/configs/exceptions/async_error_logger.dart';
+import 'package:serendy/src/features/auth/auth.dart';
+import 'package:serendy/src/features/auth/infrastructure/auth_repository_fake.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
@@ -14,6 +16,7 @@ import 'package:serendy/src/features/evaluation/infrastructure/evaluation_reposi
 
 extension AppBootstrapFake on AppBootstrap {
   Future<ProviderContainer> createFakeProviderContainer() async {
+    final authRepository = AuthRepositoryFake();
     final userRepository = UserRepositoryFake();
     final mediaRepository = MediaRepositoryFake();
     final themeRepository = ThemeRepositoryFake();
@@ -22,6 +25,7 @@ extension AppBootstrapFake on AppBootstrap {
 
     return ProviderContainer(
       overrides: [
+        authRepositoryProvider.overrideWithValue(authRepository),
         userRepositoryProvider.overrideWithValue(userRepository),
         mediaRepositoryProvider.overrideWithValue(mediaRepository),
         themeRepositoryProvider.overrideWithValue(themeRepository),

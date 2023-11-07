@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/application/auth_module.dart';
 import 'package:serendy/src/features/user/user.dart';
 
 part 'sign_up_controller.g.dart';
@@ -42,8 +43,8 @@ class SignUpController extends _$SignUpController {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       // * 사용자 정보를 불러와요.
-      final supabase = ref.watch(supabaseClientProvider);
-      final currentUser = supabase.auth.currentUser!;
+      final authRepository = ref.watch(authRepositoryProvider);
+      final currentUser = authRepository.currentUser!;
 
       // * 계정을 만들어요.
       final created = await ref.read(createUserProvider(

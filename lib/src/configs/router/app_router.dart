@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/user/user.dart';
@@ -18,7 +19,7 @@ final __shellNavigatorDiscoverKey = GlobalKey<NavigatorState>();
 final __shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final supabase = ref.watch(supabaseClientProvider);
+  final authRepository = ref.watch(authRepositoryProvider);
   final analytics = ref.watch(firebaseAnalyticsProvider);
 
   return GoRouter(
@@ -26,15 +27,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     refreshListenable: GoRouterRefreshStream(
-      supabase.auth.onAuthStateChange,
+      authRepository.authStateChange(),
     ),
     redirect: (context, state) async {
       final location = state.matchedLocation;
 
-      // * 인증 세션이 유효한지 확인해요.
+      // * 인증이 유효한지 확인해요.
       // * 유효하지 않으면 로그인 화면으로 이동해요.
-      final session = supabase.auth.currentSession;
-      if (session == null) {
+      final user = authRepository.currentUser;
+      if (user == null) {
         return AppRoutes._signInLocation;
       }
 
@@ -42,7 +43,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       // * 회원가입 화면으로 이동해요.
       if (location == AppRoutes._homeLocation) {
         try {
-          await ref.read(getUserProvider(id: session.user.id).future);
+          await ref.read(getUserProvider(id: user.id).future);
         } on EntityNotFoundException {
           return AppRoutes._signUpLocation;
         }

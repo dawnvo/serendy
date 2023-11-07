@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/user/application/user_service.dart';
 
@@ -15,11 +16,16 @@ class SettingsController extends _$SettingsController {
 
   /// 세렌디 주요 URL을 불러와요.
   Future<void> _fetch() async {
+    List<dynamic> data = List.filled(4, {'url': 'https://serendy.vercel.app'});
+
     // * URL을 불러와요.
-    final supabase = ref.watch(supabaseClientProvider);
-    final data = await supabase //
-        .from(TablePath.rootUrl)
-        .select<PostgrestList>('url');
+    // FIXME: 개발 환경일 경우 supabase 미사용
+    if (!kDebugMode) {
+      final supabase = ref.watch(supabaseClientProvider);
+      data = await supabase //
+          .from(TablePath.rootUrl)
+          .select<PostgrestList>('url');
+    }
 
     // * 내 정보를 불러와요.
     final user = await ref.watch(getMeProvider.future);
