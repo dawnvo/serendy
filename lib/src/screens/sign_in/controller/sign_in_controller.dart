@@ -18,10 +18,10 @@ class SignInController extends _$SignInController {
 
     try {
       // * 로그인을 진행해요.
-      final auth = await ref.read(signInWithGoogleProvider.future);
+      final user = await ref.read(signInWithGoogleProvider.future);
 
       // * 회원가입이 필요한 사용자인지 확인해요.
-      await checkAndSignUpIfNotExists(auth.user!.id);
+      await checkAndSignUpIfNotExists(user!.id);
 
       // * 관련 공급자를 새로고침해요.
       ref.invalidate(currentUserIdProvider);

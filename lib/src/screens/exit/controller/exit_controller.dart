@@ -49,7 +49,7 @@ class ExitController extends _$ExitController with NotifierMounted {
       ).future));
 
       // * 사용자 계정을 삭제해요.
-      futures.add(ref.read(deleteAuthUserProvider.future));
+      futures.add(ref.read(deleteAuthProvider.future));
 
       // * 로그아웃해요.
       futures.add(ref.read(signOutWithGoogleProvider.future));
