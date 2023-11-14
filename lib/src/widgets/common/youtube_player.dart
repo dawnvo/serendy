@@ -31,9 +31,9 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = yp.ProgressBarColors(
-      handleColor: context.colorScheme.primary,
-      playedColor: context.colorScheme.primary,
+    const colors = yp.ProgressBarColors(
+      handleColor: Color(0xFFFF0000),
+      playedColor: Color(0xFFFF0000),
     );
 
     return yp.YoutubePlayer(

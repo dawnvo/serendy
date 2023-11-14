@@ -28,8 +28,9 @@ final class ThemeItem extends Equatable {
         id: mediaId,
         title: title,
         image: image,
+        thumbnail: image,
         //dummy
-        type: MediaType.anime,
+        type: MediaType.tv,
         status: MediaStatus.finished,
         keywords: const [],
       );

@@ -23,8 +23,9 @@ final class EvaluationMedia extends Equatable {
         id: id,
         title: title,
         image: image,
+        thumbnail: image,
         keywords: const [],
-        type: MediaType.anime,
+        type: MediaType.tv,
         status: MediaStatus.finished,
       );
 }

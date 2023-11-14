@@ -13,12 +13,12 @@ class MediaDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final youtubeId = media.youtubeId;
+    final youtubeId = media.trailer;
 
-    // * 예고편 주소가 존재하면 영상을 틀어요.
-    if (youtubeId.isNotEmpty) {
+    // * 트레일러가 존재하면 영상을 틀어요.
+    if (youtubeId != null) {
       return __YoutubeTrailerBody(
-        youtubeId: youtubeId.first!,
+        youtubeId: youtubeId,
         keywords: media.keywords.map((genre) => genre).toList(),
       );
     }

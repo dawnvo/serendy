@@ -8,8 +8,9 @@ extension MediaStatusX on MediaStatus {
   String get label => switch (this) {
         MediaStatus.finished => '완결',
         MediaStatus.releasing => '방영 중',
-        MediaStatus.unreleased => '방영 전',
+        MediaStatus.upcoming => '방영 예정',
         MediaStatus.cancelled => '방영 취소',
+        MediaStatus.hiatus => '방영 휴재',
       };
 }
 

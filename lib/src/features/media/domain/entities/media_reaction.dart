@@ -14,5 +14,8 @@ final class MediaReaction extends Equatable {
   });
 
   @override
-  List<Object?> get props => [emotion];
+  List<Object?> get props => [
+        emotion,
+        count,
+      ];
 }

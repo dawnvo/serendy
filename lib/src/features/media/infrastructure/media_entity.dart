@@ -10,14 +10,19 @@ final class MediaEntity {
     this.id,
     this.type,
     this.status,
-    this.isAdult,
+    this.adult,
     this.title,
+    this.overview,
     this.image,
-    this.synopsis,
+    this.thumbnail,
+    this.color,
     this.keywords,
-    this.youtubeId,
+    this.synonyms,
     this.startDate,
     this.endDate,
+    this.trailer,
+    this.productions,
+    this.externals,
     this.popularity,
     this.hitsCount,
     this.createdAt,
@@ -28,14 +33,19 @@ final class MediaEntity {
   final MediaID? id;
   final MediaType? type;
   final MediaStatus? status;
-  final bool? isAdult;
+  final bool? adult;
   final String? title;
+  final String? overview;
   final String? image;
-  final String? synopsis;
+  final String? thumbnail;
+  final String? color;
   final List<String>? keywords;
-  final List<String?>? youtubeId;
+  final List<String>? synonyms;
   final DateTime? startDate;
   final DateTime? endDate;
+  final String? trailer;
+  final List<String>? productions;
+  final List<MediaExternalEntity>? externals;
 
   //analytical
   final double? popularity;
@@ -48,6 +58,24 @@ final class MediaEntity {
 
   factory MediaEntity.fromJson(Json json) => _$MediaEntityFromJson(json);
   Json toJson() => _$MediaEntityToJson(this);
+}
+
+@JsonSerializable()
+class MediaExternalEntity {
+  const MediaExternalEntity({
+    this.name,
+    this.url,
+    this.createdAt,
+  });
+
+  final String? name;
+  final String? url;
+
+  //timestamp
+  final DateTime? createdAt;
+
+  factory MediaExternalEntity.fromJson(Json json) => _$MediaExternalEntityFromJson(json);
+  Json toJson() => _$MediaExternalEntityToJson(this);
 }
 
 @JsonSerializable()

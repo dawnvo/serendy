@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:serendy/src/features/auth/auth.dart';
 import 'package:serendy/src/features/media/media.dart';
 
 part 'media_service.g.dart';
@@ -42,33 +41,4 @@ Future<List<MediaReaction?>> getMediaReactions(
   required MediaID id,
 }) {
   return ref.read(getMediaReactionsUsecaseProvider).execute((mediaId: id));
-}
-
-/// 작품을 추가해요.
-@riverpod
-Future<void> addMedia(
-  AddMediaRef ref, {
-  required MediaStatus status,
-  required MediaType type,
-  required String title,
-  required String image,
-  required List<String> keywords,
-  String? synopsis,
-  DateTime? endDate,
-  bool? isAdult,
-  DateTime? startDate,
-}) {
-  final userId = ref.watch(requireUserIdProvider);
-  return ref.read(addMediaUsecaseProvider).execute((
-    executorId: userId,
-    image: image,
-    keywords: keywords,
-    status: status,
-    synopsis: synopsis,
-    title: title,
-    type: type,
-    endDate: endDate,
-    isAdult: isAdult,
-    startDate: startDate,
-  ));
 }

@@ -8,6 +8,8 @@ final class MediaRepositoryImpl implements MediaRepository {
   final SupabaseClient supabase;
 
   static const String _tableMedia = TablePath.media;
+  // static const String _tableMediaExternal = TablePath.mediaExternal;
+  static const String _tableMediaStatistics = TablePath.mediaStatistics;
   static const String _tableMediaReaction = TablePath.mediaReaction;
 
   /**
@@ -115,31 +117,6 @@ final class MediaRepositoryImpl implements MediaRepository {
   }
 
   /**
-   * 작품을 추가해요.
-   */
-  @override
-  Future<void> upsertMedia(
-    Media media,
-  ) {
-    final entity = MediaEntity(
-      id: media.id,
-      type: media.type,
-      status: media.status,
-      title: media.title,
-      image: media.image,
-      keywords: media.keywords,
-      synopsis: media.synopsis,
-      youtubeId: media.youtubeId,
-      isAdult: media.isAdult,
-      startDate: media.startDate,
-      endDate: media.endDate,
-    ).toJson();
-    return supabase //
-        .from(_tableMedia)
-        .upsert(entity);
-  }
-
-  /**
    * 작품 조회수를 +1 해요.
    */
   @override
@@ -150,8 +127,8 @@ final class MediaRepositoryImpl implements MediaRepository {
       hitsCount: media.hitsCount + 1,
     ).toJson();
     return supabase //
-        .from(_tableMedia)
+        .from(_tableMediaStatistics)
         .update(entity)
-        .eq('id', media.id);
+        .eq('media_id', media.id);
   }
 }

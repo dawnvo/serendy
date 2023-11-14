@@ -86,20 +86,5 @@ final getMediaReactionsUsecaseProvider =
 
 typedef GetMediaReactionsUsecaseRef
     = AutoDisposeProviderRef<GetMediaReactionsUsecase>;
-String _$addMediaUsecaseHash() => r'24a25107097808a6b692ec94fc25a1be01213715';
-
-/// See also [addMediaUsecase].
-@ProviderFor(addMediaUsecase)
-final addMediaUsecaseProvider = AutoDisposeProvider<AddMediaUsecase>.internal(
-  addMediaUsecase,
-  name: r'addMediaUsecaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addMediaUsecaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef AddMediaUsecaseRef = AutoDisposeProviderRef<AddMediaUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

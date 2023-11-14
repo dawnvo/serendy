@@ -7,18 +7,28 @@ abstract final class MediaMapper {
    *  Entity -> Domain
    */
   static Media toDomain(MediaEntity entity) {
+    final externals = entity.externals
+        ?.map((external) => MediaExternal(
+              name: external.name!,
+              url: external.url!,
+            ))
+        .toList();
     return Media(
       id: entity.id ?? '',
-      type: entity.type ?? MediaType.anime,
+      type: entity.type ?? MediaType.tv,
       status: entity.status ?? MediaStatus.finished,
+      adult: entity.adult,
       title: entity.title ?? '',
+      overview: entity.overview,
       image: entity.image ?? '',
-      synopsis: entity.synopsis,
+      thumbnail: entity.thumbnail ?? '',
+      color: entity.color,
       keywords: entity.keywords ?? [],
-      youtubeId: entity.youtubeId,
-      isAdult: entity.isAdult,
       startDate: entity.startDate,
       endDate: entity.endDate,
+      trailer: entity.trailer,
+      productions: entity.productions ?? [],
+      externals: externals,
       popularity: entity.popularity,
       hitsCount: entity.hitsCount,
     );

@@ -1,4 +1,3 @@
-import 'package:serendy/src/features/media/domain/usecases/add_media_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_media_reactions_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_media_usecase.dart';
 import 'package:serendy/src/features/media/domain/usecases/get_medias_usecase.dart';
@@ -37,10 +36,4 @@ GetMediaUsecase getMediaUsecase(GetMediaUsecaseRef ref) {
 GetMediaReactionsUsecase getMediaReactionsUsecase(GetMediaReactionsUsecaseRef ref) {
   final mediaRepository = ref.watch(mediaRepositoryProvider);
   return GetMediaReactionsUsecase(mediaRepository);
-}
-
-@riverpod
-AddMediaUsecase addMediaUsecase(AddMediaUsecaseRef ref) {
-  final mediaRepository = ref.watch(mediaRepositoryProvider);
-  return AddMediaUsecase(mediaRepository);
 }

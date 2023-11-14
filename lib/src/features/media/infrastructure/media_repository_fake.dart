@@ -65,15 +65,6 @@ final class MediaRepositoryFake implements MediaRepository {
   }
 
   @override
-  Future<void> upsertMedia(
-    Media media,
-  ) async {
-    log(name: 'MediaRepository', 'upsertMedia');
-    final medias = _mediaStore.value;
-    medias.add(media);
-  }
-
-  @override
   Future<void> incrementHits(
     Media media,
   ) async {
@@ -83,36 +74,38 @@ final class MediaRepositoryFake implements MediaRepository {
 
 final List<Media> mockMedias = [
   Media(
-    type: MediaType.anime,
+    type: MediaType.tv,
     status: MediaStatus.finished,
     title: "강철의 연금술사 BROTHERHOOD",
     image: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
     keywords: const ["코미디", "액션", "능력"],
-    youtubeId: const ['gKWEUJ4r5do'],
+    trailer: 'gKWEUJ4r5do',
   ),
   Media(
-    type: MediaType.anime,
+    type: MediaType.tv,
     status: MediaStatus.finished,
     title: "슈타인즈 게이트",
     image: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
     keywords: const ["코미디", "액션", "능력"],
-    youtubeId: const ['gKWEUJ4r5do'],
+    trailer: 'gKWEUJ4r5do',
   ),
   Media(
-    type: MediaType.anime,
+    type: MediaType.tv,
     status: MediaStatus.finished,
     title: "진격의 거인",
     image: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
     keywords: const ["코미디", "액션", "능력"],
-    youtubeId: const ['gKWEUJ4r5do'],
   ),
   Media(
-    type: MediaType.anime,
+    type: MediaType.tv,
     status: MediaStatus.finished,
     title: "주술회전",
     image: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
     keywords: const ["코미디", "액션", "능력"],
-    youtubeId: const ['gKWEUJ4r5do'],
   ),
 ];
 

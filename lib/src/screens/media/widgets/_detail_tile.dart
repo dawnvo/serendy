@@ -11,7 +11,7 @@ class _MediaDetailsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (media.youtubeId.isNotEmpty) {
+    if (media.trailer != null) {
       return ListTile(
         onTap: () => _handleShowBottomSheet(context),
         leading: SvgPicture.asset(

@@ -10,15 +10,17 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       id: json['id'] as String?,
       type: $enumDecodeNullable(_$MediaTypeEnumMap, json['type']),
       status: $enumDecodeNullable(_$MediaStatusEnumMap, json['status']),
-      isAdult: json['is_adult'] as bool?,
+      adult: json['adult'] as bool?,
       title: json['title'] as String?,
+      overview: json['overview'] as String?,
       image: json['image'] as String?,
-      synopsis: json['synopsis'] as String?,
+      thumbnail: json['thumbnail'] as String?,
+      color: json['color'] as String?,
       keywords: (json['keywords'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      youtubeId: (json['youtube_id'] as List<dynamic>?)
-          ?.map((e) => e as String?)
+      synonyms: (json['synonyms'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
       startDate: json['start_date'] == null
           ? null
@@ -26,6 +28,13 @@ MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       endDate: json['end_date'] == null
           ? null
           : DateTime.parse(json['end_date'] as String),
+      trailer: json['trailer'] as String?,
+      productions: (json['productions'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      externals: (json['externals'] as List<dynamic>?)
+          ?.map((e) => MediaExternalEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       popularity: (json['popularity'] as num?)?.toDouble(),
       hitsCount: json['hits_count'] as int?,
       createdAt: json['created_at'] == null
@@ -51,14 +60,20 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) {
   writeNotNull('id', instance.id);
   writeNotNull('type', _$MediaTypeEnumMap[instance.type]);
   writeNotNull('status', _$MediaStatusEnumMap[instance.status]);
-  writeNotNull('is_adult', instance.isAdult);
+  writeNotNull('adult', instance.adult);
   writeNotNull('title', instance.title);
+  writeNotNull('overview', instance.overview);
   writeNotNull('image', instance.image);
-  writeNotNull('synopsis', instance.synopsis);
+  writeNotNull('thumbnail', instance.thumbnail);
+  writeNotNull('color', instance.color);
   writeNotNull('keywords', instance.keywords);
-  writeNotNull('youtube_id', instance.youtubeId);
+  writeNotNull('synonyms', instance.synonyms);
   writeNotNull('start_date', instance.startDate?.toIso8601String());
   writeNotNull('end_date', instance.endDate?.toIso8601String());
+  writeNotNull('trailer', instance.trailer);
+  writeNotNull('productions', instance.productions);
+  writeNotNull(
+      'externals', instance.externals?.map((e) => e.toJson()).toList());
   writeNotNull('popularity', instance.popularity);
   writeNotNull('hits_count', instance.hitsCount);
   writeNotNull('created_at', instance.createdAt?.toIso8601String());
@@ -68,18 +83,45 @@ Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) {
 }
 
 const _$MediaTypeEnumMap = {
-  MediaType.anime: 'anime',
+  MediaType.tv: 'tv',
   MediaType.movie: 'movie',
-  MediaType.manga: 'manga',
-  MediaType.novel: 'novel',
+  MediaType.ova: 'ova',
+  MediaType.ona: 'ona',
+  MediaType.special: 'special',
+  MediaType.music: 'music',
 };
 
 const _$MediaStatusEnumMap = {
   MediaStatus.finished: 'finished',
   MediaStatus.releasing: 'releasing',
-  MediaStatus.unreleased: 'unreleased',
+  MediaStatus.upcoming: 'upcoming',
   MediaStatus.cancelled: 'cancelled',
+  MediaStatus.hiatus: 'hiatus',
 };
+
+MediaExternalEntity _$MediaExternalEntityFromJson(Map<String, dynamic> json) =>
+    MediaExternalEntity(
+      name: json['name'] as String?,
+      url: json['url'] as String?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+    );
+
+Map<String, dynamic> _$MediaExternalEntityToJson(MediaExternalEntity instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  writeNotNull('url', instance.url);
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  return val;
+}
 
 MediaReactionEntity _$MediaReactionEntityFromJson(Map<String, dynamic> json) =>
     MediaReactionEntity(
