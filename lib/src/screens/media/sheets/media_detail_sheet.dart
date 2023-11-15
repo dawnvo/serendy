@@ -20,6 +20,7 @@ class MediaDetailSheet extends StatelessWidget {
       return __YoutubeTrailerBody(
         youtubeId: youtubeId,
         keywords: media.keywords.map((genre) => genre).toList(),
+        overview: media.overview,
       );
     }
     // * 없으면 안내 화면을 표시해요.
@@ -33,25 +34,44 @@ class __YoutubeTrailerBody extends ConsumerWidget {
   const __YoutubeTrailerBody({
     required this.youtubeId,
     required this.keywords,
+    required this.overview,
   });
 
   final String youtubeId;
   final List<String> keywords;
+  final String? overview;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        YoutubePlayer(config: YoutubePlayerConfig(videoId: youtubeId)),
-        Padding(
-          padding: const EdgeInsets.all(kContentPadding),
-          child: Wrap(
+    return SizedBox(
+      height: context.screenHeight / 2,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            YoutubePlayer(config: YoutubePlayerConfig(videoId: youtubeId)),
+            _buildContent(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(kContentPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
             spacing: 8,
             children: keywords.map((genre) => Tag(genre)).toList(),
           ),
-        ),
-      ],
+          Gap.h8,
+          if (overview != null) Text(overview!),
+          Gap.h8,
+        ],
+      ),
     );
   }
 }
@@ -63,19 +83,20 @@ class __EmptyBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(kContentPadding),
-      child: Column(children: [
-        const SizedBox(
-          width: 200,
-          height: 200,
-          child: Placeholder(),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(RemixIcon.message_3_line, size: 80),
+            Gap.h24,
+            Text(
+              "정보를 마련하는 중이에요",
+              textAlign: TextAlign.center,
+              style: context.textTheme.titleMedium,
+            ),
+          ],
         ),
-        Gap.h16,
-        Text(
-          "정보를 마련하는 중이에요",
-          textAlign: TextAlign.center,
-          style: context.textTheme.titleMedium,
-        ),
-      ]),
+      ),
     );
   }
 }
