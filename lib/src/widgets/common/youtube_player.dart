@@ -36,11 +36,37 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
       playedColor: Color(0xFFFF0000),
     );
 
-    return yp.YoutubePlayer(
-      controller: _controller,
-      bottomActions: [
-        yp.ProgressBar(isExpanded: true, colors: colors),
-      ],
+    return yp.YoutubePlayerBuilder(
+      player: yp.YoutubePlayer(
+        controller: _controller,
+        bottomActions: [
+          yp.ProgressBar(isExpanded: true, colors: colors),
+        ],
+      ),
+      builder: (context, player) => GestureDetector(
+        onDoubleTapDown: (details) {
+          final renderBox = context.findRenderObject() as RenderBox;
+
+          final tapPosition = renderBox.globalToLocal(details.globalPosition);
+          final halfScreenWidth = context.screenWidth / 2;
+
+          const skipSeconds = 5;
+          final currentPosition = _controller.value.position;
+
+          // * 좌측 영역 탭한 경우 -5s
+          if (tapPosition.dx < halfScreenWidth) {
+            var position = currentPosition - const Duration(seconds: skipSeconds);
+            position = position.isNegative ? const Duration() : position;
+            _controller.seekTo(position);
+          }
+          // * 우측 영역 탭한 경우 +5s
+          else {
+            final position = currentPosition + const Duration(seconds: skipSeconds);
+            _controller.seekTo(position);
+          }
+        },
+        child: player,
+      ),
     );
   }
 }
