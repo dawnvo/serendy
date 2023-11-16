@@ -48,6 +48,7 @@ final class MediaRepositoryImpl implements MediaRepository {
       status,
       title,
       image,
+      thumbnail,
       keywords,
       start_date
     ''';

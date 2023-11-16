@@ -9,7 +9,7 @@ ScrollController usePagination(
 
   void scrollListener() {
     // * 최대 스크롤 범위에 달하면 [fetchData]를 실행해요.
-    double maxScroll = scrollController.position.maxScrollExtent;
+    double maxScroll = scrollController.position.maxScrollExtent - 40.0;
     double currentScroll = scrollController.position.pixels;
     if (maxScroll <= currentScroll && canLoadMore()) {
       fetchData();

@@ -26,7 +26,7 @@ abstract final class MediaMapper {
       keywords: entity.keywords ?? [],
       startDate: entity.startDate,
       endDate: entity.endDate,
-      trailer: entity.trailer,
+      trailer: entity.trailer?.trim(),
       productions: entity.productions ?? [],
       externals: externals,
       popularity: entity.popularity,

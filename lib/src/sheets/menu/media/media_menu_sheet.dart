@@ -20,8 +20,8 @@ class MediaMenuSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return MenuTemplate(
       info: MenuInfo(
-        image: media.image,
         title: media.title,
+        image: media.thumbnail,
       ),
       options: [
         EvaluateMediaMenuItem(media: media),

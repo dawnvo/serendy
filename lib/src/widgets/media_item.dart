@@ -19,8 +19,8 @@ class MediaItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListItem(
       onTap: onTap,
-      image: media.image,
       title: media.title,
+      image: media.thumbnail,
       trailing: _buildMoreButton(context),
     );
   }
