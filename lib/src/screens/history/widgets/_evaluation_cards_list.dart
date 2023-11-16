@@ -5,29 +5,68 @@ class _HistoryEvaluationCardsList extends StatelessWidget {
 
   final List<Evaluation?> evaluations;
 
+  static const _aspectRatio = 1 / 1;
+  static const _spacing = 3.0;
+
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
+    final columns = getValueForScreenType<int>(
+      context: context,
+      mobile: 3,
+      tablet: 5,
+    );
+
+    return SliverGrid.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: columns,
+        mainAxisSpacing: _spacing,
+        crossAxisSpacing: _spacing,
+        childAspectRatio: _aspectRatio,
+      ),
       itemCount: evaluations.length,
       itemBuilder: (BuildContext context, int index) {
         final evaluation = evaluations[index]!;
-        return Padding(
-          padding: const EdgeInsets.only(bottom: Sizes.p16),
-          child: _buildEvaluationCard(context, evaluation),
-        );
+        return __EvaluationTile(evaluation: evaluation);
       },
     );
   }
+}
 
-  Widget _buildEvaluationCard(BuildContext context, Evaluation evaluation) {
-    return EvaluationCard(
+class __EvaluationTile extends StatelessWidget {
+  const __EvaluationTile({required this.evaluation});
+  final Evaluation evaluation;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
       onTap: () => context.pushNamed(
         AppRoutes.media,
         pathParameters: {'id': evaluation.media.id},
         extra: evaluation.media.convertEntity,
       ),
-      onMoreTap: () => EvaluationMenuSheet.show(context, evaluation),
-      evaluation: evaluation,
+      onLongPress: () => EvaluationMenuSheet.show(
+        context,
+        evaluation,
+      ),
+      child: GridTile(
+        child: Stack(children: [
+          Positioned.fill(
+            child: CachedNetworkImage(
+              imageUrl: evaluation.media.image,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            bottom: Sizes.p4,
+            right: Sizes.p4,
+            child: SvgPicture.asset(
+              evaluation.emotion.filePath,
+              width: Sizes.p16,
+              height: Sizes.p16,
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
