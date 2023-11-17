@@ -153,7 +153,7 @@ final class AppThemeData {
   }
 
   static const _buttonStyles = ButtonStyle(
-    textStyle: MaterialStatePropertyAll(TextStyle(fontWeight: FontWeight.bold)),
+    textStyle: MaterialStatePropertyAll(TextStyle(fontWeight: FontWeight.w600)),
     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Sizes.p12)),
     )),

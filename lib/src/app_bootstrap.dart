@@ -2,12 +2,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:serendy/src/app.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 class AppBootstrap {
   Widget createRootWidget(ProviderContainer container) {
     // * Initialize to start the listener
-    container.read(countEvaluationsProvider);
 
     // * Register error handlers
     final errorLogger = container.read(errorLoggerProvider);

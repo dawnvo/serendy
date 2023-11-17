@@ -1,5 +1,4 @@
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/evaluation/evaluation.dart';
 
 class SerendyApp extends ConsumerWidget {
   const SerendyApp();
@@ -8,19 +7,6 @@ class SerendyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
     final themeData = AppThemeData.fillWith();
-
-    // * 핵심 기능이에요.
-    // * 조건에 충족할 경우 RankUp 화면을 보여줘요.
-    ref.listen(countEvaluationsProvider, (prev, next) {
-      if (prev == null || !prev.hasValue || !next.hasValue) return;
-      final prevCount = prev.value!;
-      final nextCount = next.value!;
-
-      final rank = findRankByCount(nextCount);
-      if (prevCount < rank.range.min && nextCount == rank.range.min) {
-        ref.read(goRouterProvider).pushNamed(AppRoutes.rank, extra: rank);
-      }
-    });
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

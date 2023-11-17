@@ -1,13 +1,14 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:serendy/src/app_bootstrap.dart';
-import 'package:serendy/src/configs/exceptions/async_error_logger.dart';
+import 'package:serendy/src/configs/configs.dart';
+
 import 'package:serendy/src/features/auth/auth.dart';
-import 'package:serendy/src/features/auth/infrastructure/auth_repository_fake.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/features/theme/theme.dart';
 import 'package:serendy/src/features/dislike/dislike.dart';
 import 'package:serendy/src/features/evaluation/evaluation.dart';
+
+import 'package:serendy/src/features/auth/infrastructure/auth_repository_fake.dart';
 import 'package:serendy/src/features/user/infrastructure/user_repository_fake.dart';
 import 'package:serendy/src/features/media/infrastructure/media_repository_fake.dart';
 import 'package:serendy/src/features/theme/infrastructure/theme_repository_fake.dart';
@@ -33,8 +34,9 @@ extension AppBootstrapFake on AppBootstrap {
         evaluationRepositoryProvider.overrideWithValue(evaluationRepository),
       ],
       observers: [
-        AsyncErrorLogger(),
-        ProviderObserverLogger(),
+        DebugObserver(),
+        ErrorObserver(),
+        RankObserver(),
       ],
     );
   }

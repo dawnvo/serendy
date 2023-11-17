@@ -11,7 +11,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // * 환경 설정
-  // FIXME: 개발 환경일 경우 Firebase 삭제
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);

@@ -6,7 +6,6 @@ import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
 import '../media/controller/media_controller.dart';
-import '../library/controller/library_controller.dart';
 import 'controller/evaluate_media_controller.dart';
 
 part 'widgets/_background.dart';
@@ -25,15 +24,13 @@ class EvaluateMediaScreen extends ConsumerWidget {
     ref.listen(evaluateMediaControllerProvider(media.id), (previous, next) {
       //success
       if (next.status == EvaluateMediaStatus.success) {
+        // * [EVENT] 평가 개수를 갱신해요.
+        ref.invalidate(countEvaluationsProvider);
+
         // * [EVENT] 미디어의 반응 목록을 갱신해요.
         ref //
             .read(mediaControllerProvider(media.id).notifier)
             .onMediaReactionsUpdated();
-
-        // * [EVENT] 나의 평가 개수를 갱신해요.
-        ref //
-            .read(libraryControllerProvider.notifier)
-            .onEvaluationsCountUpdated();
 
         // * 평가를 번복한 경우 메시지로 안내해요.
         if (next.evaluation == null) {

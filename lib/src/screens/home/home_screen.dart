@@ -1,4 +1,5 @@
 import 'package:serendy/src/configs/configs.dart';
+import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -19,6 +20,10 @@ class HomeScreen extends HookConsumerWidget {
       ref.read(homeControllerProvider.notifier).fetchMore,
       ref.read(homeControllerProvider.notifier).canLoadMore,
     );
+
+    // * 주의: 평가 개수를 추적할 때 필요해요
+    // * RankObserver 초기화 중 예외가 발생할 수 있습니다.
+    ref.watch(countEvaluationsProvider);
 
     return _HomeTemplate(
       controller: scrollController,

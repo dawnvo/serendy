@@ -3,8 +3,6 @@ import 'package:serendy/src/features/evaluation/evaluation.dart';
 import 'package:serendy/src/features/media/media.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
-import '../../../screens/library/controller/library_controller.dart';
-
 class DeleteEvaluationMenuItem extends ConsumerWidget {
   const DeleteEvaluationMenuItem({required this.media});
   final Media media;
@@ -18,9 +16,7 @@ class DeleteEvaluationMenuItem extends ConsumerWidget {
       await ref.read(removeEvaluationProvider(mediaId: media.id).future);
 
       // * [EVENT] 평가 개수를 갱신해요.
-      ref //
-          .read(libraryControllerProvider.notifier)
-          .onEvaluationsCountUpdated();
+      ref.invalidate(countEvaluationsProvider);
 
       // * 위젯이 폐기된 경우 작업을 끝내요.
       if (!context.mounted) return;
