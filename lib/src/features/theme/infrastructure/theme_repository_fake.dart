@@ -19,7 +19,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
     int? page,
     int? perPage,
   }) async {
-    log(name: 'ThemeRepository', 'fetchThemes');
+    log(name: 'Repository', 'fetchThemes');
     var themes = _themeStore.value;
     if (userId != null) themes = themes.where((_) => _.owner.id == userId).toList();
     if (userId == null) themes = themes.where((_) => _.private == false).toList();
@@ -30,7 +30,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<Theme?> fetchThemeSlice({
     required ThemeID id,
   }) async {
-    log(name: 'ThemeRepository', 'fetchThemeSlice');
+    log(name: 'Repository', 'fetchThemeSlice');
     final themes = _themeStore.value;
     return themes //
         .where((_) => _.id == id)
@@ -42,7 +42,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<Theme?> fetchTheme({
     required ThemeID id,
   }) async {
-    log(name: 'ThemeRepository', 'fetchTheme');
+    log(name: 'Repository', 'fetchTheme');
     final themes = _themeStore.value;
     return themes //
         .where((_) => _.id == id)
@@ -54,7 +54,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<void> createTheme(
     Theme theme,
   ) async {
-    log(name: 'ThemeRepository', 'createTheme');
+    log(name: 'Repository', 'createTheme');
     final themes = _themeStore.value;
     themes.add(theme);
   }
@@ -63,7 +63,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<void> updateTheme(
     Theme theme,
   ) async {
-    log(name: 'ThemeRepository', 'updateTheme');
+    log(name: 'Repository', 'updateTheme');
     final themes = _themeStore.value;
     final index = themes.indexWhere((_) => _.id == theme.id);
     if (index != -1) themes[index] = theme;
@@ -73,7 +73,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<void> removeTheme(
     Theme theme,
   ) async {
-    log(name: 'ThemeRepository', 'removeTheme');
+    log(name: 'Repository', 'removeTheme');
     final themes = _themeStore.value;
     themes.removeWhere((_) => _.id == theme.id);
   }
@@ -82,7 +82,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
   Future<List<ThemeItem?>> fetchItems({
     required ThemeID id,
   }) async {
-    log(name: 'ThemeRepository', 'fetchItems');
+    log(name: 'Repository', 'fetchItems');
     final themeItems = _themeItemStore.value;
     return themeItems;
   }
@@ -92,7 +92,7 @@ final class ThemeRepositoryFake implements ThemeRepository {
     required ThemeID themeId,
     required MediaID mediaId,
   }) async {
-    log(name: 'ThemeRepository', 'addItem');
+    log(name: 'Repository', 'addItem');
     final themeItems = _themeItemStore.value;
     themeItems.add(ThemeItem(
       mediaId: mediaId,
@@ -107,20 +107,20 @@ final class ThemeRepositoryFake implements ThemeRepository {
     required ThemeID themeId,
     required MediaID mediaId,
   }) async {
-    log(name: 'ThemeRepository', 'deleteItem');
+    log(name: 'Repository', 'deleteItem');
     final themeItems = _themeItemStore.value;
     themeItems.removeWhere((_) => _.mediaId == mediaId);
   }
 
   @override
   Future<String?> uploadThemeImage(Theme theme) async {
-    log(name: 'ThemeRepository', 'uploadThemeImage');
+    log(name: 'Repository', 'uploadThemeImage');
     return Assets.themeDefaultImage;
   }
 
   @override
   Future<void> deleteThemeImage(Theme theme) async {
-    log(name: 'ThemeRepository', 'deleteThemeImage');
+    log(name: 'Repository', 'deleteThemeImage');
   }
 }
 
@@ -128,23 +128,23 @@ final mockThemes = [
   Theme(
     owner: _mockThemeOwner,
     title: "M3",
-    image: "https://vo.la/EKT5x",
+    image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx20789-SsAI4pvvI9EU.jpg",
     description: "특히 과학연구의 분야에서 실험 도중에 실패해서 얻은 결과에서 중대한 발견 또는 발명을 하는 것을 말한다",
   ),
   Theme(
     owner: _mockThemeOwner,
     title: "자바스크립트",
-    image: "https://vo.la/hOQob",
+    image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx21127-7ARWZkDXKiiD.jpg",
   ),
   Theme(
     owner: _mockThemeOwner,
     title: "ES2023에서 도입된 자바스크립트의 새로운 배열 복사 메서드",
-    image: "https://vo.la/M5xSg",
+    image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx20876-CCVVLTSsnKC8.jpg",
   ),
   Theme(
     owner: _mockThemeOwner,
     title: "소 잃고 뇌약간 고친 MSA 구현기",
-    image: "https://vo.la/Zzy1u",
+    image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx98478-dF3mpSKiZkQu.jpg",
   ),
 ];
 

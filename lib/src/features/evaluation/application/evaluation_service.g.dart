@@ -169,13 +169,13 @@ class _GetEvaluationsProviderElement
   int? get page => (origin as GetEvaluationsProvider).page;
 }
 
-String _$countEvaluationsHash() => r'9ac86e4377cbfd00505c65c67f30a7f82b1435d7';
+String _$countEvaluationsHash() => r'df8e108e431a987f2610d6be8fb428be7d5bc866';
 
 /// 평가 개수를 조회해요.
 ///
 /// Copied from [countEvaluations].
 @ProviderFor(countEvaluations)
-final countEvaluationsProvider = AutoDisposeFutureProvider<int>.internal(
+final countEvaluationsProvider = FutureProvider<int>.internal(
   countEvaluations,
   name: r'countEvaluationsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -185,7 +185,7 @@ final countEvaluationsProvider = AutoDisposeFutureProvider<int>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CountEvaluationsRef = AutoDisposeFutureProviderRef<int>;
+typedef CountEvaluationsRef = FutureProviderRef<int>;
 String _$getEvaluationHash() => r'772c6e384f25a681a5c7a3fef7c6fb986ea1178e';
 
 /// 평가 정보를 불러와요.

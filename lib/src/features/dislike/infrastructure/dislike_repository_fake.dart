@@ -10,13 +10,13 @@ final class DislikeRepositoryFake extends DislikeRepository {
   Future<void> addDislike(
     Dislike dislike,
   ) async {
-    log(name: 'DislikeRepository', 'addDislike');
+    log(name: 'Repository', 'addDislike');
   }
 
   @override
   Future<void> clearDislikes(
     UserID userId,
   ) async {
-    log(name: 'DislikeRepository', 'clearDislikes');
+    log(name: 'Repository', 'clearDislikes');
   }
 }

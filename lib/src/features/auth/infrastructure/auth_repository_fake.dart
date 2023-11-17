@@ -11,25 +11,25 @@ class AuthRepositoryFake implements AuthRepositoryImpl {
 
   @override
   Stream<sb.User?> authStateChange() {
-    log(name: 'AuthRepository', 'authStateChange');
+    log(name: 'Repository', 'authStateChange');
     return _authStore.stream;
   }
 
   @override
   sb.User? get currentUser {
-    log(name: 'AuthRepository', 'currentUser');
+    log(name: 'Repository', 'currentUser');
     return _authStore.value;
   }
 
   @override
   Future<void> signOutWithGoogle() async {
-    log(name: 'AuthRepository', 'signOutWithGoogle');
+    log(name: 'Repository', 'signOutWithGoogle');
     _authStore.value = null;
   }
 
   @override
   Future<sb.User?> signInWithGoogle() async {
-    log(name: 'AuthRepository', 'signInWithGoogle');
+    log(name: 'Repository', 'signInWithGoogle');
     _authStore.value = _createUser();
     return _authStore.value;
   }

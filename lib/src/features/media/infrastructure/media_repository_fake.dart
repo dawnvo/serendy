@@ -16,7 +16,7 @@ final class MediaRepositoryFake implements MediaRepository {
     int? page,
     int? perPage,
   }) async {
-    log(name: 'MediaRepository', 'searchMedias');
+    log(name: 'Repository', 'searchMedias');
     final medias = _mediaStore.value;
     return medias //
         .where((_) => _.title.contains(query))
@@ -28,7 +28,7 @@ final class MediaRepositoryFake implements MediaRepository {
     int? page,
     int? perPage,
   }) async {
-    log(name: 'MediaRepository', 'fetchMedias');
+    log(name: 'Repository', 'fetchMedias');
     final medias = _mediaStore.value;
     return medias;
   }
@@ -37,7 +37,7 @@ final class MediaRepositoryFake implements MediaRepository {
   Future<Media?> fetchMediaSlice({
     required MediaID id,
   }) async {
-    log(name: 'MediaRepository', 'fetchMediaSlice');
+    log(name: 'Repository', 'fetchMediaSlice');
     final medias = _mediaStore.value;
     return medias //
         .where((_) => _.id == id)
@@ -48,7 +48,7 @@ final class MediaRepositoryFake implements MediaRepository {
   Future<Media?> fetchMedia({
     required MediaID id,
   }) async {
-    log(name: 'MediaRepository', 'fetchMedia');
+    log(name: 'Repository', 'fetchMedia');
     final medias = _mediaStore.value;
     return medias //
         .where((_) => _.id == id)
@@ -59,7 +59,7 @@ final class MediaRepositoryFake implements MediaRepository {
   Future<List<MediaReaction?>> fetchReactions({
     required MediaID id,
   }) async {
-    log(name: 'MediaRepository', 'fetchReactions');
+    log(name: 'Repository', 'fetchReactions');
     final mediaReactions = _mediaReactionStore.value;
     return mediaReactions;
   }
@@ -68,7 +68,7 @@ final class MediaRepositoryFake implements MediaRepository {
   Future<void> incrementHits(
     Media media,
   ) async {
-    log(name: 'MediaRepository', 'incrementHits');
+    log(name: 'Repository', 'incrementHits');
   }
 }
 
@@ -77,8 +77,8 @@ final List<Media> mockMedias = [
     type: MediaType.tv,
     status: MediaStatus.finished,
     title: "강철의 연금술사 BROTHERHOOD",
-    image: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-    thumbnail: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
+    image: "https://cdn.myanimelist.net/images/anime/1208/94745.webp",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1208/94745.webp",
     keywords: const ["코미디", "액션", "능력"],
     trailer: 'gKWEUJ4r5do',
   ),
@@ -86,8 +86,8 @@ final List<Media> mockMedias = [
     type: MediaType.tv,
     status: MediaStatus.finished,
     title: "슈타인즈 게이트",
-    image: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
-    thumbnail: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+    image: "https://cdn.myanimelist.net/images/anime/1935/127974.webp",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1935/127974.webp",
     keywords: const ["코미디", "액션", "능력"],
     trailer: 'gKWEUJ4r5do',
   ),
@@ -95,16 +95,16 @@ final List<Media> mockMedias = [
     type: MediaType.tv,
     status: MediaStatus.finished,
     title: "진격의 거인",
-    image: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
-    thumbnail: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+    image: "https://cdn.myanimelist.net/images/anime/10/47347.webp",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/10/47347.webp",
     keywords: const ["코미디", "액션", "능력"],
   ),
   Media(
     type: MediaType.tv,
     status: MediaStatus.finished,
     title: "주술회전",
-    image: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
-    thumbnail: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
+    image: "https://cdn.myanimelist.net/images/anime/1171/109222.webp",
+    thumbnail: "https://cdn.myanimelist.net/images/anime/1171/109222.webp",
     keywords: const ["코미디", "액션", "능력"],
   ),
 ];

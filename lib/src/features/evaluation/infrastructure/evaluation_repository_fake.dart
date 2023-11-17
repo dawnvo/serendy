@@ -19,7 +19,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
     int? page,
     int? perPage,
   }) async {
-    log(name: 'EvaluationRepository', 'fetchEvaluations');
+    log(name: 'Repository', 'fetchEvaluations');
     var evaluations = _evaluationStore.value;
     if (userId != null) evaluations = evaluations.where((_) => _.userId == userId).toList();
     if (mediaId != null) evaluations = evaluations.where((_) => _.media.id == mediaId).toList();
@@ -30,9 +30,9 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
   Future<int> countEvaluations({
     required UserID userId,
   }) async {
-    log(name: 'EvaluationRepository', 'countEvaluations');
+    log(name: 'Repository', 'countEvaluations');
     final evaluations = _evaluationStore.value;
-    return evaluations.length;
+    return evaluations.length + 490;
   }
 
   @override
@@ -40,7 +40,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
     required UserID userId,
     required MediaID mediaId,
   }) async {
-    log(name: 'EvaluationRepository', 'fetchEvaluationSlice');
+    log(name: 'Repository', 'fetchEvaluationSlice');
     final evaluations = _evaluationStore.value;
     return evaluations
         .where((_) => _.userId == userId)
@@ -53,7 +53,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
     required UserID userId,
     required MediaID mediaId,
   }) async {
-    log(name: 'EvaluationRepository', 'fetchEvaluation');
+    log(name: 'Repository', 'fetchEvaluation');
     final evaluations = _evaluationStore.value;
     return evaluations
         .where((_) => _.userId == userId)
@@ -66,7 +66,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
   Future<void> createEvaluation(
     Evaluation evaluation,
   ) async {
-    log(name: 'EvaluationRepository', 'createEvaluation');
+    log(name: 'Repository', 'createEvaluation');
     final evaluations = _evaluationStore.value;
     evaluations.add(evaluation);
   }
@@ -75,7 +75,7 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
   Future<void> updateEvaluation(
     Evaluation evaluation,
   ) async {
-    log(name: 'EvaluationRepository', 'updateEvaluation');
+    log(name: 'Repository', 'updateEvaluation');
     final evaluations = _evaluationStore.value;
     final index = evaluations.indexWhere((_) => _.id == evaluation.id);
     if (index != -1) evaluations[index] = evaluation;
@@ -85,20 +85,23 @@ final class EvaluationRepositoryFake extends EvaluationRepository {
   Future<void> removeEvaluation(
     Evaluation evaluation,
   ) async {
-    log(name: 'EvaluationRepository', 'removeEvaluation');
+    log(name: 'Repository', 'removeEvaluation');
     final evaluations = _evaluationStore.value;
     evaluations.removeWhere((_) => _.id == evaluation.id);
   }
 }
 
-final mockEvaluations = mockMedias.map((media) {
-  return Evaluation(
-    userId: mockUsers[0].id,
-    emotion: Emotion.nice,
-    media: EvaluationMedia(
-      id: media.id,
-      title: media.title,
-      image: media.image,
+final mockEvaluations = [
+  ...List.filled(
+    9,
+    Evaluation(
+      userId: mockUsers[0].id,
+      emotion: Emotion.nice,
+      media: EvaluationMedia(
+        id: mockMedias[0].id,
+        title: mockMedias[0].title,
+        image: mockMedias[0].image,
+      ),
     ),
-  );
-}).toList();
+  ),
+];

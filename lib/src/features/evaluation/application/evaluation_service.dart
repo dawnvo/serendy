@@ -21,7 +21,7 @@ Future<List<Evaluation?>> getEvaluations(
 }
 
 /// 평가 개수를 조회해요.
-@riverpod
+@Riverpod(keepAlive: true)
 Future<int> countEvaluations(
   CountEvaluationsRef ref,
 ) {

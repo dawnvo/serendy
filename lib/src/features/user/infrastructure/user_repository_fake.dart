@@ -13,7 +13,7 @@ final class UserRepositoryFake implements UserRepository {
     UserID? id,
     String? username,
   }) async {
-    log(name: 'UserRepository', 'fetchUser');
+    log(name: 'Repository', 'fetchUser');
     var users = _userStore.value;
     if (id != null) users = users.where((_) => _.id == id).toList();
     if (username != null) users = users.where((_) => _.username == username).toList();
@@ -24,7 +24,7 @@ final class UserRepositoryFake implements UserRepository {
   Future<void> createUser(
     User user,
   ) async {
-    log(name: 'UserRepository', 'createUser');
+    log(name: 'Repository', 'createUser');
     final users = _userStore.value;
     users.add(user);
   }
@@ -33,7 +33,7 @@ final class UserRepositoryFake implements UserRepository {
   Future<void> updateUser(
     User user,
   ) async {
-    log(name: 'UserRepository', 'updateUser');
+    log(name: 'Repository', 'updateUser');
     final users = _userStore.value;
     final index = users.indexWhere((_) => _.id == user.id);
     if (index != -1) users[index] = user;
@@ -45,7 +45,7 @@ final class UserRepositoryFake implements UserRepository {
     required ExitReason reason,
     String? comment,
   }) async {
-    log(name: 'UserRepository', 'deleteUser');
+    log(name: 'Repository', 'deleteUser');
     final users = _userStore.value;
     users.removeWhere((_) => _.id == userId);
   }
@@ -53,7 +53,7 @@ final class UserRepositoryFake implements UserRepository {
 
 final mockUsers = [
   User(
-    id: '7ec2a122-0d80-4d6a-a6c6-b7f8471738a9',
+    id: 'test-id',
     email: 'serendy@email.com',
     username: "serendy",
   )
