@@ -38,12 +38,12 @@ Future<User> getMe(GetMeRef ref) {
   final userId = ref.watch(requireUserIdProvider);
   return ref.read(getUserUsecaseProvider).execute((
     userId: userId, //
-  ));
+  )).then((user) => user!);
 }
 
 /// 사용자를 불러와요.
 @riverpod
-Future<User> getUser(
+Future<User?> getUser(
   GetUserRef ref, {
   required UserID id,
 }) {

@@ -173,7 +173,7 @@ class _CheckUsernameProviderElement
   String get username => (origin as CheckUsernameProvider).username;
 }
 
-String _$getMeHash() => r'0614a7fca65ebed1fea9090baec34e777aa71ec3';
+String _$getMeHash() => r'da55eb46e0f12f63eb2b7305c6ac883852253748';
 
 /// 내 정보를 불러와요.
 ///
@@ -189,7 +189,7 @@ final getMeProvider = FutureProvider<User>.internal(
 );
 
 typedef GetMeRef = FutureProviderRef<User>;
-String _$getUserHash() => r'501dbda824eb4b81aede143f7da9986625fec861';
+String _$getUserHash() => r'58426ba75169b38edd78fc9b727eef968ad6b190';
 
 /// 사용자를 불러와요.
 ///
@@ -200,7 +200,7 @@ const getUserProvider = GetUserFamily();
 /// 사용자를 불러와요.
 ///
 /// Copied from [getUser].
-class GetUserFamily extends Family<AsyncValue<User>> {
+class GetUserFamily extends Family<AsyncValue<User?>> {
   /// 사용자를 불러와요.
   ///
   /// Copied from [getUser].
@@ -244,7 +244,7 @@ class GetUserFamily extends Family<AsyncValue<User>> {
 /// 사용자를 불러와요.
 ///
 /// Copied from [getUser].
-class GetUserProvider extends AutoDisposeFutureProvider<User> {
+class GetUserProvider extends AutoDisposeFutureProvider<User?> {
   /// 사용자를 불러와요.
   ///
   /// Copied from [getUser].
@@ -280,7 +280,7 @@ class GetUserProvider extends AutoDisposeFutureProvider<User> {
 
   @override
   Override overrideWith(
-    FutureOr<User> Function(GetUserRef provider) create,
+    FutureOr<User?> Function(GetUserRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -297,7 +297,7 @@ class GetUserProvider extends AutoDisposeFutureProvider<User> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<User> createElement() {
+  AutoDisposeFutureProviderElement<User?> createElement() {
     return _GetUserProviderElement(this);
   }
 
@@ -315,12 +315,12 @@ class GetUserProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-mixin GetUserRef on AutoDisposeFutureProviderRef<User> {
+mixin GetUserRef on AutoDisposeFutureProviderRef<User?> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _GetUserProviderElement extends AutoDisposeFutureProviderElement<User>
+class _GetUserProviderElement extends AutoDisposeFutureProviderElement<User?>
     with GetUserRef {
   _GetUserProviderElement(super.provider);
 

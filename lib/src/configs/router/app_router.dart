@@ -39,12 +39,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         return AppRoutes._signInLocation;
       }
 
-      // * 존재하지 않는 사용자일 경우
-      // * 회원가입 화면으로 이동해요.
+      // * 사용자가 존재하는지 확인해요.
+      // * 존재하지 않으면 회원가입 화면으로 이동해요.
       if (location == AppRoutes._homeLocation) {
-        try {
-          await ref.read(getUserProvider(id: user.id).future);
-        } on EntityNotFoundException {
+        final check = await ref.read(getUserProvider(id: user.id).future);
+        if (check == null) {
           return AppRoutes._signUpLocation;
         }
       }

@@ -16,10 +16,7 @@ class AuthRepositoryFake implements AuthRepositoryImpl {
   }
 
   @override
-  sb.User? get currentUser {
-    log(name: 'Repository', 'currentUser');
-    return _authStore.value;
-  }
+  sb.User? get currentUser => _authStore.value;
 
   @override
   Future<void> signOutWithGoogle() async {
