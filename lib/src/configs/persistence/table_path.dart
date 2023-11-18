@@ -1,6 +1,4 @@
 abstract final class TablePath {
-  static const rootUrl = 'serendy_url';
-
   // * user
   static const user = 'user';
   static const userExitReason = 'user_exit_reason';

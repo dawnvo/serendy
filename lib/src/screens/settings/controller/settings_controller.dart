@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:serendy/src/configs/configs.dart';
-import 'package:serendy/src/features/user/application/user_service.dart';
+import 'package:serendy/src/features/user/user.dart';
 
 part 'settings_controller.g.dart';
 part 'settings_state.dart';
@@ -16,28 +15,25 @@ class SettingsController extends _$SettingsController {
 
   /// 세렌디 주요 URL을 불러와요.
   Future<void> _fetch() async {
-    List<dynamic> data = List.filled(4, {'url': 'https://serendy.vercel.app'});
-
-    // * URL을 불러와요.
-    // FIXME: 개발 환경일 경우 supabase 미사용
-    if (!kDebugMode) {
-      final supabase = ref.watch(supabaseClientProvider);
-      data = await supabase //
-          .from(TablePath.rootUrl)
-          .select<PostgrestList>('url');
-    }
-
     // * 내 정보를 불러와요.
     final user = await ref.watch(getMeProvider.future);
     final queryParam = '?email=${user.email}';
 
-    // * DB 순서대로 값을 전달해요.
-    final urls = data.map((_) => _['url']).toList();
+    // * 원격 불러오기를 설정해요.
+    final remoteConfig = ref.watch(firebaseRemoteConfigProvider);
+    await remoteConfig.fetchAndActivate();
+
+    // * URL을 불러와요.
+    final privacyPolicy = remoteConfig.getString('privacy_policy');
+    final termsOfService = remoteConfig.getString('terms_of_service');
+    final customerSupport = remoteConfig.getString('customer_support');
+    final databaseRequest = remoteConfig.getString('database_request');
+
     state = SettingsState(
-      privacyPolicyUrl: urls[0],
-      termsOfServiceUrl: urls[1],
-      reportProblemUrl: '${urls[2]}$queryParam',
-      requestUpdateUrl: '${urls[3]}$queryParam',
+      privacyPolicyUrl: privacyPolicy,
+      termsOfServiceUrl: termsOfService,
+      reportProblemUrl: '$customerSupport$queryParam',
+      requestUpdateUrl: '$databaseRequest$queryParam',
     );
   }
 }
