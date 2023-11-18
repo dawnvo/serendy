@@ -1,5 +1,6 @@
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/media/media.dart';
+import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/sheets/sheets.dart';
 import 'package:serendy/src/widgets/widgets.dart';
 
@@ -40,10 +41,16 @@ class _SearchTemplate extends StatelessWidget {
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           slivers: [
             SliverAppBar(
+              pinned: true,
               toolbarHeight: _SearchBar._height,
+              backgroundColor: context.colorScheme.surface,
+              surfaceTintColor: Colors.transparent,
               title: searchBar,
+              bottom: const PreferredSize(
+                preferredSize: Size.fromHeight(0.5),
+                child: Divider(),
+              ),
             ),
-            const SliverToBoxAdapter(child: Divider()),
             SliverPadding(
               padding: const EdgeInsets.symmetric(vertical: kContentPadding),
               sliver: searchResults,

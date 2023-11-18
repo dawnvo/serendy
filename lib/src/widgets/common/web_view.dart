@@ -33,7 +33,6 @@ class _WebViewState extends State<WebView> {
 
   @override
   void dispose() {
-    _controller.clearCache();
     _controller.clearLocalStorage();
     super.dispose();
   }

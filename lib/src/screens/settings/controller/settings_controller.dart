@@ -24,16 +24,16 @@ class SettingsController extends _$SettingsController {
     await remoteConfig.fetchAndActivate();
 
     // * URL을 불러와요.
-    final privacyPolicy = remoteConfig.getString('privacy_policy');
-    final termsOfService = remoteConfig.getString('terms_of_service');
-    final customerSupport = remoteConfig.getString('customer_support');
-    final databaseRequest = remoteConfig.getString('database_request');
+    final privacyPolicyUrl = remoteConfig.getString('privacy_policy');
+    final termsOfServiceUrl = remoteConfig.getString('terms_of_service');
+    final customerSupportUrl = remoteConfig.getString('customer_support');
+    final databaseRequestUrl = remoteConfig.getString('database_request');
 
     state = SettingsState(
-      privacyPolicyUrl: privacyPolicy,
-      termsOfServiceUrl: termsOfService,
-      reportProblemUrl: '$customerSupport$queryParam',
-      requestUpdateUrl: '$databaseRequest$queryParam',
+      privacyPolicyUrl: privacyPolicyUrl,
+      termsOfServiceUrl: termsOfServiceUrl,
+      reportProblemUrl: '$customerSupportUrl$queryParam',
+      requestUpdateUrl: '$databaseRequestUrl$queryParam',
     );
   }
 }
