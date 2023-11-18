@@ -90,6 +90,7 @@ final List<Media> mockMedias = [
     thumbnail: "https://cdn.myanimelist.net/images/anime/1935/127974.webp",
     keywords: const ["코미디", "액션", "능력"],
     trailer: 'gKWEUJ4r5do',
+    overview: "우연히 주운 한 권의 『공병문고』로 우리는 조금씩 가까워지기 시작했다.",
   ),
   Media(
     type: MediaType.tv,
@@ -98,6 +99,7 @@ final List<Media> mockMedias = [
     image: "https://cdn.myanimelist.net/images/anime/10/47347.webp",
     thumbnail: "https://cdn.myanimelist.net/images/anime/10/47347.webp",
     keywords: const ["코미디", "액션", "능력"],
+    overview: "우연히 주운 한 권의 『공병문고』로 우리는 조금씩 가까워지기 시작했다.",
   ),
   Media(
     type: MediaType.tv,

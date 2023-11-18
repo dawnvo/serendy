@@ -15,18 +15,19 @@ class MediaDetailSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final youtubeId = media.trailer;
 
-    // * 트레일러가 존재하면 영상을 틀어요.
-    if (youtubeId != null) {
-      return __YoutubeTrailerBody(
-        youtubeId: youtubeId,
-        keywords: media.keywords.map((genre) => genre).toList(),
-        overview: media.overview,
-      );
-    }
-    // * 없으면 안내 화면을 표시해요.
-    else {
-      return const __EmptyBody();
-    }
+    return SizedBox(
+      height: context.screenHeight / 2,
+      child: switch (youtubeId) {
+        // * 트레일러가 존재하면 영상을 틀어요.
+        String() => __YoutubeTrailerBody(
+            youtubeId: youtubeId,
+            keywords: media.keywords.map((genre) => genre).toList(),
+            overview: media.overview,
+          ),
+        // * 없으면 안내 화면을 표시해요.
+        null => const __EmptyBody(),
+      },
+    );
   }
 }
 
@@ -50,29 +51,34 @@ class __YoutubeTrailerBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             YoutubePlayer(config: YoutubePlayerConfig(videoId: youtubeId)),
-            _buildContent(context),
+            Padding(
+              padding: const EdgeInsets.all(kContentPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildKeywords(context),
+                  Gap.h12,
+                  _buildContent(context),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kContentPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Wrap(
-            spacing: 8,
-            children: keywords.map((genre) => Tag(genre)).toList(),
-          ),
-          Gap.h8,
-          if (overview != null) Text(overview!),
-          Gap.h8,
-        ],
-      ),
+  Widget _buildKeywords(BuildContext context) {
+    return Wrap(
+      spacing: Sizes.p8,
+      runSpacing: Sizes.p8,
+      children: keywords.map((genre) => Tag(genre)).toList(),
     );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    if (overview == null) return const SizedBox();
+    return Text(overview!);
   }
 }
 
@@ -83,20 +89,22 @@ class __EmptyBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(kContentPadding),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(RemixIcon.message_3_line, size: 80),
-            Gap.h24,
-            Text(
-              "정보를 마련하는 중이에요",
-              textAlign: TextAlign.center,
-              style: context.textTheme.titleMedium,
-            ),
-          ],
+      child: Center(child: _buildMessage(context)),
+    );
+  }
+
+  Widget _buildMessage(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(RemixIcon.message_3_line, size: Sizes.p64),
+        Gap.h20,
+        Text(
+          "정보를 마련하는 중이에요",
+          textAlign: TextAlign.center,
+          style: context.textTheme.titleMedium,
         ),
-      ),
+      ],
     );
   }
 }

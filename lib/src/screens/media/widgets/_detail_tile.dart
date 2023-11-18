@@ -32,17 +32,13 @@ class _MediaDetailsTile extends StatelessWidget {
   Widget _buildEmptyDetailTile(BuildContext context) {
     return ListTile(
       onTap: () => _handleShowBottomSheet(context),
-      leading: Icon(
+      iconColor: context.colorScheme.outline,
+      textColor: context.colorScheme.outline,
+      leading: const Icon(
         RemixIcon.information_line,
         size: Sizes.p28,
-        color: context.colorScheme.outline,
       ),
-      title: Text(
-        "정보가 부족해요",
-        style: context.textTheme.bodyLarge?.copyWith(
-          color: context.colorScheme.onSurfaceVariant,
-        ),
-      ),
+      title: const Text("트레일러가 없어요"),
       trailing: Icon(
         RemixIcon.arrow_right_s_line,
         color: context.colorScheme.outlineVariant,
