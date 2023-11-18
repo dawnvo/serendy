@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:serendy/src/configs/configs.dart';
 import 'package:serendy/src/features/user/user.dart';
 import 'package:serendy/src/widgets/widgets.dart';
@@ -91,22 +92,35 @@ class _ProfileCardTemplate extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(kBorderRadius),
-      child: GlassmorphicContainer(
-        width: 280,
-        height: 480,
-        child: Stack(children: [
-          Center(child: icon),
-          Column(
+    return Tilt(
+      lightConfig: const LightConfig(maxIntensity: 0.4),
+      shadowConfig: const ShadowConfig(disable: true),
+      childLayout: ChildLayout(
+        outer: [
+          Positioned(
+            bottom: Sizes.p48,
+            child: TiltParallax(
+              child: Column(children: [
+                icon,
+                Gap.h8,
+                titles,
+              ]),
+            ),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kBorderRadius),
+        child: GlassmorphicContainer(
+          width: 280,
+          height: 480,
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              titles,
-              Gap.h40,
               indicator,
             ],
-          )
-        ]),
+          ),
+        ),
       ),
     );
   }
