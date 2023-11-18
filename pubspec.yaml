@@ -47,6 +47,7 @@ dependencies:
   json_annotation: ^4.8.1
   flutter_cache_manager: ^3.3.1
   flutter_tilt: ^2.1.1
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:
