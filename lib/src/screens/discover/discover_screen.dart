@@ -52,17 +52,21 @@ class _DiscoverTemplate extends StatelessWidget {
             title: const Text("검색"),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kContentPadding,
+            padding: const EdgeInsets.only(
+              left: kContentPadding,
+              right: kContentPadding,
+              bottom: Sizes.p20,
             ),
             sliver: SliverToBoxAdapter(
               child: searchBar,
             ),
-          )
+          ),
         ],
         //grid
         body: Padding(
-          padding: const EdgeInsets.all(kContentPadding),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kContentPadding,
+          ),
           child: themesGrid,
         ),
       ),
