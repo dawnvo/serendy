@@ -49,30 +49,20 @@ class _DiscoverTemplate extends StatelessWidget {
             backgroundColor: context.colorScheme.surface,
             surfaceTintColor: Colors.transparent,
             toolbarHeight: kTextTabBarHeight,
-            floating: true,
-            pinned: true,
-
-            //title
             title: const Text("검색"),
-
-            //search-bar
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(
-                // sum: bottom height + padding ( top + bottom )
-                kTextTabBarHeight + (kContentPadding * 2),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(kContentPadding),
-                child: searchBar,
-              ),
-            ),
           ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kContentPadding,
+            ),
+            sliver: SliverToBoxAdapter(
+              child: searchBar,
+            ),
+          )
         ],
         //grid
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kContentPadding,
-          ),
+          padding: const EdgeInsets.all(kContentPadding),
           child: themesGrid,
         ),
       ),

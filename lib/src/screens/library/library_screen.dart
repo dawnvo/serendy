@@ -70,11 +70,14 @@ class _LibraryTemplate extends StatelessWidget {
           //indicator
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(
-              // sum: indicator + text + padding
-              10 + 20 + kContentPadding * 3,
+              kTextTabBarHeight + kContentPadding,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(kContentPadding),
+              padding: const EdgeInsets.only(
+                left: kContentPadding,
+                right: kContentPadding,
+                bottom: kContentPadding,
+              ),
               child: indicator,
             ),
           ),
